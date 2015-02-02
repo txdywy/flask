@@ -80,6 +80,17 @@ def show_entries():
 def index():
     return render_template('alancer/index.html')
 
+
+@app.route('/add_project', methods=['POST', 'GET'])
+def add_project():
+    name = request.args.get('name', '')
+    db = get_db()
+    db.execute('insert into projects (name) values (?)',
+               [name])
+    db.commit()
+    flash('New project was successfully posted')
+    return 1
+
 @app.route('/add', methods=['POST'])
 def add_entry():
     if not session.get('logged_in'):
