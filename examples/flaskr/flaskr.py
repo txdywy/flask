@@ -76,6 +76,10 @@ def show_entries():
     return render_template('show_entries.html', entries=entries)
 
 
+@app.route('/index', methods=['POST', 'GET'])
+def index():
+    return render_template('alancer/index.html')
+
 @app.route('/add', methods=['POST'])
 def add_entry():
     if not session.get('logged_in'):
