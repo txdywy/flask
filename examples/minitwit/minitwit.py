@@ -97,6 +97,10 @@ def before_request():
                           [session['user_id']], one=True)
 
 
+@app.route('/index')
+def index():
+    return render_template('alancer/index.html')
+
 @app.route('/')
 def timeline():
     """Shows a users timeline or if no user is logged in it will
