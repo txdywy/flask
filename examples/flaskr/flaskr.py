@@ -89,7 +89,7 @@ def add_project():
                [name])
     db.commit()
     flash('New project was successfully posted')
-    return 1
+    return name + ' added'
 
 @app.route('/add', methods=['POST'])
 def add_entry():
