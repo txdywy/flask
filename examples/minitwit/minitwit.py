@@ -214,7 +214,8 @@ def login():
             flash('You were logged in')
             session['user_id'] = user['user_id']
             return redirect(url_for('timeline'))
-    return render_template('login.html', error=error)
+    #return render_template('login.html', error=error)
+    return render_template('alancer/index.html')
 
 
 @app.route('/register', methods=['GET', 'POST'])
