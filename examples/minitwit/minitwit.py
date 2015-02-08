@@ -200,7 +200,8 @@ def add_message():
 def login():
     """Logs the user in."""
     if g.user:
-        return redirect(url_for('timeline'))
+        #return redirect(url_for('timeline'))
+        return render_template('alancer/index.html')
     error = None
     if request.method == 'POST':
         user = query_db('''select * from user where
@@ -213,16 +214,17 @@ def login():
         else:
             flash('You were logged in')
             session['user_id'] = user['user_id']
-            return redirect(url_for('timeline'))
-    #return render_template('login.html', error=error)
-    return render_template('alancer/index.html')
+            #return redirect(url_for('timeline'))
+            return render_template('alancer/index.html')
+    return render_template('login.html', error=error)
 
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
     """Registers the user."""
     if g.user:
-        return redirect(url_for('timeline'))
+        #return redirect(url_for('timeline'))
+        return render_template('alancer/index.html')
     error = None
     if request.method == 'POST':
         if not request.form['username']:
