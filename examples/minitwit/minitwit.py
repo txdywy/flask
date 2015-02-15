@@ -16,7 +16,11 @@ from datetime import datetime
 from flask import Flask, request, session, url_for, redirect, \
      render_template, abort, g, flash, _app_ctx_stack
 from werkzeug import check_password_hash, generate_password_hash
+from boto.s3.connection import S3Connection
+from boto.s3.key import Key
+from config import AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY
 
+s3_conn = S3Connection(AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY)
 
 # configuration
 DATABASE = './minitwit.db'
@@ -29,6 +33,19 @@ ALANCER_INDEX = 'alancer/index.html'
 app = Flask(__name__)
 app.config.from_object(__name__)
 app.config.from_envvar('MINITWIT_SETTINGS', silent=True)
+
+def img_set(img_name, img_str):
+    b = s3_conn.get_bucket('alancer-images')
+    k = Key(b)
+    k.key = img_name
+    k.set_contents_from_string(img_str)
+
+
+def img_get(img_name):
+    b = s3_conn.get_bucket('alancer-images')
+    k = Key(b)
+    k.key = img_name
+    return k.get_contents_as_string()
 
 
 def get_db():
