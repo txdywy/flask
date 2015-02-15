@@ -23,6 +23,7 @@ DATABASE = './minitwit.db'
 PER_PAGE = 30
 DEBUG = True
 SECRET_KEY = 'development key'
+ALANCER_INDEX = 'alancer/index.html'
 
 # create our little application :)
 app = Flask(__name__)
@@ -99,7 +100,7 @@ def before_request():
 
 @app.route('/index')
 def index():
-    return render_template('alancer/index.html')
+    return render_template(ALANCER_INDEX)
 
 @app.route('/')
 def timeline():
@@ -201,7 +202,7 @@ def login():
     """Logs the user in."""
     if g.user:
         #return redirect(url_for('timeline'))
-        return render_template('alancer/index.html')
+        return render_template(ALANCER_INDEX)
     error = None
     if request.method == 'POST':
         user = query_db('''select * from user where
@@ -215,7 +216,7 @@ def login():
             flash('You were logged in')
             session['user_id'] = user['user_id']
             #return redirect(url_for('timeline'))
-            return render_template('alancer/index.html')
+            return render_template(ALANCER_INDEX)
     return render_template('login.html', error=error)
 
 
@@ -224,7 +225,7 @@ def register():
     """Registers the user."""
     if g.user:
         #return redirect(url_for('timeline'))
-        return render_template('alancer/index.html')
+        return render_template(ALANCER_INDEX)
     error = None
     if request.method == 'POST':
         if not request.form['username']:
@@ -255,7 +256,8 @@ def logout():
     """Logs the user out."""
     flash('You were logged out')
     session.pop('user_id', None)
-    return redirect(url_for('public_timeline'))
+    return render_template(ALANCER_INDEX)
+    #return redirect(url_for('public_timeline'))
 
 
 # add some filters to jinja
