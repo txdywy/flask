@@ -202,7 +202,7 @@ def login():
     """Logs the user in."""
     if g.user:
         #return redirect(url_for('timeline'))
-        return render_template(ALANCER_INDEX)
+        return redirect(url_for('index'))
     error = None
     if request.method == 'POST':
         user = query_db('''select * from user where
@@ -216,7 +216,7 @@ def login():
             flash('You were logged in')
             session['user_id'] = user['user_id']
             #return redirect(url_for('timeline'))
-            return render_template(ALANCER_INDEX)
+            return redirect(url_for('index'))
     return render_template('login.html', error=error)
 
 
@@ -256,7 +256,7 @@ def logout():
     """Logs the user out."""
     flash('You were logged out')
     session.pop('user_id', None)
-    return render_template(ALANCER_INDEX)
+    return redirect(url_for('index'))
     #return redirect(url_for('public_timeline'))
 
 
