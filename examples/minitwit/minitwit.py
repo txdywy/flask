@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
 """
-    MiniTwit
+    Alancer
     ~~~~~~~~
 
-    A microblogging application written with Flask and sqlite3.
+    An application written with Flask and sqlite3.
 
-    :copyright: (c) 2014 by Armin Ronacher.
+    :copyright: (c) 2015 by Yi Wei.
     :license: BSD, see LICENSE for more details.
 """
 
@@ -108,6 +108,8 @@ def timeline():
     redirect to the public timeline.  This timeline shows the user's
     messages as well as all the messages of followed users.
     """
+    return render_template(ALANCER_INDEX)
+    """
     if not g.user:
         return redirect(url_for('public_timeline'))
     return render_template('timeline.html', messages=query_db('''
@@ -118,6 +120,7 @@ def timeline():
                                     where who_id = ?))
         order by message.pub_date desc limit ?''',
         [session['user_id'], session['user_id'], PER_PAGE]))
+    """
 
 
 @app.route('/public')
