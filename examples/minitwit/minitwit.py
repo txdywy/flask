@@ -20,6 +20,8 @@ from boto.s3.connection import S3Connection
 from boto.s3.key import Key
 from config import AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY
 
+PROJECT_IMAGE_KEY_TEMPLATE = 'projects/%s'
+PROJECT_IMAGE_URL_TEMPLATE = 'https://s3-us-west-2.amazonaws.com/alancer-images/' + PROJECT_IMAGE_KEY_TEMPLATE
 s3_conn = S3Connection(AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY)
 
 # configuration
@@ -37,15 +39,16 @@ app.config.from_envvar('MINITWIT_SETTINGS', silent=True)
 def img_set(img_name, img_str):
     b = s3_conn.get_bucket('alancer-images')
     k = Key(b)
-    k.key = img_name
-    k.set_contents_from_string(img_str)
+    k.key = PROJECT_IMAGE_KEY_TEMPLATE % img_name
+    str_len = k.set_contents_from_string(img_str)
+    return str_len
 
 
 def img_get(img_name):
     b = s3_conn.get_bucket('alancer-images')
     k = Key(b)
     k.key = img_name
-    return k.get_contents_as_string()
+    return k.get_contents_as_string(PROJECT_IMAGE_KEY_TEMPLATE % img_name)
 
 
 def get_db():
