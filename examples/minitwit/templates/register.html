@@ -6,13 +6,24 @@
   <form action="" method="post">
     <dl>
       <dt>Username:
-      <dd><input type="text" name="username" size="30" value="{{ request.form.username }}">
+      <dd><input type="text" name="username" size="30" value="{{ request.form.username }}" STYLE="background-color: #FFFFF0;">
       <dt>E-Mail:
-      <dd><input type="text" name="email" size="30" value="{{ request.form.email }}">
+      <dd><input type="text" name="email" size="30" value="{{ request.form.email }}" STYLE="background-color: #FFFFF0;">
       <dt>Password:
-      <dd><input type="password" name="password" size="30">
+      <dd><input type="password" name="password" size="30" STYLE="background-color: #FFFFF0;">
       <dt>Password <small>(repeat)</small>:
-      <dd><input type="password" name="password2" size="30">
+      <dd><input type="password" name="password2" size="30" STYLE="background-color: #FFFFF0;">
+      
+      <dt>School:
+      <dd><input type="text" name="school" size="30">
+      <dt>City:
+      <dd><input type="text" name="city" size="30">
+      <dt>Country:
+      <dd><input type="text" name="country" size="30">
+      <dt>Zip code:
+      <dd><input type="text" name="zipcode" size="30">
+      <dt>Phone:
+      <dd><input type="text" name="phone" size="30">
     </dl>
     <div class="actions"><input type="submit" value="Sign Up"></div>
   </form>
