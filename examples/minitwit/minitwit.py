@@ -20,29 +20,33 @@ from boto.s3.connection import S3Connection
 from boto.s3.key import Key
 from config import AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY
 
-from sqlalchemy import *
-
-db = create_engine(app.config['DATABASE'])
+from model import flush, db_session, Project
 
 PROJECT_IMAGE_KEY_TEMPLATE = 'projects/%s'
 PROJECT_IMAGE_URL_TEMPLATE = 'https://s3-us-west-2.amazonaws.com/alancer-images/' + PROJECT_IMAGE_KEY_TEMPLATE
 s3_conn = S3Connection(AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY)
 
-PROJECT_LOCAL_IMAGE_TEMPLATE = 'project_images/%s'
+PROJECT_LOCAL_IMAGE_TEMPLATE = 'static/project/%s'
 # configuration
 DATABASE = './minitwit.db'
 PER_PAGE = 30
 DEBUG = True
 SECRET_KEY = 'development key'
 ALANCER_INDEX = 'alancer/index.html'
+ALANCER_HTTP_ROOT = 'http://alancer.cf/'
 
 # create our little application :)
 app = Flask(__name__)
 app.config.from_object(__name__)
 app.config.from_envvar('MINITWIT_SETTINGS', silent=True)
 
-def add_project(title, description='', client='N/A', image_url=None):
-    db = get_db()   
+def add_project(title, email=None, desp='', client='N/A', image_url=None):
+    p = Project(title, email, desp, image_url)
+    flush(p)
+    if not image_url:
+        image_file = PROJECT_LOCAL_IMAGE_TEMPLATE % ('project_%s' % p.id)
+        p.image_url = ALANCER_HTTP_ROOT + image_file
+        flush(p)
 
 
 def img_local_set(img_name, img_str):
