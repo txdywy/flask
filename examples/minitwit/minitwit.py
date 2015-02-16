@@ -95,6 +95,11 @@ def close_database(exception):
         top.sqlite_db.close()
 
 
+@app.teardown_appcontext
+def shutdown_session(exception=None):
+    db_session.remove()
+
+
 def init_db():
     """Initializes the database."""
     db = get_db()
