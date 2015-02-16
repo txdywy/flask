@@ -20,10 +20,15 @@ from boto.s3.connection import S3Connection
 from boto.s3.key import Key
 from config import AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY
 
+from sqlalchemy import *
+
+db = create_engine(app.config['DATABASE'])
+
 PROJECT_IMAGE_KEY_TEMPLATE = 'projects/%s'
 PROJECT_IMAGE_URL_TEMPLATE = 'https://s3-us-west-2.amazonaws.com/alancer-images/' + PROJECT_IMAGE_KEY_TEMPLATE
 s3_conn = S3Connection(AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY)
 
+PROJECT_LOCAL_IMAGE_TEMPLATE = 'project_images/%s'
 # configuration
 DATABASE = './minitwit.db'
 PER_PAGE = 30
@@ -35,6 +40,22 @@ ALANCER_INDEX = 'alancer/index.html'
 app = Flask(__name__)
 app.config.from_object(__name__)
 app.config.from_envvar('MINITWIT_SETTINGS', silent=True)
+
+def add_project(title, description='', client='N/A', image_url=None):
+    db = get_db()   
+
+
+def img_local_set(img_name, img_str):
+    with open(PROJECT_IMAGE_KEY_TEMPLATE % img_name, 'w') as f:
+        f.write(img_str)
+    return len(img_str)
+
+
+def img_local_get(img_name):
+    with open(PROJECT_IMAGE_KEY_TEMPLATE % img_name, 'r') as f:
+        img_str = f.read()
+    return img_str
+
 
 def img_set(img_name, img_str):
     b = s3_conn.get_bucket('alancer-images')
