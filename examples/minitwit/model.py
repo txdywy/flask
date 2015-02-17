@@ -63,3 +63,22 @@ class Project(Base):
 
     def __repr__(self):
         return '<Project %r>' % (self.title)
+
+class Contact(Base):
+    __tablename__ = 'contact'
+    id = Column(Integer, primary_key=True)
+    name = Column(String(50))
+    phone = Column(String(50))
+    email = Column(String(120))
+    message = Column(String(512))
+    create_time = Column(DATETIME())
+    
+    def __init__(self, name, phone, email, message):
+        self.name = name
+        self.phone = phone
+        self.email = email
+        self.message = message
+        self.create_time = datetime.datetime.now()
+
+    def __repr__(self):
+        return '<Contact %r>' % (self.name)

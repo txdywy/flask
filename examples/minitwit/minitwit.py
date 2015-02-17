@@ -20,7 +20,8 @@ from boto.s3.connection import S3Connection
 from boto.s3.key import Key
 from config import AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY
 
-from model import flush, db_session, Project
+from model import flush, db_session, Project, Contact
+import util
 
 PROJECT_IMAGE_KEY_TEMPLATE = 'projects/%s'
 PROJECT_IMAGE_URL_TEMPLATE = 'https://s3-us-west-2.amazonaws.com/alancer-images/' + PROJECT_IMAGE_KEY_TEMPLATE
@@ -34,6 +35,7 @@ DEBUG = True
 SECRET_KEY = 'development key'
 ALANCER_INDEX = 'alancer/index.html'
 ALANCER_HTTP_ROOT = 'http://alancer.cf/'
+ALANCER_SERVICE_EMAIL = 'geniusron@gmail.com'
 
 # create our little application :)
 app = Flask(__name__)
@@ -148,9 +150,23 @@ def before_request():
                           [session['user_id']], one=True)
 
 
+@app.route('/contact', methods=['POST'])
+def contact():
+    name = request.form['name']
+    phone = request.form['phone']
+    email = request.form['email']
+    message = request.form['message']
+    c = Contact(name, phone, email, message)
+    flush(c)
+    util.send_email('[Alancer Contact][%s][%s][%s]' % (name, phone, email), message, ALANCER_SERVICE_EMAIL)
+    return 'success'
+
+
+
 @app.route('/index')
 def index():
     return render_template(ALANCER_INDEX)
+
 
 @app.route('/')
 def timeline():
@@ -299,6 +315,8 @@ def register():
               [request.form['username'], request.form['email'],
                generate_password_hash(request.form['password'])])
             db.commit()
+            util.send_email('[Alancer] Congratulations!', 'You have registered at alancer!', request.form['email'])
+            util.send_email('[Alancer Signup]', 'You have a new user [%s] @lancer!' % request.form['email'], ALANCER_SERVICE_EMAIL) 
             flash('You were successfully registered and can login now')
             return redirect(url_for('login'))
     return render_template('register.html', error=error)
