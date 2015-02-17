@@ -24,17 +24,24 @@ def init_db():
     Base.metadata.create_all(bind=engine)
 
 class User(Base):
-    __tablename__ = 'users'
-    id = Column(Integer, primary_key=True)
-    name = Column(String(50), unique=True)
+    __tablename__ = 'user'
+    user_id = Column(Integer, primary_key=True)
+    username = Column(String(50), unique=True)
     email = Column(String(120), unique=True)
+    pw_hash = Column(String(128))
+    school = Column(String(128))
+    city = Column(String(50))
+    country = Column(String(50))
+    zipcode = Column(String(50))    
+    phone = Column(String(50))
 
-    def __init__(self, name=None, email=None):
-        self.name = name
+    def __init__(self, username, email, pw_hash):
+        self.username = username
         self.email = email
+        self.pw_hash = pw_hash
 
     def __repr__(self):
-        return '<User %r>' % (self.name)
+        return '<User %r>' % (self.user_id)
 
 
 class Project(Base):
