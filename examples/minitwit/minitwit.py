@@ -161,6 +161,9 @@ def contact():
     util.send_email('[Alancer Contact][%s][%s][%s]' % (name, phone, email), message, ALANCER_SERVICE_EMAIL)
     return 'success'
 
+@app.route('/project')
+def project():
+    return render_template('project.html')
 
 
 @app.route('/index')
