@@ -42,11 +42,11 @@ app = Flask(__name__)
 app.config.from_object(__name__)
 app.config.from_envvar('MINITWIT_SETTINGS', silent=True)
 
-def add_project(title, email=None, desp='', client='N/A', image_url=None):
-    p = Project(title, email, desp, image_url)
+def add_project(title, email='', desp='', client='N/A', image_url='', service='web dev'):
+    p = Project(title, client, email, desp, image_url, service)
     flush(p)
     if not image_url:
-        image_file = PROJECT_LOCAL_IMAGE_TEMPLATE % ('project_%s' % p.id)
+        image_file = PROJECT_LOCAL_IMAGE_TEMPLATE % ('project_%s.png' % p.id)
         p.image_url = ALANCER_HTTP_ROOT + image_file
         flush(p)
 
@@ -163,7 +163,7 @@ def contact():
 
 @app.route('/project')
 def project():
-    projects = range(5)
+    projects = Project.query.all()
     return render_template('project.html', projects=projects)
 
 

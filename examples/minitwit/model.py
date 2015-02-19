@@ -48,15 +48,19 @@ class Project(Base):
     __tablename__ = 'project'
     id = Column(Integer, primary_key=True)
     title = Column(String(50), unique=True)
+    client = Column(String(50))
     email = Column(String(120))
     desp = Column(String(500))
     image_url = Column(String(512))
+    service = Column(String(50))
     create_time = Column(DATETIME())
 
-    def __init__(self, title, email=None, desp='', image_url=None):
+    def __init__(self, title, client='', email='', desp='', image_url=None, service='web development'):
         self.title = title
+        self.client= client
         self.email = email
         self.desp = desp
+        self.service = service
         if image_url:
             self.image_url=image_url
         self.create_time = datetime.datetime.now()
