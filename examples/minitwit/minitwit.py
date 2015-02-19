@@ -163,7 +163,8 @@ def contact():
 
 @app.route('/project')
 def project():
-    return render_template('project.html')
+    projects = range(5)
+    return render_template('project.html', projects=projects)
 
 
 @app.route('/index')
