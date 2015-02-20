@@ -20,7 +20,7 @@ from boto.s3.connection import S3Connection
 from boto.s3.key import Key
 from config import AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY
 
-from model import flush, db_session, Project, Contact, Client
+from model import flush, db_session, Project, Contact, Client, User
 import util
 
 PROJECT_IMAGE_KEY_TEMPLATE = 'projects/%s'
@@ -146,8 +146,8 @@ def gravatar_url(email, size=80):
 def before_request():
     g.user = None
     if 'user_id' in session:
-        g.user = query_db('select * from user where user_id = ?',
-                          [session['user_id']], one=True)
+        #g.user = query_db('select * from user where user_id = ?', [session['user_id']], one=True)
+        g.user = User.query.get(session['user_id'])
 
 
 @app.route('/contact', methods=['POST'])
@@ -278,16 +278,15 @@ def login():
         return redirect(url_for('index'))
     error = None
     if request.method == 'POST':
-        user = query_db('''select * from user where
-            username = ?''', [request.form['username']], one=True)
+        #user = query_db('''select * from user where username = ?''', [request.form['username']], one=True)
+        user = User.query.filter_by(username=request.form['username'].lower()).first()
         if user is None:
             error = 'Invalid username'
-        elif not check_password_hash(user['pw_hash'],
-                                     request.form['password']):
+        elif not check_password_hash(user.pw_hash, request.form['password']):
             error = 'Invalid password'
         else:
             flash('You were logged in')
-            session['user_id'] = user['user_id']
+            session['user_id'] = user.user_id
             #return redirect(url_for('timeline'))
             return redirect(url_for('index'))
     return render_template('login.html', error=error)
@@ -313,12 +312,14 @@ def register():
         elif get_user_id(request.form['username']) is not None:
             error = 'The username is already taken'
         else:
-            db = get_db()
-            db.execute('''insert into user (
-              username, email, pw_hash) values (?, ?, ?)''',
-              [request.form['username'], request.form['email'],
-               generate_password_hash(request.form['password'])])
-            db.commit()
+            #db = get_db()
+            #db.execute('''insert into user (
+            #  username, email, pw_hash) values (?, ?, ?)''',
+            #  [request.form['username'], request.form['email'],
+            #   generate_password_hash(request.form['password'])])
+            #db.commit()
+            u = User(username=request.form['username'].lower(), email=request.form['email'], pw_hash=generate_password_hash(request.form['password']))
+            flush(u)
             util.send_email('[Alancer] Congratulations!', 'You have registered at alancer!', request.form['email'])
             util.send_email('[Alancer Signup]', 'You have a new user [%s] @lancer!' % request.form['email'], ALANCER_SERVICE_EMAIL) 
             flash('You were successfully registered and can login now')
