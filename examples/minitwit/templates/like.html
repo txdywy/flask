@@ -5,7 +5,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2">
-                    <div class="modal-body">
+                    <div class="modal-body" style="text-align: center;">
                         <h2>{{ project.title }}</h2>
                         <hr class="star-primary">
                         <img src="{{ project.image_url }}" class="img-responsive img-centered" alt="">
@@ -24,7 +24,12 @@
                                 </strong>
                             </li>
                         </ul>
-                        <a href="/like_submit" class="btn btn-info btn-lg"><span class="glyphicon glyphicon-flag"></span> Submit</a>
+                        <div class="form-group col-xs-12 floating-label-form-group controls">
+                            <label>Message</label>
+                            <textarea maxlength="50" rows="5" class="form-control" placeholder="Why I'm interested in this project?" id="message" required="" data-validation-required-message="Please enter a message." aria-invalid="false"></textarea>
+                            <p class="help-block text-danger"></p>
+                        </div>
+                        <a href="/like_submit" class="btn btn-info btn-lg"><span class="glyphicon glyphicon-ok"></span> Submit</a>
                     </div>
                 </div>
             </div>
