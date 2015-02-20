@@ -26,10 +26,12 @@
                         </ul>
                         <div class="form-group col-xs-12 floating-label-form-group controls">
                             <label>Message</label>
-                            <textarea maxlength="50" rows="5" class="form-control" placeholder="Why I'm interested in this project?" id="message" required="" data-validation-required-message="Please enter a message." aria-invalid="false"></textarea>
-                            <p class="help-block text-danger"></p>
+                            <form action="/like_submit" method="POST">
+                                <textarea maxlength="1024" rows="3" class="form-control"  name="messge" placeholder="Why I'm interested in this project?" id="message" required="" data-validation-required-message="Please enter a message." aria-invalid="false"></textarea>
+                                <p class="help-block text-danger"></p>
+                                <button class="btn btn-info btn-lg" type="submit" ><span class="glyphicon glyphicon-ok"></span> Submit</button>
+                            </form>
                         </div>
-                        <a href="/like_submit" class="btn btn-info btn-lg"><span class="glyphicon glyphicon-ok"></span> Submit</a>
                     </div>
                 </div>
             </div>
