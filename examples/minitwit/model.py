@@ -90,13 +90,13 @@ class UserLike(Base):
     __tablename__ = 'user_like'
     id = Column(Integer, primary_key=True)
     user_id = Column(Integer, ForeignKey('user.user_id'))
-    client_id = Column(Integer, ForeignKey('client.id'))
+    project_id = Column(Integer, ForeignKey('project.id'))
     valid = Column(Integer, index=True, default=1)
     comment = Column(String(1024))
 
-    def __init__(self, user_id, client_id, comment=''):
+    def __init__(self, user_id, project_id, comment=''):
         self.user_id = user_id
-        self.client_id = client_id
+        self.project_id = project_id
         self.comment = comment
 
     def __repr__(self):

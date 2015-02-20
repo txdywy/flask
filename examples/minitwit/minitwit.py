@@ -20,7 +20,7 @@ from boto.s3.connection import S3Connection
 from boto.s3.key import Key
 from config import AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY
 
-from model import flush, db_session, Project, Contact, Client, User
+from model import flush, db_session, Project, Contact, Client, User, UserLike
 import util
 
 PROJECT_IMAGE_KEY_TEMPLATE = 'projects/%s'
@@ -169,8 +169,26 @@ def project():
 
 @app.route('/like', methods=['POST'])
 def like():
-    project = Project.query.get(request.form['project_id'])
-    return render_template('like.html', project=project)
+    project_id = request.form['project_id']
+    user_id = session['user_id']
+    user = User.query.get(user_id)
+    project = Project.query.get(project_id)
+    user_like = UserLike.query.filter_by(user_id=user_id, project_id=project_id, valid=1).first()
+    return render_template('like.html', project=project, user_like=user_like, user=user)
+
+
+@app.route('/like_submit', methods=['POST'])
+def like_submit():
+    user_id = session['user_id']
+    project_id = request.form['project_id']
+    message = request.form['message']
+    user_like = UserLike.query.filter_by(user_id=user_id, project_id=project_id, valid=1).first()
+    if not user_like:
+        user_like = UserLike(user_id, project_id, message)
+        flush(user_like)
+    user = User.query.get(user_id)
+    project = Project.query.get(project_id)
+    return render_template('like.html', project=project, user_like=user_like, user=user)
 
 
 @app.route('/index')

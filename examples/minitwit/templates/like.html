@@ -26,11 +26,15 @@
                         </ul>
                         <div class="form-group col-xs-12 floating-label-form-group controls">
                             <label>Message</label>
+                            {% if user_like %}
+                            <textarea maxlength="1024" rows="3" class="form-control"  name="message" placeholder="@{{ user.username }}[{{ user.email }}] {{ user_like.comment }}" id="message" required="" data-validation-required-message="Please enter a message." aria-invalid="false"></textarea>
+                            {% else %}
                             <form action="/like_submit" method="POST">
-                                <textarea maxlength="1024" rows="3" class="form-control"  name="messge" placeholder="Why I'm interested in this project?" id="message" required="" data-validation-required-message="Please enter a message." aria-invalid="false"></textarea>
+                                <textarea maxlength="1024" rows="3" class="form-control"  name="message" placeholder="Why I'm interested in this project?" id="message" required="" data-validation-required-message="Please enter a message." aria-invalid="false"></textarea>
                                 <p class="help-block text-danger"></p>
-                                <button class="btn btn-info btn-lg" type="submit" ><span class="glyphicon glyphicon-ok"></span> Submit</button>
+                                <button class="btn btn-info btn-lg" type="submit" name="project_id" value={{ project.id }}><span class="glyphicon glyphicon-ok"></span> Submit</button>
                             </form>
+                            {% endif %}
                         </div>
                     </div>
                 </div>
