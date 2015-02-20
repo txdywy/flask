@@ -20,7 +20,7 @@ from boto.s3.connection import S3Connection
 from boto.s3.key import Key
 from config import AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY
 
-from model import flush, db_session, Project, Contact
+from model import flush, db_session, Project, Contact, Client
 import util
 
 PROJECT_IMAGE_KEY_TEMPLATE = 'projects/%s'
@@ -42,8 +42,8 @@ app = Flask(__name__)
 app.config.from_object(__name__)
 app.config.from_envvar('MINITWIT_SETTINGS', silent=True)
 
-def add_project(title, email='', desp='', client='N/A', image_url='', service='web dev'):
-    p = Project(title, client, email, desp, image_url, service)
+def add_project(title, email='', desp='', client='N/A', image_url='', service='web dev', client_id=None):
+    p = Project(title, client, email, desp, image_url, service, client_id)
     flush(p)
     if not image_url:
         image_file = PROJECT_LOCAL_IMAGE_TEMPLATE % ('project_%s.png' % p.id)

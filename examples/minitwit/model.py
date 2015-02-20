@@ -54,19 +54,34 @@ class Project(Base):
     image_url = Column(String(512))
     service = Column(String(50))
     create_time = Column(DATETIME())
+    client_id = Column(Integer)
 
-    def __init__(self, title, client='', email='', desp='', image_url=None, service='web development'):
+    def __init__(self, title, client='', email='', desp='', image_url=None, service='web development', client_id=None):
         self.title = title
         self.client= client
         self.email = email
         self.desp = desp
         self.service = service
+        self.client_id = client_id
         if image_url:
             self.image_url=image_url
         self.create_time = datetime.datetime.now()
 
     def __repr__(self):
         return '<Project %r>' % (self.title)
+
+class Client(Base):
+    __tablename__ = 'client'
+    id = Column(Integer, primary_key=True)
+    name = Column(String(50))
+    email = Column(String(120))
+
+    def __init__(self, name, email):
+        self.name = name
+        self.email = email
+
+    def __repr__(self):
+        return '<Client %r>' % (self.name)
 
 class Contact(Base):
     __tablename__ = 'contact'
