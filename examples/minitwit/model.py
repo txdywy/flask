@@ -1,7 +1,7 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy import Column, Integer, String, DATETIME
+from sqlalchemy import Column, Integer, String, DATETIME, Text, ForeignKey
 import datetime
 
 engine = create_engine('sqlite:///alancer.db', convert_unicode=True)
@@ -55,6 +55,8 @@ class Project(Base):
     service = Column(String(50))
     create_time = Column(DATETIME())
     client_id = Column(Integer)
+    cnt_like = Column(Integer, default=0)
+    cnt_dislike = Column(Integer, default=0)
 
     def __init__(self, title, client='', email='', desp='', image_url=None, service='web development', client_id=None):
         self.title = title
@@ -82,6 +84,25 @@ class Client(Base):
 
     def __repr__(self):
         return '<Client %r>' % (self.name)
+
+
+class UserLike(Base):
+    __tablename__ = 'user_like'
+    id = Column(Integer, primary_key=True)
+    user_id = Column(Integer, ForeignKey('user.user_id'))
+    client_id = Column(Integer, ForeignKey('client.id'))
+    valid = Column(Integer, index=True, default=1)
+    comment = Column(String(1024))
+
+    def __init__(self, user_id, client_id, comment=''):
+        self.user_id = user_id
+        self.client_id = client_id
+        self.comment = comment
+
+    def __repr__(self):
+        return  '<UserLike %r>' % (self.id)
+
+
 
 class Contact(Base):
     __tablename__ = 'contact'
