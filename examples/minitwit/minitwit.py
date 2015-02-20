@@ -21,7 +21,7 @@ from boto.s3.key import Key
 from config import AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY
 
 from model import flush, db_session, Project, Contact, Client, User, UserLike
-import util
+import util, functools
 
 PROJECT_IMAGE_KEY_TEMPLATE = 'projects/%s'
 PROJECT_IMAGE_URL_TEMPLATE = 'https://s3-us-west-2.amazonaws.com/alancer-images/' + PROJECT_IMAGE_KEY_TEMPLATE
@@ -167,7 +167,17 @@ def project():
     return render_template('project.html', projects=projects)
 
 
+def login_required(f):
+    @functools.wraps(f)
+    def func(*args, **kwargs):
+        if 'user_id' in session:
+            return f(*args, **kwargs)
+        else:
+            return redirect(url_for('login')) 
+    return func
+
 @app.route('/like', methods=['POST'])
+@login_required
 def like():
     project_id = request.form['project_id']
     user_id = session['user_id']
@@ -178,6 +188,7 @@ def like():
 
 
 @app.route('/like_submit', methods=['POST'])
+@login_required
 def like_submit():
     user_id = session['user_id']
     project_id = request.form['project_id']
