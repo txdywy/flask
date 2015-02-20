@@ -55,8 +55,8 @@ class Project(Base):
     service = Column(String(50))
     create_time = Column(DATETIME())
     client_id = Column(Integer)
-    cnt_like = Column(Integer, default=0)
-    cnt_dislike = Column(Integer, default=0)
+    #cnt_like = Column(Integer, default=0)
+    #cnt_dislike = Column(Integer, default=0)
 
     def __init__(self, title, client='', email='', desp='', image_url=None, service='web development', client_id=None):
         self.title = title

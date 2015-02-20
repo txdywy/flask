@@ -61,8 +61,11 @@
                                     </strong>
                                 </li>
                             </ul>
+                            <form action="{{ url_for('like') }}" method="post">
+                                <button class="btn btn-info btn-lg" type="submit" name="project_id" value={{ project.id }}><span class="glyphicon glyphicon-flag"></span> Like it!</button>
+                            </form>
+                            <p>&nbsp;</p>
                             <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
-                            <a href="/like" class="btn btn-info btn-lg"><span class="glyphicon glyphicon-flag"></span> Like it!</a>
                         </div>
                     </div>
                 </div>

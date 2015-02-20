@@ -1,0 +1,33 @@
+{% extends "alayout.html" %}
+{% block title %}Like Project{% endblock %}
+{% block body %}
+    <section id="like">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2">
+                    <div class="modal-body">
+                        <h2>{{ project.title }}</h2>
+                        <hr class="star-primary">
+                        <img src="{{ project.image_url }}" class="img-responsive img-centered" alt="">
+                        <p>{{ project.desp }}</p>
+                        <ul class="list-inline item-details">
+                            <li>Client:
+                                <strong>{{ project.client }}
+                                </strong>
+                            </li>
+                            <li>Date:
+                                <strong>{{ project.create_time }}
+                                </strong>
+                            </li>
+                            <li>Service:
+                                <strong>{{ project.service }}
+                                </strong>
+                            </li>
+                        </ul>
+                        <a href="/like_submit" class="btn btn-info btn-lg"><span class="glyphicon glyphicon-flag"></span> Submit</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

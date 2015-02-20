@@ -167,6 +167,12 @@ def project():
     return render_template('project.html', projects=projects)
 
 
+@app.route('/like', methods=['POST'])
+def like():
+    project = Project.query.get(request.form['project_id'])
+    return render_template('like.html', project=project)
+
+
 @app.route('/index')
 def index():
     return render_template(ALANCER_INDEX)
