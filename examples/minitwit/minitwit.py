@@ -176,9 +176,11 @@ def login_required(f):
             return redirect(url_for('login')) 
     return func
 
-@app.route('/like', methods=['POST'])
+@app.route('/like', methods=['GET', 'POST'])
 @login_required
 def like():
+    if request.method == 'GET':
+        return render_template(ALANCER_INDEX)    
     project_id = request.form['project_id']
     user_id = session['user_id']
     user = User.query.get(user_id)
