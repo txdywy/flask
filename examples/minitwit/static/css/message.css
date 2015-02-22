@@ -30,7 +30,7 @@ p {
 }
 .panel-body-right{
   background: #EFECEC;
-  text-align: right;
+  /*text-align: right;*/
 }
 .text-right{
   background: #BE682A;
