@@ -1,0 +1,91 @@
+<title>nowjs test</title>
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.0a3/jquery.mobile-1.0a3.min.css">
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.5.min.js"></script>
+    <script type="text/javascript" src="http://code.jquery.com/mobile/1.0a3/jquery.mobile-1.0a3.min.js"></script>    
+    <script src="nowjs/now.js"></script>
+    <script>
+      $(document).ready(function(){
+         
+        now.receiveMessage = function(name, message){
+          $("#incomingMessages").append("<div class='message'><span class='username'>" + name + ":</span> " + message + "</div>");
+          $("#incomingMessages").scrollTop($("#incomingMessages")[0].scrollHeight);
+        }
+         
+        $("#chatNameButton").click(function(){
+          var chatName = $("#chatNameText").val().trim();
+          if(chatName.length <= 0)
+            chatName = "unknown";
+          now.name = chatName;
+          $(location).attr('href',"#chatPage");
+        });
+         
+        $("#chatSendButton").click(function(){
+          now.distributeMessage($("#messageText").val());
+          $("#messageText").val("");
+        });
+         
+      });
+    </script>
+    <style>
+      .message
+      {
+        padding: 5px 5px 5px 5px;
+      }
+      .username
+      {
+        font-weight: strong;
+        color: #0f0;
+      }
+      .msgContainerDiv
+      {
+        overflow-y: scroll;
+        height: 250px;
+      }
+    </style>
+    
+    
+    
+ 
+    <div data-role="page" id="loginPage" data-theme="a" data-url="loginPage" class="ui-page ui-body-a ui-page-active">
+        <div data-role="header" class="ui-bar-a ui-header" role="banner">
+            <h1 class="ui-title" tabindex="0" role="heading" aria-level="1">NowJS Chat</h1>
+        </div>
+ 
+        <div data-role="content" class="ui-content" role="main">    
+        <div data-role="fieldcontain" class="ui-field-contain ui-body ui-br">
+            <label for="chatNameText" class="ui-input-text"><strong>Chat Name:</strong></label>
+            <input type="text" name="chatNameText" id="chatNameText" value="" class="ui-input-text ui-body-null ui-corner-all ui-shadow-inset ui-body-a">
+            <div data-theme="c" class="ui-btn ui-btn-up-c ui-btn-corner-all ui-shadow"><span class="ui-btn-inner ui-btn-corner-all"><span class="ui-btn-text">Ok</span></span><button id="chatNameButton" class="ui-btn-hidden">Ok</button></div>
+        </div>  
+        </div>
+ 
+        <div data-role="footer" class="ui-bar-a ui-footer" role="contentinfo">
+            <h4 class="ui-title" tabindex="0" role="heading" aria-level="1">Giant Flying Saucer</h4>
+        </div>
+    </div>
+ 
+    <div data-role="page" id="chatPage" data-theme="a" data-url="chatPage">
+ 
+        <div data-role="header">
+            <h1>NowJS Chat</h1>
+        </div>
+ 
+        <div data-role="content">   
+        <div id="incomingMessages" name="incomingMessages" class="msgContainerDiv"></div>
+        <label for="messageText"><strong>Message:</strong></label>
+        <textarea name="messageText" id="messageText"></textarea>
+ 
+        <fieldset class="ui-grid-a">
+            <div class="ui-block-a"><a href="#loginPage" id="goBackButton" data-role="button">Go Back</a></div>
+            <div class="ui-block-b"><button data-theme="a" id="chatSendButton" name="chatSendButton">Send
+        </button></div></fieldset>
+        </div>
+ 
+        <div data-role="footer">
+            <h4>Giant Flying Saucer</h4>
+        </div>
+    </div>
+ 
+    
+ 
+<div class="ui-loader ui-body-a ui-corner-all" style="top: 374px;"><span class="ui-icon ui-icon-loading spin"></span><h1>loading</h1></div>
