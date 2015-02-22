@@ -1,8 +1,5 @@
-@import url(//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css);
-/*font Awesome http://fontawesome.io*/
-@import url(//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css);
 p {
-    font-size: 40px;
+    font-size: 25px;
 }
 /*Comment List styles*/
 .comment-list .row {
@@ -22,15 +19,28 @@ p {
   border-top-left-radius:0px;
   right: 16px;
 }
-.comment-list .panel .panel-heading .panel-body {
+.comment-list .panel .panel-heading .panel-body-left .panel-body-right{
   padding-top: 6px;
+}
+.panel{
+  background-color: #EFECEC;
+}
+.panel-body-left{
+  background: #EFECEC;
+}
+.panel-body-right{
+  background: #EFECEC;
+  text-align: right;
+}
+.text-right{
+  background: #BE682A;
 }
 .comment-list figcaption {
   /*For wrapping text in thumbnail*/
   word-wrap: break-word;
 }
-/* Portrait tablets and medium desktops */
-@media (min-width: 768px) {
+/* Portrait tablets and medium desktops min=768px to 7px */
+@media (min-width: 7px) {
   .comment-list .arrow:after, .comment-list .arrow:before {
     content: "";
     position: absolute;
@@ -46,7 +56,7 @@ p {
   /*Outline effect style*/
   .comment-list .panel.arrow.left:before {
     left: 0px;
-    top: 30px;
+    top: 50px;
     /*Use boarder color of panel*/
     border-right-color: inherit;
     border-width: 16px;
@@ -54,16 +64,16 @@ p {
   /*Background color effect*/
   .comment-list .panel.arrow.left:after {
     left: 1px;
-    top: 31px;
+    top: 51px;
     /*Change for different outline color*/
-    border-right-color: #FFFFFF;
+    border-right-color: #EFECEC;
     border-width: 15px;
   }
   /*****Right Arrow*****/
   /*Outline effect style*/
   .comment-list .panel.arrow.right:before {
     right: -16px;
-    top: 30px;
+    top: 50px;
     /*Use boarder color of panel*/
     border-left-color: inherit;
     border-width: 16px;
@@ -71,9 +81,9 @@ p {
   /*Background color effect*/
   .comment-list .panel.arrow.right:after {
     right: -14px;
-    top: 31px;
+    top: 51px;
     /*Change for different outline color*/
-    border-left-color: #FFFFFF;
+    border-left-color: #EFECEC;
     border-width: 15px;
   }
 }
