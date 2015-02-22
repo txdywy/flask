@@ -176,6 +176,10 @@ def login_required(f):
             return redirect(url_for('login')) 
     return func
 
+@app.route('/message', methods=['GET', 'POST'])
+def message():
+    return render_template('message.html')
+
 @app.route('/like', methods=['GET', 'POST'])
 @login_required
 def like():
