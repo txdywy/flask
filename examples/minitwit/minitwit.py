@@ -18,14 +18,18 @@ from flask import Flask, request, session, url_for, redirect, \
 from werkzeug import check_password_hash, generate_password_hash
 from boto.s3.connection import S3Connection
 from boto.s3.key import Key
-from config import AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY
 
 from model import flush, db_session, Project, Contact, Client, User, UserLike
 import util, functools
 
+try:
+    from config import AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY
+    s3_conn = S3Connection(AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY)
+except:
+    print '------------no valid s3 config keys------------'
+
 PROJECT_IMAGE_KEY_TEMPLATE = 'projects/%s'
 PROJECT_IMAGE_URL_TEMPLATE = 'https://s3-us-west-2.amazonaws.com/alancer-images/' + PROJECT_IMAGE_KEY_TEMPLATE
-s3_conn = S3Connection(AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY)
 
 PROJECT_LOCAL_IMAGE_TEMPLATE = 'static/project/%s'
 # configuration
@@ -110,7 +114,7 @@ def init_db():
     db.commit()
 
 
-@app.cli.command('initdb')
+#@app.cli.command('initdb')
 def initdb_command():
     """Creates the database tables."""
     init_db()
