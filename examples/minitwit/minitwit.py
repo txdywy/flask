@@ -181,16 +181,18 @@ def login_required(f):
     return func
 
 @app.route('/message', methods=['GET', 'POST'])
+@login_required
 def message():
     client = Client.query.get(1)
+    user_id = session['user_id']
     if request.method == 'POST':
-        user_id = session['user_id']
         client_id = request.form['client_id']
         flag = Message.MESSAGE_USER
         message = request.form['message']
         m = Message(user_id, client_id, message, flag)
         flush(m)
-    return render_template('message.html', client=client)
+    messages = Message.query.filter_by(user_id=user_id, client_id=client.id).all()
+    return render_template('message.html', Message=Message, client=client, messages=messages)
 
 @app.route('/like', methods=['GET', 'POST'])
 @login_required

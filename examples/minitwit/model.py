@@ -119,6 +119,7 @@ class Message(Base):
         self.client_id = client_id
         self.message = message
         self.flag = flag
+        self.create_time = datetime.datetime.now()
 
     def __repr__(self):
         return  '<Message %r>' % (self.id)

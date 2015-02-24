@@ -56,6 +56,60 @@
                       </div>
                     </article>
 
+                    {% for message in messages %}
+                        {% if message.flag==Message.MESSAGE_USER %}
+                            <article class="row">
+                              <div class="col-md-10 col-sm-10 col-xs-9">
+                                <div class="panel panel-default arrow right">
+                                  <div class="panel-body-right">
+                                    <header class="text-right">
+                                      <div class="comment-user"><i class="fa fa-user"></i> This Guy</div>
+                                      <time class="comment-date" datetime="{{ message.create_time }}"><i class="fa fa-clock-o"></i> {{ message.create_time }}</time>
+                                    </header>
+                                    <div class="comment-post">
+                                      <p>
+                                        {{ message.message }}
+                                      </p>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="col-md-2 col-sm-2 col-xs-3">
+                                <figure class="thumbnail">
+                                  <img class="img-responsive" src="http://www.dignited.com/wp-content/uploads/2013/12/KFC-Obama.jpg" />
+                                  <figcaption class="text-center">Staff</figcaption>
+                                </figure>
+                              </div>
+                            </article>
+                        {% else %}
+                            <article class="row">
+                              <div class="col-md-2 col-sm-2 col-xs-3">
+                                <figure class="thumbnail">
+                                  <img class="img-responsive" src="http://www.nzweek.com/wp-content/uploads/2011/07/9-MacDonald-will-start-business-successively-400x309.jpg" />
+                                  <figcaption class="text-center">Boss</figcaption>
+                                </figure>
+                              </div>
+                              <div class="col-md-10 col-sm-10 col-xs-9">
+                                <div class="panel panel-default arrow left">
+                                  <div class="panel-body-left">
+                                    <header class="text-left">
+                                      <div class="comment-user"><i class="fa fa-user"></i> That Guy</div>
+                                      <time class="comment-date" datetime="{{ message.create_time }}"><i class="fa fa-clock-o"></i> {{ message.create_time }}</time>
+                                    </header>
+                                    <div class="comment-post">
+                                      <p>
+                                        {{ message.message }}
+                                      </p>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </article>
+                        {% endif %}
+                    {% else %}
+                    <li><em>There's no message so far.</em>
+                    {% endfor %}
+
                   </section>
               </div>
             </div>
