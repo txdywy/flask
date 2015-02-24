@@ -102,7 +102,26 @@ class UserLike(Base):
     def __repr__(self):
         return  '<UserLike %r>' % (self.id)
 
+class Message(Base):
+    MESSAGE_CLIENT = 0
+    MESSAGE_USER = 1
 
+    __tablename__ = 'message'
+    id = Column(Integer, primary_key=True)
+    user_id = Column(Integer, ForeignKey('user.user_id'))
+    client_id = Column(Integer, ForeignKey('client.id'))
+    message = Column(Text)
+    flag = Column(Integer, default=MESSAGE_USER)
+    create_time = Column(DATETIME())
+    
+    def __init__(self, user_id, client_id, message, flag):
+        self.user_id = user_id
+        self.client_id = client_id
+        self.message = message
+        self.flag = flag
+
+    def __repr__(self):
+        return  '<Message %r>' % (self.id)
 
 class Contact(Base):
     __tablename__ = 'contact'

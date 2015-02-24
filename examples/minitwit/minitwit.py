@@ -182,7 +182,8 @@ def login_required(f):
 
 @app.route('/message', methods=['GET', 'POST'])
 def message():
-    return render_template('message.html')
+    client = Client.query.get(1)
+    return render_template('message.html', client=client)
 
 @app.route('/like', methods=['GET', 'POST'])
 @login_required
