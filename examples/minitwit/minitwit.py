@@ -19,7 +19,7 @@ from werkzeug import check_password_hash, generate_password_hash
 from boto.s3.connection import S3Connection
 from boto.s3.key import Key
 
-from model import flush, db_session, Project, Contact, Client, User, UserLike
+from model import flush, db_session, Project, Contact, Client, User, UserLike, Message
 import util, functools
 
 try:
@@ -183,6 +183,13 @@ def login_required(f):
 @app.route('/message', methods=['GET', 'POST'])
 def message():
     client = Client.query.get(1)
+    if request.method == 'POST':
+        user_id = session['user_id']
+        client_id = request.form['client_id']
+        flag = Message.MESSAGE_USER
+        message = request.form['message']
+        m = Message(user_id, client_id, message, flag)
+        flush(m)
     return render_template('message.html', client=client)
 
 @app.route('/like', methods=['GET', 'POST'])
