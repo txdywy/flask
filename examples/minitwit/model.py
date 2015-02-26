@@ -77,6 +77,7 @@ class Client(Base):
     id = Column(Integer, primary_key=True)
     name = Column(String(50))
     email = Column(String(120))
+    user_id = Column(Integer, ForeignKey('user.user_id'))
 
     def __init__(self, name, email):
         self.name = name
@@ -85,6 +86,18 @@ class Client(Base):
     def __repr__(self):
         return '<Client %r>' % (self.name)
 
+class Client1(Base):
+    __tablename__ = 'client1'
+    id = Column(Integer, primary_key=True)
+    name = Column(String(50))
+    email = Column(String(120))
+
+    def __init__(self, name, email):
+        self.name = name
+        self.email = email
+
+    def __repr__(self):
+        return '<Client %r>' % (self.name)
 
 class UserLike(Base):
     __tablename__ = 'user_like'
