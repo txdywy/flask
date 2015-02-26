@@ -61,6 +61,11 @@
                             {% endif %}
                         </li>
                         <li class="page-scroll">
+                            {% if g.user.role==1 %}
+                                <a href="{{ url_for('message') }}">Message</a>
+                            {% endif %}
+                        </li>
+                        <li class="page-scroll">
                             <a href="/project">Project</a>
                         </li>
                         <li class="page-scroll">
