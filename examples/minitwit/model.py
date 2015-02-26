@@ -24,6 +24,9 @@ def init_db():
     Base.metadata.create_all(bind=engine)
 
 class User(Base):
+    USER_STUDENT = 0
+    USER_CLIENT = 1
+
     __tablename__ = 'user'
     user_id = Column(Integer, primary_key=True)
     username = Column(String(50), unique=True)
@@ -34,6 +37,7 @@ class User(Base):
     country = Column(String(50))
     zipcode = Column(String(50))    
     phone = Column(String(50))
+    role = Column(Integer, default=USER_STUDENT)
 
     def __init__(self, username, email, pw_hash):
         self.username = username
