@@ -233,6 +233,7 @@ def message_box():
         messages = Message.query.filter_by(client_id=client_id).group_by(Message.user_id).all()
     else:
         messages = Message.query.filter_by(user_id=user_id).group_by(Message.client_id).all()
+    now = datetime.now()
     for m in messages:
         mi = {}
         mi['m_user_id'] = m.user_id
@@ -240,6 +241,8 @@ def message_box():
         mi['m_username'] = m_user.username
         mi['message'] = m.message
         mi['m_client_id'] = m.client_id
+        delta = (now - (m.create_time if m.create_time else datetime(2015, 1, 1))).days
+        mi['new'] = True if delta == 0 else False
         message_items.append(mi)
     return render_template('message_box.html', message_items=message_items)
 
