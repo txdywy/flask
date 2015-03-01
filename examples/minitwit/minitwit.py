@@ -180,19 +180,40 @@ def login_required(f):
             return redirect(url_for('login')) 
     return func
 
-@app.route('/message', methods=['GET', 'POST'])
+@app.route('/message', methods=['POST'])
 @login_required
 def message():
-    client = Client.query.get(1)
     user_id = session['user_id']
-    if request.method == 'POST':
-        client_id = request.form['client_id']
+    user = User.query.get(user_id)
+    client = Client.query.filter_by(user_id=user_id).first()
+    m_user_id = request.form['m_user_id']
+    m_client_id = request.form['m_client_id']
+    m_client = Client.query.get(m_client_id)
+    print '----------------',user.role ,client.id,m_client_id
+    if user.role == User.USER_STUDENT:
         flag = Message.MESSAGE_USER
-        message = request.form['message']
-        m = Message(user_id, client_id, message, flag)
-        flush(m)
-    messages = Message.query.filter_by(user_id=user_id, client_id=client.id).all()
-    return render_template('message.html', Message=Message, client=client, messages=messages)
+        print '111'
+    elif int(client.id) == int(m_client_id):
+        flag = Message.MESSAGE_CLIENT
+        print '222'
+    else:
+        flag = Message.MESSAGE_USER
+        print '333'
+    print '================',flag,Message.MESSAGE_CLIENT
+    message = request.form['message']
+    m = Message(m_user_id, m_client_id, message, flag)
+    flush(m)
+    messages = Message.query.filter_by(user_id=m_user_id, client_id=m_client_id).all()
+    return render_template('message.html', Message=Message, client=m_client, messages=messages, m_user_id=m_user_id)
+
+@app.route('/message_room', methods=['GET', 'POST'])
+@login_required
+def message_room():
+    m_user_id = request.args.get('m_user_id')
+    m_client_id = request.args.get('m_client_id')
+    messages = Message.query.filter_by(user_id=m_user_id, client_id=m_client_id).all()
+    client = Client.query.get(m_client_id)
+    return render_template('message.html', Message=Message, client=client, messages=messages, m_user_id=m_user_id)
 
 @app.route('/message_box', methods=['GET', 'POST'])
 @login_required
@@ -200,7 +221,16 @@ def message_box():
     user_id = session['user_id']
     client = Client.query.filter_by(user_id=user_id).first()
     client_id = client.id if client else None
-    message_items = Message.query.filter_by(user_id=user_id, client_id=client_id).group_by(Message.user_id, Message.client_id).all()
+    messages = Message.query.group_by(Message.user_id, Message.client_id).all()
+    message_items = []
+    for m in messages:
+        mi = {}
+        mi['m_user_id'] = m.user_id
+        m_user = User.query.get(m.user_id)
+        mi['m_username'] = m_user.username
+        mi['message'] = m.message
+        mi['m_client_id'] = client_id
+        message_items.append(mi)
     return render_template('message_box.html', message_items=message_items)
 
 @app.route('/like', methods=['GET', 'POST'])

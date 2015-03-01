@@ -6,13 +6,15 @@
         <div class="col-md-8">
           <h2 class="page-header">Message box</h2>
             <ul class="list-group">
-              {% for message_item in message_items %}
-              <li class="list-group-item">
-                {% if g.user %}
-                <span class="badge">new</span>
-                {% endif %}
-                {{ '%s: %s' % (message_item.user_id, message_item.message) }}
-              </li>
+              {% for mi in message_items %}
+              <a href="{{ url_for('message_room', m_user_id=mi['m_user_id'], m_client_id=mi['m_client_id']) }}">
+                <li class="list-group-item">
+                  {% if g.user %}
+                  <span class="badge">new</span>
+                  {% endif %}
+                  {{ '%s: %s' % (mi['m_username'], mi['message']) }}
+                </li>
+              </a>
               {% else %}
                 <li><em>There's no message so far.</em>
               {% endfor %}
