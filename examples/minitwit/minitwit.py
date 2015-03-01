@@ -210,6 +210,8 @@ def message():
 def message_room():
     m_user_id = request.args.get('m_user_id')
     m_client_id = request.args.get('m_client_id')
+    if not m_user_id or not m_client_id:
+        redirect(url_for('login'))
     messages = Message.query.filter_by(user_id=m_user_id, client_id=m_client_id).all()
     client = Client.query.get(m_client_id)
     data = {}
@@ -223,17 +225,21 @@ def message_room():
 @login_required
 def message_box():
     user_id = session['user_id']
-    client = Client.query.filter_by(user_id=user_id).first()
-    client_id = client.id if client else None
-    messages = Message.query.group_by(Message.user_id, Message.client_id).all()
     message_items = []
+    user = User.query.get(user_id)
+    if user.role == User.USER_CLIENT:
+        client = Client.query.filter_by(user_id=user_id).first()
+        client_id = client.id if client else None
+        messages = Message.query.filter_by(client_id=client_id).group_by(Message.user_id).all()
+    else:
+        messages = Message.query.filter_by(user_id=user_id).group_by(Message.client_id).all()
     for m in messages:
         mi = {}
         mi['m_user_id'] = m.user_id
         m_user = User.query.get(m.user_id)
         mi['m_username'] = m_user.username
         mi['message'] = m.message
-        mi['m_client_id'] = client_id
+        mi['m_client_id'] = m.client_id
         message_items.append(mi)
     return render_template('message_box.html', message_items=message_items)
 
