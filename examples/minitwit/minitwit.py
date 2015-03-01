@@ -194,6 +194,11 @@ def message():
     messages = Message.query.filter_by(user_id=user_id, client_id=client.id).all()
     return render_template('message.html', Message=Message, client=client, messages=messages)
 
+@app.route('/message_box', methods=['GET', 'POST'])
+@login_required
+def message_box():
+    return render_template('message_box.html')
+
 @app.route('/like', methods=['GET', 'POST'])
 @login_required
 def like():
