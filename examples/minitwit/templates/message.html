@@ -7,55 +7,6 @@
               <div class="col-md-8">
                 <h2 class="page-header">Messages</h2>
                   <section class="comment-list">
-                    <!-- First Comment -->
-                    <article class="row">
-                      <div class="col-md-2 col-sm-2 col-xs-3">
-                        <figure class="thumbnail">
-                          <img class="img-responsive" src="http://www.nzweek.com/wp-content/uploads/2011/07/9-MacDonald-will-start-business-successively-400x309.jpg" />
-                          <figcaption class="text-center">Boss</figcaption>
-                        </figure>
-                      </div>
-                      <div class="col-md-10 col-sm-10 col-xs-9">
-                        <div class="panel panel-default arrow left">
-                          <div class="panel-body-left">
-                            <header class="text-left">
-                              <div class="comment-user"><i class="fa fa-user"></i> That Guy</div>
-                              <time class="comment-date" datetime="16-12-2014 01:05"><i class="fa fa-clock-o"></i> Dec 16, 2014</time>
-                            </header>
-                            <div class="comment-post">
-                              <p>
-                                I am the BOSS!
-                              </p>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </article>
-                    <!-- Second Comment Reply -->
-                    <article class="row">
-                      <div class="col-md-10 col-sm-10 col-xs-9">
-                        <div class="panel panel-default arrow right">
-                          <div class="panel-body-right">
-                            <header class="text-right">
-                              <div class="comment-user"><i class="fa fa-user"></i> This Guy</div>
-                              <time class="comment-date" datetime="16-12-2014 01:05"><i class="fa fa-clock-o"></i> Dec 16, 2014</time>
-                            </header>
-                            <div class="comment-post">
-                              <p>
-                                No idea what you are talking about?
-                              </p>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col-md-2 col-sm-2 col-xs-3">
-                        <figure class="thumbnail">
-                          <img class="img-responsive" src="http://www.dignited.com/wp-content/uploads/2013/12/KFC-Obama.jpg" />
-                          <figcaption class="text-center">Staff</figcaption>
-                        </figure>
-                      </div>
-                    </article>
-
                     {% for message in messages %}
                         {% if message.flag==Message.MESSAGE_USER %}
                             <article class="row">
@@ -64,7 +15,7 @@
                                   <div class="panel-body-right">
                                     <header class="text-right">
                                       <div class="comment-user"><i class="fa fa-user"></i> This Guy</div>
-                                      <time class="comment-date" datetime="{{ message.create_time.ctime()[:20] if message.create_time else '' }}"><i class="fa fa-clock-o"></i> {{ message.create_time }}</time>
+                                      <time class="comment-date" datetime="{{ message.create_time }}"><i class="fa fa-clock-o"></i> {{ message.create_time }}</time>
                                     </header>
                                     <div class="comment-post">
                                       <p>
@@ -77,7 +28,7 @@
                               <div class="col-md-2 col-sm-2 col-xs-3">
                                 <figure class="thumbnail">
                                   <img class="img-responsive" src="http://www.dignited.com/wp-content/uploads/2013/12/KFC-Obama.jpg" />
-                                  <figcaption class="text-center">{{ message.user_id }}</figcaption>
+                                  <figcaption class="text-center">{{ data.get('m_user_name') }}</figcaption>
                                 </figure>
                               </div>
                             </article>
@@ -86,7 +37,7 @@
                               <div class="col-md-2 col-sm-2 col-xs-3">
                                 <figure class="thumbnail">
                                   <img class="img-responsive" src="http://www.nzweek.com/wp-content/uploads/2011/07/9-MacDonald-will-start-business-successively-400x309.jpg" />
-                                  <figcaption class="text-center">Boss</figcaption>
+                                  <figcaption class="text-center">{{ data.get('m_client_name') }}</figcaption>
                                 </figure>
                               </div>
                               <div class="col-md-10 col-sm-10 col-xs-9">
