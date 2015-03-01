@@ -1,0 +1,23 @@
+{% extends "alayout.html" %}
+{% block title %}Message box{% endblock %}
+{% block body %}
+  <div class="container">
+      <div class="row">
+        <div class="col-md-8">
+          <h2 class="page-header">Message box</h2>
+            <ul class="list-group">
+              {% for message_item in message_items %}
+              <li class="list-group-item">
+                {% if g.user %}
+                <span class="badge">new</span>
+                {% endif %}
+                {{ '%s: %s' % (message_item.user_id, message_item.message) }}
+              </li>
+              {% else %}
+                <li><em>There's no message so far.</em>
+              {% endfor %}
+            </ul>
+        </div>
+      </div>
+  </div>
+{% endblock %}

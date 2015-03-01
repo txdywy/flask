@@ -197,7 +197,11 @@ def message():
 @app.route('/message_box', methods=['GET', 'POST'])
 @login_required
 def message_box():
-    return render_template('message_box.html')
+    user_id = session['user_id']
+    client = Client.query.filter_by(user_id=user_id).first()
+    client_id = client.id if client else None
+    message_items = Message.query.filter_by(user_id=user_id, client_id=client_id).group_by(Message.user_id, Message.client_id).all()
+    return render_template('message_box.html', message_items=message_items)
 
 @app.route('/like', methods=['GET', 'POST'])
 @login_required
