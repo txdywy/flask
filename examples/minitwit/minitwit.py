@@ -14,19 +14,24 @@ from sqlite3 import dbapi2 as sqlite3
 from hashlib import md5
 from datetime import datetime
 from flask import Flask, request, session, url_for, redirect, \
-     render_template, abort, g, flash, _app_ctx_stack
+     render_template, abort, g, flash, _app_ctx_stack, make_response
 from werkzeug import check_password_hash, generate_password_hash
 from boto.s3.connection import S3Connection
 from boto.s3.key import Key
 
 from model import flush, db_session, Project, Contact, Client, User, UserLike, Message
 import util, functools
+import ierror
+from WXBizMsgCrypt import SHA1
+import xml.etree.ElementTree as ET
+WX_SHA1 = SHA1()
 
 try:
-    from config import AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY
+    from config import AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, WX_TOKEN
     s3_conn = S3Connection(AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY)
 except:
     print '------------no valid s3 config keys------------'
+    WX_TOKEN = ''
 
 PROJECT_IMAGE_KEY_TEMPLATE = 'projects/%s'
 PROJECT_IMAGE_URL_TEMPLATE = 'https://s3-us-west-2.amazonaws.com/alancer-images/' + PROJECT_IMAGE_KEY_TEMPLATE
@@ -153,6 +158,23 @@ def before_request():
         #g.user = query_db('select * from user where user_id = ?', [session['user_id']], one=True)
         g.user = User.query.get(session['user_id'])
 
+@app.route('/wx', methods=['GET', 'POST'])
+def wx():
+    signature = request.args.get('signature')
+    timestamp = request.args.get('timestamp')
+    nonce = request.args.get('nonce')
+    echostr = request.args.get('echostr')
+    token = WX_TOKEN
+    if request.method == 'POST':
+        xml_recv = ET.fromstring(request.data)  
+        ToUserName = xml_recv.find("ToUserName").text  
+        FromUserName = xml_recv.find("FromUserName").text  
+        Content = xml_recv.find("Content").text 
+        reply = "<xml><ToUserName><![CDATA[%s]]></ToUserName><FromUserName><![CDATA[%s]]></FromUserName><CreateTime>%s</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA[%s]]></Content><FuncFlag>0</FuncFlag></xml>"
+        response = make_response( reply % (FromUserName, ToUserName, str(int(time.time())), Content ) )  
+        response.content_type = 'application/xml' 
+        return response
+    return echostr
 
 @app.route('/contact', methods=['POST'])
 def contact():
