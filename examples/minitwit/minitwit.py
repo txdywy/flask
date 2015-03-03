@@ -21,6 +21,8 @@ from boto.s3.key import Key
 
 from model import flush, db_session, Project, Contact, Client, User, UserLike, Message
 import util, functools
+import wx_util
+
 import ierror
 from WXBizMsgCrypt import SHA1
 import xml.etree.ElementTree as ET
@@ -166,14 +168,8 @@ def wx():
     echostr = request.args.get('echostr')
     token = WX_TOKEN
     if request.method == 'POST':
-        xml_recv = ET.fromstring(request.data)  
-        ToUserName = xml_recv.find("ToUserName").text  
-        FromUserName = xml_recv.find("FromUserName").text  
-        Content = xml_recv.find("Content").text 
-        reply = "<xml><ToUserName><![CDATA[%s]]></ToUserName><FromUserName><![CDATA[%s]]></FromUserName><CreateTime>%s</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA[%s]]></Content><FuncFlag>0</FuncFlag></xml>"
-        response = make_response( reply % (FromUserName, ToUserName, str(int(time.time())), Content ) )  
-        response.content_type = 'application/xml' 
-        return response
+        print '------', request.data
+        return wx_util.reply(request.data)
     return echostr
 
 @app.route('/contact', methods=['POST'])
