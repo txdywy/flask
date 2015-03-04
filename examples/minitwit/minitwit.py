@@ -223,6 +223,14 @@ def message():
     data['m_client_name'] = m_client.name
     #message notification to admin
     util.send_email('[Alancer] New Message', 'user:%s client:%s message:%s' % (m_user.username, m_client.name, message), ALANCER_SERVICE_EMAIL)
+    client_user = User.query.get(m_client.user_id)
+    if flag == Message.MESSAGE_USER:
+        email_notify = client_user.email
+        name_from = m_user.username
+    else:
+        email_notify = m_user.email
+        name_from = client_user.username
+    util.send_email('[Alancer] New message from %s' % name_from, '%s: %s ' % (name_from, message), email_notify)
     return render_template('message.html', data=data, Message=Message, client=m_client, messages=messages, m_user_id=m_user_id)
 
 @app.route('/message_room', methods=['GET', 'POST'])
