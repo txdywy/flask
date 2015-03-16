@@ -44,7 +44,7 @@ DATABASE = './minitwit.db'
 PER_PAGE = 30
 DEBUG = True
 SECRET_KEY = 'development key'
-ALANCER_INDEX = 'alancer/index.html'
+ALANCER_INDEX = 'project_list.html'#'alancer/index.html'
 ALANCER_HTTP_ROOT = 'http://alancer.cf'
 ALANCER_SERVICE_EMAIL = 'geniusron@gmail.com'
 
@@ -186,7 +186,7 @@ def contact():
 @app.route('/project')
 def project():
     projects = Project.query.all()
-    return render_template('project.html', projects=projects)
+    return render_template('project_list.html', projects=projects)
 
 
 def login_required(f):
@@ -306,7 +306,8 @@ def like_submit():
 
 @app.route('/index')
 def index():
-    return render_template(ALANCER_INDEX)
+    return redirect(url_for('project'))
+    #return render_template(ALANCER_INDEX)
 
 
 @app.route('/')
@@ -315,6 +316,7 @@ def timeline():
     redirect to the public timeline.  This timeline shows the user's
     messages as well as all the messages of followed users.
     """
+    return redirect(url_for('project'))
     return render_template(ALANCER_INDEX)
     """
     if not g.user:
