@@ -45,7 +45,7 @@ PER_PAGE = 30
 DEBUG = True
 SECRET_KEY = 'development key'
 ALANCER_INDEX = 'alancer/index.html'
-ALANCER_HTTP_ROOT = 'http://alancer.cf/'
+ALANCER_HTTP_ROOT = 'http://alancer.cf'
 ALANCER_SERVICE_EMAIL = 'geniusron@gmail.com'
 
 # create our little application :)
@@ -58,7 +58,7 @@ def add_project(title, email='', desp='', client='N/A', image_url='', service='w
     flush(p)
     if not image_url:
         image_file = PROJECT_LOCAL_IMAGE_TEMPLATE % ('project_%s.png' % p.id)
-        p.image_url = ALANCER_HTTP_ROOT + image_file
+        p.image_url = ALANCER_HTTP_ROOT + '/' + image_file
         flush(p)
 
 
@@ -230,7 +230,9 @@ def message():
     else:
         email_notify = m_user.email
         name_from = client_user.username
-    util.send_email('[Alancer] New message from %s' % name_from, '%s: %s ' % (name_from, message), email_notify)
+    message_room_link = ALANCER_HTTP_ROOT + url_for('message_room') + '?m_user_id=%s&m_client_id=%s' % (m_user_id, m_client.id)
+    mr = '<a href="%s" style="text-decoration:none;color:#3b5998" target="_blank">Alancer Message Room</a>' % message_room_link
+    util.send_email('[Alancer] New message from %s' % name_from, '%s: %s </br>%s' % (name_from, message, mr), email_notify)
     return render_template('message.html', data=data, Message=Message, client=m_client, messages=messages, m_user_id=m_user_id)
 
 @app.route('/message_room', methods=['GET', 'POST'])
@@ -444,8 +446,8 @@ def register():
             error = 'You have to enter a password'
         elif request.form['password'] != request.form['password2']:
             error = 'The two passwords do not match'
-        elif get_user_id(request.form['username']) is not None:
-            error = 'The username is already taken'
+        #elif get_user_id(request.form['username']) is not None:
+        #    error = 'The username is already taken'
         else:
             #db = get_db()
             #db.execute('''insert into user (
