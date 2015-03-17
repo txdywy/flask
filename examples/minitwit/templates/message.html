@@ -61,20 +61,20 @@
                     <li><em>There's no message so far.</em>
                     {% endfor %}
 
+                    <div class="form-group ">
+                         <label id="messageLabel" for="message">Message </label>
+                         <form action="/message" method="POST">
+                         <textarea class="form-control " type="textarea" id="message_text" name="message" placeholder="Message" maxlength="2048" rows="3" style="/*float:left;*/"></textarea>
+                         <div style="float:right;">
+                         <input type="hidden" name="m_user_id" value="{{ m_user_id }}">
+                         <input type="hidden" name="m_client_id" value="{{ client.id }}">
+                         <button class="btn btn-info btn-lg" type="submit" ><span class="glyphicon glyphicon-send"></span> Send</button>
+                         </div>
+                         </form>
+                    </div>
                   </section>
               </div>
             </div>
-        </div>
-        <div class="form-group ">
-             <label id="messageLabel" for="message">Message </label>
-             <form action="/message" method="POST">
-                 <textarea class="form-control " type="textarea" id="message_text" name="message" placeholder="Message" maxlength="2048" rows="3" style="/*float:left;*/"></textarea>
-                 <div style="float:right;">
-                 <input type="hidden" name="m_user_id" value="{{ m_user_id }}">
-                 <input type="hidden" name="m_client_id" value="{{ client.id }}">
-                 <button class="btn btn-info btn-lg" type="submit" ><span class="glyphicon glyphicon-send"></span> Send</button>
-                 </div>
-             </form>
         </div>
     </section>
 {% endblock %}
