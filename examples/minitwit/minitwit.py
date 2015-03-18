@@ -232,7 +232,7 @@ def message():
         name_from = client_user.username
     message_room_link = ALANCER_HTTP_ROOT + url_for('message_room') + '?m_user_id=%s&m_client_id=%s#messageLabel' % (m_user_id, m_client.id)
     mr = '<a href="%s" style="text-decoration:none;color:#3b5998" target="_blank">Alancer Message Room</a>' % message_room_link
-    util.send_email('[Alancer] New message from %s' % name_from, '%s: %s </br>%s' % (name_from, message, mr), email_notify)
+    util.send_email('[Alancer] New message from %s' % name_from, '%s: %s <br>%s' % (name_from, message, mr), email_notify)
     return render_template('message.html', data=data, Message=Message, client=m_client, messages=messages, m_user_id=m_user_id)
 
 @app.route('/message_room', methods=['GET', 'POST'])

@@ -19,7 +19,7 @@ def send_email(title, content, addr_to, addr_fr=None):
     # Create the message
     if not addr_fr:
         addr_fr = ALANCER_SUPPORT   
-    msg = MIMEText(makes(content))
+    msg = MIMEText(makes(content), 'html')
     msg['To'] = email.utils.formataddr(('Recipient', addr_to))
     msg['From'] = email.utils.formataddr(('Alancer', addr_fr))
     msg['Subject'] = title
