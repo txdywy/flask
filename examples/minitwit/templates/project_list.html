@@ -12,28 +12,36 @@
             </div>
             <div class="row">
                 {% for project in projects %}
-                <div class="col-sm-4 portfolio-item" style="text-align: center">
-                    <img autofocus src="{{ project.image_url }}" class="img-responsive img-centered" alt="">
-                    <p>{{ project.desp }}</p>
-                    <ul class="list-inline item-details">
-                        <li>Client:
-                            <strong>{{ project.client }}
-                            </strong>
-                        </li>
-                        <li>Date:
-                            <strong>{{ project.create_time }}
-                            </strong>
-                        </li>
-                        <li>Service:
-                            <strong>{{ project.service }}
-                            </strong>
-                        </li>
-                    </ul>
-
-                    <a href="{{ url_for('message_room', m_user_id=g.user.user_id if g.user else None, m_client_id=project.client_id) }}">
-                        <button class="btn btn-info btn-lg" type="submit"><span class="glyphicon glyphicon-hand-up"></span> Ping {{ project.client.split(' ')[0] }}!</button>
-                    </a>
-                </div>
+                <section>
+                        <div class="col-sm-4 portfolio-item" >
+                            <img autofocus src="{{ project.image_url }}" class="img-responsive img-centered" alt="">
+                            <div id="loctimebox">
+                                <p class="alignleft" style="float:left;"><i>Beijing, China</i></p>
+                                <p class="alignright" style="float:right;"><i>2d ago</i></p>
+                            </div>
+                            <div style="clear: both;"></div>
+                            <p>{{ project.desp }}</p>
+                            <ul class="list-inline item-details">
+                                <li>Client:
+                                    <strong>{{ project.client }}
+                                    </strong>
+                                </li>
+                                <li>Date:
+                                    <strong>{{ project.create_time }}
+                                    </strong>
+                                </li>
+                                <li>Service:
+                                    <strong>{{ project.service }}
+                                    </strong>
+                                </li>
+                            </ul>
+                            <div style="text-align: center"> 
+                                    <a href="{{ url_for('message_room', m_user_id=g.user.user_id if g.user else None, m_client_id=project.client_id) }}">
+                                        <button class="btn btn-info btn-lg" type="submit"><span class="glyphicon glyphicon-hand-up"></span> Ping {{ project.client.split(' ')[0] }}!</button>
+                                    </a>
+                            </div> 
+                        </div>
+                </section>
                 {% else %}
                 <li><em>There's no project so far.</em>
                 {% endfor %}
