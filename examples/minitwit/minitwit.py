@@ -251,6 +251,23 @@ def message_room():
     data['m_client_name'] = m_client.name
     return render_template('message.html', data=data, Message=Message, client=client, messages=messages, m_user_id=m_user_id)
 
+@app.route('/apply', methods=['GET'])
+@login_required
+def apply():
+    m_user_id = request.args.get('m_user_id')
+    m_client_id = request.args.get('m_client_id')
+    if not m_user_id or not m_client_id:
+        redirect(url_for('login'))
+    messages = Message.query.filter_by(user_id=m_user_id, client_id=m_client_id).all()
+    client = Client.query.get(m_client_id)
+    data = {}
+    m_user = User.query.get(m_user_id)
+    m_client = client
+    data['m_user_name'] = m_user.username
+    data['m_client_name'] = m_client.name
+    return render_template('apply.html', data=data, Message=Message, client=client, messages=messages, m_user_id=m_user_id)
+
+
 @app.route('/message_box', methods=['GET', 'POST'])
 @login_required
 def message_box():
