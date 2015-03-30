@@ -188,6 +188,9 @@ def project():
     projects = Project.query.all()
     return render_template('project_list.html', projects=projects)
 
+@app.route('/profile')
+def profile():
+    return render_template('profile.html')
 
 def login_required(f):
     @functools.wraps(f)
