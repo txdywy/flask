@@ -55,6 +55,11 @@
                                 <a href="{{ url_for('login') }}">Sign in</a>
                             {% endif %}
                         </li>
+			<li class="page-scroll">
+                            {% if g.user %}
+                                <a href="{{ url_for('profile') }}">Profile</a>
+                            {% endif %}
+                        </li>
                         <li class="page-scroll">
                             {% if not g.user %}
                                 <a href="{{ url_for('register') }}">Sign up</a>
