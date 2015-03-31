@@ -4,6 +4,7 @@ from WXBizMsgCrypt import SHA1
 import xml.etree.ElementTree as ET
 from flask import make_response
 from pygoogle import pygoogle
+import re, jieba
 WX_SHA1 = SHA1()
 
 WX_TEMPLATE_TEXT = "<xml><ToUserName><![CDATA[%s]]></ToUserName><FromUserName><![CDATA[%s]]></FromUserName><CreateTime>%s</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA[%s]]></Content><FuncFlag>0</FuncFlag></xml>"
@@ -80,7 +81,14 @@ def reply(data):
     elif '小虎是谁' in content:
         response = make_response(WX_TEMPLATE_IMG_TEXT % (user_name_from, user_name_to, str(int(time.time())),     '小虎是谁？', '是谁呀？', 'http://t.hujiang.com/images/peitu/huhu/5.jpg', 'http://alancer.cf'))
     else:
-        response = make_response(get_google_news(user_name_from, user_name_to, content))
+        if re.compile(u'[\u4e00-\u9fa5]+').search(content):
+            seg_list = jieba.cut(content, cut_all=False)
+            result = "🐯".join(seg_list)
+            #print '--------',result
+            response = make_response(reply_tmp % (user_name_from, user_name_to, str(int(time.time())), result))
+        else:
+            #print '========',repr(content)
+            response = make_response(get_google_news(user_name_from, user_name_to, content))
     response.content_type = 'application/xml'
     return response
 
