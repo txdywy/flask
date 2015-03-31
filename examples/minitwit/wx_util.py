@@ -4,7 +4,7 @@ from WXBizMsgCrypt import SHA1
 import xml.etree.ElementTree as ET
 from flask import make_response
 from pygoogle import pygoogle
-import re, jieba
+import re, jieba, jieba.analyse
 WX_SHA1 = SHA1()
 
 WX_TEMPLATE_TEXT = "<xml><ToUserName><![CDATA[%s]]></ToUserName><FromUserName><![CDATA[%s]]></FromUserName><CreateTime>%s</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA[%s]]></Content><FuncFlag>0</FuncFlag></xml>"
@@ -81,8 +81,8 @@ def reply(data):
     elif '小虎是谁' in content:
         response = make_response(WX_TEMPLATE_IMG_TEXT % (user_name_from, user_name_to, str(int(time.time())),     '小虎是谁？', '是谁呀？', 'http://t.hujiang.com/images/peitu/huhu/5.jpg', 'http://alancer.cf'))
     else:
-        if re.compile(u'[\u4e00-\u9fa5]+').search(content):
-            seg_list = jieba.cut(content, cut_all=False)
+        if unicode_is_zh(content):
+            seg_list = get_key_words(content)
             result = "🐯".join(seg_list)
             #print '--------',result
             response = make_response(reply_tmp % (user_name_from, user_name_to, str(int(time.time())), result))
@@ -92,4 +92,14 @@ def reply(data):
     response.content_type = 'application/xml'
     return response
 
+def unicode_is_zh(data):
+    if re.compile(u'[\u4e00-\u9fa5]+').search(data):
+        return True
+    else:
+        return False
 
+def get_key_words(data, topK=20):
+    return jieba.analyse.extract_tags(data, topK)
+
+def get_cut_words(data):
+    return jieba.cut(content, cut_all=False)
