@@ -5,7 +5,7 @@ import xml.etree.ElementTree as ET
 from flask import make_response
 from pygoogle import pygoogle
 import re, jieba, jieba.analyse
-import urllib2
+import urllib2, json
 from bs4 import BeautifulSoup
 
 import sys
@@ -133,8 +133,13 @@ def get_text_digest(data):
     return '\xF0\x9F\x8D\x8B'.join(tr4s.get_key_sentences(num=3))
 
 def get_text_by_url(url="http://www.cnn.com"):
+    url_wb = fix_weibo_card(url)
+    if url_wb:
+        url = url_wb
     request = urllib2.Request(url, headers={"User-Agent" : "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/40.0.2214.111 Safari/537.36"})
     html = urllib2.urlopen(request).read()
+    if url_wb:
+        html = json.loads(html)['data']['article']
     soup = BeautifulSoup(html)
 
     # kill all script and style elements
@@ -157,3 +162,21 @@ def is_url(data):
     else:
         return None
     
+def fix_weibo_card(url):
+    if 'http://card.weibo.com/article/h5/s#cid=' in url:
+        prefix = 'http://card.weibo.com/article/aj/articleshow?cid='
+        url = prefix + url[39:]
+        return url
+    else:
+        return None
+
+
+
+
+
+
+
+
+
+
+
