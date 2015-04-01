@@ -5,6 +5,8 @@ import xml.etree.ElementTree as ET
 from flask import make_response
 from pygoogle import pygoogle
 import re, jieba, jieba.analyse
+import urllib2
+from bs4 import BeautifulSoup
 
 import sys
 reload(sys)
@@ -12,6 +14,14 @@ sys.setdefaultencoding('utf-8')
 
 import codecs
 from textrank4zh import TextRank4Keyword, TextRank4Sentence
+
+URL_RE = re.compile(
+        r'^(?:http)s?://' # http:// or https://
+        r'(?:(?:[A-Z0-9](?:[A-Z0-9-]{0,61}[A-Z0-9])?\.)+(?:[A-Z]{2,6}\.?|[A-Z0-9-]{2,}\.?)|' #domain...
+        r'localhost|' #localhost...
+        r'\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})' # ...or ip
+        r'(?::\d+)?' # optional port
+        r'(?:/?|[/?]\S+)$', re.IGNORECASE)
 
 WX_SHA1 = SHA1()
 
@@ -89,10 +99,14 @@ def reply(data):
     elif '小虎是谁' in content:
         response = make_response(WX_TEMPLATE_IMG_TEXT % (user_name_from, user_name_to, str(int(time.time())),     '小虎是谁？', '是谁呀？', 'http://t.hujiang.com/images/peitu/huhu/5.jpg', 'http://alancer.cf'))
     else:
+        url = is_url(content)
+        if url:
+            content = get_text_by_url(url)
+            #print '+++++++++++++',content
         if unicode_is_zh(content):
             seg_list = get_key_words(content)
-            result = "🐯".join(seg_list)
-            result += '\xF0\x9F\x8C\x8D' + get_text_digest(content)
+            result = '\xe3\x80\x90' + '关键词' + '\xe3\x80\x91' + "\xe3\x80\x90%s\xe3\x80\x91" % "🐯".join(seg_list)
+            result += '\xF0\x9F\x8C\x8D' + '\xe3\x80\x90' + '摘要' + '\xe3\x80\x91' + "\xe3\x80\x90%s\xe3\x80\x91" % get_text_digest(content)
             #print '--------',result
             response = make_response(reply_tmp % (user_name_from, user_name_to, str(int(time.time())), result))
         else:
@@ -117,3 +131,28 @@ def get_text_digest(data):
     tr4s = TextRank4Sentence(stop_words_file='./stopword.data')
     tr4s.train(text=data, speech_tag_filter=True, lower=True, source = 'all_filters')
     return '\xF0\x9F\x8D\x8B'.join(tr4s.get_key_sentences(num=3))
+
+def get_text_by_url(url="http://www.cnn.com"):
+    html = urllib2.urlopen(url).read()
+    soup = BeautifulSoup(html)
+
+    # kill all script and style elements
+    for script in soup(["script", "style"]):
+        script.extract()    # rip it out
+
+    # get text
+    text = soup.get_text()
+
+    tlist = text.split('\n')
+    tlist = sorted(tlist, key=lambda x:len(x))
+    return tlist[-1]
+
+def is_url(data):
+    data = data.strip()
+    if 'http://' != data[:7]:
+        data = 'http://' + data 
+    if URL_RE.match(data):
+        return data
+    else:
+        return None
+    
