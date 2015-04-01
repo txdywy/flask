@@ -5,6 +5,14 @@ import xml.etree.ElementTree as ET
 from flask import make_response
 from pygoogle import pygoogle
 import re, jieba, jieba.analyse
+
+import sys
+reload(sys)
+sys.setdefaultencoding('utf-8')
+
+import codecs
+from textrank4zh import TextRank4Keyword, TextRank4Sentence
+
 WX_SHA1 = SHA1()
 
 WX_TEMPLATE_TEXT = "<xml><ToUserName><![CDATA[%s]]></ToUserName><FromUserName><![CDATA[%s]]></FromUserName><CreateTime>%s</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA[%s]]></Content><FuncFlag>0</FuncFlag></xml>"
@@ -84,6 +92,7 @@ def reply(data):
         if unicode_is_zh(content):
             seg_list = get_key_words(content)
             result = "🐯".join(seg_list)
+            result += '\xF0\x9F\x8C\x8D' + get_text_digest(content)
             #print '--------',result
             response = make_response(reply_tmp % (user_name_from, user_name_to, str(int(time.time())), result))
         else:
@@ -103,3 +112,8 @@ def get_key_words(data, topK=20):
 
 def get_cut_words(data):
     return jieba.cut(content, cut_all=False)
+
+def get_text_digest(data):
+    tr4s = TextRank4Sentence(stop_words_file='./stopword.data')
+    tr4s.train(text=data, speech_tag_filter=True, lower=True, source = 'all_filters')
+    return '\xF0\x9F\x8D\x8B'.join(tr4s.get_key_sentences(num=3))
