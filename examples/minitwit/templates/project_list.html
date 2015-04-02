@@ -31,9 +31,13 @@
                             <p>General Manager</p>
                             <div style="clear: both;"></div>
                             <div style="text-align: center"> 
-                                    <a href="{{ url_for('apply', m_user_id=g.user.user_id if g.user else None, m_client_id=project.client_id) }}">
+                                {% if not pas or not pas[project.id]  %}
+                                    <a href="{{ url_for('apply', m_user_id=g.user.user_id if g.user else None, m_client_id=project.client_id, project_id=project.id) }}">
                                         <button class="btn btn-info btn-lg" type="submit"><span class="glyphicon glyphicon-hand-up"></span> Apply</button>
                                     </a>
+                                {% else %}
+                                    <p>Applied at {{ pats[project.id] }}</p>
+                                {% endif %}
                             </div> 
                         </div>
                 </section>

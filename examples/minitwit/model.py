@@ -141,6 +141,28 @@ class Message(Base):
     def __repr__(self):
         return  '<Message %r>' % (self.id)
 
+class ProjectApply(Base):
+    PROJECT_APPLIED = 0
+    PROJECT_REJECTED = 1
+    PROJECT_WITHDRAW = 2
+    PROJECT_DECLINE = 3
+
+    __tablename__ = 'project_apply'
+    id = Column(Integer, primary_key=True)
+    user_id = Column(Integer, ForeignKey('user.user_id'))
+    project_id = Column(Integer, ForeignKey('project.id'))
+    valid = Column(Integer, index=True, default=1)
+    create_time = Column(DATETIME(), index=True)   
+    status = Column(Integer, index=True, default=PROJECT_APPLIED)
+
+    def __init__(self, user_id, project_id):
+        self.user_id = user_id
+        self.project_id = project_id
+        self.create_time = datetime.datetime.now()
+  
+    def __repr__(self):
+        return  '<ProjectApply %r>' % (self.id)
+
 class Contact(Base):
     __tablename__ = 'contact'
     id = Column(Integer, primary_key=True)

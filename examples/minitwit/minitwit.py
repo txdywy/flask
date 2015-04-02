@@ -19,7 +19,7 @@ from werkzeug import check_password_hash, generate_password_hash
 from boto.s3.connection import S3Connection
 from boto.s3.key import Key
 
-from model import flush, db_session, Project, Contact, Client, User, UserLike, Message
+from model import flush, db_session, Project, Contact, Client, User, UserLike, Message, ProjectApply
 import util, functools
 try:
     import wx_util
@@ -189,8 +189,19 @@ def contact():
 
 @app.route('/project')
 def project():
+    user_id = session.get('user_id')
+    pas = {}
+    pats = {}
     projects = Project.query.all()
-    return render_template('project_list.html', projects=projects)
+    if user_id:
+        for project in projects:
+            project_id = project.id
+            pa = ProjectApply.query.filter_by(user_id=user_id, project_id=project_id).first()
+            pas[project_id] = True if pa else False
+            pats[project_id] = str(pa.create_time)[:10] if pa else None
+    print '----',pas
+    print '====',pats
+    return render_template('project_list.html', projects=projects, pas=pas, pats=pats)
 
 @app.route('/profile')
 def profile():
@@ -214,8 +225,14 @@ def message():
     m_user_id = request.form['m_user_id']
     m_client_id = request.form['m_client_id']
     m_client = Client.query.get(m_client_id)
+ 
+    project_id = request.form['project_id']
     if user.role == User.USER_STUDENT:
         flag = Message.MESSAGE_USER
+        pa = ProjectApply.query.filter_by(project_id=project_id, user_id=user_id).first()
+        if not pa:
+            pa = ProjectApply(project_id=project_id, user_id=user_id)
+            flush(pa)
     elif int(client.id) == int(m_client_id):
         flag = Message.MESSAGE_CLIENT
     else:
@@ -263,6 +280,7 @@ def message_room():
 def apply():
     m_user_id = request.args.get('m_user_id')
     m_client_id = request.args.get('m_client_id')
+    project_id = request.args.get('project_id')
     if not m_user_id or not m_client_id:
         redirect(url_for('login'))
     messages = Message.query.filter_by(user_id=m_user_id, client_id=m_client_id).all()
@@ -272,7 +290,7 @@ def apply():
     m_client = client
     data['m_user_name'] = m_user.username
     data['m_client_name'] = m_client.name
-    return render_template('apply.html', data=data, Message=Message, client=client, messages=messages, m_user_id=m_user_id)
+    return render_template('apply.html', data=data, Message=Message, client=client, messages=messages, m_user_id=m_user_id, project_id=project_id)
 
 
 @app.route('/message_box', methods=['GET', 'POST'])
