@@ -21,7 +21,11 @@ from boto.s3.key import Key
 
 from model import flush, db_session, Project, Contact, Client, User, UserLike, Message
 import util, functools
-import wx_util
+try:
+    import wx_util
+except:
+    print '------------wx_util import err-----------'
+    wx_util = None
 
 import ierror
 from WXBizMsgCrypt import SHA1

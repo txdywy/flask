@@ -5,20 +5,48 @@
         <div class="container">
             <div class="row">
               <div class="col-md-8">
-                <h2 class="page-header">Messages</h2>
-
+                <h2 class="page-header">Applying</h2>
+                  <div class="col-md-4 col-sm-4 col-xs-5">
+                     <figure class="thumbnail">
+                     <img class="img-responsive" src="http://oyster.ignimgs.com/mediawiki/apis.ign.com/lego-marvel-super-heroes/thumb/2/25/LEGO-Marvel-Super-Heroes.jpg/468px-LEGO-Marvel-Super-Heroes.jpg" />
+                     <figcaption class="text-center">{{ data.get('m_user_name') }}</figcaption>
+                     </figure>
+                  </div>
+                  <div class="col-md-8 col-sm-8 col-xs-11">
+                     <div class="panel panel-default arrow right">
+                        <div class="panel-body-right">
+                           <header class="text-left">
+                              <div class="comment-user"><i class="fa fa-user"></i> Super Ma</div>
+                           </header>
+                           <div class="comment-post">
+                             <p>
+                             Profile: Scorpion guy
+                             </p>
+                             <p>
+                             School: Caltech
+                             </p>
+                             <p>
+                             City: Beijing
+                             </p>
+                             <p>
+                             Jonied: 1 month ago
+                             </p>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
 
                   <div class="form-group ">
-                         <label id="messageLabel" for="message">Message </label>
+                         <label id="messageLabel" for="message">Mention why you are insterested and what you can bring to this project... </label>
                          <form action="/message" method="POST">
-                         <textarea class="form-control " type="textarea" id="message_text" name="message" placeholder="Message" maxlength="2048" rows="3" style="/*float:left;*/"></textarea>
-                         <div style="float:right;">
-                         <input type="hidden" name="m_user_id" value="{{ m_user_id }}">
-                         <input type="hidden" name="m_client_id" value="{{ client.id }}">
-                         <button class="btn btn-info btn-lg" type="submit" ><span class="glyphicon glyphicon-send"></span> Submit</button>
-                         </div>
+                           <textarea class="form-control " type="textarea" id="message_text" name="message" placeholder="Message" maxlength="2048" rows="3" style="/*float:left;*/"></textarea>
+                           <div style="float:right;">
+                             <input type="hidden" name="m_user_id" value="{{ m_user_id }}">
+                             <input type="hidden" name="m_client_id" value="{{ client.id }}">
+                             <button class="btn btn-info btn-lg" type="submit" ><span class="glyphicon glyphicon-send"></span> Submit</button>
+                           </div>
                          </form>
-                    </div>
+                  </div>
 
               </div>
             </div>
