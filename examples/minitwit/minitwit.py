@@ -31,6 +31,8 @@ import ierror
 from WXBizMsgCrypt import SHA1
 import xml.etree.ElementTree as ET
 from pygoogle import get_pic_url
+import alfaker
+
 WX_SHA1 = SHA1()
 
 try:
@@ -177,6 +179,14 @@ def wx():
         print '------', request.data
         return wx_util.reply(request.data)
     return echostr
+
+@app.route('/gp', methods=['GET'])
+def ap():
+    n = request.args.get('n')    
+    n = int(n) if n else 1
+    for i in xrange(n):
+        alfaker.gen_project()
+    return str(n)
 
 @app.route('/contact', methods=['POST'])
 def contact():

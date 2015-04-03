@@ -19,6 +19,9 @@ import urllib
 import logging
 import argparse
 
+from faker import Factory
+fake = Factory.create('en_US')
+
 __author__ = "Kiran Bandla"
 __version__ = "0.2"
 URL = 'http://ajax.googleapis.com/ajax/services/search/web?'
@@ -238,15 +241,20 @@ GOOGLE_PICTURE_API_URL = "https://ajax.googleapis.com/ajax/services/search/image
 EXCEPTION_PICTURE_URL = "http://www.risasinmas.com/wp-content/uploads/2013/08/Posters-de-cine-hechos-con-LEGO-Transformers-3-600x389.jpg"
 def get_pic_url(word='lego superman'):
     try:
+        d = None
+        if type(word) is unicode: word = word.encode('utf8')
         word = urllib2.quote(word)
         url = GOOGLE_PICTURE_API_URL % word
-        r = urllib2.urlopen(url).read()
+        request = urllib2.Request(url, headers={"User-Agent" :str(fake.chrome())})
+        r = urllib2.urlopen(request).read()
         d = json.loads(r)
-        l = len(d['responseData']['results'])
-        i = randint(0, l-1)
+        #l = len(d['responseData']['results'])
+        #i = randint(0, l-1)
+        i = 0
         return str(d['responseData']['results'][i]['unescapedUrl'])
     except Exception, e:
-        print '-----------------------------------------------------', e
+        print '-----------------------------------------------------', e, word
+        print d
         return EXCEPTION_PICTURE_URL
 
 
