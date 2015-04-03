@@ -16,12 +16,12 @@
                         <div class="col-sm-4 portfolio-item" >
                             <img autofocus src="{{ project.image_url }}" class="img-responsive img-centered" alt="">
                             <div id="loctimebox">
-                                <p class="alignleft" style="float:left;"><i>Beijing, China</i></p>
+                                <p class="alignleft" style="float:left;"><i>{{ project.location }}</i></p>
                                 <p class="alignright" style="float:right;"><i>{{ puds[project.id] }}d ago</i></p>
                             </div>
                             <div style="clear: both;"></div>
                             <p><b>Want to launch: </b>{{ project.desp }}</p>
-                            <p><b>Get: </b>$500, free beers for 12 months</p>
+                            <p><b>Get: </b>{{ project.incentive }}</p>
                             <div class="col-md-5 col-sm-4 col-xs-5">
                               <figure class="thumbnail">
                                 <img class="img-responsive" src="http://cdnvideo.dolimg.com/cdn_assets/189e27f7a893da854ad965e1406cc3878af80307.jpg" />

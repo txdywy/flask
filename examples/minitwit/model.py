@@ -59,6 +59,8 @@ class Project(Base):
     service = Column(String(50))
     create_time = Column(DATETIME())
     client_id = Column(Integer)
+    location = Column(String(50), default='N/A')
+    incentive = Column(String(500), default='U can U up!')
     #cnt_like = Column(Integer, default=0)
     #cnt_dislike = Column(Integer, default=0)
 
