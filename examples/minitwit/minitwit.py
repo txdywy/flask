@@ -205,9 +205,9 @@ def project():
     #print '====',pats
     return render_template('project_list.html', projects=projects, pas=pas, pats=pats, puds=puds)
 
-@app.route('/profile')
-def profile():
-    return render_template('profile.html')
+@app.route('/users')
+def users():
+    return render_template('project.html')
 
 def login_required(f):
     @functools.wraps(f)
@@ -217,6 +217,17 @@ def login_required(f):
         else:
             return redirect(url_for('login')) 
     return func
+
+@app.route('/<username>')
+@login_required
+def profile(username):
+    user = User.query.filter_by(username=username).one()
+    if(user is None):
+	abort(404)
+    #user_id = session['user_id']
+    #user = User.query.get(user_id)
+    return render_template('profile.html', user=user)
+
 
 @app.route('/message', methods=['POST'])
 @login_required

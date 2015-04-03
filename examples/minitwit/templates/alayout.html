@@ -59,7 +59,7 @@
                         </li>
 			<li class="page-scroll">
                             {% if g.user %}
-                                <a href="{{ url_for('profile') }}">Profile</a>
+                                <a href="{{ url_for('profile', username=g.user.username) }}">Profile</a>
                             {% endif %}
                         </li>
                         <li class="page-scroll">
