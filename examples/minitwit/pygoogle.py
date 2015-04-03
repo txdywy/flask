@@ -21,6 +21,7 @@ import argparse
 
 from faker import Factory
 fake = Factory.create('en_US')
+icon = {}
 
 __author__ = "Kiran Bandla"
 __version__ = "0.2"
@@ -240,6 +241,10 @@ if __name__ == "__main__":
 GOOGLE_PICTURE_API_URL = "https://ajax.googleapis.com/ajax/services/search/images?v=1.0&q=%s"
 EXCEPTION_PICTURE_URL = "http://www.risasinmas.com/wp-content/uploads/2013/08/Posters-de-cine-hechos-con-LEGO-Transformers-3-600x389.jpg"
 def get_pic_url(word='lego superman'):
+    global icon
+    key = word
+    r = icon.get(key)
+    if r: return r
     try:
         d = None
         if type(word) is unicode: word = word.encode('utf8')
@@ -251,10 +256,10 @@ def get_pic_url(word='lego superman'):
         #l = len(d['responseData']['results'])
         #i = randint(0, l-1)
         i = 0
-        return str(d['responseData']['results'][i]['unescapedUrl'])
+        r = str(d['responseData']['results'][i]['unescapedUrl'])
     except Exception, e:
         print '-----------------------------------------------------', e, word
         print d
-        return EXCEPTION_PICTURE_URL
-
+        r = EXCEPTION_PICTURE_URL
+    return r
 

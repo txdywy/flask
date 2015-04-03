@@ -181,11 +181,24 @@ def wx():
     return echostr
 
 @app.route('/gp', methods=['GET'])
-def ap():
+def gp():
     n = request.args.get('n')    
     n = int(n) if n else 1
     for i in xrange(n):
         alfaker.gen_project()
+    return str(n)
+
+@app.route('/dp', methods=['GET'])
+def dp():
+    n = request.args.get('n')
+    n = int(n) if n else 1
+    ps = Project.query.all()
+    l = len(ps)
+    for p in ps:
+        if p.id>16 and (l - p.id)<n:
+            db_session.delete(p)
+    db_session.commit()
+    db_session.flush()
     return str(n)
 
 @app.route('/contact', methods=['POST'])
