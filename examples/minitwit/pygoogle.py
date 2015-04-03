@@ -5,6 +5,7 @@ http://code.google.com/apis/ajaxsearch/documentation/reference.html
 Needs Python 2.6 or later
 """
 import urllib2
+from random import randint
 try:
     import json
 except ImportError,e:
@@ -241,8 +242,11 @@ def get_pic_url(word='lego superman'):
         url = GOOGLE_PICTURE_API_URL % word
         r = urllib2.urlopen(url).read()
         d = json.loads(r)
-        return str(d['responseData']['results'][0]['unescapedUrl'])
-    except:
+        l = len(d['responseData']['results'])
+        i = randint(0, l-1)
+        return str(d['responseData']['results'][i]['unescapedUrl'])
+    except Exception, e:
+        print '-----------------------------------------------------', e
         return EXCEPTION_PICTURE_URL
 
 

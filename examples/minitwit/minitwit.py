@@ -30,6 +30,7 @@ except:
 import ierror
 from WXBizMsgCrypt import SHA1
 import xml.etree.ElementTree as ET
+from pygoogle import get_pic_url
 WX_SHA1 = SHA1()
 
 try:
@@ -534,5 +535,4 @@ def logout():
 # add some filters to jinja
 app.jinja_env.filters['datetimeformat'] = format_datetime
 app.jinja_env.filters['gravatar'] = gravatar_url
-app.jinja_env.filters['datetime'] = datetime
-app.jinja_env.filters['str'] = str
+app.jinja_env.filters['get_icon'] = get_pic_url
