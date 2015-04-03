@@ -218,6 +218,7 @@ def project():
     pas = {}
     pats = {}
     puds = {}
+    pics = {}
     projects = Project.query.all()
     for project in projects:
         project_id = project.id
@@ -226,9 +227,10 @@ def project():
             pas[project_id] = True if pa else False
             pats[project_id] = str(pa.create_time)[:10] if pa else None
         puds[project_id] = (datetime.now() - project.create_time).days
+        pics[project_id] = get_pic_url(project.client) 
     #print '----',pas
     #print '====',pats
-    return render_template('project_list.html', projects=projects, pas=pas, pats=pats, puds=puds)
+    return render_template('project_list.html', projects=projects, pas=pas, pats=pats, puds=puds, pics=pics)
 
 @app.route('/users')
 def users():
