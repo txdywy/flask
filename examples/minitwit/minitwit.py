@@ -194,13 +194,13 @@ def project():
     pats = {}
     puds = {}
     projects = Project.query.all()
-    if user_id:
-        for project in projects:
-            project_id = project.id
+    for project in projects:
+        project_id = project.id
+        if user_id:
             pa = ProjectApply.query.filter_by(user_id=user_id, project_id=project_id).first()
             pas[project_id] = True if pa else False
             pats[project_id] = str(pa.create_time)[:10] if pa else None
-            puds[project_id] = (datetime.now() - project.create_time).days
+        puds[project_id] = (datetime.now() - project.create_time).days
     #print '----',pas
     #print '====',pats
     return render_template('project_list.html', projects=projects, pas=pas, pats=pats, puds=puds)
