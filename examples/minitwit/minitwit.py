@@ -57,14 +57,15 @@ app = Flask(__name__)
 app.config.from_object(__name__)
 app.config.from_envvar('MINITWIT_SETTINGS', silent=True)
 
-def add_project(title, email='', desp='', client='N/A', image_url='', service='web dev', client_id=None):
-    p = Project(title, client, email, desp, image_url, service, client_id)
+def add_project(title, email='', desp='', client='N/A', image_url='', service='web dev', client_id=None, client_title='', location=''):
+    p = Project(title, client, email, desp, image_url, service, client_id, client_title, location)
     flush(p)
+"""
     if not image_url:
         image_file = PROJECT_LOCAL_IMAGE_TEMPLATE % ('project_%s.png' % p.id)
         p.image_url = ALANCER_HTTP_ROOT + '/' + image_file
         flush(p)
-
+"""
 
 def img_local_set(img_name, img_str):
     with open(PROJECT_IMAGE_KEY_TEMPLATE % img_name, 'w') as f:

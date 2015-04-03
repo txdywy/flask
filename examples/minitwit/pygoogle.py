@@ -4,6 +4,7 @@ Google AJAX Search Module
 http://code.google.com/apis/ajaxsearch/documentation/reference.html
 Needs Python 2.6 or later
 """
+import urllib2
 try:
     import json
 except ImportError,e:
@@ -231,4 +232,17 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+GOOGLE_PICTURE_API_URL = "https://ajax.googleapis.com/ajax/services/search/images?v=1.0&q=%s"
+EXCEPTION_PICTURE_URL = "http://www.risasinmas.com/wp-content/uploads/2013/08/Posters-de-cine-hechos-con-LEGO-Transformers-3-600x389.jpg"
+def get_pic_url(word='lego superman'):
+    try:
+        word = urllib2.quote(word)
+        url = GOOGLE_PICTURE_API_URL % word
+        r = urllib2.urlopen(url).read()
+        d = json.loads(r)
+        return str(d['responseData']['results'][0]['unescapedUrl'])
+    except:
+        return EXCEPTION_PICTURE_URL
+
 

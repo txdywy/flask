@@ -3,6 +3,9 @@ from sqlalchemy.orm import scoped_session, sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import Column, Integer, String, DATETIME, Text, ForeignKey
 import datetime
+import pygoogle
+from faker import Factory
+fake = Factory.create('en_US')
 
 engine = create_engine('sqlite:///alancer.db', convert_unicode=True)
 db_session = scoped_session(sessionmaker(autocommit=False,
@@ -59,21 +62,30 @@ class Project(Base):
     service = Column(String(50))
     create_time = Column(DATETIME())
     client_id = Column(Integer)
-    location = Column(String(50), default='N/A')
+    location = Column(String(50), default='From Cyberspace')
     incentive = Column(String(500), default='U can U up!')
     client_title = Column(String(50), default='Owner')
     #cnt_like = Column(Integer, default=0)
     #cnt_dislike = Column(Integer, default=0)
 
-    def __init__(self, title, client='', email='', desp='', image_url=None, service='web development', client_id=None):
-        self.title = title
+    def __init__(self, title='', client='', email='', desp='', image_url=None, service='web development', client_id=None, client_title='', location='', incentive=''):
+        if title:
+            self.title = title
+        else:
+            self.title = str(faker.company())
         self.client= client
         self.email = email
         self.desp = desp
         self.service = service
         self.client_id = client_id
         if image_url:
-            self.image_url=image_url
+            self.image_url = image_url
+        if client_title:
+            self.client_title = client_title
+        if location:
+            self.location = location 
+        if incentive:
+            self.incentive = incentive
         self.create_time = datetime.datetime.now()
 
     def __repr__(self):
