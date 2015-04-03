@@ -28,7 +28,7 @@
                               </figure>
                             </div>
                             <p><b>{{ project.client}}</b></p>
-                            <p>General Manager</p>
+                            <p>{{ project.client_title }}</p>
                             <div style="clear: both;"></div>
                             <div style="text-align: center"> 
                                 {% if not pas or not pas[project.id]  %}
