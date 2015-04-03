@@ -141,6 +141,10 @@ class pygoogle:
                 self.logger.error('no responseData key found in response')
                 self.logger.error(data)
         return results
+    
+    def sr(self):
+        t = self.__search__()
+        return [i['content'] for i in t[0]['responseData']['results']]
 
     def search_page_wise(self):
         """Returns a dict of page-wise urls"""
