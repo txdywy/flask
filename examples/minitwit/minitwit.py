@@ -192,6 +192,7 @@ def project():
     user_id = session.get('user_id')
     pas = {}
     pats = {}
+    puds = {}
     projects = Project.query.all()
     if user_id:
         for project in projects:
@@ -199,9 +200,10 @@ def project():
             pa = ProjectApply.query.filter_by(user_id=user_id, project_id=project_id).first()
             pas[project_id] = True if pa else False
             pats[project_id] = str(pa.create_time)[:10] if pa else None
-    print '----',pas
-    print '====',pats
-    return render_template('project_list.html', projects=projects, pas=pas, pats=pats)
+            puds[project_id] = (datetime.now() - project.create_time).days
+    #print '----',pas
+    #print '====',pats
+    return render_template('project_list.html', projects=projects, pas=pas, pats=pats, puds=puds)
 
 @app.route('/profile')
 def profile():
@@ -520,3 +522,5 @@ def logout():
 # add some filters to jinja
 app.jinja_env.filters['datetimeformat'] = format_datetime
 app.jinja_env.filters['gravatar'] = gravatar_url
+app.jinja_env.filters['datetime'] = datetime
+app.jinja_env.filters['str'] = str
