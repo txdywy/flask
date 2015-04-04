@@ -56,7 +56,7 @@
                               </div>
                               <div class="col-md-2 col-sm-2 col-xs-3">
                                 <figure class="thumbnail">
-                                  <img class="img-responsive" src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcQk09sPOWJn4JaJRVTx--lUkMaPUQIAgvv2OjK-KJbBunkTVyUGTg" />
+                                  <img class="img-responsive" src="{{ data.get('m_user_icon') }}" />
                                   <figcaption class="text-center">{{ data.get('m_user_name') }}</figcaption>
                                 </figure>
                               </div>
@@ -65,7 +65,7 @@
                             <article class="row">
                               <div class="col-md-2 col-sm-2 col-xs-3">
                                 <figure class="thumbnail">
-                                  <img class="img-responsive" src="http://vignette4.wikia.nocookie.net/lego-marvelsuperheroes/images/5/52/Spider-Man.png/revision/latest?cb=20130722004200" />
+                                  <img class="img-responsive" src="{{ data.get('m_client_icon') }}" />
                                   <figcaption class="text-center">{{ data.get('m_client_name') }}</figcaption>
                                 </figure>
                               </div>
@@ -97,6 +97,7 @@
                          <div style="float:right;">
                          <input type="hidden" name="m_user_id" value="{{ m_user_id }}">
                          <input type="hidden" name="m_client_id" value="{{ client.id }}">
+                         <input type="hidden" name="project_id" value="{{ project_id }}">
                          <button class="btn btn-info btn-lg" type="submit" ><span class="glyphicon glyphicon-send"></span> Send</button>
                          </div>
                          </form>

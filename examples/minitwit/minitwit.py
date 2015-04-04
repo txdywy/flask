@@ -270,7 +270,7 @@ def project():
 def users():
     return render_template('project.html')
 
-@app.route('/<username>')
+@app.route('/profile/<username>')
 @login_required
 def profile(username):
     user = User.query.filter_by(username=username).one()
@@ -290,14 +290,14 @@ def message():
     m_user_id = request.form['m_user_id']
     m_client_id = request.form['m_client_id']
     m_client = Client.query.get(m_client_id)
- 
-    project_id = request.form['project_id']
+    project_id = request.form.get('project_id')
     if user.role == User.USER_STUDENT:
         flag = Message.MESSAGE_USER
-        pa = ProjectApply.query.filter_by(project_id=project_id, user_id=user_id).first()
-        if not pa:
-            pa = ProjectApply(project_id=project_id, user_id=user_id)
-            flush(pa)
+        if project_id:
+            pa = ProjectApply.query.filter_by(project_id=project_id, user_id=user_id).first()
+            if not pa:
+                pa = ProjectApply(project_id=project_id, user_id=user_id)
+                flush(pa)
     elif int(client.id) == int(m_client_id):
         flag = Message.MESSAGE_CLIENT
     else:
@@ -309,10 +309,13 @@ def message():
     data = {}
     m_user = User.query.get(m_user_id)
     data['m_user_name'] = m_user.username
+    data['m_user_icon'] = m_user.icon
     data['m_client_name'] = m_client.name
     #message notification to admin
     util.send_email('[Alancer] New Message', 'user:%s client:%s message:%s' % (m_user.username, m_client.name, message), ALANCER_SERVICE_EMAIL)
     client_user = User.query.get(m_client.user_id)
+    data['m_client_icon'] = client_user.icon
+    #print '---------------------',data
     if flag == Message.MESSAGE_USER:
         email_notify = client_user.email
         name_from = m_user.username
@@ -338,6 +341,9 @@ def message_room():
     m_client = client
     data['m_user_name'] = m_user.username
     data['m_client_name'] = m_client.name
+    data['m_user_icon'] = m_user.icon
+    m_client_user = User.query.get(m_client.user_id)
+    data['m_client_icon'] = m_client_user.icon
     return render_template('message.html', data=data, Message=Message, client=client, messages=messages, m_user_id=m_user_id)
 
 @app.route('/apply', methods=['GET'])
@@ -564,7 +570,10 @@ def register():
             #  [request.form['username'], request.form['email'],
             #   generate_password_hash(request.form['password'])])
             #db.commit()
-            u = User(username=request.form['username'].lower(), email=request.form['email'], pw_hash=generate_password_hash(request.form['password']))
+            username=request.form['username'].lower()
+            email=request.form['email']
+            u = User(username=username, email=email, pw_hash=generate_password_hash(request.form['password']))
+            u.icon = get_pic_url('lego %s %s' % (username, email))
             flush(u)
             util.send_email('[Alancer] Congratulations!', 'You have registered at alancer!', request.form['email'])
             util.send_email('[Alancer Signup]', 'You have a new user [%s] @lancer!' % request.form['email'], ALANCER_SERVICE_EMAIL) 

@@ -43,6 +43,7 @@ class User(Base):
     phone = Column(String(50))
     role = Column(Integer, default=USER_STUDENT)
     power = Column(Integer, default=0)
+    icon = Column(String(512))
 
     def __init__(self, username, email, pw_hash):
         self.username = username
