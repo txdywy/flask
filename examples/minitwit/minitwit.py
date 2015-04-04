@@ -325,7 +325,7 @@ def message():
     message_room_link = ALANCER_HTTP_ROOT + url_for('message_room') + '?m_user_id=%s&m_client_id=%s#messageLabel' % (m_user_id, m_client.id)
     mr = '<a href="%s" style="text-decoration:none;color:#3b5998" target="_blank">Alancer Message Room</a>' % message_room_link
     util.send_email('[Alancer] New message from %s' % name_from, '%s: %s <br>%s' % (name_from, message, mr), email_notify)
-    return render_template('message.html', data=data, Message=Message, client=m_client, messages=messages, m_user_id=m_user_id)
+    return render_template('message.html', data=data, Message=Message, client=m_client, messages=messages, m_user_id=m_user_id, m_user=m_user)
 
 @app.route('/message_room', methods=['GET', 'POST'])
 @login_required
@@ -344,7 +344,8 @@ def message_room():
     data['m_user_icon'] = m_user.icon
     m_client_user = User.query.get(m_client.user_id)
     data['m_client_icon'] = m_client_user.icon
-    return render_template('message.html', data=data, Message=Message, client=client, messages=messages, m_user_id=m_user_id)
+    ucd = (datetime.now() - m_user.create_time).days
+    return render_template('message.html', data=data, Message=Message, client=client, messages=messages, m_user_id=m_user_id, m_user=m_user, ucd=ucd)
 
 @app.route('/apply', methods=['GET'])
 @login_required
@@ -362,7 +363,8 @@ def apply():
     data['m_user_name'] = m_user.username
     data['m_client_name'] = m_client.name
     data['m_user_icon'] = m_user.icon
-    return render_template('apply.html', data=data, Message=Message, client=client, messages=messages, m_user_id=m_user_id, project_id=project_id)
+    ucd = (datetime.now() - m_user.create_time).days
+    return render_template('apply.html', data=data, Message=Message, client=client, messages=messages, m_user_id=m_user_id, project_id=project_id, m_user=m_user, ucd=ucd)
 
 
 @app.route('/message_box', methods=['GET', 'POST'])

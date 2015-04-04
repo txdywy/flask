@@ -44,11 +44,14 @@ class User(Base):
     role = Column(Integer, default=USER_STUDENT)
     power = Column(Integer, default=0)
     icon = Column(String(512))
+    profile = Column(String(512))
+    create_time = Column(DATETIME())
 
     def __init__(self, username, email, pw_hash):
         self.username = username
         self.email = email
         self.pw_hash = pw_hash
+        self.create_time = datetime.datetime.now()
 
     def __repr__(self):
         return '<User %r>' % (self.user_id)

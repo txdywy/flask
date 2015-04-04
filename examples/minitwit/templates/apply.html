@@ -16,20 +16,20 @@
                      <div class="panel panel-default arrow right">
                         <div class="panel-body-right">
                            <header class="text-left">
-                              <div class="comment-user"><i class="fa fa-user"></i> Super Ma</div>
+                              <div class="comment-user"><i class="fa fa-user"></i> {{ data.get('m_user_name') }}</div>
                            </header>
                            <div class="comment-post">
                              <p>
-                             Profile: Scorpion guy
+                             Profile: {{ m_user.profile }}
                              </p>
                              <p>
-                             School: Caltech
+                             School: {{ m_user.school }}
                              </p>
                              <p>
-                             City: Beijing
+                             City: {{ m_user.city }}
                              </p>
                              <p>
-                             Jonied: 1 month ago
+                             Jonied: {{ ucd }}d ago
                              </p>
                            </div>
                         </div>
