@@ -361,6 +361,7 @@ def apply():
     m_client = client
     data['m_user_name'] = m_user.username
     data['m_client_name'] = m_client.name
+    data['m_user_icon'] = m_user.icon
     return render_template('apply.html', data=data, Message=Message, client=client, messages=messages, m_user_id=m_user_id, project_id=project_id)
 
 
