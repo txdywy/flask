@@ -65,10 +65,11 @@ class Project(Base):
     location = Column(String(50), default='From Cyberspace')
     incentive = Column(String(500), default='U can U up!')
     client_title = Column(String(50), default='Owner')
+    icon = Column(String(512))
     #cnt_like = Column(Integer, default=0)
     #cnt_dislike = Column(Integer, default=0)
 
-    def __init__(self, title='', client='', email='', desp='', image_url=None, service='web development', client_id=None, client_title='', location='', incentive=''):
+    def __init__(self, title='', client='', email='', desp='', image_url=None, service='web development', client_id=None, client_title='', location='', incentive='', icon=''):
         if title:
             self.title = title
         else:
@@ -86,6 +87,8 @@ class Project(Base):
             self.location = location 
         if incentive:
             self.incentive = incentive
+        if icon:
+            self.icon = icon
         self.create_time = datetime.datetime.now()
 
     def __repr__(self):

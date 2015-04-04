@@ -237,7 +237,10 @@ def project():
             pas[project_id] = True if pa else False
             pats[project_id] = str(pa.create_time)[:10] if pa else None
         puds[project_id] = (datetime.now() - project.create_time).days
-        pics[project_id] = "http://cdnvideo.dolimg.com/cdn_assets/189e27f7a893da854ad965e1406cc3878af80307.jpg" #get_pic_url(project.client) 
+        if project.icon:
+            pics[project_id] = project.icon
+        else:    
+            pics[project_id] = "http://cdnvideo.dolimg.com/cdn_assets/189e27f7a893da854ad965e1406cc3878af80307.jpg" #get_pic_url(project.client) 
     #print '----',pas
     #print '====',pats
     return render_template('project_list.html', projects=projects, pas=pas, pats=pats, puds=puds, pics=pics)
