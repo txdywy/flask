@@ -169,12 +169,24 @@ def login_required(f):
             return redirect(url_for('login')) 
     return func
 
+def power_required(power=User.POWER_ADMIN):
+    def deco(f):
+        @functools.wraps(f)
+        def func(*args, **kwargs):
+            if g.user.power & power:
+                return f(*args, **kwargs) 
+            else:
+                return redirect(url_for('login'))
+        return func
+    return deco
+
 @app.before_request
 def before_request():
     g.user = None
     if 'user_id' in session:
         #g.user = query_db('select * from user where user_id = ?', [session['user_id']], one=True)
         g.user = User.query.get(session['user_id'])
+        g.admin_power = g.user.power & User.POWER_ADMIN
 
 @app.route('/wx', methods=['GET', 'POST'])
 def wx():
@@ -187,6 +199,12 @@ def wx():
         print '------', request.data
         return wx_util.reply(request.data)
     return echostr
+
+@app.route('/admin', methods=['GET'])
+@login_required
+@power_required(power=User.POWER_ADMIN)
+def admin():
+    return render_template('admin.html')    
 
 @app.route('/gp', methods=['GET'])
 @login_required

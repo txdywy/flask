@@ -76,6 +76,11 @@
                         <li class="page-scroll">
                             <a href="/">Home</a>
                         </li>
+                        {% if g.user and g.admin_power %}
+                        <li class="page-scroll">
+                            <a href="/admin">Admin</a>
+                        </li>
+                        {% endif %}
                     </ul>
                 </div>
                 <!-- /.navbar-collapse -->

@@ -29,6 +29,7 @@ def init_db():
 class User(Base):
     USER_STUDENT = 0
     USER_CLIENT = 1
+    POWER_ADMIN = 2**9
 
     __tablename__ = 'user'
     user_id = Column(Integer, primary_key=True)
@@ -41,6 +42,7 @@ class User(Base):
     zipcode = Column(String(50))    
     phone = Column(String(50))
     role = Column(Integer, default=USER_STUDENT)
+    power = Column(Integer, default=0)
 
     def __init__(self, username, email, pw_hash):
         self.username = username
