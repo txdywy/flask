@@ -160,6 +160,14 @@ def gravatar_url(email, size=80):
     return 'http://www.gravatar.com/avatar/%s?d=identicon&s=%d' % \
         (md5(email.strip().lower().encode('utf-8')).hexdigest(), size)
 
+def login_required(f):
+    @functools.wraps(f)
+    def func(*args, **kwargs):
+        if 'user_id' in session:
+            return f(*args, **kwargs)
+        else:
+            return redirect(url_for('login')) 
+    return func
 
 @app.before_request
 def before_request():
@@ -181,6 +189,7 @@ def wx():
     return echostr
 
 @app.route('/gp', methods=['GET'])
+@login_required
 def gp():
     n = request.args.get('n')    
     n = int(n) if n else 1
@@ -189,6 +198,7 @@ def gp():
     return str(n)
 
 @app.route('/dp', methods=['GET'])
+@login_required
 def dp():
     n = request.args.get('n')
     n = int(n) if n else 1
@@ -227,7 +237,7 @@ def project():
             pas[project_id] = True if pa else False
             pats[project_id] = str(pa.create_time)[:10] if pa else None
         puds[project_id] = (datetime.now() - project.create_time).days
-        pics[project_id] = get_pic_url(project.client) 
+        pics[project_id] = "http://cdnvideo.dolimg.com/cdn_assets/189e27f7a893da854ad965e1406cc3878af80307.jpg" #get_pic_url(project.client) 
     #print '----',pas
     #print '====',pats
     return render_template('project_list.html', projects=projects, pas=pas, pats=pats, puds=puds, pics=pics)
@@ -235,15 +245,6 @@ def project():
 @app.route('/users')
 def users():
     return render_template('project.html')
-
-def login_required(f):
-    @functools.wraps(f)
-    def func(*args, **kwargs):
-        if 'user_id' in session:
-            return f(*args, **kwargs)
-        else:
-            return redirect(url_for('login')) 
-    return func
 
 @app.route('/<username>')
 @login_required
