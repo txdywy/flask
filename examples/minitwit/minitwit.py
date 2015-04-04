@@ -206,17 +206,19 @@ def wx():
 def admin():
     return render_template('admin.html')    
 
-@app.route('/gp', methods=['GET'])
+@app.route('/gp', methods=['POST'])
 @login_required
+@power_required(power=User.POWER_ADMIN)
 def gp():
-    n = request.args.get('n')    
+    n = request.form['n']    
     n = int(n) if n else 1
     for i in xrange(n):
         alfaker.gen_project()
     return str(n)
 
-@app.route('/dp', methods=['GET'])
+@app.route('/dp', methods=['POST'])
 @login_required
+@power_required(power=User.POWER_ADMIN)
 def dp():
     n = request.args.get('n')
     n = int(n) if n else 1
@@ -231,7 +233,7 @@ def dp():
 
 @app.route('/contact', methods=['POST'])
 def contact():
-    name = request.form['name']
+    name = request.form['n']
     phone = request.form['phone']
     email = request.form['email']
     message = request.form['message']
