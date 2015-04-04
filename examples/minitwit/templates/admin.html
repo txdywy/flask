@@ -4,19 +4,26 @@
   <div class="container">
     <div class="row">
       <div class="col-md-8">
-        <h2 class="page-header">Admin Items</h2>
-        <form class="navbar-form navbar-left" role="search" action="{{ url_for('gp') }}" method="post">
-          <div class="form-group">
-            <input type="text" class="form-control" placeholder="1" name='n'>
-          </div>
-          <button type="submit" class="btn btn-default">Add Project</button>
-        </form> 
-        <form class="navbar-form navbar-left" role="search" action="{{ url_for('dp') }}" method="post">
-          <div class="form-group">
-            <input type="text" class="form-control" placeholder="1" name='n'>
-          </div>
-          <button type="submit" class="btn btn-default">Kill Project</button>
-        </form> 
+        <h2 class="page-header">Admin:</h2>
+        <div class="col-sm-4 portfolio-item" >
+          <form class="navbar-form navbar-left" role="search" action="{{ url_for('gp') }}" method="post">
+            <div class="form-group">
+              <input type="text" class="form-control" placeholder="1" name='n'>
+            </div>
+            <button type="submit" class="btn btn-info btn-lg"><span class="glyphicon glyphicon-thumbs-up"></span> Add Project</button>
+          </form> 
+        </div>
+        <div class="col-sm-4 portfolio-item" >
+          <form class="navbar-form navbar-left" role="search" action="{{ url_for('dp') }}" method="post">
+            <div class="form-group">
+              <input type="text" class="form-control" placeholder="1" name='n'>
+            </div>
+            <button type="submit" class="btn btn-info btn-lg"><span class="glyphicon glyphicon-thumbs-down"></span> Kill Project</button>
+          </form> 
+        </div>
+        <div class="col-sm-4 portfolio-item" >
+          <p><b>Projects Number: {{ project_num }}</b><p>
+        </div>
       </div>
     </div>
   </div>

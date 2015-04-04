@@ -204,7 +204,8 @@ def wx():
 @login_required
 @power_required(power=User.POWER_ADMIN)
 def admin():
-    return render_template('admin.html')    
+    project_num = Project.query.count()
+    return render_template('admin.html', project_num=project_num)    
 
 @app.route('/gp', methods=['POST'])
 @login_required
@@ -214,7 +215,7 @@ def gp():
     n = int(n) if n else 1
     for i in xrange(n):
         alfaker.gen_project()
-    return str(n)
+    return redirect(url_for('admin'))
 
 @app.route('/dp', methods=['POST'])
 @login_required
@@ -229,7 +230,7 @@ def dp():
             db_session.delete(p)
     db_session.commit()
     db_session.flush()
-    return str(n)
+    return redirect(url_for('admin'))
 
 @app.route('/contact', methods=['POST'])
 def contact():
