@@ -326,7 +326,7 @@ def message():
         email_notify = client_user.email
         name_from = m_user.username
         email_title = 'Re: Alancer: new reply from %s to your job posting' % name_from
-        email_body = '</br></br>'.join(['Hello %s,' % client_user.username, 
+        email_body = '<br><br>'.join(['Hello %s,' % client_user.username, 
                                         '%s from %s has replied to your %s project(s) post.' % (name_from, m_user.school, project_titles), 
                                         'Click the link below to check it out.', mr]) 
     else:
@@ -334,7 +334,7 @@ def message():
         email_notify = m_user.email
         name_from = client_user.username
         email_title = 'Re: Alancer: new reply from %s at %s' % (name_from, m_client.company)
-        email_body = '</br></br>'.join(['Hello %s,' % m_user.username,
+        email_body = '<br><br>'.join(['Hello %s,' % m_user.username,
                                         '%s from %s has replied back to you.' % (name_from, m_client.company),
                                         'Click the link below to check it out.', mr])      
     util.send_email(email_title, email_body, email_notify)
