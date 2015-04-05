@@ -316,15 +316,30 @@ def message():
     client_user = User.query.get(m_client.user_id)
     data['m_client_icon'] = client_user.icon
     #print '---------------------',data
+    message_room_link = ALANCER_HTTP_ROOT + url_for('message_room') + '?m_user_id=%s&m_client_id=%s#messageLabel' % (m_user_id, m_client.id)
+    mr = '<a href="%s" style="text-decoration:none;color:#3b5998" target="_blank">View project chat</a>' % message_room_link    
+    pas = ProjectApply.query.filter_by(user_id=m_user.user_id).all()
+    project_titles = ', '.join([Project.query.get(pa.project_id).title for pa in pas]) if pas else 'N/A'
+    project = Project.query.get(project_id) if project_id else None
     if flag == Message.MESSAGE_USER:
+        #to project
         email_notify = client_user.email
         name_from = m_user.username
+        email_title = 'Re: Alancer: new reply from %s to your job posting' % name_from
+        email_body = '</br></br>'.join(['Hello %s,' % client_user.username, 
+                                        '%s from %s has replied to your %s project(s) post.' % (name_from, m_user.school, project_titles), 
+                                        'Click the link below to check it out.', mr]) 
     else:
+        #to student
         email_notify = m_user.email
         name_from = client_user.username
-    message_room_link = ALANCER_HTTP_ROOT + url_for('message_room') + '?m_user_id=%s&m_client_id=%s#messageLabel' % (m_user_id, m_client.id)
-    mr = '<a href="%s" style="text-decoration:none;color:#3b5998" target="_blank">Alancer Message Room</a>' % message_room_link
-    util.send_email('[Alancer] New message from %s' % name_from, '%s: %s <br>%s' % (name_from, message, mr), email_notify)
+        email_title = 'Re: Alancer: new reply from %s at %s' % (name_from, m_client.company)
+        email_body = '</br></br>'.join(['Hello %s,' % m_user.username,
+                                        '%s from %s has replied back to you.' % (name_from, m_client.company),
+                                        'Click the link below to check it out.', mr])      
+    util.send_email(email_title, email_body, email_notify)
+    print '-----------------',email_title, email_body, email_notify
+    #util.send_email('[Alancer] New message from %s' % name_from, '%s: %s <br>%s' % (name_from, message, mr), email_notify)
     return render_template('message.html', data=data, Message=Message, client=m_client, messages=messages, m_user_id=m_user_id, m_user=m_user)
 
 @app.route('/message_room', methods=['GET', 'POST'])

@@ -106,6 +106,7 @@ class Client(Base):
     name = Column(String(50))
     email = Column(String(120))
     user_id = Column(Integer, ForeignKey('user.user_id'))
+    company = Column(String(120), default='Private Org')
 
     def __init__(self, name, email):
         self.name = name
