@@ -169,6 +169,20 @@ def login_required(f):
             return redirect(url_for('login')) 
     return func
 
+def message_secured(f):
+    @functools.wraps(f)
+    def func(*args, **kwargs):
+        user_id = session['user_id']
+        m_user_id = request.args.get('m_user_id')
+        m_client_id = request.args.get('m_client_id')
+        c_user_id = Client.query.get(m_client_id).user_id
+        #print '=========================',user_id,m_user_id, c_user_id
+        if int(user_id) in (int(m_user_id), int(c_user_id)):
+            return f(*args, **kwargs)
+        else:
+            abort(403)
+    return func
+
 def power_required(power=User.POWER_ADMIN):
     def deco(f):
         @functools.wraps(f)
@@ -196,7 +210,7 @@ def wx():
     echostr = request.args.get('echostr')
     token = WX_TOKEN
     if request.method == 'POST':
-        print '------', request.data
+        #print '------', request.data
         return wx_util.reply(request.data)
     return echostr
 
@@ -338,12 +352,13 @@ def message():
                                         '%s from %s has replied back to you.' % (name_from, m_client.company),
                                         'Click the link below to check it out.', mr])      
     util.send_email(email_title, email_body, email_notify)
-    print '-----------------',email_title, email_body, email_notify
+    #print '-----------------',email_title, email_body, email_notify
     #util.send_email('[Alancer] New message from %s' % name_from, '%s: %s <br>%s' % (name_from, message, mr), email_notify)
     return render_template('message.html', data=data, Message=Message, client=m_client, messages=messages, m_user_id=m_user_id, m_user=m_user)
 
 @app.route('/message_room', methods=['GET', 'POST'])
 @login_required
+@message_secured
 def message_room():
     m_user_id = request.args.get('m_user_id')
     m_client_id = request.args.get('m_client_id')
@@ -364,6 +379,7 @@ def message_room():
 
 @app.route('/apply', methods=['GET'])
 @login_required
+@message_secured
 def apply():
     m_user_id = request.args.get('m_user_id')
     m_client_id = request.args.get('m_client_id')
