@@ -235,7 +235,7 @@ def gp():
 @login_required
 @power_required(power=User.POWER_ADMIN)
 def dp():
-    n = request.args.get('n')
+    n = request.form['n']
     n = int(n) if n else 1
     ps = Project.query.all()
     l = len(ps)
