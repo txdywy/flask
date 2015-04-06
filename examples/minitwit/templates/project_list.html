@@ -12,7 +12,7 @@
             </div>
             <div class="row">
                 {% for project in projects %}
-                <section>
+                <div>
                         <div class="col-sm-4 portfolio-item" >
                             <img autofocus src="{{ project.image_url }}" class="img-responsive img-centered" alt="">
                             <div id="loctimebox">
@@ -39,8 +39,9 @@
                                     <p>Applied at {{ pats[project.id] }}</p>
                                 {% endif %}
                             </div> 
+                            <HR style="FILTER: alpha(opacity=10,finishopacity=0,style=2)" width="90%" color=#987cb9 SIZE=10>
                         </div>
-                </section>
+                </div>
                 {% else %}
                 <li><em>There's no project so far.</em>
                 {% endfor %}
