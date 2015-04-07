@@ -488,7 +488,7 @@ def public_timeline():
         order by message.pub_date desc limit ?''', [PER_PAGE]))
 
 
-@app.route('/<username>')
+@app.route('/tl/<username>')
 def user_timeline(username):
     """Display's a users tweets."""
     profile_user = query_db('select * from user where username = ?',
