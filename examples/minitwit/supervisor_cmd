@@ -1,0 +1,4 @@
+supervisord
+
+
+supervisorctl -c supervisord.conf
