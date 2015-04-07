@@ -10,9 +10,11 @@
               <a href="{{ url_for('message_room', m_user_id=mi['m_user_id'], m_client_id=mi['m_client_id']) }}">
                 <li class="list-group-item">
                   {% if mi['new'] %}
-                  <span class="badge">new</span>
+                  <span class="badge"> new !!! </span>
+                  {% else %}
+                  <span class="badge"> {{ mi['days'] }}d </span>
                   {% endif %}
-                  {{ '%s: %s' % (mi['m_username'], mi['message']) }}
+                  {{ '【%s】 and 【%s】: %s' % (mi['m_username'], mi['m_client_name'], mi['message']) }}
                 </li>
               </a>
               {% else %}

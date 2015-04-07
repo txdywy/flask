@@ -418,8 +418,11 @@ def message_box():
         mi['m_username'] = m_user.username
         mi['message'] = m.message
         mi['m_client_id'] = m.client_id
+        client = Client.query.get(m.client_id)
+        mi['m_client_name'] = client.name
         delta = (now - (m.create_time if m.create_time else datetime(2015, 1, 1))).days
         mi['new'] = True if delta == 0 else False
+        mi['days'] = delta
         message_items.append(mi)
     return render_template('message_box.html', message_items=message_items)
 
