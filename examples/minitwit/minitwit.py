@@ -218,8 +218,12 @@ def wx():
 @login_required
 @power_required(power=User.POWER_ADMIN)
 def admin():
-    project_num = Project.query.count()
-    return render_template('admin.html', project_num=project_num)    
+    classes = ['active', 'success', 'info', 'warning', 'danger']
+    cls = {}
+    projects = Project.query.all()
+    project_num = len(projects)
+    cls = dict((p.id, classes[p.id % len(classes)]) for p in projects)
+    return render_template('admin.html', cls=cls,  projects=projects, project_num=project_num)    
 
 @app.route('/gp', methods=['POST'])
 @login_required
