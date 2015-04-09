@@ -1,9 +1,9 @@
 {% extends "alayout.html" %}
 {% block title %}Admin{% endblock %}
 {% block body %}
-  <div class="container">
+  <div class="container" ng-app="">
     <div class="row">
-      <div class="col-md-8">
+      <div class="">
         <h2 class="page-header">Admin:</h2>
         <div class="col-sm-4 portfolio-item" >
           <p><b>Projects Number: {{ project_num }}</b><p>
@@ -48,13 +48,30 @@
             <button type="submit" class="btn btn-info btn-lg"><span class="glyphicon glyphicon-thumbs-down"></span> Kill Project</button>
           </form> 
         </div>
-        <div ng-app="" class="col-sm-4 portfolio-item">
+        <div class="col-sm-4 portfolio-item">
  
           <p>Input something in the input box:</p>
           <p>Name: <input type="text" ng-model="name"></p>
           <p ng-bind="name"></p>
 
           <img ng-src="{{ name|angular }}">
+        </div>
+        <div class="col-sm-4 portfolio-item">
+          <form role="form">
+            <div class="form-group">
+              <label for="ptitle">Title:</label>
+              <input type="text" class="form-control" id="ptitle" placeholder="Enter title">
+            </div>
+            <div class="form-group">
+              <label for="pimage">Image Url:</label>
+              <input type="text" class="form-control" id="pimage" ng-model="pimage" placeholder="Enter image url">
+              <img ng-src="{{ pimage|angular }}" class="img-rounded" alt="Cinque Terre" width="80" height="50">
+            </div>
+            <div class="checkbox">
+              <label><input type="checkbox"> Remember me</label>
+            </div>
+            <button type="submit" class="btn btn-default">Submit</button>
+          </form>
         </div>
       </div>
     </div>
