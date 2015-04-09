@@ -13,7 +13,6 @@
             <thead>
               <tr>
                 <th>Title</th>
-                <th>Icon</th>
                 <th>Client</th>
                 <th>Image</th>
               </tr>
@@ -22,7 +21,6 @@
               {% for project in projects %}
               <tr class="{{ cls[project.id] }}">
                 <td>{{ project.title }}</td>
-                <td><img src="{{ project.icon }}" class="img-circle" alt="Cinque Terre" width="50" height="50"></td>
                 <td>{{ project.client }}</td>
                 <td><img src="{{ project.image_url }}" class="img-rounded" alt="Cinque Terre" width="80" height="50"></td>
               </tr>
@@ -65,7 +63,7 @@
             <div class="form-group">
               <label for="pimage">Image Url:</label>
               <input type="text" class="form-control" id="pimage" ng-model="pimage" placeholder="Enter image url">
-              <img ng-src="{{ pimage|angular }}" class="img-rounded" alt="Cinque Terre" width="80" height="50">
+              <img ng-src="{{ pimage|angular }}" class="img-rounded" alt="N/A" >
             </div>
             <div class="checkbox">
               <label><input type="checkbox"> Remember me</label>
