@@ -15,6 +15,7 @@ from hashlib import md5
 from datetime import datetime
 from flask import Flask, request, session, url_for, redirect, \
      render_template, abort, g, flash, _app_ctx_stack, make_response
+from flask.ext.triangle import Triangle
 from werkzeug import check_password_hash, generate_password_hash
 from boto.s3.connection import S3Connection
 from boto.s3.key import Key
@@ -57,6 +58,7 @@ ALANCER_SERVICE_EMAIL = 'geniusron@gmail.com'
 
 # create our little application :)
 app = Flask(__name__)
+Triangle(app)
 app.config.from_object(__name__)
 app.config.from_envvar('MINITWIT_SETTINGS', silent=True)
 
@@ -223,7 +225,7 @@ def admin():
     projects = Project.query.all()
     project_num = len(projects)
     cls = dict((p.id, classes[p.id % len(classes)]) for p in projects)
-    return render_template('admin.html', cls=cls,  projects=projects, project_num=project_num)    
+    return render_template('admin.html', cls=cls, projects=projects, project_num=project_num)    
 
 @app.route('/gp', methods=['POST'])
 @login_required

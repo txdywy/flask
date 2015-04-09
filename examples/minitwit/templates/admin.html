@@ -48,6 +48,14 @@
             <button type="submit" class="btn btn-info btn-lg"><span class="glyphicon glyphicon-thumbs-down"></span> Kill Project</button>
           </form> 
         </div>
+        <div ng-app="" class="col-sm-4 portfolio-item">
+ 
+          <p>Input something in the input box:</p>
+          <p>Name: <input type="text" ng-model="name"></p>
+          <p ng-bind="name"></p>
+
+          <img ng-src="{{ name|angular }}">
+        </div>
       </div>
     </div>
   </div>
