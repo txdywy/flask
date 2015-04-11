@@ -288,16 +288,14 @@ def project():
 
 @app.route('/users')
 def users():
-    return render_template('project.html')
+    users = User.query.all();
+    return render_template('user_list.html', users=users)
 
-@app.route('/profile/<username>')
+@app.route('/profile')
 @login_required
-def profile(username):
-    user = User.query.filter_by(username=username).one()
-    if(user is None):
-	abort(404)
-    #user_id = session['user_id']
-    #user = User.query.get(user_id)
+def profile():
+    user_id = session['user_id']
+    user = User.query.get(user_id)
     return render_template('profile.html', user=user)
 
 
