@@ -14,7 +14,7 @@
                 {% for user in users %}
                 <div>
                         <div class="col-sm-4 portfolio-item" >
-                            <img autofocus src="img/profile.png" class="img-responsive img-centered" alt="">
+                            <img autofocus src="{{ user.icon }}" class="img-responsive img-centered" alt="">
                             <div id="loctimebox">
                                 <p class="alignleft" style="float:left;"><i>{{ user.username }}</i></p>
                                 <p class="alignright" style="float:right;"><i>{{ user.school }}, {{ user.city }}</i></p>

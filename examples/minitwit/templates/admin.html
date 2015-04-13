@@ -55,18 +55,23 @@
           <img ng-src="{{ name|angular }}">
         </div>
         <div class="col-sm-4 portfolio-item">
-          <form role="form">
-            <div class="form-group">
-              <label for="ptitle">Title:</label>
-              <input type="text" class="form-control" id="ptitle" placeholder="Enter title">
-            </div>
-            <div class="form-group">
-              <label for="pimage">Image Url:</label>
-              <input type="text" class="form-control" id="pimage" ng-model="pimage" placeholder="Enter image url">
-              <img ng-src="{{ pimage|angular }}" class="img-rounded" alt="N/A" >
-            </div>
-            <div class="checkbox">
-              <label><input type="checkbox"> Remember me</label>
+          <form role="form" action="/message" method="POST">
+            <label for="ptitle">Title:</label>
+            <input type="text" class="form-control" id="ptitle" name="title" placeholder="Enter title">
+            <label for="pimage">Image Url:</label>
+            <input type="text" class="form-control" id="pimage" ng-model="pimage" name="image" placeholder="Enter image url">
+            <img ng-src="{{ pimage|angular }}" class="img-rounded" alt="N/A" >
+            <div class="dropdown">
+              <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
+                Dropdown
+                <span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Action</a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Another action</a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Something else here</a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Separated link</a></li>
+              </ul>
             </div>
             <button type="submit" class="btn btn-default">Submit</button>
           </form>
