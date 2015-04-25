@@ -225,7 +225,8 @@ def admin():
     projects = Project.query.all()
     project_num = len(projects)
     cls = dict((p.id, classes[p.id % len(classes)]) for p in projects)
-    return render_template('admin.html', cls=cls, projects=projects, project_num=project_num)    
+    clients = Client.query.all()
+    return render_template('admin.html', cls=cls, projects=projects, project_num=project_num, clients=clients)    
 
 @app.route('/gp', methods=['POST'])
 @login_required
