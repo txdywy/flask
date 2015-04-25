@@ -20,20 +20,28 @@
               url     : 'upload',
               data    : $.param($scope.formData),  // pass in data as strings
               headers : { 'Content-Type': 'application/x-www-form-urlencoded' }  // set the headers so angular passing info as form data (not request payload)
-          })
+          })  
               .success(function(data) {
                   console.log(data);
-
+                  window.alert(data + ' [Reload page for update]' );
+                  /* 
                   if (!data.success) {
                     // if not successful, bind errors to error variables
-                      $scope.errorName = data.errors.name;
-                      $scope.errorSuperhero = data.errors.superheroAlias;
+                      $scope.errorTitle = data.errors.title;
+                      $scope.errorDesp = data.errors.desp;
+                      $scope.errorIncentive = data.errors.incentive;
+                      $scope.errorImage = data.errors.image;
+                      $scope.errorClient = data.errors.client;
                   } else {
                     // if successful, bind success message to message
                       $scope.message = data.message;
-                                        $scope.errorName = '';
-                      $scope.errorSuperhero = '';
+                      $scope.errorTitle = '';
+                      $scope.errorDesp = '';
+                      $scope.errorIncentive = '';
+                      $scope.errorImage = '';
+                      $scope.errorClient = '';
                   }
+                  */
               });
 
       };
@@ -98,8 +106,8 @@
           <img ng-src="{{ name|angular }}">
         </div>
 
-        <!-- TO ADD A PROJECT TO ONE OENER -->
-        <h4>Add Projecti to Client</h4>
+        <!-- TO ADD A PROJECT TO ONE OWNER -->
+        <h4>Add Project to Client</h4>
         <div ng-controller="formController">
           <form ng-submit="processForm()">
             <!-- PROJECT TITLE -->
