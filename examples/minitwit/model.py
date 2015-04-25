@@ -106,11 +106,10 @@ class Client(Base):
     name = Column(String(50))
     email = Column(String(120))
     user_id = Column(Integer, ForeignKey('user.user_id'))
-    company = Column(String(120), default='Private Org')
-
-    def __init__(self, name, email):
-        self.name = name
-        self.email = email
+    company = Column(String(120), default='N/A')
+    title = Column(String(120), default='N/A')
+    icon = Column(String(512), default='http://img1.wikia.nocookie.net/__cb20140912133822/disney/images/6/6f/Baymax_Disney_INFINITY.png')
+    location = Column(String(50), default='From Cyberspace') 
 
     def __repr__(self):
         return '<Client %r>' % (self.name)

@@ -228,6 +228,25 @@ def admin():
     clients = Client.query.all()
     return render_template('admin.html', cls=cls, projects=projects, project_num=project_num, clients=clients)    
 
+@app.route('/upload', methods=['POST'])
+@login_required
+@power_required(power=User.POWER_ADMIN)
+def upload():
+    try:
+        title = request.form['title']
+        desp = request.form['desp']
+        incentive = request.form['incentive']
+        client_id = int(request.form['client'])
+        image_url = request.form['image']
+    except:
+        print 'upload error: %s' % str(request.form)
+        return 'failed'
+    client = Client.query.get(client_id)
+    p = Project(title=title, email=client.email, desp=desp, client=client.name, image_url=image_url, service='web dev', client_id=client.id, client_title=client.title, location=client.location, incentive=incentive, icon=client.icon)
+    flush(p)
+    return 'success'
+        
+
 @app.route('/gp', methods=['POST'])
 @login_required
 @power_required(power=User.POWER_ADMIN)
