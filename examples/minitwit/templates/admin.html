@@ -99,7 +99,7 @@
         </div>
 
         <!-- TO ADD A PROJECT TO ONE OENER -->
-        <h2>Add New Project</h2>
+        <h4>Add Projecti to Client</h4>
         <div ng-controller="formController">
           <form ng-submit="processForm()">
             <!-- PROJECT TITLE -->
@@ -123,12 +123,19 @@
               <span class="help-block" ng-show="errorIncentive">{{ errorIncentive|angular }}</span>
             </div>
 
+            <!-- PROJECT IMAGE -->
+            <div id="image-group" class="form-group" ng-class="{ 'has-error' : errorImage }">
+              <label>Image Url</label>
+              <input type="text" name="image" class="form-control" placeholder="https://www.google.com.hk/images/nav_logo195.png" ng-model="formData.image">
+              <span class="help-block" ng-show="errorImage">{{ errorImage|angular }}</span>
+            </div>
+
             <!-- PROJECT CLIENT -->
             <div id="client-group" class="form-group" ng-class="{ 'has-error' : errorClient }">
               <label>Project Client</label>
               <select class="form-control" data-style="btn-success" name="client" ng-model="formData.client">
                 {% for client in clients %}
-                <option value="{{client.id}}">{{client.name}}[{{client.email}}]</option>
+                <option value="{{client.id}}">{{client.name}} [{{client.email}}]</option>
                 {% endfor %}
               </select>
             </div>
@@ -141,7 +148,10 @@
 
           <!-- SHOW DATA FROM INPUTS AS THEY ARE BEING TYPED -->
           <pre>
+            <p>formData preview:</p>
             {{ formData|angular }}
+            <p>project image preview:</p>
+            <img ng-src="{{ formData.image|angular }}">
           </pre>
         </div>
       </div>
