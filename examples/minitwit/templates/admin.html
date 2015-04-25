@@ -23,25 +23,31 @@
           })  
               .success(function(data) {
                   console.log(data);
-                  window.alert(data + ' [Reload page for update]' );
-                  /* 
-                  if (!data.success) {
+                   
+                  if (data==='success') {
+                      window.location.reload();
+                      window.alert('sucess')
                     // if not successful, bind errors to error variables
+                      /*
                       $scope.errorTitle = data.errors.title;
                       $scope.errorDesp = data.errors.desp;
                       $scope.errorIncentive = data.errors.incentive;
                       $scope.errorImage = data.errors.image;
                       $scope.errorClient = data.errors.client;
+                      */
                   } else {
+                      window.alert('failed, need more parameters')
                     // if successful, bind success message to message
+                      /*
                       $scope.message = data.message;
                       $scope.errorTitle = '';
                       $scope.errorDesp = '';
                       $scope.errorIncentive = '';
                       $scope.errorImage = '';
                       $scope.errorClient = '';
+                      */
                   }
-                  */
+                  
               });
 
       };

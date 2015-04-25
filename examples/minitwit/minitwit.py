@@ -240,12 +240,11 @@ def upload():
         image_url = request.form['image']
     except:
         print 'upload error: %s' % str(request.form)
-        return 'failed, need more params!'
-        abort(403)
+        return 'failed'
     client = Client.query.get(client_id)
     p = Project(title=title, email=client.email, desp=desp, client=client.name, image_url=image_url, service='web dev', client_id=client.id, client_title=client.title, location=client.location, incentive=incentive, icon=client.icon)
     flush(p)
-    return 'sucess'
+    return 'success'
         
 
 @app.route('/gp', methods=['POST'])
