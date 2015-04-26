@@ -86,6 +86,11 @@
                             <a href="/admin">Admin</a>
                         </li>
                         {% endif %}
+                        {% if g.user and g.isowner %}
+                        <li class="page-scroll">
+                            <a href="/publish">Publish</a>
+                        </li>
+                        {% endif %}
                     </ul>
                 </div>
                 <!-- /.navbar-collapse -->

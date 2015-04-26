@@ -203,6 +203,7 @@ def before_request():
         #g.user = query_db('select * from user where user_id = ?', [session['user_id']], one=True)
         g.user = User.query.get(session['user_id'])
         g.admin_power = g.user.power & User.POWER_ADMIN
+        g.isowner = g.user.role & User.USER_CLIENT
 
 @app.route('/wx', methods=['GET', 'POST'])
 def wx():
