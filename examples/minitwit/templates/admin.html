@@ -87,6 +87,8 @@
             </tbody>
           </table>
         </div>
+
+        <!--generate project-->
         <div class="col-sm-4 portfolio-item" >
           <form class="navbar-form navbar-left" role="search" action="{{ url_for('gp') }}" method="post">
             <div class="form-group">
@@ -95,6 +97,8 @@
             <button type="submit" class="btn btn-info btn-lg"><span class="glyphicon glyphicon-thumbs-up"></span> Add Project</button>
           </form> 
         </div>
+
+        <!--kill project-->
         <div class="col-sm-4 portfolio-item" >
           <form class="navbar-form navbar-left" role="search" action="{{ url_for('dp') }}" method="post">
             <div class="form-group">
@@ -103,6 +107,21 @@
             <button type="submit" class="btn btn-info btn-lg"><span class="glyphicon glyphicon-thumbs-down"></span> Kill Project</button>
           </form> 
         </div>
+
+        <!--admin broadcast message-->
+        <div class="col-sm-4 portfolio-item" >
+          <form class="navbar-form navbar-left" role="search" action="{{ url_for('bc') }}" method="post">
+            <div class="form-group">
+              <input type="text" class="form-control" placeholder="Title" name="title">
+              <textarea class="form-control" rows="5" placeholder="Body" name="body"></textarea>
+            </div>
+            <button type="submit" class="btn btn-info btn-lg">
+              <span class="glyphicon glyphicon-leaf"></span> Broadcast
+            </button>
+          </form>
+        </div>
+
+        <!--test angular img src-->
         <div ng-app="textApp" class="col-sm-4 portfolio-item">
  
           <p>Input something in the input box:</p>

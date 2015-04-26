@@ -70,7 +70,7 @@
                             {% endif %}
                         </li>
                         <li class="page-scroll">
-                            <a href="{{ url_for('message_box') }}">Message</a>
+                            <a href="{{ url_for('message_box') }}">Message <span class="badge">{{g.message_num}}</span></a>
                         </li>
                         <li class="page-scroll">
                             <a href="/project">Project</a>

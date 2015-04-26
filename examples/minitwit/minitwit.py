@@ -196,6 +196,16 @@ def power_required(power=User.POWER_ADMIN):
         return func
     return deco
 
+def get_user_message_num(user_id):
+    user = User.query.get(user_id)
+    if user.role == User.USER_CLIENT:
+        client = Client.query.filter_by(user_id=user_id).first()
+        client_id = client.id if client else None
+        message_num = Message.query.filter_by(client_id=client_id).group_by(Message.user_id).count()
+    else:
+        message_num = Message.query.filter_by(user_id=user_id).group_by(Message.client_id).count()
+    return message_num
+
 @app.before_request
 def before_request():
     g.user = None
@@ -204,6 +214,7 @@ def before_request():
         g.user = User.query.get(session['user_id'])
         g.admin_power = g.user.power & User.POWER_ADMIN
         g.isowner = g.user.role & User.USER_CLIENT
+        g.message_num = get_user_message_num(g.user.user_id)
 
 @app.route('/wx', methods=['GET', 'POST'])
 def wx():
@@ -276,6 +287,12 @@ def owner_upload():
     p = Project(title=title, email=client.email, desp=desp, client=client.name, image_url=image_url, service='web dev', client_id=client.id, client_title=client.title, location=client.location, incentive=incentive, icon=client.icon)
     flush(p)
     return 'success'
+
+@app.route('/bc', methods=['POST'])
+@login_required
+@power_required(power=User.POWER_ADMIN)
+def bc():
+    return redirect(url_for('admin'))
 
 @app.route('/gp', methods=['POST'])
 @login_required
