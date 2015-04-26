@@ -238,7 +238,8 @@ def admin():
     project_num = len(projects)
     cls = dict((p.id, classes[p.id % len(classes)]) for p in projects)
     clients = Client.query.all()
-    return render_template('admin.html', cls=cls, projects=projects, project_num=project_num, clients=clients)    
+    users = User.query.all()
+    return render_template('admin.html', cls=cls, projects=projects, project_num=project_num, clients=clients, users=users)    
 
 @app.route('/upload', methods=['POST'])
 @login_required
@@ -292,6 +293,15 @@ def owner_upload():
 @login_required
 @power_required(power=User.POWER_ADMIN)
 def bc():
+    title = request.form['title']
+    body = request.form['body']
+    to = request.form['to']
+    if not to:
+        emails = [u.email for u in User.query.all()]
+    else:
+        emails = [User.query.get(int(to)).email]
+    for email in emails:
+        util.send_email(title, body, email)
     return redirect(url_for('admin'))
 
 @app.route('/gp', methods=['POST'])
