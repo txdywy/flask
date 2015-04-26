@@ -247,6 +247,35 @@ def upload():
     flush(p)
     return 'success'
         
+@app.route('/publish', methods=['GET'])
+@login_required
+def publish():
+    classes = ['active', 'success', 'info', 'warning', 'danger']
+    cls = {}
+    user_id = session.get('user_id')
+    client = Client.query.filter_by(user_id=user_id).first()
+    client_id = client.id
+    projects = Project.query.filter_by(client_id=client_id).all()
+    project_num = len(projects)
+    cls = dict((p.id, classes[p.id % len(classes)]) for p in projects)
+    return render_template('publish.html', cls=cls, projects=projects, project_num=project_num, client_id=client_id)
+
+@app.route('/owner_upload', methods=['POST'])
+@login_required
+def owner_upload():
+    user_id = session.get('user_id')
+    client = Client.query.filter_by(user_id=user_id).first()
+    try:
+        title = request.form['title']
+        desp = request.form['desp']
+        incentive = request.form['incentive']
+        image_url = request.form['image']
+    except:
+        print 'upload error: %s' % str(request.form)
+        return 'failed'
+    p = Project(title=title, email=client.email, desp=desp, client=client.name, image_url=image_url, service='web dev', client_id=client.id, client_title=client.title, location=client.location, incentive=incentive, icon=client.icon)
+    flush(p)
+    return 'success'
 
 @app.route('/gp', methods=['POST'])
 @login_required
