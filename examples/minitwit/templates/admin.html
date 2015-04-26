@@ -65,6 +65,8 @@
         <div class="col-sm-4 portfolio-item" >
           <p><b>Projects Number: {{ project_num }}</b><p>
         </div>
+        
+        <!--project list-->
         <div>
           <table class="table">
             <thead>
@@ -87,38 +89,52 @@
             </tbody>
           </table>
         </div>
-
+        
         <!--generate project-->
-        <div class="col-sm-4 portfolio-item" >
-          <form class="navbar-form navbar-left" role="search" action="{{ url_for('gp') }}" method="post">
-            <div class="form-group">
-              <input type="text" class="form-control" placeholder="1" name='n'>
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <div class="col-sm-4 portfolio-item" >
+              <form class="navbar-form navbar-left" role="search" action="{{ url_for('gp') }}" method="post">
+                <div class="form-group">
+                  <input type="text" class="form-control" placeholder="1" name='n'>
+                </div>
+                <button type="submit" class="btn btn-info btn-lg"><span class="glyphicon glyphicon-thumbs-up"></span> Add Project</button>
+              </form> 
             </div>
-            <button type="submit" class="btn btn-info btn-lg"><span class="glyphicon glyphicon-thumbs-up"></span> Add Project</button>
-          </form> 
+          </div>
         </div>
 
         <!--kill project-->
-        <div class="col-sm-4 portfolio-item" >
-          <form class="navbar-form navbar-left" role="search" action="{{ url_for('dp') }}" method="post">
-            <div class="form-group">
-              <input type="text" class="form-control" placeholder="1" name='n'>
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <div class="col-sm-4 portfolio-item" >
+              <form class="navbar-form navbar-left" role="search" action="{{ url_for('dp') }}" method="post">
+                <div class="form-group">
+                  <input type="text" class="form-control" placeholder="1" name='n'>
+                </div>
+                <button type="submit" class="btn btn-info btn-lg"><span class="glyphicon glyphicon-thumbs-down"></span> Kill Project</button>
+              </form> 
             </div>
-            <button type="submit" class="btn btn-info btn-lg"><span class="glyphicon glyphicon-thumbs-down"></span> Kill Project</button>
-          </form> 
+          </div>
         </div>
 
+
+
         <!--admin broadcast message-->
-        <div class="col-sm-4 portfolio-item" >
-          <form class="navbar-form navbar-left" role="search" action="{{ url_for('bc') }}" method="post">
-            <div class="form-group">
-              <input type="text" class="form-control" placeholder="Title" name="title">
-              <textarea class="form-control" rows="5" placeholder="Body" name="body"></textarea>
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <div class="col-sm-4 portfolio-item" >
+              <form class="navbar-form navbar-left" role="search" action="{{ url_for('bc') }}" method="post">
+                <div class="form-group">
+                  <input type="text" class="form-control" placeholder="Title" name="title">
+                  <textarea class="form-control" rows="5" placeholder="Body" name="body"></textarea>
+                </div>
+                <button type="submit" class="btn btn-info btn-lg">
+                  <span class="glyphicon glyphicon-leaf"></span> Broadcast
+                </button>
+              </form>
             </div>
-            <button type="submit" class="btn btn-info btn-lg">
-              <span class="glyphicon glyphicon-leaf"></span> Broadcast
-            </button>
-          </form>
+          </div>
         </div>
 
         <!--test angular img src-->
