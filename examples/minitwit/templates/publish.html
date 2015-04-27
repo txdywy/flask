@@ -5,9 +5,56 @@
   <script>
     // define angular module/app
     var formApp = angular.module('formApp', []);
+    var myApp = formApp
+    myApp.directive('fileModel', ['$parse', function ($parse) {
+        return {
+            restrict: 'A',
+            link: function(scope, element, attrs) {
+                var model = $parse(attrs.fileModel);
+                var modelSetter = model.assign;
+                
+                element.bind('change', function(){
+                    scope.$apply(function(){
+                        modelSetter(scope, element[0].files[0]);
+                    });
+                });
+            }
+        };
+    }]);
+
+    myApp.service('fileUpload', ['$http', 'Scopes', function ($http, Scopes) {
+        this.uploadFileToUrl = function(file, uploadUrl){
+            var fd = new FormData();
+            fd.append('file', file);
+            window.alert('Do not submit until the image appears.')
+            $http.post(uploadUrl, fd, {
+                transformRequest: angular.identity,
+                headers: {'Content-Type': undefined}
+            })
+            .success(function(data){
+                console.log(data);
+                Scopes.get('formController').formData.image = data
+            })
+            .error(function(){
+            });
+        }
+    }]);
+
+    myApp.controller('myCtrl', ['$scope', 'fileUpload', 'Scopes', function($scope, fileUpload, Scopes){
+        Scopes.store('myCtrl', $scope)
+        $scope.uploadFile = function(){
+            var file = $scope.myFile;
+            console.log('file is ' + JSON.stringify(file));
+            var uploadUrl = "/upload_image";
+            fileUpload.uploadFileToUrl(file, uploadUrl, Scopes);
+        };
+        
+    }]);  
+
 
     // create angular controller and pass in $scope and $http
-    formApp.controller('formController', function($scope, $http) {
+    formApp.controller('formController', function($scope, $http, Scopes) {
+      Scopes.store('formController', $scope);
 
       // create a blank object to hold our form information
       // $scope will allow this to pass between controller and view
@@ -52,6 +99,20 @@
 
       };
 
+    });
+
+    myApp.factory('Scopes', function ($rootScope) {
+        var mem = {};
+     
+        return {
+            store: function (key, value) {
+                $rootScope.$emit('scope.stored', key);
+                mem[key] = value;
+            },
+            get: function (key) {
+                return mem[key];
+            }
+        };
     });
 
   </script>
@@ -124,21 +185,27 @@
               <span class="glyphicon glyphicon-flash"></span> Submit!
             </button>
           </form>
-
+          <!-- pure html file upload
           <title>Upload new File</title>
           <h1>Upload new File</h1>
           <form action="upload_image" method=post enctype=multipart/form-data>
             <p><input type=file name=file>
                <input type=submit value=Upload>
           </form>
-
+          -->
           <!-- SHOW DATA FROM INPUTS AS THEY ARE BEING TYPED -->
-          <pre>
-            <p>formData preview:</p>
-            {{ formData|angular }}
-            <p>project image preview:</p>
-            <img ng-src="{{ formData.image|angular }}">
-          </pre>
+          <div class="col-sm-4 portfolio-item" >
+            <pre>
+              <p>formData preview:</p>
+              {{ formData|angular }}
+              <p>project image preview:</p>
+              <img ng-src="{{ formData.image|angular }}" autofocus class="img-responsive img-centered" alt="">
+            </pre>
+          </div>
+        </div>
+        <div ng-controller = "myCtrl">
+          <input type="file" file-model="myFile"/>
+          <button ng-click="uploadFile()">upload me</button>
         </div>
       </div>
     </div>
