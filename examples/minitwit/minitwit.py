@@ -36,9 +36,13 @@ import alfaker
 
 WX_SHA1 = SHA1()
 
+from leancloud import File
+from StringIO import StringIO
 try:
-    from config import AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, WX_TOKEN
+    from config import AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, WX_TOKEN, LC_APP_ID, LC_APP_KEY
     s3_conn = S3Connection(AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY)
+    import leancloud
+    leancloud.init(LC_APP_ID, LC_APP_KEY)
 except:
     print '------------no valid s3 config keys------------'
     WX_TOKEN = ''
@@ -258,7 +262,16 @@ def upload():
     p = Project(title=title, email=client.email, desp=desp, client=client.name, image_url=image_url, service='web dev', client_id=client.id, client_title=client.title, location=client.location, incentive=incentive, icon=client.icon)
     flush(p)
     return 'success'
-        
+
+@app.route('/upload_image', methods=['POST'])
+@login_required
+def upload_image():        
+    c = request.files['file'].read()
+    file = StringIO(c)
+    lc_file = File('pi', file)
+    lc_file.save()
+    return lc_file.url 
+
 @app.route('/publish', methods=['GET'])
 @login_required
 def publish():
