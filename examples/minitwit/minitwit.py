@@ -19,7 +19,7 @@ from flask.ext.triangle import Triangle
 from werkzeug import check_password_hash, generate_password_hash
 from boto.s3.connection import S3Connection
 from boto.s3.key import Key
-
+from PIL import Image
 from model import flush, db_session, Project, Contact, Client, User, UserLike, Message, ProjectApply
 import util, functools
 try:
@@ -266,8 +266,20 @@ def upload():
 @app.route('/upload_image', methods=['POST'])
 @login_required
 def upload_image():        
+    HEIGHT, WIDTH = 384, 240
     c = request.files['file'].read()
-    file = StringIO(c)
+    file_orig = StringIO(c)
+    im = Image.open(file_orig)
+    h, w = im.size
+    if h > HEIGHT or w > WIFTH:
+        im.thumbnail((HEIGHT, WIDTH), Image.ANTIALIAS)
+        file = StringIO()
+        h, w = im.size
+        if h==w:
+            im = im.rotate(90 * 3)
+        im.save(file, 'JPEG')
+    else:
+        file = file_orig
     lc_file = File('pi', file)
     lc_file.save()
     return lc_file.url 
