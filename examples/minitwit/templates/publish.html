@@ -69,6 +69,12 @@
               <span class="help-block" ng-show="errorImage">{{ errorImage|angular }}</span>
             </div>
 
+            <!--UPLOAD IMAGE SECTION-->
+            <div ng-controller = "myCtrl">
+              <input type="file" file-model="myFile"/>
+              <button ng-click="uploadFile()">upload me</button>
+            </div>
+
             <!-- SUBMIT BUTTON -->
             <button type="submit" class="btn btn-success btn-lg btn-block">
               <span class="glyphicon glyphicon-flash"></span> Submit!
@@ -91,10 +97,6 @@
               <img ng-src="{{ formData.image|angular }}" autofocus class="img-responsive img-centered" alt="">
             </pre>
           </div>
-        </div>
-        <div ng-controller = "myCtrl">
-          <input type="file" file-model="myFile"/>
-          <button ng-click="uploadFile()">upload me</button>
         </div>
       </div>
     </div>

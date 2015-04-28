@@ -136,6 +136,12 @@
               <span class="help-block" ng-show="errorImage">{{ errorImage|angular }}</span>
             </div>
 
+            <!--UPLOAD IMAGE SECTION-->
+            <div ng-controller = "myCtrl">
+              <input type="file" file-model="myFile"/>
+              <button ng-click="uploadFile()">upload me</button>
+            </div>
+
             <!-- PROJECT CLIENT -->
             <div id="client-group" class="form-group" ng-class="{ 'has-error' : errorClient }">
               <label>Project Client</label>
@@ -153,15 +159,13 @@
           </form>
 
           <!-- SHOW DATA FROM INPUTS AS THEY ARE BEING TYPED -->
-          <pre>
-            <p>formData preview:</p>
-            {{ formData|angular }}
-            <p>project image preview:</p>
-            <img ng-src="{{ formData.image|angular }}">
-          </pre>
-          <div ng-controller = "myCtrl">
-            <input type="file" file-model="myFile"/>
-            <button ng-click="uploadFile()">upload me</button>
+          <div class="col-sm-4 portfolio-item" >
+            <pre>
+              <p>formData preview:</p>
+              {{ formData|angular }}
+              <p>project image preview:</p>
+              <img ng-src="{{ formData.image|angular }}" autofocus class="img-responsive img-centered" alt="">
+            </pre>
           </div>
         </div>
       </div>
