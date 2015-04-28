@@ -2,59 +2,9 @@
 {% block title %}Admin{% endblock %}
 {% block headjs %}
   <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.15/angular.min.js"></script>
-  <script>
-    // define angular module/app
-    var formApp = angular.module('formApp', []);
-
-    // create angular controller and pass in $scope and $http
-    formApp.controller('formController', function($scope, $http) {
-
-      // create a blank object to hold our form information
-      // $scope will allow this to pass between controller and view
-      $scope.formData = {};
-
-      // process the form
-      $scope.processForm = function() {
-        $http({
-              method  : 'POST',
-              url     : 'upload',
-              data    : $.param($scope.formData),  // pass in data as strings
-              headers : { 'Content-Type': 'application/x-www-form-urlencoded' }  // set the headers so angular passing info as form data (not request payload)
-          })  
-              .success(function(data) {
-                  console.log(data);
-                   
-                  if (data==='success') {
-                      window.location.reload();
-                      window.alert('sucess')
-                    // if not successful, bind errors to error variables
-                      /*
-                      $scope.errorTitle = data.errors.title;
-                      $scope.errorDesp = data.errors.desp;
-                      $scope.errorIncentive = data.errors.incentive;
-                      $scope.errorImage = data.errors.image;
-                      $scope.errorClient = data.errors.client;
-                      */
-                  } else {
-                      window.alert('failed, need more parameters')
-                    // if successful, bind success message to message
-                      /*
-                      $scope.message = data.message;
-                      $scope.errorTitle = '';
-                      $scope.errorDesp = '';
-                      $scope.errorIncentive = '';
-                      $scope.errorImage = '';
-                      $scope.errorClient = '';
-                      */
-                  }
-                  
-              });
-
-      };
-
-    });
-
-  </script>
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/angular-loading-bar/0.7.1/loading-bar.min.css' type='text/css' media='all' />
+  <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/angular-loading-bar/0.7.1/loading-bar.min.js'></script>
+  <script type='text/javascript' src='/js/uploadImage.js'></script>
 
 {% endblock headjs %}
 {% block body %}
@@ -209,6 +159,10 @@
             <p>project image preview:</p>
             <img ng-src="{{ formData.image|angular }}">
           </pre>
+          <div ng-controller = "myCtrl">
+            <input type="file" file-model="myFile"/>
+            <button ng-click="uploadFile()">upload me</button>
+          </div>
         </div>
       </div>
     </div>
