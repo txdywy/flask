@@ -277,10 +277,14 @@ def upload_image():
         h, w = im.size
         if h==w:
             im = im.rotate(90 * 3)
-        im.save(file, 'JPEG')
+        try:
+            im.save(file, 'JPEG')
+        except:
+            #for .gif
+            file = file_orig
     else:
         file = file_orig
-    lc_file = File('pi', file)
+    lc_file = File('pi', file_orig)
     lc_file.save()
     return lc_file.url 
 
