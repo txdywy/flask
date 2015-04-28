@@ -271,7 +271,7 @@ def upload_image():
     file_orig = StringIO(c)
     im = Image.open(file_orig)
     h, w = im.size
-    if h > HEIGHT or w > WIFTH:
+    if h > HEIGHT or w > WIDTH:
         im.thumbnail((HEIGHT, WIDTH), Image.ANTIALIAS)
         file = StringIO()
         h, w = im.size
