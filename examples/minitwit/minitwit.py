@@ -396,6 +396,29 @@ def project():
     #print '====',pats
     return render_template('project_list.html', projects=projects, pas=pas, pats=pats, puds=puds, pics=pics)
 
+@app.route('/project_slider')
+def project_slider():
+    user_id = session.get('user_id')
+    pas = {}
+    pats = {}
+    puds = {}
+    pics = {}
+    projects = Project.query.all()
+    for project in projects:
+        project_id = project.id
+        if user_id:
+            pa = ProjectApply.query.filter_by(user_id=user_id, project_id=project_id).first()
+            pas[project_id] = True if pa else False
+            pats[project_id] = str(pa.create_time)[:10] if pa else None
+        puds[project_id] = (datetime.now() - project.create_time).days
+        if project.icon:
+            pics[project_id] = project.icon
+        else:
+            pics[project_id] = "http://cdnvideo.dolimg.com/cdn_assets/189e27f7a893da854ad965e1406cc3878af80307.jpg" #get_pic_url(project.client)
+    #print '----',pas
+    #print '====',pats
+    return render_template('project_slider.html', projects=projects, pas=pas, pats=pats, puds=puds, pics=pics)
+
 @app.route('/users')
 def users():
     users = User.query.all();
