@@ -9,25 +9,27 @@
   </head>
   <body>
 
-<div ng-controller="CarouselDemoCtrl">
-  <div style="height: 605px">
-    <carousel interval="myInterval">
-      <slide ng-repeat="slide in slides" active="slide.active">
-        <img ng-src="{{slide.image|angular}}" style="margin:auto;width:100%;">
-        <div class="carousel-caption">
-          <h4>Miao?</h4>
-          <p>{{slide.text|angular}}</p>
-        </div>
-      </slide>
-    </carousel>
-  </div>
-  <div class="row">
-    <div class="col-md-6">
-      <button type="button" class="btn btn-info" ng-click="addSlide()">Add Slide</button>
+<div class="container" style="margin:auto;width:100%;">
+  <div ng-controller="CarouselDemoCtrl">
+    <div style="height: 605px">
+      <carousel interval="myInterval">
+        <slide ng-repeat="slide in slides" active="slide.active">
+          <img ng-src="{{slide.image|angular}}" style="margin:auto;width:100%;">
+          <div class="carousel-caption">
+            <h4>Miao?</h4>
+            <p>{{slide.text|angular}}</p>
+          </div>
+        </slide>
+      </carousel>
     </div>
-    <div class="col-md-6">
-      Interval, in milliseconds: <input type="number" class="form-control" ng-model="myInterval">
-      <br />Enter a negative number or 0 to stop the interval.
+    <div class="row">
+      <div class="col-md-6">
+        <button type="button" class="btn btn-info" ng-click="addSlide()">Add Slide</button>
+      </div>
+      <div class="col-md-6">
+        Interval, in milliseconds: <input type="number" class="form-control" ng-model="myInterval">
+        <br />Enter a negative number or 0 to stop the interval.
+      </div>
     </div>
   </div>
 </div>
