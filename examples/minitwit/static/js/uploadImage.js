@@ -21,7 +21,8 @@ myApp.service('fileUpload', ['$http', 'Scopes', function ($http, Scopes) {
     this.uploadFileToUrl = function(file, uploadUrl){
         var fd = new FormData();
         fd.append('file', file);
-        window.alert('Do not submit until the image appears.')
+        setTimeout(function() { alert('Do not submit until the image appears.'); }, 0.001);
+        console.log('start http')
         $http.post(uploadUrl, fd, {
             transformRequest: angular.identity,
             headers: {'Content-Type': undefined}
