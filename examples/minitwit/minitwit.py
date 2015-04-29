@@ -369,6 +369,10 @@ def contact():
     util.send_email('[Alancer Contact][%s][%s][%s]' % (name, phone, email), message, ALANCER_SERVICE_EMAIL)
     return 'success'
 
+@app.route('/cat')
+def cat():
+    return render_template('cat.html', index_ag="{{$index}}")
+ 
 @app.route('/project')
 def project():
     user_id = session.get('user_id')
