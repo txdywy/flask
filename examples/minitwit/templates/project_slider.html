@@ -32,7 +32,8 @@ pApp.controller('ProjectCtrl', function ($scope) {
                           click_url: "{{ url_for('apply', m_user_id=g.user.user_id if g.user else None, m_client_id=project.client_id, project_id=project.id) }}".replace(/&amp;/g, "&"),
                           location: "{{ project.location }}",
                           days: "{{ puds[project.id] }}",
-                          desp: "{{ project.desp }}"
+                          desp: "{{ project.desp }}",
+                          incentive: "{{ project.incentive }}"
                          });
       {% endfor %}
     });    
@@ -59,7 +60,7 @@ pApp.controller('ProjectCtrl', function ($scope) {
               </div>
               <div style="clear: both;"></div>
               <p><b>Want to launch: </b>{{slide.desp|angular}}</p>
-              <p><b>Get: </b>Tips</p>
+              <p><b>Get: </b>{{slide.incentive|angular}}</p>
               <div class="col-md-5 col-sm-4 col-xs-5">
                 <img class=" img-circle" src="{{slide.icon|angular}}" width="70" height="70" >
               </div>
