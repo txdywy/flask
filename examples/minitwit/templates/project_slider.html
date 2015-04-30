@@ -2,16 +2,16 @@
 {% block title %}Project{% endblock %}
 {% block body %}
 {% block headjs %}
-  <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.15/angular.min.js"></script>
-  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/angular-loading-bar/0.7.1/loading-bar.min.css' type='text/css' media='all' />
-  <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/angular-loading-bar/0.7.1/loading-bar.min.js'></script>
-  <script type='text/javascript' src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.12.1/ui-bootstrap-tpls.min.js"></script>
-  <script type='text/javascript' src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.15/angular-touch.js"></script>
-  <script>
-    var pApp = angular.module('pApp', ['ui.bootstrap', 'ngTouch']);
-    pApp.controller('ProjectCtrl', function ($scope) {
-      $scope.myInterval = 5000;
-      var slides = $scope.slides = [];
+<script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.15/angular.min.js"></script>
+<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/angular-loading-bar/0.7.1/loading-bar.min.css' type='text/css' media='all' />
+<script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/angular-loading-bar/0.7.1/loading-bar.min.js'></script>
+<script type='text/javascript' src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.12.1/ui-bootstrap-tpls.min.js"></script>
+<script type='text/javascript' src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.15/angular-touch.js"></script>
+<script>
+var pApp = angular.module('pApp', ['ui.bootstrap', 'ngTouch']);
+pApp.controller('ProjectCtrl', function ($scope) {
+  $scope.myInterval = 5000;
+  var slides = $scope.slides = [];
       /*
       $scope.addSlide = function() {
         var newWidth = 600 + slides.length + 1;
@@ -26,78 +26,105 @@
       }
       */
       {% for project in projects %}
-      $scope.slides.push({image: '{{project.image_url}}', text: '{{project.title}}'});
+      $scope.slides.push({image: '{{project.image_url}}', text: '{{project.title}}'}, icon: '{{ pics[project.id] }}', click_url: "{{ url_for('apply', m_user_id=g.user.user_id if g.user else None, m_client_id=project.client_id, project_id=project.id) }}");
       {% endfor %}
     });    
-  </script>
+</script>
 {% endblock headjs %}
-    <!-- Project Grid Section -->
-    <section id="portfolio">
-<div class="container" ng-app="pApp" style="margin:auto;width:100%;">
-  <div ng-controller="ProjectCtrl">
-    <div style="height: 605px">
-      <carousel interval="myInterval">
-        <slide ng-repeat="slide in slides" active="slide.active">
-          <img ng-src="{{slide.image|angular}}" style="max-height:100px; margin:0 auto;width:100%;">
-          <div class="carousel-caption">
-            <p>{{slide.text|angular}}</p>
-          </div>
-        </slide>
-      </carousel>
-    </div>
-    <div class="row">
-      <div class="col-md-6">
-        <button type="button" class="btn btn-info" ng-click="addSlide()">Add Slide</button>
+<!-- Project Grid Section -->
+<section id="portfolio">
+  <div class="container" ng-app="pApp" style="margin:auto;width:100%;">
+    <div ng-controller="ProjectCtrl">
+      <div style="height: 605px">
+        <carousel interval="myInterval">
+          <slide ng-repeat="slide in slides" active="slide.active">
+            <img ng-src="{{slide.image|angular}}" style="max-height:100px; margin:0 auto;width:100%;">
+            <div class="carousel-caption">
+              <p>{{slide.text|angular}}</p>
+            </div>
+            <div class="col-sm-4 portfolio-item" >
+              <img autofocus src="{{slide.image|angular}}" class="img-responsive img-centered" alt="">
+              <div id="loctimebox">
+                <p class="alignleft" style="float:left;"><i>LA</i></p>
+                <p class="alignright" style="float:right;"><i>1d ago</i></p>
+              </div>
+              <div style="clear: both;"></div>
+              <p><b>Want to launch: </b>Cool project</p>
+              <p><b>Get: </b>Tips</p>
+              <div class="col-md-5 col-sm-4 col-xs-5">
+                <img class=" img-circle" src="{{slide.icon|angular}}" width="70" height="70" >
+              </div>
+              <p><b>{{ project.client}}</b></p>
+              <p>{{ project.client_title }}</p>
+              <div style="clear: both;"></div>
+              <div style="text-align: center"> 
+                {% if not pas or not pas[project.id]  %}
+                <a href="{{slide.click_url|angular}}">
+                  <button class="btn btn-info btn-lg" type="submit"><span class="glyphicon glyphicon-hand-up"></span> Apply</button>
+                </a>
+                {% else %}
+                <p>Applied at {{ pats[project.id] }}</p>
+                {% endif %}
+              </div> 
+              <HR style="FILTER: alpha(opacity=10,finishopacity=0,style=2)" width="90%" color=#987cb9 SIZE=10>
+              </div>
+            </div>
+          </slide>
+        </carousel>
       </div>
-      <div class="col-md-6">
-        Interval, in milliseconds: <input type="number" class="form-control" ng-model="myInterval">
-        <br />Enter a negative number or 0 to stop the interval.
+      <div class="row">
+        <div class="col-md-6">
+          <button type="button" class="btn btn-info" ng-click="addSlide()">Add Slide</button>
+        </div>
+        <div class="col-md-6">
+          Interval, in milliseconds: <input type="number" class="form-control" ng-model="myInterval">
+          <br />Enter a negative number or 0 to stop the interval.
+        </div>
       </div>
     </div>
   </div>
-</div>
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12 text-center">
-                    <h2>Project</h2>
-                    <hr class="star-primary">
-                </div>
-            </div>
-            <div class="row">
-                {% for project in projects %}
-                <div>
-                        <div class="col-sm-4 portfolio-item" >
-                            <img autofocus src="{{ project.image_url }}" class="img-responsive img-centered" alt="">
-                            <div id="loctimebox">
-                                <p class="alignleft" style="float:left;"><i>{{ project.location }}</i></p>
-                                <p class="alignright" style="float:right;"><i>{{ puds[project.id] }}d ago</i></p>
-                            </div>
-                            <div style="clear: both;"></div>
-                            <p><b>Want to launch: </b>{{ project.desp }}</p>
-                            <p><b>Get: </b>{{ project.incentive }}</p>
-                            <div class="col-md-5 col-sm-4 col-xs-5">
-                              <img class=" img-circle" src="{{ pics[project.id] }}" width="70" height="70" >
-                            </div>
-                            <p><b>{{ project.client}}</b></p>
-                            <p>{{ project.client_title }}</p>
-                            <div style="clear: both;"></div>
-                            <div style="text-align: center"> 
-                                {% if not pas or not pas[project.id]  %}
-                                    <a href="{{ url_for('apply', m_user_id=g.user.user_id if g.user else None, m_client_id=project.client_id, project_id=project.id) }}">
-                                        <button class="btn btn-info btn-lg" type="submit"><span class="glyphicon glyphicon-hand-up"></span> Apply</button>
-                                    </a>
-                                {% else %}
-                                    <p>Applied at {{ pats[project.id] }}</p>
-                                {% endif %}
-                            </div> 
-                            <HR style="FILTER: alpha(opacity=10,finishopacity=0,style=2)" width="90%" color=#987cb9 SIZE=10>
-                        </div>
-                </div>
-                {% else %}
-                <li><em>There's no project so far.</em>
-                {% endfor %}
-            </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12 text-center">
+        <h2>Project</h2>
+        <hr class="star-primary">
+      </div>
+    </div>
+    <div class="row">
+      {% for project in projects %}
+      <div>
+        <div class="col-sm-4 portfolio-item" >
+          <img autofocus src="{{ project.image_url }}" class="img-responsive img-centered" alt="">
+          <div id="loctimebox">
+            <p class="alignleft" style="float:left;"><i>{{ project.location }}</i></p>
+            <p class="alignright" style="float:right;"><i>{{ puds[project.id] }}d ago</i></p>
+          </div>
+          <div style="clear: both;"></div>
+          <p><b>Want to launch: </b>{{ project.desp }}</p>
+          <p><b>Get: </b>{{ project.incentive }}</p>
+          <div class="col-md-5 col-sm-4 col-xs-5">
+            <img class=" img-circle" src="{{ pics[project.id] }}" width="70" height="70" >
+          </div>
+          <p><b>{{ project.client}}</b></p>
+          <p>{{ project.client_title }}</p>
+          <div style="clear: both;"></div>
+          <div style="text-align: center"> 
+            {% if not pas or not pas[project.id]  %}
+            <a href="{{ url_for('apply', m_user_id=g.user.user_id if g.user else None, m_client_id=project.client_id, project_id=project.id) }}">
+              <button class="btn btn-info btn-lg" type="submit"><span class="glyphicon glyphicon-hand-up"></span> Apply</button>
+            </a>
+            {% else %}
+            <p>Applied at {{ pats[project.id] }}</p>
+            {% endif %}
+          </div> 
+          <HR style="FILTER: alpha(opacity=10,finishopacity=0,style=2)" width="90%" color=#987cb9 SIZE=10>
+          </div>
         </div>
+        {% else %}
+        <li><em>There's no project so far.</em>
+          {% endfor %}
+        </div>
+      </div>
     </section>
 
-{% endblock %}
+    {% endblock %}
