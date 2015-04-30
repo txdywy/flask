@@ -29,7 +29,10 @@ pApp.controller('ProjectCtrl', function ($scope) {
       $scope.slides.push({image: '{{project.image_url}}', 
                           text: '{{project.title}}', 
                           icon: '{{ pics[project.id] }}', 
-                          click_url: "{{ url_for('apply', m_user_id=g.user.user_id if g.user else None, m_client_id=project.client_id, project_id=project.id) }}".replace(/&amp;/g, "&")
+                          click_url: "{{ url_for('apply', m_user_id=g.user.user_id if g.user else None, m_client_id=project.client_id, project_id=project.id) }}".replace(/&amp;/g, "&"),
+                          location: "{{ project.location }}",
+                          days: "{{ puds[project.id] }}",
+                          desp: "{{ project.desp }}"
                          });
       {% endfor %}
     });    
@@ -51,11 +54,11 @@ pApp.controller('ProjectCtrl', function ($scope) {
             <div class="col-sm-4 portfolio-item" >
               <img autofocus src="{{slide.image|angular}}" class="img-responsive img-centered" alt="">
               <div id="loctimebox">
-                <p class="alignleft" style="float:left;"><i>LA</i></p>
-                <p class="alignright" style="float:right;"><i>1d ago</i></p>
+                <p class="alignleft" style="float:left;"><i>{{slide.location|angular}}</i></p>
+                <p class="alignright" style="float:right;"><i>{{slide.days|angular}}d ago</i></p>
               </div>
               <div style="clear: both;"></div>
-              <p><b>Want to launch: </b>Cool project</p>
+              <p><b>Want to launch: </b>{{slide.desp|angular}}</p>
               <p><b>Get: </b>Tips</p>
               <div class="col-md-5 col-sm-4 col-xs-5">
                 <img class=" img-circle" src="{{slide.icon|angular}}" width="70" height="70" >
@@ -89,48 +92,5 @@ pApp.controller('ProjectCtrl', function ($scope) {
       </div>
     </div>
   </div>
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-12 text-center">
-        <h2>Project</h2>
-        <hr class="star-primary">
-      </div>
-    </div>
-    <div class="row">
-      {% for project in projects %}
-      <div>
-        <div class="col-sm-4 portfolio-item" >
-          <img autofocus src="{{ project.image_url }}" class="img-responsive img-centered" alt="">
-          <div id="loctimebox">
-            <p class="alignleft" style="float:left;"><i>{{ project.location }}</i></p>
-            <p class="alignright" style="float:right;"><i>{{ puds[project.id] }}d ago</i></p>
-          </div>
-          <div style="clear: both;"></div>
-          <p><b>Want to launch: </b>{{ project.desp }}</p>
-          <p><b>Get: </b>{{ project.incentive }}</p>
-          <div class="col-md-5 col-sm-4 col-xs-5">
-            <img class=" img-circle" src="{{ pics[project.id] }}" width="70" height="70" >
-          </div>
-          <p><b>{{ project.client}}</b></p>
-          <p>{{ project.client_title }}</p>
-          <div style="clear: both;"></div>
-          <div style="text-align: center"> 
-            {% if not pas or not pas[project.id]  %}
-            <a href="{{ url_for('apply', m_user_id=g.user.user_id if g.user else None, m_client_id=project.client_id, project_id=project.id) }}">
-              <button class="btn btn-info btn-lg" type="submit"><span class="glyphicon glyphicon-hand-up"></span> Apply</button>
-            </a>
-            {% else %}
-            <p>Applied at {{ pats[project.id] }}</p>
-            {% endif %}
-          </div> 
-          <HR style="FILTER: alpha(opacity=10,finishopacity=0,style=2)" width="90%" color=#987cb9 SIZE=10>
-          </div>
-        </div>
-        {% else %}
-        <li><em>There's no project so far.</em>
-          {% endfor %}
-        </div>
-      </div>
-    </section>
-
-    {% endblock %}
+</section>
+{% endblock %}
