@@ -10,7 +10,7 @@
 <script>
 var pApp = angular.module('pApp', ['ui.bootstrap', 'ngTouch']);
 pApp.controller('ProjectCtrl', function ($scope) {
-  $scope.myInterval = 5000;
+  $scope.myInterval = 10000;
   var slides = $scope.slides = [];
       /*
       $scope.addSlide = function() {
@@ -26,7 +26,11 @@ pApp.controller('ProjectCtrl', function ($scope) {
       }
       */
       {% for project in projects %}
-      $scope.slides.push({image: '{{project.image_url}}', text: '{{project.title}}', icon: '{{ pics[project.id] }}', click_url: "{{ url_for('apply', m_user_id=g.user.user_id if g.user else None, m_client_id=project.client_id, project_id=project.id) }}"});
+      $scope.slides.push({image: '{{project.image_url}}', 
+                          text: '{{project.title}}', 
+                          icon: '{{ pics[project.id] }}', 
+                          click_url: "{{ url_for('apply', m_user_id=g.user.user_id if g.user else None, m_client_id=project.client_id, project_id=project.id) }}".replace(/&amp;/g, "&")
+                         });
       {% endfor %}
     });    
 </script>
@@ -38,10 +42,12 @@ pApp.controller('ProjectCtrl', function ($scope) {
       <div style="height: 605px">
         <carousel interval="myInterval">
           <slide ng-repeat="slide in slides" active="slide.active">
+            <!--
             <img ng-src="{{slide.image|angular}}" style="max-height:100px; margin:0 auto;width:100%;">
             <div class="carousel-caption">
               <p>{{slide.text|angular}}</p>
             </div>
+            -->
             <div class="col-sm-4 portfolio-item" >
               <img autofocus src="{{slide.image|angular}}" class="img-responsive img-centered" alt="">
               <div id="loctimebox">
