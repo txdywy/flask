@@ -1,4 +1,9 @@
+sudo pip install supervisor
+echo_supervisord_conf > supervisord.conf
+
+
 kill supervisord process if needed
+
 supervisord -c supervisord.conf
 
 
