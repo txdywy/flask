@@ -21,6 +21,7 @@ from boto.s3.connection import S3Connection
 from boto.s3.key import Key
 from PIL import Image
 from model import flush, db_session, Project, Contact, Client, User, UserLike, Message, ProjectApply
+from sqlalchemy import desc
 import util, functools
 try:
     import wx_util
@@ -380,7 +381,7 @@ def project():
     pats = {}
     puds = {}
     pics = {}
-    projects = Project.query.all()
+    projects = Project.query.order_by(desc(Project.id)).all()
     for project in projects:
         project_id = project.id
         if user_id:
