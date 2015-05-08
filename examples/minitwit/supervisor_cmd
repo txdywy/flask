@@ -1,4 +1,8 @@
-supervisord
+kill supervisord process if needed
+supervisord -c supervisord.conf
 
 
-supervisorctl -c supervisord.conf
+
+supervisorctl restart (will not load new config)
+stop all/alancer
+start ...
