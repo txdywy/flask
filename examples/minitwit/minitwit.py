@@ -216,9 +216,9 @@ def before_request():
     if 'user_id' in session:
         #g.user = query_db('select * from user where user_id = ?', [session['user_id']], one=True)
         g.user = User.query.get(session['user_id'])
-        g.admin_power = g.user.power & User.POWER_ADMIN
-        g.isowner = g.user.role & User.USER_CLIENT
-        g.message_num = get_user_message_num(g.user.user_id)
+       # g.admin_power = g.user.power & User.POWER_ADMIN
+        #g.isowner = g.user.role & User.USER_CLIENT
+        #g.message_num = get_user_message_num(g.user.user_id)
 
 @app.route('/wx', methods=['GET', 'POST'])
 def wx():
@@ -431,6 +431,21 @@ def profile():
     user = User.query.get(user_id)
     return render_template('profile.html', user=user)
 
+@app.route('/editProfile', methods=['GET', 'POST'])
+@login_required
+def editProfile():
+    if(request.method == 'GET'):
+    	user_id = session['user_id'] 
+    	user = User.query.get(user_id)
+    	return render_template('editProfile.html', user=user)
+    error = None
+    if(request.method == 'POST'):
+	user_id = session['user_id']
+	user = User.query.get(user_id)
+	user.firstname = request.form['firstname']
+	user.lastname = request.form['lastname']
+	flush(user)
+	return redirect(url_for('profile'))
 
 @app.route('/message', methods=['POST'])
 @login_required

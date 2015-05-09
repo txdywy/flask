@@ -1,0 +1,118 @@
+{% extends "alayout.html" %}
+{% block title %}Profile{% endblock %}
+{% block body %}
+<div class="container" style="padding-top: 60px;">
+  <h1 class="page-header">Edit Profile</h1>
+  <div class="row">
+    <!-- left column -->
+    <div class="col-md-4 col-sm-6 col-xs-12">
+      <div class="text-center">
+        <img src="{{ user.icon }}" class="avatar img-thumbnail img-circle" alt="avatar">
+        <h6>Upload a different photo...</h6>
+        <input type="file" class="text-center center-block well well-sm">
+      </div>
+    </div>
+
+      <!-- edit form column -->
+    <div class="col-md-8 col-sm-6 col-xs-12 personal-info">
+      <div class="alert alert-info alert-dismissable">
+        <a class="panel-close close" data-dismiss="alert">×</a> 
+        <i class="fa fa-coffee"></i>
+        This is an <strong>.alert</strong>. Use this to show important messages to the user.
+      </div>
+
+      <h3>Personal Info</h3>
+      <form class="form-horizontal" role="form" method="post">
+	    <div class="form-group">
+          <label class="col-lg-3 control-label">First Name:</label>
+          <div class="col-lg-8">
+            <input class="form-control" name="firstname" id = "firstname" value="{{ user.firstname }}" type="text">
+          </div>
+        </div>	
+        <div class="form-group">
+          <label class="col-lg-3 control-label">Last name:</label>
+          <div class="col-lg-8">
+            <input class="form-control" name="lastname" id="lastname" value="{{ user.lastname }}" type="text">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-lg-3 control-label">School:</label>
+          <div class="col-lg-8">
+            <input class="form-control" id="school" value="{{ user.school }}" type="text">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-lg-3 control-label">City:</label>
+          <div class="col-lg-8">
+            <input class="form-control" id="city" value="{{ user.city }}" type="text">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-lg-3 control-label">Country:</label>
+          <div class="col-lg-8">
+              <input class="form-control" id="country" value="{{ user.country }}" type="text">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-lg-3 control-label">Zip Code:</label>
+           <div class="col-lg-8">
+               <input class="form-control" id="zipcode" value="{{ user.zipcode }}" type="text">
+           </div>
+         </div>
+         <div class="form-group">
+           <label class="col-lg-3 control-label">Phone:</label>
+           <div class="col-lg-8">
+               <input class="form-control" id="phone" value="{{ user.phone }}" type="text">
+           </div>
+         </div>
+        <div class="form-group">
+          <label class="col-md-3 control-label">Profile:</label>
+          <div class="col-md-8">
+               <textarea class="form-control input-sm " id="profile" type="textarea" maxlength="140" rows="7"></textarea>
+          </div>
+        </div>
+     	<h3>Account Info</h3>
+  	<div class="form-group">
+          <label class="col-lg-3 control-label">Username:</label>
+          <div class="col-lg-8">
+            <input class="form-control" id="username" value="{{ user.username }}" type="text">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-lg-3 control-label">Email:</label>
+          <div class="col-lg-8">
+              <input class="form-control" id="email" value="{{ user.email }}" type="text">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-md-3 control-label">Password:</label>
+          <div class="col-md-8">
+              <input class="form-control" id="password" value="{{ user.pw_hash }}" type="password">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-md-3 control-label">Confirm password:</label>
+          <div class="col-md-8">
+              <input class="form-control" id="password2" value="{{ user.pw_hash}}" type="password">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-md-3 control-label">Created time:</label>
+          <div class="col-md-8">
+              <input class="form-control" id="createtime" value="{{ user.create_time}}" type="password">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="col-md-3 control-label"></label>
+          <div class="col-md-8">
+            <button class="btn btn-primary" type="submit">Save Changes</button>
+            <span></span>
+	    <a href="{{  url_for('profile')}}"><input class="btn btn-primary" value="Cancel" type="button"></a>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>	
+{% endblock %}
