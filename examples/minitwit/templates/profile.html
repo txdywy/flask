@@ -10,7 +10,8 @@
                     <img alt="" src="{{ user.icon }}">
                 </div>
                 <div class="info">
-                    <div class="title">{{ user.username }}</div>
+                    <div class="title"> {{ user.firstname }} {{ user.lastname }}</div>
+		    <div class="school">(username:{{ user.username }})</div>
 		    <div class="school">Babson College - Boston, CA</div>
 		    <div class="school">(B.A. '18 candidate)</div>
                     <div class="desc"><b>About me:</b>Year 3 comp sci major,Greek lit minor.</div>
@@ -34,6 +35,11 @@
                         <i class="fa fa-behance"></i>
                     </a>
                 </div>
+		<div style="text-align:center">
+		    <a href="{{ url_for('editProfile') }}">
+			<button class="btn btn-info btn-lg" type="submit">Edit</button>
+		    </a>
+		</div>
             </div>
         </div>
 	</div>

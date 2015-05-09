@@ -46,6 +46,8 @@ class User(Base):
     icon = Column(String(512))
     profile = Column(String(512))
     create_time = Column(DATETIME())
+    firstname = Column(String(20))
+    lastname = Column(String(20))
 
     def __init__(self, username, email, pw_hash):
         self.username = username
