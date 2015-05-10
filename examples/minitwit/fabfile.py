@@ -9,8 +9,13 @@ def rz(file):
 
 def deploy_alancer():
     with cd('./flask/examples/minitwit/'):
-	run('git pull')
-	run('supervisorctl restart all')
+	    run('git pull')
+	    run('supervisorctl restart all')
+
+def update_db():
+    with cd('./flask/examples/minitwit/'):
+        run('git pull')
+        run('openssl enc -des -d -a -in alancer_db_enc -out alancer.db')
 
 def alancer():
     env.hosts = ['sushi', 'polo', 'noodle']
