@@ -609,7 +609,7 @@ def like_submit():
 
 @app.route('/index')
 def index():
-    return redirect(url_for('project_list'))
+    return redirect(url_for('project'))
     #return render_template(ALANCER_INDEX)
 
 
