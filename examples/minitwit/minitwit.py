@@ -217,9 +217,9 @@ def before_request():
     if 'user_id' in session:
         #g.user = query_db('select * from user where user_id = ?', [session['user_id']], one=True)
         g.user = User.query.get(session['user_id'])
-       # g.admin_power = g.user.power & User.POWER_ADMIN
-        #g.isowner = g.user.role & User.USER_CLIENT
-        #g.message_num = get_user_message_num(g.user.user_id)
+        g.admin_power = g.user.power & User.POWER_ADMIN
+        g.isowner = g.user.role & User.USER_CLIENT
+        g.message_num = get_user_message_num(g.user.user_id)
 
 @app.route('/wx', methods=['GET', 'POST'])
 def wx():
