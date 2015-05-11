@@ -5,3 +5,4 @@ set paste
 set nu
 set shiftwidth=4
 syntax on
+filetype indent plugin on
