@@ -17,6 +17,3 @@ pkgs = ['boto',
        ]
 for pkg in pkgs:
     local(SUDO_PIP_INSTALL % pkg)
-local('openssl enc -des -d -a -in alancer_db_enc -out alancer.db')
-local('mkdir logs')
-local('touch logs/uwsgi.log logs/error.log')
