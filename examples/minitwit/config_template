@@ -1,0 +1,8 @@
+AWS_ACCESS_KEY_ID = ''
+AWS_SECRET_ACCESS_KEY = ''
+LC_APP_ID = ''
+LC_APP_KEY = ''
+RDS_HOST = ''
+RDS_NAME = ''
+RDS_PASS = ''
+WX_TOKEN = ''
