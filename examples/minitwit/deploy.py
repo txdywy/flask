@@ -10,6 +10,10 @@ pkgs = ['boto',
         'supervisor',
         'uwsgi',
         'leancloud-sdk',
+        'numpy',
+        'jieba',
+        'networkx',
+        'ngxtop',
        ]
 for pkg in pkgs:
     local(SUDO_PIP_INSTALL % pkg)
