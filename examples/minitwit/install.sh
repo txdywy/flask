@@ -7,7 +7,7 @@ else
     wget https://bootstrap.pypa.io/get-pip.py
     python get-pip.py
 fi
-sudo apt-get install gcc g++ python-dev postfix mysql-python sqlite
+sudo apt-get install gcc g++ python-dev postfix mysql-python sqlite mysql-client
 sudo pip install fabric
 python deploy.py
 
