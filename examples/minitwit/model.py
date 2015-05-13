@@ -11,7 +11,7 @@ try:
     from config import RDS_HOST, RDS_NAME, RDS_PASS
     print '---------------mysql------------------'
 except:
-    RDS_HOST = RDS_NAME = RDS_PASS
+    RDS_HOST = RDS_NAME = RDS_PASS = ''
     print '---------------sqlite-----------------'
 
 if RDS_HOST:
