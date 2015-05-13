@@ -1,47 +1,98 @@
 {% extends "alayout.html" %}
 {% block title %}Profile{% endblock %}
 {% block body %}
-	
-	<div class="container">
-	<div class="row">
-	<div class="col-lg-24 col-sm-48">
-            <div class="card hovercard">
-                <div class="avatar">
-                    <img alt="" src="{{ user.icon }}">
-                </div>
-                <div class="info">
-                    <div class="title"> {{ user.firstname }} {{ user.lastname }}</div>
-		    <div class="school">(username:{{ user.username }})</div>
-		    <div class="school">Babson College - Boston, CA</div>
-		    <div class="school">(B.A. '18 candidate)</div>
-                    <div class="desc"><b>About me:</b>Year 3 comp sci major,Greek lit minor.</div>
-		    <div class="desc">Want to help any mobile app in O2O space</div>
-		    <div class="desc">Email: {{ user.email }} </div>
-		    <div class="school">95% approval (5 reviews)</div>
-                </div>
-                <div class="bottom">
-                    <a class="btn btn-primary btn-twitter btn-sm" href="https://twitter.com/wangtuobin">
-                        <i class="fa fa-twitter"></i>
-                    </a>
-                    <a class="btn btn-danger btn-sm" rel="publisher"
-                       href="https://plus.google.com/u/0/110311167272835305548/posts">
-                        <i class="fa fa-google-plus"></i>
-                    </a>
-                    <a class="btn btn-primary btn-sm" rel="publisher"
-                       href="https://www.facebook.com/tuobin.wang">
-                        <i class="fa fa-facebook"></i>
-                    </a>
-                    <a class="btn btn-warning btn-sm" rel="publisher" href="https://plus.google.com/shahnuralam">
-                        <i class="fa fa-behance"></i>
-                    </a>
-                </div>
-		<div style="text-align:center">
-		    <a href="{{ url_for('editProfile') }}">
-			<button class="btn btn-info btn-lg" type="submit">Edit</button>
-		    </a>
-		</div>
-            </div>
+<div class="container" style="padding-top: 60px;">
+      <!-- edit form column -->
+    <div class="personal-info">
+      <h3>Personal Info <a href="{{ url_for('editProfile') }}"><span class="glyphicon glyphicon-pencil"/></a></h3> 
+
+      <form class="form-horizontal" role="form" method="post">
+        <div class="form-group">
+          <div class="text-center">
+            <img src="{{ user.icon }}" class="avatar img-thumbnail img-circle" alt="avatar">
+          </div>
         </div>
-	</div>
-	</div>
+
+          <div class="form-group">
+          <label class="col-lg-3 control-label">First Name:</label>
+          <div class="col-lg-8">
+            <label class="form-control" name="firstname" id = "firstname" type="text">{{ user.firstname }}</label>
+          </div>
+        </div>  
+        <div class="form-group">
+          <label class="col-lg-3 control-label">Last name:</label>
+          <div class="col-lg-8">
+            <label class="form-control" name="lastname" id="lastname" type="text">{{ user.lastname }}</label>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-lg-3 control-label">School:</label>
+          <div class="col-lg-8">
+            <label class="form-control" name="school" id="school" type="text">{{ user.school }}</label>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-lg-3 control-label">City:</label>
+          <div class="col-lg-8">
+            <label class="form-control" name="city" id="city" type="text">{{ user.city }}</label>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-lg-3 control-label">Country:</label>
+          <div class="col-lg-8">
+              <label class="form-control" name="country" id="country" type="text">{{ user.country }}</label>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-lg-3 control-label">Zip Code:</label>
+           <div class="col-lg-8">
+               <label class="form-control" name="zipcode" id="zipcode" type="text">{{ user.zipcode }}</label>
+           </div>
+         </div>
+         <div class="form-group">
+           <label class="col-lg-3 control-label">Phone:</label>
+           <div class="col-lg-8">
+               <label class="form-control" name="phone" id="phone" type="text">{{ user.phone }}</label>
+           </div>
+         </div>
+        <div class="form-group">
+          <label class="col-md-3 control-label">Profile:</label>
+          <div class="col-md-8">
+               <textarea readonly class="form-control input-sm " name="profile" id="profile" type="textarea" maxlength="140" rows="4">{{ user.profile }}</textarea>
+          </div>
+        </div>
+        <h3>Account Info</h3>
+    <div class="form-group">
+          <label class="col-lg-3 control-label">Username:</label>
+          <div class="col-lg-8">
+            <label class="form-control" id="username" name="username" type="text"> {{ user.username }}</label>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-lg-3 control-label">Email:</label>
+          <div class="col-lg-8">
+              <label class="form-control" id="email" name="email" type="text">{{ user.email }}</label>
+          </div>
+        </div>
+       <div class="form-group">
+          <label class="col-md-3 control-label">Password:</label>
+          <div class="col-md-8">
+              <input disabled class="form-control" name="password" id="password" value="{{ user.pw_hash }}" type="password">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-md-3 control-label">Confirm password:</label>
+          <div class="col-md-8">
+              <input disabled class="form-control" name="password2"id="password2" value="{{ user.pw_hash}}" type="password">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-md-3 control-label">Created time:</label>
+          <div class="col-md-8">
+              <label class="form-control" name="createtime" id="createtime" type="password">{{ user.create_time }}</label>
+          </div>
+        </div>
+      </form>
+    </div>
+</div>  
 {% endblock %}

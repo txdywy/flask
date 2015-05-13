@@ -2,19 +2,8 @@
 {% block title %}Profile{% endblock %}
 {% block body %}
 <div class="container" style="padding-top: 60px;">
-  <h1 class="page-header">Edit Profile</h1>
-  <div class="row">
-    <!-- left column -->
-    <div class="col-md-4 col-sm-6 col-xs-12">
-      <div class="text-center">
-        <img src="{{ user.icon }}" class="avatar img-thumbnail img-circle" alt="avatar">
-        <h6>Upload a different photo...</h6>
-        <input type="file" class="text-center center-block well well-sm">
-      </div>
-    </div>
-
       <!-- edit form column -->
-    <div class="col-md-8 col-sm-6 col-xs-12 personal-info">
+    <div class="personal-info">
       <div class="alert alert-info alert-dismissable">
         <a class="panel-close close" data-dismiss="alert">×</a> 
         <i class="fa fa-coffee"></i>
@@ -23,7 +12,15 @@
 
       <h3>Personal Info</h3>
       <form class="form-horizontal" role="form" method="post">
-	    <div class="form-group">
+        <div class="form-group">
+          <div class="text-center">
+            <img src="{{ user.icon }}" class="avatar img-thumbnail img-circle" alt="avatar">
+            <h6>Upload a different photo...</h6>
+            <input type="file" name="image" class="text-center center-block well well-sm">
+          </div>
+        </div>
+
+	      <div class="form-group">
           <label class="col-lg-3 control-label">First Name:</label>
           <div class="col-lg-8">
             <input class="form-control" name="firstname" id = "firstname" value="{{ user.firstname }}" type="text">
@@ -38,68 +35,68 @@
         <div class="form-group">
           <label class="col-lg-3 control-label">School:</label>
           <div class="col-lg-8">
-            <input class="form-control" id="school" value="{{ user.school }}" type="text">
+            <input class="form-control" name="school" id="school" value="{{ user.school }}" type="text">
           </div>
         </div>
         <div class="form-group">
           <label class="col-lg-3 control-label">City:</label>
           <div class="col-lg-8">
-            <input class="form-control" id="city" value="{{ user.city }}" type="text">
+            <input class="form-control" name="city" id="city" value="{{ user.city }}" type="text">
           </div>
         </div>
         <div class="form-group">
           <label class="col-lg-3 control-label">Country:</label>
           <div class="col-lg-8">
-              <input class="form-control" id="country" value="{{ user.country }}" type="text">
+              <input class="form-control" name="country" id="country" value="{{ user.country }}" type="text">
           </div>
         </div>
         <div class="form-group">
           <label class="col-lg-3 control-label">Zip Code:</label>
            <div class="col-lg-8">
-               <input class="form-control" id="zipcode" value="{{ user.zipcode }}" type="text">
+               <input class="form-control" name="zipcode" id="zipcode" value="{{ user.zipcode }}" type="text">
            </div>
          </div>
          <div class="form-group">
            <label class="col-lg-3 control-label">Phone:</label>
            <div class="col-lg-8">
-               <input class="form-control" id="phone" value="{{ user.phone }}" type="text">
+               <input class="form-control" name="phone" id="phone" value="{{ user.phone }}" type="text">
            </div>
          </div>
         <div class="form-group">
           <label class="col-md-3 control-label">Profile:</label>
           <div class="col-md-8">
-               <textarea class="form-control input-sm " id="profile" type="textarea" maxlength="140" rows="7"></textarea>
+               <textarea class="form-control input-sm " name="profile" id="profile" type="textarea" maxlength="140" rows="4">{{ user.profile }}</textarea>
           </div>
         </div>
      	<h3>Account Info</h3>
   	<div class="form-group">
           <label class="col-lg-3 control-label">Username:</label>
           <div class="col-lg-8">
-            <input class="form-control" id="username" value="{{ user.username }}" type="text">
+            <label class="form-control" id="username" name="username" type="text"> {{ user.username }}</label>
           </div>
         </div>
         <div class="form-group">
           <label class="col-lg-3 control-label">Email:</label>
           <div class="col-lg-8">
-              <input class="form-control" id="email" value="{{ user.email }}" type="text">
+              <label class="form-control" id="email" name="email" type="text">{{ user.email }}</label>
           </div>
         </div>
         <div class="form-group">
           <label class="col-md-3 control-label">Password:</label>
           <div class="col-md-8">
-              <input class="form-control" id="password" value="{{ user.pw_hash }}" type="password">
+              <input class="form-control" name="password" id="password" value="{{ user.pw_hash }}" type="password">
           </div>
         </div>
         <div class="form-group">
           <label class="col-md-3 control-label">Confirm password:</label>
           <div class="col-md-8">
-              <input class="form-control" id="password2" value="{{ user.pw_hash}}" type="password">
+              <input class="form-control" name="password2"id="password2" value="{{ user.pw_hash}}" type="password">
           </div>
         </div>
         <div class="form-group">
           <label class="col-md-3 control-label">Created time:</label>
           <div class="col-md-8">
-              <input class="form-control" id="createtime" value="{{ user.create_time}}" type="password">
+              <label class="form-control" name="createtime" id="createtime" type="password">{{ user.create_time }}</label>
           </div>
         </div>
 
@@ -113,6 +110,5 @@
         </div>
       </form>
     </div>
-  </div>
 </div>	
 {% endblock %}
