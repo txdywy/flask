@@ -430,6 +430,18 @@ def users():
 def profile():
     user_id = session['user_id']
     user = User.query.get(user_id)
+    if(user.school == None): 
+            user.school = ""
+    if(user.city == None): 
+        user.city = ""
+    if(user.country == None): 
+        user.country = ""
+    if(user.zipcode == None): 
+        user.zipcode = ""
+    if(user.phone == None): 
+        user.phone = ""
+    if(user.profile == None): 
+        user.profile = ""
     return render_template('profile.html', user=user)
 
 @app.route('/editProfile', methods=['GET', 'POST'])
@@ -438,15 +450,33 @@ def editProfile():
     if(request.method == 'GET'):
     	user_id = session['user_id'] 
     	user = User.query.get(user_id)
+        if(user.school == None): 
+            user.school = ""
+        if(user.city == None): 
+            user.city = ""
+        if(user.country == None): 
+            user.country = ""
+        if(user.zipcode == None): 
+            user.zipcode = ""
+        if(user.phone == None): 
+            user.phone = ""
+        if(user.profile == None): 
+            user.profile = ""
     	return render_template('editProfile.html', user=user)
     error = None
     if(request.method == 'POST'):
-	user_id = session['user_id']
-	user = User.query.get(user_id)
-	user.firstname = request.form['firstname']
-	user.lastname = request.form['lastname']
-	flush(user)
-	return redirect(url_for('profile'))
+    	user_id = session['user_id']
+    	user = User.query.get(user_id)
+    	user.firstname = request.form['firstname']
+    	user.lastname = request.form['lastname']
+        user.school = request.form['school']
+        user.city = request.form['city']
+        user.country = request.form['country']
+        user.zipcode = request.form['zipcode']
+        user.phone = request.form['phone']
+        user.profile = request.form['profile']
+    	flush(user)
+    	return redirect(url_for('profile'))
 
 @app.route('/message', methods=['POST'])
 @login_required
