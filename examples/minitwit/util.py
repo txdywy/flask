@@ -23,8 +23,11 @@ def send_email(title, content, addr_to, addr_fr=None):
     msg['To'] = email.utils.formataddr(('Recipient', addr_to))
     msg['From'] = email.utils.formataddr(('Alancer', addr_fr))
     msg['Subject'] = title
-
-    server = smtplib.SMTP('localhost')
+    try:
+        server = smtplib.SMTP('localhost')
+    except Exception, e:
+        print 'no SMTP service available'
+    
     #server.set_debuglevel(True) # show communication with the server
     try:
         server.sendmail(addr_fr, [addr_to], msg.as_string())
