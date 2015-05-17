@@ -1,17 +1,19 @@
 {% extends "alayout.html" %}
 {% block title %}Profile{% endblock %}
 {% block body %}
-<div class="container" style="padding-top: 60px;">
+<div class="container" style="padding-top: 100px;">
       <!-- edit form column -->
     <div class="personal-info">
-      <h3>Personal Info <a href="{{ url_for('editProfile') }}"><span class="glyphicon glyphicon-pencil"/></a></h3> 
 
       <form class="form-horizontal" role="form" method="post">
+
         <div class="form-group">
           <div class="text-center">
             <img src="{{ user.icon }}" class="avatar img-thumbnail img-circle" alt="avatar">
           </div>
         </div>
+
+        <h3>Personal Info <a href="{{ url_for('editProfile') }}"><span class="glyphicon glyphicon-pencil"/></a></h3> 
 
           <div class="form-group">
           <label class="col-lg-3 control-label">First Name:</label>

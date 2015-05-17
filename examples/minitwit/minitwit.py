@@ -430,6 +430,10 @@ def users():
 def profile():
     user_id = session['user_id']
     user = User.query.get(user_id)
+    if(user.firstname == None): 
+        user.firstname = ""
+    if(user.lastname == None): 
+        user.lastname = ""
     if(user.school == None): 
             user.school = ""
     if(user.city == None): 
@@ -450,6 +454,10 @@ def editProfile():
     if(request.method == 'GET'):
     	user_id = session['user_id'] 
     	user = User.query.get(user_id)
+        if(user.firstname == None): 
+            user.firstname = ""
+        if(user.lastname == None): 
+            user.lastname = ""
         if(user.school == None): 
             user.school = ""
         if(user.city == None): 
@@ -804,7 +812,7 @@ def register():
             util.send_email('[Alancer] Congratulations!', 'You have registered at alancer!', request.form['email'])
             util.send_email('[Alancer Signup]', 'You have a new user [%s] @lancer!' % request.form['email'], ALANCER_SERVICE_EMAIL) 
             flash('You were successfully registered and can login now')
-            return redirect(url_for('login'))
+            return redirect(url_for('editProfile'))
     return render_template('register.html', error=error)
 
 
