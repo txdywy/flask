@@ -1,24 +1,34 @@
 {% extends "alayout.html" %}
+{% block headjs %}
+  <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.15/angular.min.js"></script>
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/angular-loading-bar/0.7.1/loading-bar.min.css' type='text/css' media='all' />
+  <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/angular-loading-bar/0.7.1/loading-bar.min.js'></script>
+  <script type='text/javascript' src='/js/uploadImage.js'></script>
+{% endblock headjs %}
 {% block title %}Profile{% endblock %}
 {% block body %}
-<div class="container" style="padding-top: 60px;">
+<div class="container" style="padding-top: 100px;">
       <!-- edit form column -->
     <div class="personal-info">
+
       <div class="alert alert-info alert-dismissable">
         <a class="panel-close close" data-dismiss="alert">×</a> 
         <i class="fa fa-coffee"></i>
         This is an <strong>.alert</strong>. Use this to show important messages to the user.
       </div>
-
-      <h3>Personal Info</h3>
+      
       <form class="form-horizontal" role="form" method="post">
+
         <div class="form-group">
-          <div class="text-center">
+          <div class="text-center" ng-controller = "myCtrl">
             <img src="{{ user.icon }}" class="avatar img-thumbnail img-circle" alt="avatar">
             <h6>Upload a different photo...</h6>
-            <input type="file" name="image" class="text-center center-block well well-sm">
+            <input type="file" name="image" file-model="myFile" class="text-center center-block well well-sm"/>
+            <button ng-click="uploadFile()">upload me</button>
           </div>
         </div>
+
+        <h3>Personal Info</h3>
 
 	      <div class="form-group">
           <label class="col-lg-3 control-label">First Name:</label>
