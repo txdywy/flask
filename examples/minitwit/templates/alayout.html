@@ -56,7 +56,7 @@
                             {% if g.user %}
                                 <a href="{{ url_for('logout') }}">sign out [{{ g.user.username }}]</a>
                             {% else %}
-                                <a href="{{ url_for('login') }}">Sign in</a>
+                                <a href="{{ url_for('login') }}">{{ _("Sign in") }}</a>
                             {% endif %}
                         </li>
 			<li class="page-scroll">

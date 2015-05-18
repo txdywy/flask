@@ -48,6 +48,8 @@ except:
     print '------------no valid s3 config keys------------'
     WX_TOKEN = ''
 
+from flask.ext.babel import Babel, gettext as _, get_locale
+
 PROJECT_IMAGE_KEY_TEMPLATE = 'projects/%s'
 PROJECT_IMAGE_URL_TEMPLATE = 'https://s3-us-west-2.amazonaws.com/alancer-images/' + PROJECT_IMAGE_KEY_TEMPLATE
 
@@ -63,9 +65,11 @@ ALANCER_SERVICE_EMAIL = 'geniusron@gmail.com'
 
 # create our little application :)
 app = Flask(__name__)
+app.config['BABEL_DEFAULT_LOCALE'] = 'zh_Hans_CN'
 Triangle(app)
 app.config.from_object(__name__)
 app.config.from_envvar('MINITWIT_SETTINGS', silent=True)
+babel = Babel(app)
 
 def add_project(title, email='', desp='', client='N/A', image_url='', service='web dev', client_id=None, client_title='', location=''):
     p = Project(title, client, email, desp, image_url, service, client_id, client_title, location)
@@ -647,6 +651,7 @@ def like_submit():
 
 @app.route('/index')
 def index():
+    print '++++++++++', _("hahaha"), get_locale()
     return redirect(url_for('project'))
     #return render_template(ALANCER_INDEX)
 

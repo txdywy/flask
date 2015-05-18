@@ -1,0 +1,15 @@
+#list locales
+pybabel --list-locales
+
+#generate pybabel translation template
+pybabel extract -F babel.cfg -o messages.pot .
+
+#zh_CN, creating catalog 'translations/zh_CN/LC_MESSAGES/messages.po' based on 'messages.pot'
+pybabel init -i messages.pot -d translations -l zh_Hans_CN
+
+#compiling catalog 'translations/zh_CN/LC_MESSAGES/messages.po' to 'translations/zh_CN/LC_MESSAGES/messages.mo'
+#rm #,fuzzy in message.po before the cmd
+pybabel compile -d translations
+
+#merge new translation when anythong updated
+pybabel update -i messages.pot -d translations
