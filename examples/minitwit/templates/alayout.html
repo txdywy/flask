@@ -43,7 +43,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="#page-top">Start Alancer</a>
+                    <a class="navbar-brand" href="#page-top">{{ _("Start") }} Alancer</a>
                 </div>
 
                 <!-- Collect the nav links, forms, and other content for toggling -->
@@ -54,44 +54,46 @@
                         </li>
                         <li class="page-scroll">
                             {% if g.user %}
-                                <a href="{{ url_for('logout') }}">sign out [{{ g.user.username }}]</a>
+                                <a href="{{ url_for('logout') }}">{{ _("sign out") }} [{{ g.user.username }}]</a>
                             {% else %}
                                 <a href="{{ url_for('login') }}">{{ _("Sign in") }}</a>
                             {% endif %}
                         </li>
 			<li class="page-scroll">
                             {% if g.user %}
-                                <a href="{{ url_for('profile') }}">Profile</a>
+                                <a href="{{ url_for('profile') }}">{{ _("Profile") }}</a>
                             {% endif %}
                         </li>
                         <li class="page-scroll">
                             {% if not g.user %}
-                                <a href="{{ url_for('register') }}">Sign up</a>
+                                <a href="{{ url_for('register') }}">{{ _("Sign up") }}</a>
                             {% endif %}
                         </li>
                         <li class="page-scroll">
-                            <a href="{{ url_for('message_box') }}">Message <span class="badge">{{g.message_num}}</span></a>
+                            <a href="{{ url_for('message_box') }}">{{ _("Message") }} <span class="badge">{{g.message_num}}</span></a>
                         </li>
                         <li class="page-scroll">
-                            <a href="/project">Project</a>
+                            <a href="/project">{{ _("Project") }}</a>
                         </li>
+                        <!--
                         <li class="page-scroll">
                             <a href="/project_slider">Slider</a>
                         </li>
-			<li class="page-scroll">
-			    <a href="/users">Users</a>
-			</li>
+                        -->
+			            <li class="page-scroll">
+			                <a href="/users">{{ _("Users") }}</a>
+			            </li>
                         <li class="page-scroll">
-                            <a href="/">Home</a>
+                            <a href="/">{{ _("Home") }}</a>
                         </li>
                         {% if g.user and g.admin_power %}
                         <li class="page-scroll">
-                            <a href="/admin">Admin</a>
+                            <a href="/admin">{{ _("Admin") }}</a>
                         </li>
                         {% endif %}
                         {% if g.user and g.isowner %}
                         <li class="page-scroll">
-                            <a href="/publish">Publish</a>
+                            <a href="/publish">{{ _("Publish") }}</a>
                         </li>
                         {% endif %}
                     </ul>

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2015-05-18 11:55+0800\n"
+"POT-Creation-Date: 2015-05-18 13:59+0800\n"
 "PO-Revision-Date: 2015-05-18 11:55+0800\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: zh_Hans_CN <LL@li.org>\n"
@@ -21,11 +21,125 @@ msgstr ""
 msgid "hahaha"
 msgstr "哈哈哈"
 
-#: templates/alayout.html:59
+#: templates/alayout.html:46
+msgid "Start"
+msgstr "开启"
+
+#: templates/alayout.html:57 templates/login.html:68 templates/register.html:73
+msgid "sign out"
+msgstr "注销"
+
+#: templates/alayout.html:59 templates/login.html:70 templates/login.html:99
+#: templates/register.html:75
 msgid "Sign in"
 msgstr "登录"
+
+#: templates/alayout.html:64
+msgid "Profile"
+msgstr "简历"
+
+#: templates/alayout.html:69 templates/login.html:75 templates/register.html:80
+#: templates/register.html:108
+msgid "Sign up"
+msgstr "注册"
+
+#: templates/alayout.html:73
+msgid "Message"
+msgstr "收件箱"
+
+#: templates/alayout.html:76 templates/project_list.html:9
+msgid "Project"
+msgstr "项目"
+
+#: templates/alayout.html:84
+msgid "Users"
+msgstr "用户列表"
+
+#: templates/alayout.html:87 templates/login.html:79 templates/register.html:84
+msgid "Home"
+msgstr "首页"
+
+#: templates/alayout.html:91
+msgid "Admin"
+msgstr "管理员"
+
+#: templates/alayout.html:96
+msgid "Publish"
+msgstr "发布项目"
+
+#: templates/login.html:89
+msgid "Please sign in"
+msgstr "请登录"
+
+#: templates/login.html:91
+msgid "User Name"
+msgstr "用户名"
+
+#: templates/login.html:93 templates/register.html:100
+msgid "Password"
+msgstr "密码"
+
+#: templates/login.html:96
+msgid "Remember me"
+msgstr "记住我"
+
+#: templates/message_box.html:2 templates/message_box.html:7
+msgid "Message box"
+msgstr "收件箱"
+
+#: templates/message_box.html:13
+msgid "new"
+msgstr "新信息"
+
+#: templates/message_box.html:15
+msgid "d"
+msgstr "天前"
+
+#: templates/message_box.html:21
+msgid "There's no message so far."
+msgstr "目前没有信息"
+
+#: templates/project_list.html:20
+msgid "d ago"
+msgstr "天之前"
+
+#: templates/project_list.html:23
+msgid "Want to launch"
+msgstr "希望启动项目"
 
 #: templates/project_list.html:24
 msgid "Get"
 msgstr "报酬"
+
+#: templates/project_list.html:34
+msgid "Apply"
+msgstr "申请"
+
+#: templates/project_list.html:37
+msgid "Applied at"
+msgstr "申请时间"
+
+#: templates/project_list.html:44
+msgid "There's no project so far."
+msgstr "目前没有项目"
+
+#: templates/register.html:94
+msgid "Please sign up"
+msgstr "请注册"
+
+#: templates/register.html:96
+msgid "User name"
+msgstr "用户名"
+
+#: templates/register.html:98
+msgid "Email"
+msgstr "邮箱"
+
+#: templates/register.html:102
+msgid "Password again"
+msgstr "确认密码"
+
+#: templates/register.html:105
+msgid "is a project owner"
+msgstr "我想发布项目"
 

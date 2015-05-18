@@ -1,24 +1,24 @@
 {% extends "alayout.html" %}
-{% block title %}Message box{% endblock %}
+{% block title %}{{ _("Message box") }}{% endblock %}
 {% block body %}
   <div class="container">
       <div class="row">
         <div class="col-md-8">
-          <h2 class="page-header">Message box</h2>
+          <h2 class="page-header">{{ _("Message box") }}</h2>
             <ul class="list-group">
               {% for mi in message_items %}
               <a href="{{ url_for('message_room', m_user_id=mi['m_user_id'], m_client_id=mi['m_client_id']) }}">
                 <li class="list-group-item">
                   {% if mi['new'] %}
-                  <span class="badge"> new !!! </span>
+                  <span class="badge"> {{ _("new") }} !!! </span>
                   {% else %}
-                  <span class="badge"> {{ mi['days'] }}d </span>
+                  <span class="badge"> {{ mi['days'] }}{{ _("d") }}</span>
                   {% endif %}
                   {{ '【%s】 and 【%s】: %s' % (mi['m_username'], mi['m_client_name'], mi['message']) }}
                 </li>
               </a>
               {% else %}
-                <li><em>There's no message so far.</em>
+                <li><em>{{ _("There's no message so far.") }}</em>
               {% endfor %}
             </ul>
         </div>

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2015-05-18 11:55+0800\n"
+"POT-Creation-Date: 2015-05-18 13:59+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -21,11 +21,125 @@ msgstr ""
 msgid "hahaha"
 msgstr ""
 
-#: templates/alayout.html:59
+#: templates/alayout.html:46
+msgid "Start"
+msgstr ""
+
+#: templates/alayout.html:57 templates/login.html:68 templates/register.html:73
+msgid "sign out"
+msgstr ""
+
+#: templates/alayout.html:59 templates/login.html:70 templates/login.html:99
+#: templates/register.html:75
 msgid "Sign in"
+msgstr ""
+
+#: templates/alayout.html:64
+msgid "Profile"
+msgstr ""
+
+#: templates/alayout.html:69 templates/login.html:75 templates/register.html:80
+#: templates/register.html:108
+msgid "Sign up"
+msgstr ""
+
+#: templates/alayout.html:73
+msgid "Message"
+msgstr ""
+
+#: templates/alayout.html:76 templates/project_list.html:9
+msgid "Project"
+msgstr ""
+
+#: templates/alayout.html:84
+msgid "Users"
+msgstr ""
+
+#: templates/alayout.html:87 templates/login.html:79 templates/register.html:84
+msgid "Home"
+msgstr ""
+
+#: templates/alayout.html:91
+msgid "Admin"
+msgstr ""
+
+#: templates/alayout.html:96
+msgid "Publish"
+msgstr ""
+
+#: templates/login.html:89
+msgid "Please sign in"
+msgstr ""
+
+#: templates/login.html:91
+msgid "User Name"
+msgstr ""
+
+#: templates/login.html:93 templates/register.html:100
+msgid "Password"
+msgstr ""
+
+#: templates/login.html:96
+msgid "Remember me"
+msgstr ""
+
+#: templates/message_box.html:2 templates/message_box.html:7
+msgid "Message box"
+msgstr ""
+
+#: templates/message_box.html:13
+msgid "new"
+msgstr ""
+
+#: templates/message_box.html:15
+msgid "d"
+msgstr ""
+
+#: templates/message_box.html:21
+msgid "There's no message so far."
+msgstr ""
+
+#: templates/project_list.html:20
+msgid "d ago"
+msgstr ""
+
+#: templates/project_list.html:23
+msgid "Want to launch"
 msgstr ""
 
 #: templates/project_list.html:24
 msgid "Get"
+msgstr ""
+
+#: templates/project_list.html:34
+msgid "Apply"
+msgstr ""
+
+#: templates/project_list.html:37
+msgid "Applied at"
+msgstr ""
+
+#: templates/project_list.html:44
+msgid "There's no project so far."
+msgstr ""
+
+#: templates/register.html:94
+msgid "Please sign up"
+msgstr ""
+
+#: templates/register.html:96
+msgid "User name"
+msgstr ""
+
+#: templates/register.html:98
+msgid "Email"
+msgstr ""
+
+#: templates/register.html:102
+msgid "Password again"
+msgstr ""
+
+#: templates/register.html:105
+msgid "is a project owner"
 msgstr ""
 

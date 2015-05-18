@@ -1,0 +1,11 @@
+#open files in directory by tab
+:Tex
+gt/gT to switch 
+
+#open files in split layout
+:Sex
+
+#open general case
+:Ex
+
+

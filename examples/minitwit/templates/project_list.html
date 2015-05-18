@@ -6,7 +6,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
-                    <h2>Project</h2>
+                    <h2>{{ _("Project") }}</h2>
                     <hr class="star-primary">
                 </div>
             </div>
@@ -17,10 +17,10 @@
                             <img autofocus src="{{ project.image_url }}" class="img-responsive img-centered" alt="">
                             <div id="loctimebox">
                                 <p class="alignleft" style="float:left;"><i>{{ project.location }}</i></p>
-                                <p class="alignright" style="float:right;"><i>{{ puds[project.id] }}d ago</i></p>
+                                <p class="alignright" style="float:right;"><i>{{ puds[project.id] }}{{ _("d ago") }}</i></p>
                             </div>
                             <div style="clear: both;"></div>
-                            <p><b>Want to launch: </b>{{ project.desp }}</p>
+                            <p><b>{{ _("Want to launch") }}: </b>{{ project.desp }}</p>
                             <p><b>{{ _("Get") }}: </b>{{ project.incentive }}</p>
                             <div class="col-md-5 col-sm-4 col-xs-5">
                               <img class=" img-circle" src="{{ pics[project.id] }}" width="70" height="70" >
@@ -31,17 +31,17 @@
                             <div style="text-align: center"> 
                                 {% if not pas or not pas[project.id]  %}
                                     <a href="{{ url_for('apply', m_user_id=g.user.user_id if g.user else None, m_client_id=project.client_id, project_id=project.id) }}">
-                                        <button class="btn btn-info btn-lg" type="submit"><span class="glyphicon glyphicon-hand-up"></span> Apply</button>
+                                        <button class="btn btn-info btn-lg" type="submit"><span class="glyphicon glyphicon-hand-up"></span> {{ _("Apply") }}</button>
                                     </a>
                                 {% else %}
-                                    <p>Applied at {{ pats[project.id] }}</p>
+                                    <p>{{ _("Applied at") }} {{ pats[project.id] }}</p>
                                 {% endif %}
                             </div> 
                             <HR style="FILTER: alpha(opacity=10,finishopacity=0,style=2)" width="90%" color=#987cb9 SIZE=10>
                         </div>
                 </div>
                 {% else %}
-                <li><em>There's no project so far.</em>
+                <li><em>{{ _("There's no project so far.") }}</em>
                 {% endfor %}
             </div>
         </div>

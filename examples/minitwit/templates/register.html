@@ -70,18 +70,18 @@
                     </li>
                     <li class="page-scroll">
                         {% if g.user %}
-                            <a href="{{ url_for('logout') }}">sign out [{{ g.user.username }}]</a>
+                            <a href="{{ url_for('logout') }}">{{ _("sign out") }} [{{ g.user.username }}]</a>
                         {% else %}
-                            <a href="{{ url_for('login') }}">Sign in</a>
+                            <a href="{{ url_for('login') }}">{{ _("Sign in") }}</a>
                         {% endif %}
                     </li>
                     <li class="page-scroll">
                         {% if not g.user %}
-                            <a href="{{ url_for('register') }}">Sign up</a>
+                            <a href="{{ url_for('register') }}">{{ _("Sign up") }}</a>
                         {% endif %}
                     </li>
                     <li class="page-scroll">
-                        <a href="/">Home</a>
+                        <a href="/">{{ _("Home") }}</a>
                     </li>
                 </ul>
             </div>
@@ -91,21 +91,21 @@
     </nav>
 
       <form class="form-signin" method="post">
-        <h2 class="form-signin-heading">Please sign up</h2>
+        <h2 class="form-signin-heading">{{ _("Please sign up") }}</h2>
         <label for="inputUsername" class="sr-only">User name</label>
-        <input type="username" id="username" name="username" class="form-control" placeholder="User name" required="" autofocus="">
+        <input type="username" id="username" name="username" class="form-control" placeholder="{{ _('User name') }}" required="" autofocus="">
         <label for="inputEmail" class="sr-only">Email address</label>
-        <input type="email" id="email" name="email" class="form-control" placeholder="Email" required="" autofocus="">
+        <input type="email" id="email" name="email" class="form-control" placeholder="{{ _('Email') }}" required="" autofocus="">
         <label for="inputPassword" class="sr-only">Password</label>
-        <input type="password" id="password" name="password" class="form-control" placeholder="Password" required="">
+        <input type="password" id="password" name="password" class="form-control" placeholder="{{ _('Password') }}" required="">
         <label for="inputPassword" class="sr-only">Password2</label>
-        <input type="password" id="password2" name="password2" class="form-control" placeholder="Password again" required="">
+        <input type="password" id="password2" name="password2" class="form-control" placeholder="{{ _('Password again') }}" required="">
         <div class="checkbox">
           <label>
-            <input type="checkbox" name="isowner" value="1"> is a project owner
+            <input type="checkbox" name="isowner" value="1"> {{ _("is a project owner") }}
           </label>
         </div>
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign up</button>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">{{ _("Sign up") }}</button>
       </form>
 
     </div> <!-- /container -->
