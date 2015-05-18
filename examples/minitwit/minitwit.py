@@ -271,27 +271,31 @@ def upload():
 @app.route('/upload_image', methods=['POST'])
 @login_required
 def upload_image():        
-    HEIGHT, WIDTH = 384, 240
-    c = request.files['file'].read()
-    file_orig = StringIO(c)
-    im = Image.open(file_orig)
-    h, w = im.size
-    if h > HEIGHT or w > WIDTH:
-        im.thumbnail((HEIGHT, WIDTH), Image.ANTIALIAS)
-        file = StringIO()
+    try:
+        HEIGHT, WIDTH = 384, 240
+        c = request.files['file'].read()
+        file_orig = StringIO(c)
+        im = Image.open(file_orig)
         h, w = im.size
-        if h==w:
-            im = im.rotate(90 * 3)
-        try:
-            im.save(file, 'JPEG')
-        except:
-            #for .gif
+        if h > HEIGHT or w > WIDTH:
+            im.thumbnail((HEIGHT, WIDTH), Image.ANTIALIAS)
+            file = StringIO()
+            h, w = im.size
+            if h==w:
+                im = im.rotate(90 * 3)
+            try:
+                im.save(file, 'JPEG')
+            except:
+                #for .gif
+                file = file_orig
+        else:
             file = file_orig
-    else:
-        file = file_orig
-    lc_file = File('pi', file_orig)
-    lc_file.save()
-    return lc_file.url 
+        lc_file = File('pi', file_orig)
+        lc_file.save()
+        return lc_file.url 
+    except Exception, e:
+       print '=============== upload image failed ============ ', str(e)
+       return 'http://i.ytimg.com/vi/laTKz2IU7Kw/hqdefault.jpg'
 
 @app.route('/publish', methods=['GET'])
 @login_required
