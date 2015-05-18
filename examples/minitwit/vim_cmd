@@ -2,6 +2,10 @@
 :Tex
 gt/gT to switch 
 
+#vertical split
+:Vex
+Ctrl + w + w
+
 #open files in split layout
 :Sex
 
