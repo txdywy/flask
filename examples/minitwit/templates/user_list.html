@@ -1,5 +1,5 @@
 {% extends "alayout.html" %}
-{% block title %}Users{% endblock %}
+{% block title %}{{ _('Users') }}{% endblock %}
 {% block body %}
     <!-- Project Grid Section -->
     <section id="portfolio">
@@ -20,8 +20,8 @@
                                 <p class="alignright" style="float:right;"><i>{{ user.school }}, {{ user.city }}</i></p>
                             </div>
                             <div style="clear: both;"></div>
-                            <p><b>About me: </b>{{ user.profile }}</p>
-                            <p><b>Review: </b>95% approval (5 reviews)</p>
+                            <p><b>{{ _('About me') }}: </b>{{ user.profile }}</p>
+                            <p><b>{{ _('Review') }}: </b>95% {{ _('approval') }} (5 {{ _('reviews') }})</p>
 			    <div class="bottom">
                     	    	<a class="btn btn-primary btn-twitter btn-sm" href="https://twitter.com/wangtuobin">
                             		<i class="fa fa-twitter"></i>
@@ -39,7 +39,7 @@
 			</div>
                 </div>
                 {% else %}
-                <li><em>There's no user so far.</em>
+                <li><em>{{ _('There's no user so far.') }}</em>
                 {% endfor %}
             </div>
         </div>

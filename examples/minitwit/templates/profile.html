@@ -1,5 +1,5 @@
 {% extends "alayout.html" %}
-{% block title %}Profile{% endblock %}
+{% block title %}{{ _('Profile') }}{% endblock %}
 {% block body %}
 <div class="container" style="padding-top: 100px;">
       <!-- edit form column -->
@@ -16,80 +16,80 @@
         <h3>Personal Info <a href="{{ url_for('editProfile') }}"><span class="glyphicon glyphicon-pencil"/></a></h3> 
 
           <div class="form-group">
-          <label class="col-lg-3 control-label">First Name:</label>
+          <label class="col-lg-3 control-label">{{ _('First Name') }}:</label>
           <div class="col-lg-8">
             <label class="form-control" name="firstname" id = "firstname" type="text">{{ user.firstname }}</label>
           </div>
         </div>  
         <div class="form-group">
-          <label class="col-lg-3 control-label">Last name:</label>
+          <label class="col-lg-3 control-label">{{ _('Last name') }}:</label>
           <div class="col-lg-8">
             <label class="form-control" name="lastname" id="lastname" type="text">{{ user.lastname }}</label>
           </div>
         </div>
         <div class="form-group">
-          <label class="col-lg-3 control-label">School:</label>
+          <label class="col-lg-3 control-label">{{ _('School') }}:</label>
           <div class="col-lg-8">
             <label class="form-control" name="school" id="school" type="text">{{ user.school }}</label>
           </div>
         </div>
         <div class="form-group">
-          <label class="col-lg-3 control-label">City:</label>
+          <label class="col-lg-3 control-label">{{ _('City') }}:</label>
           <div class="col-lg-8">
             <label class="form-control" name="city" id="city" type="text">{{ user.city }}</label>
           </div>
         </div>
         <div class="form-group">
-          <label class="col-lg-3 control-label">Country:</label>
+          <label class="col-lg-3 control-label">{{ _('Country') }}:</label>
           <div class="col-lg-8">
               <label class="form-control" name="country" id="country" type="text">{{ user.country }}</label>
           </div>
         </div>
         <div class="form-group">
-          <label class="col-lg-3 control-label">Zip Code:</label>
+          <label class="col-lg-3 control-label">{{ _('Zip Code') }}:</label>
            <div class="col-lg-8">
                <label class="form-control" name="zipcode" id="zipcode" type="text">{{ user.zipcode }}</label>
            </div>
          </div>
          <div class="form-group">
-           <label class="col-lg-3 control-label">Phone:</label>
+           <label class="col-lg-3 control-label">{{ _('Phone') }}:</label>
            <div class="col-lg-8">
                <label class="form-control" name="phone" id="phone" type="text">{{ user.phone }}</label>
            </div>
          </div>
         <div class="form-group">
-          <label class="col-md-3 control-label">Profile:</label>
+          <label class="col-md-3 control-label">{{ _('Profile') }}:</label>
           <div class="col-md-8">
                <textarea readonly class="form-control input-sm " name="profile" id="profile" type="textarea" maxlength="140" rows="4">{{ user.profile }}</textarea>
           </div>
         </div>
         <h3>Account Info</h3>
     <div class="form-group">
-          <label class="col-lg-3 control-label">Username:</label>
+          <label class="col-lg-3 control-label">{{ _('Username') }}:</label>
           <div class="col-lg-8">
             <label class="form-control" id="username" name="username" type="text"> {{ user.username }}</label>
           </div>
         </div>
         <div class="form-group">
-          <label class="col-lg-3 control-label">Email:</label>
+          <label class="col-lg-3 control-label">{{ _('Email') }}:</label>
           <div class="col-lg-8">
               <label class="form-control" id="email" name="email" type="text">{{ user.email }}</label>
           </div>
         </div>
        <div class="form-group">
-          <label class="col-md-3 control-label">Password:</label>
+          <label class="col-md-3 control-label">{{ _('Password') }}:</label>
           <div class="col-md-8">
               <input disabled class="form-control" name="password" id="password" value="{{ user.pw_hash }}" type="password">
           </div>
         </div>
         <div class="form-group">
-          <label class="col-md-3 control-label">Confirm password:</label>
+          <label class="col-md-3 control-label">{{ _('Confirm password') }}:</label>
           <div class="col-md-8">
               <input disabled class="form-control" name="password2"id="password2" value="{{ user.pw_hash}}" type="password">
           </div>
         </div>
         <div class="form-group">
-          <label class="col-md-3 control-label">Created time:</label>
+          <label class="col-md-3 control-label">{{ _('Created time') }}:</label>
           <div class="col-md-8">
               <label class="form-control" name="createtime" id="createtime" type="password">{{ user.create_time }}</label>
           </div>

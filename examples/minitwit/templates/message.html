@@ -1,11 +1,11 @@
 {% extends "alayout.html" %}
-{% block title %}Message{% endblock %}
+{% block title %}{{ _('Message') }}{% endblock %}
 {% block body %}
     <section id="message">
         <div class="container">
             <div class="row">
               <div class="col-md-8">
-                <h2 class="page-header">Messages</h2>
+                <h2 class="page-header">{{ _('Messages') }}</h2>
                         <div class="col-md-4 col-sm-4 col-xs-5">
                            <figure class="thumbnail">
                            <img class="img-responsive" src="{{ data.get('m_user_icon') }}" />
@@ -20,16 +20,16 @@
                                  </header>
                                  <div class="comment-post">
                                    <p>
-                                   Profile: {{ m_user.profile }}
+                                   {{ _('Profile') }}: {{ m_user.profile }}
                                    </p>
                                    <p>
-                                   School: {{ m_user.school }}
+                                   {{ _('School') }}: {{ m_user.school }}
                                    </p>
                                    <p>
-                                   City: {{ m_user.city }}
+                                   {{ _('City') }}: {{ m_user.city }}
                                    </p>
                                    <p>
-                                   Jonied: {{ ucd }}d ago
+                                   {{ _('Jonied') }}: {{ ucd }}{{ _('d ago')}}
                                    </p>
                                  </div>
                               </div>
@@ -87,18 +87,18 @@
                             </article>
                         {% endif %}
                     {% else %}
-                    <li><em>There's no message so far.</em>
+                    <li><em>{{ _("There's no message so far.") }}</em>
                     {% endfor %}
 
                     <div class="form-group ">
-                         <label id="messageLabel" for="message">Message </label>
+                         <label id="messageLabel" for="message">{{ _('Message') }} </label>
                          <form action="/message" method="POST">
-                         <textarea class="form-control " type="textarea" id="message_text" name="message" placeholder="Message" maxlength="2048" rows="3" style="/*float:left;*/"></textarea>
+                         <textarea class="form-control " type="textarea" id="message_text" name="message" placeholder="{{ _('Message') }}" maxlength="2048" rows="3" style="/*float:left;*/"></textarea>
                          <div style="float:right;">
                          <input type="hidden" name="m_user_id" value="{{ m_user_id }}">
                          <input type="hidden" name="m_client_id" value="{{ client.id }}">
                          <input type="hidden" name="project_id" value="{{ project_id }}">
-                         <button class="btn btn-info btn-lg" type="submit" ><span class="glyphicon glyphicon-send"></span> Send</button>
+                         <button class="btn btn-info btn-lg" type="submit" ><span class="glyphicon glyphicon-send"></span> {{ _('Send') }}</button>
                          </div>
                          </form>
                     </div>

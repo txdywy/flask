@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2015-05-19 11:52+0800\n"
+"POT-Creation-Date: 2015-05-19 18:34+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -38,7 +38,8 @@ msgstr ""
 msgid "Sign in"
 msgstr ""
 
-#: templates/alayout.html:64
+#: templates/alayout.html:64 templates/message.html:23 templates/profile.html:2
+#: templates/profile.html:61
 msgid "Profile"
 msgstr ""
 
@@ -47,7 +48,8 @@ msgstr ""
 msgid "Sign up"
 msgstr ""
 
-#: templates/alayout.html:73
+#: templates/alayout.html:73 templates/message.html:2 templates/message.html:94
+#: templates/message.html:96
 msgid "Message"
 msgstr ""
 
@@ -67,7 +69,7 @@ msgstr ""
 msgid "Admin"
 msgstr ""
 
-#: templates/alayout.html:96
+#: templates/alayout.html:96 templates/publish.html:2
 msgid "Publish"
 msgstr ""
 
@@ -87,7 +89,7 @@ msgstr ""
 msgid "\"Message\""
 msgstr ""
 
-#: templates/apply.html:47
+#: templates/apply.html:47 templates/publish.html:74
 msgid "Submit"
 msgstr ""
 
@@ -99,12 +101,41 @@ msgstr ""
 msgid "User Name"
 msgstr ""
 
-#: templates/login.html:93 templates/register.html:100
+#: templates/login.html:93 templates/profile.html:80
+#: templates/register.html:100
 msgid "Password"
 msgstr ""
 
 #: templates/login.html:96
 msgid "Remember me"
+msgstr ""
+
+#: templates/message.html:8
+msgid "Messages"
+msgstr ""
+
+#: templates/message.html:26 templates/profile.html:31
+msgid "School"
+msgstr ""
+
+#: templates/message.html:29 templates/profile.html:37
+msgid "City"
+msgstr ""
+
+#: templates/message.html:32
+msgid "Jonied"
+msgstr ""
+
+#: templates/message.html:32 templates/project_list.html:20
+msgid "d ago"
+msgstr ""
+
+#: templates/message.html:90 templates/message_box.html:21
+msgid "There's no message so far."
+msgstr ""
+
+#: templates/message.html:101
+msgid "Send"
 msgstr ""
 
 #: templates/message_box.html:2 templates/message_box.html:7
@@ -119,12 +150,40 @@ msgstr ""
 msgid "d"
 msgstr ""
 
-#: templates/message_box.html:21
-msgid "There's no message so far."
+#: templates/profile.html:19
+msgid "First Name"
 msgstr ""
 
-#: templates/project_list.html:20
-msgid "d ago"
+#: templates/profile.html:25
+msgid "Last name"
+msgstr ""
+
+#: templates/profile.html:43
+msgid "Country"
+msgstr ""
+
+#: templates/profile.html:49
+msgid "Zip Code"
+msgstr ""
+
+#: templates/profile.html:55
+msgid "Phone"
+msgstr ""
+
+#: templates/profile.html:68
+msgid "Username"
+msgstr ""
+
+#: templates/profile.html:74 templates/register.html:98
+msgid "Email"
+msgstr ""
+
+#: templates/profile.html:86
+msgid "Confirm password"
+msgstr ""
+
+#: templates/profile.html:92
+msgid "Created time"
 msgstr ""
 
 #: templates/project_list.html:23
@@ -143,6 +202,70 @@ msgstr ""
 msgid "There's no project so far."
 msgstr ""
 
+#: templates/publish.html:14
+msgid "My Projects"
+msgstr ""
+
+#: templates/publish.html:16
+msgid "My Projects Number"
+msgstr ""
+
+#: templates/publish.html:22 templates/publish.html:46
+msgid "Title"
+msgstr ""
+
+#: templates/publish.html:23
+msgid "Client"
+msgstr ""
+
+#: templates/publish.html:24
+msgid "Image"
+msgstr ""
+
+#: templates/publish.html:35
+msgid "no projects"
+msgstr ""
+
+#: templates/publish.html:41
+msgid "Publish a new project"
+msgstr ""
+
+#: templates/publish.html:47
+msgid "Project Title"
+msgstr ""
+
+#: templates/publish.html:53
+msgid "Description"
+msgstr ""
+
+#: templates/publish.html:54
+msgid "Project Description"
+msgstr ""
+
+#: templates/publish.html:60
+msgid "Incentive"
+msgstr ""
+
+#: templates/publish.html:61
+msgid "Project Incentive"
+msgstr ""
+
+#: templates/publish.html:67
+msgid "Image Url"
+msgstr ""
+
+#: templates/publish.html:88
+msgid "formData preview"
+msgstr ""
+
+#: templates/publish.html:90
+msgid "project image preview"
+msgstr ""
+
+#: templates/publish.html:99
+msgid "upload me"
+msgstr ""
+
 #: templates/register.html:13
 msgid "Sign Up Here"
 msgstr ""
@@ -153,10 +276,6 @@ msgstr ""
 
 #: templates/register.html:96
 msgid "User name"
-msgstr ""
-
-#: templates/register.html:98
-msgid "Email"
 msgstr ""
 
 #: templates/register.html:102

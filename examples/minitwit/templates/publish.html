@@ -1,5 +1,5 @@
 {% extends "alayout.html" %}
-{% block title %}Publish{% endblock %}
+{% block title %}{{ _('Publish') }}{% endblock %}
 {% block headjs %}
   <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.15/angular.min.js"></script>
   <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/angular-loading-bar/0.7.1/loading-bar.min.css' type='text/css' media='all' />
@@ -11,17 +11,17 @@
   <div ng-app="formApp" class="container" >
     <div class="row">
       <div class="">
-        <h2 class="page-header">My Projects:</h2>
+        <h2 class="page-header">{{ _('My Projects') }}:</h2>
         <div class="col-sm-4 portfolio-item" >
-          <p><b>My Projects Number: {{ project_num }}</b><p>
+          <p><b>{{ _('My Projects Number') }}: {{ project_num }}</b><p>
         </div>
         <div>
           <table class="table">
             <thead>
               <tr>
-                <th>Title</th>
-                <th>Client</th>
-                <th>Image</th>
+                <th>{{ _('Title') }}</th>
+                <th>{{ _('Client') }}</th>
+                <th>{{ _('Image') }}</th>
               </tr>
             </thead>
             <tbody>
@@ -32,46 +32,46 @@
                 <td><img src="{{ project.image_url }}" class="img-rounded" alt="Cinque Terre" width="80" height="50"></td>
               </tr>
               {% else %}
-              no projects
+              {{ _('no projects') }}
               {% endfor %}
             </tbody>
           </table>
         </div>
         <!-- TO ADD A PROJECT TO ONE OWNER -->
-        <h4>Publish a new project</h4>
+        <h4>{{ _('Publish a new project') }}</h4>
         <div ng-controller="formController">
           <form ng-submit="processForm()">
             <!-- PROJECT TITLE -->
             <div id="title-group" class="form-group" ng-class="{ 'has-error' : errorTitle }">
-              <label>Title</label>
-              <input type="text" name="title" class="form-control" placeholder="Project Title" ng-model="formData.title">
+              <label>{{ _('Title') }}</label>
+              <input type="text" name="title" class="form-control" placeholder="{{ _('Project Title') }}" ng-model="formData.title">
               <span class="help-block" ng-show="errorTitle">{{ errorTitle|angular }}</span>
             </div>
 
             <!-- PROJECT DESCRIPTION -->
             <div id="desp-group" class="form-group" ng-class="{ 'has-error' : errorDesp }">
-              <label>Description</label>
-              <input type="text" name="desp" class="form-control" placeholder="Project Description" ng-model="formData.desp">
+              <label>{{ _('Description') }}</label>
+              <input type="text" name="desp" class="form-control" placeholder="{{ _('Project Description') }}" ng-model="formData.desp">
               <span class="help-block" ng-show="errorDesp">{{ errorDesp|angular }}</span>
             </div>
 
             <!-- PROJECT INCENTIVE -->
             <div id="incentive-group" class="form-group" ng-class="{ 'has-error' : errorIncentive }">
-              <label>Incentive</label>
-              <input type="text" name="incentive" class="form-control" placeholder="Project Incentive" ng-model="formData.incentive">
+              <label>{{ _('Incentive') }}</label>
+              <input type="text" name="incentive" class="form-control" placeholder="{{ _('Project Incentive') }}" ng-model="formData.incentive">
               <span class="help-block" ng-show="errorIncentive">{{ errorIncentive|angular }}</span>
             </div>
 
             <!-- PROJECT IMAGE -->
             <div id="image-group" class="form-group" ng-class="{ 'has-error' : errorImage }">
-              <label>Image Url</label>
+              <label>{{ _('Image Url') }}</label>
               <input type="text" name="image" class="form-control" placeholder="https://www.google.com.hk/images/nav_logo195.png" ng-model="formData.image">
               <span class="help-block" ng-show="errorImage">{{ errorImage|angular }}</span>
             </div>
 
             <!-- SUBMIT BUTTON -->
             <button type="submit" class="btn btn-success btn-lg btn-block">
-              <span class="glyphicon glyphicon-flash"></span> Submit!
+              <span class="glyphicon glyphicon-flash"></span> {{ _('Submit') }}!
             </button>
           </form>
           <!-- pure html file upload
@@ -85,9 +85,9 @@
           <!-- SHOW DATA FROM INPUTS AS THEY ARE BEING TYPED -->
           <div class="col-sm-4 portfolio-item" >
             <pre>
-              <p>formData preview:</p>
+              <p>{{ _('formData preview') }}:</p>
               {{ formData|angular }}
-              <p>project image preview:</p>
+              <p>{{ _('project image preview') }}:</p>
               <img ng-src="{{ formData.image|angular }}" autofocus class="img-responsive img-centered" alt="">
             </pre>
           </div>
@@ -96,7 +96,7 @@
         <!--UPLOAD IMAGE SECTION-->
         <div ng-controller = "myCtrl">
           <input type="file" file-model="myFile"/>
-          <button ng-click="uploadFile()">upload me</button>
+          <button ng-click="uploadFile()">{{ _('upload me') }}</button>
         </div>
       </div>
     </div>

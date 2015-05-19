@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2015-05-19 11:52+0800\n"
+"POT-Creation-Date: 2015-05-19 18:34+0800\n"
 "PO-Revision-Date: 2015-05-18 11:55+0800\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Last-Translator: Ramen King <geniusron@gmail.com>\n"
 "Language-Team: zh_Hans_CN <LL@li.org>\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
 "MIME-Version: 1.0\n"
@@ -38,7 +38,8 @@ msgstr "注销"
 msgid "Sign in"
 msgstr "登录"
 
-#: templates/alayout.html:64
+#: templates/alayout.html:64 templates/message.html:23 templates/profile.html:2
+#: templates/profile.html:61
 msgid "Profile"
 msgstr "简历"
 
@@ -47,7 +48,8 @@ msgstr "简历"
 msgid "Sign up"
 msgstr "注册"
 
-#: templates/alayout.html:73
+#: templates/alayout.html:73 templates/message.html:2 templates/message.html:94
+#: templates/message.html:96
 msgid "Message"
 msgstr "收件箱"
 
@@ -67,7 +69,7 @@ msgstr "首页"
 msgid "Admin"
 msgstr "管理员"
 
-#: templates/alayout.html:96
+#: templates/alayout.html:96 templates/publish.html:2
 msgid "Publish"
 msgstr "发布项目"
 
@@ -77,7 +79,7 @@ msgstr "申请"
 
 #: templates/apply.html:8
 msgid "Applying"
-msgstr "申请"
+msgstr "申请中"
 
 #: templates/apply.html:40
 msgid "Mention why you are insterested and what you can bring to this project..."
@@ -87,7 +89,7 @@ msgstr "请描述你为何对此项目感兴趣..."
 msgid "\"Message\""
 msgstr "收件箱"
 
-#: templates/apply.html:47
+#: templates/apply.html:47 templates/publish.html:74
 msgid "Submit"
 msgstr "提交"
 
@@ -99,13 +101,42 @@ msgstr "请登录"
 msgid "User Name"
 msgstr "用户名"
 
-#: templates/login.html:93 templates/register.html:100
+#: templates/login.html:93 templates/profile.html:80
+#: templates/register.html:100
 msgid "Password"
 msgstr "密码"
 
 #: templates/login.html:96
 msgid "Remember me"
 msgstr "记住我"
+
+#: templates/message.html:8
+msgid "Messages"
+msgstr "收件箱"
+
+#: templates/message.html:26 templates/profile.html:31
+msgid "School"
+msgstr "学校"
+
+#: templates/message.html:29 templates/profile.html:37
+msgid "City"
+msgstr "城市"
+
+#: templates/message.html:32
+msgid "Jonied"
+msgstr "加入时间"
+
+#: templates/message.html:32 templates/project_list.html:20
+msgid "d ago"
+msgstr "天之前"
+
+#: templates/message.html:90 templates/message_box.html:21
+msgid "There's no message so far."
+msgstr "目前没有信息"
+
+#: templates/message.html:101
+msgid "Send"
+msgstr "发送"
 
 #: templates/message_box.html:2 templates/message_box.html:7
 msgid "Message box"
@@ -119,13 +150,41 @@ msgstr "新信息"
 msgid "d"
 msgstr "天前"
 
-#: templates/message_box.html:21
-msgid "There's no message so far."
-msgstr "目前没有信息"
+#: templates/profile.html:19
+msgid "First Name"
+msgstr "名"
 
-#: templates/project_list.html:20
-msgid "d ago"
-msgstr "天之前"
+#: templates/profile.html:25
+msgid "Last name"
+msgstr "姓"
+
+#: templates/profile.html:43
+msgid "Country"
+msgstr "国家"
+
+#: templates/profile.html:49
+msgid "Zip Code"
+msgstr "邮编"
+
+#: templates/profile.html:55
+msgid "Phone"
+msgstr "电话"
+
+#: templates/profile.html:68
+msgid "Username"
+msgstr "用户名"
+
+#: templates/profile.html:74 templates/register.html:98
+msgid "Email"
+msgstr "邮箱"
+
+#: templates/profile.html:86
+msgid "Confirm password"
+msgstr "确认密码"
+
+#: templates/profile.html:92
+msgid "Created time"
+msgstr "创建时间"
 
 #: templates/project_list.html:23
 msgid "Want to launch"
@@ -143,6 +202,70 @@ msgstr "申请时间"
 msgid "There's no project so far."
 msgstr "目前没有项目"
 
+#: templates/publish.html:14
+msgid "My Projects"
+msgstr "我的项目"
+
+#: templates/publish.html:16
+msgid "My Projects Number"
+msgstr "我的项目数"
+
+#: templates/publish.html:22 templates/publish.html:46
+msgid "Title"
+msgstr "标题"
+
+#: templates/publish.html:23
+msgid "Client"
+msgstr "客户"
+
+#: templates/publish.html:24
+msgid "Image"
+msgstr "图像"
+
+#: templates/publish.html:35
+msgid "no projects"
+msgstr "没有项目"
+
+#: templates/publish.html:41
+msgid "Publish a new project"
+msgstr "发布一个新项目"
+
+#: templates/publish.html:47
+msgid "Project Title"
+msgstr "项目名称"
+
+#: templates/publish.html:53
+msgid "Description"
+msgstr "描述"
+
+#: templates/publish.html:54
+msgid "Project Description"
+msgstr "项目描述"
+
+#: templates/publish.html:60
+msgid "Incentive"
+msgstr "奖励"
+
+#: templates/publish.html:61
+msgid "Project Incentive"
+msgstr "项目奖励"
+
+#: templates/publish.html:67
+msgid "Image Url"
+msgstr "图片链接"
+
+#: templates/publish.html:88
+msgid "formData preview"
+msgstr "数据预览"
+
+#: templates/publish.html:90
+msgid "project image preview"
+msgstr "项目图片预览"
+
+#: templates/publish.html:99
+msgid "upload me"
+msgstr "上传"
+
 #: templates/register.html:13
 msgid "Sign Up Here"
 msgstr "注册"
@@ -154,10 +277,6 @@ msgstr "请注册"
 #: templates/register.html:96
 msgid "User name"
 msgstr "用户名"
-
-#: templates/register.html:98
-msgid "Email"
-msgstr "邮箱"
 
 #: templates/register.html:102
 msgid "Password again"
