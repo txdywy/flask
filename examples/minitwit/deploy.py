@@ -15,6 +15,7 @@ pkgs = ['boto',
         'networkx',
         'ngxtop',
         'Flask-Babel',
+        'redis',
        ]
 for pkg in pkgs:
     local(SUDO_PIP_INSTALL % pkg)
