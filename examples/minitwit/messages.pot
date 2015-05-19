@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2015-05-18 13:59+0800\n"
+"POT-Creation-Date: 2015-05-19 11:52+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,11 +17,15 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 1.3\n"
 
-#: minitwit.py:654
+#: minitwit.py:658
 msgid "hahaha"
 msgstr ""
 
-#: templates/alayout.html:46
+#: templates/alayout.html:13
+msgid "Project List"
+msgstr ""
+
+#: templates/alayout.html:46 templates/register.html:62
 msgid "Start"
 msgstr ""
 
@@ -65,6 +69,26 @@ msgstr ""
 
 #: templates/alayout.html:96
 msgid "Publish"
+msgstr ""
+
+#: templates/apply.html:2 templates/project_list.html:34
+msgid "Apply"
+msgstr ""
+
+#: templates/apply.html:8
+msgid "Applying"
+msgstr ""
+
+#: templates/apply.html:40
+msgid "Mention why you are insterested and what you can bring to this project..."
+msgstr ""
+
+#: templates/apply.html:42
+msgid "\"Message\""
+msgstr ""
+
+#: templates/apply.html:47
+msgid "Submit"
 msgstr ""
 
 #: templates/login.html:89
@@ -111,16 +135,16 @@ msgstr ""
 msgid "Get"
 msgstr ""
 
-#: templates/project_list.html:34
-msgid "Apply"
-msgstr ""
-
 #: templates/project_list.html:37
 msgid "Applied at"
 msgstr ""
 
 #: templates/project_list.html:44
 msgid "There's no project so far."
+msgstr ""
+
+#: templates/register.html:13
+msgid "Sign Up Here"
 msgstr ""
 
 #: templates/register.html:94

@@ -1,11 +1,11 @@
 {% extends "alayout.html" %}
-{% block title %}Apply{% endblock %}
+{% block title %}{{ _('Apply') }}{% endblock %}
 {% block body %}
     <section id="message">
         <div class="container">
             <div class="row">
               <div class="col-md-8">
-                <h2 class="page-header">Applying</h2>
+                <h2 class="page-header">{{ _('Applying') }}</h2>
                   <div class="col-md-4 col-sm-4 col-xs-5">
                      <figure class="thumbnail">
                      <img class="img-responsive" src="{{ data.get('m_user_icon') }}" />
@@ -37,14 +37,14 @@
                   </div>
 
                   <div class="form-group ">
-                         <label id="messageLabel" for="message">Mention why you are insterested and what you can bring to this project... </label>
+                         <label id="messageLabel" for="message">{{ _('Mention why you are insterested and what you can bring to this project...') }} </label>
                          <form action="/message" method="POST">
-                           <textarea class="form-control " type="textarea" id="message_text" name="message" placeholder="Message" maxlength="2048" rows="3" style="/*float:left;*/"></textarea>
+                           <textarea class="form-control " type="textarea" id="message_text" name="message" placeholder={{ _('"Message"') }} maxlength="2048" rows="3" style="/*float:left;*/"></textarea>
                            <div style="float:right;">
                              <input type="hidden" name="m_user_id" value="{{ m_user_id }}">
                              <input type="hidden" name="m_client_id" value="{{ client.id }}">
                              <input type="hidden" name="project_id" value="{{ project_id }}">
-                             <button class="btn btn-info btn-lg" type="submit" ><span class="glyphicon glyphicon-send"></span> Submit</button>
+                             <button class="btn btn-info btn-lg" type="submit" ><span class="glyphicon glyphicon-send"></span> {{ _('Submit') }}</button>
                            </div>
                          </form>
                   </div>
