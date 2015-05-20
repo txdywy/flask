@@ -1,6 +1,10 @@
 from fabric.api import * 
 env.use_ssh_config = True
 #env.hosts = ['sushi', 'polo', 'noodle']
+def localhost():
+    #env.use_ssh_config = False
+    global run 
+    run = local
 
 def send(file):
     put(file, '~/')
