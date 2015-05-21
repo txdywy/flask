@@ -9,7 +9,7 @@ print '------- SQS [%s] visability timeout: [%s] --------------------' % (POLO_Q
 
 def send(message='Nothing', q=POLO_Q):
     m = Message()
-    m.set_body('This is my first message.')
+    m.set_body(message)
     print '========= sent message [%s] to SQS [%s] =========' % (message, q.name) 
     q.write(m)
 
