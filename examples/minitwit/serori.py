@@ -8,7 +8,7 @@ BROKER_URL = 'sqs://%s:%s@' % (BROKER_USER, BROKER_PASSWORD)
 app = Celery('tasks', broker=BROKER_URL)
 app.conf.BROKER_TRANSPORT_OPTIONS = { 
     'region': SQS_REGION,
-    'polling_interval': 2, #save cpu and $
+    'polling_interval': 10, #save cpu and $
 }
 """
 app.conf.CELERY_DEFAULT_QUEUE = SQS_QUEUE
