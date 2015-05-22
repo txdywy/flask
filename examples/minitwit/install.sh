@@ -23,6 +23,6 @@ then
     echo "logs exists"
 else
     mkdir logs
-    touch logs/uwsgi.log logs/error.log
+    touch logs/uwsgi.log logs/error.log logs/serori.log
 fi
 
