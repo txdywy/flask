@@ -1,70 +1,87 @@
 {% extends "alayout.html" %}
-{% block title %}{{ _('Profile') }}{% endblock %}
+{% block headjs %}
+  <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.15/angular.min.js"></script>
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/angular-loading-bar/0.7.1/loading-bar.min.css' type='text/css' media='all' />
+  <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/angular-loading-bar/0.7.1/loading-bar.min.js'></script>
+  <script type='text/javascript' src='/js/uploadImage.js'></script>
+{% endblock headjs %}
+{% block title %}Profile{% endblock %}
 {% block body %}
-<div class="container" style="padding-top: 100px;">
+<div class="container" style="padding-top: 100px;" ng-app="formApp">
       <!-- edit form column -->
     <div class="personal-info">
 
+      <div class="alert alert-info alert-dismissable">
+        <a class="panel-close close" data-dismiss="alert">×</a> 
+        <i class="fa fa-coffee"></i>
+        {{ _('Please complete your information') }}
+      </div>
+      
       <form class="form-horizontal" role="form" method="post">
 
         <div class="form-group">
-          <div class="text-center">
+          <div ng-controller="formController">
+          </div>
+          <div class="text-center" ng-controller = "myCtrl">
             <img src="{{ user.icon }}" class="avatar img-thumbnail img-circle" alt="avatar">
+            <h6>{{ _('Pleas upload your owen icon') }}</h6>
+            <input type="file" name="image" file-model="myFile" class="text-center center-block well well-sm"/>
+            <button class="btn btn-primary" ng-click="uploadFile()">{{ _('upload me') }}</button>
           </div>
         </div>
 
-        <h3>Personal Info <a href="{{ url_for('editProfile') }}"><span class="glyphicon glyphicon-pencil"/></a></h3> 
+        <h3>{{ _('Personal Info') }}</h3>
 
-          <div class="form-group">
+	      <div class="form-group">
           <label class="col-lg-3 control-label">{{ _('First Name') }}:</label>
           <div class="col-lg-8">
-            <label class="form-control" name="firstname" id = "firstname" type="text">{{ user.firstname }}</label>
+            <input class="form-control" name="firstname" id = "firstname" value="{{ user.firstname }}" type="text">
           </div>
-        </div>  
+        </div>	
         <div class="form-group">
           <label class="col-lg-3 control-label">{{ _('Last name') }}:</label>
           <div class="col-lg-8">
-            <label class="form-control" name="lastname" id="lastname" type="text">{{ user.lastname }}</label>
+            <input class="form-control" name="lastname" id="lastname" value="{{ user.lastname }}" type="text">
           </div>
         </div>
         <div class="form-group">
           <label class="col-lg-3 control-label">{{ _('School') }}:</label>
           <div class="col-lg-8">
-            <label class="form-control" name="school" id="school" type="text">{{ user.school }}</label>
+            <input class="form-control" name="school" id="school" value="{{ user.school }}" type="text">
           </div>
         </div>
         <div class="form-group">
           <label class="col-lg-3 control-label">{{ _('City') }}:</label>
           <div class="col-lg-8">
-            <label class="form-control" name="city" id="city" type="text">{{ user.city }}</label>
+            <input class="form-control" name="city" id="city" value="{{ user.city }}" type="text">
           </div>
         </div>
         <div class="form-group">
           <label class="col-lg-3 control-label">{{ _('Country') }}:</label>
           <div class="col-lg-8">
-              <label class="form-control" name="country" id="country" type="text">{{ user.country }}</label>
+              <input class="form-control" name="country" id="country" value="{{ user.country }}" type="text">
           </div>
         </div>
         <div class="form-group">
           <label class="col-lg-3 control-label">{{ _('Zip Code') }}:</label>
            <div class="col-lg-8">
-               <label class="form-control" name="zipcode" id="zipcode" type="text">{{ user.zipcode }}</label>
+               <input class="form-control" name="zipcode" id="zipcode" value="{{ user.zipcode }}" type="text">
            </div>
          </div>
          <div class="form-group">
            <label class="col-lg-3 control-label">{{ _('Phone') }}:</label>
            <div class="col-lg-8">
-               <label class="form-control" name="phone" id="phone" type="text">{{ user.phone }}</label>
+               <input class="form-control" name="phone" id="phone" value="{{ user.phone }}" type="text">
            </div>
          </div>
         <div class="form-group">
           <label class="col-md-3 control-label">{{ _('Profile') }}:</label>
           <div class="col-md-8">
-               <textarea readonly class="form-control input-sm " name="profile" id="profile" type="textarea" maxlength="140" rows="4">{{ user.profile }}</textarea>
+               <textarea class="form-control input-sm " name="profile" id="profile" type="textarea" maxlength="140" rows="4">{{ user.profile }}</textarea>
           </div>
         </div>
-        <h3>Account Info</h3>
-    <div class="form-group">
+     	<h3>{{ _('Account Info') }}</h3>
+  	<div class="form-group">
           <label class="col-lg-3 control-label">{{ _('Username') }}:</label>
           <div class="col-lg-8">
             <label class="form-control" id="username" name="username" type="text"> {{ user.username }}</label>
@@ -76,25 +93,22 @@
               <label class="form-control" id="email" name="email" type="text">{{ user.email }}</label>
           </div>
         </div>
-       <div class="form-group">
-          <label class="col-md-3 control-label">{{ _('Password') }}:</label>
-          <div class="col-md-8">
-              <input disabled class="form-control" name="password" id="password" value="{{ user.pw_hash }}" type="password">
-          </div>
-        </div>
-        <div class="form-group">
-          <label class="col-md-3 control-label">{{ _('Confirm password') }}:</label>
-          <div class="col-md-8">
-              <input disabled class="form-control" name="password2"id="password2" value="{{ user.pw_hash}}" type="password">
-          </div>
-        </div>
         <div class="form-group">
           <label class="col-md-3 control-label">{{ _('Created time') }}:</label>
           <div class="col-md-8">
-              <label class="form-control" name="createtime" id="createtime" type="password">{{ user.create_time }}</label>
+              <label class="form-control" name="createtime" id="createtime" type="text">{{ user.create_time }}</label>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="col-md-3 control-label"></label>
+          <div class="col-md-8">
+            <button class="btn btn-primary" type="submit">{{ _('Save Changes') }}</button>
+            <span></span>
+	        <a href="{{  url_for('profile')}}"><input class="btn btn-primary" value="Cancel" type="button"></a>
           </div>
         </div>
       </form>
     </div>
-</div>  
+</div>	
 {% endblock %}

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2015-05-24 12:39+0000\n"
+"POT-Creation-Date: 2015-05-24 13:50+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 1.3\n"
 
-#: minitwit.py:672
+#: minitwit.py:656
 msgid "hahaha"
 msgstr ""
 
@@ -38,8 +38,8 @@ msgstr ""
 msgid "Sign in"
 msgstr ""
 
-#: templates/alayout.html:64 templates/message.html:23 templates/profile.html:2
-#: templates/profile.html:61
+#: templates/alayout.html:64 templates/message.html:23
+#: templates/profile.html:78
 msgid "Profile"
 msgstr ""
 
@@ -101,8 +101,7 @@ msgstr ""
 msgid "User Name"
 msgstr ""
 
-#: templates/login.html:93 templates/profile.html:80
-#: templates/register.html:100
+#: templates/login.html:93 templates/register.html:100
 msgid "Password"
 msgstr ""
 
@@ -114,11 +113,11 @@ msgstr ""
 msgid "Messages"
 msgstr ""
 
-#: templates/message.html:26 templates/profile.html:31
+#: templates/message.html:26 templates/profile.html:48
 msgid "School"
 msgstr ""
 
-#: templates/message.html:29 templates/profile.html:37
+#: templates/message.html:29 templates/profile.html:54
 msgid "City"
 msgstr ""
 
@@ -150,40 +149,60 @@ msgstr ""
 msgid "d"
 msgstr ""
 
-#: templates/profile.html:19
+#: templates/profile.html:17
+msgid "Please complete your information"
+msgstr ""
+
+#: templates/profile.html:27
+msgid "Pleas upload your owen icon"
+msgstr ""
+
+#: templates/profile.html:29 templates/publish.html:99
+msgid "upload me"
+msgstr ""
+
+#: templates/profile.html:33
+msgid "Personal Info"
+msgstr ""
+
+#: templates/profile.html:36
 msgid "First Name"
 msgstr ""
 
-#: templates/profile.html:25
+#: templates/profile.html:42
 msgid "Last name"
 msgstr ""
 
-#: templates/profile.html:43
+#: templates/profile.html:60
 msgid "Country"
 msgstr ""
 
-#: templates/profile.html:49
+#: templates/profile.html:66
 msgid "Zip Code"
 msgstr ""
 
-#: templates/profile.html:55
+#: templates/profile.html:72
 msgid "Phone"
 msgstr ""
 
-#: templates/profile.html:68
+#: templates/profile.html:83
+msgid "Account Info"
+msgstr ""
+
+#: templates/profile.html:85
 msgid "Username"
 msgstr ""
 
-#: templates/profile.html:74 templates/register.html:98
+#: templates/profile.html:91 templates/register.html:98
 msgid "Email"
 msgstr ""
 
-#: templates/profile.html:86
-msgid "Confirm password"
+#: templates/profile.html:97
+msgid "Created time"
 msgstr ""
 
-#: templates/profile.html:92
-msgid "Created time"
+#: templates/profile.html:106
+msgid "Save Changes"
 msgstr ""
 
 #: templates/project_list.html:23
@@ -260,10 +279,6 @@ msgstr ""
 
 #: templates/publish.html:90
 msgid "project image preview"
-msgstr ""
-
-#: templates/publish.html:99
-msgid "upload me"
 msgstr ""
 
 #: templates/register.html:13
