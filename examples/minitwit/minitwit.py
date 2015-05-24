@@ -40,13 +40,25 @@ WX_SHA1 = SHA1()
 from leancloud import File
 from StringIO import StringIO
 try:
-    from config import AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, WX_TOKEN, LC_APP_ID, LC_APP_KEY
+    from config import AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY
     s3_conn = S3Connection(AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY)
+except:
+    print '------------no valid s3 config keys------------'
+
+try:
+    from config import WX_TOKEN
+except:
+    print '------------WX_TOKEN------------'
+    WX_TOKEN = ''
+
+try:
+    from config import LC_APP_ID, LC_APP_KEY
     import leancloud
     leancloud.init(LC_APP_ID, LC_APP_KEY)
 except:
-    print '------------no valid s3 config keys------------'
-    WX_TOKEN = ''
+    print '------------import leancloud error------------'
+    
+
 
 from flask.ext.babel import Babel, gettext as _, get_locale
 
