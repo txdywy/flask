@@ -24,7 +24,7 @@ def pull():
 
 def restart():
     with cd('~/flask/examples/minitwit/'):
-        run('supervisorctl restart all')
+        run('supervisorctl restart alancer')
 
 def install():
     run('cd ~/flask/examples/minitwit;sh install.sh')
