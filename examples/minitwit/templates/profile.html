@@ -21,6 +21,7 @@
 
       <div class="form-group">
         <div ng-controller="formController">
+          <img ng-src="{{ formData.image|angular }}" autofocus class="img-responsive img-centered" alt="">
         </div>
         <div class="text-center" ng-controller = "myCtrl">
           <img src="{{ user.icon }}" class="avatar img-thumbnail img-circle" alt="avatar">
@@ -85,14 +86,14 @@
       <div class="form-group">
         <label class="col-lg-3 control-label">{{ _('Username') }}:</label>
         <div class="col-lg-8">
-          <label class="form-control" id="username" name="username" type="text"> {{ user.username }}</label>
+          <input class="form-control" id="username" name="username" value="{{ user.username }}" type="text">
         </div>
       </div>
 
       <div class="form-group">
         <label class="col-lg-3 control-label">{{ _('Email') }}:</label>
         <div class="col-lg-8">
-          <label class="form-control" id="email" name="email" type="text">{{ user.email }}</label>
+          <input class="form-control" id="email" name="email" value="{{ user.email }}" type="text">
         </div>
       </div>
 
