@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2015-05-19 18:34+0800\n"
+"POT-Creation-Date: 2015-05-24 12:39+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 1.3\n"
 
-#: minitwit.py:658
+#: minitwit.py:672
 msgid "hahaha"
 msgstr ""
 
@@ -57,7 +57,7 @@ msgstr ""
 msgid "Project"
 msgstr ""
 
-#: templates/alayout.html:84
+#: templates/alayout.html:84 templates/user_list.html:2
 msgid "Users"
 msgstr ""
 
@@ -284,5 +284,25 @@ msgstr ""
 
 #: templates/register.html:105
 msgid "is a project owner"
+msgstr ""
+
+#: templates/user_list.html:23
+msgid "About me"
+msgstr ""
+
+#: templates/user_list.html:24
+msgid "Review"
+msgstr ""
+
+#: templates/user_list.html:24
+msgid "approval"
+msgstr ""
+
+#: templates/user_list.html:24
+msgid "reviews"
+msgstr ""
+
+#: templates/user_list.html:42
+msgid "There's no user so far."
 msgstr ""
 
