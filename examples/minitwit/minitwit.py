@@ -834,6 +834,7 @@ def register():
                 flush(client)
             util.send_email('[Alancer] Congratulations!', 'You have registered at alancer!', request.form['email'])
             util.send_email('[Alancer Signup]', 'You have a new user [%s] @lancer!' % request.form['email'], ALANCER_SERVICE_EMAIL) 
+            session['user_id'] = u.user_id
             flash('You were successfully registered and can login now')
             return redirect(url_for('editProfile'))
     return render_template('register.html', error=error)

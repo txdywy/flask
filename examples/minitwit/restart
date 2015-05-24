@@ -1,1 +1,1 @@
-supervisorctl restart all
+supervisorctl restart alancer
