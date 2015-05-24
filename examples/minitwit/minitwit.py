@@ -468,6 +468,7 @@ def edit_profile():
         user.zipcode = request.form['zipcode']
         user.phone = request.form['phone']
         user.profile = request.form['profile']
+        user.icon = request.form['icon']
     	flush(user)
     	return redirect(url_for('profile'))
 
