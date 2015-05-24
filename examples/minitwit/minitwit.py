@@ -454,30 +454,9 @@ def profile():
     user = User.query.get(user_id)
     return render_template('profile.html', user=user)
 
-@app.route('/editProfile', methods=['GET', 'POST'])
+@app.route('/edit_profile', methods=['POST'])
 @login_required
-def editProfile():
-    if(request.method == 'GET'):
-    	user_id = session['user_id'] 
-    	user = User.query.get(user_id)
-        if(user.firstname == None): 
-            user.firstname = ""
-        if(user.lastname == None): 
-            user.lastname = ""
-        if(user.school == None): 
-            user.school = ""
-        if(user.city == None): 
-            user.city = ""
-        if(user.country == None): 
-            user.country = ""
-        if(user.zipcode == None): 
-            user.zipcode = ""
-        if(user.phone == None): 
-            user.phone = ""
-        if(user.profile == None): 
-            user.profile = ""
-    	return render_template('editProfile.html', user=user)
-    error = None
+def edit_profile():
     if(request.method == 'POST'):
     	user_id = session['user_id']
     	user = User.query.get(user_id)
