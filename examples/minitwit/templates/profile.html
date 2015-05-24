@@ -4,6 +4,7 @@
 <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/angular-loading-bar/0.7.1/loading-bar.min.css' type='text/css' media='all' />
 <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/angular-loading-bar/0.7.1/loading-bar.min.js'></script>
 <script type='text/javascript' src='/js/uploadImage.js'></script>
+<script>var user_icon = "{{ user.icon }}"</script>
 {% endblock headjs %}
 {% block title %}Profile{% endblock %}
 {% block body %}
@@ -19,7 +20,7 @@
 
     <div class="form-group">
       <div class="text-center" ng-controller = "myCtrl">
-        <img ng-src="{{ formData.image|angular }}" class="avatar img-thumbnail img-circle" alt="{{ user.icon }}">
+        <img ng-src="{{ formData.image && formData.image || user_icon | angular }}" class="avatar img-thumbnail img-circle" alt="{{ user.icon }}">
         <h6>{{ _('Pleas upload your owen icon') }}</h6>
         <input type="file" name="image" file-model="myFile" class="text-center center-block well well-sm"/>
         <button class="btn btn-primary" ng-click="uploadFile()">{{ _('upload me') }}</button>
