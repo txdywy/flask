@@ -29,7 +29,7 @@
     <form class="form-horizontal" role="form" method="post" action="/edit_profile">
 
       <div ng-controller="formController">
-        <img ng-src="{{ formData.image|angular }}" autofocus class="avatar img-thumbnail img-circle" alt="{{ _('no new icon') }}">
+        <img ng-if="isDataAvailable()" ng-src="{{ formData.image|angular }}" autofocus class="avatar img-thumbnail img-circle" alt="{{ _('no new icon') }}">
         <input class="form-control" name="icon" id = "icon" value="{{ formData.image|angular }}" type="hidden">
       </div>
 
