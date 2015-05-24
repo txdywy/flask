@@ -17,18 +17,20 @@
       {{ _('Please complete your information') }}
     </div>
 
+    <div class="form-group">
+      <div class="text-center" ng-controller = "myCtrl">
+        <img src="{{ user.icon }}" class="avatar img-thumbnail img-circle" alt="avatar">
+        <h6>{{ _('Pleas upload your owen icon') }}</h6>
+        <input type="file" name="image" file-model="myFile" class="text-center center-block well well-sm"/>
+        <button class="btn btn-primary" ng-click="uploadFile()">{{ _('upload me') }}</button>
+      </div>
+    </div>
+
     <form class="form-horizontal" role="form" method="post" action="/edit_profile">
 
-      <div class="form-group">
-        <div ng-controller="formController">
-          <img ng-src="{{ formData.image|angular }}" autofocus class="img-responsive img-centered" alt="">
-        </div>
-        <div class="text-center" ng-controller = "myCtrl">
-          <img src="{{ user.icon }}" class="avatar img-thumbnail img-circle" alt="avatar">
-          <h6>{{ _('Pleas upload your owen icon') }}</h6>
-          <input type="file" name="image" file-model="myFile" class="text-center center-block well well-sm"/>
-          <button class="btn btn-primary" ng-click="uploadFile()">{{ _('upload me') }}</button>
-        </div>
+      <div ng-controller="formController">
+        <img ng-src="{{ formData.image|angular }}" autofocus class="avatar img-thumbnail img-circle" alt="avatar">
+        <input class="form-control" name="icon" id = "icon" value="{{ formData.image|angular }}" type="text">
       </div>
 
       <h3>{{ _('Personal Info') }}</h3>
