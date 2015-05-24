@@ -75,6 +75,8 @@ ALANCER_INDEX = 'project_list.html'#'alancer/index.html'
 ALANCER_HTTP_ROOT = 'http://alancer.cf'
 ALANCER_SERVICE_EMAIL = 'geniusron@gmail.com'
 
+NO_CONTENT_PICTURE = 'http://media-cache-ak0.pinimg.com/736x/3d/b0/4a/3db04ab7349e7f791d3819b57230751d.jpg'
+
 # create our little application :)
 app = Flask(__name__)
 app.config['BABEL_DEFAULT_LOCALE'] = 'zh_Hans_CN'
@@ -307,7 +309,7 @@ def upload_image():
         return lc_file.url 
     except Exception, e:
        print '=============== upload image failed ============ ', str(e)
-       return 'http://i.ytimg.com/vi/laTKz2IU7Kw/hqdefault.jpg'
+       return NO_CONTENT_PICTURE
 
 @app.route('/publish', methods=['GET'])
 @login_required
