@@ -17,10 +17,6 @@
       {{ _('Please complete your information') }}
     </div>
 
-
-
-    <form class="form-horizontal" role="form" method="post" action="/edit_profile">
-
     <div class="form-group">
       <div class="text-center" ng-controller = "myCtrl">
         <img src="{{ user.icon }}" class="avatar img-thumbnail img-circle" alt="{{ _('no icon') }}">
@@ -29,7 +25,9 @@
         <button class="btn btn-primary" ng-click="uploadFile()">{{ _('upload me') }}</button>
       </div>
     </div>
-    
+
+    <form class="form-horizontal" role="form" method="post" action="/edit_profile">
+
       <div ng-controller="formController">
         <img ng-src="{{ formData.image|angular }}" autofocus class="avatar img-thumbnail img-circle" alt="{{ _('no new icon') }}">
         <input class="form-control" name="icon" id = "icon" value="{{ formData.image|angular }}" type="hidden">
