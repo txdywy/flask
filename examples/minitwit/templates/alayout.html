@@ -103,6 +103,7 @@
             <!-- /.container-fluid -->
         </nav>
     </div>
+    <div class="body">
     {% with flashes = get_flashed_messages() %}
       {% if flashes %}
         <div class="flashes">
@@ -116,7 +117,7 @@
         </div>
       {% endif %}
     {% endwith %}
-    <div class="body">
+
     {% block body %}{% endblock %}
     </div>
     <div class="footer">
