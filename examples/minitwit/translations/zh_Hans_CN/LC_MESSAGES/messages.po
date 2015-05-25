@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2015-05-25 13:44+0800\n"
+"POT-Creation-Date: 2015-05-25 15:08+0800\n"
 "PO-Revision-Date: 2015-05-18 11:55+0800\n"
 "Last-Translator: Ramen King <geniusron@gmail.com>\n"
 "Language-Team: zh_Hans_CN <LL@li.org>\n"
@@ -60,7 +60,7 @@ msgid "Profile"
 msgstr "简历"
 
 #: templates/alayout.html:69 templates/login.html:75 templates/register.html:80
-#: templates/register.html:108
+#: templates/register.html:111
 msgid "Sign up"
 msgstr "注册"
 
@@ -324,9 +324,17 @@ msgstr "用户名"
 msgid "Password again"
 msgstr "确认密码"
 
-#: templates/register.html:105
-msgid "is a project owner"
-msgstr "我想发布项目"
+#: templates/register.html:103
+msgid "To be a developer or project owner"
+msgstr "请选择作为开发者或项目发布者"
+
+#: templates/register.html:106
+msgid "I want to be a developer"
+msgstr "我想成为开发者"
+
+#: templates/register.html:107
+msgid "I want to be a project owner"
+msgstr "我想成为项目发布者"
 
 #: templates/user_list.html:23
 msgid "About me"

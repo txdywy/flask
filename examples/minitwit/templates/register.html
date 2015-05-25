@@ -100,11 +100,14 @@
         <input type="password" id="password" name="password" class="form-control" placeholder="{{ _('Password') }}" required="">
         <label for="inputPassword" class="sr-only">Password2</label>
         <input type="password" id="password2" name="password2" class="form-control" placeholder="{{ _('Password again') }}" required="">
-        <div class="checkbox">
-          <label>
-            <input type="checkbox" name="isowner" value="1"> {{ _("is a project owner") }}
-          </label>
+        <label>{{ _("To be a developer or project owner") }}</label>
+        <div>
+          <select class="form-control" data-style="btn-success" name="to">
+            <option value="0">{{ _("I want to be a developer") }}</option>
+            <option value="1">{{ _("I want to be a project owner") }}</option>
+          </select>
         </div>
+        <label> </label>
         <button class="btn btn-lg btn-primary btn-block" type="submit">{{ _("Sign up") }}</button>
       </form>
 

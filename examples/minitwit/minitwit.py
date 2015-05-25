@@ -806,7 +806,7 @@ def register():
             email=request.form['email']
             u = User(username=username, email=email, pw_hash=generate_password_hash(request.form['password']))
             u.icon = get_pic_url('lego %s %s' % (username, email))
-            isowner = request.form.get('isowner')
+            isowner = int(request.form.get('isowner'))
             if isowner:
                 u.role = User.USER_CLIENT
             flush(u)
