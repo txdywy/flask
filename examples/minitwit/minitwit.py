@@ -191,6 +191,7 @@ def login_required(f):
         if 'user_id' in session:
             return f(*args, **kwargs)
         else:
+            flash(_('Wrong with username or password'))
             return redirect(url_for('login')) 
     return func
 
