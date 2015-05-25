@@ -470,6 +470,7 @@ def edit_profile():
         user.profile = request.form['profile']
         user.icon = request.form['icon']
     	flush(user)
+        flash(_('You have successfully updated your profile'))
     	return redirect(url_for('profile'))
 
 @app.route('/message', methods=['POST'])
