@@ -851,7 +851,7 @@ def register():
             util.send_email('[Alancer Signup]', 'You have a new user [%s] @lancer!' % request.form['email'], ALANCER_SERVICE_EMAIL) 
             session['user_id'] = u.user_id
             flash(_('You were successfully registered and can login now'))
-            return redirect(url_for('edit_profile'))
+            return redirect(url_for('profile'))
     return render_template('register.html', error=error)
 
 
