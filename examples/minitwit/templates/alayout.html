@@ -105,16 +105,15 @@
     </div>
     {% with flashes = get_flashed_messages() %}
       {% if flashes %}
-        <ul class="flashes">
+        <div class="flashes">
         {% for message in flashes %}
-          <li>{{ message }}
           <div class="alert alert-info alert-dismissable">
             <a class="panel-close close" data-dismiss="alert">×</a> 
             <i class="fa fa-coffee"></i>
             {{ message }}
           </div>
         {% endfor %}
-        </ul>
+        </div>
       {% endif %}
     {% endwith %}
     <div class="body">
