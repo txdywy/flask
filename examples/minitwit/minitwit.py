@@ -752,7 +752,7 @@ def login():
         elif not check_password_hash(user.pw_hash, request.form['password']):
             error = 'Invalid password'
         else:
-            flash('You were logged in')
+            flash(_('You were logged in'))
             session['user_id'] = user.user_id
             #return redirect(url_for('timeline'))
             return redirect(url_for('index'))
@@ -799,7 +799,7 @@ def register():
             util.send_email('[Alancer] Congratulations!', 'You have registered at alancer!', request.form['email'])
             util.send_email('[Alancer Signup]', 'You have a new user [%s] @lancer!' % request.form['email'], ALANCER_SERVICE_EMAIL) 
             session['user_id'] = u.user_id
-            flash('You were successfully registered and can login now')
+            flash(_('You were successfully registered and can login now'))
             return redirect(url_for('editProfile'))
     return render_template('register.html', error=error)
 
@@ -807,7 +807,7 @@ def register():
 @app.route('/logout')
 def logout():
     """Logs the user out."""
-    flash('You were logged out')
+    flash(_('You were logged out'))
     session.pop('user_id', None)
     return redirect(url_for('index'))
     #return redirect(url_for('public_timeline'))
