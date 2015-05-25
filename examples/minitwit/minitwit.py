@@ -191,7 +191,6 @@ def login_required(f):
         if 'user_id' in session:
             return f(*args, **kwargs)
         else:
-            flash(_('Wrong with username or password'))
             return redirect(url_for('login')) 
     return func
 
@@ -806,8 +805,8 @@ def login():
         else:
             flash(_('You were logged in'))
             session['user_id'] = user.user_id
-            #return redirect(url_for('timeline'))
             return redirect(url_for('index'))
+    flash(_('Wrong with username or password'))
     return render_template('login.html', error=error)
 
 
