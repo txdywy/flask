@@ -452,7 +452,11 @@ def users():
 def profile():
     user_id = session['user_id']
     user = User.query.get(user_id)
-    return render_template('profile.html', user=user)
+    if user.role == User.USER_CLIENT:
+        client = Client.query.filter_by(user_id=user.user_id).first()
+        return render_template('profile_client.html', user=user, client=client)
+    else:
+        return render_template('profile.html', user=user)
 
 @app.route('/edit_profile', methods=['POST'])
 @login_required
@@ -462,13 +466,25 @@ def edit_profile():
     	user = User.query.get(user_id)
     	user.firstname = request.form['firstname']
     	user.lastname = request.form['lastname']
-        user.school = request.form['school']
         user.city = request.form['city']
         user.country = request.form['country']
         user.zipcode = request.form['zipcode']
         user.phone = request.form['phone']
         user.profile = request.form['profile']
         user.icon = request.form['icon']
+        user.username = request.form['username']
+        user.email = request.form['email']
+        if user.role == User.USER_STUDENT:
+            user.school = request.form['school']
+        elif user.role == User.USER_CLIENT:
+            client = Client.query.filter_by(user_id=user.user_id).first()
+            client.icon = request.form['icon']
+            client.location = '%s %s' % (user.city, user.country)
+            client.company = request.form['company']
+            client.title = request.form['title']
+            client.name = user.username
+            client.email = user.email
+            flush(client)
     	flush(user)
         flash(_('You have successfully updated your profile'))
     	return redirect(url_for('profile'))
