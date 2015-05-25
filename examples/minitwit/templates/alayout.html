@@ -106,17 +106,15 @@
     <div class="body">
     {% with flashes = get_flashed_messages() %}
       {% if flashes %}
-        <section id="section_flash">
-          <div class="flashes">
-          {% for message in flashes %}
-            <div class="alert alert-info alert-dismissable">
-              <a class="panel-close close" data-dismiss="alert">×</a> 
-              <i class="fa fa-coffee"></i>
-              {{ message }}
-            </div>
-          {% endfor %}
+        <div class="flashes">
+        {% for message in flashes %}
+          <div class="alert alert-info alert-dismissable">
+            <a class="panel-close close" data-dismiss="alert">×</a> 
+            <i class="fa fa-coffee"></i>
+            {{ message }}
           </div>
-        </section>
+        {% endfor %}
+        </div>
       {% endif %}
     {% endwith %}
 
