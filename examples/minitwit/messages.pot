@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2015-05-25 03:37+0000\n"
+"POT-Creation-Date: 2015-05-25 12:00+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,19 +17,23 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 1.3\n"
 
-#: minitwit.py:636
+#: minitwit.py:473
+msgid "You have successfully updated your profile"
+msgstr ""
+
+#: minitwit.py:637
 msgid "hahaha"
 msgstr ""
 
-#: minitwit.py:755
+#: minitwit.py:756
 msgid "You were logged in"
 msgstr ""
 
-#: minitwit.py:802
+#: minitwit.py:803
 msgid "You were successfully registered and can login now"
 msgstr ""
 
-#: minitwit.py:810
+#: minitwit.py:811
 msgid "You were logged out"
 msgstr ""
 
