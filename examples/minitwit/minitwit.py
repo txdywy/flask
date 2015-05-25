@@ -458,6 +458,40 @@ def profile():
     else:
         return render_template('profile.html', user=user)
 
+@app.route('/project_info')
+@login_required
+def project_info():
+    project_id = request.args.get('project_id')
+    user_id = session['user_id']
+    user = User.query.get(user_id)
+    project = Project.query.get(project_id)
+    client = Client.query.filter_by(user_id=user_id).first()
+    if project.client_id != client.id:
+        abour(403)
+    return render_template('project_info.html', project=project)
+
+@app.route('/edit_project', methods=['POST'])
+@login_required
+def edit_project():
+    user_id = session['user_id']
+    user = User.query.get(user_id)
+    project_id = request.form['project_id']
+    project = Project.query.get(project_id)
+    client = Client.query.filter_by(user_id=user_id).first()
+    if project.client_id != client.id:
+        abour(403)      
+    project.title = request.form['title']
+    project.client = request.form['client']
+    project.desp = request.form['desp']
+    project.image_url = request.form['image_url']
+    project.service = request.form['service']
+    project.location = request.form['location']
+    project.incentive = request.form['incentive']
+    project.client_title = request.form['client_title']
+    flush(project)
+    flash(_('You have successfully updated your project'))
+    return render_template('project_info.html', project=project)
+
 @app.route('/edit_profile', methods=['POST'])
 @login_required
 def edit_profile():

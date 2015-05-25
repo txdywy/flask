@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2015-05-25 15:08+0800\n"
+"POT-Creation-Date: 2015-05-25 18:03+0800\n"
 "PO-Revision-Date: 2015-05-18 11:55+0800\n"
 "Last-Translator: Ramen King <geniusron@gmail.com>\n"
 "Language-Team: zh_Hans_CN <LL@li.org>\n"
@@ -17,23 +17,27 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 1.3\n"
 
-#: minitwit.py:489
+#: minitwit.py:492
+msgid "You have successfully updated your project"
+msgstr "您已成功更新项目信息"
+
+#: minitwit.py:523
 msgid "You have successfully updated your profile"
 msgstr "您已成功更新简历"
 
-#: minitwit.py:653
+#: minitwit.py:687
 msgid "hahaha"
 msgstr "哈哈哈"
 
-#: minitwit.py:772
+#: minitwit.py:806
 msgid "You were logged in"
 msgstr "您已成功登录"
 
-#: minitwit.py:819
+#: minitwit.py:853
 msgid "You were successfully registered and can login now"
 msgstr "您已成功注册并登录"
 
-#: minitwit.py:827
+#: minitwit.py:861
 msgid "You were logged out"
 msgstr "您已成功注销"
 
@@ -105,7 +109,7 @@ msgstr "请描述你为何对此项目感兴趣..."
 msgid "\"Message\""
 msgstr "收件箱"
 
-#: templates/apply.html:47 templates/publish.html:74
+#: templates/apply.html:47 templates/publish.html:82
 msgid "Submit"
 msgstr "提交"
 
@@ -175,11 +179,12 @@ msgid "Pleas upload your own icon"
 msgstr "请上传个人头像"
 
 #: templates/profile.html:24 templates/profile_client.html:24
-#: templates/publish.html:99
+#: templates/project_info.html:24 templates/publish.html:107
 msgid "upload me"
 msgstr "上传图片"
 
 #: templates/profile.html:31 templates/profile_client.html:31
+#: templates/project_info.html:31
 msgid "no new icon"
 msgstr "无新头像"
 
@@ -221,10 +226,12 @@ msgid "Email"
 msgstr "邮箱"
 
 #: templates/profile.html:102 templates/profile_client.html:108
+#: templates/project_info.html:87
 msgid "Created time"
 msgstr "创建时间"
 
 #: templates/profile.html:111 templates/profile_client.html:117
+#: templates/project_info.html:96
 msgid "Save Changes"
 msgstr "保存修改"
 
@@ -232,9 +239,50 @@ msgstr "保存修改"
 msgid "Company"
 msgstr "公司/组织"
 
-#: templates/profile_client.html:56 templates/publish.html:46
+#: templates/profile_client.html:56 templates/publish.html:54
 msgid "Title"
 msgstr "职位/身份"
+
+#: templates/project_info.html:17
+msgid "You can edit your project now"
+msgstr "你可以在此编辑项目信息"
+
+#: templates/project_info.html:22
+msgid "Upload a new project icon if you want"
+msgstr "可以上传一张新项目图标"
+
+#: templates/project_info.html:36
+msgid "Project Info"
+msgstr "项目信息"
+
+#: templates/project_info.html:39
+msgid "Project title"
+msgstr "项目名称"
+
+#: templates/project_info.html:45 templates/project_info.html:80
+#: templates/publish.html:61
+msgid "Description"
+msgstr "描述"
+
+#: templates/project_info.html:51
+msgid "Service"
+msgstr "服务领域"
+
+#: templates/project_info.html:57
+msgid "Client name"
+msgstr "客户名称"
+
+#: templates/project_info.html:63
+msgid "Location"
+msgstr "位置"
+
+#: templates/project_info.html:69 templates/publish.html:68
+msgid "Incentive"
+msgstr "奖励"
+
+#: templates/project_info.html:74
+msgid "Client title"
+msgstr "客户称谓"
 
 #: templates/project_list.html:23
 msgid "Want to launch"
@@ -252,59 +300,51 @@ msgstr "申请时间"
 msgid "There's no project so far."
 msgstr "目前没有项目"
 
-#: templates/publish.html:14
+#: templates/publish.html:22
 msgid "My Projects"
 msgstr "我的项目"
 
-#: templates/publish.html:16
+#: templates/publish.html:24
 msgid "My Projects Number"
 msgstr "我的项目数"
 
-#: templates/publish.html:22 templates/publish.html:47
+#: templates/publish.html:30 templates/publish.html:55
 msgid "Project Title"
 msgstr "项目名称"
 
-#: templates/publish.html:23
+#: templates/publish.html:31
 msgid "Client"
 msgstr "客户"
 
-#: templates/publish.html:24
+#: templates/publish.html:32
 msgid "Image"
 msgstr "图像"
 
-#: templates/publish.html:35
+#: templates/publish.html:43
 msgid "no projects"
 msgstr "没有项目"
 
-#: templates/publish.html:41
+#: templates/publish.html:49
 msgid "Publish a new project"
 msgstr "发布一个新项目"
 
-#: templates/publish.html:53
-msgid "Description"
-msgstr "描述"
-
-#: templates/publish.html:54
+#: templates/publish.html:62
 msgid "Project Description"
 msgstr "项目描述"
 
-#: templates/publish.html:60
-msgid "Incentive"
-msgstr "奖励"
-
-#: templates/publish.html:61
+#: templates/publish.html:69
 msgid "Project Incentive"
 msgstr "项目奖励"
 
-#: templates/publish.html:67
+#: templates/publish.html:75
 msgid "Image Url"
 msgstr "图片链接"
 
-#: templates/publish.html:88
+#: templates/publish.html:96
 msgid "formData preview"
 msgstr "数据预览"
 
-#: templates/publish.html:90
+#: templates/publish.html:98
 msgid "project image preview"
 msgstr "项目图片预览"
 

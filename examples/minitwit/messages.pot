@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2015-05-25 15:08+0800\n"
+"POT-Creation-Date: 2015-05-25 18:03+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,23 +17,27 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 1.3\n"
 
-#: minitwit.py:489
+#: minitwit.py:492
+msgid "You have successfully updated your project"
+msgstr ""
+
+#: minitwit.py:523
 msgid "You have successfully updated your profile"
 msgstr ""
 
-#: minitwit.py:653
+#: minitwit.py:687
 msgid "hahaha"
 msgstr ""
 
-#: minitwit.py:772
+#: minitwit.py:806
 msgid "You were logged in"
 msgstr ""
 
-#: minitwit.py:819
+#: minitwit.py:853
 msgid "You were successfully registered and can login now"
 msgstr ""
 
-#: minitwit.py:827
+#: minitwit.py:861
 msgid "You were logged out"
 msgstr ""
 
@@ -105,7 +109,7 @@ msgstr ""
 msgid "\"Message\""
 msgstr ""
 
-#: templates/apply.html:47 templates/publish.html:74
+#: templates/apply.html:47 templates/publish.html:82
 msgid "Submit"
 msgstr ""
 
@@ -175,11 +179,12 @@ msgid "Pleas upload your own icon"
 msgstr ""
 
 #: templates/profile.html:24 templates/profile_client.html:24
-#: templates/publish.html:99
+#: templates/project_info.html:24 templates/publish.html:107
 msgid "upload me"
 msgstr ""
 
 #: templates/profile.html:31 templates/profile_client.html:31
+#: templates/project_info.html:31
 msgid "no new icon"
 msgstr ""
 
@@ -221,10 +226,12 @@ msgid "Email"
 msgstr ""
 
 #: templates/profile.html:102 templates/profile_client.html:108
+#: templates/project_info.html:87
 msgid "Created time"
 msgstr ""
 
 #: templates/profile.html:111 templates/profile_client.html:117
+#: templates/project_info.html:96
 msgid "Save Changes"
 msgstr ""
 
@@ -232,8 +239,49 @@ msgstr ""
 msgid "Company"
 msgstr ""
 
-#: templates/profile_client.html:56 templates/publish.html:46
+#: templates/profile_client.html:56 templates/publish.html:54
 msgid "Title"
+msgstr ""
+
+#: templates/project_info.html:17
+msgid "You can edit your project now"
+msgstr ""
+
+#: templates/project_info.html:22
+msgid "Upload a new project icon if you want"
+msgstr ""
+
+#: templates/project_info.html:36
+msgid "Project Info"
+msgstr ""
+
+#: templates/project_info.html:39
+msgid "Project title"
+msgstr ""
+
+#: templates/project_info.html:45 templates/project_info.html:80
+#: templates/publish.html:61
+msgid "Description"
+msgstr ""
+
+#: templates/project_info.html:51
+msgid "Service"
+msgstr ""
+
+#: templates/project_info.html:57
+msgid "Client name"
+msgstr ""
+
+#: templates/project_info.html:63
+msgid "Location"
+msgstr ""
+
+#: templates/project_info.html:69 templates/publish.html:68
+msgid "Incentive"
+msgstr ""
+
+#: templates/project_info.html:74
+msgid "Client title"
 msgstr ""
 
 #: templates/project_list.html:23
@@ -252,59 +300,51 @@ msgstr ""
 msgid "There's no project so far."
 msgstr ""
 
-#: templates/publish.html:14
+#: templates/publish.html:22
 msgid "My Projects"
 msgstr ""
 
-#: templates/publish.html:16
+#: templates/publish.html:24
 msgid "My Projects Number"
 msgstr ""
 
-#: templates/publish.html:22 templates/publish.html:47
+#: templates/publish.html:30 templates/publish.html:55
 msgid "Project Title"
 msgstr ""
 
-#: templates/publish.html:23
+#: templates/publish.html:31
 msgid "Client"
 msgstr ""
 
-#: templates/publish.html:24
+#: templates/publish.html:32
 msgid "Image"
 msgstr ""
 
-#: templates/publish.html:35
+#: templates/publish.html:43
 msgid "no projects"
 msgstr ""
 
-#: templates/publish.html:41
+#: templates/publish.html:49
 msgid "Publish a new project"
 msgstr ""
 
-#: templates/publish.html:53
-msgid "Description"
-msgstr ""
-
-#: templates/publish.html:54
+#: templates/publish.html:62
 msgid "Project Description"
 msgstr ""
 
-#: templates/publish.html:60
-msgid "Incentive"
-msgstr ""
-
-#: templates/publish.html:61
+#: templates/publish.html:69
 msgid "Project Incentive"
 msgstr ""
 
-#: templates/publish.html:67
+#: templates/publish.html:75
 msgid "Image Url"
 msgstr ""
 
-#: templates/publish.html:88
+#: templates/publish.html:96
 msgid "formData preview"
 msgstr ""
 
-#: templates/publish.html:90
+#: templates/publish.html:98
 msgid "project image preview"
 msgstr ""
 
