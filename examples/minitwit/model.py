@@ -59,6 +59,7 @@ class User(Base):
     create_time = Column(DATETIME())
     firstname = Column(String(20), default='')
     lastname = Column(String(20), default='')
+    approved = Column(Integer, default=0)
 
     def __init__(self, username, email, pw_hash):
         self.username = username

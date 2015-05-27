@@ -31,9 +31,9 @@
                             </div>
                             <div style="clear: both;"></div>
                             {% if user.role==USER_STUDENT %}
-                              <p><span class="label label-info">{{ _('Developer') }}</span></p>
+                              <p><span class="label label-info"> {{ _('Developer') }}</span></p>
                             {% else %}
-                              <p><span class="label label-success">{{ _('Project owner') }}</span></p>
+                              <p><span class="label label-success"> {{ _('Project owner') }}</span></p>
                             {% endif %}
                             <p><b>{{ _('About me') }}: </b>{{ user.profile }}</p>
                             <p><b>{{ _('Review') }}: </b>95% {{ _('approval') }} (5 {{ _('reviews') }})</p>
