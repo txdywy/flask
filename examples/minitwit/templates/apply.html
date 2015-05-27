@@ -6,11 +6,15 @@
             <div class="row">
               <div class="col-md-8">
                 <h2 class="page-header">{{ _('Applying') }}</h2>
-                  <div class="col-md-4 col-sm-4 col-xs-5">
-                     <figure class="thumbnail">
-                     <img class="img-responsive" src="{{ data.get('m_user_icon') }}" />
-                     <figcaption class="text-center">{{ data.get('m_user_name') }}</figcaption>
-                     </figure>
+                  <div class="media">
+                     <span class="media-left">
+                       <img class="img-responsive img-circle" width="70" length="70" src="{{ data.get('m_user_icon') }}" />
+                     </span>
+                     <div class="media-right">
+                       <p><b>{{ data.get('m_user_name') }}</b></p>
+                       <p><b>{{ m_user.school }}</b></p>
+                       <p><font size="3">{{ m_user.city }} {{ ucd }}{{ _('d ago') }}</font></p>
+                     </div>
                   </div>
                   <div class="col-md-8 col-sm-8 col-xs-11">
                      <div class="panel panel-default arrow right">
