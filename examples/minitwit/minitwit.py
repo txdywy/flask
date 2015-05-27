@@ -447,10 +447,31 @@ def project_slider():
     #print '====',pats
     return render_template('project_slider.html', projects=projects, pas=pas, pats=pats, puds=puds, pics=pics)
 
-@app.route('/users')
+@app.route('/users', methods=['POST', 'GET'])
+@login_required
 def users():
-    users = User.query.all();
-    return render_template('user_list.html', users=users)
+    if request.method == 'GET': 
+        f = request.args.get('filter')
+        filter = int(f if f else 0)
+        if filter == 0:
+            users = User.query.all()
+        elif filter == 1:
+            users = User.query.filter_by(role=User.USER_CLIENT).all()
+        elif filter == 2:
+            users = User.query.filter_by(role=User.USER_STUDENT).all()
+        else:
+            users = []
+    if request.method == 'POST':
+        filter = int(request.form['filter'])
+        if filter == 0:
+            users = User.query.all()
+        elif filter == 1:
+            users = User.query.filter_by(role=User.USER_CLIENT).all()
+        elif filter == 2:
+            users = User.query.filter_by(role=User.USER_STUDENT).all()
+        else:
+            users = []
+    return render_template('user_list.html', users=users, filter=filter)
 
 @app.route('/profile')
 @login_required

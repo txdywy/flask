@@ -81,7 +81,9 @@
                         </li>
                         -->
 			            <li class="page-scroll">
+                            {% if g.user %}
 			                <a href="/users">{{ _("Users") }}</a>
+                            {% endif %}
 			            </li>
                         <li class="page-scroll">
                             <a href="/">{{ _("Home") }}</a>

@@ -10,6 +10,16 @@
                     <hr class="star-primary">
                 </div>
             </div>
+            <form class="form-filter" method="post">
+              <div>
+              <select class="form-control" data-style="btn-success" name="filter">
+                <option value="0" {% if filter==0 %} selected="selected" {% endif %}>{{ _("All users") }}</option>
+                <option value="1" {% if filter==1 %} selected="selected" {% endif %}>{{ _("Project owners") }}</option>
+                <option value="2" {% if filter==2 %} selected="selected" {% endif %}>{{ _("Developers") }}</option>
+              </select>
+              <button class="btn btn-primary" type="submit">{{ _("Filter") }}</button>
+              </div>
+            </form> 
             <div class="row">
                 {% for user in users %}
                 <div>
