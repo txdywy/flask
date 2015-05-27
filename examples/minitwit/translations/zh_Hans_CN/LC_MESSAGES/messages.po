@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2015-05-27 15:26+0800\n"
+"POT-Creation-Date: 2015-05-27 21:28+0800\n"
 "PO-Revision-Date: 2015-05-18 11:55+0800\n"
 "Last-Translator: Ramen King <geniusron@gmail.com>\n"
 "Language-Team: zh_Hans_CN <LL@li.org>\n"
@@ -33,15 +33,15 @@ msgstr "哈哈哈"
 msgid "You were logged in"
 msgstr "您已成功登录"
 
-#: minitwit.py:835
+#: minitwit.py:836
 msgid "Wrong with username or password"
 msgstr "用户名或密码有误"
 
-#: minitwit.py:879
+#: minitwit.py:880
 msgid "You were successfully registered and can login now"
 msgstr "您已成功注册并登录"
 
-#: minitwit.py:887
+#: minitwit.py:888
 msgid "You were logged out"
 msgstr "您已成功注销"
 
@@ -105,15 +105,33 @@ msgstr "申请"
 msgid "Applying"
 msgstr "申请中"
 
-#: templates/apply.html:40
+#: templates/apply.html:15 templates/message.html:26 templates/profile.html:50
+msgid "School"
+msgstr "学校"
+
+#: templates/apply.html:16 templates/message.html:29 templates/profile.html:56
+#: templates/profile_client.html:62
+msgid "City"
+msgstr "城市"
+
+#: templates/apply.html:17
+msgid "Joined"
+msgstr "加入时间"
+
+#: templates/apply.html:17 templates/message.html:32
+#: templates/project_list.html:20
+msgid "d ago"
+msgstr "天之前"
+
+#: templates/apply.html:45
 msgid "Mention why you are insterested and what you can bring to this project..."
 msgstr "请描述你为何对此项目感兴趣..."
 
-#: templates/apply.html:42
+#: templates/apply.html:47
 msgid "\"Message\""
 msgstr "收件箱"
 
-#: templates/apply.html:47 templates/publish.html:82
+#: templates/apply.html:52 templates/publish.html:82
 msgid "Submit"
 msgstr "提交"
 
@@ -137,22 +155,9 @@ msgstr "记住我"
 msgid "Messages"
 msgstr "收件箱"
 
-#: templates/message.html:26 templates/profile.html:50
-msgid "School"
-msgstr "学校"
-
-#: templates/message.html:29 templates/profile.html:56
-#: templates/profile_client.html:62
-msgid "City"
-msgstr "城市"
-
 #: templates/message.html:32
 msgid "Jonied"
 msgstr "加入时间"
-
-#: templates/message.html:32 templates/project_list.html:20
-msgid "d ago"
-msgstr "天之前"
 
 #: templates/message.html:90 templates/message_box.html:21
 msgid "There's no message so far."

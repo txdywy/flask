@@ -8,35 +8,13 @@
                 <h2 class="page-header">{{ _('Applying') }}</h2>
                   <div class="media">
                      <span class="media-left">
-                       <img class="img-responsive img-circle" width="70" length="70" src="{{ data.get('m_user_icon') }}" />
+                       <img class="img-responsive img-circle" width="100" length="100" src="{{ data.get('m_user_icon') }}" />
                      </span>
                      <div class="media-right">
-                       <p><b>{{ data.get('m_user_name') }}</b></p>
-                       <p><b>{{ m_user.school }}</b></p>
-                       <p><font size="3">{{ m_user.city }} {{ ucd }}{{ _('d ago') }}</font></p>
-                     </div>
-                  </div>
-                  <div class="col-md-8 col-sm-8 col-xs-11">
-                     <div class="panel panel-default arrow right">
-                        <div class="panel-body-right">
-                           <header class="text-left">
-                              <div class="comment-user"><i class="fa fa-user"></i> {{ data.get('m_user_name') }}</div>
-                           </header>
-                           <div class="comment-post">
-                             <p>
-                             Profile: {{ m_user.profile }}
-                             </p>
-                             <p>
-                             School: {{ m_user.school }}
-                             </p>
-                             <p>
-                             City: {{ m_user.city }}
-                             </p>
-                             <p>
-                             Jonied: {{ ucd }}d ago
-                             </p>
-                           </div>
-                        </div>
+                       <p><b><font size="5">{{ data.get('m_user_name') }}</font></b></p>
+                       <p><b><font size="2">{{ _('School') }}: {{ m_user.school }}</font></b></p>
+                       <p><b><font size="2">{{ _('City') }}: {{ m_user.city }}</font></b></p>  
+                       <p><b><font size="2">{{ _('Joined') }}: {{ ucd }}{{ _('d ago') }}</font></b></p>
                      </div>
                   </div>
 
@@ -51,6 +29,15 @@
                              <button class="btn btn-info btn-lg" type="submit" ><span class="glyphicon glyphicon-send"></span> {{ _('Submit') }}</button>
                            </div>
                          </form>
+                  </div>
+                  <div>
+                      <p>
+                      <i>
+                      <font size="3">
+                      {{ _('About me') }}: {{ m_user.profile }}
+                      </font>
+                      </i>
+                      </p>
                   </div>
 
               </div>

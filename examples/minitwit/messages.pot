@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2015-05-27 15:26+0800\n"
+"POT-Creation-Date: 2015-05-27 21:28+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -33,15 +33,15 @@ msgstr ""
 msgid "You were logged in"
 msgstr ""
 
-#: minitwit.py:835
+#: minitwit.py:836
 msgid "Wrong with username or password"
 msgstr ""
 
-#: minitwit.py:879
+#: minitwit.py:880
 msgid "You were successfully registered and can login now"
 msgstr ""
 
-#: minitwit.py:887
+#: minitwit.py:888
 msgid "You were logged out"
 msgstr ""
 
@@ -105,15 +105,33 @@ msgstr ""
 msgid "Applying"
 msgstr ""
 
-#: templates/apply.html:40
+#: templates/apply.html:15 templates/message.html:26 templates/profile.html:50
+msgid "School"
+msgstr ""
+
+#: templates/apply.html:16 templates/message.html:29 templates/profile.html:56
+#: templates/profile_client.html:62
+msgid "City"
+msgstr ""
+
+#: templates/apply.html:17
+msgid "Joined"
+msgstr ""
+
+#: templates/apply.html:17 templates/message.html:32
+#: templates/project_list.html:20
+msgid "d ago"
+msgstr ""
+
+#: templates/apply.html:45
 msgid "Mention why you are insterested and what you can bring to this project..."
 msgstr ""
 
-#: templates/apply.html:42
+#: templates/apply.html:47
 msgid "\"Message\""
 msgstr ""
 
-#: templates/apply.html:47 templates/publish.html:82
+#: templates/apply.html:52 templates/publish.html:82
 msgid "Submit"
 msgstr ""
 
@@ -137,21 +155,8 @@ msgstr ""
 msgid "Messages"
 msgstr ""
 
-#: templates/message.html:26 templates/profile.html:50
-msgid "School"
-msgstr ""
-
-#: templates/message.html:29 templates/profile.html:56
-#: templates/profile_client.html:62
-msgid "City"
-msgstr ""
-
 #: templates/message.html:32
 msgid "Jonied"
-msgstr ""
-
-#: templates/message.html:32 templates/project_list.html:20
-msgid "d ago"
 msgstr ""
 
 #: templates/message.html:90 templates/message_box.html:21
