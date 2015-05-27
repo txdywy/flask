@@ -471,7 +471,7 @@ def users():
             users = User.query.filter_by(role=User.USER_STUDENT).all()
         else:
             users = []
-    return render_template('user_list.html', users=users, filter=filter)
+    return render_template('user_list.html', users=users, filter=filter, USER_STUDENT=User.USER_STUDENT)
 
 @app.route('/profile')
 @login_required
