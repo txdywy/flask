@@ -30,11 +30,16 @@
                                 <p class="alignright" style="float:right;"><i>{{ user.school }}, {{ user.city }}</i></p>
                             </div>
                             <div style="clear: both;"></div>
+                            <p>
                             {% if user.role==USER_STUDENT %}
-                              <p><span class="label label-info"> {{ _('Developer') }}</span></p>
+                              <span class="label label-info">{{ _('Developer') }}</span>
                             {% else %}
-                              <p><span class="label label-success"> {{ _('Project owner') }}</span></p>
+                              <span class="label label-success">{{ _('Project owner') }}</span>
                             {% endif %}
+                            {% if user.approved == 1 %}
+                              <span class="label label-danger glyphicon glyphicon-thumbs-up">{{ _('Approved') }}</span>
+                            {% endif %}
+                            </p>
                             <p><b>{{ _('About me') }}: </b>{{ user.profile }}</p>
                             <p><b>{{ _('Review') }}: </b>95% {{ _('approval') }} (5 {{ _('reviews') }})</p>
 			    <div class="bottom">
