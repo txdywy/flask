@@ -832,7 +832,8 @@ def login():
             flash(_('You were logged in'))
             session['user_id'] = user.user_id
             return redirect(url_for('index'))
-    flash(_('Wrong with username or password'))
+    if error:
+        flash(_('Wrong with username or password'))
     return render_template('login.html', error=error)
 
 
