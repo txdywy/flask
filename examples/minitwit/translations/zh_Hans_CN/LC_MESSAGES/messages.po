@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2015-05-27 15:10+0800\n"
+"POT-Creation-Date: 2015-05-27 15:26+0800\n"
 "PO-Revision-Date: 2015-05-18 11:55+0800\n"
 "Last-Translator: Ramen King <geniusron@gmail.com>\n"
 "Language-Team: zh_Hans_CN <LL@li.org>\n"
@@ -408,23 +408,27 @@ msgstr "项目发布人"
 msgid "Approved"
 msgstr "通过认证"
 
-#: templates/user_list.html:43
+#: templates/user_list.html:42
+msgid "Pending"
+msgstr "等待认证"
+
+#: templates/user_list.html:45
 msgid "About me"
 msgstr "关于我"
 
-#: templates/user_list.html:44
+#: templates/user_list.html:46
 msgid "Review"
 msgstr "评论"
 
-#: templates/user_list.html:44
+#: templates/user_list.html:46
 msgid "approval"
 msgstr "审核"
 
-#: templates/user_list.html:44
+#: templates/user_list.html:46
 msgid "reviews"
 msgstr "评论"
 
-#: templates/user_list.html:62
+#: templates/user_list.html:64
 msgid "There's no user so far."
 msgstr "目前没有用户"
 

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2015-05-27 15:10+0800\n"
+"POT-Creation-Date: 2015-05-27 15:26+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -408,23 +408,27 @@ msgstr ""
 msgid "Approved"
 msgstr ""
 
-#: templates/user_list.html:43
+#: templates/user_list.html:42
+msgid "Pending"
+msgstr ""
+
+#: templates/user_list.html:45
 msgid "About me"
 msgstr ""
 
-#: templates/user_list.html:44
+#: templates/user_list.html:46
 msgid "Review"
 msgstr ""
 
-#: templates/user_list.html:44
+#: templates/user_list.html:46
 msgid "approval"
 msgstr ""
 
-#: templates/user_list.html:44
+#: templates/user_list.html:46
 msgid "reviews"
 msgstr ""
 
-#: templates/user_list.html:62
+#: templates/user_list.html:64
 msgid "There's no user so far."
 msgstr ""
 

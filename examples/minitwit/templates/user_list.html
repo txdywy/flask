@@ -38,6 +38,8 @@
                             {% endif %}
                             {% if user.approved == 1 %}
                               <span class="label label-danger glyphicon glyphicon-thumbs-up">{{ _('Approved') }}</span>
+                            {% else %}
+                              <span class="label label-warning glyphicon glyphicon-pushpin">{{ _('Pending') }}</span>
                             {% endif %}
                             </p>
                             <p><b>{{ _('About me') }}: </b>{{ user.profile }}</p>
