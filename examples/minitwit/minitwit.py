@@ -398,6 +398,10 @@ def contact():
 def cat():
     return render_template('cat.html', index_ag="{{$index}}")
 
+@app.route('/zl')
+def zl():
+    return render_template('zl.html')
+
 @app.route('/inf')
 def inf():
     return render_template('inf.html')
@@ -406,7 +410,7 @@ def inf():
 def infd():
     start = int(request.args.get('start'))
     count = int(request.args.get('count'))
-    return json.dumps(range(start, start+count))
+    return json.dumps(range(1, 20))
 
 @app.route('/project')
 def project():
