@@ -17,6 +17,7 @@ pkgs = ['boto',
         'Flask-Babel',
         'redis',
         'celery',
+        'simplejson',
        ]
 for pkg in pkgs:
     local(SUDO_PIP_INSTALL % pkg)

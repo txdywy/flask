@@ -15,6 +15,7 @@ from hashlib import md5
 from datetime import datetime
 from flask import Flask, request, session, url_for, redirect, \
      render_template, abort, g, flash, _app_ctx_stack, make_response
+import flask
 from flask.ext.triangle import Triangle
 from werkzeug import check_password_hash, generate_password_hash
 from boto.s3.connection import S3Connection
@@ -23,6 +24,7 @@ from PIL import Image
 from model import flush, db_session, Project, Contact, Client, User, UserLike, Message, ProjectApply
 from sqlalchemy import desc
 import util, functools
+import simplejson as json
 try:
     import wx_util
 except:
@@ -395,7 +397,17 @@ def contact():
 @app.route('/cat')
 def cat():
     return render_template('cat.html', index_ag="{{$index}}")
+
+@app.route('/inf')
+def inf():
+    return render_template('inf.html')
  
+@app.route('/infd')
+def infd():
+    start = int(request.args.get('start'))
+    count = int(request.args.get('count'))
+    return json.dumps(range(start, start+count))
+
 @app.route('/project')
 def project():
     user_id = session.get('user_id')
