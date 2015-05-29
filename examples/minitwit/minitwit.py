@@ -402,6 +402,11 @@ def cat():
 def zl():
     return render_template('zl.html')
 
+@app.route('/ps')
+def ps():
+    projects = Project.query.order_by(desc(Project.id)).all()
+    return render_template('ps.html', projects=projects)
+
 @app.route('/inf')
 def inf():
     return render_template('inf.html')
