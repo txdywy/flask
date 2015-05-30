@@ -25,6 +25,7 @@ from model import flush, db_session, Project, Contact, Client, User, UserLike, M
 from sqlalchemy import desc
 import util, functools
 import simplejson as json
+from random import randint
 try:
     import wx_util
 except:
@@ -405,7 +406,10 @@ def zl():
 @app.route('/ps')
 def ps():
     projects = Project.query.order_by(desc(Project.id)).all()
-    return render_template('ps.html', projects=projects)
+    l = len(projects)
+    r = l - 10
+    s = randint(0, r if r > 0 else 0)
+    return render_template('ps.html', projects=projects[s:s+10])
 
 @app.route('/inf')
 def inf():
