@@ -1,0 +1,273 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>{{ _('Alancer Projects')}}</title>
+<meta name="viewport" content="initial-scale=1">
+
+<!--layout-->
+<link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="http://getbootstrap.com/examples/signin/signin.css" rel="stylesheet">
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<link href="css/message.css" rel="stylesheet">
+<link href="css/freelancer.css" rel="stylesheet">
+<link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+<link rel="stylesheet" href="http://cdn.bootcss.com/Swiper/3.0.7/css/swiper.min.css">
+<script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+<script src="http://cdn.bootcss.com/Swiper/3.0.7/js/swiper.jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script src="http://senturytire.com/JY-liveapp/js/swiper.animate1.0.2.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+<link rel="stylesheet" href="http://cdn.bootcss.com/animate.css/3.3.0/animate.min.css">
+<style>
+* {
+	margin: 0;
+	padding: 0;
+}
+  .swiper-container {
+  
+  }
+  .swiper-wrapper {
+    -webkit-perspective: 1200px;
+    -moz-perspective: 1200px;
+    -ms-perspective: 1200px;
+    perspective: 1200px;
+  }
+  .swiper-slide {
+    position: relative;
+    -webkit-transform-style: preserve-3d;
+    -moz-transform-style: preserve-3d;
+    -ms-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+   background-size:100% auto;
+   overflow:hidden;
+   text-align:center;
+   line-height:300px;
+  }
+.swiper-slide{
+    width:100%;
+    height:100%;
+    background:url(http://www.swiper.com.cn/demo/festival/upload/bg.jpg) no-repeat left top;
+    background-size:100% 100%;
+}
+.swiper-slide img{
+	max-width:100%;
+}
+img{
+    display:block;
+}
+@-webkit-keyframes tipmove{0%{bottom:10px;opacity:0}50%{bottom:15px;opacity:1}100%{bottom:20px;opacity:0}}
+.ani{
+    position:absolute;
+    }
+.txt{
+    position:absolute;
+}
+#array{
+    position:absolute;z-index:999;-webkit-animation: tipmove 1.5s infinite ease-in-out;
+}
+
+#fingerprint{
+    position:absolute;z-index:999;-webkit-animation: tipmove 3.0s infinite ease-in-out;
+    pointer-events: none;
+}
+#reload{
+    -webkit-animation: tipmove 10.0s infinite ease-in-out;
+}
+
+</style>
+</head>
+<body id="page-top" class="index">
+    <div class="container">
+    <!-- Navigation -->
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div class="container">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header page-scroll">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#page-top">{{ _("Start") }} Alancer</a>
+                </div>
+
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="hidden">
+                            <a href="#page-top"></a>
+                        </li>
+                        <li class="page-scroll">
+                            {% if g.user %}
+                                <a href="{{ url_for('logout') }}">{{ _("sign out") }} [{{ g.user.username }}]</a>
+                            {% else %}
+                                <a href="{{ url_for('login') }}">{{ _("Sign in") }}</a>
+                            {% endif %}
+                        </li>
+      <li class="page-scroll">
+                            {% if g.user %}
+                                <a href="{{ url_for('profile') }}">{{ _("Profile") }}</a>
+                            {% endif %}
+                        </li>
+                        <li class="page-scroll">
+                            {% if not g.user %}
+                                <a href="{{ url_for('register') }}">{{ _("Sign up") }}</a>
+                            {% endif %}
+                        </li>
+                        <li class="page-scroll">
+                            <a href="{{ url_for('message_box') }}">{{ _("Message") }} <span class="badge">{{g.message_num}}</span></a>
+                        </li>
+                        <li class="page-scroll">
+                            <a href="/project">{{ _("Project") }}</a>
+                        </li>
+                        <!--
+                        <li class="page-scroll">
+                            <a href="/project_slider">Slider</a>
+                        </li>
+                        -->
+                  <li class="page-scroll">
+                            {% if g.user %}
+                      <a href="/users">{{ _("Users") }}</a>
+                            {% endif %}
+                  </li>
+                        <li class="page-scroll">
+                            <a href="/">{{ _("Home") }}</a>
+                        </li>
+                        {% if g.user and g.admin_power %}
+                        <li class="page-scroll">
+                            <a href="/admin">{{ _("Admin") }}</a>
+                        </li>
+                        {% endif %}
+                        {% if g.user and g.isowner %}
+                        <li class="page-scroll">
+                            <a href="/publish">{{ _("Publish") }}</a>
+                        </li>
+                        {% endif %}
+                    </ul>
+                </div>
+                <!-- /.navbar-collapse -->
+            </div>
+            <!-- /.container-fluid -->
+        </nav>
+    </div>
+    <div class="body">
+    {% with flashes = get_flashed_messages() %}
+      {% if flashes %}
+        <div class="flashes">
+        {% for message in flashes %}
+          <div class="alert alert-info alert-dismissable">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</sp    an></button>
+            {{ message }}
+          </div>
+        {% endfor %}
+        </div>
+      {% endif %}
+    {% endwith %}
+<div style="max-width:640px; margin:0 auto;">
+<div class="swiper-container">
+  <div class="swiper-wrapper">
+    {% for project in projects %}
+    <div class="swiper-slide">
+      <a href="{{ url_for('apply', m_user_id=g.user.user_id if g.user else None, m_client_id=project.client_id, project_id=project.id) }}"> 
+        <img src="{{project.image_url}}">
+      </a>
+    </div>
+    {% endfor %}
+    <div class="swiper-slide">
+      <a href="/project_swiper">
+        <img src="https://cdn3.iconfinder.com/data/icons/transfers/100/239342-reload_refresh-512.png" style="width:300px;height:300px;top:30px; left:10px;" class="resize">
+      </a> 
+    </div>
+  </div>
+  <img src="http://www.iclarified.com/images/tutorials/34048/141586/141586.png" style="width:150px;height:150px;top:10%; left:55%;" id="fingerprint" class="resize">
+  <img src="http://www.swiper.com.cn/demo/festival/images/web-swipe-tip.png" style="width:20px;height:15px;top:70%; left:50%;" id="array" class="resize">
+
+  </div>
+</div>
+
+<script type = "text/javascript">
+function fixPagesHeight() {
+	$('.swiper-slide,.swiper-container').css({
+		height: $(window).height(),
+	})
+}
+$(window).on('resize', function() {
+	fixPagesHeight();
+})
+fixPagesHeight();
+
+
+var mySwiper = new Swiper('.swiper-container', {
+
+    direction: 'vertical',
+	lazyLoading : true,
+	mousewheelControl: true,
+	watchSlidesProgress: true,
+	onInit: function(swiper) {
+		swiper.myactive = 0;
+		
+	},
+	onProgress: function(swiper) {
+		for (var i = 0; i < swiper.slides.length; i++) {
+			var slide = swiper.slides[i];
+			var progress = slide.progress;
+			var translate, boxShadow;
+
+			translate = progress * swiper.height * 0.8;
+			scale = 1 - Math.min(Math.abs(progress * 0.2), 1);
+			boxShadowOpacity = 0;
+
+			slide.style.boxShadow = '0px 0px 10px rgba(0,0,0,' + boxShadowOpacity + ')';
+
+			if (i == swiper.myactive) {
+				es = slide.style;
+				es.webkitTransform = es.MsTransform = es.msTransform = es.MozTransform = es.OTransform = es.transform = 'translate3d(0,' + (translate) + 'px,0) scale(' + scale + ')';
+				es.zIndex=0;
+
+
+			}else{
+				es = slide.style;
+				es.webkitTransform = es.MsTransform = es.msTransform = es.MozTransform = es.OTransform = es.transform ='';
+				es.zIndex=1;
+				
+			}
+
+		}
+
+	},
+
+
+	onTransitionEnd: function(swiper, speed) {
+		for (var i = 0; i < swiper.slides.length; i++) {
+		//	es = swiper.slides[i].style;
+		//	es.webkitTransform = es.MsTransform = es.msTransform = es.MozTransform = es.OTransform = es.transform = '';
+
+		//	swiper.slides[i].style.zIndex = Math.abs(swiper.slides[i].progress);
+
+			
+		}
+
+		swiper.myactive = swiper.activeIndex;
+
+	},
+	onSetTransition: function(swiper, speed) {
+
+		for (var i = 0; i < swiper.slides.length; i++) {
+			//if (i == swiper.myactive) {
+
+				es = swiper.slides[i].style;
+				es.webkitTransitionDuration = es.MsTransitionDuration = es.msTransitionDuration = es.MozTransitionDuration = es.OTransitionDuration = es.transitionDuration = speed + 'ms';
+			//}
+		}
+
+	}
+
+});
+</script>
+
+</body>
+</html>

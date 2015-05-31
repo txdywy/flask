@@ -411,6 +411,14 @@ def ps():
     s = randint(0, r if r > 0 else 0)
     return render_template('ps.html', projects=projects[s:s+10])
 
+@app.route('/project_swiper')
+def project_swiper():
+    projects = Project.query.order_by(desc(Project.id)).all()
+    l = len(projects)
+    r = l - 10
+    s = randint(0, r if r > 0 else 0)
+    return render_template('project_swiper.html', projects=projects[s:s+10])
+
 @app.route('/inf')
 def inf():
     return render_template('inf.html')
