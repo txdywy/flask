@@ -744,6 +744,7 @@ def like_submit():
 @app.route('/index')
 def index():
     print '++++++++++', _("hahaha"), get_locale()
+    return redirect(url_for('project_swiper'))
     return redirect(url_for('project'))
     #return render_template(ALANCER_INDEX)
 
