@@ -68,7 +68,7 @@ img{
     pointer-events: none;
 }
 #reload{
-    position:absolute;z-index:999;-webkit-animation: tipmove 60.0s infinite ease-in-out;
+    -webkit-animation: tipmove 10.0s infinite ease-in-out;
 }
 
 </style>
@@ -80,15 +80,17 @@ img{
     {% for project in projects %}
     <div class="swiper-slide">
       <a href="{{ url_for('apply', m_user_id=g.user.user_id if g.user else None, m_client_id=project.client_id, project_id=project.id) }}"> 
-        <img src="{{project.image_url}}" >
+        <img src="{{project.image_url}}">
       </a>
     </div>
     {% endfor %}
+    <div class="swiper-slide">
+      <a href="/ps">
+        <img src="https://cdn3.iconfinder.com/data/icons/transfers/100/239342-reload_refresh-512.png" style="width:300px;height:300px;top:30px; left:10px;" class="resize">
+      </a> 
+    </div>
   </div>
   <img src="http://www.iclarified.com/images/tutorials/34048/141586/141586.png" style="width:150px;height:150px;top:50px; left:170px;" id="fingerprint" class="resize">
-  <a href="/ps" id="reload" >
-    <img src="https://cdn3.iconfinder.com/data/icons/transfers/100/239342-reload_refresh-512.png" style="width:100px;height:100px;top:30px; left:10px;" class="resize">
-  </a>
   <img src="http://www.swiper.com.cn/demo/festival/images/web-swipe-tip.png" style="width:20px;height:15px;top:400px; left:150px;" id="array" class="resize">
 
   </div>
