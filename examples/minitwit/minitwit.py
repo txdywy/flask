@@ -749,25 +749,12 @@ def index():
 
 
 @app.route('/')
-def timeline():
-    """Shows a users timeline or if no user is logged in it will
-    redirect to the public timeline.  This timeline shows the user's
-    messages as well as all the messages of followed users.
+def alancer():
+    """The Alancer front page
     """
+    return redirect(url_for('project_swiper'))
     return redirect(url_for('project'))
     return render_template(ALANCER_INDEX)
-    """
-    if not g.user:
-        return redirect(url_for('public_timeline'))
-    return render_template('timeline.html', messages=query_db('''
-        select message.*, user.* from message, user
-        where message.author_id = user.user_id and (
-            user.user_id = ? or
-            user.user_id in (select whom_id from follower
-                                    where who_id = ?))
-        order by message.pub_date desc limit ?''',
-        [session['user_id'], session['user_id'], PER_PAGE]))
-    """
 
 
 @app.route('/public')
