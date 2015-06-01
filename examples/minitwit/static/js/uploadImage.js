@@ -1,4 +1,12 @@
 // define angular module/app
+i18n.translator.add({
+  values:{
+    "Hello": "こんにちは",
+    "Do not submit until the image appears.":"请耐心等待图片上传成功",
+    "failed, need more parameters":"失败,需要更多参数",
+    "success":"成功"
+  }
+})
 var formApp = angular.module('formApp', ['angular-loading-bar']);
 var myApp = formApp
 myApp.directive('fileModel', ['$parse', function ($parse) {
@@ -21,7 +29,7 @@ myApp.service('fileUpload', ['$http', 'Scopes', function ($http, Scopes) {
     this.uploadFileToUrl = function(file, uploadUrl){
         var fd = new FormData();
         fd.append('file', file);
-        setTimeout(function() { alert('Do not submit until the image appears.'); }, 0.001);
+        setTimeout(function() { alert(i18n('Do not submit until the image appears.')); }, 0.001);
         console.log('start http')
         $http.post(uploadUrl, fd, {
             transformRequest: angular.identity,
@@ -69,7 +77,7 @@ formApp.controller('formController', function($scope, $http, Scopes) {
                
               if (data==='success') {
                   window.location.reload();
-                  window.alert('sucess')
+                  window.alert(i18n('sucess'))
                 // if not successful, bind errors to error variables
                   /*
                   $scope.errorTitle = data.errors.title;
@@ -79,7 +87,7 @@ formApp.controller('formController', function($scope, $http, Scopes) {
                   $scope.errorClient = data.errors.client;
                   */
               } else {
-                  window.alert('failed, need more parameters')
+                  window.alert(i18n('failed, need more parameters'))
                 // if successful, bind success message to message
                   /*
                   $scope.message = data.message;
