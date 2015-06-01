@@ -93,7 +93,7 @@ class Project(Base):
         if title:
             self.title = title
         else:
-            self.title = str(faker.company())
+            self.title = str(fake.company())
         self.client= client
         self.email = email
         self.desp = desp

@@ -551,6 +551,33 @@ def project_info():
         abour(403)
     return render_template('project_info.html', project=project)
 
+@app.route('/project_new')
+@login_required
+def project_new():
+    return render_template('project_new.html')    
+
+@app.route('/create_project', methods=['POST'])
+@login_required
+def create_project():
+    user_id = session['user_id']
+    user = User.query.get(user_id)
+    project = Project()
+    client = Client.query.filter_by(user_id=user_id).first()
+    if project.client_id != client.id:
+        abour(403)
+    project.title = request.form['title']
+    project.client = request.form['client']
+    project.desp = request.form['desp']
+    project.image_url = request.form['image_url']
+    project.service = request.form['service']
+    project.location = request.form['location']
+    project.incentive = request.form['incentive']
+    project.client_title = request.form['client_title']
+    project.profile = request.form['profile']
+    flush(project)
+    flash(_('You have successfully created your project [%s]' % project.title))
+    return redirect(url_for('publish'))
+
 @app.route('/edit_project', methods=['POST'])
 @login_required
 def edit_project():
@@ -569,9 +596,11 @@ def edit_project():
     project.location = request.form['location']
     project.incentive = request.form['incentive']
     project.client_title = request.form['client_title']
+    project.profile = request.form['profile']
     flush(project)
-    flash(_('You have successfully updated your project'))
-    return render_template('project_info.html', project=project)
+    flash(_('You have successfully updated your project [%s]' % project.title))
+    return redirect(url_for('publish'))
+    #return render_template('project_info.html', project=project)
 
 @app.route('/edit_profile', methods=['POST'])
 @login_required

@@ -87,14 +87,17 @@
                         <li class="page-scroll">
                             <a href="/">{{ _("Home") }}</a>
                         </li>
+                        {% if g.user and g.isowner %}
+                        <li class="page-scroll">
+                            <a href="/publish">{{ _("Manage Projects") }}</a>
+                        </li>
+                        <li class="page-scroll">
+                            <a href="/project_new">{{ _('Create Project') }}</a>
+                        </li>
+                        {% endif %}
                         {% if g.user and g.admin_power %}
                         <li class="page-scroll">
                             <a href="/admin">{{ _("Admin") }}</a>
-                        </li>
-                        {% endif %}
-                        {% if g.user and g.isowner %}
-                        <li class="page-scroll">
-                            <a href="/publish">{{ _("Publish") }}</a>
                         </li>
                         {% endif %}
                     </ul>

@@ -5,7 +5,7 @@
 <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/angular-loading-bar/0.7.1/loading-bar.min.js'></script>
 <script type='text/javascript' src='/js/uploadImage.js'></script>
 {% endblock headjs %}
-{% block title %}Profile{% endblock %}
+{% block title %}{{ _('New Project') }}{% endblock %}
 {% block body %}
 <div class="container" style="padding-top: 100px;" ng-app="formApp">
   <!-- edit form column -->
@@ -14,23 +14,22 @@
     <div class="alert alert-info alert-dismissable">
       <a class="panel-close close" data-dismiss="alert">×</a> 
       <i class="fa fa-coffee"></i>
-      {{ _('You can edit your project now') }}
+      {{ _('You can add your new project now') }}
     </div>
 
     <div class="form-group">
       <div class="text-center" ng-controller = "myCtrl">
-        <h6>{{ _('Upload a new project icon if you want') }}</h6>
+        <h6>{{ _('Please upload a picture for your project') }}</h6>
         <input type="file" name="image" file-model="myFile" class="text-center center-block well well-sm"/>
         <button class="btn btn-primary" ng-click="uploadFile()">{{ _('upload me') }}</button>
       </div>
     </div>
 
-    <form class="form-horizontal" role="form" method="post" action="/edit_project">
+    <form class="form-horizontal" role="form" method="post" action="/create_project">
 
       <div ng-controller="formController">
-        <img ng-init="formData.image='{{ project.image_url }}'" ng-src="{{ formData.image|angular }}" autofocus class="avatar img-thumbnail img-responsive img-centered" alt="{{ _('no new icon') }}">
+        <img ng-init="formData.image='http://media-cache-ak0.pinimg.com/736x/3d/b0/4a/3db04ab7349e7f791d3819b57230751d.jpg'" ng-src="{{ formData.image|angular }}" autofocus class="avatar img-thumbnail img-responsive img-centered" alt="{{ _('no new icon') }}">
         <input class="form-control" name="image_url" id = "image_url" value="{{ formData.image|angular }}" type="hidden">
-        <input class="form-control" name="project_id" id = "project_id" value="{{ project.id }}" type="hidden">
       </div>
 
       <h3>{{ _('Project Info') }}</h3>
@@ -38,64 +37,57 @@
       <div class="form-group">
         <label class="col-lg-3 control-label">{{ _('Project title') }}:</label>
         <div class="col-lg-8">
-          <input class="form-control" name="title" id = "title" value="{{ project.title }}" type="text">
+          <input class="form-control" name="title" id = "title" placeholder="{{ _('Super cup project') }}" type="text">
         </div>
       </div>	
       <div class="form-group">
         <label class="col-lg-3 control-label">{{ _('Description') }}:</label>
         <div class="col-lg-8">
-          <input class="form-control" name="desp" id="desp" value="{{ project.desp }}" type="text">
+          <input class="form-control" name="desp" id="desp" placeholder="{{ _('bigger than bigger') }}" type="text">
         </div>
       </div>
       <div class="form-group">
         <label class="col-lg-3 control-label">{{ _('Service') }}:</label>
         <div class="col-lg-8">
-          <input class="form-control" name="service" id="service" value="{{ project.service }}" type="text">
+          <input class="form-control" name="service" id="service" placeholder="{{ _('web app') }}" type="text">
         </div>
       </div>
       <div class="form-group">
         <label class="col-lg-3 control-label">{{ _('Client name') }}:</label>
         <div class="col-lg-8">
-          <input class="form-control" name="client" id="client" value="{{ project.client }}" type="text">
+          <input class="form-control" name="client" id="client" placeholder="{{ _('Shield') }}" type="text">
         </div>
       </div>
       <div class="form-group">
         <label class="col-lg-3 control-label">{{ _('Location') }}:</label>
         <div class="col-lg-8">
-          <input class="form-control" name="location" id="location" value="{{ project.location }}" type="text">
+          <input class="form-control" name="location" id="location" placeholder="{{ _('Virginia') }}" type="text">
         </div>
       </div>
       <div class="form-group">
         <label class="col-lg-3 control-label">{{ _('Incentive') }}:</label>
         <div class="col-lg-8">
-          <input class="form-control" name="incentive" id="incentive" value="{{ project.incentive }}" type="text">
+          <input class="form-control" name="incentive" id="incentive" placeholder="{{ _('huge reputation') }}" type="text">
        </div>
       <div class="form-group">
         <label class="col-lg-3 control-label">{{ _('Client title') }}:</label>
         <div class="col-lg-8">
-          <input class="form-control" name="client_title" id="client_title" value="{{ project.client_title }}" type="text">
+          <input class="form-control" name="client_title" id="client_title" placeholder="{{ _('Agent Gallow') }}" type="text">
         </div>
       </div>
       <div class="form-group">
         <label class="col-md-3 control-label">{{ _('About me') }}:</label>
         <div class="col-md-8">
-          <textarea class="form-control input-sm " name="profile" id="profile" type="textarea" maxlength="140" rows="4">{{ user.profile }}</textarea>
-        </div>
-      </div>
-
-      <div class="form-group">
-        <label class="col-md-3 control-label">{{ _('Created time') }}:</label>
-        <div class="col-md-8">
-          <label class="form-control" name="createtime" id="createtime" type="text">{{ project.create_time }}</label>
+          <textarea class="form-control input-sm " name="profile" id="profile" placeholder="{{ _('A cool guy') }}" type="textarea" maxlength="140" rows="4"></textarea>
         </div>
       </div>
 
       <div class="form-group">
         <label class="col-md-3 control-label"></label>
         <div class="col-md-8">
-          <button class="btn btn-primary" type="submit">{{ _('Save Changes') }}</button>
+          <button class="btn btn-primary" type="submit">{{ _('Submit') }}</button>
           <span></span>
-          <a href="{{  url_for('edit_project')}}"><input class="btn btn-primary" value="Cancel" type="button"></a>
+          <a href="{{  url_for('create_project')}}"><input class="btn btn-primary" value="Cancel" type="button"></a>
         </div>
       </div>
     </form>

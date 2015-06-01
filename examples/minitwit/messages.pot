@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2015-05-31 21:09+0800\n"
+"POT-Creation-Date: 2015-06-01 03:40+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,31 +17,37 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 1.3\n"
 
-#: minitwit.py:551
-msgid "You have successfully updated your project"
+#: minitwit.py:578
+#, python-format
+msgid "You have successfully created your project [%s]"
 msgstr ""
 
-#: minitwit.py:582
+#: minitwit.py:601
+#, python-format
+msgid "You have successfully updated your project [%s]"
+msgstr ""
+
+#: minitwit.py:633
 msgid "You have successfully updated your profile"
 msgstr ""
 
-#: minitwit.py:746
+#: minitwit.py:797
 msgid "hahaha"
 msgstr ""
 
-#: minitwit.py:853
+#: minitwit.py:904
 msgid "You were logged in"
 msgstr ""
 
-#: minitwit.py:857
+#: minitwit.py:908
 msgid "Wrong with username or password"
 msgstr ""
 
-#: minitwit.py:901
+#: minitwit.py:952
 msgid "You were successfully registered and can login now"
 msgstr ""
 
-#: minitwit.py:909
+#: minitwit.py:960
 msgid "You were logged out"
 msgstr ""
 
@@ -97,12 +103,15 @@ msgid "Home"
 msgstr ""
 
 #: templates/alayout.html:92 templates/project_swiper.html:140
-msgid "Admin"
+msgid "Manage Projects"
 msgstr ""
 
-#: templates/alayout.html:97 templates/project_swiper.html:145
-#: templates/publish.html:2
-msgid "Publish"
+#: templates/alayout.html:95 templates/project_swiper.html:143
+msgid "Create Project"
+msgstr ""
+
+#: templates/alayout.html:100 templates/project_swiper.html:148
+msgid "Admin"
 msgstr ""
 
 #: templates/apply.html:2 templates/project_list.html:34
@@ -139,11 +148,13 @@ msgstr ""
 msgid "\"Message\""
 msgstr ""
 
-#: templates/apply.html:29 templates/publish.html:82
+#: templates/apply.html:29 templates/project_new.html:88
+#: templates/publish.html:82
 msgid "Submit"
 msgstr ""
 
-#: templates/apply.html:37 templates/user_list.html:45
+#: templates/apply.html:37 templates/project_info.html:80
+#: templates/project_new.html:79 templates/user_list.html:45
 msgid "About me"
 msgstr ""
 
@@ -200,12 +211,13 @@ msgid "Pleas upload your own icon"
 msgstr ""
 
 #: templates/profile.html:24 templates/profile_client.html:24
-#: templates/project_info.html:24 templates/publish.html:107
+#: templates/project_info.html:24 templates/project_new.html:24
+#: templates/publish.html:107
 msgid "upload me"
 msgstr ""
 
 #: templates/profile.html:31 templates/profile_client.html:31
-#: templates/project_info.html:31
+#: templates/project_info.html:31 templates/project_new.html:31
 msgid "no new icon"
 msgstr ""
 
@@ -272,36 +284,37 @@ msgstr ""
 msgid "Upload a new project icon if you want"
 msgstr ""
 
-#: templates/project_info.html:36
+#: templates/project_info.html:36 templates/project_new.html:35
 msgid "Project Info"
 msgstr ""
 
-#: templates/project_info.html:39
+#: templates/project_info.html:39 templates/project_new.html:38
 msgid "Project title"
 msgstr ""
 
-#: templates/project_info.html:45 templates/project_info.html:80
+#: templates/project_info.html:45 templates/project_new.html:44
 #: templates/publish.html:61
 msgid "Description"
 msgstr ""
 
-#: templates/project_info.html:51
+#: templates/project_info.html:51 templates/project_new.html:50
 msgid "Service"
 msgstr ""
 
-#: templates/project_info.html:57
+#: templates/project_info.html:57 templates/project_new.html:56
 msgid "Client name"
 msgstr ""
 
-#: templates/project_info.html:63
+#: templates/project_info.html:63 templates/project_new.html:62
 msgid "Location"
 msgstr ""
 
-#: templates/project_info.html:69 templates/publish.html:68
+#: templates/project_info.html:69 templates/project_new.html:68
+#: templates/publish.html:68
 msgid "Incentive"
 msgstr ""
 
-#: templates/project_info.html:74
+#: templates/project_info.html:74 templates/project_new.html:73
 msgid "Client title"
 msgstr ""
 
@@ -321,8 +334,56 @@ msgstr ""
 msgid "There's no project so far."
 msgstr ""
 
+#: templates/project_new.html:8
+msgid "New Project"
+msgstr ""
+
+#: templates/project_new.html:17
+msgid "You can add your new project now"
+msgstr ""
+
+#: templates/project_new.html:22
+msgid "Please upload a picture for your project"
+msgstr ""
+
+#: templates/project_new.html:40
+msgid "Super cup project"
+msgstr ""
+
+#: templates/project_new.html:46
+msgid "bigger than bigger"
+msgstr ""
+
+#: templates/project_new.html:52
+msgid "web app"
+msgstr ""
+
+#: templates/project_new.html:58
+msgid "Shield"
+msgstr ""
+
+#: templates/project_new.html:64
+msgid "Virginia"
+msgstr ""
+
+#: templates/project_new.html:70
+msgid "huge reputation"
+msgstr ""
+
+#: templates/project_new.html:75
+msgid "Agent Gallow"
+msgstr ""
+
+#: templates/project_new.html:81
+msgid "A cool guy"
+msgstr ""
+
 #: templates/project_swiper.html:5 templates/ps.html:5
 msgid "Alancer Projects"
+msgstr ""
+
+#: templates/publish.html:2
+msgid "Publish"
 msgstr ""
 
 #: templates/publish.html:22
