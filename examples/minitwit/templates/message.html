@@ -1,5 +1,8 @@
 {% extends "alayout.html" %}
 {% block title %}{{ _('Message') }}{% endblock %}
+{% block headjs %}
+  <link href="css/message.css" rel="stylesheet">
+{% endblock headjs %}
 {% block body %}
 <section id="message">
   <div class="container">
@@ -48,14 +51,10 @@
           {% if message.flag==Message.MESSAGE_USER %}
           <article class="row">
             <div class="col-md-10 col-sm-10 col-xs-9">
-              <div class="panel panel-default arrow right">
-                <div class="panel-body-right">
-                  <div class="comment-post">
-                    <p>
-                      {{ message.message }}
-                    </p>
-                  </div>
-                </div>
+              <div class="from-me">
+                <p>
+                  {{ message.message }}
+                </p>
               </div>
             </div>
             <div class="col-md-2 col-sm-2 col-xs-3">
@@ -68,14 +67,10 @@
               <img class="img-responsive" src="{{ data.get('m_client_icon') }}" width="40" height="40"/>
             </div>
             <div class="col-md-10 col-sm-10 col-xs-9">
-              <div class="panel panel-default arrow left">
-                <div class="panel-body-left">
-                  <div class="comment-post">
-                    <p>
-                      {{ message.message }}
-                    </p>
-                  </div>
-                </div>
+              <div class="from-them">
+                <p>
+                  {{ message.message }}
+                </p>
               </div>
             </div>
           </article>
