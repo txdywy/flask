@@ -11,47 +11,10 @@
         <h2 class="page-header">
           {{ _('Messages') }}
         </h2>
-        <div class="col-md-4 col-sm-4 col-xs-5">
-          <figure class="thumbnail">
-            <img class="img-responsive" src="{{ data.get('m_user_icon') }}" />
-            <figcaption class="text-center">
-              {{ data.get('m_user_name') }}
-            </figcaption>
-          </figure>
-        </div>
-        <div class="col-md-8 col-sm-8 col-xs-11">
-          <div class="panel panel-default arrow right">
-            <div class="panel-body-right">
-              <header class="text-left">
-                <div class="comment-user">
-                  <i class="fa fa-user">
-                  </i>
-                  {{ data.get('m_user_name') }}
-                </div>
-              </header>
-              <div class="comment-post">
-                <p>
-                  {{ _('Profile') }}: {{ m_user.profile }}
-                </p>
-                <p>
-                  {{ _('School') }}: {{ m_user.school }}
-                </p>
-                <p>
-                  {{ _('City') }}: {{ m_user.city }}
-                </p>
-                <p>
-                  {{ _('Jonied') }}: {{ ucd }}{{ _('d ago')}}
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <section class="comment-list">
           {% for message in messages %}
           {% if message.flag==Message.MESSAGE_USER %}
-          <article class="row">
             <div class="col-md-10 col-sm-10 col-xs-9">
-              <div class="from-me">
+              <div class="bubble bubble--alt">
                 <p>
                   {{ message.message }}
                 </p>
@@ -60,27 +23,26 @@
             <div class="col-md-2 col-sm-2 col-xs-3">
               <img class="img-responsive" src="{{ data.get('m_user_icon') }}" width="40" height="40"/>
             </div>
-          </article>
+            <div style="clear: both;"></div>
           {% else %}
-          <article class="row">
             <div class="col-md-2 col-sm-2 col-xs-3">
               <img class="img-responsive" src="{{ data.get('m_client_icon') }}" width="40" height="40"/>
             </div>
             <div class="col-md-10 col-sm-10 col-xs-9">
-              <div class="from-them">
+              <div class="bubble">
                 <p>
                   {{ message.message }}
                 </p>
               </div>
             </div>
-          </article>
+            <div style="clear: both;"></div>
           {% endif %}
           {% else %}
           <li>
             <em>
               {{ _("There's no message so far.") }}
             </em>
-            {% endfor %}
+          {% endfor %}
             
             <div class="form-group ">
               <label id="messageLabel" for="message">
