@@ -50,18 +50,6 @@
             <div class="col-md-10 col-sm-10 col-xs-9">
               <div class="panel panel-default arrow right">
                 <div class="panel-body-right">
-                  <header class="text-right">
-                    <div class="comment-user">
-                      <i class="fa fa-user">
-                      </i>
-                      {{ data.get('m_user_name') }}
-                    </div>
-                    <time class="comment-date" datetime="{{ message.create_time }}">
-                      <i class="fa fa-clock-o">
-                      </i>
-                      {{ message.create_time }}
-                    </time>
-                  </header>
                   <div class="comment-post">
                     <p>
                       {{ message.message }}
@@ -82,18 +70,6 @@
             <div class="col-md-10 col-sm-10 col-xs-9">
               <div class="panel panel-default arrow left">
                 <div class="panel-body-left">
-                  <header class="text-left">
-                    <div class="comment-user">
-                      <i class="fa fa-user">
-                      </i>
-                      {{ data.get('m_client_name') }}
-                    </div>
-                    <time class="comment-date" datetime="{{ message.create_time }}">
-                      <i class="fa fa-clock-o">
-                      </i>
-                      {{ message.create_time }}
-                    </time>
-                  </header>
                   <div class="comment-post">
                     <p>
                       {{ message.message }}
