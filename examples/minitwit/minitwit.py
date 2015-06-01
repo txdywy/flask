@@ -632,6 +632,10 @@ def edit_profile():
         flash(_('You have successfully updated your profile'))
     	return redirect(url_for('profile'))
 
+@app.route('/mt')
+def mt():
+    return render_template('mt.html')
+
 @app.route('/message', methods=['POST'])
 @login_required
 def message():

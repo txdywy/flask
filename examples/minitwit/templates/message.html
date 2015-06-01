@@ -2,10 +2,14 @@
 {% block title %}{{ _('Message') }}{% endblock %}
 {% block headjs %}
 <link href="css/message.css" rel="stylesheet">
+<link href="css/scroll-more.css" rel="stylesheet">
+<script src="js/jquery.js"></script>
+<script type='text/javascript' src='/js/scroll-more.js'></script>
 {% endblock headjs %}
 {% block body %}
 <section id="message">
-  <div class="container">
+  <div id="loader"></div>
+  <div class="container" id="scroll-container">
     <div class="row">
       <div class="col-md-8">
         <h2 class="page-header">
@@ -66,9 +70,17 @@
             </div>
           </form>
         </div>
-      </section>
     </div>
   </div>
+    <!-- These are all the links that can be loaded. -->
+    <div id="pages">
+        <a href="/mt"></a>
+        <a href="/mt"></a>
+        <a href="/mt"></a>
+        <a href="./page4.html"></a>
+        <a href="./page5.html"></a>
+        <a href="./page6.html"></a>
+    </div>
 </div>
 </section>
 {% endblock %}
