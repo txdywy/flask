@@ -28,9 +28,12 @@ jQuery(document).ready(function() {
             //the loadMoreContent page only when the page value in "loaded" array is 
             //minor or equal to one
             loaded[pages[current+1]] = loaded[pages[current+1]] + 1; 
-
+            console.log(loaded)
             if(loaded[pages[current+1]] <= 1)
                 loadMoreContent(current+1);
+        }
+        if ($(window).scrollTop() <= 0) {
+            console.log("top of the page reached!");
         }
     });
 
