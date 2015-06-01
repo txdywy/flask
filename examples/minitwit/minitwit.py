@@ -572,7 +572,6 @@ def create_project():
     project.location = request.form['location']
     project.incentive = request.form['incentive']
     project.client_title = request.form['client_title']
-    project.profile = request.form['profile']
     flush(project)
     t = _('You have successfully created your project')
     flash(t + ' [%s]' % project.title)
@@ -596,7 +595,6 @@ def edit_project():
     project.location = request.form['location']
     project.incentive = request.form['incentive']
     project.client_title = request.form['client_title']
-    project.profile = request.form['profile']
     flush(project)
     t = _('You have successfully updated your project')
     flash(t + ' [%s]' % project.title)
