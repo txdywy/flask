@@ -1,26 +1,33 @@
 {% extends "alayout.html" %}
 {% block title %}{{ _("Message box") }}{% endblock %}
+{% block headjs %}
+  <script type='text/javascript' src='http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.11.2.min.js'></script>
+  <script>
+    window.jQuery(document).ready(function($) {
+      $(".clickable-row").click(function() {
+        window.document.location = $(this).data("href");
+      });    });
+  </script>
+{% endblock headjs %}
 {% block body %}
   <div class="container">
       <div class="row">
         <div class="col-md-8">
           <h2 class="page-header">{{ _("Message box") }}</h2>
-            <ul class="list-group">
+          <table class="table table-striped">
+            <tbody>
               {% for mi in message_items %}
-              <a href="{{ url_for('message_room', m_user_id=mi['m_user_id'], m_client_id=mi['m_client_id']) }}">
-                <li class="list-group-item">
-                  {% if mi['new'] %}
-                  <span class="badge"> {{ _("new") }} !!! </span>
-                  {% else %}
-                  <span class="badge"> {{ mi['days'] }}{{ _("d") }}</span>
-                  {% endif %}
-                  {{ '【%s】 and 【%s】: %s' % (mi['m_username'], mi['m_client_name'], mi['message']) }}
-                </li>
-              </a>
+              <tr class="clickable-row" data-href='{{ url_for('message_room', m_user_id=mi['m_user_id'], m_client_id=mi['m_client_id']) }}'>
+                <td><img src="{{ mi['m_user_icon'] }}" class="img-rounded" alt="Cinque Terre" width="60" height="60"></td>
+                <td><b>{{ mi['m_username'] }}</b><br>{{ mi['message'] }}</td>
+                <td>{{ mi['days'] }}{{ _("d") }}</td>
+              </tr>
               {% else %}
-                <li><em>{{ _("There's no message so far.") }}</em>
+              {{ _('no projects') }}
               {% endfor %}
-            </ul>
+            </tbody>
+          </table>    
+            
         </div>
       </div>
   </div>
