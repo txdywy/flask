@@ -563,7 +563,7 @@ def create_project():
     user = User.query.get(user_id)
     project = Project()
     client = Client.query.filter_by(user_id=user_id).first()
-    project.client_id = client.id:
+    project.client_id = client.id
     project.title = request.form['title']
     project.client = request.form['client']
     project.desp = request.form['desp']
