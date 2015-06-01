@@ -548,7 +548,7 @@ def project_info():
     project = Project.query.get(project_id)
     client = Client.query.filter_by(user_id=user_id).first()
     if project.client_id != client.id:
-        abour(403)
+        abort(403)
     return render_template('project_info.html', project=project)
 
 @app.route('/project_new')
@@ -563,8 +563,7 @@ def create_project():
     user = User.query.get(user_id)
     project = Project()
     client = Client.query.filter_by(user_id=user_id).first()
-    if project.client_id != client.id:
-        abour(403)
+    project.client_id = client.id:
     project.title = request.form['title']
     project.client = request.form['client']
     project.desp = request.form['desp']
@@ -587,7 +586,7 @@ def edit_project():
     project = Project.query.get(project_id)
     client = Client.query.filter_by(user_id=user_id).first()
     if project.client_id != client.id:
-        abour(403)      
+        abort(403)      
     project.title = request.form['title']
     project.client = request.form['client']
     project.desp = request.form['desp']
