@@ -574,7 +574,8 @@ def create_project():
     project.client_title = request.form['client_title']
     project.profile = request.form['profile']
     flush(project)
-    flash(_('You have successfully created your project [%s]' % project.title))
+    t = _('You have successfully created your project')
+    flash(t + ' [%s]' % project.title)
     return redirect(url_for('project_manage'))
 
 @app.route('/edit_project', methods=['POST'])
@@ -597,7 +598,8 @@ def edit_project():
     project.client_title = request.form['client_title']
     project.profile = request.form['profile']
     flush(project)
-    flash(_('You have successfully updated your project [%s]' % project.title))
+    t = _('You have successfully updated your project')
+    flash(t + ' [%s]' % project.title)
     return redirect(url_for('project_manage'))
     #return render_template('project_info.html', project=project)
 
