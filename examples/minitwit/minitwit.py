@@ -322,9 +322,9 @@ def upload_image():
        print '=============== upload image failed ============ ', str(e)
        return NO_CONTENT_PICTURE
 
-@app.route('/publish', methods=['GET'])
+@app.route('/project_manage', methods=['GET'])
 @login_required
-def publish():
+def project_manage():
     classes = ['active', 'success', 'info', 'warning', 'danger']
     cls = {}
     user_id = session.get('user_id')
@@ -333,7 +333,7 @@ def publish():
     projects = Project.query.filter_by(client_id=client_id).all()
     project_num = len(projects)
     cls = dict((p.id, classes[p.id % len(classes)]) for p in projects)
-    return render_template('publish.html', cls=cls, projects=projects, project_num=project_num, client_id=client_id)
+    return render_template('project_manage.html', cls=cls, projects=projects, project_num=project_num, client_id=client_id)
 
 @app.route('/owner_upload', methods=['POST'])
 @login_required
@@ -575,7 +575,7 @@ def create_project():
     project.profile = request.form['profile']
     flush(project)
     flash(_('You have successfully created your project [%s]' % project.title))
-    return redirect(url_for('publish'))
+    return redirect(url_for('project_manage'))
 
 @app.route('/edit_project', methods=['POST'])
 @login_required
@@ -598,7 +598,7 @@ def edit_project():
     project.profile = request.form['profile']
     flush(project)
     flash(_('You have successfully updated your project [%s]' % project.title))
-    return redirect(url_for('publish'))
+    return redirect(url_for('project_manage'))
     #return render_template('project_info.html', project=project)
 
 @app.route('/edit_profile', methods=['POST'])
