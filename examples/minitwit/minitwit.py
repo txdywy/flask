@@ -27,6 +27,10 @@ import util, functools
 import simplejson as json
 from random import randint
 try:
+    import cache as cacheal 
+except:
+    cacheal = None
+try:
     import wx_util
 except:
     print '------------wx_util import err-----------'
@@ -77,6 +81,10 @@ SECRET_KEY = 'development key'
 ALANCER_INDEX = 'project_list.html'#'alancer/index.html'
 ALANCER_HTTP_ROOT = 'http://alancer.cf'
 ALANCER_SERVICE_EMAIL = 'geniusron@gmail.com'
+
+# cacheal
+ALANCER_ALL_PROJECTS = 'alancer.all.projects'
+ALANCER_USER_PROJECTS_INDEX = 'alancer.user.projects.index.%s'
 
 NO_CONTENT_PICTURE = 'http://media-cache-ak0.pinimg.com/736x/3d/b0/4a/3db04ab7349e7f791d3819b57230751d.jpg'
 
@@ -413,10 +421,24 @@ def ps():
 
 @app.route('/project_swiper')
 def project_swiper():
-    projects = Project.query.order_by(desc(Project.id)).all()
-    l = len(projects)
-    r = l - 10
-    s = randint(0, r if r > 0 else 0)
+    if not cacheal or not g.user:
+        projects = Project.query.order_by(desc(Project.id)).all()
+        l = len(projects)
+        r = l - 10
+        s = randint(0, r if r > 0 else 0)
+    else:
+        user_id = g.user.user_id
+        projects = Project.query.order_by(desc(Project.id)).all()
+        """
+        projects = cacheal.get(ALANCER_ALL_PROJECTS)
+        if not projects:
+            projects = Project.query.order_by(desc(Project.id)).all()
+            cacheal.set(ALANCER_ALL_PROJECTS, projects, 300)
+        """    
+        s = cacheal.get(ALANCER_USER_PROJECTS_INDEX % user_id)
+        s = s if s else 1
+        ns = (s + 10) % len(projects)
+        cacheal.set(ALANCER_USER_PROJECTS_INDEX % user_id, ns)
     return render_template('project_swiper.html', projects=projects[s:s+10])
 
 @app.route('/inf')
