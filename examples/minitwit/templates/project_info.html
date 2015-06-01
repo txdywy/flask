@@ -28,7 +28,7 @@
     <form class="form-horizontal" role="form" method="post" action="/edit_project">
 
       <div ng-controller="formController">
-        <img ng-init="formData.image='{{ project.image_url }}'" ng-src="{{ formData.image|angular }}" autofocus class="avatar img-thumbnail img-circle img-responsive img-centered" alt="{{ _('no new icon') }}">
+        <img ng-init="formData.image='{{ project.image_url }}'" ng-src="{{ formData.image|angular }}" autofocus class="avatar img-thumbnail img-responsive img-centered" alt="{{ _('no new icon') }}">
         <input class="form-control" name="image_url" id = "image_url" value="{{ formData.image|angular }}" type="hidden">
         <input class="form-control" name="project_id" id = "project_id" value="{{ project.id }}" type="hidden">
       </div>
