@@ -1,7 +1,7 @@
 {% extends "alayout.html" %}
 {% block title %}{{ _('Message') }}{% endblock %}
 {% block headjs %}
-  <link href="css/message.css" rel="stylesheet">
+<link href="css/message.css" rel="stylesheet">
 {% endblock headjs %}
 {% block body %}
 <section id="message">
@@ -11,61 +11,64 @@
         <h2 class="page-header">
           {{ _('Messages') }}
         </h2>
-          {% for message in messages %}
-          {% if message.flag==Message.MESSAGE_USER %}
-            <div class="col-md-10 col-sm-10 col-xs-9">
-              <div class="bubble bubble--alt">
-                <p>
-                  {{ message.message }}
-                </p>
-              </div>
+        {% for message in messages %}
+        {% if message.flag==Message.MESSAGE_USER %}
+        <div class="col-md-10 col-sm-10 col-xs-9">
+          <div class="bubble bubble--alt">
+            <p>
+              {{ message.message }}
+            </p>
+          </div>
+        </div>
+        <div class="col-md-2 col-sm-2 col-xs-3">
+          <img class="img-responsive" src="{{ data.get('m_user_icon') }}" width="40" height="40"/>
+        </div>
+        <div style="clear: both;">
+        </div>
+        {% else %}
+        <div class="col-md-2 col-sm-2 col-xs-3">
+          <img class="img-responsive" src="{{ data.get('m_client_icon') }}" width="40" height="40"/>
+        </div>
+        <div class="col-md-10 col-sm-10 col-xs-9">
+          <div class="bubble">
+            <p>
+              {{ message.message }}
+            </p>
+          </div>
+        </div>
+        <div style="clear: both;">
+        </div>
+        {% endif %}
+        {% else %}
+        <li>
+          <em>
+            {{ _("There's no message so far.") }}
+          </em>
+        </li>
+        {% endfor %}
+        
+        <div class="form-group ">
+          <label id="messageLabel" for="message">
+            {{ _('Message') }} 
+          </label>
+          <form action="/message" method="POST">
+            <textarea class="form-control " type="textarea" id="message_text" name="message" placeholder="{{ _('Message') }}" maxlength="2048" rows="3" style="/*float:left;*/">
+            </textarea>
+            <div style="float:right;">
+              <input type="hidden" name="m_user_id" value="{{ m_user_id }}">
+              <input type="hidden" name="m_client_id" value="{{ client.id }}">
+              <input type="hidden" name="project_id" value="{{ project_id }}">
+              <button class="btn btn-info btn-lg" type="submit" >
+                <span class="glyphicon glyphicon-send">
+                </span>
+                {{ _('Send') }}
+              </button>
             </div>
-            <div class="col-md-2 col-sm-2 col-xs-3">
-              <img class="img-responsive" src="{{ data.get('m_user_icon') }}" width="40" height="40"/>
-            </div>
-            <div style="clear: both;"></div>
-          {% else %}
-            <div class="col-md-2 col-sm-2 col-xs-3">
-              <img class="img-responsive" src="{{ data.get('m_client_icon') }}" width="40" height="40"/>
-            </div>
-            <div class="col-md-10 col-sm-10 col-xs-9">
-              <div class="bubble">
-                <p>
-                  {{ message.message }}
-                </p>
-              </div>
-            </div>
-            <div style="clear: both;"></div>
-          {% endif %}
-          {% else %}
-          <li>
-            <em>
-              {{ _("There's no message so far.") }}
-            </em>
-          {% endfor %}
-            
-            <div class="form-group ">
-              <label id="messageLabel" for="message">
-                {{ _('Message') }} 
-              </label>
-              <form action="/message" method="POST">
-                <textarea class="form-control " type="textarea" id="message_text" name="message" placeholder="{{ _('Message') }}" maxlength="2048" rows="3" style="/*float:left;*/">
-                </textarea>
-                <div style="float:right;">
-                  <input type="hidden" name="m_user_id" value="{{ m_user_id }}">
-                  <input type="hidden" name="m_client_id" value="{{ client.id }}">
-                  <input type="hidden" name="project_id" value="{{ project_id }}">
-                  <button class="btn btn-info btn-lg" type="submit" >
-                    <span class="glyphicon glyphicon-send">
-                    </span>
-                    {{ _('Send') }}
-                  </button>
-                </div>
-              </form>
-            </div>
-          </section>
-      </div>
+          </form>
+        </div>
+      </section>
     </div>
   </div>
+</div>
 </section>
 {% endblock %}
