@@ -17,7 +17,7 @@
           <table class="table table-striped">
             <tbody>
               {% for mi in message_items %}
-              <tr class="clickable-row" data-href='{{ url_for('message_room', m_user_id=mi['m_user_id'], m_client_id=mi['m_client_id']) }}'>
+              <tr class="clickable-row" data-href='{{ url_for('message_room', m_user_id=mi['m_user_id'], m_client_id=mi['m_client_id']) + '#page-bottom' }}'>
                 <td><img src="{{ mi['m_user_icon'] }}" class="img-rounded" alt="Cinque Terre" width="60" height="60"></td>
                 <td><b>{{ mi['m_username'] }}</b><br>{{ mi['message'] }}</td>
                 <td>{{ mi['days'] }}{{ _("d") }}</td>
