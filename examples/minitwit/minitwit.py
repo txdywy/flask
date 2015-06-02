@@ -81,7 +81,7 @@ SECRET_KEY = 'development key'
 ALANCER_INDEX = 'project_list.html'#'alancer/index.html'
 ALANCER_HTTP_ROOT = 'http://alancer.cf'
 ALANCER_SERVICE_EMAIL = 'geniusron@gmail.com'
-ALANCER_MESSAGE_OFFSET = 5
+ALANCER_MESSAGE_OFFSET = 10
 
 # cacheal
 ALANCER_ALL_PROJECTS = 'alancer.all.projects'
