@@ -1,5 +1,5 @@
 {% extends "alayout.html" %}
-{% block title %}{{ _('Users') }}{% endblock %}
+{% block title %}{{ _('User Digest') }}{% endblock %}
 {% block body %}
 <!-- Project Grid Section -->
 <section id="portfolio">
@@ -12,27 +12,8 @@
         <hr class="star-primary">
       </div>
     </div>
-    <form class="form-filter" method="post">
-      <div>
-        <select class="form-control" data-style="btn-success" name="filter">
-          <option value="0" {% if filter==0 %} selected="selected" {% endif %}>
-            {{ _("All users") }}
-          </option>
-          <option value="1" {% if filter==1 %} selected="selected" {% endif %}>
-            {{ _("Project owners") }}
-          </option>
-          <option value="2" {% if filter==2 %} selected="selected" {% endif %}>
-            {{ _("Developers") }}
-          </option>
-        </select>
-        <button class="btn btn-primary" type="submit">
-          {{ _("Filter") }}
-        </button>
-      </div>
-    </form>
     
     <div class="row">
-      {% for user in users %}
       <div>
         <div class="col-sm-4 portfolio-item" >
           <img autofocus src="{{ user.icon }}" class="img-responsive img-centered img-thumbnail img-circle" alt="">
@@ -102,13 +83,7 @@
           </div>
         </div>
       </div>
-      {% else %}
-      <li>
-        <em>
-          {{ _("There's no user so far.") }}
-        </em>
-        {% endfor %}
-      </div>
+    </div>
   </div>
 </section>
 

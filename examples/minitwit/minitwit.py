@@ -504,6 +504,13 @@ def project_slider():
     #print '====',pats
     return render_template('project_slider.html', projects=projects, pas=pas, pats=pats, puds=puds, pics=pics)
 
+@app.route('/user')
+@login_required
+def user():
+    user_id = request.args.get('user_id')
+    user = User.query.get(user_id)
+    return render_template('user.html', user=user, USER_STUDENT=User.USER_STUDENT)
+
 @app.route('/users', methods=['POST', 'GET'])
 @login_required
 def users():
