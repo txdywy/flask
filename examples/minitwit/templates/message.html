@@ -5,6 +5,30 @@
 <link href="css/scroll-more.css" rel="stylesheet">
 <script src="js/jquery.js"></script>
 <script type='text/javascript' src='/js/scroll-more.js'></script>
+<script>
+  window.jQuery(document).ready(function($) {
+    $(".sendbutton").click(function() {
+      $.ajax({
+        url: '/message',
+        type: 'POST',
+        data: {'m_user_id': {{ m_user_id }},
+               'm_client_id': {{ client.id }},
+               'project_id': '{{ project_id }}',
+               'message': $("textarea#message_send").val()
+              },
+        success: function (result) {
+            //alert(result);
+            $("textarea#message_send").val('');
+            $('#loader').fadeIn('slow', function() {
+                $('#loader').fadeOut('slow', function() {
+                    $('#scroll-container').append(result).fadeIn(999);
+                }); 
+            }); 
+        }
+      });
+    });    
+  }); 
+</script>
 {% endblock headjs %}
 {% block body %}
 <section id="message">
@@ -50,11 +74,13 @@
           </em>
         </li>
         {% endfor %}
+      </div>
         
         <div class="form-group" id="page-bottom">
           <label id="messageLabel" for="message">
             {{ _('Message') }} 
           </label>
+          <!-- form version
           <form action="/message" method="POST">
             <textarea class="form-control " type="textarea" id="message_text" name="message" placeholder="{{ _('Message') }}" maxlength="2048" rows="3" style="/*float:left;*/">
             </textarea>
@@ -69,9 +95,21 @@
               </button>
             </div>
           </form>
+          -->
+          <!-- ajax -->
+          <div>
+            <textarea class="form-control" type="textarea" id="message_send" name="message" placeholder="{{ _('Message') }}" maxlength="2048" rows="3" style="/*float:left;*/">
+            </textarea>
+            <div style="float:right;">
+              <button class="btn btn-info btn-lg sendbutton">
+                <span class="glyphicon glyphicon-send">
+                </span>
+                {{ _('Send') }}
+              </button>
+            </div>
+          </div>
         </div>
     </div>
-  </div>
     <!-- These are all the links that can be loaded. -->
     <div id="pages">
       <a href="{{url_for('message_room', m_user_id=m_user_id, m_client_id=client.id)}}"></a>
