@@ -1,5 +1,5 @@
 {% extends "alayout.html" %}
-{% block title %}Admin{% endblock %}
+{% block title %}{{ _('Admin') }}{% endblock %}
 {% block headjs %}
   <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.15/angular.min.js"></script>
   <link rel='stylesheet' href='//cdnjs.cloudflare.com/ajax/libs/angular-loading-bar/0.7.1/loading-bar.min.css' type='text/css' media='all' />
@@ -11,7 +11,7 @@
   <div ng-app="formApp" class="container" >
     <div class="row">
       <div class="">
-        <h2 class="page-header">Admin:</h2>
+        <h2 class="page-header">{{ _('Admin') }}:</h2>
         <div class="col-sm-4 portfolio-item" >
           <p><b>Projects Number: {{ project_num }}</b><p>
         </div>

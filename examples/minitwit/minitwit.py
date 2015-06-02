@@ -81,10 +81,12 @@ SECRET_KEY = 'development key'
 ALANCER_INDEX = 'project_list.html'#'alancer/index.html'
 ALANCER_HTTP_ROOT = 'http://alancer.cf'
 ALANCER_SERVICE_EMAIL = 'geniusron@gmail.com'
+ALANCER_MESSAGE_OFFSET = 10
 
 # cacheal
 ALANCER_ALL_PROJECTS = 'alancer.all.projects'
 ALANCER_USER_PROJECTS_INDEX = 'alancer.user.projects.index.%s'
+ALANCER_USER_CLIENT_MESSAGES = 'alancer.user.client.messages.%s.%s'
 
 NO_CONTENT_PICTURE = 'http://media-cache-ak0.pinimg.com/736x/3d/b0/4a/3db04ab7349e7f791d3819b57230751d.jpg'
 
@@ -701,11 +703,22 @@ def message():
 @login_required
 @message_secured
 def message_room():
+    index = request.args.get('index')
+    index = int(index) if index else 0
+
     m_user_id = request.args.get('m_user_id')
     m_client_id = request.args.get('m_client_id')
     if not m_user_id or not m_client_id:
         redirect(url_for('login'))
-    messages = Message.query.filter_by(user_id=m_user_id, client_id=m_client_id).all()
+
+    if index == 0:
+        messages = Message.query.filter_by(user_id=m_user_id, client_id=m_client_id).all()
+        cacheal.set(ALANCER_USER_CLIENT_MESSAGES % (m_user_id, m_client_id), messages)
+        messages = messages[-ALANCER_MESSAGE_OFFSET:]
+    else:
+        messages = cacheal.get(ALANCER_USER_CLIENT_MESSAGES % (m_user_id, m_client_id))
+        messages = messages[-(ALANCER_MESSAGE_OFFSET*(index+1)):-(ALANCER_MESSAGE_OFFSET*index)] 
+    
     client = Client.query.get(m_client_id)
     data = {}
     m_user = User.query.get(m_user_id)
@@ -715,8 +728,8 @@ def message_room():
     data['m_user_icon'] = m_user.icon
     m_client_user = User.query.get(m_client.user_id)
     data['m_client_icon'] = m_client_user.icon
-    ucd = (datetime.now() - m_user.create_time).days
-    return render_template('message.html', data=data, Message=Message, client=client, messages=messages, m_user_id=m_user_id, m_user=m_user, ucd=ucd)
+    #ucd = (datetime.now() - m_user.create_time).days
+    return render_template('message.html', data=data, Message=Message, client=client, messages=messages, m_user_id=m_user_id, m_user=m_user)
 
 @app.route('/apply', methods=['GET'])
 @login_required

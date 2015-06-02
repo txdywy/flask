@@ -34,6 +34,7 @@ jQuery(document).ready(function() {
         }
         if ($(window).scrollTop() <= 0) {
             console.log("top of the page reached!");
+            loadMoreContent(current+1);
         }
     });
 
@@ -45,7 +46,7 @@ jQuery(document).ready(function() {
             $('#loader').fadeIn('slow', function() {
                 $.get(pages[position], function(data) {
                     $('#loader').fadeOut('slow', function() {
-                        $('#scroll-container').append(data).fadeIn(999);
+                        $('#scroll-container').prepend(data).fadeIn(999);
                         current=position;
                     });
                 });
