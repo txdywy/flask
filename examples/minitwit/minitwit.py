@@ -81,7 +81,7 @@ SECRET_KEY = 'development key'
 ALANCER_INDEX = 'project_list.html'#'alancer/index.html'
 ALANCER_HTTP_ROOT = 'http://alancer.cf'
 ALANCER_SERVICE_EMAIL = 'geniusron@gmail.com'
-ALANCER_MESSAGE_OFFSET = 10
+ALANCER_MESSAGE_OFFSET = 5
 
 # cacheal
 ALANCER_ALL_PROJECTS = 'alancer.all.projects'
@@ -729,7 +729,13 @@ def message_room():
     m_client_user = User.query.get(m_client.user_id)
     data['m_client_icon'] = m_client_user.icon
     #ucd = (datetime.now() - m_user.create_time).days
-    return render_template('message.html', data=data, Message=Message, client=client, messages=messages, m_user_id=m_user_id, m_user=m_user)
+    if index == 0:
+        return render_template('message.html', data=data, Message=Message, client=client, messages=messages, m_user_id=m_user_id, m_user=m_user)
+    else:
+        if messages:
+            return render_template('message_more.html', data=data, Message=Message, client=client, messages=messages, m_user_id=m_user_id, m_user=m_user)
+        else:
+            return ''
 
 @app.route('/apply', methods=['GET'])
 @login_required
