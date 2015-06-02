@@ -8,13 +8,17 @@
   </div>
 </div>
 <div class="col-md-2 col-sm-2 col-xs-3">
-  <img class="img-responsive" src="{{ data.get('m_user_icon') }}" width="40" height="40"/>
+  <a href="/user?user_id={{ m_user_id }}">
+    <img class="img-responsive" src="{{ data.get('m_user_icon') }}" width="40" height="40"/>
+  </a>
 </div>
 <div style="clear: both;">
 </div>
 {% else %}
 <div class="col-md-2 col-sm-2 col-xs-3">
-  <img class="img-responsive" src="{{ data.get('m_client_icon') }}" width="40" height="40"/>
+  <a href="/user?user_id={{ client.user_id }}">
+    <img class="img-responsive" src="{{ data.get('m_client_icon') }}" width="40" height="40"/>
+  </a>
 </div>
 <div class="col-md-10 col-sm-10 col-xs-9">
   <div class="bubble">

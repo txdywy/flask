@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2015-06-02 09:16+0000\n"
+"POT-Creation-Date: 2015-06-02 17:51+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,35 +17,35 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 1.3\n"
 
-#: minitwit.py:578
+#: minitwit.py:585
 msgid "You have successfully created your project"
 msgstr ""
 
-#: minitwit.py:601
+#: minitwit.py:608
 msgid "You have successfully updated your project"
 msgstr ""
 
-#: minitwit.py:634
+#: minitwit.py:641
 msgid "You have successfully updated your profile"
 msgstr ""
 
-#: minitwit.py:821
+#: minitwit.py:828
 msgid "hahaha"
 msgstr ""
 
-#: minitwit.py:928
+#: minitwit.py:935
 msgid "You were logged in"
 msgstr ""
 
-#: minitwit.py:932
+#: minitwit.py:939
 msgid "Wrong with username or password"
 msgstr ""
 
-#: minitwit.py:976
+#: minitwit.py:983
 msgid "You were successfully registered and can login now"
 msgstr ""
 
-#: minitwit.py:984
+#: minitwit.py:991
 msgid "You were logged out"
 msgstr ""
 
@@ -96,7 +96,7 @@ msgid "Project"
 msgstr ""
 
 #: templates/alayout.html:86 templates/project_swiper.html:131
-#: templates/user_list.html:2
+#: templates/user_list.html:2 templates/user_list.html:10
 msgid "Users"
 msgstr ""
 
@@ -152,7 +152,7 @@ msgstr ""
 msgid "Submit"
 msgstr ""
 
-#: templates/apply.html:37 templates/user_list.html:45
+#: templates/apply.html:37 templates/user.html:56 templates/user_list.html:75
 msgid "About me"
 msgstr ""
 
@@ -180,23 +180,23 @@ msgstr ""
 msgid "Messages"
 msgstr ""
 
-#: templates/message.html:73 templates/message_more.html:32
+#: templates/message.html:77 templates/message_more.html:36
 msgid "There's no message so far."
 msgstr ""
 
-#: templates/message.html:81
+#: templates/message.html:85
 msgid "Sending Message"
 msgstr ""
 
-#: templates/message.html:85
+#: templates/message.html:89
 msgid "Messaging"
 msgstr ""
 
-#: templates/message.html:94 templates/message.html:107
+#: templates/message.html:98 templates/message.html:111
 msgid "Send"
 msgstr ""
 
-#: templates/message.html:101
+#: templates/message.html:105
 msgid "Input your message here"
 msgstr ""
 
@@ -470,51 +470,59 @@ msgstr ""
 msgid "I want to be a project owner"
 msgstr ""
 
-#: templates/user_list.html:16
-msgid "All users"
+#: templates/user.html:2
+msgid "User Digest"
 msgstr ""
 
-#: templates/user_list.html:17
-msgid "Project owners"
+#: templates/user.html:10
+msgid "User"
 msgstr ""
 
-#: templates/user_list.html:18
-msgid "Developers"
-msgstr ""
-
-#: templates/user_list.html:20
-msgid "Filter"
-msgstr ""
-
-#: templates/user_list.html:35
+#: templates/user.html:37 templates/user_list.html:56
 msgid "Developer"
 msgstr ""
 
-#: templates/user_list.html:37
+#: templates/user.html:41 templates/user_list.html:60
 msgid "Project owner"
 msgstr ""
 
-#: templates/user_list.html:40
+#: templates/user.html:46 templates/user_list.html:65
 msgid "Approved"
 msgstr ""
 
-#: templates/user_list.html:42
+#: templates/user.html:50 templates/user_list.html:69
 msgid "Pending"
 msgstr ""
 
-#: templates/user_list.html:46
+#: templates/user.html:62 templates/user_list.html:81
 msgid "Review"
 msgstr ""
 
-#: templates/user_list.html:46
+#: templates/user.html:64 templates/user_list.html:83
 msgid "approval"
 msgstr ""
 
-#: templates/user_list.html:46
+#: templates/user.html:64 templates/user_list.html:83
 msgid "reviews"
 msgstr ""
 
-#: templates/user_list.html:64
+#: templates/user_list.html:19
+msgid "All users"
+msgstr ""
+
+#: templates/user_list.html:22
+msgid "Project owners"
+msgstr ""
+
+#: templates/user_list.html:25
+msgid "Developers"
+msgstr ""
+
+#: templates/user_list.html:29
+msgid "Filter"
+msgstr ""
+
+#: templates/user_list.html:108
 msgid "There's no user so far."
 msgstr ""
 
