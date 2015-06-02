@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2015-06-02 08:40+0000\n"
+"POT-Creation-Date: 2015-06-02 09:16+0000\n"
 "PO-Revision-Date: 2015-05-18 11:55+0800\n"
 "Last-Translator: Ramen King <geniusron@gmail.com>\n"
 "Language-Team: zh_Hans_CN <LL@li.org>\n"
@@ -85,8 +85,7 @@ msgstr "简历"
 msgid "Sign up"
 msgstr "注册"
 
-#: templates/alayout.html:74 templates/message.html:2 templates/message.html:81
-#: templates/message.html:85 templates/message.html:101
+#: templates/alayout.html:74 templates/message.html:2
 #: templates/project_swiper.html:119
 msgid "Message"
 msgstr "收件箱"
@@ -185,9 +184,21 @@ msgstr "收件箱"
 msgid "There's no message so far."
 msgstr "目前没有信息"
 
+#: templates/message.html:81
+msgid "Sending Message"
+msgstr "发送信息"
+
+#: templates/message.html:85
+msgid "Messaging"
+msgstr "信息"
+
 #: templates/message.html:94 templates/message.html:107
 msgid "Send"
 msgstr "发送"
+
+#: templates/message.html:101
+msgid "Input your message here"
+msgstr "请输入信息"
 
 #: templates/message_box.html:2 templates/message_box.html:16
 msgid "Message box"
@@ -506,3 +517,4 @@ msgstr "评论"
 #: templates/user_list.html:64
 msgid "There's no user so far."
 msgstr "目前没有用户"
+

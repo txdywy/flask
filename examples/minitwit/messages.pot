@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2015-06-02 08:40+0000\n"
+"POT-Creation-Date: 2015-06-02 09:16+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -85,8 +85,7 @@ msgstr ""
 msgid "Sign up"
 msgstr ""
 
-#: templates/alayout.html:74 templates/message.html:2 templates/message.html:81
-#: templates/message.html:85 templates/message.html:101
+#: templates/alayout.html:74 templates/message.html:2
 #: templates/project_swiper.html:119
 msgid "Message"
 msgstr ""
@@ -185,8 +184,20 @@ msgstr ""
 msgid "There's no message so far."
 msgstr ""
 
+#: templates/message.html:81
+msgid "Sending Message"
+msgstr ""
+
+#: templates/message.html:85
+msgid "Messaging"
+msgstr ""
+
 #: templates/message.html:94 templates/message.html:107
 msgid "Send"
+msgstr ""
+
+#: templates/message.html:101
+msgid "Input your message here"
 msgstr ""
 
 #: templates/message_box.html:2 templates/message_box.html:16
