@@ -1,0 +1,35 @@
+{% for message in messages %}
+{% if message.flag==Message.MESSAGE_USER %}
+<div class="col-md-10 col-sm-10 col-xs-9">
+  <div class="bubble bubble--alt">
+    <p>
+      {{ message.message }}
+    </p>
+  </div>
+</div>
+<div class="col-md-2 col-sm-2 col-xs-3">
+  <img class="img-responsive" src="{{ data.get('m_user_icon') }}" width="40" height="40"/>
+</div>
+<div style="clear: both;">
+</div>
+{% else %}
+<div class="col-md-2 col-sm-2 col-xs-3">
+  <img class="img-responsive" src="{{ data.get('m_client_icon') }}" width="40" height="40"/>
+</div>
+<div class="col-md-10 col-sm-10 col-xs-9">
+  <div class="bubble">
+    <p>
+      {{ message.message }}
+    </p>
+  </div>
+</div>
+<div style="clear: both;">
+</div>
+{% endif %}
+{% else %}
+<li>
+  <em>
+    {{ _("There's no message so far.") }}
+  </em>
+</li>
+{% endfor %}
