@@ -8,14 +8,14 @@ from faker import Factory
 fake = Factory.create('en_US')
 
 try:
-    from config import RDS_HOST, RDS_NAME, RDS_PASS
+    from config import RDS_HOST, RDS_NAME, RDS_PASS, RDS_DB
     print '---------------mysql------------------'
 except:
     RDS_HOST = RDS_NAME = RDS_PASS = ''
     print '---------------sqlite-----------------'
 
 if RDS_HOST:
-    engine = create_engine("mysql://%s:%s@%s/polodb" % (RDS_NAME, RDS_PASS, RDS_HOST), encoding='latin1', echo=True)
+    engine = create_engine("mysql://%s:%s@%s/%s" % (RDS_NAME, RDS_PASS, RDS_HOST, RDS_DB), encoding='latin1', echo=True)
 else:
     engine = create_engine('sqlite:///alancer.db', convert_unicode=True)
 
