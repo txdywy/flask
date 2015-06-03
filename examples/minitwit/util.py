@@ -26,7 +26,8 @@ def send_email(title, content, addr_to, addr_fr=None):
     try:
         server = smtplib.SMTP('localhost')
     except Exception, e:
-        print 'no SMTP service available'
+        print 'no SMTP service available', e
+        return
     
     #server.set_debuglevel(True) # show communication with the server
     try:

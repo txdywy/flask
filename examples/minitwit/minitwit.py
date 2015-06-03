@@ -29,6 +29,7 @@ from random import randint
 try:
     import cache as cacheal 
 except:
+    print '================no cacheal=============='
     cacheal = None
 try:
     import wx_util
@@ -725,7 +726,7 @@ def message_room():
         messages = messages[-ALANCER_MESSAGE_OFFSET:]
     else:
         messages = cacheal.get(ALANCER_USER_CLIENT_MESSAGES % (m_user_id, m_client_id))
-        messages = messages[-(ALANCER_MESSAGE_OFFSET*(index+1)):-(ALANCER_MESSAGE_OFFSET*index)] 
+        messages = messages[-(ALANCER_MESSAGE_OFFSET*(index+1)):-(ALANCER_MESSAGE_OFFSET*index)] if messages else [] 
     
     client = Client.query.get(m_client_id)
     data = {}
