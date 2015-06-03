@@ -439,8 +439,8 @@ def project_swiper():
             cacheal.set(ALANCER_ALL_PROJECTS, projects, 300)
         """    
         s = cacheal.get(ALANCER_USER_PROJECTS_INDEX % user_id)
-        s = s if s else 1
-        ns = (s + 10) % len(projects)
+        s = s if s else 0
+        ns = (s + 10) % len(projects) if projects else 0
         cacheal.set(ALANCER_USER_PROJECTS_INDEX % user_id, ns)
     return render_template('project_swiper.html', projects=projects[s:s+10])
 
