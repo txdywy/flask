@@ -425,7 +425,8 @@ def ps():
 @app.route('/')
 @app.route('/index')
 @app.route('/project_swiper')
-def project_swiper():
+#def project_swiper():
+def index():
     if not cacheal or not g.user:
         projects = Project.query.order_by(desc(Project.id)).all()
         l = len(projects)
@@ -445,8 +446,6 @@ def project_swiper():
         ns = (s + 10) % len(projects) if projects else 0
         cacheal.set(ALANCER_USER_PROJECTS_INDEX % user_id, ns)
     return render_template('project_swiper.html', projects=projects[s:s+10])
-
-index = project_swiper
 
 @app.route('/inf')
 def inf():
