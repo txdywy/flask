@@ -2,7 +2,12 @@ import smtplib
 import email.utils
 from email.mime.text import MIMEText
 import functools
-ALANCER_SUPPORT = 'support@alancer.cf'
+try:
+    from config import ALANCER_HOST
+except Exception, e:
+    print '==============no ALANCER_HOST set, ues alancer.xx as default==============', e
+    ALANCER_HOST = 'alancer.xx'
+ALANCER_SUPPORT = 'support@%s' % ALANCER_HOST
 
 def makes(s):
     if type(s)==unicode:
