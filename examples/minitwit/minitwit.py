@@ -832,8 +832,9 @@ def index():
     return redirect(url_for('project_swiper'))
     return redirect(url_for('project'))
     #return render_template(ALANCER_INDEX)
+"""
 
-
+'''
 @app.route('/')
 def alancer():
     """The Alancer front page
@@ -841,7 +842,7 @@ def alancer():
     return redirect(url_for('project_swiper'))
     return redirect(url_for('project'))
     return render_template(ALANCER_INDEX)
-"""
+'''
 
 @app.route('/public')
 def public_timeline():
