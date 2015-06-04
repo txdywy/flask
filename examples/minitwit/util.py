@@ -1,6 +1,7 @@
 import smtplib
 import email.utils
 from email.mime.text import MIMEText
+import functools
 ALANCER_SUPPORT = 'support@alancer.cf'
 
 def makes(s):
@@ -15,6 +16,16 @@ def makeu(s):
     else:
         return s
 
+def ex(func):
+    @functools.wraps(func)
+    def foo(*args, **kwargs):
+        try:
+            return func(*args, **kwargs)
+        except Exception, e:
+            print '===================send email ex================', e
+    return foo
+
+@ex
 def send_email(title, content, addr_to, addr_fr=None):
     # Create the message
     if not addr_fr:
