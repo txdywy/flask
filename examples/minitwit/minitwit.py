@@ -446,6 +446,8 @@ def project_swiper():
         cacheal.set(ALANCER_USER_PROJECTS_INDEX % user_id, ns)
     return render_template('project_swiper.html', projects=projects[s:s+10])
 
+index = project_swiper
+
 @app.route('/inf')
 def inf():
     return render_template('inf.html')
