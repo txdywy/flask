@@ -422,6 +422,8 @@ def ps():
     s = randint(0, r if r > 0 else 0)
     return render_template('ps.html', projects=projects[s:s+10])
 
+@app.route('/')
+@app.route('/index')
 @app.route('/project_swiper')
 def project_swiper():
     if not cacheal or not g.user:
@@ -823,7 +825,7 @@ def like_submit():
     project = Project.query.get(project_id)
     return render_template('like.html', project=project, user_like=user_like, user=user)
 
-
+"""
 @app.route('/index')
 def index():
     print '++++++++++', _("hahaha"), get_locale()
@@ -839,7 +841,7 @@ def alancer():
     return redirect(url_for('project_swiper'))
     return redirect(url_for('project'))
     return render_template(ALANCER_INDEX)
-
+"""
 
 @app.route('/public')
 def public_timeline():
