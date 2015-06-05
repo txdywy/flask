@@ -1,31 +1,23 @@
 
-                        / MiniTwit /
+                        / Alancer /
 
-           because writing todo lists is not fun
+           because writing todo lists is not fun, that is true...
 
 
-    ~ What is MiniTwit?
+    ~ What is Alancer?
 
-      A SQLite and Flask powered twitter clone
+      A full stack of cutting edge tech based mobile website
 
     ~ How do I use it?
 
-      1. edit the configuration in the minitwit.py file or
-         export an MINITWIT_SETTINGS environment variable
-         pointing to a configuration file.
+      1. Get an ubuntu server (AWS)
 
-      2. fire up a shell and run this:
+      2. Setup with 'sudo sh install.sh'
 
-         flask --app=minitwit initdb
-
-      3. now you can run minitwit:
-
-         flask --app=minitwit run
-
-         the application will greet you on
-         http://localhost:5000/
+      3. What's more? Copy nginx config with your host domain, 
+         'supervisord -c supervisord.conf'
+         Almost done...
 
     ~ Is it tested?
 
-      You betcha.  Run the `test_minitwit.py` file to
-      see the tests pass.
+      You betcha. It is all up to U!

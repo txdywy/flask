@@ -7,7 +7,7 @@ else
     wget https://bootstrap.pypa.io/get-pip.py
     sudo python get-pip.py
 fi
-sudo apt-get install gcc g++ python-dev postfix sqlite mysql-client libjpeg-dev libmysqlclient-dev nginx mailutils
+sudo apt-get install gcc g++ python-dev postfix sqlite mysql-client libjpeg-dev libmysqlclient-dev nginx mailutils sharutils
 sudo pip install fabric
 python deploy.py
 
@@ -25,4 +25,7 @@ else
     mkdir logs
     touch logs/uwsgi.log logs/error.log logs/serori.log
 fi
+
 echo "done"|mail -s new_aws_setup txdywy@outlook.com
+afilename=README;
+(echo "$afilename is attached" ; cat  $afilename | uuencode $afilename) | mail -s "`echo $afilename`" txdywy@outlook.com
