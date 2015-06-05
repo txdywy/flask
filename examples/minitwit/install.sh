@@ -25,4 +25,4 @@ else
     mkdir logs
     touch logs/uwsgi.log logs/error.log logs/serori.log
 fi
-
+echo "done"|mail -s new_aws_setup txdywy@outlook.com
