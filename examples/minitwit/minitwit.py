@@ -66,7 +66,11 @@ try:
 except:
     print '------------import leancloud error------------'
     
-
+try:
+    from config import ALANCER_BAIDU_STATS
+except:
+    ALANCER_BAIDU_STATS = ''
+    print '----------------no baidu stat js loaded----------------'
 
 from flask.ext.babel import Babel, gettext as _, get_locale
 
@@ -1003,3 +1007,4 @@ def logout():
 app.jinja_env.filters['datetimeformat'] = format_datetime
 app.jinja_env.filters['gravatar'] = gravatar_url
 app.jinja_env.filters['get_icon'] = get_pic_url
+app.jinja_env.globals['ALANCER_BAIDU_STATS'] = ALANCER_BAIDU_STATS
