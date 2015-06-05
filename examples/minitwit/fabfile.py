@@ -13,7 +13,7 @@ def recv(file):
     get(file, './')
 
 def alancer():
-    env.hosts = ['sushi', 'polo', 'noodle']
+    env.hosts = ['sushi', 'polo', 'noodle', 'udon']
 
 def vpn():
     env.hosts = ['tempura', 'ramen', 'donut']
