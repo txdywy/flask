@@ -7,7 +7,10 @@ else
     wget https://bootstrap.pypa.io/get-pip.py
     sudo python get-pip.py
 fi
-sudo apt-get install gcc g++ python-dev postfix sqlite mysql-client libjpeg-dev libmysqlclient-dev nginx mailutils sharutils
+sudo apt-get install gcc g++ python-dev postfix sqlite mysql-client libjpeg-dev libmysqlclient-dev nginx mailutils sharutils vnstat
+sudo vnstat -u -i eth0
+sudo chown -R vnstat:vnstat /var/lib/vnstat
+
 sudo pip install fabric
 python deploy.py
 
