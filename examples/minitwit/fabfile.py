@@ -36,6 +36,10 @@ def update_db():
 def free():
     run('free -mh')
 
+def net():
+    run('vnstat')
+    run('vnstat -h')
+
 def dns(url):
     dns_server = ['', #local
                   '8.8.8.8', #Google
