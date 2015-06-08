@@ -39,6 +39,9 @@ def free():
 def net():
     run('vnstat')
     run('vnstat -h')
+    run('vnstat -d')
+    run('vnstat -w')
+    run('vnstat -m')
 
 def dns(url):
     dns_server = ['', #local
