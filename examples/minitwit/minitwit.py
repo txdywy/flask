@@ -418,6 +418,10 @@ def cat():
 def zl():
     return render_template('zl.html')
 
+@app.route('/upc')
+def upc():
+    return render_template('upc.html')
+
 @app.route('/ps')
 def ps():
     projects = Project.query.order_by(desc(Project.id)).all()

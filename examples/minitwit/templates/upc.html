@@ -1,0 +1,37 @@
+{% extends "alayout.html" %}
+{% block headjs %}
+<script src="https://cdn1.lncld.net/static/js/av-core-mini-0.5.4.js"></script>
+<script src="http://cdn.bootcss.com/jquery/1.11.2/jquery.min.js"></script>
+<script>
+AV.initialize("9dv47dhduhueccd39x88xjrjgjdnisgitca50s5rsj53ipzc", "nkgmov89jtzm78bxow1644j7zqdfys67s7r83p2iid3b7ws2");
+var TestObject = AV.Object.extend("TestObject");
+var testObject = new TestObject();
+testObject.save({foo: "bar"}, {
+  success: function(object) {
+  alert("LeanCloud works!");
+  }
+});
+</script>
+{% endblock headjs %}
+{% block title %}{{ _('Profile') }}{% endblock %}
+{% block body %}
+<div class="container" style="padding-top: 100px;" ng-app="formApp">
+  <!-- edit form column -->
+  <input type="file" id="profilePhotoFileUpload">
+  <button onclick="upload()">Upload</button>
+  
+</div>	
+<script>
+function upload() {
+  console.log('111');
+  var fileUploadControl = $("#profilePhotoFileUpload")[0];
+  if (fileUploadControl.files.length > 0) {
+    var file = fileUploadControl.files[0];
+    var name = "photo.jpg";
+    var avFile = new AV.File(name, file);
+    avFile.save();
+  }
+  console.log('222');
+}
+</script>
+{% endblock %}
