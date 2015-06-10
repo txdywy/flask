@@ -73,7 +73,10 @@ def load_all():
             ps.append(p)
 
     #Create user/client/project
+    n=0
     for p in ps:
+        n+=1
+        if n<22:continue
         username = p['owner_name'].split(' ')[0] + str(p['icon'].split('.')[0].split('-')[-1])
         email = '%s@gmail.com' % username
         u = User(username=username, email=email, pw_hash=PASS_HASH)
