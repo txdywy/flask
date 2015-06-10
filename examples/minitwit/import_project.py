@@ -7,8 +7,8 @@ from model import *
 from config import LC_APP_ID, LC_APP_KEY
 import leancloud
 import datetime, time
+from werkzeug import check_password_hash, generate_password_hash
 leancloud.init(LC_APP_ID, LC_APP_KEY)
-PASS_HASH = 'pbkdf2:sha1:1000$YPfvc8Gh$7139a371720291feab77eb4b6660fecd5e12810b' #123456
 TIMEOUT = 5
 def pause():
     for i in range(TIMEOUT):
@@ -76,10 +76,11 @@ def load_all():
     n=0
     for p in ps:
         n+=1
-        if n<22:continue
+        #if n<50:continue
         username = p['owner_name'].split(' ')[0] + str(p['icon'].split('.')[0].split('-')[-1])
+        username = username.lower()
         email = '%s@gmail.com' % username
-        u = User(username=username, email=email, pw_hash=PASS_HASH)
+        u = User(username=username, email=email, pw_hash=generate_password_hash('111'))
         u.firstname = p['owner_name'].split(' ')[0] 
         u.lastname = p['owner_name'].split(' ')[1]
         u.city = p['city']
