@@ -101,6 +101,7 @@ def load_all():
         #print p 
         project = Project()
         project.title = '%s\'s project' % u.username
+        project.client_id = client.id
         project.client = p['owner_name']
         project.email = email
         project.desp = p['desp'] + ' (%s)' % p['valid_time']
