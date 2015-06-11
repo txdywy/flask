@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2015-06-11 22:48+0800\n"
+"POT-Creation-Date: 2015-06-11 22:54+0800\n"
 "PO-Revision-Date: 2015-05-18 11:55+0800\n"
 "Last-Translator: Ramen King <geniusron@gmail.com>\n"
 "Language-Team: zh_Hans_CN <LL@li.org>\n"
@@ -46,7 +46,7 @@ msgid "You were logged out"
 msgstr "您已成功注销"
 
 #: templates/admin.html:2 templates/admin.html:14 templates/alayout.html:102
-#: templates/project_swiper.html:148
+#: templates/project_swiper.html:150
 msgid "Admin"
 msgstr "管理员"
 
@@ -64,7 +64,7 @@ msgstr "开启"
 msgid "sign out"
 msgstr "注销"
 
-#: templates/alayout.html:58 templates/login.html:64 templates/login.html:93
+#: templates/alayout.html:58 templates/login.html:64 templates/login.html:95
 #: templates/project_swiper.html:106 templates/register.html:56
 msgid "Sign in"
 msgstr "登录"
@@ -77,7 +77,7 @@ msgstr "关于我"
 
 #: templates/alayout.html:68 templates/login.html:69
 #: templates/project_swiper.html:116 templates/register.html:61
-#: templates/register.html:92
+#: templates/register.html:94
 msgid "Sign up"
 msgstr "注册"
 
@@ -91,21 +91,21 @@ msgstr "收件箱"
 msgid "Project"
 msgstr "项目"
 
-#: templates/alayout.html:84
+#: templates/alayout.html:84 templates/project_swiper.html:132
 msgid "Community"
 msgstr "社区"
 
-#: templates/alayout.html:89 templates/login.html:73
-#: templates/project_swiper.html:136 templates/register.html:65
+#: templates/alayout.html:89 templates/login.html:74
+#: templates/project_swiper.html:137 templates/register.html:66
 msgid "Home"
 msgstr "首页"
 
 #: templates/alayout.html:94 templates/project_manage.html:2
-#: templates/project_swiper.html:140
+#: templates/project_swiper.html:142
 msgid "Manage Projects"
 msgstr "管理项目"
 
-#: templates/alayout.html:97 templates/project_swiper.html:143
+#: templates/alayout.html:97 templates/project_swiper.html:145
 msgid "Create Project"
 msgstr "创建项目"
 
@@ -155,19 +155,19 @@ msgstr "关于我"
 msgid "Alancer Signin Page"
 msgstr "Alancer登录页面"
 
-#: templates/login.html:83
+#: templates/login.html:85
 msgid "Please sign in"
 msgstr "请登录"
 
-#: templates/login.html:85
+#: templates/login.html:87
 msgid "User Name"
 msgstr "用户名"
 
-#: templates/login.html:87 templates/register.html:81
+#: templates/login.html:89 templates/register.html:83
 msgid "Password"
 msgstr "密码"
 
-#: templates/login.html:90
+#: templates/login.html:92
 msgid "Remember me"
 msgstr "记住我"
 
@@ -260,7 +260,7 @@ msgid "Username"
 msgstr "用户名"
 
 #: templates/profile.html:95 templates/profile_client.html:101
-#: templates/register.html:79
+#: templates/register.html:81
 msgid "Email"
 msgstr "邮箱"
 
@@ -409,11 +409,6 @@ msgstr "加洛探员"
 msgid "Alancer Projects"
 msgstr "Alancer项目"
 
-#: templates/project_swiper.html:132 templates/user_list.html:2
-#: templates/user_list.html:10
-msgid "Users"
-msgstr "用户列表"
-
 #: templates/publish.html:2
 msgid "Publish"
 msgstr "发布项目"
@@ -446,27 +441,27 @@ msgstr "项目图片预览"
 msgid "Sign Up Here"
 msgstr "注册"
 
-#: templates/register.html:75
+#: templates/register.html:77
 msgid "Please sign up"
 msgstr "请注册"
 
-#: templates/register.html:77
+#: templates/register.html:79
 msgid "User name"
 msgstr "用户名"
 
-#: templates/register.html:83
+#: templates/register.html:85
 msgid "Password again"
 msgstr "确认密码"
 
-#: templates/register.html:84
+#: templates/register.html:86
 msgid "To be a developer or project owner"
 msgstr "请选择作为开发者或项目发布者"
 
-#: templates/register.html:87
+#: templates/register.html:89
 msgid "I want to be a developer"
 msgstr "我想成为开发者"
 
-#: templates/register.html:88
+#: templates/register.html:90
 msgid "I want to be a project owner"
 msgstr "我想成为项目发布者"
 
@@ -505,6 +500,10 @@ msgstr "审核"
 #: templates/user.html:64 templates/user_list.html:83
 msgid "reviews"
 msgstr "评论"
+
+#: templates/user_list.html:2 templates/user_list.html:10
+msgid "Users"
+msgstr "用户列表"
 
 #: templates/user_list.html:19
 msgid "All users"
