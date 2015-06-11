@@ -86,6 +86,7 @@ class Project(Base):
     incentive = Column(String(500), default='U can U up!')
     client_title = Column(String(50), default='Owner')
     icon = Column(String(512))
+    valid_time = Column(String(120), default='Anytime')
     #cnt_like = Column(Integer, default=0)
     #cnt_dislike = Column(Integer, default=0)
 

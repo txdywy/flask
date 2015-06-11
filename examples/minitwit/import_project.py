@@ -104,7 +104,8 @@ def load_all():
         project.client_id = client.id
         project.client = p['owner_name']
         project.email = email
-        project.desp = p['desp'] + ' (%s)' % p['valid_time']
+        project.desp = p['desp'] 
+        project.valid_time = p['valid_time']
         project.image_url = upload_image('oim/logo/'+p['logo'])
 
         pause()
