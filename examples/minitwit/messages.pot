@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2015-06-11 22:54+0800\n"
+"POT-Creation-Date: 2015-06-12 00:24+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -29,19 +29,19 @@ msgstr ""
 msgid "You have successfully updated your profile"
 msgstr ""
 
-#: minitwit.py:948
+#: minitwit.py:950
 msgid "You were logged in"
 msgstr ""
 
-#: minitwit.py:952
+#: minitwit.py:954
 msgid "Wrong with username or password"
 msgstr ""
 
-#: minitwit.py:996
+#: minitwit.py:998
 msgid "You were successfully registered and can login now"
 msgstr ""
 
-#: minitwit.py:1004
+#: minitwit.py:1006
 msgid "You were logged out"
 msgstr ""
 
@@ -135,7 +135,7 @@ msgid "d ago"
 msgstr ""
 
 #: templates/apply.html:22
-msgid "Mention why you are insterested and what you can bring to this project..."
+msgid "Message to project owner"
 msgstr ""
 
 #: templates/apply.html:24
