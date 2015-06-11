@@ -802,7 +802,7 @@ def message_box():
         mi['m_client_id'] = m.client_id
         client = Client.query.get(m.client_id)
         mi['m_client_name'] = client.name
-        mi['m_user_icon'] = m_user.icon
+        mi['icon'] = m_user.icon if user.role == User.USER_CLIENT else client.icon
         delta = (now - (m.create_time if m.create_time else datetime(2015, 1, 1))).days
         mi['new'] = True if delta == 0 else False
         mi['days'] = delta
