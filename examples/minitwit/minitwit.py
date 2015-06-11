@@ -717,7 +717,7 @@ def message():
     #print '-----------------',email_title, email_body, email_notify
     #util.send_email('[Alancer] New message from %s' % name_from, '%s: %s <br>%s' % (name_from, message, mr), email_notify)
     messages = messages[-1:]
-    return render_template('message_more.html', data=data, Message=Message, client=m_client, messages=messages, m_user_id=m_user_id, m_user=m_user)
+    return render_template('message.html', data=data, Message=Message, client=m_client, messages=messages, m_user_id=m_user_id, m_user=m_user)
 
 @app.route('/message_room', methods=['GET', 'POST'])
 @login_required
