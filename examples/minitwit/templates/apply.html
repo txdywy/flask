@@ -21,7 +21,7 @@
                   <div class="form-group ">
                          <label id="messageLabel" for="message">{{ _('Message to project owner') }} </label>
                          <form action="/message" method="POST">
-                           <textarea class="form-control " type="textarea" id="message_text" name="message" placeholder="{{ _('Why are you’re interested in applying to this, and what relevant skills and experience can you bring to the project?') }}" maxlength="2048" rows="3" style="/*float:left;*/"></textarea>
+                           <textarea class="form-control " type="textarea" id="message_text" name="message" placeholder="{{ _('Why you are interested in applying to this project?') }}" maxlength="2048" rows="3" style="/*float:left;*/"></textarea>
                            <div style="float:right;">
                              <input type="hidden" name="m_user_id" value="{{ m_user_id }}">
                              <input type="hidden" name="m_client_id" value="{{ client.id }}">

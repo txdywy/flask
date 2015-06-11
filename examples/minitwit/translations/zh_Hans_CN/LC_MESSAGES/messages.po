@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2015-06-12 00:40+0800\n"
+"POT-Creation-Date: 2015-06-12 00:43+0800\n"
 "PO-Revision-Date: 2015-05-18 11:55+0800\n"
 "Last-Translator: Ramen King <geniusron@gmail.com>\n"
 "Language-Team: zh_Hans_CN <LL@li.org>\n"
@@ -139,8 +139,7 @@ msgid "Message to project owner"
 msgstr "发送给项目开发者的信息"
 
 #: templates/apply.html:24
-msgid ""
-"Why are you’re interested in applying to this, and what relevant skills and experience can you bring to the project?"
+msgid "Why you are interested in applying to this project?"
 msgstr "请描述你对此项目感兴趣的原因及你的优势"
 
 #: templates/apply.html:29 templates/project_new.html:82
