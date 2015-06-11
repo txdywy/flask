@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2015-06-02 14:42+0000\n"
+"POT-Creation-Date: 2015-06-11 22:48+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,40 +17,36 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 1.3\n"
 
-#: minitwit.py:585
+#: minitwit.py:597
 msgid "You have successfully created your project"
 msgstr ""
 
-#: minitwit.py:608
+#: minitwit.py:620
 msgid "You have successfully updated your project"
 msgstr ""
 
-#: minitwit.py:641
+#: minitwit.py:653
 msgid "You have successfully updated your profile"
 msgstr ""
 
-#: minitwit.py:828
-msgid "hahaha"
-msgstr ""
-
-#: minitwit.py:935
+#: minitwit.py:948
 msgid "You were logged in"
 msgstr ""
 
-#: minitwit.py:939
+#: minitwit.py:952
 msgid "Wrong with username or password"
 msgstr ""
 
-#: minitwit.py:983
+#: minitwit.py:996
 msgid "You were successfully registered and can login now"
 msgstr ""
 
-#: minitwit.py:991
+#: minitwit.py:1004
 msgid "You were logged out"
 msgstr ""
 
-#: templates/admin.html:2 templates/admin.html:14 templates/alayout.html:99
-#: templates/project_swiper.html:147
+#: templates/admin.html:2 templates/admin.html:14 templates/alayout.html:102
+#: templates/project_swiper.html:148
 msgid "Admin"
 msgstr ""
 
@@ -58,59 +54,58 @@ msgstr ""
 msgid "Project List"
 msgstr ""
 
-#: templates/alayout.html:44 templates/login.html:50
-#: templates/project_swiper.html:92 templates/register.html:42
+#: templates/alayout.html:45 templates/login.html:51
+#: templates/project_swiper.html:93 templates/register.html:43
 msgid "Start"
 msgstr ""
 
-#: templates/alayout.html:55 templates/login.html:61
-#: templates/project_swiper.html:103 templates/register.html:53
+#: templates/alayout.html:56 templates/login.html:62
+#: templates/project_swiper.html:104 templates/register.html:54
 msgid "sign out"
 msgstr ""
 
-#: templates/alayout.html:57 templates/login.html:63 templates/login.html:92
-#: templates/project_swiper.html:105 templates/register.html:55
+#: templates/alayout.html:58 templates/login.html:64 templates/login.html:93
+#: templates/project_swiper.html:106 templates/register.html:56
 msgid "Sign in"
 msgstr ""
 
-#: templates/alayout.html:62 templates/profile.html:8 templates/profile.html:79
+#: templates/alayout.html:63 templates/profile.html:8 templates/profile.html:79
 #: templates/profile_client.html:8 templates/profile_client.html:85
-#: templates/project_swiper.html:110
+#: templates/project_swiper.html:111 templates/upc.html:16
 msgid "Profile"
 msgstr ""
 
-#: templates/alayout.html:67 templates/login.html:68
-#: templates/project_swiper.html:115 templates/register.html:60
-#: templates/register.html:91
+#: templates/alayout.html:68 templates/login.html:69
+#: templates/project_swiper.html:116 templates/register.html:61
+#: templates/register.html:92
 msgid "Sign up"
 msgstr ""
 
-#: templates/alayout.html:71 templates/message.html:2
-#: templates/project_swiper.html:119
+#: templates/alayout.html:72 templates/message.html:2
+#: templates/project_swiper.html:120
 msgid "Message"
 msgstr ""
 
-#: templates/alayout.html:74 templates/project_list.html:9
-#: templates/project_swiper.html:122
+#: templates/alayout.html:75 templates/project_list.html:9
+#: templates/project_swiper.html:123
 msgid "Project"
 msgstr ""
 
-#: templates/alayout.html:83 templates/project_swiper.html:131
-#: templates/user_list.html:2 templates/user_list.html:10
-msgid "Users"
+#: templates/alayout.html:84
+msgid "Community"
 msgstr ""
 
-#: templates/alayout.html:87 templates/login.html:72
-#: templates/project_swiper.html:135 templates/register.html:64
+#: templates/alayout.html:89 templates/login.html:73
+#: templates/project_swiper.html:136 templates/register.html:65
 msgid "Home"
 msgstr ""
 
-#: templates/alayout.html:91 templates/project_manage.html:2
-#: templates/project_swiper.html:139
+#: templates/alayout.html:94 templates/project_manage.html:2
+#: templates/project_swiper.html:140
 msgid "Manage Projects"
 msgstr ""
 
-#: templates/alayout.html:94 templates/project_swiper.html:142
+#: templates/alayout.html:97 templates/project_swiper.html:143
 msgid "Create Project"
 msgstr ""
 
@@ -160,19 +155,19 @@ msgstr ""
 msgid "Alancer Signin Page"
 msgstr ""
 
-#: templates/login.html:82
+#: templates/login.html:83
 msgid "Please sign in"
 msgstr ""
 
-#: templates/login.html:84
+#: templates/login.html:85
 msgid "User Name"
 msgstr ""
 
-#: templates/login.html:86 templates/register.html:80
+#: templates/login.html:87 templates/register.html:81
 msgid "Password"
 msgstr ""
 
-#: templates/login.html:89
+#: templates/login.html:90
 msgid "Remember me"
 msgstr ""
 
@@ -265,7 +260,7 @@ msgid "Username"
 msgstr ""
 
 #: templates/profile.html:95 templates/profile_client.html:101
-#: templates/register.html:78
+#: templates/register.html:79
 msgid "Email"
 msgstr ""
 
@@ -414,6 +409,11 @@ msgstr ""
 msgid "Alancer Projects"
 msgstr ""
 
+#: templates/project_swiper.html:132 templates/user_list.html:2
+#: templates/user_list.html:10
+msgid "Users"
+msgstr ""
+
 #: templates/publish.html:2
 msgid "Publish"
 msgstr ""
@@ -446,27 +446,27 @@ msgstr ""
 msgid "Sign Up Here"
 msgstr ""
 
-#: templates/register.html:74
+#: templates/register.html:75
 msgid "Please sign up"
 msgstr ""
 
-#: templates/register.html:76
+#: templates/register.html:77
 msgid "User name"
 msgstr ""
 
-#: templates/register.html:82
+#: templates/register.html:83
 msgid "Password again"
 msgstr ""
 
-#: templates/register.html:83
+#: templates/register.html:84
 msgid "To be a developer or project owner"
 msgstr ""
 
-#: templates/register.html:86
+#: templates/register.html:87
 msgid "I want to be a developer"
 msgstr ""
 
-#: templates/register.html:87
+#: templates/register.html:88
 msgid "I want to be a project owner"
 msgstr ""
 
