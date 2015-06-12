@@ -16,7 +16,10 @@ def alancer():
     env.hosts = ['sushi', 'polo', 'noodle', 'udon']
 
 def vpn():
-    env.hosts = ['tempura', 'ramen', 'donut']
+    env.hosts = ['tempura', 'ramen', 'donut', 'nori']
+
+def appflood():
+    env.hosts = ['pre3-01', 'af_test', 'test3', 'sandbox']
 
 def pull():
     with cd('~/flask/examples/minitwit/'):
