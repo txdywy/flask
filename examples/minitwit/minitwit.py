@@ -430,6 +430,10 @@ def ps():
     s = randint(0, r if r > 0 else 0)
     return render_template('ps.html', projects=projects[s:s+10])
 
+@app.route('/elb')
+def elb():
+    return '1'
+
 @app.route('/')
 @app.route('/index')
 @app.route('/project_swiper')
