@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2015-06-14 04:22+0000\n"
+"POT-Creation-Date: 2015-06-14 12:30+0800\n"
 "PO-Revision-Date: 2015-05-18 11:55+0800\n"
 "Last-Translator: Ramen King <geniusron@gmail.com>\n"
 "Language-Team: zh_Hans_CN <LL@li.org>\n"
@@ -295,8 +295,8 @@ msgid "Project Info"
 msgstr "项目信息"
 
 #: templates/project_info.html:39 templates/project_new.html:38
-msgid "Project title"
-msgstr "项目名称"
+msgid "I want to find"
+msgstr "我想找"
 
 #: templates/project_info.html:45 templates/project_new.html:44
 msgid "Project description"
@@ -535,4 +535,7 @@ msgstr "目前没有用户"
 
 #~ msgid "Agent Gallow"
 #~ msgstr "加洛探员"
+
+#~ msgid "Project title"
+#~ msgstr "项目名称"
 
