@@ -36,6 +36,11 @@ try:
 except:
     print '------------wx_util import err-----------'
     wx_util = None
+try:
+    from config import ALANCER_HOST
+except:
+    print '---------------no host set---------------'
+    ALANCER_HOST = 'alancer.ga'
 
 import ierror
 from WXBizMsgCrypt import SHA1
@@ -960,7 +965,7 @@ def login():
 
 
 ALANCER_WELCOME_BODY = """
-You have successfully registered at aLancer. Click [<a href="%s">here<a>] to view the latest internship openings being offered by verified business owners nearby you. We may send you notices of new openings as they are added in the future. -the Alancer Team
+You have successfully registered at aLancer. Click <a href="%s"><strong style="color:#00188f;"><span style="color:#00188f;">here</span></strong></a> to view the latest internship openings being offered by verified business owners nearby you. We may send you notices of new openings as they are added in the future. -the Alancer Team
 """
 
 @app.route('/register', methods=['GET', 'POST'])
@@ -1001,6 +1006,7 @@ def register():
                 client = Client(name=u.username, email=u.email, user_id=u.user_id, icon=u.icon)
                 flush(client)
             util.send_email(_('Welcome to Alancer'), ALANCER_WELCOME_BODY % url_for('project'), request.form['email'])
+            print '===========', ALANCER_WELCOME_BODY % ('http://%s/project' % ALANCER_HOST)
             util.send_email('[Alancer Signup]', 'You have a new user [%s] @lancer!' % request.form['email'], ALANCER_SERVICE_EMAIL) 
             session['user_id'] = u.user_id
             flash(_('You were successfully registered and can login now'))
