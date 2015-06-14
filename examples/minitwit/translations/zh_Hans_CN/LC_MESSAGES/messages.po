@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2015-06-13 01:16+0000\n"
+"POT-Creation-Date: 2015-06-14 04:22+0000\n"
 "PO-Revision-Date: 2015-05-18 11:55+0800\n"
 "Last-Translator: Ramen King <geniusron@gmail.com>\n"
 "Language-Team: zh_Hans_CN <LL@li.org>\n"
@@ -299,9 +299,8 @@ msgid "Project title"
 msgstr "项目名称"
 
 #: templates/project_info.html:45 templates/project_new.html:44
-#: templates/publish.html:61
-msgid "Description"
-msgstr "描述"
+msgid "Project description"
+msgstr "项目描述"
 
 #: templates/project_info.html:51
 msgid "Service"
@@ -400,6 +399,10 @@ msgstr "发布项目"
 #: templates/publish.html:49
 msgid "Publish a new project"
 msgstr "发布一个新项目"
+
+#: templates/publish.html:61
+msgid "Description"
+msgstr "描述"
 
 #: templates/publish.html:62
 msgid "Project Description"

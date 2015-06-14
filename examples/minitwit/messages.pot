@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2015-06-13 01:16+0000\n"
+"POT-Creation-Date: 2015-06-14 04:22+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -299,8 +299,7 @@ msgid "Project title"
 msgstr ""
 
 #: templates/project_info.html:45 templates/project_new.html:44
-#: templates/publish.html:61
-msgid "Description"
+msgid "Project description"
 msgstr ""
 
 #: templates/project_info.html:51
@@ -399,6 +398,10 @@ msgstr ""
 
 #: templates/publish.html:49
 msgid "Publish a new project"
+msgstr ""
+
+#: templates/publish.html:61
+msgid "Description"
 msgstr ""
 
 #: templates/publish.html:62
