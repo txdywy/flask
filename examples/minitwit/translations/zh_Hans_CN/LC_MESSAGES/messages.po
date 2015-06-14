@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2015-06-14 12:44+0800\n"
+"POT-Creation-Date: 2015-06-14 12:50+0800\n"
 "PO-Revision-Date: 2015-05-18 11:55+0800\n"
 "Last-Translator: Ramen King <geniusron@gmail.com>\n"
 "Language-Team: zh_Hans_CN <LL@li.org>\n"
@@ -203,10 +203,9 @@ msgstr "收件箱"
 msgid "d"
 msgstr "天前"
 
-#: templates/message_box.html:26 templates/project_manage.html:43
-#: templates/publish.html:43
-msgid "no projects"
-msgstr "没有项目"
+#: templates/message_box.html:26
+msgid "Sorry, currently no message"
+msgstr "抱歉,暂无信息"
 
 #: templates/profile.html:17 templates/profile_client.html:17
 msgid "Please complete your information"
@@ -359,6 +358,10 @@ msgstr "客户"
 #: templates/project_manage.html:32 templates/publish.html:32
 msgid "Image"
 msgstr "图像"
+
+#: templates/project_manage.html:43 templates/publish.html:43
+msgid "no projects"
+msgstr "没有项目"
 
 #: templates/project_new.html:8
 msgid "New Project"

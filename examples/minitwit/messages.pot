@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2015-06-14 12:44+0800\n"
+"POT-Creation-Date: 2015-06-14 12:50+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -203,9 +203,8 @@ msgstr ""
 msgid "d"
 msgstr ""
 
-#: templates/message_box.html:26 templates/project_manage.html:43
-#: templates/publish.html:43
-msgid "no projects"
+#: templates/message_box.html:26
+msgid "Sorry, currently no message"
 msgstr ""
 
 #: templates/profile.html:17 templates/profile_client.html:17
@@ -358,6 +357,10 @@ msgstr ""
 
 #: templates/project_manage.html:32 templates/publish.html:32
 msgid "Image"
+msgstr ""
+
+#: templates/project_manage.html:43 templates/publish.html:43
+msgid "no projects"
 msgstr ""
 
 #: templates/project_new.html:8
