@@ -1012,8 +1012,12 @@ def logout():
     return redirect(url_for('index'))
     #return redirect(url_for('public_timeline'))
 
+def dformat(d):
+    return str(d)[:10]
+
 
 # add some filters to jinja
+app.jinja_env.filters['dformat'] = dformat
 app.jinja_env.filters['datetimeformat'] = format_datetime
 app.jinja_env.filters['gravatar'] = gravatar_url
 app.jinja_env.filters['get_icon'] = get_pic_url
