@@ -959,6 +959,10 @@ def login():
     return render_template('login.html', error=error)
 
 
+ALANCER_WELCOME_BODY = """
+You have successfully registered at aLancer. Click [<a href="%s">here<a>] to view the latest internship openings being offered by verified business owners nearby you. We may send you notices of new openings as they are added in the future. -the Alancer Team
+""" % 'http://alancer.ga/project'
+
 @app.route('/register', methods=['GET', 'POST'])
 def register():
     """Registers the user."""
@@ -996,7 +1000,7 @@ def register():
             if isowner:
                 client = Client(name=u.username, email=u.email, user_id=u.user_id, icon=u.icon)
                 flush(client)
-            util.send_email('[Alancer] Congratulations!', 'You have registered at alancer!', request.form['email'])
+            util.send_email(_('Welcome to Alancer'), ALANCER_WELCOME_BODY, request.form['email'])
             util.send_email('[Alancer Signup]', 'You have a new user [%s] @lancer!' % request.form['email'], ALANCER_SERVICE_EMAIL) 
             session['user_id'] = u.user_id
             flash(_('You were successfully registered and can login now'))

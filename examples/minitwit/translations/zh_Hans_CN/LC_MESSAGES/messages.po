@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2015-06-14 12:50+0800\n"
+"POT-Creation-Date: 2015-06-14 21:25+0800\n"
 "PO-Revision-Date: 2015-05-18 11:55+0800\n"
 "Last-Translator: Ramen King <geniusron@gmail.com>\n"
 "Language-Team: zh_Hans_CN <LL@li.org>\n"
@@ -37,11 +37,15 @@ msgstr "您已成功登录"
 msgid "Wrong with username or password"
 msgstr "用户名或密码有误"
 
-#: minitwit.py:1002
+#: minitwit.py:1003
+msgid "Welcome to Alancer"
+msgstr "欢迎加入Alancer"
+
+#: minitwit.py:1006
 msgid "You were successfully registered and can login now"
 msgstr "您已成功注册并登录"
 
-#: minitwit.py:1010
+#: minitwit.py:1014
 msgid "You were logged out"
 msgstr "您已成功注销"
 
