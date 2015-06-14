@@ -959,9 +959,9 @@ def login():
     return render_template('login.html', error=error)
 
 
-ALANCER_WELCOME_BODY = """
+ALANCER_WELCOME_BODY = '''
 You have successfully registered at aLancer. Click [<a href="%s">here<a>] to view the latest internship openings being offered by verified business owners nearby you. We may send you notices of new openings as they are added in the future. -the Alancer Team
-""" % 'http://alancer.ga/project'
+''' % url_for('project')
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
