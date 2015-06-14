@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2015-06-14 12:30+0800\n"
+"POT-Creation-Date: 2015-06-14 12:44+0800\n"
 "PO-Revision-Date: 2015-05-18 11:55+0800\n"
 "Last-Translator: Ramen King <geniusron@gmail.com>\n"
 "Language-Team: zh_Hans_CN <LL@li.org>\n"
@@ -445,12 +445,12 @@ msgid "To be a developer or project owner"
 msgstr "请选择作为开发者或项目发布者"
 
 #: templates/register.html:89
-msgid "I want to be a developer"
-msgstr "我想成为开发者"
+msgid "I'm an intern"
+msgstr "我是实习生"
 
 #: templates/register.html:90
-msgid "I want to be a project owner"
-msgstr "我想成为项目发布者"
+msgid "I'm seeking interns"
+msgstr "我要找实习生"
 
 #: templates/user.html:2
 msgid "User Digest"
@@ -538,4 +538,10 @@ msgstr "目前没有用户"
 
 #~ msgid "Project title"
 #~ msgstr "项目名称"
+
+#~ msgid "I want to be a developer"
+#~ msgstr "我想成为开发者"
+
+#~ msgid "I want to be a project owner"
+#~ msgstr "我想成为项目发布者"
 
