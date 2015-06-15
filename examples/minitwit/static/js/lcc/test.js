@@ -113,6 +113,7 @@ function main() {
                         msgTime = data.timestamp;
                     }
                     showMsg(data);
+                    printWall.scrollTop = printWall.scrollHeight;
                 });
             }
             // 如果服务器端不存在这个 conversation
