@@ -2,7 +2,7 @@
 var appId = 'j1ax3y6bn2vt7r2uunt5vofnf7tdm1do6pl54ksly3lwyri4';
 
 // 请换成你自己的一个房间的 conversation id（这是服务器端生成的）
-var roomId = '551a2847e4b04d688d73dc54';
+var roomId = '557e4c24e4b007f322b3eb72';
 
 // 每个客户端自定义的 id
 var clientId = 'LeanCloud';
