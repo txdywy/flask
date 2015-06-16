@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2015-06-16 08:50+0000\n"
+"POT-Creation-Date: 2015-06-16 09:07+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -343,29 +343,28 @@ msgstr ""
 msgid "There's no project so far."
 msgstr ""
 
-#: templates/project_manage.html:24 templates/publish.html:24
+#: templates/project_manage.html:24 templates/project_new.html:8
+msgid "New Project"
+msgstr ""
+
+#: templates/project_manage.html:28 templates/publish.html:24
 msgid "My Projects Number"
 msgstr ""
 
-#: templates/project_manage.html:30 templates/publish.html:30
-#: templates/publish.html:55
-msgid "Project Title"
+#: templates/project_manage.html:34
+msgid "Project Target"
 msgstr ""
 
-#: templates/project_manage.html:31 templates/publish.html:31
-msgid "Client"
+#: templates/project_manage.html:35
+msgid "Project Time"
 msgstr ""
 
-#: templates/project_manage.html:32 templates/publish.html:32
+#: templates/project_manage.html:36 templates/publish.html:32
 msgid "Image"
 msgstr ""
 
-#: templates/project_manage.html:43 templates/publish.html:43
+#: templates/project_manage.html:47 templates/publish.html:43
 msgid "no projects"
-msgstr ""
-
-#: templates/project_new.html:8
-msgid "New Project"
 msgstr ""
 
 #: templates/project_new.html:17
@@ -398,6 +397,14 @@ msgstr ""
 
 #: templates/publish.html:2
 msgid "Publish"
+msgstr ""
+
+#: templates/publish.html:30 templates/publish.html:55
+msgid "Project Title"
+msgstr ""
+
+#: templates/publish.html:31
+msgid "Client"
 msgstr ""
 
 #: templates/publish.html:49

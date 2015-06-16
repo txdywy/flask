@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2015-06-16 08:50+0000\n"
+"POT-Creation-Date: 2015-06-16 09:07+0000\n"
 "PO-Revision-Date: 2015-05-18 11:55+0800\n"
 "Last-Translator: Ramen King <geniusron@gmail.com>\n"
 "Language-Team: zh_Hans_CN <LL@li.org>\n"
@@ -343,30 +343,29 @@ msgstr "申请时间"
 msgid "There's no project so far."
 msgstr "目前没有项目"
 
-#: templates/project_manage.html:24 templates/publish.html:24
+#: templates/project_manage.html:24 templates/project_new.html:8
+msgid "New Project"
+msgstr "新项目"
+
+#: templates/project_manage.html:28 templates/publish.html:24
 msgid "My Projects Number"
 msgstr "我的项目数"
 
-#: templates/project_manage.html:30 templates/publish.html:30
-#: templates/publish.html:55
-msgid "Project Title"
-msgstr "项目名称"
+#: templates/project_manage.html:34
+msgid "Project Target"
+msgstr "项目目标"
 
-#: templates/project_manage.html:31 templates/publish.html:31
-msgid "Client"
-msgstr "客户"
+#: templates/project_manage.html:35
+msgid "Project Time"
+msgstr "项目时间"
 
-#: templates/project_manage.html:32 templates/publish.html:32
+#: templates/project_manage.html:36 templates/publish.html:32
 msgid "Image"
 msgstr "图像"
 
-#: templates/project_manage.html:43 templates/publish.html:43
+#: templates/project_manage.html:47 templates/publish.html:43
 msgid "no projects"
 msgstr "没有项目"
-
-#: templates/project_new.html:8
-msgid "New Project"
-msgstr "新项目"
 
 #: templates/project_new.html:17
 msgid "You can add your new project now"
@@ -399,6 +398,14 @@ msgstr "Alancer项目"
 #: templates/publish.html:2
 msgid "Publish"
 msgstr "发布项目"
+
+#: templates/publish.html:30 templates/publish.html:55
+msgid "Project Title"
+msgstr "项目名称"
+
+#: templates/publish.html:31
+msgid "Client"
+msgstr "客户"
 
 #: templates/publish.html:49
 msgid "Publish a new project"
