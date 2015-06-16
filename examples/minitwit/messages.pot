@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2015-06-16 09:07+0000\n"
+"POT-Creation-Date: 2015-06-16 10:11+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -239,12 +239,36 @@ msgstr ""
 msgid "First Name"
 msgstr ""
 
+#: templates/profile.html:40 templates/profile_client.html:40
+msgid "Mike"
+msgstr ""
+
 #: templates/profile.html:44 templates/profile_client.html:44
 msgid "Last name"
 msgstr ""
 
+#: templates/profile.html:46
+msgid "Zhang"
+msgstr ""
+
+#: templates/profile.html:52
+msgid "University of Hello"
+msgstr ""
+
+#: templates/profile.html:58 templates/profile_client.html:64
+msgid "Beijing"
+msgstr ""
+
 #: templates/profile.html:62 templates/profile_client.html:68
 msgid "Country"
+msgstr ""
+
+#: templates/profile.html:64 templates/profile_client.html:70
+msgid "China"
+msgstr ""
+
+#: templates/profile.html:84
+msgid "blablabla..."
 msgstr ""
 
 #: templates/profile.html:88 templates/profile_client.html:94
@@ -270,16 +294,32 @@ msgstr ""
 msgid "Save Changes"
 msgstr ""
 
+#: templates/profile_client.html:46
+msgid "Du"
+msgstr ""
+
 #: templates/profile_client.html:50
 msgid "Company"
+msgstr ""
+
+#: templates/profile_client.html:52
+msgid "Google"
 msgstr ""
 
 #: templates/profile_client.html:56 templates/publish.html:54
 msgid "Title"
 msgstr ""
 
+#: templates/profile_client.html:58
+msgid "Manager"
+msgstr ""
+
 #: templates/profile_client.html:88
 msgid "About my company"
+msgstr ""
+
+#: templates/profile_client.html:90
+msgid "Legend and more..."
 msgstr ""
 
 #: templates/project_info.html:8

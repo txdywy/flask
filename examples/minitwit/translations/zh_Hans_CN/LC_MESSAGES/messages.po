@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2015-06-16 09:07+0000\n"
+"POT-Creation-Date: 2015-06-16 10:11+0000\n"
 "PO-Revision-Date: 2015-05-18 11:55+0800\n"
 "Last-Translator: Ramen King <geniusron@gmail.com>\n"
 "Language-Team: zh_Hans_CN <LL@li.org>\n"
@@ -239,13 +239,37 @@ msgstr "个人信息"
 msgid "First Name"
 msgstr "名"
 
+#: templates/profile.html:40 templates/profile_client.html:40
+msgid "Mike"
+msgstr "小麦"
+
 #: templates/profile.html:44 templates/profile_client.html:44
 msgid "Last name"
 msgstr "姓"
 
+#: templates/profile.html:46
+msgid "Zhang"
+msgstr "张"
+
+#: templates/profile.html:52
+msgid "University of Hello"
+msgstr "哈罗大学"
+
+#: templates/profile.html:58 templates/profile_client.html:64
+msgid "Beijing"
+msgstr "北京"
+
 #: templates/profile.html:62 templates/profile_client.html:68
 msgid "Country"
 msgstr "国家"
+
+#: templates/profile.html:64 templates/profile_client.html:70
+msgid "China"
+msgstr "中国"
+
+#: templates/profile.html:84
+msgid "blablabla..."
+msgstr "很多很多"
 
 #: templates/profile.html:88 templates/profile_client.html:94
 msgid "Account Info"
@@ -270,17 +294,33 @@ msgstr "创建时间"
 msgid "Save Changes"
 msgstr "保存修改"
 
+#: templates/profile_client.html:46
+msgid "Du"
+msgstr "杜"
+
 #: templates/profile_client.html:50
 msgid "Company"
 msgstr "公司/组织"
+
+#: templates/profile_client.html:52
+msgid "Google"
+msgstr "谷歌"
 
 #: templates/profile_client.html:56 templates/publish.html:54
 msgid "Title"
 msgstr "职位/身份"
 
+#: templates/profile_client.html:58
+msgid "Manager"
+msgstr "经理"
+
 #: templates/profile_client.html:88
 msgid "About my company"
 msgstr "关于我的公司"
+
+#: templates/profile_client.html:90
+msgid "Legend and more..."
+msgstr "非常的传奇"
 
 #: templates/project_info.html:8
 msgid "Edit Project"
