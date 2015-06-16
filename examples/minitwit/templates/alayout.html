@@ -91,11 +91,13 @@
                         -->
                         {% if g.user and g.isowner %}
                         <li class="page-scroll">
-                            <a href="/project_manage">{{ _("Manage Projects") }}</a>
+                            <a href="/project_manage">{{ _("My Projects") }}</a>
                         </li>
+                        <!--
                         <li class="page-scroll">
                             <a href="/project_new">{{ _('Create Project') }}</a>
                         </li>
+                        -->
                         {% endif %}
                         {% if g.user and g.admin_power %}
                         <li class="page-scroll">
