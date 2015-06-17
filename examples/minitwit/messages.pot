@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2015-06-17 08:03+0000\n"
+"POT-Creation-Date: 2015-06-17 09:12+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,35 +17,35 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 1.3\n"
 
-#: minitwit.py:607
+#: minitwit.py:615
 msgid "You have successfully created your project"
 msgstr ""
 
-#: minitwit.py:631
+#: minitwit.py:639
 msgid "You have successfully updated your project"
 msgstr ""
 
-#: minitwit.py:666
+#: minitwit.py:674
 msgid "You have successfully updated your profile"
 msgstr ""
 
-#: minitwit.py:963
+#: minitwit.py:971
 msgid "You were logged in"
 msgstr ""
 
-#: minitwit.py:967
+#: minitwit.py:975
 msgid "Wrong with username or password"
 msgstr ""
 
-#: minitwit.py:1012
+#: minitwit.py:1020
 msgid "Welcome to Alancer"
 msgstr ""
 
-#: minitwit.py:1016
+#: minitwit.py:1024
 msgid "You were successfully registered and can login now"
 msgstr ""
 
-#: minitwit.py:1024
+#: minitwit.py:1032
 msgid "You were logged out"
 msgstr ""
 
@@ -152,7 +152,7 @@ msgstr ""
 msgid "Submit"
 msgstr ""
 
-#: templates/apply.html:37 templates/user.html:56 templates/user_list.html:75
+#: templates/apply.html:37 templates/user.html:55 templates/user_list.html:75
 msgid "About me"
 msgstr ""
 
@@ -278,17 +278,17 @@ msgid "Email"
 msgstr ""
 
 #: templates/profile.html:118 templates/profile_client.html:124
-#: templates/project_info.html:94
+#: templates/project_info.html:93
 msgid "Created time"
 msgstr ""
 
 #: templates/profile.html:127 templates/profile_client.html:133
-#: templates/project_info.html:103
+#: templates/project_info.html:102
 msgid "Save Changes"
 msgstr ""
 
 #: templates/profile.html:129 templates/profile_client.html:135
-#: templates/project_info.html:105 templates/project_new.html:97
+#: templates/project_info.html:104 templates/project_new.html:97
 msgid "Cancel"
 msgstr ""
 
@@ -510,32 +510,28 @@ msgstr ""
 msgid "User"
 msgstr ""
 
-#: templates/user.html:37 templates/user_list.html:56
+#: templates/user.html:36 templates/user_list.html:56
 msgid "Developer"
 msgstr ""
 
-#: templates/user.html:41 templates/user_list.html:60
+#: templates/user.html:40 templates/user_list.html:60
 msgid "Project owner"
 msgstr ""
 
-#: templates/user.html:46 templates/user_list.html:65
+#: templates/user.html:45 templates/user_list.html:65
 msgid "Approved"
 msgstr ""
 
-#: templates/user.html:50 templates/user_list.html:69
+#: templates/user.html:49 templates/user_list.html:69
 msgid "Pending"
 msgstr ""
 
-#: templates/user.html:62 templates/user_list.html:81
-msgid "Review"
+#: templates/user.html:63
+msgid "Owner name"
 msgstr ""
 
-#: templates/user.html:64 templates/user_list.html:83
-msgid "approval"
-msgstr ""
-
-#: templates/user.html:64 templates/user_list.html:83
-msgid "reviews"
+#: templates/user.html:69
+msgid "Owner title"
 msgstr ""
 
 #: templates/user_list.html:2 templates/user_list.html:10
@@ -556,6 +552,18 @@ msgstr ""
 
 #: templates/user_list.html:29
 msgid "Filter"
+msgstr ""
+
+#: templates/user_list.html:81
+msgid "Review"
+msgstr ""
+
+#: templates/user_list.html:83
+msgid "approval"
+msgstr ""
+
+#: templates/user_list.html:83
+msgid "reviews"
 msgstr ""
 
 #: templates/user_list.html:108

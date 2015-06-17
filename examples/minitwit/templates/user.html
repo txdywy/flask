@@ -25,12 +25,11 @@
             </p>
             <p class="alignright" style="float:right;">
               <i>
-                {% if user.role==USER_STUDENT %}{{ user.school }}{% else %}{{ company[user.user_id] }}{% endif %}, {{ user.city }}
+                {% if user.role==USER_STUDENT %}{{ user.school }}{% else %}{{ clients[user.user_id].company }}{% endif %}, {{ user.city }}
               </i>
             </p>
           </div>
-          <div style="clear: both;">
-          </div>
+          <div style="clear: both;"></div>
           <p>
             {% if user.role==USER_STUDENT %}
             <span class="label label-info">
@@ -57,6 +56,23 @@
             </b>
             {{ user.profile }}
           </p>
+          {% if user.role==USER_STUDENT %}
+          {% else %}
+          <p>
+            <b>
+              {{ _('Owner name') }}: 
+            </b>
+            {{ user.firstname }} {{ user.lastname }}
+          </p>
+          <p>
+            <b>
+              {{ _('Owner title') }}: 
+            </b>
+            {{ clients[user.user_id].title }}
+          </p>
+
+          {% endif %}
+          {#
           <p>
             <b>
               {{ _('Review') }}: 
@@ -81,6 +97,7 @@
               </i>
             </a>
           </div>
+          #}
         </div>
       </div>
     </div>

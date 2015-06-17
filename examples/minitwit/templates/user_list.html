@@ -44,7 +44,7 @@
             </p>
             <p class="alignright" style="float:right;">
               <i>
-                {% if user.role==USER_STUDENT %}{{ user.school }}{% else %}{{ company[user.user_id] }}{% endif %}, {{ user.city }}
+                {% if user.role==USER_STUDENT %}{{ user.school }}{% else %}{{ clients[user.user_id].company }}{% endif %}, {{ user.city }}
               </i>
             </p>
           </div>
