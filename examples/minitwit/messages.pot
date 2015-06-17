@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2015-06-16 10:11+0000\n"
+"POT-Creation-Date: 2015-06-17 03:12+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -271,27 +271,32 @@ msgstr ""
 msgid "blablabla..."
 msgstr ""
 
-#: templates/profile.html:88 templates/profile_client.html:94
+#: templates/profile.html:89 templates/profile_client.html:95
 msgid "Account Info"
 msgstr ""
 
-#: templates/profile.html:91 templates/profile_client.html:97
+#: templates/profile.html:92 templates/profile_client.html:98
 msgid "Username"
 msgstr ""
 
-#: templates/profile.html:98 templates/profile_client.html:104
+#: templates/profile.html:99 templates/profile_client.html:105
 #: templates/register.html:81
 msgid "Email"
 msgstr ""
 
-#: templates/profile.html:105 templates/profile_client.html:111
+#: templates/profile.html:106 templates/profile_client.html:112
 #: templates/project_info.html:80
 msgid "Created time"
 msgstr ""
 
-#: templates/profile.html:114 templates/profile_client.html:120
+#: templates/profile.html:115 templates/profile_client.html:121
 #: templates/project_info.html:89
 msgid "Save Changes"
+msgstr ""
+
+#: templates/profile.html:127 templates/profile.html:133
+#: templates/profile_client.html:133 templates/profile_client.html:139
+msgid " characters remaining"
 msgstr ""
 
 #: templates/profile_client.html:46

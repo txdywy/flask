@@ -88,6 +88,7 @@
         <label class="col-md-3 control-label">{{ _('About my company') }}:</label>
         <div class="col-md-8">
           <textarea class="form-control input-sm " name="profile" id="profile" type="textarea" maxlength="140" rows="4" placeholder={{ _('Legend and more...') }}>{{ user.profile }}</textarea>
+          <div id="textarea_feedback"></div>
         </div>
       </div>
 
@@ -125,4 +126,18 @@
     </form>
   </div>
 </div>	
+<script type='text/javascript' src='http://cdn.bootcss.com/jquery/1.11.2/jquery.min.js'></script>
+<script>
+$(document).ready(function() {
+    var text_max = 140;
+    $('#textarea_feedback').html(text_max - $('#profile').val().length + "{{ _(' characters remaining') }}");
+
+    $('#profile').keyup(function() {
+        var text_length = $('#profile').val().length;
+        var text_remaining = text_max - text_length;
+
+        $('#textarea_feedback').html(text_remaining + "{{ _(' characters remaining') }}");
+    });
+});
+</script>
 {% endblock %}
