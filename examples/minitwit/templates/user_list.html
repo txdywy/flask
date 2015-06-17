@@ -44,7 +44,7 @@
             </p>
             <p class="alignright" style="float:right;">
               <i>
-                {{ user.school }}, {{ user.city }}
+                {% if user.role==USER_STUDENT %}{{ user.school }}{% else %}{{ clients[user.user_id].company }}{% endif %}, {{ user.city }}
               </i>
             </p>
           </div>
@@ -78,6 +78,19 @@
           </p>
           <p>
             <b>
+              {{ _('Reference url 1') }}: 
+            </b>
+            {{ user.refer1 }}
+          </p>
+          <p>
+            <b>
+              {{ _('Reference url 2') }}: 
+            </b>
+            {{ user.refer2 }}
+          </p>
+          {#
+          <p>
+            <b>
               {{ _('Review') }}: 
             </b>
             95% {{ _('approval') }} (5 {{ _('reviews') }})
@@ -100,6 +113,7 @@
               </i>
             </a>
           </div>
+          #}
         </div>
       </div>
       {% else %}

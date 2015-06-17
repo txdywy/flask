@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2015-06-17 03:47+0000\n"
+"POT-Creation-Date: 2015-06-17 09:46+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,35 +17,35 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 1.3\n"
 
-#: minitwit.py:606
+#: minitwit.py:615
 msgid "You have successfully created your project"
 msgstr ""
 
-#: minitwit.py:629
+#: minitwit.py:639
 msgid "You have successfully updated your project"
 msgstr ""
 
-#: minitwit.py:664
+#: minitwit.py:674
 msgid "You have successfully updated your profile"
 msgstr ""
 
-#: minitwit.py:961
+#: minitwit.py:971
 msgid "You were logged in"
 msgstr ""
 
-#: minitwit.py:965
+#: minitwit.py:975
 msgid "Wrong with username or password"
 msgstr ""
 
-#: minitwit.py:1010
+#: minitwit.py:1020
 msgid "Welcome to Alancer"
 msgstr ""
 
-#: minitwit.py:1014
+#: minitwit.py:1024
 msgid "You were successfully registered and can login now"
 msgstr ""
 
-#: minitwit.py:1022
+#: minitwit.py:1032
 msgid "You were logged out"
 msgstr ""
 
@@ -114,7 +114,7 @@ msgstr ""
 msgid "Create Project"
 msgstr ""
 
-#: templates/apply.html:2 templates/project_list.html:34
+#: templates/apply.html:2 templates/project_list.html:35
 msgid "Apply"
 msgstr ""
 
@@ -147,12 +147,12 @@ msgstr ""
 msgid "Why you are interested in applying to this project?"
 msgstr ""
 
-#: templates/apply.html:29 templates/project_new.html:88
+#: templates/apply.html:29 templates/project_new.html:95
 #: templates/publish.html:82
 msgid "Submit"
 msgstr ""
 
-#: templates/apply.html:37 templates/user.html:56 templates/user_list.html:75
+#: templates/apply.html:37 templates/user.html:55 templates/user_list.html:75
 msgid "About me"
 msgstr ""
 
@@ -176,28 +176,16 @@ msgstr ""
 msgid "Remember me"
 msgstr ""
 
-#: templates/message.html:39
-msgid "Messages"
-msgstr ""
-
-#: templates/message.html:77 templates/message_more.html:36
+#: templates/message.html:91 templates/message_more.html:36
 msgid "There's no message so far."
 msgstr ""
 
-#: templates/message.html:85
-msgid "Sending Message"
-msgstr ""
-
-#: templates/message.html:89
-msgid "Messaging"
-msgstr ""
-
-#: templates/message.html:98 templates/message.html:111
-msgid "Send"
-msgstr ""
-
-#: templates/message.html:105
+#: templates/message.html:121
 msgid "Input your message here"
+msgstr ""
+
+#: templates/message.html:125
+msgid "Send"
 msgstr ""
 
 #: templates/message_box.html:2 templates/message_box.html:16
@@ -290,13 +278,18 @@ msgid "Email"
 msgstr ""
 
 #: templates/profile.html:118 templates/profile_client.html:124
-#: templates/project_info.html:80
+#: templates/project_info.html:93
 msgid "Created time"
 msgstr ""
 
 #: templates/profile.html:127 templates/profile_client.html:133
-#: templates/project_info.html:89
+#: templates/project_info.html:102
 msgid "Save Changes"
+msgstr ""
+
+#: templates/profile.html:129 templates/profile_client.html:135
+#: templates/project_info.html:104 templates/project_new.html:97
+msgid "Cancel"
 msgstr ""
 
 #: templates/profile.html:139 templates/profile.html:145
@@ -308,7 +301,7 @@ msgstr ""
 msgid "Du"
 msgstr ""
 
-#: templates/profile_client.html:50
+#: templates/profile_client.html:50 templates/project_list.html:31
 msgid "Company"
 msgstr ""
 
@@ -348,7 +341,7 @@ msgstr ""
 msgid "Project Info"
 msgstr ""
 
-#: templates/project_info.html:39 templates/project_new.html:38
+#: templates/project_info.html:39
 msgid "I want to find"
 msgstr ""
 
@@ -356,25 +349,21 @@ msgstr ""
 msgid "Project description"
 msgstr ""
 
-#: templates/project_info.html:51
-msgid "Service"
-msgstr ""
-
-#: templates/project_info.html:57 templates/project_new.html:58
+#: templates/project_info.html:59 templates/project_new.html:58
 msgid "Client name"
 msgstr ""
 
-#: templates/project_info.html:63
-msgid "Location"
-msgstr ""
-
-#: templates/project_info.html:69 templates/project_new.html:72
+#: templates/project_info.html:73 templates/project_new.html:72
 #: templates/publish.html:68
 msgid "Incentive"
 msgstr ""
 
-#: templates/project_info.html:74
-msgid "Client title"
+#: templates/project_info.html:87 templates/project_new.html:78
+msgid "Valid Time"
+msgstr ""
+
+#: templates/project_info.html:89 templates/project_new.html:80
+msgid "June to August"
 msgstr ""
 
 #: templates/project_list.html:23
@@ -385,11 +374,15 @@ msgstr ""
 msgid "Get"
 msgstr ""
 
-#: templates/project_list.html:37
+#: templates/project_list.html:24
+msgid "Valid time"
+msgstr ""
+
+#: templates/project_list.html:38
 msgid "Applied at"
 msgstr ""
 
-#: templates/project_list.html:44
+#: templates/project_list.html:45
 msgid "There's no project so far."
 msgstr ""
 
@@ -401,7 +394,7 @@ msgstr ""
 msgid "My Projects Number"
 msgstr ""
 
-#: templates/project_manage.html:34
+#: templates/project_manage.html:34 templates/project_new.html:38
 msgid "Project Target"
 msgstr ""
 
@@ -426,7 +419,7 @@ msgid "Please upload a picture for your project"
 msgstr ""
 
 #: templates/project_new.html:40
-msgid "Super cup project"
+msgid "Project target you want to make"
 msgstr ""
 
 #: templates/project_new.html:46
@@ -438,7 +431,7 @@ msgid "Shield"
 msgstr ""
 
 #: templates/project_new.html:74
-msgid "huge reputation"
+msgid "100rmb/day or bonus"
 msgstr ""
 
 #: templates/project_swiper.html:5 templates/ps.html:5
@@ -521,32 +514,36 @@ msgstr ""
 msgid "User"
 msgstr ""
 
-#: templates/user.html:37 templates/user_list.html:56
+#: templates/user.html:36 templates/user_list.html:56
 msgid "Developer"
 msgstr ""
 
-#: templates/user.html:41 templates/user_list.html:60
+#: templates/user.html:40 templates/user_list.html:60
 msgid "Project owner"
 msgstr ""
 
-#: templates/user.html:46 templates/user_list.html:65
+#: templates/user.html:45 templates/user_list.html:65
 msgid "Approved"
 msgstr ""
 
-#: templates/user.html:50 templates/user_list.html:69
+#: templates/user.html:49 templates/user_list.html:69
 msgid "Pending"
 msgstr ""
 
-#: templates/user.html:62 templates/user_list.html:81
-msgid "Review"
+#: templates/user.html:63
+msgid "Owner name"
 msgstr ""
 
-#: templates/user.html:64 templates/user_list.html:83
-msgid "approval"
+#: templates/user.html:69
+msgid "Owner title"
 msgstr ""
 
-#: templates/user.html:64 templates/user_list.html:83
-msgid "reviews"
+#: templates/user.html:76 templates/user_list.html:81
+msgid "Reference url 1"
+msgstr ""
+
+#: templates/user.html:82 templates/user_list.html:87
+msgid "Reference url 2"
 msgstr ""
 
 #: templates/user_list.html:2 templates/user_list.html:10
@@ -569,7 +566,7 @@ msgstr ""
 msgid "Filter"
 msgstr ""
 
-#: templates/user_list.html:108
+#: templates/user_list.html:122
 msgid "There's no user so far."
 msgstr ""
 

@@ -500,7 +500,7 @@ def project():
         pics[project_id] = cds[project.client_id].icon
     #print '----',pas
     #print '====',pats
-    return render_template('project_list.html', projects=projects, pas=pas, pats=pats, puds=puds, pics=pics)
+    return render_template('project_list.html', cds=cds, projects=projects, pas=pas, pats=pats, puds=puds, pics=pics)
 
 @app.route('/project_slider')
 def project_slider():
@@ -530,7 +530,11 @@ def project_slider():
 def user():
     user_id = request.args.get('user_id')
     user = User.query.get(user_id)
-    return render_template('user.html', user=user, USER_STUDENT=User.USER_STUDENT)
+    clients = {}
+    client = Client.query.filter_by(user_id=user_id).first()
+    if client:
+        clients[client.user_id] = client
+    return render_template('user.html', user=user, USER_STUDENT=User.USER_STUDENT, clients=clients)
 
 @app.route('/users', methods=['POST', 'GET'])
 @login_required
@@ -556,7 +560,11 @@ def users():
             users = User.query.filter_by(role=User.USER_STUDENT).all()
         else:
             users = []
-    return render_template('user_list.html', users=users, filter=filter, USER_STUDENT=User.USER_STUDENT)
+    cs = Client.query.all()
+    clients = {}
+    for c in cs:
+        clients[c.user_id] = c
+    return render_template('user_list.html', users=users, filter=filter, USER_STUDENT=User.USER_STUDENT, clients=clients)
 
 @app.route('/profile')
 @login_required
@@ -598,10 +606,11 @@ def create_project():
     project.client = request.form['client']
     project.desp = request.form['desp']
     project.image_url = request.form['image_url']
-    project.service = request.form['service']
-    project.location = request.form['location']
+    #project.service = request.form['service']
+    #project.location = request.form['location']
     project.incentive = request.form['incentive']
-    project.client_title = request.form['client_title']
+    #project.client_title = request.form['client_title']
+    project.valid_time = request.form['vt']
     flush(project)
     t = _('You have successfully created your project')
     flash(t + ' [%s]' % project.title)
@@ -621,10 +630,11 @@ def edit_project():
     project.client = request.form['client']
     project.desp = request.form['desp']
     project.image_url = request.form['image_url']
-    project.service = request.form['service']
-    project.location = request.form['location']
+    #project.service = request.form['service']
+    #project.location = request.form['location']
     project.incentive = request.form['incentive']
-    project.client_title = request.form['client_title']
+    #project.client_title = request.form['client_title']
+    project.valid_time = request.form['vt']
     flush(project)
     t = _('You have successfully updated your project')
     flash(t + ' [%s]' % project.title)

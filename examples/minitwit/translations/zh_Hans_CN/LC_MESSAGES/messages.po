@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2015-06-17 03:47+0000\n"
+"POT-Creation-Date: 2015-06-17 09:46+0000\n"
 "PO-Revision-Date: 2015-05-18 11:55+0800\n"
 "Last-Translator: Ramen King <geniusron@gmail.com>\n"
 "Language-Team: zh_Hans_CN <LL@li.org>\n"
@@ -17,35 +17,35 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 1.3\n"
 
-#: minitwit.py:606
+#: minitwit.py:615
 msgid "You have successfully created your project"
 msgstr "您已成功创建新项目"
 
-#: minitwit.py:629
+#: minitwit.py:639
 msgid "You have successfully updated your project"
 msgstr "您已成功更新项目"
 
-#: minitwit.py:664
+#: minitwit.py:674
 msgid "You have successfully updated your profile"
 msgstr "您已成功更新简历"
 
-#: minitwit.py:961
+#: minitwit.py:971
 msgid "You were logged in"
 msgstr "您已成功登录"
 
-#: minitwit.py:965
+#: minitwit.py:975
 msgid "Wrong with username or password"
 msgstr "用户名或密码有误"
 
-#: minitwit.py:1010
+#: minitwit.py:1020
 msgid "Welcome to Alancer"
 msgstr "欢迎加入Alancer"
 
-#: minitwit.py:1014
+#: minitwit.py:1024
 msgid "You were successfully registered and can login now"
 msgstr "您已成功注册并登录"
 
-#: minitwit.py:1022
+#: minitwit.py:1032
 msgid "You were logged out"
 msgstr "您已成功注销"
 
@@ -114,7 +114,7 @@ msgstr "我的项目"
 msgid "Create Project"
 msgstr "创建项目"
 
-#: templates/apply.html:2 templates/project_list.html:34
+#: templates/apply.html:2 templates/project_list.html:35
 msgid "Apply"
 msgstr "申请"
 
@@ -147,12 +147,12 @@ msgstr "发送给项目开发者的信息"
 msgid "Why you are interested in applying to this project?"
 msgstr "请描述你对此项目感兴趣的原因及你的优势"
 
-#: templates/apply.html:29 templates/project_new.html:88
+#: templates/apply.html:29 templates/project_new.html:95
 #: templates/publish.html:82
 msgid "Submit"
 msgstr "提交"
 
-#: templates/apply.html:37 templates/user.html:56 templates/user_list.html:75
+#: templates/apply.html:37 templates/user.html:55 templates/user_list.html:75
 msgid "About me"
 msgstr "关于我"
 
@@ -176,29 +176,17 @@ msgstr "密码"
 msgid "Remember me"
 msgstr "记住我"
 
-#: templates/message.html:39
-msgid "Messages"
-msgstr "收件箱"
-
-#: templates/message.html:77 templates/message_more.html:36
+#: templates/message.html:91 templates/message_more.html:36
 msgid "There's no message so far."
 msgstr "目前没有信息"
 
-#: templates/message.html:85
-msgid "Sending Message"
-msgstr "发送信息"
-
-#: templates/message.html:89
-msgid "Messaging"
-msgstr "信息"
-
-#: templates/message.html:98 templates/message.html:111
-msgid "Send"
-msgstr "发送"
-
-#: templates/message.html:105
+#: templates/message.html:121
 msgid "Input your message here"
 msgstr "请输入信息"
+
+#: templates/message.html:125
+msgid "Send"
+msgstr "发送"
 
 #: templates/message_box.html:2 templates/message_box.html:16
 msgid "Message box"
@@ -290,14 +278,19 @@ msgid "Email"
 msgstr "邮箱"
 
 #: templates/profile.html:118 templates/profile_client.html:124
-#: templates/project_info.html:80
+#: templates/project_info.html:93
 msgid "Created time"
 msgstr "创建时间"
 
 #: templates/profile.html:127 templates/profile_client.html:133
-#: templates/project_info.html:89
+#: templates/project_info.html:102
 msgid "Save Changes"
 msgstr "保存修改"
+
+#: templates/profile.html:129 templates/profile_client.html:135
+#: templates/project_info.html:104 templates/project_new.html:97
+msgid "Cancel"
+msgstr "取消"
 
 #: templates/profile.html:139 templates/profile.html:145
 #: templates/profile_client.html:145 templates/profile_client.html:151
@@ -308,7 +301,7 @@ msgstr "剩余字符"
 msgid "Du"
 msgstr "杜"
 
-#: templates/profile_client.html:50
+#: templates/profile_client.html:50 templates/project_list.html:31
 msgid "Company"
 msgstr "公司/组织"
 
@@ -348,7 +341,7 @@ msgstr "可以上传一张新项目图标"
 msgid "Project Info"
 msgstr "项目信息"
 
-#: templates/project_info.html:39 templates/project_new.html:38
+#: templates/project_info.html:39
 msgid "I want to find"
 msgstr "我想找"
 
@@ -356,26 +349,22 @@ msgstr "我想找"
 msgid "Project description"
 msgstr "项目描述"
 
-#: templates/project_info.html:51
-msgid "Service"
-msgstr "服务领域"
-
-#: templates/project_info.html:57 templates/project_new.html:58
+#: templates/project_info.html:59 templates/project_new.html:58
 msgid "Client name"
 msgstr "客户名称"
 
-#: templates/project_info.html:63
-msgid "Location"
-msgstr "位置"
-
-#: templates/project_info.html:69 templates/project_new.html:72
+#: templates/project_info.html:73 templates/project_new.html:72
 #: templates/publish.html:68
 msgid "Incentive"
 msgstr "奖励"
 
-#: templates/project_info.html:74
-msgid "Client title"
-msgstr "客户称谓"
+#: templates/project_info.html:87 templates/project_new.html:78
+msgid "Valid Time"
+msgstr "有效时间"
+
+#: templates/project_info.html:89 templates/project_new.html:80
+msgid "June to August"
+msgstr "从六月到八月"
 
 #: templates/project_list.html:23
 msgid "Want to launch"
@@ -385,11 +374,15 @@ msgstr "希望启动项目"
 msgid "Get"
 msgstr "报酬"
 
-#: templates/project_list.html:37
+#: templates/project_list.html:24
+msgid "Valid time"
+msgstr "有效时间"
+
+#: templates/project_list.html:38
 msgid "Applied at"
 msgstr "申请时间"
 
-#: templates/project_list.html:44
+#: templates/project_list.html:45
 msgid "There's no project so far."
 msgstr "目前没有项目"
 
@@ -401,7 +394,7 @@ msgstr "新项目"
 msgid "My Projects Number"
 msgstr "我的项目数"
 
-#: templates/project_manage.html:34
+#: templates/project_manage.html:34 templates/project_new.html:38
 msgid "Project Target"
 msgstr "项目目标"
 
@@ -426,8 +419,8 @@ msgid "Please upload a picture for your project"
 msgstr "请为你的项目上传图片"
 
 #: templates/project_new.html:40
-msgid "Super cup project"
-msgstr "超级大杯具项目"
+msgid "Project target you want to make"
+msgstr "你预期的项目目标"
 
 #: templates/project_new.html:46
 msgid "bigger than bigger"
@@ -438,8 +431,8 @@ msgid "Shield"
 msgstr "神盾局"
 
 #: templates/project_new.html:74
-msgid "huge reputation"
-msgstr "极大的荣誉"
+msgid "100rmb/day or bonus"
+msgstr "100块每天或其它福利"
 
 #: templates/project_swiper.html:5 templates/ps.html:5
 msgid "Alancer Projects"
@@ -521,33 +514,37 @@ msgstr "用户摘要"
 msgid "User"
 msgstr "用户"
 
-#: templates/user.html:37 templates/user_list.html:56
+#: templates/user.html:36 templates/user_list.html:56
 msgid "Developer"
 msgstr "开发者"
 
-#: templates/user.html:41 templates/user_list.html:60
+#: templates/user.html:40 templates/user_list.html:60
 msgid "Project owner"
 msgstr "项目发布人"
 
-#: templates/user.html:46 templates/user_list.html:65
+#: templates/user.html:45 templates/user_list.html:65
 msgid "Approved"
 msgstr "通过认证"
 
-#: templates/user.html:50 templates/user_list.html:69
+#: templates/user.html:49 templates/user_list.html:69
 msgid "Pending"
 msgstr "等待认证"
 
-#: templates/user.html:62 templates/user_list.html:81
-msgid "Review"
-msgstr "评论"
+#: templates/user.html:63
+msgid "Owner name"
+msgstr "项目人姓名"
 
-#: templates/user.html:64 templates/user_list.html:83
-msgid "approval"
-msgstr "审核"
+#: templates/user.html:69
+msgid "Owner title"
+msgstr "项目人头衔"
 
-#: templates/user.html:64 templates/user_list.html:83
-msgid "reviews"
-msgstr "评论"
+#: templates/user.html:76 templates/user_list.html:81
+msgid "Reference url 1"
+msgstr "参考链接1"
+
+#: templates/user.html:82 templates/user_list.html:87
+msgid "Reference url 2"
+msgstr "参考链接2"
 
 #: templates/user_list.html:2 templates/user_list.html:10
 msgid "Users"
@@ -569,7 +566,7 @@ msgstr "开发者"
 msgid "Filter"
 msgstr "过滤"
 
-#: templates/user_list.html:108
+#: templates/user_list.html:122
 msgid "There's no user so far."
 msgstr "目前没有用户"
 
@@ -608,4 +605,37 @@ msgstr "目前没有用户"
 
 #~ msgid "Manage Projects"
 #~ msgstr "管理项目"
+
+#~ msgid "Messages"
+#~ msgstr "收件箱"
+
+#~ msgid "Sending Message"
+#~ msgstr "发送信息"
+
+#~ msgid "Messaging"
+#~ msgstr "信息"
+
+#~ msgid "Super cup project"
+#~ msgstr "超级大杯具项目"
+
+#~ msgid "huge reputation"
+#~ msgstr "极大的荣誉"
+
+#~ msgid "Service"
+#~ msgstr "服务领域"
+
+#~ msgid "Location"
+#~ msgstr "位置"
+
+#~ msgid "Client title"
+#~ msgstr "客户称谓"
+
+#~ msgid "Review"
+#~ msgstr "评论"
+
+#~ msgid "approval"
+#~ msgstr "审核"
+
+#~ msgid "reviews"
+#~ msgstr "评论"
 
