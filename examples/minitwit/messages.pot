@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2015-06-17 07:30+0000\n"
+"POT-Creation-Date: 2015-06-17 07:44+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,35 +17,35 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 1.3\n"
 
-#: minitwit.py:606
+#: minitwit.py:607
 msgid "You have successfully created your project"
 msgstr ""
 
-#: minitwit.py:629
+#: minitwit.py:630
 msgid "You have successfully updated your project"
 msgstr ""
 
-#: minitwit.py:664
+#: minitwit.py:665
 msgid "You have successfully updated your profile"
 msgstr ""
 
-#: minitwit.py:961
+#: minitwit.py:962
 msgid "You were logged in"
 msgstr ""
 
-#: minitwit.py:965
+#: minitwit.py:966
 msgid "Wrong with username or password"
 msgstr ""
 
-#: minitwit.py:1010
+#: minitwit.py:1011
 msgid "Welcome to Alancer"
 msgstr ""
 
-#: minitwit.py:1014
+#: minitwit.py:1015
 msgid "You were successfully registered and can login now"
 msgstr ""
 
-#: minitwit.py:1022
+#: minitwit.py:1023
 msgid "You were logged out"
 msgstr ""
 
@@ -147,7 +147,7 @@ msgstr ""
 msgid "Why you are interested in applying to this project?"
 msgstr ""
 
-#: templates/apply.html:29 templates/project_new.html:88
+#: templates/apply.html:29 templates/project_new.html:95
 #: templates/publish.html:82
 msgid "Submit"
 msgstr ""
@@ -288,7 +288,7 @@ msgid "Save Changes"
 msgstr ""
 
 #: templates/profile.html:129 templates/profile_client.html:135
-#: templates/project_new.html:90
+#: templates/project_new.html:97
 msgid "Cancel"
 msgstr ""
 
@@ -341,7 +341,7 @@ msgstr ""
 msgid "Project Info"
 msgstr ""
 
-#: templates/project_info.html:39 templates/project_new.html:38
+#: templates/project_info.html:39
 msgid "I want to find"
 msgstr ""
 
@@ -394,7 +394,7 @@ msgstr ""
 msgid "My Projects Number"
 msgstr ""
 
-#: templates/project_manage.html:34
+#: templates/project_manage.html:34 templates/project_new.html:38
 msgid "Project Target"
 msgstr ""
 
@@ -419,7 +419,7 @@ msgid "Please upload a picture for your project"
 msgstr ""
 
 #: templates/project_new.html:40
-msgid "Super cup project"
+msgid "Project target you want to make"
 msgstr ""
 
 #: templates/project_new.html:46
@@ -431,7 +431,15 @@ msgid "Shield"
 msgstr ""
 
 #: templates/project_new.html:74
-msgid "huge reputation"
+msgid "100rmb/day or bonus"
+msgstr ""
+
+#: templates/project_new.html:78
+msgid "Valid Time"
+msgstr ""
+
+#: templates/project_new.html:80
+msgid "June to August"
 msgstr ""
 
 #: templates/project_swiper.html:5 templates/ps.html:5
