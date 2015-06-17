@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2015-06-17 09:12+0000\n"
+"POT-Creation-Date: 2015-06-17 09:19+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -534,6 +534,14 @@ msgstr ""
 msgid "Owner title"
 msgstr ""
 
+#: templates/user.html:76 templates/user_list.html:81
+msgid "Reference url 1"
+msgstr ""
+
+#: templates/user.html:82 templates/user_list.html:87
+msgid "Reference url 2"
+msgstr ""
+
 #: templates/user_list.html:2 templates/user_list.html:10
 msgid "Users"
 msgstr ""
@@ -554,19 +562,7 @@ msgstr ""
 msgid "Filter"
 msgstr ""
 
-#: templates/user_list.html:81
-msgid "Review"
-msgstr ""
-
-#: templates/user_list.html:83
-msgid "approval"
-msgstr ""
-
-#: templates/user_list.html:83
-msgid "reviews"
-msgstr ""
-
-#: templates/user_list.html:108
+#: templates/user_list.html:122
 msgid "There's no user so far."
 msgstr ""
 

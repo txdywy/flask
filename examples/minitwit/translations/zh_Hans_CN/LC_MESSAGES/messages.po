@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2015-06-17 09:12+0000\n"
+"POT-Creation-Date: 2015-06-17 09:19+0000\n"
 "PO-Revision-Date: 2015-05-18 11:55+0800\n"
 "Last-Translator: Ramen King <geniusron@gmail.com>\n"
 "Language-Team: zh_Hans_CN <LL@li.org>\n"
@@ -534,6 +534,14 @@ msgstr "项目人姓名"
 msgid "Owner title"
 msgstr "项目人头衔"
 
+#: templates/user.html:76 templates/user_list.html:81
+msgid "Reference url 1"
+msgstr "参考链接1"
+
+#: templates/user.html:82 templates/user_list.html:87
+msgid "Reference url 2"
+msgstr "参考链接2"
+
 #: templates/user_list.html:2 templates/user_list.html:10
 msgid "Users"
 msgstr "用户列表"
@@ -554,19 +562,7 @@ msgstr "开发者"
 msgid "Filter"
 msgstr "过滤"
 
-#: templates/user_list.html:81
-msgid "Review"
-msgstr "评论"
-
-#: templates/user_list.html:83
-msgid "approval"
-msgstr "审核"
-
-#: templates/user_list.html:83
-msgid "reviews"
-msgstr "评论"
-
-#: templates/user_list.html:108
+#: templates/user_list.html:122
 msgid "There's no user so far."
 msgstr "目前没有用户"
 
@@ -629,4 +625,13 @@ msgstr "目前没有用户"
 
 #~ msgid "Client title"
 #~ msgstr "客户称谓"
+
+#~ msgid "Review"
+#~ msgstr "评论"
+
+#~ msgid "approval"
+#~ msgstr "审核"
+
+#~ msgid "reviews"
+#~ msgstr "评论"
 
