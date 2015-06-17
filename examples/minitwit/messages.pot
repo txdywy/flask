@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2015-06-17 03:47+0000\n"
+"POT-Creation-Date: 2015-06-17 07:30+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -176,28 +176,16 @@ msgstr ""
 msgid "Remember me"
 msgstr ""
 
-#: templates/message.html:39
-msgid "Messages"
-msgstr ""
-
-#: templates/message.html:77 templates/message_more.html:36
+#: templates/message.html:91 templates/message_more.html:36
 msgid "There's no message so far."
 msgstr ""
 
-#: templates/message.html:85
-msgid "Sending Message"
-msgstr ""
-
-#: templates/message.html:89
-msgid "Messaging"
-msgstr ""
-
-#: templates/message.html:98 templates/message.html:111
-msgid "Send"
-msgstr ""
-
-#: templates/message.html:105
+#: templates/message.html:121
 msgid "Input your message here"
+msgstr ""
+
+#: templates/message.html:125
+msgid "Send"
 msgstr ""
 
 #: templates/message_box.html:2 templates/message_box.html:16
@@ -297,6 +285,11 @@ msgstr ""
 #: templates/profile.html:127 templates/profile_client.html:133
 #: templates/project_info.html:89
 msgid "Save Changes"
+msgstr ""
+
+#: templates/profile.html:129 templates/profile_client.html:135
+#: templates/project_new.html:90
+msgid "Cancel"
 msgstr ""
 
 #: templates/profile.html:139 templates/profile.html:145

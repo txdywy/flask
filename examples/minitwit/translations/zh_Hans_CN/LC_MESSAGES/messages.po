@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2015-06-17 03:47+0000\n"
+"POT-Creation-Date: 2015-06-17 07:30+0000\n"
 "PO-Revision-Date: 2015-05-18 11:55+0800\n"
 "Last-Translator: Ramen King <geniusron@gmail.com>\n"
 "Language-Team: zh_Hans_CN <LL@li.org>\n"
@@ -176,29 +176,17 @@ msgstr "密码"
 msgid "Remember me"
 msgstr "记住我"
 
-#: templates/message.html:39
-msgid "Messages"
-msgstr "收件箱"
-
-#: templates/message.html:77 templates/message_more.html:36
+#: templates/message.html:91 templates/message_more.html:36
 msgid "There's no message so far."
 msgstr "目前没有信息"
 
-#: templates/message.html:85
-msgid "Sending Message"
-msgstr "发送信息"
-
-#: templates/message.html:89
-msgid "Messaging"
-msgstr "信息"
-
-#: templates/message.html:98 templates/message.html:111
-msgid "Send"
-msgstr "发送"
-
-#: templates/message.html:105
+#: templates/message.html:121
 msgid "Input your message here"
 msgstr "请输入信息"
+
+#: templates/message.html:125
+msgid "Send"
+msgstr "发送"
 
 #: templates/message_box.html:2 templates/message_box.html:16
 msgid "Message box"
@@ -298,6 +286,11 @@ msgstr "创建时间"
 #: templates/project_info.html:89
 msgid "Save Changes"
 msgstr "保存修改"
+
+#: templates/profile.html:129 templates/profile_client.html:135
+#: templates/project_new.html:90
+msgid "Cancel"
+msgstr "取消"
 
 #: templates/profile.html:139 templates/profile.html:145
 #: templates/profile_client.html:145 templates/profile_client.html:151
@@ -608,4 +601,13 @@ msgstr "目前没有用户"
 
 #~ msgid "Manage Projects"
 #~ msgstr "管理项目"
+
+#~ msgid "Messages"
+#~ msgstr "收件箱"
+
+#~ msgid "Sending Message"
+#~ msgstr "发送信息"
+
+#~ msgid "Messaging"
+#~ msgstr "信息"
 
