@@ -9,7 +9,10 @@
 }
 .sendbutton{
   height: 40px;
-  width: 120px;
+  width: 105px;
+  /*
+  resize: horizontal;
+  */
 }
 </style>
 <script src="js/jquery.js"></script>
@@ -49,7 +52,7 @@
         {{ _('Messages') }}
       </h2>
       #}
-      <div class="col-md-8" id="scroll-container">
+      <div class="col-md-7" id="scroll-container">
         {% for message in messages %}
         {% if message.flag==Message.MESSAGE_USER %}
         <div class="col-md-10 col-sm-10 col-xs-9">
@@ -115,9 +118,8 @@
           #}
           <!-- ajax -->
           <div>
-            <textarea class="col-sm-8" type="textarea" id="message_send" name="message" placeholder="{{ _('Input your message here') }}" maxlength="2048" rows="1" style="float:left;">
-            </textarea>
-            <button class="btn btn-info sendbutton col-sm-3">
+            <textarea class="col-md-7 col-sm-7 col-xs-8" type="textarea" id="message_send" name="message" placeholder="{{ _('Input your message here') }}" maxlength="2048" rows="1" style="float:left;"> </textarea>
+            <button class="btn btn-info sendbutton col-sm-2">
               <span class="glyphicon glyphicon-send">
               </span>
               {{ _('Send') }}
