@@ -3,6 +3,15 @@
 {% block headjs %}
 <link href="css/message.css" rel="stylesheet">
 <link href="css/scroll-more.css" rel="stylesheet">
+<style>
+#message_send {
+  height: 40px;
+}
+.sendbutton{
+  height: 40px;
+  width: 120px;
+}
+</style>
 <script src="js/jquery.js"></script>
 <script type='text/javascript' src='/js/scroll-more.js'></script>
 <script>
@@ -35,9 +44,11 @@
   <div id="loader"></div>
   <div class="container">
     <div class="row">
+      {#
       <h2 class="page-header">
         {{ _('Messages') }}
       </h2>
+      #}
       <div class="col-md-8" id="scroll-container">
         {% for message in messages %}
         {% if message.flag==Message.MESSAGE_USER %}
@@ -81,6 +92,7 @@
       </div>
         
         <div class="form-group" id="page-bottom">
+          {#
           <label id="messageLabel" for="message">
             {{ _('Sending Message') }} 
           </label>
@@ -100,17 +112,16 @@
             </div>
           </form>
           -->
+          #}
           <!-- ajax -->
           <div>
-            <textarea class="form-control" type="textarea" id="message_send" name="message" placeholder="{{ _('Input your message here') }}" maxlength="2048" rows="3" style="/*float:left;*/">
+            <textarea class="col-sm-8" type="textarea" id="message_send" name="message" placeholder="{{ _('Input your message here') }}" maxlength="2048" rows="1" style="float:left;">
             </textarea>
-            <div style="float:right;">
-              <button class="btn btn-info btn-lg sendbutton">
-                <span class="glyphicon glyphicon-send">
-                </span>
-                {{ _('Send') }}
-              </button>
-            </div>
+            <button class="btn btn-info sendbutton col-sm-3">
+              <span class="glyphicon glyphicon-send">
+              </span>
+              {{ _('Send') }}
+            </button>
           </div>
         </div>
     </div>
@@ -118,6 +129,6 @@
     <div id="pages">
       <a href="{{url_for('message_room', m_user_id=m_user_id, m_client_id=client.id)}}"></a>
     </div>
-</div>
+  </div>
 </section>
 {% endblock %}
