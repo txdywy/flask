@@ -500,7 +500,7 @@ def project():
         pics[project_id] = cds[project.client_id].icon
     #print '----',pas
     #print '====',pats
-    return render_template('project_list.html', projects=projects, pas=pas, pats=pats, puds=puds, pics=pics)
+    return render_template('project_list.html', cds=cds, projects=projects, pas=pas, pats=pats, puds=puds, pics=pics)
 
 @app.route('/project_slider')
 def project_slider():

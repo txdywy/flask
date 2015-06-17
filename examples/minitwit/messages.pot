@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2015-06-17 09:19+0000\n"
+"POT-Creation-Date: 2015-06-17 09:46+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -114,7 +114,7 @@ msgstr ""
 msgid "Create Project"
 msgstr ""
 
-#: templates/apply.html:2 templates/project_list.html:34
+#: templates/apply.html:2 templates/project_list.html:35
 msgid "Apply"
 msgstr ""
 
@@ -301,7 +301,7 @@ msgstr ""
 msgid "Du"
 msgstr ""
 
-#: templates/profile_client.html:50
+#: templates/profile_client.html:50 templates/project_list.html:31
 msgid "Company"
 msgstr ""
 
@@ -374,11 +374,15 @@ msgstr ""
 msgid "Get"
 msgstr ""
 
-#: templates/project_list.html:37
+#: templates/project_list.html:24
+msgid "Valid time"
+msgstr ""
+
+#: templates/project_list.html:38
 msgid "Applied at"
 msgstr ""
 
-#: templates/project_list.html:44
+#: templates/project_list.html:45
 msgid "There's no project so far."
 msgstr ""
 

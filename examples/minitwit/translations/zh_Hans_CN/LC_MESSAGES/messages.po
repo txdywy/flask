@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2015-06-17 09:19+0000\n"
+"POT-Creation-Date: 2015-06-17 09:46+0000\n"
 "PO-Revision-Date: 2015-05-18 11:55+0800\n"
 "Last-Translator: Ramen King <geniusron@gmail.com>\n"
 "Language-Team: zh_Hans_CN <LL@li.org>\n"
@@ -114,7 +114,7 @@ msgstr "我的项目"
 msgid "Create Project"
 msgstr "创建项目"
 
-#: templates/apply.html:2 templates/project_list.html:34
+#: templates/apply.html:2 templates/project_list.html:35
 msgid "Apply"
 msgstr "申请"
 
@@ -301,7 +301,7 @@ msgstr "剩余字符"
 msgid "Du"
 msgstr "杜"
 
-#: templates/profile_client.html:50
+#: templates/profile_client.html:50 templates/project_list.html:31
 msgid "Company"
 msgstr "公司/组织"
 
@@ -374,11 +374,15 @@ msgstr "希望启动项目"
 msgid "Get"
 msgstr "报酬"
 
-#: templates/project_list.html:37
+#: templates/project_list.html:24
+msgid "Valid time"
+msgstr "有效时间"
+
+#: templates/project_list.html:38
 msgid "Applied at"
 msgstr "申请时间"
 
-#: templates/project_list.html:44
+#: templates/project_list.html:45
 msgid "There's no project so far."
 msgstr "目前没有项目"
 
