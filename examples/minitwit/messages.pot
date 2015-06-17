@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2015-06-16 08:50+0000\n"
+"POT-Creation-Date: 2015-06-17 03:47+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -25,27 +25,27 @@ msgstr ""
 msgid "You have successfully updated your project"
 msgstr ""
 
-#: minitwit.py:662
+#: minitwit.py:664
 msgid "You have successfully updated your profile"
 msgstr ""
 
-#: minitwit.py:959
+#: minitwit.py:961
 msgid "You were logged in"
 msgstr ""
 
-#: minitwit.py:963
+#: minitwit.py:965
 msgid "Wrong with username or password"
 msgstr ""
 
-#: minitwit.py:1008
+#: minitwit.py:1010
 msgid "Welcome to Alancer"
 msgstr ""
 
-#: minitwit.py:1012
+#: minitwit.py:1014
 msgid "You were successfully registered and can login now"
 msgstr ""
 
-#: minitwit.py:1020
+#: minitwit.py:1022
 msgid "You were logged out"
 msgstr ""
 
@@ -73,7 +73,7 @@ msgstr ""
 msgid "Sign in"
 msgstr ""
 
-#: templates/alayout.html:63 templates/profile.html:8 templates/profile.html:82
+#: templates/alayout.html:63 templates/profile.html:8 templates/profile.html:94
 #: templates/profile_client.html:8 templates/project_swiper.html:111
 #: templates/upc.html:16
 msgid "Profile"
@@ -239,47 +239,97 @@ msgstr ""
 msgid "First Name"
 msgstr ""
 
+#: templates/profile.html:40 templates/profile_client.html:40
+msgid "Mike"
+msgstr ""
+
 #: templates/profile.html:44 templates/profile_client.html:44
 msgid "Last name"
+msgstr ""
+
+#: templates/profile.html:46
+msgid "Zhang"
+msgstr ""
+
+#: templates/profile.html:52
+msgid "University of Hello"
+msgstr ""
+
+#: templates/profile.html:58 templates/profile_client.html:64
+msgid "Beijing"
 msgstr ""
 
 #: templates/profile.html:62 templates/profile_client.html:68
 msgid "Country"
 msgstr ""
 
-#: templates/profile.html:88 templates/profile_client.html:94
+#: templates/profile.html:64 templates/profile_client.html:70
+msgid "China"
+msgstr ""
+
+#: templates/profile.html:68 templates/profile.html:74
+#: templates/profile_client.html:74 templates/profile_client.html:80
+msgid "Reference url"
+msgstr ""
+
+#: templates/profile.html:96
+msgid "blablabla..."
+msgstr ""
+
+#: templates/profile.html:101 templates/profile_client.html:107
 msgid "Account Info"
 msgstr ""
 
-#: templates/profile.html:91 templates/profile_client.html:97
+#: templates/profile.html:104 templates/profile_client.html:110
 msgid "Username"
 msgstr ""
 
-#: templates/profile.html:98 templates/profile_client.html:104
+#: templates/profile.html:111 templates/profile_client.html:117
 #: templates/register.html:81
 msgid "Email"
 msgstr ""
 
-#: templates/profile.html:105 templates/profile_client.html:111
+#: templates/profile.html:118 templates/profile_client.html:124
 #: templates/project_info.html:80
 msgid "Created time"
 msgstr ""
 
-#: templates/profile.html:114 templates/profile_client.html:120
+#: templates/profile.html:127 templates/profile_client.html:133
 #: templates/project_info.html:89
 msgid "Save Changes"
+msgstr ""
+
+#: templates/profile.html:139 templates/profile.html:145
+#: templates/profile_client.html:145 templates/profile_client.html:151
+msgid " characters remaining"
+msgstr ""
+
+#: templates/profile_client.html:46
+msgid "Du"
 msgstr ""
 
 #: templates/profile_client.html:50
 msgid "Company"
 msgstr ""
 
+#: templates/profile_client.html:52
+msgid "Google"
+msgstr ""
+
 #: templates/profile_client.html:56 templates/publish.html:54
 msgid "Title"
 msgstr ""
 
-#: templates/profile_client.html:88
+#: templates/profile_client.html:58
+msgid "Manager"
+msgstr ""
+
+#: templates/profile_client.html:100
 msgid "About my company"
+msgstr ""
+
+#: templates/profile_client.html:102
+msgid "Legend and more..."
 msgstr ""
 
 #: templates/project_info.html:8
@@ -343,29 +393,28 @@ msgstr ""
 msgid "There's no project so far."
 msgstr ""
 
-#: templates/project_manage.html:24 templates/publish.html:24
+#: templates/project_manage.html:24 templates/project_new.html:8
+msgid "New Project"
+msgstr ""
+
+#: templates/project_manage.html:28 templates/publish.html:24
 msgid "My Projects Number"
 msgstr ""
 
-#: templates/project_manage.html:30 templates/publish.html:30
-#: templates/publish.html:55
-msgid "Project Title"
+#: templates/project_manage.html:34
+msgid "Project Target"
 msgstr ""
 
-#: templates/project_manage.html:31 templates/publish.html:31
-msgid "Client"
+#: templates/project_manage.html:35
+msgid "Project Time"
 msgstr ""
 
-#: templates/project_manage.html:32 templates/publish.html:32
+#: templates/project_manage.html:36 templates/publish.html:32
 msgid "Image"
 msgstr ""
 
-#: templates/project_manage.html:43 templates/publish.html:43
+#: templates/project_manage.html:47 templates/publish.html:43
 msgid "no projects"
-msgstr ""
-
-#: templates/project_new.html:8
-msgid "New Project"
 msgstr ""
 
 #: templates/project_new.html:17
@@ -398,6 +447,14 @@ msgstr ""
 
 #: templates/publish.html:2
 msgid "Publish"
+msgstr ""
+
+#: templates/publish.html:30 templates/publish.html:55
+msgid "Project Title"
+msgstr ""
+
+#: templates/publish.html:31
+msgid "Client"
 msgstr ""
 
 #: templates/publish.html:49

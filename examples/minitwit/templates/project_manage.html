@@ -31,8 +31,8 @@
           <table class="table">
             <thead>
               <tr>
-                <th>{{ _('Project Title') }}</th>
-                <th>{{ _('Client') }}</th>
+                <th>{{ _('Project Target') }}</th>
+                <th>{{ _('Project Time') }}</th>
                 <th>{{ _('Image') }}</th>
               </tr>
             </thead>
@@ -40,7 +40,7 @@
               {% for project in projects %}
               <tr class="{{ cls[project.id] }} clickable-row" data-href='/project_info?project_id={{ project.id }}'>
                 <td>{{ project.title }}</td>
-                <td>{{ project.client }}</td>
+                <td>{{ project.valid_time }}</td>
                 <td><img src="{{ project.image_url }}" class="img-rounded" alt="Cinque Terre" width="80" height="60"></td>
               </tr>
               {% else %}

@@ -37,31 +37,43 @@
       <div class="form-group">
         <label class="col-lg-3 control-label">{{ _('First Name') }}:</label>
         <div class="col-lg-8">
-          <input class="form-control" name="firstname" id = "firstname" value="{{ user.firstname }}" type="text">
+          <input class="form-control" name="firstname" id = "firstname" value="{{ user.firstname }}" type="text" placeholder={{ _('Mike') }}>
         </div>
       </div>	
       <div class="form-group">
         <label class="col-lg-3 control-label">{{ _('Last name') }}:</label>
         <div class="col-lg-8">
-          <input class="form-control" name="lastname" id="lastname" value="{{ user.lastname }}" type="text">
+          <input class="form-control" name="lastname" id="lastname" value="{{ user.lastname }}" type="text" placeholder={{ _('Zhang') }}>
         </div>
       </div>
       <div class="form-group">
         <label class="col-lg-3 control-label">{{ _('School') }}:</label>
         <div class="col-lg-8">
-          <input class="form-control" name="school" id="school" value="{{ user.school }}" type="text">
+          <input class="form-control" name="school" id="school" value="{{ user.school }}" type="text" placeholder={{ _('University of Hello') }}>
         </div>
       </div>
       <div class="form-group">
         <label class="col-lg-3 control-label">{{ _('City') }}:</label>
         <div class="col-lg-8">
-          <input class="form-control" name="city" id="city" value="{{ user.city }}" type="text">
+          <input class="form-control" name="city" id="city" value="{{ user.city }}" type="text" placeholder={{ _('Beijing') }}>
         </div>
       </div>
       <div class="form-group">
         <label class="col-lg-3 control-label">{{ _('Country') }}:</label>
         <div class="col-lg-8">
-          <input class="form-control" name="country" id="country" value="{{ user.country }}" type="text">
+          <input class="form-control" name="country" id="country" value="{{ user.country }}" type="text" placeholder={{ _('China') }}>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-lg-3 control-label">{{ _('Reference url') }} 1:</label>
+        <div class="col-lg-8">
+          <input class="form-control" name="refer1" id="refer1" value="{{ user.refer1 }}" type="text" placeholder="http://google.com">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-lg-3 control-label">{{ _('Reference url') }} 2:</label>
+        <div class="col-lg-8">
+          <input class="form-control" name="refer2" id="refer2" value="{{ user.refer2 }}" type="text" placeholder="http://linkedin.com">
         </div>
       </div>
       {#
@@ -81,7 +93,8 @@
       <div class="form-group">
         <label class="col-md-3 control-label">{{ _('Profile') }}:</label>
         <div class="col-md-8">
-          <textarea class="form-control input-sm " name="profile" id="profile" type="textarea" maxlength="140" rows="4">{{ user.profile }}</textarea>
+          <textarea class="form-control input-sm " name="profile" id="profile" type="textarea" maxlength="140" rows="4" placeholder={{ _('blablabla...') }}>{{ user.profile }}</textarea>
+          <div id="textarea_feedback"></div>
         </div>
       </div>
 
@@ -119,4 +132,18 @@
     </form>
   </div>
 </div>	
+<script type='text/javascript' src='http://cdn.bootcss.com/jquery/1.11.2/jquery.min.js'></script>
+<script>
+$(document).ready(function() {
+    var text_max = 140;
+    $('#textarea_feedback').html(text_max - $('#profile').val().length + "{{ _(' characters remaining') }}");
+
+    $('#profile').keyup(function() {
+        var text_length = $('#profile').val().length;
+        var text_remaining = text_max - text_length;
+
+        $('#textarea_feedback').html(text_remaining + "{{ _(' characters remaining') }}");
+    });
+});
+</script>
 {% endblock %}
