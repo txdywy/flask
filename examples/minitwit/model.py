@@ -60,6 +60,8 @@ class User(Base):
     firstname = Column(String(20), default='')
     lastname = Column(String(20), default='')
     approved = Column(Integer, default=0)
+    refer1 = Column(String(512), default='')
+    refer2 = Column(String(512), default='')
 
     def __init__(self, username, email, pw_hash):
         self.username = username

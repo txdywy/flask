@@ -647,6 +647,8 @@ def edit_profile():
         user.icon = request.form['icon']
         user.username = request.form['username']
         user.email = request.form['email']
+        user.refer1 = request.form['refer1']
+        user.refer2 = request.form['refer2']
         if user.role == User.USER_STUDENT:
             user.school = request.form['school']
         elif user.role == User.USER_CLIENT:

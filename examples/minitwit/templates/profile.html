@@ -64,6 +64,18 @@
           <input class="form-control" name="country" id="country" value="{{ user.country }}" type="text" placeholder={{ _('China') }}>
         </div>
       </div>
+      <div class="form-group">
+        <label class="col-lg-3 control-label">{{ _('Reference url') }} 1:</label>
+        <div class="col-lg-8">
+          <input class="form-control" name="refer1" id="refer1" value="{{ user.refer1 }}" type="text" placeholder="http://google.com">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-lg-3 control-label">{{ _('Reference url') }} 2:</label>
+        <div class="col-lg-8">
+          <input class="form-control" name="refer2" id="refer2" value="{{ user.refer2 }}" type="text" placeholder="http://linkedin.com">
+        </div>
+      </div>
       {#
       <div class="form-group">
         <label class="col-lg-3 control-label">{{ _('Zip Code') }}:</label>

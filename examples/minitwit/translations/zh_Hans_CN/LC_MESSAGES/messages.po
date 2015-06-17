@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2015-06-17 03:12+0000\n"
+"POT-Creation-Date: 2015-06-17 03:47+0000\n"
 "PO-Revision-Date: 2015-05-18 11:55+0800\n"
 "Last-Translator: Ramen King <geniusron@gmail.com>\n"
 "Language-Team: zh_Hans_CN <LL@li.org>\n"
@@ -25,27 +25,27 @@ msgstr "您已成功创建新项目"
 msgid "You have successfully updated your project"
 msgstr "您已成功更新项目"
 
-#: minitwit.py:662
+#: minitwit.py:664
 msgid "You have successfully updated your profile"
 msgstr "您已成功更新简历"
 
-#: minitwit.py:959
+#: minitwit.py:961
 msgid "You were logged in"
 msgstr "您已成功登录"
 
-#: minitwit.py:963
+#: minitwit.py:965
 msgid "Wrong with username or password"
 msgstr "用户名或密码有误"
 
-#: minitwit.py:1008
+#: minitwit.py:1010
 msgid "Welcome to Alancer"
 msgstr "欢迎加入Alancer"
 
-#: minitwit.py:1012
+#: minitwit.py:1014
 msgid "You were successfully registered and can login now"
 msgstr "您已成功注册并登录"
 
-#: minitwit.py:1020
+#: minitwit.py:1022
 msgid "You were logged out"
 msgstr "您已成功注销"
 
@@ -73,7 +73,7 @@ msgstr "注销"
 msgid "Sign in"
 msgstr "登录"
 
-#: templates/alayout.html:63 templates/profile.html:8 templates/profile.html:82
+#: templates/alayout.html:63 templates/profile.html:8 templates/profile.html:94
 #: templates/profile_client.html:8 templates/project_swiper.html:111
 #: templates/upc.html:16
 msgid "Profile"
@@ -267,35 +267,40 @@ msgstr "国家"
 msgid "China"
 msgstr "中国"
 
-#: templates/profile.html:84
+#: templates/profile.html:68 templates/profile.html:74
+#: templates/profile_client.html:74 templates/profile_client.html:80
+msgid "Reference url"
+msgstr "参考链接"
+
+#: templates/profile.html:96
 msgid "blablabla..."
 msgstr "很多很多"
 
-#: templates/profile.html:89 templates/profile_client.html:95
+#: templates/profile.html:101 templates/profile_client.html:107
 msgid "Account Info"
 msgstr "账户信息"
 
-#: templates/profile.html:92 templates/profile_client.html:98
+#: templates/profile.html:104 templates/profile_client.html:110
 msgid "Username"
 msgstr "用户名"
 
-#: templates/profile.html:99 templates/profile_client.html:105
+#: templates/profile.html:111 templates/profile_client.html:117
 #: templates/register.html:81
 msgid "Email"
 msgstr "邮箱"
 
-#: templates/profile.html:106 templates/profile_client.html:112
+#: templates/profile.html:118 templates/profile_client.html:124
 #: templates/project_info.html:80
 msgid "Created time"
 msgstr "创建时间"
 
-#: templates/profile.html:115 templates/profile_client.html:121
+#: templates/profile.html:127 templates/profile_client.html:133
 #: templates/project_info.html:89
 msgid "Save Changes"
 msgstr "保存修改"
 
-#: templates/profile.html:127 templates/profile.html:133
-#: templates/profile_client.html:133 templates/profile_client.html:139
+#: templates/profile.html:139 templates/profile.html:145
+#: templates/profile_client.html:145 templates/profile_client.html:151
 msgid " characters remaining"
 msgstr "剩余字符"
 
@@ -319,11 +324,11 @@ msgstr "职位/身份"
 msgid "Manager"
 msgstr "经理"
 
-#: templates/profile_client.html:88
+#: templates/profile_client.html:100
 msgid "About my company"
 msgstr "关于我的公司"
 
-#: templates/profile_client.html:90
+#: templates/profile_client.html:102
 msgid "Legend and more..."
 msgstr "非常的传奇"
 
