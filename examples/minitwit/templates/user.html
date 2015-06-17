@@ -25,7 +25,7 @@
             </p>
             <p class="alignright" style="float:right;">
               <i>
-                {{ user.school }}, {{ user.city }}
+                {% if user.role==USER_STUDENT %}{{ user.school }}{% else %}{{ company[user.user_id] }}{% endif %}, {{ user.city }}
               </i>
             </p>
           </div>

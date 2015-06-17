@@ -530,7 +530,11 @@ def project_slider():
 def user():
     user_id = request.args.get('user_id')
     user = User.query.get(user_id)
-    return render_template('user.html', user=user, USER_STUDENT=User.USER_STUDENT)
+    company = {}
+    client = Client.query.filter_by(user_id=user_id).first()
+    if client:
+        company[client.user_id] = client.company
+    return render_template('user.html', user=user, USER_STUDENT=User.USER_STUDENT, company=company)
 
 @app.route('/users', methods=['POST', 'GET'])
 @login_required
@@ -556,7 +560,11 @@ def users():
             users = User.query.filter_by(role=User.USER_STUDENT).all()
         else:
             users = []
-    return render_template('user_list.html', users=users, filter=filter, USER_STUDENT=User.USER_STUDENT)
+    clients = Client.query.all()
+    company = {}
+    for c in clients:
+        company[c.user_id] = c.company
+    return render_template('user_list.html', users=users, filter=filter, USER_STUDENT=User.USER_STUDENT, company=company)
 
 @app.route('/profile')
 @login_required
