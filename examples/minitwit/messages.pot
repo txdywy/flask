@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2015-06-17 07:44+0000\n"
+"POT-Creation-Date: 2015-06-17 08:03+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -21,31 +21,31 @@ msgstr ""
 msgid "You have successfully created your project"
 msgstr ""
 
-#: minitwit.py:630
+#: minitwit.py:631
 msgid "You have successfully updated your project"
 msgstr ""
 
-#: minitwit.py:665
+#: minitwit.py:666
 msgid "You have successfully updated your profile"
 msgstr ""
 
-#: minitwit.py:962
+#: minitwit.py:963
 msgid "You were logged in"
 msgstr ""
 
-#: minitwit.py:966
+#: minitwit.py:967
 msgid "Wrong with username or password"
 msgstr ""
 
-#: minitwit.py:1011
+#: minitwit.py:1012
 msgid "Welcome to Alancer"
 msgstr ""
 
-#: minitwit.py:1015
+#: minitwit.py:1016
 msgid "You were successfully registered and can login now"
 msgstr ""
 
-#: minitwit.py:1023
+#: minitwit.py:1024
 msgid "You were logged out"
 msgstr ""
 
@@ -278,17 +278,17 @@ msgid "Email"
 msgstr ""
 
 #: templates/profile.html:118 templates/profile_client.html:124
-#: templates/project_info.html:80
+#: templates/project_info.html:94
 msgid "Created time"
 msgstr ""
 
 #: templates/profile.html:127 templates/profile_client.html:133
-#: templates/project_info.html:89
+#: templates/project_info.html:103
 msgid "Save Changes"
 msgstr ""
 
 #: templates/profile.html:129 templates/profile_client.html:135
-#: templates/project_new.html:97
+#: templates/project_info.html:105 templates/project_new.html:97
 msgid "Cancel"
 msgstr ""
 
@@ -349,25 +349,21 @@ msgstr ""
 msgid "Project description"
 msgstr ""
 
-#: templates/project_info.html:51
-msgid "Service"
-msgstr ""
-
-#: templates/project_info.html:57 templates/project_new.html:58
+#: templates/project_info.html:59 templates/project_new.html:58
 msgid "Client name"
 msgstr ""
 
-#: templates/project_info.html:63
-msgid "Location"
-msgstr ""
-
-#: templates/project_info.html:69 templates/project_new.html:72
+#: templates/project_info.html:73 templates/project_new.html:72
 #: templates/publish.html:68
 msgid "Incentive"
 msgstr ""
 
-#: templates/project_info.html:74
-msgid "Client title"
+#: templates/project_info.html:87 templates/project_new.html:78
+msgid "Valid Time"
+msgstr ""
+
+#: templates/project_info.html:89 templates/project_new.html:80
+msgid "June to August"
 msgstr ""
 
 #: templates/project_list.html:23
@@ -432,14 +428,6 @@ msgstr ""
 
 #: templates/project_new.html:74
 msgid "100rmb/day or bonus"
-msgstr ""
-
-#: templates/project_new.html:78
-msgid "Valid Time"
-msgstr ""
-
-#: templates/project_new.html:80
-msgid "June to August"
 msgstr ""
 
 #: templates/project_swiper.html:5 templates/ps.html:5

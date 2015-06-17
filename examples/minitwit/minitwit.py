@@ -622,10 +622,11 @@ def edit_project():
     project.client = request.form['client']
     project.desp = request.form['desp']
     project.image_url = request.form['image_url']
-    project.service = request.form['service']
-    project.location = request.form['location']
+    #project.service = request.form['service']
+    #project.location = request.form['location']
     project.incentive = request.form['incentive']
-    project.client_title = request.form['client_title']
+    #project.client_title = request.form['client_title']
+    project.valid_time = request.form['valid_time']
     flush(project)
     t = _('You have successfully updated your project')
     flash(t + ' [%s]' % project.title)

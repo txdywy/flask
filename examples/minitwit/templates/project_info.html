@@ -9,7 +9,7 @@
 {% block body %}
 <div class="container" style="padding-top: 100px;" ng-app="formApp">
   <!-- edit form column -->
-  <div class="personal-info">
+  <div class="personal-info col-md-7">
 
     <div class="alert alert-info alert-dismissable">
       <a class="panel-close close" data-dismiss="alert">×</a> 
@@ -47,33 +47,47 @@
           <input class="form-control" name="desp" id="desp" value="{{ project.desp }}" type="text">
         </div>
       </div>
+      {#
       <div class="form-group">
         <label class="col-lg-3 control-label">{{ _('Service') }}:</label>
         <div class="col-lg-8">
           <input class="form-control" name="service" id="service" value="{{ project.service }}" type="text">
         </div>
       </div>
+      #}
       <div class="form-group">
         <label class="col-lg-3 control-label">{{ _('Client name') }}:</label>
         <div class="col-lg-8">
           <input class="form-control" name="client" id="client" value="{{ project.client }}" type="text">
         </div>
       </div>
+      {#
       <div class="form-group">
         <label class="col-lg-3 control-label">{{ _('Location') }}:</label>
         <div class="col-lg-8">
           <input class="form-control" name="location" id="location" value="{{ project.location }}" type="text">
         </div>
       </div>
+      #}
       <div class="form-group">
         <label class="col-lg-3 control-label">{{ _('Incentive') }}:</label>
         <div class="col-lg-8">
           <input class="form-control" name="incentive" id="incentive" value="{{ project.incentive }}" type="text">
-       </div>
+        </div>
+      </div>
+      {#
       <div class="form-group">
         <label class="col-lg-3 control-label">{{ _('Client title') }}:</label>
         <div class="col-lg-8">
           <input class="form-control" name="client_title" id="client_title" value="{{ project.client_title }}" type="text">
+        </div>
+      </div>
+      #}
+      <div class="form-group">
+        <label class="col-lg-3 control-label">{{ _('Valid Time') }}:</label>
+        <div class="col-lg-8">
+          <input class="form-control" name="vt" id="vt" placeholder="{{ _('June to August') }}" typ
+e="text">
         </div>
       </div>
       <div class="form-group">
@@ -88,7 +102,7 @@
         <div class="col-md-8">
           <button class="btn btn-primary" type="submit">{{ _('Save Changes') }}</button>
           <span></span>
-          <a href="{{  url_for('edit_project')}}"><input class="btn btn-primary" value="Cancel" type="button"></a>
+          <a href="/"><input class="btn btn-primary" value="{{ _('Cancel') }}" type="button"></a>
         </div>
       </div>
     </form>
