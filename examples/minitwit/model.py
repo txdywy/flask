@@ -192,16 +192,25 @@ class Chat(Base):
     def __repr__(self):
         return '<Chat %r>' % (self.id)
 
+    @classmethod
     def gen_index(cls, uid1, uid2):
         index_template = 'ALANCER_CHAT_%s_%s'
         uid1, uid2 = int(uid1), int(uid2)
         v = (uid1, uid2) if uid1<=uid2 else (uid2, uid1)
         return index_template % v
 
+    @classmethod
     def get_chat(cls, uid1, uid2):
         index = cls.gen_index(uid1, uid2)
         chat = Chat.query.filter_by(index=index).first()
         return chat
+
+    @classmethod
+    def new_chat(cls, uid1, uid2, room_id):
+        index = cls.gen_index(uid1, uid2)
+        c = Chat(index=index, room_id=room_id)
+        flush(c)
+        return c
 
 
 class ProjectApply(Base):

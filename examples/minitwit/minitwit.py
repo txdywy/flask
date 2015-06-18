@@ -21,7 +21,8 @@ from werkzeug import check_password_hash, generate_password_hash
 from boto.s3.connection import S3Connection
 from boto.s3.key import Key
 from PIL import Image
-from model import flush, db_session, Project, Contact, Client, User, UserLike, Message, ProjectApply
+from model import flush, db_session
+from model import Project, Contact, Client, User, UserLike, Message, ProjectApply, Chat
 from sqlalchemy import desc
 import util, functools
 import simplejson as json
@@ -70,6 +71,8 @@ try:
     leancloud.init(LC_APP_ID, LC_APP_KEY)
 except:
     print '------------import leancloud error------------'
+
+import chat as lcc
     
 try:
     from config import ALANCER_BAIDU_STATS
@@ -678,7 +681,7 @@ def edit_profile():
 def mt():
     return render_template('mt.html')
 
-@app.route('/chat')
+@app.route('/chat', methods=['POST'])
 @login_required
 def chat():
     app_id = LC_APP_ID
@@ -687,7 +690,14 @@ def chat():
     other_user_id = request.form['other_user_id']
     other_user = User.query.get(other_user_id)
     chat = Chat.get_chat(user_id, other_user_id)
-    room_id = chat.room_id if chat else ''
+    if chat:
+        room_id = chat.room_id
+    else:
+        room_id = lcc.new_chat(user_id, other_user_id)
+        if room_id:
+            Chat.new_chat(user_id, other_user_id, room_id)
+        else:
+            abort(404)
     return render_template('chat.html', app_id=app_id, room_id=room_id, user=user, other_user=other_user)
 
 @app.route('/message', methods=['POST'])
