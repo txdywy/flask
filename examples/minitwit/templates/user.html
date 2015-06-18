@@ -83,6 +83,11 @@
             </b>
             {{ user.refer2 }}
           </p>
+          <form class="form-horizontal" role="form" method="post" action="/chat">
+            <input class="form-control" name="other_user_id" id = "other_user_id" value="{{ user.user_id }}" type="hidden">
+            <button class="btn btn-primary" type="submit">{{ _('Chat') }}</button>
+          </form>
+
           {#
           <p>
             <b>
