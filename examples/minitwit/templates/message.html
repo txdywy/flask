@@ -47,11 +47,9 @@
   <div id="loader"></div>
   <div class="container">
     <div class="row">
-      {#
       <h2 class="page-header">
-        {{ _('Messages') }}
+        {{ _('Applying Messages') }}
       </h2>
-      #}
       <div class="col-md-7" id="scroll-container">
         {% for message in messages %}
         {% if message.flag==Message.MESSAGE_USER %}
