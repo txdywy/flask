@@ -678,6 +678,18 @@ def edit_profile():
 def mt():
     return render_template('mt.html')
 
+@app.route('/chat')
+@login_required
+def chat():
+    app_id = LC_APP_ID
+    user_id = session['user_id']
+    user = User.query.get(user_id)
+    other_user_id = request.form['other_user_id']
+    other_user = User.query.get(other_user_id)
+    chat = Chat.get_chat(user_id, other_user_id)
+    room_id = chat.room_id if chat else ''
+    return render_template('chat.html', app_id=app_id, room_id=room_id, user=user, other_user=other_user)
+
 @app.route('/message', methods=['POST'])
 @login_required
 def message():

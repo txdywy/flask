@@ -182,6 +182,28 @@ class Message(Base):
     def __repr__(self):
         return  '<Message %r>' % (self.id)
 
+
+class Chat(Base):
+    __tablename__ = 'chat'
+    id = Column(Integer, primary_key=True)
+    index = Column(String(120), index=True)
+    room_id = Column(String(64), index=True)
+
+    def __repr__(self):
+        return '<Chat %r>' % (self.id)
+
+    def gen_index(cls, uid1, uid2):
+        index_template = 'ALANCER_CHAT_%s_%s'
+        uid1, uid2 = int(uid1), int(uid2)
+        v = (uid1, uid2) if uid1<=uid2 else (uid2, uid1)
+        return index_template % v
+
+    def get_chat(cls, uid1, uid2):
+        index = cls.gen_index(uid1, uid2)
+        chat = Chat.query.filter_by(index=index).first()
+        return chat
+
+
 class ProjectApply(Base):
     PROJECT_APPLIED = 0
     PROJECT_REJECTED = 1
