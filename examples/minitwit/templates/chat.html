@@ -3,11 +3,32 @@
     <link href="css/message.css" rel="stylesheet">
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/freelancer.css" rel="stylesheet">
+    {#
     <link rel="stylesheet" href="css/lcc/style.css">
+    #}
+<style>
+.print-wall {
+    overflow: auto;
+    margin: auto;
+    height: 250px;
+}
+.btn {
+    height: 32px;
+    line-height: 22px;
+    padding: 1px 10px;
+    background-color: #2C97E8;
+    color: #fff;
+    display: inline-block;
+    cursor: pointer;
+    transition:opacity 0.8s;
+}
+</style>
 {% endblock headjs %}
 {% block title %}{{ _('Chat') }}{% endblock %}
 {% block body %}
-    <h1>欢迎使用 Alancer 实时通信</h1>
+<div class="container">
+  <h2 class="page-header">{{ _('Chat') }}</h2>
+  <div class="col-md-7">
     {#
     <div class="item">
         <label>您的昵称：</label>
@@ -15,15 +36,16 @@
         <div id="open-btn" class="btn">连接服务器</div>
     </div>
     #}
-    <div class="item">
+    <div class="item col-md-7">
         <div id="print-wall" class="print-wall"></div>
     </div>
+    <div class="form-group" id="page-bottom"></div>
     <div class="item">
-        <label>输入信息：</label>
         <input id="input-send" class="input-send" type="text">
-        <div id="send-btn" class="btn">发送</div>
+        <div id="send-btn" class="btn">{{ _('Send') }}</div>
     </div>
-
+  </div>
+</div>
     <!-- 引入插件，兼容低 IE8+ 等低版本浏览器，注意看下面的注释。如果不需要兼容，可以去掉这部分。 -->
     <!--[if lt IE 10]>
     <script type="text/javascript" src="../../plugin/web-socket-js/swfobject.js"></script>
@@ -44,4 +66,5 @@
       var clientId = "{{ user.user_id }}";
     </script>
     <script src="js/chat.js"></script>
+
 {% endblock %}
