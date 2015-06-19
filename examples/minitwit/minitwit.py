@@ -407,6 +407,15 @@ def dp():
     db_session.flush()
     return redirect(url_for('admin'))
 
+@app.route('/push', methods=['POST'])
+@login_required
+@power_required(power=User.POWER_ADMIN)
+def push():
+    msg = request.form['msg']
+    lcc.push_msg(msg)
+    flash('[%s] pushed to everyone!' % msg) 
+    return redirect(url_for('admin'))
+
 @app.route('/contact', methods=['POST'])
 def contact():
     name = request.form['n']
