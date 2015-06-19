@@ -11,7 +11,7 @@
     <link rel="icon" href="/favicon.ico">
 
     <title>{{ _('Project List') }}</title>
-
+    
     <link href="css/signin.css" rel="stylesheet">
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/freelancer.css" rel="stylesheet">
@@ -152,6 +152,18 @@
     <script src="js/jquery.easing.min.js"></script>
     <script src="js/classie.js"></script>
     <script src="js/cbpAnimatedHeader.js"></script>
+
+    {% if g.user %}
+    <script type="text/javascript" src="http://cdn.bootcss.com/pnotify/2.0.0/pnotify.all.min.js"></script>    <link href="http://cdn.bootcss.com/pnotify/2.0.0/pnotify.all.min.css" media="all" rel="stylesheet" type="text/css" />
+    <script type="text/javascript">
+        $(function(){
+            new PNotify({
+                title: 'Regular Notice',
+                text: 'Check me out! I\'m a notice.'
+            });
+        });
+    </script>
+    {% endif %}
     
     <!-- Contact Form JavaScript -->
     <!-- Only valid for index
