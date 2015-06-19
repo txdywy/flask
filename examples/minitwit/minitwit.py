@@ -442,11 +442,10 @@ def ps():
 def elb():
     return '1'
 
-@app.route('/')
-@app.route('/index')
+#@app.route('/')
+#@app.route('/index')
 @app.route('/project_swiper')
-#def project_swiper():
-def index():
+def project_swiper():
     if not cacheal or not g.user:
         projects = Project.query.order_by(desc(Project.id)).all()
         l = len(projects)
@@ -879,14 +878,15 @@ def like_submit():
     project = Project.query.get(project_id)
     return render_template('like.html', project=project, user_like=user_like, user=user)
 
-"""
+
+@app.route('/')
 @app.route('/index')
 def index():
     print '++++++++++', _("hahaha"), get_locale()
-    return redirect(url_for('project_swiper'))
+    #return redirect(url_for('project_swiper'))
     return redirect(url_for('project'))
     #return render_template(ALANCER_INDEX)
-"""
+
 
 '''
 @app.route('/')
