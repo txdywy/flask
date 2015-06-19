@@ -20,3 +20,19 @@ def new_chat(uid1, uid2):
         room_id = ''
     return room_id
 
+
+def push_msg(msg):
+    url = 'https://leancloud.cn/1.1/push'
+    headers = { 
+        'X-AVOSCloud-Application-Id': LC_APP_ID,
+        'X-AVOSCloud-Application-Key': LC_APP_KEY,
+        'Content-Type': 'application/json',
+    } 
+    data = {
+        'data': {'alert': msg}
+    }
+    try:
+        r = requests.post(url, data=json.dumps(data), headers=headers)
+    except Exception, e:
+        print '------------push msg failed-------------', e
+    return r.content

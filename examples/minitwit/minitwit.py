@@ -1082,3 +1082,5 @@ app.jinja_env.filters['datetimeformat'] = format_datetime
 app.jinja_env.filters['gravatar'] = gravatar_url
 app.jinja_env.filters['get_icon'] = get_pic_url
 app.jinja_env.globals['ALANCER_BAIDU_STATS'] = ALANCER_BAIDU_STATS
+app.jinja_env.globals['LC_APP_ID'] = LC_APP_ID
+app.jinja_env.globals['LC_APP_KEY'] = LC_APP_KEY
