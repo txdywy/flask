@@ -1,6 +1,6 @@
 // 请换成自己的 appId 和 appKey
-var appId = 'j1ax3y6bn2vt7r2uunt5vofnf7tdm1do6pl54ksly3lwyri4';
-var appKey = 'vxy85bmgvo0m0ar3p5gh5knwvjpweq6v1bm8rd7b7rzpp702';
+var appId = '9dv47dhduhueccd39x88xjrjgjdnisgitca50s5rsj53ipzc';
+var appKey = 'nkgmov89jtzm78bxow1644j7zqdfys67s7r83p2iid3b7ws2';
 var push;
 
 // 每次调用生成一个聊天实例
@@ -35,6 +35,7 @@ function createNew() {
     });
 
     // 发送一条推送
+    /*
     push.send({
         // channels: ['aaa'],
         data: {LeanCloud: 123}
@@ -72,12 +73,21 @@ function createNew() {
         });
 
     }, 5000);
+    */
 }
 
 function showLog(msg) {
     console.log(msg);
+    /*
     var div = document.getElementById('result');
     var p = document.createElement('p');
     p.innerText = msg;
     div.appendChild(p);
+    */
+    $(function(){
+        new PNotify({
+            title: 'Regular Notice',
+            text: msg
+        });
+    });
 }
