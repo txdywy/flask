@@ -1,7 +1,7 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy import Column, Integer, String, DATETIME, Text, ForeignKey
+from sqlalchemy import Column, Integer, String, DATETIME, Text, ForeignKey, PickleType
 import datetime
 import pygoogle
 from faker import Factory
@@ -210,8 +210,41 @@ class Chat(Base):
         index = cls.gen_index(uid1, uid2)
         c = Chat(index=index, room_id=room_id)
         flush(c)
+        UserChat.add_chat(uid1, uid2)
         return c
 
+class UserChat(Base):
+    __tablename__ = 'user_chat'
+    id = Column(Integer, primary_key=True)
+    user_id = Column(Integer, index=True)
+    chat_list = Column(PickleType, default=set)
+
+    @classmethod
+    def get_by_or_init(cls, user_id):
+        uc = cls.query.filter_by(user_id=user_id).first()
+        if not uc:
+            uc = cls(user_id=user_id)
+            flush(uc)
+        return uc
+
+    @classmethod
+    def add_chat(cls, uid1, uid2):
+        uid1, uid2 = int(uid1), int(uid2)
+        uc1 = cls.get_by_or_init(uid1)
+        cl1 = set(uc1.chat_list)
+        cl1.add(uid2)
+        uc1.chat_list = cl1
+
+        uc2 = cls.get_by_or_init(uid2)
+        cl2 = set(uc2.chat_list)
+        cl2.add(uid1)
+        uc2.chat_list = cl2
+
+        flush(uc1)
+        flush(uc2)
+
+    def __repr__(self):
+        return '<UserChat %r>' % (self.id)
 
 class ProjectApply(Base):
     PROJECT_APPLIED = 0

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2015-06-18 09:00+0000\n"
+"POT-Creation-Date: 2015-06-19 06:56+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,40 +17,44 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 1.3\n"
 
-#: minitwit.py:618
+#: minitwit.py:617
 msgid "You have successfully created your project"
 msgstr ""
 
-#: minitwit.py:642
+#: minitwit.py:641
 msgid "You have successfully updated your project"
 msgstr ""
 
-#: minitwit.py:677
+#: minitwit.py:676
 msgid "You have successfully updated your profile"
 msgstr ""
 
-#: minitwit.py:993
+#: minitwit.py:901
+msgid "hahaha"
+msgstr ""
+
+#: minitwit.py:1009
 msgid "You were logged in"
 msgstr ""
 
-#: minitwit.py:997
+#: minitwit.py:1013
 msgid "Wrong with username or password"
 msgstr ""
 
-#: minitwit.py:1042
+#: minitwit.py:1058
 msgid "Welcome to Alancer"
 msgstr ""
 
-#: minitwit.py:1046
+#: minitwit.py:1062
 msgid "You were successfully registered and can login now"
 msgstr ""
 
-#: minitwit.py:1054
+#: minitwit.py:1070
 msgid "You were logged out"
 msgstr ""
 
-#: templates/admin.html:2 templates/admin.html:14 templates/alayout.html:104
-#: templates/project_swiper.html:152
+#: templates/admin.html:2 templates/admin.html:14 templates/alayout.html:107
+#: templates/project_swiper.html:155
 msgid "Admin"
 msgstr ""
 
@@ -90,27 +94,33 @@ msgstr ""
 msgid "Message"
 msgstr ""
 
-#: templates/alayout.html:75 templates/project_list.html:9
-#: templates/project_swiper.html:123
+#: templates/alayout.html:75 templates/chat.html:27 templates/chat.html:30
+#: templates/project_swiper.html:123 templates/user.html:88
+#: templates/user_list.html:93
+msgid "Chat"
+msgstr ""
+
+#: templates/alayout.html:78 templates/project_list.html:9
+#: templates/project_swiper.html:126
 msgid "Project"
 msgstr ""
 
-#: templates/alayout.html:84 templates/project_swiper.html:132
+#: templates/alayout.html:87 templates/project_swiper.html:135
 msgid "Community"
 msgstr ""
 
-#: templates/alayout.html:89 templates/login.html:74
-#: templates/project_swiper.html:137 templates/register.html:66
+#: templates/alayout.html:92 templates/login.html:74
+#: templates/project_swiper.html:140 templates/register.html:66
 msgid "Home"
 msgstr ""
 
-#: templates/alayout.html:94 templates/project_manage.html:2
-#: templates/project_manage.html:22 templates/project_swiper.html:142
+#: templates/alayout.html:97 templates/project_manage.html:2
+#: templates/project_manage.html:22 templates/project_swiper.html:145
 #: templates/publish.html:22
 msgid "My Projects"
 msgstr ""
 
-#: templates/alayout.html:98 templates/project_swiper.html:146
+#: templates/alayout.html:101 templates/project_swiper.html:149
 msgid "Create Project"
 msgstr ""
 
@@ -156,13 +166,20 @@ msgstr ""
 msgid "About me"
 msgstr ""
 
-#: templates/chat.html:27 templates/chat.html:30 templates/user.html:88
-#: templates/user_list.html:93
-msgid "Chat"
-msgstr ""
-
 #: templates/chat.html:45 templates/message.html:123
 msgid "Send"
+msgstr ""
+
+#: templates/chat_box.html:2 templates/chat_box.html:16
+msgid "Chat box"
+msgstr ""
+
+#: templates/chat_box.html:23 templates/message_box.html:23
+msgid "d"
+msgstr ""
+
+#: templates/chat_box.html:26
+msgid "Sorry, currently no chat"
 msgstr ""
 
 #: templates/login.html:11
@@ -199,10 +216,6 @@ msgstr ""
 
 #: templates/message_box.html:2 templates/message_box.html:16
 msgid "Message box"
-msgstr ""
-
-#: templates/message_box.html:23
-msgid "d"
 msgstr ""
 
 #: templates/message_box.html:26

@@ -22,7 +22,7 @@ from boto.s3.connection import S3Connection
 from boto.s3.key import Key
 from PIL import Image
 from model import flush, db_session
-from model import Project, Contact, Client, User, UserLike, Message, ProjectApply, Chat
+from model import Project, Contact, Client, User, UserLike, Message, ProjectApply, Chat, UserChat
 from sqlalchemy import desc
 import util, functools
 import simplejson as json
@@ -680,13 +680,16 @@ def edit_profile():
 def mt():
     return render_template('mt.html')
 
-@app.route('/chat', methods=['POST'])
+@app.route('/chat', methods=['POST', 'GET'])
 @login_required
 def chat():
     app_id = LC_APP_ID
     user_id = session['user_id']
     user = User.query.get(user_id)
-    other_user_id = request.form['other_user_id']
+    if(request.method == 'POST'):
+        other_user_id = request.form['other_user_id']
+    else:
+        other_user_id = request.args.get('other_user_id') 
     other_user = User.query.get(other_user_id)
     chat = Chat.get_chat(user_id, other_user_id)
     if chat:
@@ -850,6 +853,19 @@ def message_box():
         mi['days'] = delta
         message_items.append(mi)
     return render_template('message_box.html', message_items=message_items)
+
+
+@app.route('/chat_box')
+@login_required
+def chat_box():
+    user_id = session['user_id']
+    uc = UserChat.query.filter_by(user_id=user_id).first() 
+    us = []
+    if uc:
+        uid_set = uc.chat_list
+        us = User.query.filter(User.user_id.in_(uid_set)).all()
+    return render_template('chat_box.html', us=us)
+
 
 @app.route('/like', methods=['GET', 'POST'])
 @login_required
