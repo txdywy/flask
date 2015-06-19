@@ -279,7 +279,7 @@ function showLog(msg, data, isBefore, isSelf) {
         if (isSelf) {
             msg = msg + '<div class="col-md-2 col-sm-2 col-xs-3">' + 
                         '  <a href="http://google.com">' +
-                        '    <img class="img-responsive" src="http://bighero6games.me/games/images/189e27f7a893da854ad965e1406cc3878af80307.jpg" width="40" height="40"/>' +
+                        '    <img class="img-responsive" src="' + myImage + '" width="40" height="40"/>' +
                         '  </a>' +
                         '</div>' +
                         '<div class="col-md-10 col-sm-10 col-xs-9">' +
@@ -301,7 +301,7 @@ function showLog(msg, data, isBefore, isSelf) {
                         '</div>' +
                         '<div class="col-md-2 col-sm-2 col-xs-3">' +
                         '  <a href="http://baidu.com">' +
-                        '    <img class="img-responsive" src="http://foto.zugarcube.com/wp-content/uploads/2012/08/530161_10151011050037379_301509921_n.jpg" width="40" height="40"/>' +
+                        '    <img class="img-responsive" src="' + otherImage + '" width="40" height="40"/>' +
                         '  </a>' +
                         '</div>' +
                         '<div style="clear: both;"></div>';
