@@ -7,6 +7,8 @@ from pygoogle import pygoogle
 import re, jieba, jieba.analyse
 import urllib2, json
 from bs4 import BeautifulSoup
+import cache as cachewx
+WX_CACHE_GENERAL_KEY = 'wx.cache.general.key.%s'
 
 import sys
 reload(sys)
@@ -101,7 +103,11 @@ def reply(data):
     else:
         url = is_url(content)
         if url:
-            content = get_text_by_url(url)
+            key = WX_CACHE_GENERAL_KEY % url
+            content = cachewx.get(key)
+            if not content:
+                content = get_text_by_url(url)
+                cachewx.set(key, content, 60 * 10)
             #print '+++++++++++++',content
         if unicode_is_zh(content):
             seg_list = get_key_words(content)
