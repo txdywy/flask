@@ -2,9 +2,12 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import Column, Integer, String, DATETIME, Text, ForeignKey, PickleType
+from sqlalchemy.ext.mutable import MutableDict
 import datetime
 import pygoogle
 from faker import Factory
+from mutable import MutableList, MutableSet
+
 fake = Factory.create('en_US')
 
 try:
@@ -183,6 +186,14 @@ class Message(Base):
         return  '<Message %r>' % (self.id)
 
 
+class Test(Base):
+    __tablename__ = 'test'
+    id = Column(Integer, primary_key=True)
+    data = Column(MutableDict.as_mutable(PickleType))
+
+    def __repr__(self):
+        return '<Test %r>' % (self.id)
+
 class Chat(Base):
     __tablename__ = 'chat'
     id = Column(Integer, primary_key=True)
@@ -217,7 +228,7 @@ class UserChat(Base):
     __tablename__ = 'user_chat'
     id = Column(Integer, primary_key=True)
     user_id = Column(Integer, index=True)
-    chat_list = Column(PickleType, default=set)
+    chat_list = Column(MutableSet.as_mutable(PickleType))#Column(PickleType, default=set)
 
     @classmethod
     def get_by_or_init(cls, user_id):
