@@ -1036,31 +1036,26 @@ def sendresetemail():
         flash(_('Email does not exist on our system.'))
         return render_template('forgotpassword.html')
     else:
+        token = ''.join(random.choice(string.ascii_uppercase + string.ascii_lowercase + string.digits) for _ in range(30))
         #todo:send email with instruction
-        flash(_('An email with password reset instructions has been sent to your email address.'))
-        token = ''.join(random.choice(string.ascii_uppercase) for _ in range(20))
-        print "token:%s" %(token)
-        cacheal.set(token, user.user_id, timeout=300)
         print "http://192.168.137.188:8000/resetpassword?token=%s" %(token)
-        return render_template('login.html')
+        cacheal.set(token, user.user_id, timeout=100000)
+        flash(_('An email with password reset instructions has been sent to your email address.'))
+        return redirect(url_for('index'))
 
 @app.route('/resetpassword', methods=['GET','POST'])
 def resetpassword():
-    token = None
-    if(session['token'] == None):
-        token = request.args.get('token')
-        session['token'] = token
-    else: #the case that user typed different password
+    token = request.args.get('token')
+    if(token == None):
         token = session['token']
-    print "token2:%s" %(token)
+    else: #the case that user typed different password
+        session['token'] = token
     return render_template('resetpassword.html')
 
 @app.route('/changepassword', methods=['POST'])
 def changepassword():
     token = session['token']
-    print "################1"
     print token
-    print "################1"
     if request.form['password'] != request.form['password2']:
         flash(_('The two passwords do not match'))
         return redirect(url_for('resetpassword'))
@@ -1069,10 +1064,7 @@ def changepassword():
         if user_id is None:
             flash(_('Reset password token expired.'))
             return redirect(url_for('forgotpassword'))
-        user_id = token #user token for now
-        print user_id
         user = User.query.filter_by(user_id=user_id).first()
-        #u = User(user_id=user_id, pw_hash=generate_password_hash(request.form['password']))
         user.pw_hash=generate_password_hash(request.form['password'])
         flush(user)
         util.send_email('[Alancer] Congratulations!', 'You have reset your password at alancer!', user.email)
