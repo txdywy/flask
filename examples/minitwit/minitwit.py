@@ -25,6 +25,8 @@ from model import flush, db_session, Project, Contact, Client, User, UserLike, M
 from sqlalchemy import desc
 import util, functools
 import simplejson as json
+import random
+import string
 from random import randint
 try:
     import cache as cacheal 
@@ -939,6 +941,60 @@ def login():
         flash(_('Wrong with username or password'))
     return render_template('login.html', error=error)
 
+@app.route('/forgotpassword', methods=['GET'])
+def forgotpassword():
+    return render_template('forgotpassword.html')
+
+@app.route('/sendresetemail', methods=['POST'])
+def sendresetemail():
+    error = None
+    user = User.query.filter_by(email=request.form['email'].lower()).first()
+    if user is None:
+        flash(_('Email does not exist on our system.'))
+        return render_template('forgotpassword.html')
+    else:
+        #todo:send email with instruction
+        flash(_('An email with password reset instructions has been sent to your email address.'))
+        token = ''.join(random.choice(string.ascii_uppercase) for _ in range(20))
+        print "token:%s" %(token)
+        cacheal.set(token, user.user_id, timeout=300)
+        print "http://192.168.137.188:8000/resetpassword?token=%s" %(token)
+        return render_template('login.html')
+
+@app.route('/resetpassword', methods=['GET','POST'])
+def resetpassword():
+    token = None
+    if(session['token'] == None):
+        token = request.args.get('token')
+        session['token'] = token
+    else: #the case that user typed different password
+        token = session['token']
+    print "token2:%s" %(token)
+    return render_template('resetpassword.html')
+
+@app.route('/changepassword', methods=['POST'])
+def changepassword():
+    token = session['token']
+    print "################1"
+    print token
+    print "################1"
+    if request.form['password'] != request.form['password2']:
+        flash(_('The two passwords do not match'))
+        return redirect(url_for('resetpassword'))
+    else:
+        user_id = cacheal.get(token)
+        if user_id is None:
+            flash(_('Reset password token expired.'))
+            return redirect(url_for('forgotpassword'))
+        user_id = token #user token for now
+        print user_id
+        user = User.query.filter_by(user_id=user_id).first()
+        #u = User(user_id=user_id, pw_hash=generate_password_hash(request.form['password']))
+        user.pw_hash=generate_password_hash(request.form['password'])
+        flush(user)
+        util.send_email('[Alancer] Congratulations!', 'You have reset your password at alancer!', user.email)
+        flash(_('You were successfully reset your password and you can login now'))
+        return redirect(url_for('login'))
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
