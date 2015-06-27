@@ -21,7 +21,8 @@ from werkzeug import check_password_hash, generate_password_hash
 from boto.s3.connection import S3Connection
 from boto.s3.key import Key
 from PIL import Image
-from model import flush, db_session, Project, Contact, Client, User, UserLike, Message, ProjectApply
+from model import flush, db_session
+from model import Project, Contact, Client, User, UserLike, Message, ProjectApply, Chat, UserChat
 from sqlalchemy import desc
 import util, functools
 import simplejson as json
@@ -31,12 +32,18 @@ from random import randint
 try:
     import cache as cacheal 
 except:
+    print '================no cacheal=============='
     cacheal = None
 try:
     import wx_util
 except:
     print '------------wx_util import err-----------'
     wx_util = None
+try:
+    from config import ALANCER_HOST
+except:
+    print '---------------no host set---------------'
+    ALANCER_HOST = 'alancer.ga'
 
 import ierror
 from WXBizMsgCrypt import SHA1
@@ -66,8 +73,14 @@ try:
     leancloud.init(LC_APP_ID, LC_APP_KEY)
 except:
     print '------------import leancloud error------------'
-    
 
+import chat as lcc
+    
+try:
+    from config import ALANCER_BAIDU_STATS
+except:
+    ALANCER_BAIDU_STATS = ''
+    print '----------------no baidu stat js loaded----------------'
 
 from flask.ext.babel import Babel, gettext as _, get_locale
 
@@ -396,6 +409,15 @@ def dp():
     db_session.flush()
     return redirect(url_for('admin'))
 
+@app.route('/push', methods=['POST'])
+@login_required
+@power_required(power=User.POWER_ADMIN)
+def push():
+    msg = request.form['msg']
+    lcc.push_msg(msg)
+    flash('[%s] pushed to everyone!' % msg) 
+    return redirect(url_for('admin'))
+
 @app.route('/contact', methods=['POST'])
 def contact():
     name = request.form['n']
@@ -415,6 +437,10 @@ def cat():
 def zl():
     return render_template('zl.html')
 
+@app.route('/upc')
+def upc():
+    return render_template('upc.html')
+
 @app.route('/ps')
 def ps():
     projects = Project.query.order_by(desc(Project.id)).all()
@@ -423,6 +449,12 @@ def ps():
     s = randint(0, r if r > 0 else 0)
     return render_template('ps.html', projects=projects[s:s+10])
 
+@app.route('/elb')
+def elb():
+    return '1'
+
+#@app.route('/')
+#@app.route('/index')
 @app.route('/project_swiper')
 def project_swiper():
     if not cacheal or not g.user:
@@ -440,8 +472,8 @@ def project_swiper():
             cacheal.set(ALANCER_ALL_PROJECTS, projects, 300)
         """    
         s = cacheal.get(ALANCER_USER_PROJECTS_INDEX % user_id)
-        s = s if s else 1
-        ns = (s + 10) % len(projects)
+        s = s if s else 0
+        ns = (s + 10) % len(projects) if projects else 0
         cacheal.set(ALANCER_USER_PROJECTS_INDEX % user_id, ns)
     return render_template('project_swiper.html', projects=projects[s:s+10])
 
@@ -481,7 +513,7 @@ def project():
         pics[project_id] = cds[project.client_id].icon
     #print '----',pas
     #print '====',pats
-    return render_template('project_list.html', projects=projects, pas=pas, pats=pats, puds=puds, pics=pics)
+    return render_template('project_list.html', cds=cds, projects=projects, pas=pas, pats=pats, puds=puds, pics=pics)
 
 @app.route('/project_slider')
 def project_slider():
@@ -511,7 +543,11 @@ def project_slider():
 def user():
     user_id = request.args.get('user_id')
     user = User.query.get(user_id)
-    return render_template('user.html', user=user, USER_STUDENT=User.USER_STUDENT)
+    clients = {}
+    client = Client.query.filter_by(user_id=user_id).first()
+    if client:
+        clients[client.user_id] = client
+    return render_template('user.html', user=user, USER_STUDENT=User.USER_STUDENT, clients=clients)
 
 @app.route('/users', methods=['POST', 'GET'])
 @login_required
@@ -537,7 +573,11 @@ def users():
             users = User.query.filter_by(role=User.USER_STUDENT).all()
         else:
             users = []
-    return render_template('user_list.html', users=users, filter=filter, USER_STUDENT=User.USER_STUDENT)
+    cs = Client.query.all()
+    clients = {}
+    for c in cs:
+        clients[c.user_id] = c
+    return render_template('user_list.html', users=users, filter=filter, USER_STUDENT=User.USER_STUDENT, clients=clients)
 
 @app.route('/profile')
 @login_required
@@ -579,10 +619,11 @@ def create_project():
     project.client = request.form['client']
     project.desp = request.form['desp']
     project.image_url = request.form['image_url']
-    project.service = request.form['service']
-    project.location = request.form['location']
+    #project.service = request.form['service']
+    #project.location = request.form['location']
     project.incentive = request.form['incentive']
-    project.client_title = request.form['client_title']
+    #project.client_title = request.form['client_title']
+    project.valid_time = request.form['vt']
     flush(project)
     t = _('You have successfully created your project')
     flash(t + ' [%s]' % project.title)
@@ -602,10 +643,11 @@ def edit_project():
     project.client = request.form['client']
     project.desp = request.form['desp']
     project.image_url = request.form['image_url']
-    project.service = request.form['service']
-    project.location = request.form['location']
+    #project.service = request.form['service']
+    #project.location = request.form['location']
     project.incentive = request.form['incentive']
-    project.client_title = request.form['client_title']
+    #project.client_title = request.form['client_title']
+    project.valid_time = request.form['vt']
     flush(project)
     t = _('You have successfully updated your project')
     flash(t + ' [%s]' % project.title)
@@ -622,12 +664,14 @@ def edit_profile():
     	user.lastname = request.form['lastname']
         user.city = request.form['city']
         user.country = request.form['country']
-        user.zipcode = request.form['zipcode']
-        user.phone = request.form['phone']
+        #user.zipcode = request.form['zipcode']
+        #user.phone = request.form['phone']
         user.profile = request.form['profile']
         user.icon = request.form['icon']
         user.username = request.form['username']
         user.email = request.form['email']
+        user.refer1 = request.form['refer1']
+        user.refer2 = request.form['refer2']
         if user.role == User.USER_STUDENT:
             user.school = request.form['school']
         elif user.role == User.USER_CLIENT:
@@ -646,6 +690,28 @@ def edit_profile():
 @app.route('/mt')
 def mt():
     return render_template('mt.html')
+
+@app.route('/chat', methods=['POST', 'GET'])
+@login_required
+def chat():
+    app_id = LC_APP_ID
+    user_id = session['user_id']
+    user = User.query.get(user_id)
+    if(request.method == 'POST'):
+        other_user_id = request.form['other_user_id']
+    else:
+        other_user_id = request.args.get('other_user_id') 
+    other_user = User.query.get(other_user_id)
+    chat = Chat.get_chat(user_id, other_user_id)
+    if chat:
+        room_id = chat.room_id
+    else:
+        room_id = lcc.new_chat(user_id, other_user_id)
+        if room_id:
+            Chat.new_chat(user_id, other_user_id, room_id)
+        else:
+            abort(404)
+    return render_template('chat.html', app_id=app_id, room_id=room_id, user=user, other_user=other_user)
 
 @app.route('/message', methods=['POST'])
 @login_required
@@ -706,6 +772,8 @@ def message():
     util.send_email(email_title, email_body, email_notify)
     #print '-----------------',email_title, email_body, email_notify
     #util.send_email('[Alancer] New message from %s' % name_from, '%s: %s <br>%s' % (name_from, message, mr), email_notify)
+    if len(messages) == 1:
+        return render_template('message.html', data=data, Message=Message, client=m_client, messages=messages, m_user_id=m_user_id, m_user=m_user)
     messages = messages[-1:]
     return render_template('message_more.html', data=data, Message=Message, client=m_client, messages=messages, m_user_id=m_user_id, m_user=m_user)
 
@@ -727,7 +795,7 @@ def message_room():
         messages = messages[-ALANCER_MESSAGE_OFFSET:]
     else:
         messages = cacheal.get(ALANCER_USER_CLIENT_MESSAGES % (m_user_id, m_client_id))
-        messages = messages[-(ALANCER_MESSAGE_OFFSET*(index+1)):-(ALANCER_MESSAGE_OFFSET*index)] 
+        messages = messages[-(ALANCER_MESSAGE_OFFSET*(index+1)):-(ALANCER_MESSAGE_OFFSET*index)] if messages else [] 
     
     client = Client.query.get(m_client_id)
     data = {}
@@ -790,12 +858,25 @@ def message_box():
         mi['m_client_id'] = m.client_id
         client = Client.query.get(m.client_id)
         mi['m_client_name'] = client.name
-        mi['m_user_icon'] = m_user.icon
+        mi['icon'] = m_user.icon if user.role == User.USER_CLIENT else client.icon
         delta = (now - (m.create_time if m.create_time else datetime(2015, 1, 1))).days
         mi['new'] = True if delta == 0 else False
         mi['days'] = delta
         message_items.append(mi)
     return render_template('message_box.html', message_items=message_items)
+
+
+@app.route('/chat_box')
+@login_required
+def chat_box():
+    user_id = session['user_id']
+    uc = UserChat.query.filter_by(user_id=user_id).first() 
+    us = []
+    if uc:
+        uid_set = uc.chat_list
+        us = User.query.filter(User.user_id.in_(uid_set)).all()
+    return render_template('chat_box.html', us=us)
+
 
 @app.route('/like', methods=['GET', 'POST'])
 @login_required
@@ -825,14 +906,16 @@ def like_submit():
     return render_template('like.html', project=project, user_like=user_like, user=user)
 
 
+@app.route('/')
 @app.route('/index')
 def index():
     print '++++++++++', _("hahaha"), get_locale()
-    return redirect(url_for('project_swiper'))
+    #return redirect(url_for('project_swiper'))
     return redirect(url_for('project'))
     #return render_template(ALANCER_INDEX)
 
 
+'''
 @app.route('/')
 def alancer():
     """The Alancer front page
@@ -840,7 +923,7 @@ def alancer():
     return redirect(url_for('project_swiper'))
     return redirect(url_for('project'))
     return render_template(ALANCER_INDEX)
-
+'''
 
 @app.route('/public')
 def public_timeline():
@@ -996,6 +1079,10 @@ def changepassword():
         flash(_('You were successfully reset your password and you can login now'))
         return redirect(url_for('login'))
 
+ALANCER_WELCOME_BODY = """
+You have successfully registered at aLancer. Click <a href="%s"><strong style="color:#00188f;"><span style="color:#00188f;">here</span></strong></a> to view the latest internship openings being offered by verified business owners nearby you. We may send you notices of new openings as they are added in the future. -the Alancer Team
+"""
+
 @app.route('/register', methods=['GET', 'POST'])
 def register():
     """Registers the user."""
@@ -1033,7 +1120,8 @@ def register():
             if isowner:
                 client = Client(name=u.username, email=u.email, user_id=u.user_id, icon=u.icon)
                 flush(client)
-            util.send_email('[Alancer] Congratulations!', 'You have registered at alancer!', request.form['email'])
+            util.send_email(_('Welcome to Alancer'), ALANCER_WELCOME_BODY % url_for('project'), request.form['email'])
+            print '===========', ALANCER_WELCOME_BODY % ('http://%s/project' % ALANCER_HOST)
             util.send_email('[Alancer Signup]', 'You have a new user [%s] @lancer!' % request.form['email'], ALANCER_SERVICE_EMAIL) 
             session['user_id'] = u.user_id
             flash(_('You were successfully registered and can login now'))
@@ -1049,8 +1137,15 @@ def logout():
     return redirect(url_for('index'))
     #return redirect(url_for('public_timeline'))
 
+def dformat(d):
+    return str(d)[:10]
+
 
 # add some filters to jinja
+app.jinja_env.filters['dformat'] = dformat
 app.jinja_env.filters['datetimeformat'] = format_datetime
 app.jinja_env.filters['gravatar'] = gravatar_url
 app.jinja_env.filters['get_icon'] = get_pic_url
+app.jinja_env.globals['ALANCER_BAIDU_STATS'] = ALANCER_BAIDU_STATS
+app.jinja_env.globals['LC_APP_ID'] = LC_APP_ID
+app.jinja_env.globals['LC_APP_KEY'] = LC_APP_KEY

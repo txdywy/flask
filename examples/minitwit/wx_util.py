@@ -7,6 +7,15 @@ from pygoogle import pygoogle
 import re, jieba, jieba.analyse
 import urllib2, json
 from bs4 import BeautifulSoup
+import cache as cachewx
+WX_CACHE_GENERAL_KEY = 'wx.cache.general.key.%s'
+try:
+    from config import WX_TULING_API_KEY
+except:
+    print '-----------------no TULING api key--------------'
+    WX_TULING_API_KEY = ''
+    
+WX_TULING_API_URL = 'http://www.tuling123.com/openapi/api?key=' + WX_TULING_API_KEY + '&info=%s'
 
 import sys
 reload(sys)
@@ -101,8 +110,20 @@ def reply(data):
     else:
         url = is_url(content)
         if url:
-            content = get_text_by_url(url)
+            key = WX_CACHE_GENERAL_KEY % url
+            content = cachewx.get(key)
+            if not content:
+                content = get_text_by_url(url)
+                cachewx.set(key, content, 60 * 10)
             #print '+++++++++++++',content
+        else:
+            if unicode_is_zh(content) and len(content) < 200:
+                r = ds_reply(content)
+                result = json.loads(r)['text']
+                response = make_response(reply_tmp % (user_name_from, user_name_to, str(int(time.time())), result))
+                response.content_type = 'application/xml'
+                return response
+
         if unicode_is_zh(content):
             seg_list = get_key_words(content)
             result = '\xe3\x80\x90' + '关键词' + '\xe3\x80\x91' + "\xe3\x80\x90%s\xe3\x80\x91" % "🐯".join(seg_list)
@@ -171,7 +192,9 @@ def fix_weibo_card(url):
         return None
 
 
-
+def ds_reply(words='你是谁'):
+    r = urllib2.urlopen(WX_TULING_API_URL % words).read()
+    return r
 
 
 

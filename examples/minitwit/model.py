@@ -1,21 +1,24 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy import Column, Integer, String, DATETIME, Text, ForeignKey
+from sqlalchemy import Column, Integer, String, DATETIME, Text, ForeignKey, PickleType
+from sqlalchemy.ext.mutable import MutableDict
 import datetime
 import pygoogle
 from faker import Factory
+from mutable import MutableList, MutableSet
+ 
 fake = Factory.create('en_US')
 
 try:
-    from config import RDS_HOST, RDS_NAME, RDS_PASS
+    from config import RDS_HOST, RDS_NAME, RDS_PASS, RDS_DB
     print '---------------mysql------------------'
 except:
     RDS_HOST = RDS_NAME = RDS_PASS = ''
     print '---------------sqlite-----------------'
 
 if RDS_HOST:
-    engine = create_engine("mysql://%s:%s@%s/polodb" % (RDS_NAME, RDS_PASS, RDS_HOST), encoding='latin1', echo=True)
+    engine = create_engine("mysql://%s:%s@%s/%s" % (RDS_NAME, RDS_PASS, RDS_HOST, RDS_DB), encoding='latin1', echo=True)
 else:
     engine = create_engine('sqlite:///alancer.db', convert_unicode=True)
 
@@ -60,6 +63,8 @@ class User(Base):
     firstname = Column(String(20), default='')
     lastname = Column(String(20), default='')
     approved = Column(Integer, default=0)
+    refer1 = Column(String(512), default='')
+    refer2 = Column(String(512), default='')
 
     def __init__(self, username, email, pw_hash):
         self.username = username
@@ -86,6 +91,7 @@ class Project(Base):
     incentive = Column(String(500), default='U can U up!')
     client_title = Column(String(50), default='Owner')
     icon = Column(String(512))
+    valid_time = Column(String(120), default='Anytime')
     #cnt_like = Column(Integer, default=0)
     #cnt_dislike = Column(Integer, default=0)
 
@@ -178,6 +184,78 @@ class Message(Base):
 
     def __repr__(self):
         return  '<Message %r>' % (self.id)
+
+
+class Test(Base):
+    __tablename__ = 'test'
+    id = Column(Integer, primary_key=True)
+    data = Column(MutableDict.as_mutable(PickleType))
+
+    def __repr__(self):
+        return '<Test %r>' % (self.id)
+
+class Chat(Base):
+    __tablename__ = 'chat'
+    id = Column(Integer, primary_key=True)
+    index = Column(String(120), index=True)
+    room_id = Column(String(64), index=True)
+
+    def __repr__(self):
+        return '<Chat %r>' % (self.id)
+
+    @classmethod
+    def gen_index(cls, uid1, uid2):
+        index_template = 'ALANCER_CHAT_%s_%s'
+        uid1, uid2 = int(uid1), int(uid2)
+        v = (uid1, uid2) if uid1<=uid2 else (uid2, uid1)
+        return index_template % v
+
+    @classmethod
+    def get_chat(cls, uid1, uid2):
+        index = cls.gen_index(uid1, uid2)
+        chat = Chat.query.filter_by(index=index).first()
+        return chat
+
+    @classmethod
+    def new_chat(cls, uid1, uid2, room_id):
+        index = cls.gen_index(uid1, uid2)
+        c = Chat(index=index, room_id=room_id)
+        flush(c)
+        UserChat.add_chat(uid1, uid2)
+        return c
+
+class UserChat(Base):
+    __tablename__ = 'user_chat'
+    id = Column(Integer, primary_key=True)
+    user_id = Column(Integer, index=True)
+    chat_list = Column(MutableSet.as_mutable(PickleType))#Column(PickleType, default=set)
+
+    @classmethod
+    def get_by_or_init(cls, user_id):
+        uc = cls.query.filter_by(user_id=user_id).first()
+        if not uc:
+            uc = cls(user_id=user_id)
+            flush(uc)
+        return uc
+
+    @classmethod
+    def add_chat(cls, uid1, uid2):
+        uid1, uid2 = int(uid1), int(uid2)
+        uc1 = cls.get_by_or_init(uid1)
+        cl1 = set(uc1.chat_list)
+        cl1.add(uid2)
+        uc1.chat_list = cl1
+
+        uc2 = cls.get_by_or_init(uid2)
+        cl2 = set(uc2.chat_list)
+        cl2.add(uid1)
+        uc2.chat_list = cl2
+
+        flush(uc1)
+        flush(uc2)
+
+    def __repr__(self):
+        return '<UserChat %r>' % (self.id)
 
 class ProjectApply(Base):
     PROJECT_APPLIED = 0

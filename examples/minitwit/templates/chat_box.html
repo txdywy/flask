@@ -1,0 +1,34 @@
+{% extends "alayout.html" %}
+{% block title %}{{ _("Chat box") }}{% endblock %}
+{% block headjs %}
+  <script type='text/javascript' src='http://cdn.bootcss.com/jquery/1.11.2/jquery.min.js'></script>
+  <script>
+    window.jQuery(document).ready(function($) {
+      $(".clickable-row").click(function() {
+        window.document.location = $(this).data("href");
+      });    });
+  </script>
+{% endblock headjs %}
+{% block body %}
+  <div class="container">
+      <div class="row">
+        <div class="col-md-8">
+          <h2 class="page-header">{{ _("Chat box") }}</h2>
+          <table class="table table-striped">
+            <tbody>
+              {% for u in us %}
+              <tr class="clickable-row" data-href='{{ url_for('chat', other_user_id=u.user_id) + '#page-bottom' }}'>
+                <td><img src="{{ u.icon }}" class="img-rounded" alt="Cinque Terre" width="60" height="60"></td>
+                <td><b>{{ u.username }}</b><br>...</td>
+                <td>0{{ _("d") }}</td>
+              </tr>
+              {% else %}
+              {{ _('Sorry, currently no chat') }}
+              {% endfor %}
+            </tbody>
+          </table>    
+            
+        </div>
+      </div>
+  </div>
+{% endblock %}

@@ -8,10 +8,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <link rel="icon" href="/favicon.ico">
 
     <title>{{ _('Project List') }}</title>
-
+    
     <link href="css/signin.css" rel="stylesheet">
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/freelancer.css" rel="stylesheet">
@@ -22,7 +22,8 @@
     <!-- i18n -->
     <script src="http://i18njs.com/js/i18n.min.js"></script>
 
-    
+    {{ ALANCER_BAIDU_STATS|safe }}    
+
     {% block headjs %}{% endblock headjs %}
 
   </head>
@@ -41,7 +42,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="#page-top">{{ _("Start") }} Alancer</a>
+                    <a class="navbar-brand" href="/">{{ _("Start") }} Alancer</a>
                 </div>
 
                 <!-- Collect the nav links, forms, and other content for toggling -->
@@ -71,6 +72,9 @@
                             <a href="{{ url_for('message_box') }}">{{ _("Message") }} <span class="badge">{{g.message_num}}</span></a>
                         </li>
                         <li class="page-scroll">
+                            <a href="/chat_box">{{ _("Chat") }}</a>
+                        </li>
+                        <li class="page-scroll">
                             <a href="/project">{{ _("Project") }}</a>
                         </li>
                         <!--
@@ -80,19 +84,23 @@
                         -->
 			            <li class="page-scroll">
                             {% if g.user %}
-			                <a href="/users">{{ _("Users") }}</a>
+			                <a href="/users">{{ _("Community") }}</a>
                             {% endif %}
 			            </li>
+                        <!--
                         <li class="page-scroll">
                             <a href="/">{{ _("Home") }}</a>
                         </li>
+                        -->
                         {% if g.user and g.isowner %}
                         <li class="page-scroll">
-                            <a href="/project_manage">{{ _("Manage Projects") }}</a>
+                            <a href="/project_manage">{{ _("My Projects") }}</a>
                         </li>
+                        <!--
                         <li class="page-scroll">
                             <a href="/project_new">{{ _('Create Project') }}</a>
                         </li>
+                        -->
                         {% endif %}
                         {% if g.user and g.admin_power %}
                         <li class="page-scroll">
@@ -122,10 +130,11 @@
 
     {% block body %}{% endblock %}
     </div>
+    <!--
     <div class="footer">
       Alancer &mdash; A Flask Application
     </div>
-
+    -->
     <!-- Scroll to Top Button (Only visible on small and extra-small screen sizes) -->
     <div class="scroll-top page-scroll visible-lg visible-md visible-xs visble-sm">
         <a class="btn btn-primary" href="#page-top">
@@ -143,6 +152,24 @@
     <script src="js/jquery.easing.min.js"></script>
     <script src="js/classie.js"></script>
     <script src="js/cbpAnimatedHeader.js"></script>
+
+    {% if g.user %}
+    <script type="text/javascript" src="http://cdn.bootcss.com/pnotify/2.0.0/pnotify.all.min.js"></script>    <link href="http://cdn.bootcss.com/pnotify/2.0.0/pnotify.all.min.css" media="all" rel="stylesheet" type="text/css" />
+    <script src="js/AV.push.js"></script>
+    <script>
+      var appId = "{{ LC_APP_ID }}";
+      var appKey = "{{ LC_APP_KEY }}";
+    </script>
+    <script src="js/push.js"></script>
+    <script type="text/javascript">
+        $(function(){
+            new PNotify({
+                title: 'Regular Notice',
+                text: 'Check me out! I\'m a notice.'
+            });
+        });
+    </script>
+    {% endif %}
     
     <!-- Contact Form JavaScript -->
     <!-- Only valid for index

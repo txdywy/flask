@@ -8,7 +8,9 @@ except:
 if REDIS_CACHE:
     rcache = Redis(host=REDIS_CACHE, port=REDIS_PORT)
 else:
-    rcache = None
+    print '==============cache using local koji instead of redis============'
+    import koji
+    rcache = koji
 
 def dp(value):
     return pickle.dumps(value)

@@ -30,14 +30,30 @@
               {% for project in projects %}
               <tr class="{{ cls[project.id] }}">
                 <td>{{ project.title }}</td>
-                <td>{{ project.client }}</td>
-                <td><img src="{{ project.image_url }}" class="img-rounded" alt="Cinque Terre" width="45" height="60"></td>
+                <td>{{ project.valid_time }}</td>
+                <td><img src="{{ project.image_url }}" class="img-rounded" alt="Cinque Terre" width="80" height="60"></td>
               </tr>
               {% else %}
               no projects
               {% endfor %}
             </tbody>
           </table>
+        </div>
+
+        <!--push a notification-->
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <div class="col-sm-4 portfolio-item" >
+              <form class="navbar-form navbar-left" role="search" action="{{ url_for('push') }}" method="post">
+                <div class="form-group">
+                  <input type="text" class="form-control" placeholder="1" name='msg'>
+                </div>
+                <button type="submit" class="btn btn-info btn-lg">
+                  <span class="glyphicon glyphicon-fire"></span> Push
+                </button>
+              </form>
+            </div>
+          </div>
         </div>
         
         <!--generate project-->

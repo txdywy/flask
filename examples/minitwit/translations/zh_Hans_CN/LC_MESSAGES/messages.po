@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2015-06-02 14:42+0000\n"
+"POT-Creation-Date: 2015-06-19 06:56+0000\n"
 "PO-Revision-Date: 2015-05-18 11:55+0800\n"
 "Last-Translator: Ramen King <geniusron@gmail.com>\n"
 "Language-Team: zh_Hans_CN <LL@li.org>\n"
@@ -17,40 +17,44 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 1.3\n"
 
-#: minitwit.py:585
+#: minitwit.py:617
 msgid "You have successfully created your project"
 msgstr "您已成功创建新项目"
 
-#: minitwit.py:608
+#: minitwit.py:641
 msgid "You have successfully updated your project"
 msgstr "您已成功更新项目"
 
-#: minitwit.py:641
+#: minitwit.py:676
 msgid "You have successfully updated your profile"
 msgstr "您已成功更新简历"
 
-#: minitwit.py:828
+#: minitwit.py:901
 msgid "hahaha"
-msgstr "哈哈哈"
+msgstr ""
 
-#: minitwit.py:935
+#: minitwit.py:1009
 msgid "You were logged in"
 msgstr "您已成功登录"
 
-#: minitwit.py:939
+#: minitwit.py:1013
 msgid "Wrong with username or password"
 msgstr "用户名或密码有误"
 
-#: minitwit.py:983
+#: minitwit.py:1058
+msgid "Welcome to Alancer"
+msgstr "欢迎加入Alancer"
+
+#: minitwit.py:1062
 msgid "You were successfully registered and can login now"
 msgstr "您已成功注册并登录"
 
-#: minitwit.py:991
+#: minitwit.py:1070
 msgid "You were logged out"
 msgstr "您已成功注销"
 
-#: templates/admin.html:2 templates/admin.html:14 templates/alayout.html:99
-#: templates/project_swiper.html:147
+#: templates/admin.html:2 templates/admin.html:14 templates/alayout.html:107
+#: templates/project_swiper.html:155
 msgid "Admin"
 msgstr "管理员"
 
@@ -58,63 +62,69 @@ msgstr "管理员"
 msgid "Project List"
 msgstr "项目"
 
-#: templates/alayout.html:44 templates/login.html:50
-#: templates/project_swiper.html:92 templates/register.html:42
+#: templates/alayout.html:45 templates/login.html:51
+#: templates/project_swiper.html:93 templates/register.html:43
 msgid "Start"
 msgstr "开启"
 
-#: templates/alayout.html:55 templates/login.html:61
-#: templates/project_swiper.html:103 templates/register.html:53
+#: templates/alayout.html:56 templates/login.html:62
+#: templates/project_swiper.html:104 templates/register.html:54
 msgid "sign out"
 msgstr "注销"
 
-#: templates/alayout.html:57 templates/login.html:63 templates/login.html:92
-#: templates/project_swiper.html:105 templates/register.html:55
+#: templates/alayout.html:58 templates/login.html:64 templates/login.html:95
+#: templates/project_swiper.html:106 templates/register.html:56
 msgid "Sign in"
 msgstr "登录"
 
-#: templates/alayout.html:62 templates/profile.html:8 templates/profile.html:79
-#: templates/profile_client.html:8 templates/profile_client.html:85
-#: templates/project_swiper.html:110
+#: templates/alayout.html:63 templates/profile.html:8 templates/profile.html:94
+#: templates/profile_client.html:8 templates/project_swiper.html:111
+#: templates/upc.html:16
 msgid "Profile"
-msgstr "简历"
+msgstr "关于我"
 
-#: templates/alayout.html:67 templates/login.html:68
-#: templates/project_swiper.html:115 templates/register.html:60
-#: templates/register.html:91
+#: templates/alayout.html:68 templates/login.html:69
+#: templates/project_swiper.html:116 templates/register.html:61
+#: templates/register.html:94
 msgid "Sign up"
 msgstr "注册"
 
-#: templates/alayout.html:71 templates/message.html:2
-#: templates/project_swiper.html:119
+#: templates/alayout.html:72 templates/message.html:2
+#: templates/project_swiper.html:120
 msgid "Message"
 msgstr "收件箱"
 
-#: templates/alayout.html:74 templates/project_list.html:9
-#: templates/project_swiper.html:122
+#: templates/alayout.html:75 templates/chat.html:27 templates/chat.html:30
+#: templates/project_swiper.html:123 templates/user.html:88
+#: templates/user_list.html:93
+msgid "Chat"
+msgstr "私信"
+
+#: templates/alayout.html:78 templates/project_list.html:9
+#: templates/project_swiper.html:126
 msgid "Project"
 msgstr "项目"
 
-#: templates/alayout.html:83 templates/project_swiper.html:131
-#: templates/user_list.html:2 templates/user_list.html:10
-msgid "Users"
-msgstr "用户列表"
+#: templates/alayout.html:87 templates/project_swiper.html:135
+msgid "Community"
+msgstr "社区"
 
-#: templates/alayout.html:87 templates/login.html:72
-#: templates/project_swiper.html:135 templates/register.html:64
+#: templates/alayout.html:92 templates/login.html:74
+#: templates/project_swiper.html:140 templates/register.html:66
 msgid "Home"
 msgstr "首页"
 
-#: templates/alayout.html:91 templates/project_manage.html:2
-#: templates/project_swiper.html:139
-msgid "Manage Projects"
-msgstr "管理项目"
+#: templates/alayout.html:97 templates/project_manage.html:2
+#: templates/project_manage.html:22 templates/project_swiper.html:145
+#: templates/publish.html:22
+msgid "My Projects"
+msgstr "我的项目"
 
-#: templates/alayout.html:94 templates/project_swiper.html:142
+#: templates/alayout.html:101 templates/project_swiper.html:149
 msgid "Create Project"
 msgstr "创建项目"
 
-#: templates/apply.html:2 templates/project_list.html:34
+#: templates/apply.html:2 templates/project_list.html:36
 msgid "Apply"
 msgstr "申请"
 
@@ -140,63 +150,67 @@ msgid "d ago"
 msgstr "天之前"
 
 #: templates/apply.html:22
-msgid "Mention why you are insterested and what you can bring to this project..."
-msgstr "请描述你为何对此项目感兴趣..."
+msgid "Message to project owner"
+msgstr "发送给项目开发者的信息"
 
 #: templates/apply.html:24
-msgid "\"Message\""
-msgstr "收件箱"
+msgid "Why you are interested in applying to this project?"
+msgstr "请描述你对此项目感兴趣的原因及你的优势"
 
-#: templates/apply.html:29 templates/project_new.html:82
+#: templates/apply.html:29 templates/project_new.html:95
 #: templates/publish.html:82
 msgid "Submit"
 msgstr "提交"
 
-#: templates/apply.html:37 templates/user.html:56 templates/user_list.html:75
+#: templates/apply.html:37 templates/user.html:55 templates/user_list.html:75
 msgid "About me"
 msgstr "关于我"
+
+#: templates/chat.html:45 templates/message.html:123
+msgid "Send"
+msgstr "发送"
+
+#: templates/chat_box.html:2 templates/chat_box.html:16
+msgid "Chat box"
+msgstr "私信"
+
+#: templates/chat_box.html:23 templates/message_box.html:23
+msgid "d"
+msgstr "天前"
+
+#: templates/chat_box.html:26
+msgid "Sorry, currently no chat"
+msgstr "抱歉,暂无私信"
 
 #: templates/login.html:11
 msgid "Alancer Signin Page"
 msgstr "Alancer登录页面"
 
-#: templates/login.html:82
+#: templates/login.html:85
 msgid "Please sign in"
 msgstr "请登录"
 
-#: templates/login.html:84
+#: templates/login.html:87
 msgid "User Name"
 msgstr "用户名"
 
-#: templates/login.html:86 templates/register.html:80
+#: templates/login.html:89 templates/register.html:83
 msgid "Password"
 msgstr "密码"
 
-#: templates/login.html:89
+#: templates/login.html:92
 msgid "Remember me"
 msgstr "记住我"
 
-#: templates/message.html:39
-msgid "Messages"
-msgstr "收件箱"
+#: templates/message.html:51
+msgid "Applying Messages"
+msgstr "申请信息"
 
-#: templates/message.html:77 templates/message_more.html:36
+#: templates/message.html:89 templates/message_more.html:36
 msgid "There's no message so far."
 msgstr "目前没有信息"
 
-#: templates/message.html:85
-msgid "Sending Message"
-msgstr "发送信息"
-
-#: templates/message.html:89
-msgid "Messaging"
-msgstr "信息"
-
-#: templates/message.html:98 templates/message.html:111
-msgid "Send"
-msgstr "发送"
-
-#: templates/message.html:105
+#: templates/message.html:119
 msgid "Input your message here"
 msgstr "请输入信息"
 
@@ -204,14 +218,9 @@ msgstr "请输入信息"
 msgid "Message box"
 msgstr "收件箱"
 
-#: templates/message_box.html:23
-msgid "d"
-msgstr "天前"
-
-#: templates/message_box.html:26 templates/project_manage.html:43
-#: templates/publish.html:43
-msgid "no projects"
-msgstr "没有项目"
+#: templates/message_box.html:26
+msgid "Sorry, currently no message"
+msgstr "抱歉,暂无信息"
 
 #: templates/profile.html:17 templates/profile_client.html:17
 msgid "Please complete your information"
@@ -240,52 +249,103 @@ msgstr "个人信息"
 msgid "First Name"
 msgstr "名"
 
+#: templates/profile.html:40 templates/profile_client.html:40
+msgid "Mike"
+msgstr "小麦"
+
 #: templates/profile.html:44 templates/profile_client.html:44
 msgid "Last name"
 msgstr "姓"
+
+#: templates/profile.html:46
+msgid "Zhang"
+msgstr "张"
+
+#: templates/profile.html:52
+msgid "University of Hello"
+msgstr "哈罗大学"
+
+#: templates/profile.html:58 templates/profile_client.html:64
+msgid "Beijing"
+msgstr "北京"
 
 #: templates/profile.html:62 templates/profile_client.html:68
 msgid "Country"
 msgstr "国家"
 
-#: templates/profile.html:68 templates/profile_client.html:74
-msgid "Zip Code"
-msgstr "邮编"
+#: templates/profile.html:64 templates/profile_client.html:70
+msgid "China"
+msgstr "中国"
 
-#: templates/profile.html:73 templates/profile_client.html:79
-msgid "Phone"
-msgstr "电话"
+#: templates/profile.html:68 templates/profile.html:74
+#: templates/profile_client.html:74 templates/profile_client.html:80
+msgid "Reference url"
+msgstr "参考链接"
 
-#: templates/profile.html:85 templates/profile_client.html:91
+#: templates/profile.html:96
+msgid "blablabla..."
+msgstr "很多很多"
+
+#: templates/profile.html:101 templates/profile_client.html:107
 msgid "Account Info"
 msgstr "账户信息"
 
-#: templates/profile.html:88 templates/profile_client.html:94
+#: templates/profile.html:104 templates/profile_client.html:110
 msgid "Username"
 msgstr "用户名"
 
-#: templates/profile.html:95 templates/profile_client.html:101
-#: templates/register.html:78
+#: templates/profile.html:111 templates/profile_client.html:117
+#: templates/register.html:81
 msgid "Email"
 msgstr "邮箱"
 
-#: templates/profile.html:102 templates/profile_client.html:108
-#: templates/project_info.html:80
+#: templates/profile.html:118 templates/profile_client.html:124
+#: templates/project_info.html:93
 msgid "Created time"
 msgstr "创建时间"
 
-#: templates/profile.html:111 templates/profile_client.html:117
-#: templates/project_info.html:89
+#: templates/profile.html:127 templates/profile_client.html:133
+#: templates/project_info.html:102
 msgid "Save Changes"
 msgstr "保存修改"
 
-#: templates/profile_client.html:50
+#: templates/profile.html:129 templates/profile_client.html:135
+#: templates/project_info.html:104 templates/project_new.html:97
+msgid "Cancel"
+msgstr "取消"
+
+#: templates/profile.html:139 templates/profile.html:145
+#: templates/profile_client.html:145 templates/profile_client.html:151
+msgid " characters remaining"
+msgstr "剩余字符"
+
+#: templates/profile_client.html:46
+msgid "Du"
+msgstr "杜"
+
+#: templates/profile_client.html:50 templates/project_list.html:32
 msgid "Company"
 msgstr "公司/组织"
+
+#: templates/profile_client.html:52
+msgid "Google"
+msgstr "谷歌"
 
 #: templates/profile_client.html:56 templates/publish.html:54
 msgid "Title"
 msgstr "职位/身份"
+
+#: templates/profile_client.html:58
+msgid "Manager"
+msgstr "经理"
+
+#: templates/profile_client.html:100
+msgid "About my company"
+msgstr "关于我的公司"
+
+#: templates/profile_client.html:102
+msgid "Legend and more..."
+msgstr "非常的传奇"
 
 #: templates/project_info.html:8
 msgid "Edit Project"
@@ -303,35 +363,30 @@ msgstr "可以上传一张新项目图标"
 msgid "Project Info"
 msgstr "项目信息"
 
-#: templates/project_info.html:39 templates/project_new.html:38
-msgid "Project title"
-msgstr "项目名称"
+#: templates/project_info.html:39
+msgid "I want to find"
+msgstr "我想找"
 
 #: templates/project_info.html:45 templates/project_new.html:44
-#: templates/publish.html:61
-msgid "Description"
-msgstr "描述"
+msgid "Project description"
+msgstr "项目描述"
 
-#: templates/project_info.html:51 templates/project_new.html:50
-msgid "Service"
-msgstr "服务领域"
-
-#: templates/project_info.html:57 templates/project_new.html:56
+#: templates/project_info.html:59 templates/project_new.html:58
 msgid "Client name"
 msgstr "客户名称"
 
-#: templates/project_info.html:63 templates/project_new.html:62
-msgid "Location"
-msgstr "位置"
-
-#: templates/project_info.html:69 templates/project_new.html:68
+#: templates/project_info.html:73 templates/project_new.html:72
 #: templates/publish.html:68
 msgid "Incentive"
 msgstr "奖励"
 
-#: templates/project_info.html:74 templates/project_new.html:73
-msgid "Client title"
-msgstr "客户称谓"
+#: templates/project_info.html:87 templates/project_new.html:78
+msgid "Valid Time"
+msgstr "有效时间"
+
+#: templates/project_info.html:89 templates/project_new.html:80
+msgid "June to August"
+msgstr "从六月到八月"
 
 #: templates/project_list.html:23
 msgid "Want to launch"
@@ -341,38 +396,41 @@ msgstr "希望启动项目"
 msgid "Get"
 msgstr "报酬"
 
-#: templates/project_list.html:37
+#: templates/project_list.html:25
+msgid "Valid time"
+msgstr "有效时间"
+
+#: templates/project_list.html:39
 msgid "Applied at"
 msgstr "申请时间"
 
-#: templates/project_list.html:44
+#: templates/project_list.html:46
 msgid "There's no project so far."
 msgstr "目前没有项目"
 
-#: templates/project_manage.html:22 templates/publish.html:22
-msgid "My Projects"
-msgstr "我的项目"
+#: templates/project_manage.html:24 templates/project_new.html:8
+msgid "New Project"
+msgstr "新项目"
 
-#: templates/project_manage.html:24 templates/publish.html:24
+#: templates/project_manage.html:28 templates/publish.html:24
 msgid "My Projects Number"
 msgstr "我的项目数"
 
-#: templates/project_manage.html:30 templates/publish.html:30
-#: templates/publish.html:55
-msgid "Project Title"
-msgstr "项目名称"
+#: templates/project_manage.html:34 templates/project_new.html:38
+msgid "Project Target"
+msgstr "项目目标"
 
-#: templates/project_manage.html:31 templates/publish.html:31
-msgid "Client"
-msgstr "客户"
+#: templates/project_manage.html:35
+msgid "Project Time"
+msgstr "项目时间"
 
-#: templates/project_manage.html:32 templates/publish.html:32
+#: templates/project_manage.html:36 templates/publish.html:32
 msgid "Image"
 msgstr "图像"
 
-#: templates/project_new.html:8
-msgid "New Project"
-msgstr "新项目"
+#: templates/project_manage.html:47 templates/publish.html:43
+msgid "no projects"
+msgstr "没有项目"
 
 #: templates/project_new.html:17
 msgid "You can add your new project now"
@@ -383,32 +441,20 @@ msgid "Please upload a picture for your project"
 msgstr "请为你的项目上传图片"
 
 #: templates/project_new.html:40
-msgid "Super cup project"
-msgstr "超级大杯具项目"
+msgid "Project target you want to make"
+msgstr "你预期的项目目标"
 
 #: templates/project_new.html:46
 msgid "bigger than bigger"
 msgstr "逼格巨高"
 
-#: templates/project_new.html:52
-msgid "web app"
-msgstr "网页应用"
-
-#: templates/project_new.html:58
+#: templates/project_new.html:60
 msgid "Shield"
 msgstr "神盾局"
 
-#: templates/project_new.html:64
-msgid "Virginia"
-msgstr "美国弗吉尼亚州"
-
-#: templates/project_new.html:70
-msgid "huge reputation"
-msgstr "极大的荣誉"
-
-#: templates/project_new.html:75
-msgid "Agent Gallow"
-msgstr "加洛探员"
+#: templates/project_new.html:74
+msgid "100rmb/day or bonus"
+msgstr "100块每天或其它福利"
 
 #: templates/project_swiper.html:5 templates/ps.html:5
 msgid "Alancer Projects"
@@ -418,9 +464,21 @@ msgstr "Alancer项目"
 msgid "Publish"
 msgstr "发布项目"
 
+#: templates/publish.html:30 templates/publish.html:55
+msgid "Project Title"
+msgstr "项目名称"
+
+#: templates/publish.html:31
+msgid "Client"
+msgstr "客户"
+
 #: templates/publish.html:49
 msgid "Publish a new project"
 msgstr "发布一个新项目"
+
+#: templates/publish.html:61
+msgid "Description"
+msgstr "描述"
 
 #: templates/publish.html:62
 msgid "Project Description"
@@ -446,29 +504,29 @@ msgstr "项目图片预览"
 msgid "Sign Up Here"
 msgstr "注册"
 
-#: templates/register.html:74
+#: templates/register.html:77
 msgid "Please sign up"
 msgstr "请注册"
 
-#: templates/register.html:76
+#: templates/register.html:79
 msgid "User name"
 msgstr "用户名"
 
-#: templates/register.html:82
+#: templates/register.html:85
 msgid "Password again"
 msgstr "确认密码"
 
-#: templates/register.html:83
+#: templates/register.html:86
 msgid "To be a developer or project owner"
 msgstr "请选择作为开发者或项目发布者"
 
-#: templates/register.html:86
-msgid "I want to be a developer"
-msgstr "我想成为开发者"
+#: templates/register.html:89
+msgid "I'm an intern"
+msgstr "我是实习生"
 
-#: templates/register.html:87
-msgid "I want to be a project owner"
-msgstr "我想成为项目发布者"
+#: templates/register.html:90
+msgid "I'm seeking interns"
+msgstr "我要找实习生"
 
 #: templates/user.html:2
 msgid "User Digest"
@@ -478,33 +536,41 @@ msgstr "用户摘要"
 msgid "User"
 msgstr "用户"
 
-#: templates/user.html:37 templates/user_list.html:56
+#: templates/user.html:36 templates/user_list.html:56
 msgid "Developer"
 msgstr "开发者"
 
-#: templates/user.html:41 templates/user_list.html:60
+#: templates/user.html:40 templates/user_list.html:60
 msgid "Project owner"
 msgstr "项目发布人"
 
-#: templates/user.html:46 templates/user_list.html:65
+#: templates/user.html:45 templates/user_list.html:65
 msgid "Approved"
 msgstr "通过认证"
 
-#: templates/user.html:50 templates/user_list.html:69
+#: templates/user.html:49 templates/user_list.html:69
 msgid "Pending"
 msgstr "等待认证"
 
-#: templates/user.html:62 templates/user_list.html:81
-msgid "Review"
-msgstr "评论"
+#: templates/user.html:63
+msgid "Owner name"
+msgstr "项目人姓名"
 
-#: templates/user.html:64 templates/user_list.html:83
-msgid "approval"
-msgstr "审核"
+#: templates/user.html:69
+msgid "Owner title"
+msgstr "项目人头衔"
 
-#: templates/user.html:64 templates/user_list.html:83
-msgid "reviews"
-msgstr "评论"
+#: templates/user.html:76 templates/user_list.html:81
+msgid "Reference url 1"
+msgstr "参考链接1"
+
+#: templates/user.html:82 templates/user_list.html:87
+msgid "Reference url 2"
+msgstr "参考链接2"
+
+#: templates/user_list.html:2 templates/user_list.html:10
+msgid "Users"
+msgstr "用户列表"
 
 #: templates/user_list.html:19
 msgid "All users"
@@ -522,7 +588,76 @@ msgstr "开发者"
 msgid "Filter"
 msgstr "过滤"
 
-#: templates/user_list.html:108
+#: templates/user_list.html:126
 msgid "There's no user so far."
 msgstr "目前没有用户"
+
+#~ msgid "hahaha"
+#~ msgstr "哈哈哈"
+
+#~ msgid ""
+#~ msgstr ""
+
+#~ msgid "\"Message\""
+#~ msgstr "收件箱"
+
+#~ msgid "Zip Code"
+#~ msgstr "邮编"
+
+#~ msgid "Phone"
+#~ msgstr "电话"
+
+#~ msgid "web app"
+#~ msgstr "网页应用"
+
+#~ msgid "Virginia"
+#~ msgstr "美国弗吉尼亚州"
+
+#~ msgid "Agent Gallow"
+#~ msgstr "加洛探员"
+
+#~ msgid "Project title"
+#~ msgstr "项目名称"
+
+#~ msgid "I want to be a developer"
+#~ msgstr "我想成为开发者"
+
+#~ msgid "I want to be a project owner"
+#~ msgstr "我想成为项目发布者"
+
+#~ msgid "Manage Projects"
+#~ msgstr "管理项目"
+
+#~ msgid "Messages"
+#~ msgstr "收件箱"
+
+#~ msgid "Sending Message"
+#~ msgstr "发送信息"
+
+#~ msgid "Messaging"
+#~ msgstr "信息"
+
+#~ msgid "Super cup project"
+#~ msgstr "超级大杯具项目"
+
+#~ msgid "huge reputation"
+#~ msgstr "极大的荣誉"
+
+#~ msgid "Service"
+#~ msgstr "服务领域"
+
+#~ msgid "Location"
+#~ msgstr "位置"
+
+#~ msgid "Client title"
+#~ msgstr "客户称谓"
+
+#~ msgid "Review"
+#~ msgstr "评论"
+
+#~ msgid "approval"
+#~ msgstr "审核"
+
+#~ msgid "reviews"
+#~ msgstr "评论"
 

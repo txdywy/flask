@@ -13,10 +13,13 @@ def recv(file):
     get(file, './')
 
 def alancer():
-    env.hosts = ['sushi', 'polo', 'noodle']
+    env.hosts = ['sushi', 'polo', 'noodle', 'udon']
 
 def vpn():
-    env.hosts = ['tempura', 'ramen', 'donut']
+    env.hosts = ['tempura', 'ramen', 'donut', 'nori']
+
+def appflood():
+    env.hosts = ['pre3-01', 'af_test', 'test3', 'sandbox']
 
 def pull():
     with cd('~/flask/examples/minitwit/'):
@@ -33,8 +36,19 @@ def update_db():
     with cd('~/flask/examples/minitwit/'):
         run('openssl enc -des -d -a -in alancer_db_enc -out alancer.db')
 
+def init_db():
+    with cd('~/flask/examples/minitwit/'):
+        run("python -c 'from model import *;init_db()'")
+
 def free():
     run('free -mh')
+
+def net():
+    run('vnstat')
+    run('vnstat -h')
+    run('vnstat -d')
+    run('vnstat -w')
+    run('vnstat -m')
 
 def dns(url):
     dns_server = ['', #local

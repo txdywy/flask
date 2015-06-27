@@ -1,7 +1,13 @@
 import smtplib
 import email.utils
 from email.mime.text import MIMEText
-ALANCER_SUPPORT = 'support@alancer.cf'
+import functools
+try:
+    from config import ALANCER_HOST
+except Exception, e:
+    print '==============no ALANCER_HOST set, ues alancer.xx as default==============', e
+    ALANCER_HOST = 'alancer.xx'
+ALANCER_SUPPORT = 'support@%s' % ALANCER_HOST
 
 def makes(s):
     if type(s)==unicode:
@@ -15,6 +21,16 @@ def makeu(s):
     else:
         return s
 
+def ex(func):
+    @functools.wraps(func)
+    def foo(*args, **kwargs):
+        try:
+            return func(*args, **kwargs)
+        except Exception, e:
+            print '===================send email ex================', e
+    return foo
+
+@ex
 def send_email(title, content, addr_to, addr_fr=None):
     # Create the message
     if not addr_fr:
@@ -26,7 +42,8 @@ def send_email(title, content, addr_to, addr_fr=None):
     try:
         server = smtplib.SMTP('localhost')
     except Exception, e:
-        print 'no SMTP service available'
+        print 'no SMTP service available', e
+        return
     
     #server.set_debuglevel(True) # show communication with the server
     try:
