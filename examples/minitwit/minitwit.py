@@ -26,6 +26,8 @@ from model import Project, Contact, Client, User, UserLike, Message, ProjectAppl
 from sqlalchemy import desc
 import util, functools
 import simplejson as json
+import random
+import string
 from random import randint
 try:
     import cache as cacheal 
@@ -1022,6 +1024,52 @@ def login():
         flash(_('Wrong with username or password'))
     return render_template('login.html', error=error)
 
+@app.route('/forgotpassword', methods=['GET'])
+def forgotpassword():
+    return render_template('forgotpassword.html')
+
+@app.route('/sendresetemail', methods=['POST'])
+def sendresetemail():
+    error = None
+    user = User.query.filter_by(email=request.form['email'].lower()).first()
+    if user is None:
+        flash(_('Email does not exist on our system.'))
+        return render_template('forgotpassword.html')
+    else:
+        token = ''.join(random.choice(string.ascii_uppercase + string.ascii_lowercase + string.digits) for _ in range(30))
+        #todo:send email with instruction
+        print "http://192.168.137.188:8000/resetpassword?token=%s" %(token)
+        cacheal.set(token, user.user_id, timeout=100000)
+        flash(_('An email with password reset instructions has been sent to your email address.'))
+        return redirect(url_for('index'))
+
+@app.route('/resetpassword', methods=['GET','POST'])
+def resetpassword():
+    token = request.args.get('token')
+    if(token == None):
+        token = session['token']
+    else: #the case that user typed different password
+        session['token'] = token
+    return render_template('resetpassword.html')
+
+@app.route('/changepassword', methods=['POST'])
+def changepassword():
+    token = session['token']
+    print token
+    if request.form['password'] != request.form['password2']:
+        flash(_('The two passwords do not match'))
+        return redirect(url_for('resetpassword'))
+    else:
+        user_id = cacheal.get(token)
+        if user_id is None:
+            flash(_('Reset password token expired.'))
+            return redirect(url_for('forgotpassword'))
+        user = User.query.filter_by(user_id=user_id).first()
+        user.pw_hash=generate_password_hash(request.form['password'])
+        flush(user)
+        util.send_email('[Alancer] Congratulations!', 'You have reset your password at alancer!', user.email)
+        flash(_('You were successfully reset your password and you can login now'))
+        return redirect(url_for('login'))
 
 ALANCER_WELCOME_BODY = """
 You have successfully registered at aLancer. Click <a href="%s"><strong style="color:#00188f;"><span style="color:#00188f;">here</span></strong></a> to view the latest internship openings being offered by verified business owners nearby you. We may send you notices of new openings as they are added in the future. -the Alancer Team
