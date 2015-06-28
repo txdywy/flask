@@ -228,7 +228,7 @@ class UserChat(Base):
     __tablename__ = 'user_chat'
     id = Column(Integer, primary_key=True)
     user_id = Column(Integer, index=True)
-    chat_list = Column(MutableSet.as_mutable(PickleType))#Column(PickleType, default=set)
+    chat_list = Column(MutableSet.as_mutable(PickleType), default=set)#Column(PickleType, default=set)
 
     @classmethod
     def get_by_or_init(cls, user_id):
