@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2015-06-19 06:56+0000\n"
+"POT-Creation-Date: 2015-06-28 10:08+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,110 +17,130 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 1.3\n"
 
-#: minitwit.py:617
+#: minitwit.py:629
 msgid "You have successfully created your project"
 msgstr ""
 
-#: minitwit.py:641
+#: minitwit.py:653
 msgid "You have successfully updated your project"
 msgstr ""
 
-#: minitwit.py:676
+#: minitwit.py:688
 msgid "You have successfully updated your profile"
 msgstr ""
 
-#: minitwit.py:901
+#: minitwit.py:913
 msgid "hahaha"
 msgstr ""
 
-#: minitwit.py:1009
+#: minitwit.py:1021
 msgid "You were logged in"
 msgstr ""
 
-#: minitwit.py:1013
+#: minitwit.py:1025
 msgid "Wrong with username or password"
 msgstr ""
 
-#: minitwit.py:1058
+#: minitwit.py:1043
+msgid "An email sent with password reset intro"
+msgstr ""
+
+#: minitwit.py:1052
+msgid "Token expired"
+msgstr ""
+
+#: minitwit.py:1059
+msgid "The two passwords do not match"
+msgstr ""
+
+#: minitwit.py:1064
+msgid "Reset password token expired."
+msgstr ""
+
+#: minitwit.py:1071
+msgid "You were successfully reset your password and you can login now"
+msgstr ""
+
+#: minitwit.py:1115
 msgid "Welcome to Alancer"
 msgstr ""
 
-#: minitwit.py:1062
+#: minitwit.py:1119
 msgid "You were successfully registered and can login now"
 msgstr ""
 
-#: minitwit.py:1070
+#: minitwit.py:1127
 msgid "You were logged out"
 msgstr ""
 
-#: templates/admin.html:2 templates/admin.html:14 templates/alayout.html:107
+#: templates/admin.html:2 templates/admin.html:14 templates/alayout.html:108
 #: templates/project_swiper.html:155
 msgid "Admin"
 msgstr ""
 
-#: templates/alayout.html:13
+#: templates/alayout.html:14
 msgid "Project List"
 msgstr ""
 
-#: templates/alayout.html:45 templates/login.html:51
+#: templates/alayout.html:46 templates/login.html:51
 #: templates/project_swiper.html:93 templates/register.html:43
 msgid "Start"
 msgstr ""
 
-#: templates/alayout.html:56 templates/login.html:62
+#: templates/alayout.html:57 templates/login.html:62
 #: templates/project_swiper.html:104 templates/register.html:54
 msgid "sign out"
 msgstr ""
 
-#: templates/alayout.html:58 templates/login.html:64 templates/login.html:95
+#: templates/alayout.html:59 templates/login.html:64 templates/login.html:95
 #: templates/project_swiper.html:106 templates/register.html:56
 msgid "Sign in"
 msgstr ""
 
-#: templates/alayout.html:63 templates/profile.html:8 templates/profile.html:94
+#: templates/alayout.html:64 templates/profile.html:8 templates/profile.html:94
 #: templates/profile_client.html:8 templates/project_swiper.html:111
 #: templates/upc.html:16
 msgid "Profile"
 msgstr ""
 
-#: templates/alayout.html:68 templates/login.html:69
+#: templates/alayout.html:69 templates/login.html:69
 #: templates/project_swiper.html:116 templates/register.html:61
 #: templates/register.html:94
 msgid "Sign up"
 msgstr ""
 
-#: templates/alayout.html:72 templates/message.html:2
+#: templates/alayout.html:73 templates/message.html:2
 #: templates/project_swiper.html:120
 msgid "Message"
 msgstr ""
 
-#: templates/alayout.html:75 templates/chat.html:27 templates/chat.html:30
+#: templates/alayout.html:76 templates/chat.html:27 templates/chat.html:30
 #: templates/project_swiper.html:123 templates/user.html:88
 #: templates/user_list.html:93
 msgid "Chat"
 msgstr ""
 
-#: templates/alayout.html:78 templates/project_list.html:9
+#: templates/alayout.html:79 templates/project_list.html:9
 #: templates/project_swiper.html:126
 msgid "Project"
 msgstr ""
 
-#: templates/alayout.html:87 templates/project_swiper.html:135
+#: templates/alayout.html:88 templates/project_swiper.html:135
 msgid "Community"
 msgstr ""
 
-#: templates/alayout.html:92 templates/login.html:74
+#: templates/alayout.html:93 templates/login.html:74
 #: templates/project_swiper.html:140 templates/register.html:66
 msgid "Home"
 msgstr ""
 
-#: templates/alayout.html:97 templates/project_manage.html:2
+#: templates/alayout.html:98 templates/project_manage.html:2
 #: templates/project_manage.html:22 templates/project_swiper.html:145
 #: templates/publish.html:22
 msgid "My Projects"
 msgstr ""
 
-#: templates/alayout.html:101 templates/project_swiper.html:149
+#: templates/alayout.html:102 templates/project_swiper.html:149
 msgid "Create Project"
 msgstr ""
 
@@ -182,6 +202,18 @@ msgstr ""
 msgid "Sorry, currently no chat"
 msgstr ""
 
+#: templates/forgotpassword.html:2
+msgid "Forgot password"
+msgstr ""
+
+#: templates/forgotpassword.html:12
+msgid "Please provide the valid email"
+msgstr ""
+
+#: templates/forgotpassword.html:25
+msgid "Confirm"
+msgstr ""
+
 #: templates/login.html:11
 msgid "Alancer Signin Page"
 msgstr ""
@@ -195,11 +227,16 @@ msgid "User Name"
 msgstr ""
 
 #: templates/login.html:89 templates/register.html:83
+#: templates/resetpassword.html:19
 msgid "Password"
 msgstr ""
 
 #: templates/login.html:92
 msgid "Remember me"
+msgstr ""
+
+#: templates/login.html:96
+msgid "Forget your password"
 msgstr ""
 
 #: templates/message.html:51
@@ -512,7 +549,7 @@ msgstr ""
 msgid "User name"
 msgstr ""
 
-#: templates/register.html:85
+#: templates/register.html:85 templates/resetpassword.html:21
 msgid "Password again"
 msgstr ""
 
@@ -526,6 +563,14 @@ msgstr ""
 
 #: templates/register.html:90
 msgid "I'm seeking interns"
+msgstr ""
+
+#: templates/resetpassword.html:2
+msgid "Reset password"
+msgstr ""
+
+#: templates/resetpassword.html:26
+msgid "Change Password"
 msgstr ""
 
 #: templates/user.html:2
