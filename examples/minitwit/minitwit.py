@@ -102,6 +102,7 @@ ALANCER_MESSAGE_OFFSET = 10
 ALANCER_ALL_PROJECTS = 'alancer.all.projects'
 ALANCER_USER_PROJECTS_INDEX = 'alancer.user.projects.index.%s'
 ALANCER_USER_CLIENT_MESSAGES = 'alancer.user.client.messages.%s.%s'
+ALANCER_FORGETPASSWORD_TOKEN = 'alancer.forgetpassword.token.%s'
 
 NO_CONTENT_PICTURE = 'http://media-cache-ak0.pinimg.com/736x/3d/b0/4a/3db04ab7349e7f791d3819b57230751d.jpg'
 
@@ -1030,43 +1031,42 @@ def forgotpassword():
 
 @app.route('/sendresetemail', methods=['POST'])
 def sendresetemail():
-    error = None
-    user = User.query.filter_by(email=request.form['email'].lower()).first()
-    if user is None:
-        flash(_('Email does not exist on our system.'))
-        return render_template('forgotpassword.html')
+    email = request.form['email'] 
+    user = User.query.filter_by(email=email).first()
+    if not user:
+        return redirect(url_for('login'))
     else:
-        token = ''.join(random.choice(string.ascii_uppercase + string.ascii_lowercase + string.digits) for _ in range(30))
+        token = ''.join(random.choice(string.ascii_uppercase + string.ascii_lowercase + string.digits) for i in xrange(32))
         #todo:send email with instruction
-        print "http://192.168.137.188:8000/resetpassword?token=%s" %(token)
-        cacheal.set(token, user.user_id, timeout=100000)
-        flash(_('An email with password reset instructions has been sent to your email address.'))
-        return redirect(url_for('index'))
+        cacheal.set(ALANCER_FORGETPASSWORD_TOKEN % token, user.user_id, timeout=60 * 60)
+        util.send_email('[Alancer] Rest yourt alancer password!', '<a>%s</a>' % ('http://' + ALANCER_HOST + "/resetpassword?token=%s" % token), email)
+        flash(_('An email sent with password reset intro'))
+        return redirect(url_for('login'))
 
-@app.route('/resetpassword', methods=['GET','POST'])
+@app.route('/resetpassword', methods=['GET'])
 def resetpassword():
     token = request.args.get('token')
-    if(token == None):
-        token = session['token']
-    else: #the case that user typed different password
-        session['token'] = token
-    return render_template('resetpassword.html')
+    if cacheal.get(ALANCER_FORGETPASSWORD_TOKEN % token):
+        return render_template('resetpassword.html', token=token)
+    else:
+        flash(_('Token expired'))
+        return redirect(url_for('login'))
 
 @app.route('/changepassword', methods=['POST'])
 def changepassword():
-    token = session['token']
-    print token
+    token = request.form['token']
     if request.form['password'] != request.form['password2']:
         flash(_('The two passwords do not match'))
         return redirect(url_for('resetpassword'))
     else:
-        user_id = cacheal.get(token)
-        if user_id is None:
+        user_id = cacheal.get(ALANCER_FORGETPASSWORD_TOKEN % token)
+        if not user_id:
             flash(_('Reset password token expired.'))
-            return redirect(url_for('forgotpassword'))
+            return redirect(url_for('login'))
         user = User.query.filter_by(user_id=user_id).first()
         user.pw_hash=generate_password_hash(request.form['password'])
         flush(user)
+        cacheal.delete(ALANCER_FORGETPASSWORD_TOKEN % token)
         util.send_email('[Alancer] Congratulations!', 'You have reset your password at alancer!', user.email)
         flash(_('You were successfully reset your password and you can login now'))
         return redirect(url_for('login'))
