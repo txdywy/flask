@@ -50,6 +50,9 @@ def net():
     run('vnstat -w')
     run('vnstat -m')
 
+def fd():
+    run('cat /proc/sys/fs/file-nr')
+
 def dns(url):
     dns_server = ['', #local
                   '8.8.8.8', #Google
