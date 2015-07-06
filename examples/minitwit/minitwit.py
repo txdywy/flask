@@ -106,8 +106,11 @@ ALANCER_FORGETPASSWORD_TOKEN = 'alancer.forgetpassword.token.%s'
 
 NO_CONTENT_PICTURE = 'http://media-cache-ak0.pinimg.com/736x/3d/b0/4a/3db04ab7349e7f791d3819b57230751d.jpg'
 
+from views import test
+
 # create our little application :)
 app = Flask(__name__)
+app.register_blueprint(test.view)
 app.config['BABEL_DEFAULT_LOCALE'] = 'zh_Hans_CN'
 Triangle(app)
 app.config.from_object(__name__)
