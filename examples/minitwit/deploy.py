@@ -19,6 +19,7 @@ pkgs = ['boto',
         'celery',
         'simplejson',
         'mysql-python',
+        'bosonnlp',
        ]
 for pkg in pkgs:
     local(SUDO_PIP_INSTALL % pkg)

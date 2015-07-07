@@ -8,13 +8,22 @@ import re, jieba, jieba.analyse
 import urllib2, json
 from bs4 import BeautifulSoup
 import cache as cachewx
+from bosonnlp import BosonNLP
 WX_CACHE_GENERAL_KEY = 'wx.cache.general.key.%s'
 try:
     from config import WX_TULING_API_KEY
 except:
     print '-----------------no TULING api key--------------'
     WX_TULING_API_KEY = ''
+try:
+    from config import BOSON_API_TOKEN
+    BSNLP = BosonNLP(BOSON_API_TOKEN)
+except:
+    print '---------------no BOSON api key--------------'
+    BOSON_APT_TOKEN = ''
+    BSNLP = None
     
+BOSON_NEWS_CATEGORY = ['体育', '教育', '财经', '社会', '娱乐', '军事', '国内', '科技', '互联网', '房产', '国际', '女人', '汽车', '游戏']    
 WX_TULING_API_URL = 'http://www.tuling123.com/openapi/api?key=' + WX_TULING_API_KEY + '&info=%s'
 
 import sys
@@ -119,14 +128,17 @@ def reply(data):
         else:
             if unicode_is_zh(content) and len(content) < 200:
                 r = ds_reply(content)
-                result = json.loads(r)['text']
+                sense = bs_sentiment(content)
+                result = '%s' % sense + json.loads(r)['text']
                 response = make_response(reply_tmp % (user_name_from, user_name_to, str(int(time.time())), result))
                 response.content_type = 'application/xml'
                 return response
 
         if unicode_is_zh(content):
             seg_list = get_key_words(content)
-            result = '\xe3\x80\x90' + '关键词' + '\xe3\x80\x91' + "\xe3\x80\x90%s\xe3\x80\x91" % "🐯".join(seg_list)
+            result =  '\xe3\x80\x90' + '文章情感晴雨表:%s' % bs_sentiment(content) + '\xe3\x80\x91'
+            result += '\xe3\x80\x90' + '文章分类:%s' % bs_calssify(content) + '\xe3\x80\x91'
+            result += '\xe3\x80\x90' + '关键词' + '\xe3\x80\x91' + "\xe3\x80\x90%s\xe3\x80\x91" % "🐯".join(seg_list)
             result += '\xF0\x9F\x8C\x8D' + '\xe3\x80\x90' + '摘要' + '\xe3\x80\x91' + "\xe3\x80\x90%s\xe3\x80\x91" % get_text_digest(content)
             #print '--------',result
             response = make_response(reply_tmp % (user_name_from, user_name_to, str(int(time.time())), result))
@@ -196,10 +208,19 @@ def ds_reply(words='你是谁'):
     r = urllib2.urlopen(WX_TULING_API_URL % words).read()
     return r
 
+POSITIVE_EMOJI = '😆'
+NEGATIVE_EMOJI = '😰'
+def bs_sentiment(w=''):
+    """
+    [+, -]
+    """
+    r = BSNLP.sentiment(w)
+    print r
+    p = int(r[0][0] * 10)
+    n = 10 - p
+    return POSITIVE_EMOJI * p + NEGATIVE_EMOJI * n
 
-
-
-
-
-
-
+def bs_calssify(w=''):
+    r = BSNLP.classify([w])
+    print r
+    return BOSON_NEWS_CATEGORY[int(r[0])]
