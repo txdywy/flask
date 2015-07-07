@@ -118,6 +118,7 @@ def reply(data):
         response = make_response(WX_TEMPLATE_IMG_TEXT % (user_name_from, user_name_to, str(int(time.time())),     '小虎是谁？', '是谁呀？', 'http://t.hujiang.com/images/peitu/huhu/5.jpg', 'http://alancer.cf'))
     else:
         url = is_url(content)
+        print '=============',url
         if url:
             key = WX_CACHE_GENERAL_KEY % url
             content = cachewx.get(key)
@@ -169,11 +170,16 @@ def get_text_by_url(url="http://www.cnn.com"):
     url_wb = fix_weibo_card(url)
     if url_wb:
         url = url_wb
+    print '================'
     request = urllib2.Request(url, headers={"User-Agent" : "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/40.0.2214.111 Safari/537.36"})
     html = urllib2.urlopen(request).read()
     if url_wb:
         html = json.loads(html)['data']['article']
     soup = BeautifulSoup(html)
+
+    # 36kr
+    if fix_36kr(url):
+        soup = soup.find("section", {"class": "article"}) 
 
     # kill all script and style elements
     for script in soup(["script", "style"]):
@@ -181,6 +187,7 @@ def get_text_by_url(url="http://www.cnn.com"):
 
     # get text
     text = soup.get_text()
+    print '--------------------'
 
     tlist = text.split('\n')
     tlist = sorted(tlist, key=lambda x:len(x))
@@ -188,8 +195,9 @@ def get_text_by_url(url="http://www.cnn.com"):
 
 def is_url(data):
     data = data.strip()
-    if 'http://' != data[:7]:
+    if 'http' != data[:4].lower():
         data = 'http://' + data 
+    print '....',data
     if URL_RE.match(data):
         return data
     else:
@@ -203,6 +211,10 @@ def fix_weibo_card(url):
     else:
         return None
 
+def fix_36kr(url):
+    if '36kr.com' in url:
+        return True
+    return False
 
 def ds_reply(words='你是谁'):
     r = urllib2.urlopen(WX_TULING_API_URL % words).read()
