@@ -9,6 +9,7 @@ import urllib2, json
 from bs4 import BeautifulSoup
 import cache as cachewx
 from bosonnlp import BosonNLP
+from urlparse import urlparse, parse_qs
 WX_CACHE_GENERAL_KEY = 'wx.cache.general.key.%s'
 try:
     from config import WX_TULING_API_KEY
@@ -125,7 +126,7 @@ def reply(data):
             if not content:
                 content = get_text_by_url(url)
                 cachewx.set(key, content, 60 * 10)
-            #print '+++++++++++++',content
+            print '+++++++++++++',url,content
         else:
             if unicode_is_zh(content) and len(content) < 200:
                 r = ds_reply(content)
@@ -167,14 +168,22 @@ def get_text_digest(data):
     return '\xF0\x9F\x8D\x8B'.join(tr4s.get_key_sentences(num=3))
 
 def get_text_by_url(url="http://www.cnn.com"):
+    # weibo
     url_wb = fix_weibo_card(url)
     if url_wb:
         url = url_wb
-    print '================'
+
+    # netease
+    docid = None
+    if fix_netease(url):
+        url, docid = get_netease_url(url)
+    print '================', url
     request = urllib2.Request(url, headers={"User-Agent" : "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/40.0.2214.111 Safari/537.36"})
     html = urllib2.urlopen(request).read()
     if url_wb:
         html = json.loads(html)['data']['article']
+    if docid:
+        html = json.loads(html[12:-1])[docid]['body']
     soup = BeautifulSoup(html)
 
     # 36kr
@@ -215,6 +224,16 @@ def fix_36kr(url):
     if '36kr.com' in url:
         return True
     return False
+
+def fix_netease(url):
+    if '3g.163.com' in url:
+        return True
+    return False
+
+def get_netease_url(url):
+    r = parse_qs(urlparse(url).query, keep_blank_values=True)
+    docid = r.get('docid', '')[0]
+    return 'http://3g.163.com/touch/article/%s/full.html' % docid, docid
 
 def ds_reply(words='你是谁'):
     r = urllib2.urlopen(WX_TULING_API_URL % words).read()
