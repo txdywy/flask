@@ -27,6 +27,13 @@ except:
 BOSON_NEWS_CATEGORY = ['体育', '教育', '财经', '社会', '娱乐', '军事', '国内', '科技', '互联网', '房产', '国际', '女人', '汽车', '游戏']    
 WX_TULING_API_URL = 'http://www.tuling123.com/openapi/api?key=' + WX_TULING_API_KEY + '&info=%s'
 
+try:
+    from config import FPP_API_KEY, FPP_API_SECRET
+except:
+    print '----------------no FPP api key------------------'
+    FPP_API_KEY, FPP_API_SECRET = '', ''
+FPP_FACE_DETECT_API_URL = 'http://apius.faceplusplus.com/v2/detection/detect?api_key=%s' % FPP_API_KEY +'&api_secret=%s' % FPP_API_SECRET +'&url=%s&attribute=glass,pose,gender,age,race,smiling&mode=oneface'
+
 import sys
 reload(sys)
 sys.setdefaultencoding('utf-8')
@@ -95,9 +102,24 @@ def get_google_news(user_name_from, user_name_to, word):
     body = WX_TEMPLATE_NEWS_BODY % (str(n), items)
     return head + body
 
+def fpp_face_detect(pic_url):
+    r = urllib2.urlopen(FPP_FACE_DETECT_API_URL % urllib2.quote(pic_url)).read()
+    return json.loads(r)
+
+FPP_GLASS_EMOJI = '👓'
 def reply_pic(user_name_from, user_name_to, pic_url):
+    r = fpp_face_detect(pic_url)
+    print '==========',r
     head = WX_TEMPLATE_NEWS_HEAD % (user_name_from, user_name_to, str(time.time()))
-    items = WX_TEMPLATE_NEWS_ITEM % ('111', '222', pic_url, '333')
+    web_url = pic_url
+    if not r.get('face'):
+        title = '没脸见人咯?怪我咯?!'
+        abstract = '看了看图,我只能说,美女都走光了...'
+    else:
+        a = r['face'][0]['attribute']
+        title = '性别:%s %s' % (a['gender']['value']) + ' 年龄:%s' % (a['age']['value'])
+        abstract = POSITIVE_EMOJI * 2 + '指数:%s' % (str(a['smiling']['value']) + '%') + '<br></br>' + '种族:%s' % (a['race']['value'])
+    items = WX_TEMPLATE_NEWS_ITEM % (title, abstract, pic_url, web_url)
     body = WX_TEMPLATE_NEWS_BODY % ('1', items)
     return head + body
 
