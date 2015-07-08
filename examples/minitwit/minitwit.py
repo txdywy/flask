@@ -280,7 +280,7 @@ def wx():
     echostr = request.args.get('echostr')
     token = WX_TOKEN
     if request.method == 'POST':
-        #print '------', request.data
+        print '------', request.data
         return wx_util.reply(request.data)
     return echostr
 

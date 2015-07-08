@@ -95,10 +95,26 @@ def get_google_news(user_name_from, user_name_to, word):
     body = WX_TEMPLATE_NEWS_BODY % (str(n), items)
     return head + body
 
+def reply_pic(user_name_from, user_name_to, pic_url):
+    head = WX_TEMPLATE_NEWS_HEAD % (user_name_from, user_name_to, str(time.time()))
+    items = WX_TEMPLATE_NEWS_ITEM % ('111', '222', pic_url, '333')
+    body = WX_TEMPLATE_NEWS_BODY % ('1', items)
+    return head + body
+
 def reply(data):
+    reply_tmp = WX_TEMPLATE_TEXT
     xml_recv = ET.fromstring(data)
     user_name_to = xml_recv.find("ToUserName").text
     user_name_from = xml_recv.find("FromUserName").text
+    try:pic_url = xml_recv.find("PicUrl").text
+    except:pic_url = None
+    if pic_url:
+        result = reply_pic(user_name_from, user_name_to, pic_url)
+        response = make_response(result)
+        response.content_type = 'application/xml'
+        return response
+
+
     content = xml_recv.find("Content").text
     result = content
     tmp = 0
