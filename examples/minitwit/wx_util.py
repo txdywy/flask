@@ -151,15 +151,58 @@ def reply_pic(user_name_from, user_name_to, pic_url):
     body = WX_TEMPLATE_NEWS_BODY % ('1', items)
     return head + body
 
+def near_get_pois(x, y, key, tag='美食'):
+    city = key[:3]
+    url = "http://apis.baidu.com/apistore/location/near?keyWord=%s" % key + "&location=%s,%s;" % (y ,x) + "&tag=%s" % tag + "&radius=3000m&cityName=%s" % city + "&sort_rule=0&number=10&page=1&output=json" 
+    #"&coord_type=bd09ll&out_coord_type=bd09ll"
+    print ' ==========',url
+    req = urllib2.Request(url)
+    req.add_header("apikey", "6e285c0e75b3fdcb7ccac476f2c7216b")
+    r = urllib2.urlopen(req).read()
+    return json.loads(r)
+
+def reply_loc(user_name_from, user_name_to, x, y, k):
+    r = near_get_pois(x, y, k)
+    p = r['pointList']
+    head = WX_TEMPLATE_NEWS_HEAD % (user_name_from, user_name_to, str(time.time()))
+    n = len(p)
+    #print '=============', [i['additionalInformation'] for i in p]
+    its = []
+    for index, i in enumerate(p):
+        ai = i.get('additionalInformation')
+        ai = ai if ai else {}
+        url = 'http://m.dianping.com/shoplist/2/search?keyword=%s' % i['name']
+        #url = ai['link'][0]['url'] if 'link' in ai else 'http://m.dianping.com/shoplist/2/search?keyword=%s' % i['name']
+        it = WX_TEMPLATE_NEWS_ITEM % (('%s (%s) ' + "🐯" + '类型:%s 价位:%s 电话:%s') % (i['name'], i.get('address', ''), ai.get('tag', '无'), ai.get('price', '无'), ai.get('telephone', '无')), i.get('address', ''), TIGER_URL_TEMPLATE % (index % 10 + 1) ,url)
+        its.append(it)
+    if not p:
+        its = [WX_TEMPLATE_NEWS_ITEM % ('啥都没找到...', '...', TIGER_URL_TEMPLATE % 1, 'http://m.dianping.com')]
+    items = ''.join(its)
+    print '============', items
+    body = WX_TEMPLATE_NEWS_BODY % (str(len(its)), items)
+    return head + body
+
 def reply(data):
     reply_tmp = WX_TEMPLATE_TEXT
     xml_recv = ET.fromstring(data)
     user_name_to = xml_recv.find("ToUserName").text
     user_name_from = xml_recv.find("FromUserName").text
+    msg_type = xml_recv.find("MsgType").text
+
     try:pic_url = xml_recv.find("PicUrl").text
     except:pic_url = None
     if pic_url:
         result = reply_pic(user_name_from, user_name_to, pic_url)
+        response = make_response(result)
+        response.content_type = 'application/xml'
+        return response
+
+    if msg_type == "location":
+        lx = xml_recv.find("Location_X").text
+        ly = xml_recv.find("Location_Y").text
+        key = xml_recv.find("Label").text
+        print '----------------', lx, ly, key
+        result = reply_loc(user_name_from, user_name_to, lx, ly, key)
         response = make_response(result)
         response.content_type = 'application/xml'
         return response
