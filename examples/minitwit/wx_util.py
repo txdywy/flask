@@ -131,7 +131,7 @@ def reply_pic(user_name_from, user_name_to, pic_url):
         a = r['face'][0]['attribute']
         g = True if a['gender']['value'] == 'Male' else False
         t = '发现帅锅一枚' if g else '探测美眉一颗'
-        title = t + ' 年龄:%s' % (a['age']['value'])
+        title = t + ' 年龄:%s' % (a['age']['value'] + a['age']['range'])
         abstract = POSITIVE_EMOJI * 2 + '指数:%s' % (str(a['smiling']['value']) + '%') + ' ' + '种族:%s' % (a['race']['value'])
     elif len(fs) > 1:
         fid1 = r['face'][0]['face_id']
@@ -188,11 +188,20 @@ def reply(data):
     user_name_to = xml_recv.find("ToUserName").text
     user_name_from = xml_recv.find("FromUserName").text
     msg_type = xml_recv.find("MsgType").text
+    msg_id = xml_recv.find("MsgId").text
+    ckey = WX_CACHE_GENERAL_KEY % msg_id
+    cr = cachewx.get(ckey)
+    print '------------------', ckey
+    if cr:
+        response = make_response(cr)
+        response.content_type = 'application/xml'
+        return response
 
     try:pic_url = xml_recv.find("PicUrl").text
     except:pic_url = None
     if pic_url:
         result = reply_pic(user_name_from, user_name_to, pic_url)
+        cachewx.set(ckey, result, 10 * 60)
         response = make_response(result)
         response.content_type = 'application/xml'
         return response
@@ -203,6 +212,7 @@ def reply(data):
         key = xml_recv.find("Label").text
         print '----------------', lx, ly, key
         result = reply_loc(user_name_from, user_name_to, lx, ly, key)
+        cachewx.set(ckey, result, 10 * 60)
         response = make_response(result)
         response.content_type = 'application/xml'
         return response
@@ -362,7 +372,7 @@ def bs_sentiment(w=''):
     print r
     p = int(r[0][0] * 10)
     n = 10 - p
-    return POSITIVE_EMOJI * p + NEGATIVE_EMOJI * n
+    return '%sx%s%sx%s ' % (POSITIVE_EMOJI, p, NEGATIVE_EMOJI, n)
 
 def bs_calssify(w=''):
     r = BSNLP.classify([w])
