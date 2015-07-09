@@ -1,4 +1,8 @@
 # -*- coding: utf-8 -*-
+import gevent
+#from gevent import monkey
+#monkey.patch_all()
+
 import ierror, time
 from WXBizMsgCrypt import SHA1
 import xml.etree.ElementTree as ET
@@ -32,7 +36,9 @@ try:
 except:
     print '----------------no FPP api key------------------'
     FPP_API_KEY, FPP_API_SECRET = '', ''
-FPP_FACE_DETECT_API_URL = 'http://apius.faceplusplus.com/v2/detection/detect?api_key=%s' % FPP_API_KEY +'&api_secret=%s' % FPP_API_SECRET +'&url=%s&attribute=glass,pose,gender,age,race,smiling&mode=oneface'
+FPP_FACE_DETECT_API_URL = 'http://apius.faceplusplus.com/v2/detection/detect?api_key=%s' % FPP_API_KEY +'&api_secret=%s' % FPP_API_SECRET +'&url=%s&attribute=glass,pose,gender,age,race,smiling'
+
+FPP_FACE_COMPARE_API_URL = 'http://apius.faceplusplus.com/v2/recognition/compare?api_key=%s' % FPP_API_KEY +'&api_secret=%s' % FPP_API_SECRET + '&face_id2=%s&face_id1=%s'
 
 import sys
 reload(sys)
@@ -106,19 +112,39 @@ def fpp_face_detect(pic_url):
     r = urllib2.urlopen(FPP_FACE_DETECT_API_URL % urllib2.quote(pic_url)).read()
     return json.loads(r)
 
+def fpp_face_compare(fid1, fid2):
+    r = urllib2.urlopen(FPP_FACE_COMPARE_API_URL % (fid2, fid1)).read()
+    return json.loads(r)
+
 FPP_GLASS_EMOJI = '👓'
 def reply_pic(user_name_from, user_name_to, pic_url):
     r = fpp_face_detect(pic_url)
     print '==========',r
     head = WX_TEMPLATE_NEWS_HEAD % (user_name_from, user_name_to, str(time.time()))
     web_url = pic_url
-    if not r.get('face'):
+    fs = r.get('face')
+    print '============',len(fs)
+    if not fs:
         title = '没脸见人咯?怪我咯?!'
         abstract = '看了看图,我只能说,美女都走光了...'
-    else:
+    elif len(fs) == 1:
         a = r['face'][0]['attribute']
         title = '性别:%s' % (a['gender']['value']) + ' 年龄:%s' % (a['age']['value'])
         abstract = POSITIVE_EMOJI * 2 + '指数:%s' % (str(a['smiling']['value']) + '%') + ' ' + '种族:%s' % (a['race']['value'])
+    elif len(fs) > 1:
+        fid1 = r['face'][0]['face_id']
+        fid2 = r['face'][1]['face_id']
+        r = fpp_face_compare(fid1, fid2)
+        print '============',r
+        title = '你们的配对指数:%s' % (str(r['similarity']) + '%')
+        cs = []
+        cs.append('嘴:' + str(r['component_similarity']['mouth']) + '%')
+        cs.append('眼:' + str(r['component_similarity']['eye']) + '%')
+        cs.append('鼻:' + str(r['component_similarity']['nose']) + '%')
+        cs.append('眉:' + str(r['component_similarity']['eyebrow']) + '%')
+        abstract = ' '.join(cs) 
+    else:
+        title = abstract = '表示什么都看不清,无能为力...'
     items = WX_TEMPLATE_NEWS_ITEM % (title, abstract, pic_url, web_url)
     body = WX_TEMPLATE_NEWS_BODY % ('1', items)
     return head + body
