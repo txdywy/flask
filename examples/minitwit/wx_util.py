@@ -129,7 +129,9 @@ def reply_pic(user_name_from, user_name_to, pic_url):
         abstract = '看了看图,我只能说,美女都走光了...'
     elif len(fs) == 1:
         a = r['face'][0]['attribute']
-        title = '性别:%s' % (a['gender']['value']) + ' 年龄:%s' % (a['age']['value'])
+        g = True if a['gender']['value'] == 'Male' else False
+        t = '发现帅锅一枚' if g else '探测美眉一颗'
+        title = t + ' 年龄:%s' % (a['age']['value'])
         abstract = POSITIVE_EMOJI * 2 + '指数:%s' % (str(a['smiling']['value']) + '%') + ' ' + '种族:%s' % (a['race']['value'])
     elif len(fs) > 1:
         fid1 = r['face'][0]['face_id']
@@ -162,8 +164,12 @@ def reply(data):
         response.content_type = 'application/xml'
         return response
 
-
-    content = xml_recv.find("Content").text
+    try:content = xml_recv.find("Content").text
+    except:content = ''
+    
+    if not content:
+        try:content = xml_recv.find("Recognition").text
+        except:content = ''
     result = content
     tmp = 0
     if '小虎' in content:
