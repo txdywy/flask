@@ -15,6 +15,7 @@ import cache as cachewx
 from bosonnlp import BosonNLP
 from urlparse import urlparse, parse_qs
 WX_CACHE_GENERAL_KEY = 'wx.cache.general.key.%s'
+from config import ALANCER_HOST
 try:
     from config import WX_TULING_API_KEY
 except:
@@ -40,6 +41,8 @@ FPP_FACE_DETECT_API_URL = 'http://apius.faceplusplus.com/v2/detection/detect?api
 
 FPP_FACE_COMPARE_API_URL = 'http://apius.faceplusplus.com/v2/recognition/compare?api_key=%s' % FPP_API_KEY +'&api_secret=%s' % FPP_API_SECRET + '&face_id2=%s&face_id1=%s'
 
+from models.model_wechat import *
+from random import randint
 import sys
 reload(sys)
 sys.setdefaultencoding('utf-8')
@@ -117,11 +120,11 @@ def fpp_face_compare(fid1, fid2):
     return json.loads(r)
 
 FPP_GLASS_EMOJI = '👓'
-def reply_pic(user_name_from, user_name_to, pic_url):
+def reply_pic(user_name_from, user_name_to, pic_url, skey):
     r = fpp_face_detect(pic_url)
-    print '==========',r
+    print '==========', r
     head = WX_TEMPLATE_NEWS_HEAD % (user_name_from, user_name_to, str(time.time()))
-    web_url = pic_url
+    web_url = 'http://%s/wechat/share?k=' % ALANCER_HOST + skey
     fs = r.get('face')
     print '============',len(fs)
     if not fs:
@@ -149,6 +152,9 @@ def reply_pic(user_name_from, user_name_to, pic_url):
         title = abstract = '表示什么都看不清,无能为力...'
     items = WX_TEMPLATE_NEWS_ITEM % (title, abstract, pic_url, web_url)
     body = WX_TEMPLATE_NEWS_BODY % ('1', items)
+    data = dict(title=title, abstract=abstract, pic_url=pic_url)
+    ws = WechatShare(key=skey, tag=0, data=data)
+    flush(ws)
     return head + body
 
 def near_get_pois(x, y, key, tag='美食'):
@@ -189,6 +195,8 @@ def reply(data):
     user_name_from = xml_recv.find("FromUserName").text
     msg_type = xml_recv.find("MsgType").text
     msg_id = xml_recv.find("MsgId").text
+    ts = str(int(time.time()))
+    skey = '%s_%s' % (msg_id, ts)
     ckey = WX_CACHE_GENERAL_KEY % msg_id
     cr = cachewx.get(ckey)
     print '------------------', ckey
@@ -200,7 +208,7 @@ def reply(data):
     try:pic_url = xml_recv.find("PicUrl").text
     except:pic_url = None
     if pic_url:
-        result = reply_pic(user_name_from, user_name_to, pic_url)
+        result = reply_pic(user_name_from, user_name_to, pic_url, skey)
         cachewx.set(ckey, result, 10 * 60)
         response = make_response(result)
         response.content_type = 'application/xml'
