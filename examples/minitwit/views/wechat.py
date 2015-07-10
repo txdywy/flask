@@ -8,6 +8,8 @@ def share():
     key = request.args.get('k')
     ws = WechatShare.query.filter_by(key=key).first()
     print '==========', ws.data
-    return str(ws.data)
+    ab = ws.data['abstract']
+    abstract = ab
+    return render_template('wechat/share.html', title=ws.data['title'], abstract=abstract, pic_url=ws.data['pic_url'])
 
 
