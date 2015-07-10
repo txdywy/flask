@@ -123,6 +123,7 @@ FPP_GLASS_EMOJI = '👓'
 def reply_pic(user_name_from, user_name_to, pic_url, skey):
     r = fpp_face_detect(pic_url)
     print '==========', r
+    pic_url = r['url']
     head = WX_TEMPLATE_NEWS_HEAD % (user_name_from, user_name_to, str(time.time()))
     web_url = 'http://%s/wechat/share?k=' % ALANCER_HOST + skey
     fs = r.get('face')
@@ -141,7 +142,7 @@ def reply_pic(user_name_from, user_name_to, pic_url, skey):
         fid2 = r['face'][1]['face_id']
         r = fpp_face_compare(fid1, fid2)
         print '============',r
-        title = '你们的配对指数:%s' % (str(r['similarity']) + '%')
+        title = '配对指数:%s' % (str(r['similarity']) + '%')
         cs = []
         cs.append('嘴:' + str(r['component_similarity']['mouth']) + '%')
         cs.append('眼:' + str(r['component_similarity']['eye']) + '%')
@@ -261,7 +262,7 @@ def reply(data):
         else:
             if unicode_is_zh(content) and len(content) < 200:
                 r = ds_reply(content)
-                sense = bs_sentiment(content)
+                sense = '' #bs_sentiment(content)
                 result = '%s' % sense + json.loads(r)['text']
                 response = make_response(reply_tmp % (user_name_from, user_name_to, str(int(time.time())), result))
                 response.content_type = 'application/xml'
