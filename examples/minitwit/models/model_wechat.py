@@ -33,6 +33,7 @@ class WechatShare(Base):
     tag = Column(Integer, default=TAG_COMPARE)
     data = Column(MutableDict.as_mutable(PickleType))
     create_time = Column(DATETIME(), default=datetime.datetime.now())
+    lc = Column(Integer, index=True, default=0)
 
     def __repr__(self):
         return '<WechatShare %r>' % (self.id)
