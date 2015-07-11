@@ -134,16 +134,23 @@ def reply_pic(user_name_from, user_name_to, pic_url, skey):
     elif len(fs) == 1:
         a = r['face'][0]['attribute']
         g = True if a['gender']['value'] == 'Male' else False
-        t = '发现帅锅💂一枚' if g else '探测美👠眉一颗'
+        t = '发现帅锅💂一枚' if g else '探测美眉👠一颗'
         title = t + ' 年龄:%s' % (a['age']['value'] + a['age']['range'])
         glass = a['glass']['value']
         if glass == 'Normal':
-            ag = '考虑换个潮款眼镜吗👓' if randint(0,1) else '可能不带眼镜更美哦🌎'
+            ag = '换个潮款的眼镜👓吧' if randint(0,1) else '不带眼镜更美🌎'
         elif glass == 'Dark':
-            ag = '墨镜不错吗🌝' if randint(0,1) else '墨镜一般吗😈'
+            ag = '墨镜很潮哇🌝' if randint(0,1) else '不带墨镜更美😈'
         else:
-            ag = '真的不带眼镜吗?' if randint(0,1) else '你的眼镜呢?'
-        abstract = POSITIVE_EMOJI * 2 + '指数:%s' % (str(a['smiling']['value']) + '%') + ' ' + '外形特征:%s' % (a['race']['value']) + ' ' + ag
+            ag = '是不是戴了隐形眼镜?' if randint(0,1) else '不喜欢戴眼镜吗?'
+        race, rv = a['race']['value'], a['race']['confidence']
+        if race == 'Asian':
+            ar = '气色不错😁' if rv > 95 else '保养一下皮肤吧😜'
+        elif race == 'White':
+            ar = '皮肤真是白嫩呢😍' if rv > 90 else '小脸算白了'
+        else:
+            ar = '你是刚去了巴厘岛还是掉煤堆里了，额滴包大人😂' if rv < 90 else '阁下好黑...'
+        abstract = ' '.join([POSITIVE_EMOJI + '灿烂值:%s' % (str(a['smiling']['value']) + '%'), ar, ag])
     elif len(fs) > 1:
         fid1 = r['face'][0]['face_id']
         fid2 = r['face'][1]['face_id']
@@ -155,7 +162,7 @@ def reply_pic(user_name_from, user_name_to, pic_url, skey):
         cs.append('👀:' + str(r['component_similarity']['eye']) + '%')
         cs.append('👃:' + str(r['component_similarity']['nose']) + '%')
         cs.append('😳:' + str(r['component_similarity']['eyebrow']) + '%')
-        cs.append('口眼鼻眉相配指数如上(*^__^*) 嘻嘻……')
+        cs.append('口眼鼻眉配对指数如上(*^__^*) 嘻嘻……')
         abstract = ' '.join(cs) 
     else:
         title = abstract = '表示什么都看不清,无能为力...'
