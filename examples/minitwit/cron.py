@@ -1,6 +1,6 @@
-import gevent
-from gevent import monkey
-monkey.patch_all()
+#import gevent
+#from gevent import monkey
+#monkey.patch_all()
 
 from leancloud import File
 from StringIO import StringIO
