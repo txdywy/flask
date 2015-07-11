@@ -134,17 +134,24 @@ def reply_pic(user_name_from, user_name_to, pic_url, skey):
     elif len(fs) == 1:
         a = r['face'][0]['attribute']
         g = True if a['gender']['value'] == 'Male' else False
-        t = '发现帅锅一枚' if g else '探测美眉一颗'
+        t = '发现帅锅💂一枚' if g else '探测美👠眉一颗'
         title = t + ' 年龄:%s' % (a['age']['value'] + a['age']['range'])
-        abstract = POSITIVE_EMOJI * 2 + '指数:%s' % (str(a['smiling']['value']) + '%') + ' ' + '种族:%s' % (a['race']['value'])
+        glass = a['glass']['value']
+        if glass == 'Normal':
+            ag = '考虑换个潮款眼镜吗👓' if randint(0,1) else '可能不带眼镜更美哦🌎'
+        elif glass == 'Dark':
+            ag = '墨镜不错吗🌝' if randint(0,1) else '墨镜一般吗😈'
+        else:
+            ag = '真的不带眼镜吗?' if randint(0,1) else '你的眼镜呢?'
+        abstract = POSITIVE_EMOJI * 2 + '指数:%s' % (str(a['smiling']['value']) + '%') + ' ' + '外形特征:%s' % (a['race']['value']) + ' ' + ag
     elif len(fs) > 1:
         fid1 = r['face'][0]['face_id']
         fid2 = r['face'][1]['face_id']
         r = fpp_face_compare(fid1, fid2)
         print '============',r
-        title = '配对指数:%s' % (str(r['similarity']) + '%')
+        title = '配对💘指数:%s' % (str(r['similarity']) + '%')
         cs = []
-        cs.append('嘴:' + str(r['component_similarity']['mouth']) + '%')
+        cs.append('💋嘴:' + str(r['component_similarity']['mouth']) + '%')
         cs.append('眼:' + str(r['component_similarity']['eye']) + '%')
         cs.append('鼻:' + str(r['component_similarity']['nose']) + '%')
         cs.append('眉:' + str(r['component_similarity']['eyebrow']) + '%')
