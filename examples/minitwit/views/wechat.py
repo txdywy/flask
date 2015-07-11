@@ -10,6 +10,6 @@ def share():
     print '==========', ws.data
     ab = ws.data['abstract']
     abstract = ab.split(' ')
-    return render_template('wechat/share.html', title=ws.data['title'], abstract=abstract, pic_url=ws.data['pic_url'])
+    return render_template('wechat/share.html', title=ws.data['title'], abstract=abstract, pic_url=ws.data['pic_url'] if not ws.data.get('lc_url') else ws.data['lc_url'])
 
 
