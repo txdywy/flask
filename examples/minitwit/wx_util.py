@@ -151,10 +151,10 @@ def reply_pic(user_name_from, user_name_to, pic_url, skey):
         print '============',r
         title = '配对💘指数:%s' % (str(r['similarity']) + '%')
         cs = []
-        cs.append('💋嘴:' + str(r['component_similarity']['mouth']) + '%')
-        cs.append('眼:' + str(r['component_similarity']['eye']) + '%')
-        cs.append('鼻:' + str(r['component_similarity']['nose']) + '%')
-        cs.append('眉:' + str(r['component_similarity']['eyebrow']) + '%')
+        cs.append('💋:' + str(r['component_similarity']['mouth']) + '%')
+        cs.append('👀:' + str(r['component_similarity']['eye']) + '%')
+        cs.append('👃:' + str(r['component_similarity']['nose']) + '%')
+        cs.append('😳:' + str(r['component_similarity']['eyebrow']) + '%')
         abstract = ' '.join(cs) 
     else:
         title = abstract = '表示什么都看不清,无能为力...'
