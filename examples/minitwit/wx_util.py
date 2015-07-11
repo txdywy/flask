@@ -142,7 +142,7 @@ def reply_pic(user_name_from, user_name_to, pic_url, skey):
         elif glass == 'Dark':
             ag = '墨镜很潮哇🌝' if randint(0,1) else '不带墨镜更美😈'
         else:
-            ag = '是不是戴了隐形眼镜?' if randint(0,1) else '不喜欢戴眼镜吗?'
+            ag = '要不要考虑戴个眼镜😖' if randint(0,1) else '果然不戴眼镜比较好看哦😄'
         race, rv = a['race']['value'], a['race']['confidence']
         if race == 'Asian':
             ar = '皮肤不错😁' if rv < 90 else '需要好保养一下皮肤呢😜'
