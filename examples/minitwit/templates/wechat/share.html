@@ -114,7 +114,9 @@ h2 span {
       <!--
       <img src="{{ pic_url }}">
       -->
-      <h2 class="logo"><span>{{ abstract }}</span></h2>
+      {% for ab in abstract %}
+      <h2 class="logo"><span>{{ ab }}</span></h2>
+      {% endfor %}
     </div>
     <div class="swiper-slide">
       <img src="http://ac-9dv47dhd.clouddn.com/Lj1o5SGy2mnzlwT6YJSuycUt0Az05HXVmTJI1ULr.jpg">

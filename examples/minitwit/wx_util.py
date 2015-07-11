@@ -155,6 +155,7 @@ def reply_pic(user_name_from, user_name_to, pic_url, skey):
         cs.append('👀:' + str(r['component_similarity']['eye']) + '%')
         cs.append('👃:' + str(r['component_similarity']['nose']) + '%')
         cs.append('😳:' + str(r['component_similarity']['eyebrow']) + '%')
+        cs.append('口眼鼻眉相配指数如上(*^__^*) 嘻嘻……')
         abstract = ' '.join(cs) 
     else:
         title = abstract = '表示什么都看不清,无能为力...'
