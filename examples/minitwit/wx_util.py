@@ -224,9 +224,13 @@ def reply(data):
     try:pic_url = xml_recv.find("PicUrl").text
     except:pic_url = None
     if pic_url:
-        result = reply_pic(user_name_from, user_name_to, pic_url, skey)
-        cachewx.set(ckey, result, 10 * 60)
-        response = make_response(result)
+        try:
+            result = reply_pic(user_name_from, user_name_to, pic_url, skey)
+            cachewx.set(ckey, result, 10 * 60)
+            response = make_response(result)
+        except Exception, e:
+            print '----------', e
+            response = make_response(reply_tmp % (user_name_from, user_name_to, str(int(time.time())), 'API err:%s' % str(e)))
         response.content_type = 'application/xml'
         return response
 
