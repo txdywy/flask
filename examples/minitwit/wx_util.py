@@ -33,13 +33,13 @@ BOSON_NEWS_CATEGORY = ['体育', '教育', '财经', '社会', '娱乐', '军事
 WX_TULING_API_URL = 'http://www.tuling123.com/openapi/api?key=' + WX_TULING_API_KEY + '&info=%s'
 
 try:
-    from config import FPP_API_KEY, FPP_API_SECRET
+    from config import FPP_API_KEY, FPP_API_SECRET, FPP_REGION
 except:
     print '----------------no FPP api key------------------'
-    FPP_API_KEY, FPP_API_SECRET = '', ''
-FPP_FACE_DETECT_API_URL = 'http://apius.faceplusplus.com/v2/detection/detect?api_key=%s' % FPP_API_KEY +'&api_secret=%s' % FPP_API_SECRET +'&url=%s&attribute=glass,pose,gender,age,race,smiling'
+    FPP_API_KEY = FPP_API_SECRET = FPP_REGION = ''
+FPP_FACE_DETECT_API_URL = 'http://api%s.faceplusplus.com/v2/detection/detect?api_key=%s' % (FPP_REGION, FPP_API_KEY) +'&api_secret=%s' % FPP_API_SECRET +'&url=%s&attribute=glass,pose,gender,age,race,smiling'
 
-FPP_FACE_COMPARE_API_URL = 'http://apius.faceplusplus.com/v2/recognition/compare?api_key=%s' % FPP_API_KEY +'&api_secret=%s' % FPP_API_SECRET + '&face_id2=%s&face_id1=%s'
+FPP_FACE_COMPARE_API_URL = 'http://api%s.faceplusplus.com/v2/recognition/compare?api_key=%s' % (FPP_REGION, FPP_API_KEY) +'&api_secret=%s' % FPP_API_SECRET + '&face_id2=%s&face_id1=%s'
 
 from models.model_wechat import *
 from random import randint
