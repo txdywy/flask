@@ -402,8 +402,8 @@ def bs_sentiment(w=''):
     """
     r = BSNLP.sentiment(w)
     print r
-    p = int(r[0][0] * 10)
-    n = 10 - p
+    p = int(r[0][0] * 100)
+    n = 100 - p
     return '%sx%s%sx%s ' % (POSITIVE_EMOJI, p, NEGATIVE_EMOJI, n)
 
 def bs_calssify(w=''):
