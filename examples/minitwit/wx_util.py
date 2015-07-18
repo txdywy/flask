@@ -145,7 +145,7 @@ def reply_pic(user_name_from, user_name_to, pic_url, skey):
             ag = '要不要考虑戴个眼镜😖' if randint(0,1) else '果然不戴眼镜比较好看哦😄'
         race, rv = a['race']['value'], a['race']['confidence']
         if race == 'Asian':
-            ar = '皮肤不错😁' if rv < 90 else '需要好保养一下皮肤呢😜'
+            ar = '皮肤不错😁' if rv < 90 else '需要好好保养一下皮肤呢😜'
         elif race == 'White':
             ar = '皮肤真是白嫩呢😍' if rv > 90 else '小脸算白了'
         else:
