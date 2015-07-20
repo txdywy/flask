@@ -493,6 +493,24 @@ def infd():
     count = int(request.args.get('count'))
     return json.dumps(range(1, 20))
 
+
+@app.route('/po')
+def project_one():
+    try:
+        user_id = session.get('user_id')
+        puds = {}
+        pics = {}
+        pid = int(request.args.get('p'))
+        project = Project.query.get(pid)
+        print vars(project)
+        puds[project.id] = (datetime.now() - project.create_time).days
+        client = Client.query.get(project.client_id)
+        pics[project.id] = client.icon
+    except Exception, e:
+        print '-------', e
+        project = None
+    return render_template('project_one.html', project=project, pics=pics, puds=puds, client=client)
+
 @app.route('/project')
 def project():
     user_id = session.get('user_id')
