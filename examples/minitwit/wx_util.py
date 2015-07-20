@@ -15,6 +15,7 @@ import cache as cachewx
 from bosonnlp import BosonNLP
 from urlparse import urlparse, parse_qs
 WX_CACHE_GENERAL_KEY = 'wx.cache.general.key.%s'
+WX_CACHE_RESULT_KEY = 'wx.cache.result.key.%s'
 from config import ALANCER_HOST
 try:
     from config import WX_TULING_API_KEY
@@ -292,12 +293,18 @@ def reply(data):
                 return response
 
         if unicode_is_zh(content):
-            seg_list = get_key_words(content)
-            result =  '\xe3\x80\x90' + '文章情感晴雨表:%s' % bs_sentiment(content) + '\xe3\x80\x91'
-            result += '\xe3\x80\x90' + '文章分类:%s' % bs_calssify(content) + '\xe3\x80\x91'
-            result += '\xe3\x80\x90' + '关键词' + '\xe3\x80\x91' + "\xe3\x80\x90%s\xe3\x80\x91" % "🐯".join(seg_list)
-            result += '\xF0\x9F\x8C\x8D' + '\xe3\x80\x90' + '摘要' + '\xe3\x80\x91' + "\xe3\x80\x90%s\xe3\x80\x91" % get_text_digest(content)
-            #print '--------',result
+            rkey = WX_CACHE_RESULT_KEY % url
+            result = cachewx.get(rkey)
+            if result:
+                response = make_response(reply_tmp % (user_name_from, user_name_to, str(int(time.time())), result))
+            else:
+                seg_list = get_key_words(content)
+                result =  '\xe3\x80\x90' + '文章情感晴雨表:%s' % bs_sentiment(content) + '\xe3\x80\x91'
+                result += '\xe3\x80\x90' + '文章分类:%s' % bs_calssify(content) + '\xe3\x80\x91'
+                result += '\xe3\x80\x90' + '关键词' + '\xe3\x80\x91' + "\xe3\x80\x90%s\xe3\x80\x91" % "🐯".join(seg_list)
+                result += '\xF0\x9F\x8C\x8D' + '\xe3\x80\x90' + '摘要' + '\xe3\x80\x91' + "\xe3\x80\x90%s\xe3\x80\x91" % get_text_digest(content)
+                cachewx.set(rkey, result, 60 * 10)
+            print '--------',result
             response = make_response(reply_tmp % (user_name_from, user_name_to, str(int(time.time())), result))
         else:
             #print '========',repr(content)
