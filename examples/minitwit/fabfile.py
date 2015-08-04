@@ -13,7 +13,7 @@ def recv(file):
     get(file, './')
 
 def dev():
-    evv.hosts = ['miso', ]
+    env.hosts = ['miso', ]
  
 def alancer():
     env.hosts = ['sushi', 'noodle', 'udon'] # 'polo' retired
