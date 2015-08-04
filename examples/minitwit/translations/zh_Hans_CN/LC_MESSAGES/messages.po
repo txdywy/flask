@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2015-07-06 03:52+0000\n"
+"POT-Creation-Date: 2015-08-04 05:54+0000\n"
 "PO-Revision-Date: 2015-05-18 11:55+0800\n"
 "Last-Translator: Ramen King <geniusron@gmail.com>\n"
 "Language-Team: zh_Hans_CN <LL@li.org>\n"
@@ -17,59 +17,72 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 1.3\n"
 
-#: minitwit.py:632
+#: minitwit.py:652
 msgid "You have successfully created your project"
 msgstr "您已成功创建新项目"
 
-#: minitwit.py:656
+#: minitwit.py:676
 msgid "You have successfully updated your project"
 msgstr "您已成功更新项目"
 
-#: minitwit.py:691
+#: minitwit.py:711
 msgid "You have successfully updated your profile"
 msgstr "您已成功更新简历"
 
-#: minitwit.py:916
+#: minitwit.py:936
 msgid "hahaha"
 msgstr ""
 
-#: minitwit.py:1024
+#: minitwit.py:1044
 msgid "You were logged in"
 msgstr "您已成功登录"
 
-#: minitwit.py:1028
-msgid "Wrong with username or password"
+#: minitwit.py:1048
+#, fuzzy
+msgid "Wrong with phone number or password"
 msgstr "用户名或密码有误"
 
-#: minitwit.py:1046
+#: minitwit.py:1066
 msgid "An email sent with password reset intro"
 msgstr "重置密码邮件已发"
 
-#: minitwit.py:1055
+#: minitwit.py:1075
 msgid "Token expired"
 msgstr "临时口令过期"
 
-#: minitwit.py:1062
+#: minitwit.py:1082 minitwit.py:1117
 msgid "The two passwords do not match"
 msgstr "密码输入不匹配"
 
-#: minitwit.py:1067
+#: minitwit.py:1087
 msgid "Reset password token expired."
 msgstr "重置密码临时口令过期"
 
-#: minitwit.py:1074
+#: minitwit.py:1094
 msgid "You were successfully reset your password and you can login now"
 msgstr "您已成功重置密码"
 
-#: minitwit.py:1118
+#: minitwit.py:1110
+msgid "You have to enter a phone number"
+msgstr "需要输入手机号码"
+
+#: minitwit.py:1113
+msgid "You have to enter a valid email address"
+msgstr "需要有效邮箱"
+
+#: minitwit.py:1115
+msgid "You have to enter a password"
+msgstr "需要密码"
+
+#: minitwit.py:1143
 msgid "Welcome to Alancer"
 msgstr "欢迎加入Alancer"
 
-#: minitwit.py:1122
+#: minitwit.py:1147
 msgid "You were successfully registered and can login now"
 msgstr "您已成功注册并登录"
 
-#: minitwit.py:1130
+#: minitwit.py:1155
 msgid "You were logged out"
 msgstr "您已成功注销"
 
@@ -121,7 +134,7 @@ msgid "Chat"
 msgstr "私信"
 
 #: templates/alayout.html:79 templates/project_list.html:9
-#: templates/project_swiper.html:126
+#: templates/project_one.html:2 templates/project_swiper.html:126
 msgid "Project"
 msgstr "项目"
 
@@ -166,6 +179,7 @@ msgid "Joined"
 msgstr "加入时间"
 
 #: templates/apply.html:17 templates/project_list.html:20
+#: templates/project_one.html:14
 msgid "d ago"
 msgstr "天之前"
 
@@ -222,9 +236,9 @@ msgstr "Alancer登录页面"
 msgid "Please sign in"
 msgstr "请登录"
 
-#: templates/login.html:87
-msgid "User Name"
-msgstr "用户名"
+#: templates/login.html:87 templates/register.html:79
+msgid "Phone#"
+msgstr "手机号码"
 
 #: templates/login.html:89 templates/register.html:83
 #: templates/resetpassword.html:19
@@ -361,6 +375,7 @@ msgid "Du"
 msgstr "杜"
 
 #: templates/profile_client.html:50 templates/project_list.html:32
+#: templates/project_one.html:26
 msgid "Company"
 msgstr "公司/组织"
 
@@ -425,15 +440,15 @@ msgstr "有效时间"
 msgid "June to August"
 msgstr "从六月到八月"
 
-#: templates/project_list.html:23
+#: templates/project_list.html:23 templates/project_one.html:17
 msgid "Want to launch"
 msgstr "希望启动项目"
 
-#: templates/project_list.html:24
+#: templates/project_list.html:24 templates/project_one.html:18
 msgid "Get"
 msgstr "报酬"
 
-#: templates/project_list.html:25
+#: templates/project_list.html:25 templates/project_one.html:19
 msgid "Valid time"
 msgstr "有效时间"
 
@@ -544,10 +559,6 @@ msgstr "注册"
 #: templates/register.html:77
 msgid "Please sign up"
 msgstr "请注册"
-
-#: templates/register.html:79
-msgid "User name"
-msgstr "用户名"
 
 #: templates/register.html:85 templates/resetpassword.html:21
 msgid "Password again"
@@ -707,4 +718,10 @@ msgstr "目前没有用户"
 
 #~ msgid "reviews"
 #~ msgstr "评论"
+
+#~ msgid "User Name"
+#~ msgstr "用户名"
+
+#~ msgid "User name"
+#~ msgstr "用户名"
 

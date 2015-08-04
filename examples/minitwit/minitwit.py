@@ -51,7 +51,7 @@ from WXBizMsgCrypt import SHA1
 import xml.etree.ElementTree as ET
 from pygoogle import get_pic_url
 import alfaker
-
+fake = alfaker.fake
 WX_SHA1 = SHA1()
 
 from leancloud import File
@@ -1035,7 +1035,7 @@ def login():
     error = None
     if request.method == 'POST':
         #user = query_db('''select * from user where username = ?''', [request.form['username']], one=True)
-        user = User.query.filter_by(username=request.form['username'].lower()).first()
+        user = User.query.filter_by(pid=int(request.form['pid'])).first()
         if user is None:
             error = 'Invalid username'
         elif not check_password_hash(user.pw_hash, request.form['password']):
@@ -1045,7 +1045,7 @@ def login():
             session['user_id'] = user.user_id
             return redirect(url_for('index'))
     if error:
-        flash(_('Wrong with username or password'))
+        flash(_('Wrong with phone number or password'))
     return render_template('login.html', error=error)
 
 @app.route('/forgotpassword', methods=['GET'])
@@ -1106,15 +1106,15 @@ def register():
         return render_template(ALANCER_INDEX)
     error = None
     if request.method == 'POST':
-        if not request.form['username']:
-            error = 'You have to enter a username'
+        if not request.form['pid']:
+            error = _('You have to enter a phone number')
         elif not request.form['email'] or \
                 '@' not in request.form['email']:
-            error = 'You have to enter a valid email address'
+            error = _('You have to enter a valid email address')
         elif not request.form['password']:
-            error = 'You have to enter a password'
+            error = _('You have to enter a password')
         elif request.form['password'] != request.form['password2']:
-            error = 'The two passwords do not match'
+            error = _('The two passwords do not match')
         #elif get_user_id(request.form['username']) is not None:
         #    error = 'The username is already taken'
         else:
@@ -1124,9 +1124,14 @@ def register():
             #  [request.form['username'], request.form['email'],
             #   generate_password_hash(request.form['password'])])
             #db.commit()
-            username=request.form['username'].lower()
-            email=request.form['email']
-            u = User(username=username, email=email, pw_hash=generate_password_hash(request.form['password']))
+            pid = request.form['pid']
+            try:
+                pid = int(pid)
+            except:
+                abort(404)
+            email = request.form['email']
+            username = fake.name()
+            u = User(username=username, pid=pid, email=email, pw_hash=generate_password_hash(request.form['password']))
             u.icon = get_pic_url('lego %s %s' % (username, email))
             isowner = int(request.form.get('isowner'))
             if isowner:

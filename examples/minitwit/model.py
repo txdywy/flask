@@ -47,8 +47,9 @@ class User(Base):
 
     __tablename__ = 'user'
     user_id = Column(Integer, primary_key=True)
-    username = Column(String(50), unique=True)
+    username = Column(String(50))
     email = Column(String(120), unique=True)
+    pid = Column(Integer, unique=True)
     pw_hash = Column(String(128))
     school = Column(String(128), default='')
     city = Column(String(50), default='')
@@ -66,8 +67,9 @@ class User(Base):
     refer1 = Column(String(512), default='')
     refer2 = Column(String(512), default='')
 
-    def __init__(self, username, email, pw_hash):
+    def __init__(self, username, pid, email, pw_hash):
         self.username = username
+        self.pid = pid
         self.email = email
         self.pw_hash = pw_hash
         self.create_time = datetime.datetime.now()
