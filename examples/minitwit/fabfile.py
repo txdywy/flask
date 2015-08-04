@@ -12,8 +12,11 @@ def send(file):
 def recv(file):
     get(file, './')
 
+def dev():
+    evv.hosts = ['miso', ]
+ 
 def alancer():
-    env.hosts = ['sushi', 'polo', 'noodle', 'udon']
+    env.hosts = ['sushi', 'noodle', 'udon'] # 'polo' retired
 
 def vpn():
     env.hosts = ['tempura', 'ramen', 'donut', 'nori']
