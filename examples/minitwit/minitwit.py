@@ -1035,7 +1035,11 @@ def login():
     error = None
     if request.method == 'POST':
         #user = query_db('''select * from user where username = ?''', [request.form['username']], one=True)
-        user = User.query.filter_by(pid=int(request.form['pid'])).first()
+        try:
+            pid = int(request.form['pid'])
+        except:
+            abort(404)
+        user = User.query.filter_by(pid=pid).first()
         if user is None:
             error = 'Invalid username'
         elif not check_password_hash(user.pw_hash, request.form['password']):
