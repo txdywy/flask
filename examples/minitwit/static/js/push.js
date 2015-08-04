@@ -15,6 +15,7 @@ function createNew() {
     // 可以链式调用
     push.open(function() {
         showLog('可以接收推送');
+        showLogPN('欢迎')
     });
 
     // 监听推送消息
@@ -78,7 +79,13 @@ function createNew() {
 
 function showLog(msg) {
     console.log(msg);
-    /*
+}
+
+
+
+function showLogPN(msg) {
+    console.log(msg);
+    /*  
     var div = document.getElementById('result');
     var p = document.createElement('p');
     p.innerText = msg;
@@ -87,7 +94,9 @@ function showLog(msg) {
     $(function(){
         new PNotify({
             title: 'Regular Notice',
-            text: msg
-        });
-    });
+            text: msg, 
+            delay: 1000
+        }); 
+    }); 
 }
+
