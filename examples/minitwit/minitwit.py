@@ -1152,6 +1152,9 @@ def register():
             return redirect(url_for('profile'))
     return render_template('register.html', error=error)
 
+@app.route('/role')
+def role():
+    return render_template('role.html')
 
 @app.route('/logout')
 def logout():
