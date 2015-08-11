@@ -1152,9 +1152,13 @@ def register():
             return redirect(url_for('profile'))
     return render_template('register.html', error=error)
 
-@app.route('/role')
+@app.route('/role', methods=['GET', 'POST'])
 def role():
-    return render_template('role.html')
+    if request.method == 'GET':
+        return render_template('role.html')
+    if request.method == 'POST':
+        role = int(request.form['role'])
+        return render_template('register.html', role=role) 
 
 @app.route('/logout')
 def logout():

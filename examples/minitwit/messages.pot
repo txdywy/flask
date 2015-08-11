@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2015-08-04 05:54+0000\n"
+"POT-Creation-Date: 2015-08-11 02:34+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -33,55 +33,55 @@ msgstr ""
 msgid "hahaha"
 msgstr ""
 
-#: minitwit.py:1044
+#: minitwit.py:1048
 msgid "You were logged in"
 msgstr ""
 
-#: minitwit.py:1048
+#: minitwit.py:1052
 msgid "Wrong with phone number or password"
 msgstr ""
 
-#: minitwit.py:1066
+#: minitwit.py:1070
 msgid "An email sent with password reset intro"
 msgstr ""
 
-#: minitwit.py:1075
+#: minitwit.py:1079
 msgid "Token expired"
 msgstr ""
 
-#: minitwit.py:1082 minitwit.py:1117
+#: minitwit.py:1086 minitwit.py:1121
 msgid "The two passwords do not match"
 msgstr ""
 
-#: minitwit.py:1087
+#: minitwit.py:1091
 msgid "Reset password token expired."
 msgstr ""
 
-#: minitwit.py:1094
+#: minitwit.py:1098
 msgid "You were successfully reset your password and you can login now"
 msgstr ""
 
-#: minitwit.py:1110
+#: minitwit.py:1114
 msgid "You have to enter a phone number"
 msgstr ""
 
-#: minitwit.py:1113
+#: minitwit.py:1117
 msgid "You have to enter a valid email address"
 msgstr ""
 
-#: minitwit.py:1115
+#: minitwit.py:1119
 msgid "You have to enter a password"
 msgstr ""
 
-#: minitwit.py:1143
+#: minitwit.py:1147
 msgid "Welcome to Alancer"
 msgstr ""
 
-#: minitwit.py:1147
+#: minitwit.py:1151
 msgid "You were successfully registered and can login now"
 msgstr ""
 
-#: minitwit.py:1155
+#: minitwit.py:1166
 msgid "You were logged out"
 msgstr ""
 
@@ -96,16 +96,19 @@ msgstr ""
 
 #: templates/alayout.html:46 templates/login.html:51
 #: templates/project_swiper.html:93 templates/register.html:43
+#: templates/role.html:43
 msgid "Start"
 msgstr ""
 
 #: templates/alayout.html:57 templates/login.html:62
 #: templates/project_swiper.html:104 templates/register.html:54
+#: templates/role.html:54
 msgid "sign out"
 msgstr ""
 
 #: templates/alayout.html:59 templates/login.html:64 templates/login.html:95
 #: templates/project_swiper.html:106 templates/register.html:56
+#: templates/role.html:56
 msgid "Sign in"
 msgstr ""
 
@@ -117,7 +120,7 @@ msgstr ""
 
 #: templates/alayout.html:69 templates/login.html:69
 #: templates/project_swiper.html:116 templates/register.html:61
-#: templates/register.html:94
+#: templates/register.html:101 templates/role.html:61
 msgid "Sign up"
 msgstr ""
 
@@ -143,6 +146,7 @@ msgstr ""
 
 #: templates/alayout.html:93 templates/login.html:74
 #: templates/project_swiper.html:140 templates/register.html:66
+#: templates/role.html:66
 msgid "Home"
 msgstr ""
 
@@ -567,20 +571,28 @@ msgstr ""
 msgid "To be a developer or project owner"
 msgstr ""
 
-#: templates/register.html:89
-msgid "I'm an intern"
-msgstr ""
-
-#: templates/register.html:90
-msgid "I'm seeking interns"
-msgstr ""
-
 #: templates/resetpassword.html:2
 msgid "Reset password"
 msgstr ""
 
 #: templates/resetpassword.html:26
 msgid "Change Password"
+msgstr ""
+
+#: templates/role.html:13
+msgid "Role?"
+msgstr ""
+
+#: templates/role.html:76
+msgid "How to start yourt alancer trip?"
+msgstr ""
+
+#: templates/role.html:79
+msgid "Find job"
+msgstr ""
+
+#: templates/role.html:84
+msgid "Post job"
 msgstr ""
 
 #: templates/user.html:2

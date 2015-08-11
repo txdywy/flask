@@ -84,12 +84,19 @@
         <label for="inputPassword" class="sr-only">Password2</label>
         <input type="password" id="password2" name="password2" class="form-control" placeholder="{{ _('Password again') }}" required="">
         <label>{{ _("To be a developer or project owner") }}</label>
+        {#
         <div>
           <select class="form-control" data-style="btn-success" name="isowner">
             <option value="0">{{ _("I'm an intern") }}</option>
             <option value="1">{{ _("I'm seeking interns") }}</option>
           </select>
         </div>
+        #}
+        {% if role==0 %}
+        <input type="hidden" name="isowner" value="0">
+        {% else %}
+        <input type="hidden" name="isowner" value="1">
+        {% endif %}
         <label> </label>
         <button class="btn btn-lg btn-primary btn-block" type="submit">{{ _("Sign up") }}</button>
       </form>

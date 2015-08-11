@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2015-08-04 05:54+0000\n"
+"POT-Creation-Date: 2015-08-11 02:34+0000\n"
 "PO-Revision-Date: 2015-05-18 11:55+0800\n"
 "Last-Translator: Ramen King <geniusron@gmail.com>\n"
 "Language-Team: zh_Hans_CN <LL@li.org>\n"
@@ -33,56 +33,56 @@ msgstr "您已成功更新简历"
 msgid "hahaha"
 msgstr ""
 
-#: minitwit.py:1044
+#: minitwit.py:1048
 msgid "You were logged in"
 msgstr "您已成功登录"
 
-#: minitwit.py:1048
+#: minitwit.py:1052
 #, fuzzy
 msgid "Wrong with phone number or password"
 msgstr "用户名或密码有误"
 
-#: minitwit.py:1066
+#: minitwit.py:1070
 msgid "An email sent with password reset intro"
 msgstr "重置密码邮件已发"
 
-#: minitwit.py:1075
+#: minitwit.py:1079
 msgid "Token expired"
 msgstr "临时口令过期"
 
-#: minitwit.py:1082 minitwit.py:1117
+#: minitwit.py:1086 minitwit.py:1121
 msgid "The two passwords do not match"
 msgstr "密码输入不匹配"
 
-#: minitwit.py:1087
+#: minitwit.py:1091
 msgid "Reset password token expired."
 msgstr "重置密码临时口令过期"
 
-#: minitwit.py:1094
+#: minitwit.py:1098
 msgid "You were successfully reset your password and you can login now"
 msgstr "您已成功重置密码"
 
-#: minitwit.py:1110
+#: minitwit.py:1114
 msgid "You have to enter a phone number"
 msgstr "需要输入手机号码"
 
-#: minitwit.py:1113
+#: minitwit.py:1117
 msgid "You have to enter a valid email address"
 msgstr "需要有效邮箱"
 
-#: minitwit.py:1115
+#: minitwit.py:1119
 msgid "You have to enter a password"
 msgstr "需要密码"
 
-#: minitwit.py:1143
+#: minitwit.py:1147
 msgid "Welcome to Alancer"
 msgstr "欢迎加入Alancer"
 
-#: minitwit.py:1147
+#: minitwit.py:1151
 msgid "You were successfully registered and can login now"
 msgstr "您已成功注册并登录"
 
-#: minitwit.py:1155
+#: minitwit.py:1166
 msgid "You were logged out"
 msgstr "您已成功注销"
 
@@ -97,16 +97,19 @@ msgstr "项目"
 
 #: templates/alayout.html:46 templates/login.html:51
 #: templates/project_swiper.html:93 templates/register.html:43
+#: templates/role.html:43
 msgid "Start"
 msgstr "开启"
 
 #: templates/alayout.html:57 templates/login.html:62
 #: templates/project_swiper.html:104 templates/register.html:54
+#: templates/role.html:54
 msgid "sign out"
 msgstr "注销"
 
 #: templates/alayout.html:59 templates/login.html:64 templates/login.html:95
 #: templates/project_swiper.html:106 templates/register.html:56
+#: templates/role.html:56
 msgid "Sign in"
 msgstr "登录"
 
@@ -118,7 +121,7 @@ msgstr "关于我"
 
 #: templates/alayout.html:69 templates/login.html:69
 #: templates/project_swiper.html:116 templates/register.html:61
-#: templates/register.html:94
+#: templates/register.html:101 templates/role.html:61
 msgid "Sign up"
 msgstr "注册"
 
@@ -144,6 +147,7 @@ msgstr "社区"
 
 #: templates/alayout.html:93 templates/login.html:74
 #: templates/project_swiper.html:140 templates/register.html:66
+#: templates/role.html:66
 msgid "Home"
 msgstr "首页"
 
@@ -568,23 +572,30 @@ msgstr "确认密码"
 msgid "To be a developer or project owner"
 msgstr "请选择作为开发者或项目发布者"
 
-#: templates/register.html:89
-msgid "I'm an intern"
-msgstr "我是实习生"
-
-#: templates/register.html:90
-msgid "I'm seeking interns"
-msgstr "我要找实习生"
-
 #: templates/resetpassword.html:2
 #, fuzzy
 msgid "Reset password"
 msgstr "密码"
 
 #: templates/resetpassword.html:26
-#, fuzzy
 msgid "Change Password"
-msgstr "密码"
+msgstr "修改密码"
+
+#: templates/role.html:13
+msgid "Role?"
+msgstr "角色?"
+
+#: templates/role.html:76
+msgid "How to start yourt alancer trip?"
+msgstr "以何身份开启你的alancer"
+
+#: templates/role.html:79
+msgid "Find job"
+msgstr "找工作"
+
+#: templates/role.html:84
+msgid "Post job"
+msgstr "发工作"
 
 #: templates/user.html:2
 msgid "User Digest"
@@ -724,4 +735,10 @@ msgstr "目前没有用户"
 
 #~ msgid "User name"
 #~ msgstr "用户名"
+
+#~ msgid "I'm an intern"
+#~ msgstr "我是实习生"
+
+#~ msgid "I'm seeking interns"
+#~ msgstr "我要找实习生"
 
