@@ -15,7 +15,7 @@ function createNew() {
     // 可以链式调用
     push.open(function() {
         showLog('可以接收推送');
-        showLogPN('欢迎')
+        //showLogPN('欢迎')
     });
 
     // 监听推送消息
