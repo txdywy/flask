@@ -228,6 +228,15 @@ def login_required(f):
             return redirect(url_for('login')) 
     return func
 
+def exr(f):
+    @functools.wraps(f)
+    def func(*args, **kwargs):
+        try:
+            return f(*args, **kwargs)
+        except Exception, e:
+            return str(e)
+    return func
+
 def message_secured(f):
     @functools.wraps(f)
     def func(*args, **kwargs):
@@ -1103,6 +1112,7 @@ You have successfully registered at aLancer. Click <a href="%s"><strong style="c
 """
 
 @app.route('/register', methods=['GET', 'POST'])
+@exr
 def register():
     """Registers the user."""
     if g.user:
