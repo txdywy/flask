@@ -911,6 +911,17 @@ def chat_box():
     return render_template('chat_box.html', us=us)
 
 
+@app.route('/search')
+@login_required
+def search():
+    return render_template('search.html')
+
+@app.route('/search1')
+@login_required
+def search1():
+    return render_template('search1.html')
+
+
 @app.route('/like', methods=['GET', 'POST'])
 @login_required
 def like():
@@ -1178,6 +1189,8 @@ def logout():
     session.pop('user_id', None)
     return redirect(url_for('index'))
     #return redirect(url_for('public_timeline'))
+
+
 
 def dformat(d):
     return str(d)[:10]
