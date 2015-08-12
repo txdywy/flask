@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2015-08-11 02:34+0000\n"
+"POT-Creation-Date: 2015-08-12 05:40+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,75 +17,75 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 1.3\n"
 
-#: minitwit.py:652
+#: minitwit.py:661
 msgid "You have successfully created your project"
 msgstr ""
 
-#: minitwit.py:676
+#: minitwit.py:685
 msgid "You have successfully updated your project"
 msgstr ""
 
-#: minitwit.py:711
+#: minitwit.py:720
 msgid "You have successfully updated your profile"
 msgstr ""
 
-#: minitwit.py:936
+#: minitwit.py:956
 msgid "hahaha"
 msgstr ""
 
-#: minitwit.py:1048
+#: minitwit.py:1068
 msgid "You were logged in"
 msgstr ""
 
-#: minitwit.py:1052
+#: minitwit.py:1072
 msgid "Wrong with phone number or password"
 msgstr ""
 
-#: minitwit.py:1070
+#: minitwit.py:1090
 msgid "An email sent with password reset intro"
 msgstr ""
 
-#: minitwit.py:1079
+#: minitwit.py:1099
 msgid "Token expired"
 msgstr ""
 
-#: minitwit.py:1086 minitwit.py:1121
+#: minitwit.py:1106 minitwit.py:1142
 msgid "The two passwords do not match"
 msgstr ""
 
-#: minitwit.py:1091
+#: minitwit.py:1111
 msgid "Reset password token expired."
 msgstr ""
 
-#: minitwit.py:1098
+#: minitwit.py:1118
 msgid "You were successfully reset your password and you can login now"
 msgstr ""
 
-#: minitwit.py:1114
+#: minitwit.py:1135
 msgid "You have to enter a phone number"
 msgstr ""
 
-#: minitwit.py:1117
+#: minitwit.py:1138
 msgid "You have to enter a valid email address"
 msgstr ""
 
-#: minitwit.py:1119
+#: minitwit.py:1140
 msgid "You have to enter a password"
 msgstr ""
 
-#: minitwit.py:1147
+#: minitwit.py:1168
 msgid "Welcome to Alancer"
 msgstr ""
 
-#: minitwit.py:1151
+#: minitwit.py:1172
 msgid "You were successfully registered and can login now"
 msgstr ""
 
-#: minitwit.py:1166
+#: minitwit.py:1188
 msgid "You were logged out"
 msgstr ""
 
-#: templates/admin.html:2 templates/admin.html:14 templates/alayout.html:108
+#: templates/admin.html:2 templates/admin.html:14 templates/alayout.html:111
 #: templates/project_swiper.html:155
 msgid "Admin"
 msgstr ""
@@ -140,23 +140,27 @@ msgstr ""
 msgid "Project"
 msgstr ""
 
-#: templates/alayout.html:88 templates/project_swiper.html:135
+#: templates/alayout.html:82 templates/search.html:2
+msgid "Search"
+msgstr ""
+
+#: templates/alayout.html:91 templates/project_swiper.html:135
 msgid "Community"
 msgstr ""
 
-#: templates/alayout.html:93 templates/login.html:74
+#: templates/alayout.html:96 templates/login.html:74
 #: templates/project_swiper.html:140 templates/register.html:66
 #: templates/role.html:66
 msgid "Home"
 msgstr ""
 
-#: templates/alayout.html:98 templates/project_manage.html:2
+#: templates/alayout.html:101 templates/project_manage.html:2
 #: templates/project_manage.html:22 templates/project_swiper.html:145
 #: templates/publish.html:22
 msgid "My Projects"
 msgstr ""
 
-#: templates/alayout.html:102 templates/project_swiper.html:149
+#: templates/alayout.html:105 templates/project_swiper.html:149
 msgid "Create Project"
 msgstr ""
 
@@ -567,10 +571,6 @@ msgstr ""
 msgid "Password again"
 msgstr ""
 
-#: templates/register.html:86
-msgid "To be a developer or project owner"
-msgstr ""
-
 #: templates/resetpassword.html:2
 msgid "Reset password"
 msgstr ""
@@ -593,6 +593,34 @@ msgstr ""
 
 #: templates/role.html:84
 msgid "Post job"
+msgstr ""
+
+#: templates/search.html:6
+msgid "What kind of JDs would you like to search for?"
+msgstr ""
+
+#: templates/search.html:9
+msgid "All JDs near me"
+msgstr ""
+
+#: templates/search.html:13
+msgid "Only JDs in my network"
+msgstr ""
+
+#: templates/search.html:17
+msgid "Custom search"
+msgstr ""
+
+#: templates/search1.html:2
+msgid "Search1"
+msgstr ""
+
+#: templates/search1.html:6
+msgid "Confirm your search criteria"
+msgstr ""
+
+#: templates/search1.html:49
+msgid "View search results"
 msgstr ""
 
 #: templates/user.html:2
