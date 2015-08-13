@@ -24,7 +24,7 @@ from boto.s3.key import Key
 from PIL import Image
 from model import flush, db_session
 from model import Project, Contact, Client, User, UserLike, Message, ProjectApply, Chat, UserChat
-from sqlalchemy import desc
+from sqlalchemy import desc, or_, and_
 import util, functools
 import simplejson as json
 import random
@@ -920,6 +920,42 @@ def search():
 @login_required
 def search1():
     return render_template('search1.html')
+
+
+@app.route('/search2', methods=['GET', 'POST'])
+@login_required
+def search2():
+    s1 = request.form['s1']
+    s2 = request.form['s2']
+    s3 = request.form['s3']
+    user_id = session.get('user_id')
+    pas = {} 
+    pats = {}     
+    puds = {} 
+    pics = {} 
+    projects = Project.query.filter(or_(Project.desp.like("%" + s1 + "%"),
+                                         Project.location.like("%" + s2 + "%"),
+                                         Project.desp.like("%" + s3 + "%")
+                                        )).order_by(desc(Project.id)).all()
+    clients = Client.query.all()
+    cds = {client.id: client for client in clients}
+    for project in projects:        
+        project_id = project.id
+        if user_id:
+            pa = ProjectApply.query.filter_by(user_id=user_id, project_id=project_id).first()
+            pas[project_id] = True if pa else False
+            pats[project_id] = str(pa.create_time)[:10] if pa else None 
+        puds[project_id] = (datetime.now() - project.create_time).days
+        """  
+        if project.icon:
+            pics[project_id] = project.icon
+        else:    
+            pics[project_id] = "http://cdnvideo.dolimg.com/cdn_assets/189e27f7a893da854ad965e1406cc3878af80307.jpg" #get_pic_url(project.client) 
+        """
+        pics[project_id] = cds[project.client_id].icon
+    #print '----',pas
+    #print '====',pats
+    return render_template('project_list_core.html', cds=cds, projects=projects, pas=pas, pats=pats, puds=puds, pics=pics)
 
 
 @app.route('/like', methods=['GET', 'POST'])
