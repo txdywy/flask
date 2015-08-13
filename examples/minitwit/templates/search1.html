@@ -10,8 +10,8 @@
     <div class="container">
       <h4>{{ _('Confirm your search criteria') }}</h4>
       
-      <div class="row-fluid">      
-        <select class="selectpicker show-tick" data-style="btn-primary">
+      <div class="row-fluid" align="center">      
+        <select class="selectpicker show-tick" data-style="btn-warning">
           <option>Mustard</option>
           <option>Ketchup</option>
           <option>Barbecue</option>
@@ -22,49 +22,15 @@
           <option>Shanghai</option>
           <option>Tokyo</option>
         </select>
-      </div>
-      {#
-      <div class="btn-group-vertical" role="group">
-    
-      <div class="btn-group" role="group">
-      <button class="btn btn-warning dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        Project roles: All
-        <span class="caret"></span>
-      </button>
-      <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-        <li><a href="#">One</a></li>
-        <li><a href="#">Another action</a></li>
-        <li><a href="#">Something else here</a></li>
-        <li><a href="#">Separated link</a></li>
-      </ul>
-      </div>
 
-      <div class="btn-group" role="group">
-      <button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        Location: Beijing
-        <span class="caret"></span>
-      </button>
-      <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
-        <li><a href="#">Shanghai</a></li>
-        <li><a href="#">Tokyo</a></li>
-        <li><a href="#">New York</a></li>
-      </ul>
-      </div>
-
-      <div class="btn-group" role="group">
-      <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenu3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        Do not limit to my network
-        <span class="caret"></span>
-      </button>
-      <ul class="dropdown-menu" aria-labelledby="dropdownMenu3">
-        <li><a href="#">AAA</a></li>
-        <li><a href="#">CCC</a></li>
-        <li><a href="#">BBB</a></li>
-      </ul>
-      </div>
-      #}
-      </div>
-
+        <select class="selectpicker show-tick" data-style="btn-info">
+          <option>Frontend Engineer</option>
+          <option>Devops</option>
+          <option>Designer</option>
+          <option>UX</option>
+          <option>Backend</option>
+        </select>
+      <div>
       <form action="/project" class="form-signin">
         <input type="submit" value="{{ _('View search results') }}" class="btn btn-lg btn-primary btn-block">
       </form>
