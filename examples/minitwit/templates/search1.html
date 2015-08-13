@@ -1,9 +1,29 @@
 {% extends "alayout.html" %}
+{% block headjs %}
+<script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.7.3/js/bootstrap-select.min.js"></script>
+<link rel='stylesheet' href='//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.7.3/css/bootstrap-select.min.css' type='text/css' media='all' />
+<script>  $('.selectpicker').selectpicker();</script>
+{% endblock headjs %}
 {% block title %}{{ _('Search1') }}{% endblock %}
 {% block body %}
   <section id="portfolio">
     <div class="container">
       <h4>{{ _('Confirm your search criteria') }}</h4>
+      
+      <div class="row-fluid">      
+        <select class="selectpicker show-tick" data-style="btn-primary">
+          <option>Mustard</option>
+          <option>Ketchup</option>
+          <option>Barbecue</option>
+        </select>
+
+        <select class="selectpicker show-tick" data-style="btn-success">
+          <option>Beijing</option>
+          <option>Shanghai</option>
+          <option>Tokyo</option>
+        </select>
+      </div>
+      {#
       <div class="btn-group-vertical" role="group">
     
       <div class="btn-group" role="group">
@@ -42,7 +62,7 @@
         <li><a href="#">BBB</a></li>
       </ul>
       </div>
-
+      #}
       </div>
 
       <form action="/project" class="form-signin">
