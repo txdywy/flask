@@ -1,10 +1,13 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy import Column, Integer, String, DATETIME, Text, ForeignKey
+from sqlalchemy import Column, Integer, String, DATETIME, Text, ForeignKey, PickleType
+from sqlalchemy.ext.mutable import MutableDict
 import datetime
 import pygoogle
 from faker import Factory
+from mutable import MutableList, MutableSet
+ 
 fake = Factory.create('en_US')
 
 try:
@@ -44,8 +47,9 @@ class User(Base):
 
     __tablename__ = 'user'
     user_id = Column(Integer, primary_key=True)
-    username = Column(String(50), unique=True)
+    username = Column(String(50))
     email = Column(String(120), unique=True)
+    pid = Column(Integer, unique=True)
     pw_hash = Column(String(128))
     school = Column(String(128), default='')
     city = Column(String(50), default='')
@@ -63,8 +67,9 @@ class User(Base):
     refer1 = Column(String(512), default='')
     refer2 = Column(String(512), default='')
 
-    def __init__(self, username, email, pw_hash):
+    def __init__(self, username, pid, email, pw_hash):
         self.username = username
+        self.pid = pid
         self.email = email
         self.pw_hash = pw_hash
         self.create_time = datetime.datetime.now()
@@ -183,6 +188,14 @@ class Message(Base):
         return  '<Message %r>' % (self.id)
 
 
+class Test(Base):
+    __tablename__ = 'test'
+    id = Column(Integer, primary_key=True)
+    data = Column(MutableDict.as_mutable(PickleType))
+
+    def __repr__(self):
+        return '<Test %r>' % (self.id)
+
 class Chat(Base):
     __tablename__ = 'chat'
     id = Column(Integer, primary_key=True)
@@ -210,8 +223,41 @@ class Chat(Base):
         index = cls.gen_index(uid1, uid2)
         c = Chat(index=index, room_id=room_id)
         flush(c)
+        UserChat.add_chat(uid1, uid2)
         return c
 
+class UserChat(Base):
+    __tablename__ = 'user_chat'
+    id = Column(Integer, primary_key=True)
+    user_id = Column(Integer, index=True)
+    chat_list = Column(MutableSet.as_mutable(PickleType), default=set)#Column(PickleType, default=set)
+
+    @classmethod
+    def get_by_or_init(cls, user_id):
+        uc = cls.query.filter_by(user_id=user_id).first()
+        if not uc:
+            uc = cls(user_id=user_id)
+            flush(uc)
+        return uc
+
+    @classmethod
+    def add_chat(cls, uid1, uid2):
+        uid1, uid2 = int(uid1), int(uid2)
+        uc1 = cls.get_by_or_init(uid1)
+        cl1 = set(uc1.chat_list)
+        cl1.add(uid2)
+        uc1.chat_list = cl1
+
+        uc2 = cls.get_by_or_init(uid2)
+        cl2 = set(uc2.chat_list)
+        cl2.add(uid1)
+        uc2.chat_list = cl2
+
+        flush(uc1)
+        flush(uc2)
+
+    def __repr__(self):
+        return '<UserChat %r>' % (self.id)
 
 class ProjectApply(Base):
     PROJECT_APPLIED = 0

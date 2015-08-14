@@ -1,0 +1,68 @@
+{% extends "alayout.html" %}
+{% block headjs %}
+<script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.7.3/js/bootstrap-select.min.js"></script>
+<link rel='stylesheet' href='//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.7.3/css/bootstrap-select.min.css' type='text/css' media='all' />
+<script>  $('.selectpicker').selectpicker();</script>
+{% endblock headjs %}
+{% block title %}{{ _('Search1') }}{% endblock %}
+{% block body %}
+  <section id="portfolio">
+    <div class="container">
+      <h4>{{ _('Confirm your search criteria') }}</h4>
+      
+      <div class="row-fluid" align="center">      
+        <select class="selectpicker show-tick" data-style="btn-warning" id="s1">
+          <option>Web</option>
+          <option>Mobile</option>
+          <option>App</option>
+        </select>
+
+        <select class="selectpicker show-tick" data-style="btn-success" id="s2">
+          <option>Beijing</option>
+          <option>Shanghai</option>
+          <option>Tokyo</option>
+        </select>
+
+        <select class="selectpicker show-tick" data-style="btn-info" id="s3">
+          <option>Frontend Engineer</option>
+          <option>Devops</option>
+          <option>Designer</option>
+          <option>UX</option>
+          <option>Backend</option>
+        </select>
+      <div>
+      {#
+      <form action="/project" class="form-signin">
+        <input type="submit" value="{{ _('View search results') }}" class="btn btn-lg btn-primary btn-block">
+      </form>
+      #}
+      <p>...</p>
+      <button class="btn btn-danger sendbutton">
+        <span class="glyphicon glyphicon-send"></span>
+        {{ _('Search') }}
+      </button>
+    </div>
+    
+    <div id="sr">
+    </div>
+    
+  </section>
+<script>
+  window.jQuery(document).ready(function($) {
+    $(".sendbutton").click(function() {
+      $.ajax({
+        url: '/search2',
+        type: 'POST',
+        data: {'s1': $(".selectpicker#s1").val(),
+               's2': $(".selectpicker#s2").val(),
+               's3': $(".selectpicker#s3").val(),
+              },
+        success: function (result) {
+            //alert(result);
+            $("#sr").html(result);
+        }
+      });
+    });    
+  }); 
+</script>
+{% endblock %}

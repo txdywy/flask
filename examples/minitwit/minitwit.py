@@ -8,7 +8,8 @@
     :copyright: (c) 2015 by Yi Wei.
     :license: BSD, see LICENSE for more details.
 """
-
+#from gevent import monkey
+#monkey.patch_all()
 import time
 from sqlite3 import dbapi2 as sqlite3
 from hashlib import md5
@@ -22,10 +23,12 @@ from boto.s3.connection import S3Connection
 from boto.s3.key import Key
 from PIL import Image
 from model import flush, db_session
-from model import Project, Contact, Client, User, UserLike, Message, ProjectApply, Chat
-from sqlalchemy import desc
+from model import Project, Contact, Client, User, UserLike, Message, ProjectApply, Chat, UserChat
+from sqlalchemy import desc, or_, and_
 import util, functools
 import simplejson as json
+import random
+import string
 from random import randint
 try:
     import cache as cacheal 
@@ -48,7 +51,7 @@ from WXBizMsgCrypt import SHA1
 import xml.etree.ElementTree as ET
 from pygoogle import get_pic_url
 import alfaker
-
+fake = alfaker.fake
 WX_SHA1 = SHA1()
 
 from leancloud import File
@@ -100,11 +103,16 @@ ALANCER_MESSAGE_OFFSET = 10
 ALANCER_ALL_PROJECTS = 'alancer.all.projects'
 ALANCER_USER_PROJECTS_INDEX = 'alancer.user.projects.index.%s'
 ALANCER_USER_CLIENT_MESSAGES = 'alancer.user.client.messages.%s.%s'
+ALANCER_FORGETPASSWORD_TOKEN = 'alancer.forgetpassword.token.%s'
 
 NO_CONTENT_PICTURE = 'http://media-cache-ak0.pinimg.com/736x/3d/b0/4a/3db04ab7349e7f791d3819b57230751d.jpg'
 
+from views import test, wechat
+
 # create our little application :)
 app = Flask(__name__)
+app.register_blueprint(test.view)
+app.register_blueprint(wechat.view)
 app.config['BABEL_DEFAULT_LOCALE'] = 'zh_Hans_CN'
 Triangle(app)
 app.config.from_object(__name__)
@@ -220,6 +228,15 @@ def login_required(f):
             return redirect(url_for('login')) 
     return func
 
+def exr(f):
+    @functools.wraps(f)
+    def func(*args, **kwargs):
+        try:
+            return f(*args, **kwargs)
+        except Exception, e:
+            return str(e)
+    return func
+
 def message_secured(f):
     @functools.wraps(f)
     def func(*args, **kwargs):
@@ -273,7 +290,7 @@ def wx():
     echostr = request.args.get('echostr')
     token = WX_TOKEN
     if request.method == 'POST':
-        #print '------', request.data
+        print '------', request.data
         return wx_util.reply(request.data)
     return echostr
 
@@ -407,6 +424,15 @@ def dp():
     db_session.flush()
     return redirect(url_for('admin'))
 
+@app.route('/push', methods=['POST'])
+@login_required
+@power_required(power=User.POWER_ADMIN)
+def push():
+    msg = request.form['msg']
+    lcc.push_msg(msg)
+    flash('[%s] pushed to everyone!' % msg) 
+    return redirect(url_for('admin'))
+
 @app.route('/contact', methods=['POST'])
 def contact():
     name = request.form['n']
@@ -442,11 +468,10 @@ def ps():
 def elb():
     return '1'
 
-@app.route('/')
-@app.route('/index')
+#@app.route('/')
+#@app.route('/index')
 @app.route('/project_swiper')
-#def project_swiper():
-def index():
+def project_swiper():
     if not cacheal or not g.user:
         projects = Project.query.order_by(desc(Project.id)).all()
         l = len(projects)
@@ -476,6 +501,24 @@ def infd():
     start = int(request.args.get('start'))
     count = int(request.args.get('count'))
     return json.dumps(range(1, 20))
+
+
+@app.route('/po')
+def project_one():
+    try:
+        user_id = session.get('user_id')
+        puds = {}
+        pics = {}
+        pid = int(request.args.get('p'))
+        project = Project.query.get(pid)
+        print vars(project)
+        puds[project.id] = (datetime.now() - project.create_time).days
+        client = Client.query.get(project.client_id)
+        pics[project.id] = client.icon
+    except Exception, e:
+        print '-------', e
+        project = None
+    return render_template('project_one.html', project=project, pics=pics, puds=puds, client=client)
 
 @app.route('/project')
 def project():
@@ -681,13 +724,16 @@ def edit_profile():
 def mt():
     return render_template('mt.html')
 
-@app.route('/chat', methods=['POST'])
+@app.route('/chat', methods=['POST', 'GET'])
 @login_required
 def chat():
     app_id = LC_APP_ID
     user_id = session['user_id']
     user = User.query.get(user_id)
-    other_user_id = request.form['other_user_id']
+    if(request.method == 'POST'):
+        other_user_id = request.form['other_user_id']
+    else:
+        other_user_id = request.args.get('other_user_id') 
     other_user = User.query.get(other_user_id)
     chat = Chat.get_chat(user_id, other_user_id)
     if chat:
@@ -852,6 +898,66 @@ def message_box():
         message_items.append(mi)
     return render_template('message_box.html', message_items=message_items)
 
+
+@app.route('/chat_box')
+@login_required
+def chat_box():
+    user_id = session['user_id']
+    uc = UserChat.query.filter_by(user_id=user_id).first() 
+    us = []
+    if uc:
+        uid_set = uc.chat_list
+        us = User.query.filter(User.user_id.in_(uid_set)).all()
+    return render_template('chat_box.html', us=us)
+
+
+@app.route('/search')
+@login_required
+def search():
+    return render_template('search.html')
+
+@app.route('/search1')
+@login_required
+def search1():
+    return render_template('search1.html')
+
+
+@app.route('/search2', methods=['GET', 'POST'])
+@login_required
+def search2():
+    s1 = request.form['s1']
+    s2 = request.form['s2']
+    s3 = request.form['s3']
+    user_id = session.get('user_id')
+    pas = {} 
+    pats = {}     
+    puds = {} 
+    pics = {} 
+    projects = Project.query.filter(or_(Project.desp.like("%" + s1 + "%"),
+                                         Project.location.like("%" + s2 + "%"),
+                                         Project.desp.like("%" + s3 + "%")
+                                        )).order_by(desc(Project.id)).all()
+    clients = Client.query.all()
+    cds = {client.id: client for client in clients}
+    for project in projects:        
+        project_id = project.id
+        if user_id:
+            pa = ProjectApply.query.filter_by(user_id=user_id, project_id=project_id).first()
+            pas[project_id] = True if pa else False
+            pats[project_id] = str(pa.create_time)[:10] if pa else None 
+        puds[project_id] = (datetime.now() - project.create_time).days
+        """  
+        if project.icon:
+            pics[project_id] = project.icon
+        else:    
+            pics[project_id] = "http://cdnvideo.dolimg.com/cdn_assets/189e27f7a893da854ad965e1406cc3878af80307.jpg" #get_pic_url(project.client) 
+        """
+        pics[project_id] = cds[project.client_id].icon
+    #print '----',pas
+    #print '====',pats
+    return render_template('project_list_core.html', cds=cds, projects=projects, pas=pas, pats=pats, puds=puds, pics=pics)
+
+
 @app.route('/like', methods=['GET', 'POST'])
 @login_required
 def like():
@@ -879,14 +985,15 @@ def like_submit():
     project = Project.query.get(project_id)
     return render_template('like.html', project=project, user_like=user_like, user=user)
 
-"""
+
+@app.route('/')
 @app.route('/index')
 def index():
     print '++++++++++', _("hahaha"), get_locale()
-    return redirect(url_for('project_swiper'))
+    #return redirect(url_for('project_swiper'))
     return redirect(url_for('project'))
     #return render_template(ALANCER_INDEX)
-"""
+
 
 '''
 @app.route('/')
@@ -984,7 +1091,11 @@ def login():
     error = None
     if request.method == 'POST':
         #user = query_db('''select * from user where username = ?''', [request.form['username']], one=True)
-        user = User.query.filter_by(username=request.form['username'].lower()).first()
+        try:
+            pid = int(request.form['pid'])
+        except:
+            abort(404)
+        user = User.query.filter_by(pid=pid).first()
         if user is None:
             error = 'Invalid username'
         elif not check_password_hash(user.pw_hash, request.form['password']):
@@ -994,15 +1105,61 @@ def login():
             session['user_id'] = user.user_id
             return redirect(url_for('index'))
     if error:
-        flash(_('Wrong with username or password'))
+        flash(_('Wrong with phone number or password'))
     return render_template('login.html', error=error)
 
+@app.route('/forgotpassword', methods=['GET'])
+def forgotpassword():
+    return render_template('forgotpassword.html')
+
+@app.route('/sendresetemail', methods=['POST'])
+def sendresetemail():
+    email = request.form['email'] 
+    user = User.query.filter_by(email=email).first()
+    if not user:
+        return redirect(url_for('login'))
+    else:
+        token = ''.join(random.choice(string.ascii_uppercase + string.ascii_lowercase + string.digits) for i in xrange(32))
+        #todo:send email with instruction
+        cacheal.set(ALANCER_FORGETPASSWORD_TOKEN % token, user.user_id, timeout=60 * 60)
+        util.send_email('[Alancer] Rest yourt alancer password!', '<a>%s</a>' % ('http://' + ALANCER_HOST + "/resetpassword?token=%s" % token), email)
+        flash(_('An email sent with password reset intro'))
+        return redirect(url_for('login'))
+
+@app.route('/resetpassword', methods=['GET'])
+def resetpassword():
+    token = request.args.get('token')
+    if cacheal.get(ALANCER_FORGETPASSWORD_TOKEN % token):
+        return render_template('resetpassword.html', token=token)
+    else:
+        flash(_('Token expired'))
+        return redirect(url_for('login'))
+
+@app.route('/changepassword', methods=['POST'])
+def changepassword():
+    token = request.form['token']
+    if request.form['password'] != request.form['password2']:
+        flash(_('The two passwords do not match'))
+        return redirect(url_for('resetpassword'))
+    else:
+        user_id = cacheal.get(ALANCER_FORGETPASSWORD_TOKEN % token)
+        if not user_id:
+            flash(_('Reset password token expired.'))
+            return redirect(url_for('login'))
+        user = User.query.filter_by(user_id=user_id).first()
+        user.pw_hash=generate_password_hash(request.form['password'])
+        flush(user)
+        cacheal.delete(ALANCER_FORGETPASSWORD_TOKEN % token)
+        util.send_email('[Alancer] Congratulations!', 'You have reset your password at alancer!', user.email)
+        flash(_('You were successfully reset your password and you can login now'))
+        return redirect(url_for('login'))
 
 ALANCER_WELCOME_BODY = """
 You have successfully registered at aLancer. Click <a href="%s"><strong style="color:#00188f;"><span style="color:#00188f;">here</span></strong></a> to view the latest internship openings being offered by verified business owners nearby you. We may send you notices of new openings as they are added in the future. -the Alancer Team
 """
 
 @app.route('/register', methods=['GET', 'POST'])
+@exr
 def register():
     """Registers the user."""
     if g.user:
@@ -1010,15 +1167,15 @@ def register():
         return render_template(ALANCER_INDEX)
     error = None
     if request.method == 'POST':
-        if not request.form['username']:
-            error = 'You have to enter a username'
+        if not request.form['pid']:
+            error = _('You have to enter a phone number')
         elif not request.form['email'] or \
                 '@' not in request.form['email']:
-            error = 'You have to enter a valid email address'
+            error = _('You have to enter a valid email address')
         elif not request.form['password']:
-            error = 'You have to enter a password'
+            error = _('You have to enter a password')
         elif request.form['password'] != request.form['password2']:
-            error = 'The two passwords do not match'
+            error = _('The two passwords do not match')
         #elif get_user_id(request.form['username']) is not None:
         #    error = 'The username is already taken'
         else:
@@ -1028,9 +1185,14 @@ def register():
             #  [request.form['username'], request.form['email'],
             #   generate_password_hash(request.form['password'])])
             #db.commit()
-            username=request.form['username'].lower()
-            email=request.form['email']
-            u = User(username=username, email=email, pw_hash=generate_password_hash(request.form['password']))
+            pid = request.form['pid']
+            try:
+                pid = int(pid)
+            except:
+                abort(404)
+            email = request.form['email']
+            username = fake.name()
+            u = User(username=username, pid=pid, email=email, pw_hash=generate_password_hash(request.form['password']))
             u.icon = get_pic_url('lego %s %s' % (username, email))
             isowner = int(request.form.get('isowner'))
             if isowner:
@@ -1045,8 +1207,16 @@ def register():
             session['user_id'] = u.user_id
             flash(_('You were successfully registered and can login now'))
             return redirect(url_for('profile'))
-    return render_template('register.html', error=error)
+    role = int(request.args.get('role'))
+    return render_template('register.html', role=role)
 
+@app.route('/role', methods=['GET', 'POST'])
+def role():
+    if request.method == 'GET':
+        return render_template('role.html')
+    if request.method == 'POST':
+        role = int(request.form['role'])
+        return redirect(url_for('register', role=role))
 
 @app.route('/logout')
 def logout():
@@ -1055,6 +1225,8 @@ def logout():
     session.pop('user_id', None)
     return redirect(url_for('index'))
     #return redirect(url_for('public_timeline'))
+
+
 
 def dformat(d):
     return str(d)[:10]
@@ -1066,3 +1238,5 @@ app.jinja_env.filters['datetimeformat'] = format_datetime
 app.jinja_env.filters['gravatar'] = gravatar_url
 app.jinja_env.filters['get_icon'] = get_pic_url
 app.jinja_env.globals['ALANCER_BAIDU_STATS'] = ALANCER_BAIDU_STATS
+app.jinja_env.globals['LC_APP_ID'] = LC_APP_ID
+app.jinja_env.globals['LC_APP_KEY'] = LC_APP_KEY

@@ -1,0 +1,21 @@
+{% extends "alayout.html" %}
+{% block title %}{{ _('Search') }}{% endblock %}
+{% block body %}
+  <section id="portfolio">
+    <div class="container">
+      <h4>{{ _('What kind of JDs would you like to search for?') }}</h4>
+
+      <form action="/project" class="form-signin">
+        <input type="submit" value="{{ _('All JDs near me') }}" class="btn btn-lg btn-primary btn-block">
+      </form>
+
+      <form action="/project" class="form-signin">
+        <input type="submit" value="{{ _('Only JDs in my network') }}" class="btn btn-lg btn-primary btn-block">
+      </form>
+
+      <form action="/search1" class="form-signin">
+        <input type="submit" value="{{ _('Custom search') }}" class="btn btn-lg btn-primary btn-block">
+      </form>
+    </div>
+  </section>
+{% endblock %}

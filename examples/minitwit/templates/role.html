@@ -10,7 +10,7 @@
     <meta name="author" content="">
     <link rel="icon" href="/favicon.ico">
 
-    <title>Alancer {{ _('Sign Up Here') }}</title>
+    <title>Alancer {{ _('Role?') }}</title>
 
     <!-- Custom styles for this template -->
     <link href="css/signin.css" rel="stylesheet">
@@ -72,35 +72,18 @@
         </div>
         <!-- /.container-fluid -->
     </nav>
-
+    <section>
+      <h4>{{ _('How to start yourt alancer trip?') }}</h4>
       <form class="form-signin" method="post">
-        <h2 class="form-signin-heading">{{ _("Please sign up") }}</h2>
-        <label for="inputUsername" class="sr-only">User name</label>
-        <input type="tel" id="pid" name="pid" class="form-control" placeholder="{{ _('Phone#') }}" required="" autofocus="">
-        <label for="inputEmail" class="sr-only">Email address</label>
-        <input type="email" id="email" name="email" class="form-control" placeholder="{{ _('Email') }}" required="" autofocus="">
-        <label for="inputPassword" class="sr-only">Password</label>
-        <input type="password" id="password" name="password" class="form-control" placeholder="{{ _('Password') }}" required="">
-        <label for="inputPassword" class="sr-only">Password2</label>
-        <input type="password" id="password2" name="password2" class="form-control" placeholder="{{ _('Password again') }}" required="">
-        {#
-        <label>{{ _("To be a developer or project owner") }}</label>
-        <div>
-          <select class="form-control" data-style="btn-success" name="isowner">
-            <option value="0">{{ _("I'm an intern") }}</option>
-            <option value="1">{{ _("I'm seeking interns") }}</option>
-          </select>
-        </div>
-        #}
-        {% if role==0 %}
-        <input type="hidden" name="isowner" value="0">
-        {% else %}
-        <input type="hidden" name="isowner" value="1">
-        {% endif %}
-        <label> </label>
-        <button class="btn btn-lg btn-primary btn-block" type="submit">{{ _("Sign up") }}</button>
+        <input type="hidden" name="role" value="0">
+        <button class="btn btn-lg btn-primary btn-block" type="submit">{{ _("Find job") }}</button>
       </form>
-
+    
+      <form class="form-signin" method="post">
+        <input type="hidden" name="role" value="1">        
+        <button class="btn btn-lg btn-primary btn-block" type="submit">{{ _("Post job") }}</button>          
+      </form>
+    </section>
     </div> <!-- /container -->
 
 

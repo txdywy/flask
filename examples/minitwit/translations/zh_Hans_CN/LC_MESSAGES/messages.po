@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2015-06-18 09:00+0000\n"
+"POT-Creation-Date: 2015-08-12 05:54+0000\n"
 "PO-Revision-Date: 2015-05-18 11:55+0800\n"
 "Last-Translator: Ramen King <geniusron@gmail.com>\n"
 "Language-Team: zh_Hans_CN <LL@li.org>\n"
@@ -17,100 +17,151 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 1.3\n"
 
-#: minitwit.py:618
+#: minitwit.py:661
 msgid "You have successfully created your project"
 msgstr "您已成功创建新项目"
 
-#: minitwit.py:642
+#: minitwit.py:685
 msgid "You have successfully updated your project"
 msgstr "您已成功更新项目"
 
-#: minitwit.py:677
+#: minitwit.py:720
 msgid "You have successfully updated your profile"
 msgstr "您已成功更新简历"
 
-#: minitwit.py:993
+#: minitwit.py:956
+msgid "hahaha"
+msgstr ""
+
+#: minitwit.py:1068
 msgid "You were logged in"
 msgstr "您已成功登录"
 
-#: minitwit.py:997
-msgid "Wrong with username or password"
+#: minitwit.py:1072
+#, fuzzy
+msgid "Wrong with phone number or password"
 msgstr "用户名或密码有误"
 
-#: minitwit.py:1042
+#: minitwit.py:1090
+msgid "An email sent with password reset intro"
+msgstr "重置密码邮件已发"
+
+#: minitwit.py:1099
+msgid "Token expired"
+msgstr "临时口令过期"
+
+#: minitwit.py:1106 minitwit.py:1142
+msgid "The two passwords do not match"
+msgstr "密码输入不匹配"
+
+#: minitwit.py:1111
+msgid "Reset password token expired."
+msgstr "重置密码临时口令过期"
+
+#: minitwit.py:1118
+msgid "You were successfully reset your password and you can login now"
+msgstr "您已成功重置密码"
+
+#: minitwit.py:1135
+msgid "You have to enter a phone number"
+msgstr "需要输入手机号码"
+
+#: minitwit.py:1138
+msgid "You have to enter a valid email address"
+msgstr "需要有效邮箱"
+
+#: minitwit.py:1140
+msgid "You have to enter a password"
+msgstr "需要密码"
+
+#: minitwit.py:1168
 msgid "Welcome to Alancer"
 msgstr "欢迎加入Alancer"
 
-#: minitwit.py:1046
+#: minitwit.py:1172
 msgid "You were successfully registered and can login now"
 msgstr "您已成功注册并登录"
 
-#: minitwit.py:1054
+#: minitwit.py:1188
 msgid "You were logged out"
 msgstr "您已成功注销"
 
-#: templates/admin.html:2 templates/admin.html:14 templates/alayout.html:104
-#: templates/project_swiper.html:152
+#: templates/admin.html:2 templates/admin.html:14 templates/alayout.html:111
+#: templates/project_swiper.html:155
 msgid "Admin"
 msgstr "管理员"
 
-#: templates/alayout.html:13
+#: templates/alayout.html:14
 msgid "Project List"
 msgstr "项目"
 
-#: templates/alayout.html:45 templates/login.html:51
+#: templates/alayout.html:46 templates/login.html:51
 #: templates/project_swiper.html:93 templates/register.html:43
+#: templates/role.html:43
 msgid "Start"
 msgstr "开启"
 
-#: templates/alayout.html:56 templates/login.html:62
+#: templates/alayout.html:57 templates/login.html:62
 #: templates/project_swiper.html:104 templates/register.html:54
+#: templates/role.html:54
 msgid "sign out"
 msgstr "注销"
 
-#: templates/alayout.html:58 templates/login.html:64 templates/login.html:95
+#: templates/alayout.html:59 templates/login.html:64 templates/login.html:95
 #: templates/project_swiper.html:106 templates/register.html:56
+#: templates/role.html:56
 msgid "Sign in"
 msgstr "登录"
 
-#: templates/alayout.html:63 templates/profile.html:8 templates/profile.html:94
+#: templates/alayout.html:64 templates/profile.html:8 templates/profile.html:94
 #: templates/profile_client.html:8 templates/project_swiper.html:111
 #: templates/upc.html:16
 msgid "Profile"
 msgstr "关于我"
 
-#: templates/alayout.html:68 templates/login.html:69
+#: templates/alayout.html:69 templates/login.html:69
 #: templates/project_swiper.html:116 templates/register.html:61
-#: templates/register.html:94
+#: templates/register.html:101 templates/role.html:61
 msgid "Sign up"
 msgstr "注册"
 
-#: templates/alayout.html:72 templates/message.html:2
+#: templates/alayout.html:73 templates/message.html:2
 #: templates/project_swiper.html:120
 msgid "Message"
 msgstr "收件箱"
 
-#: templates/alayout.html:75 templates/project_list.html:9
-#: templates/project_swiper.html:123
+#: templates/alayout.html:76 templates/chat.html:27 templates/chat.html:30
+#: templates/project_swiper.html:123 templates/user.html:88
+#: templates/user_list.html:93
+msgid "Chat"
+msgstr "私信"
+
+#: templates/alayout.html:79 templates/project_list.html:9
+#: templates/project_one.html:2 templates/project_swiper.html:126
 msgid "Project"
 msgstr "项目"
 
-#: templates/alayout.html:84 templates/project_swiper.html:132
+#: templates/alayout.html:82 templates/search.html:2
+msgid "Search"
+msgstr "搜索"
+
+#: templates/alayout.html:91 templates/project_swiper.html:135
 msgid "Community"
 msgstr "社区"
 
-#: templates/alayout.html:89 templates/login.html:74
-#: templates/project_swiper.html:137 templates/register.html:66
+#: templates/alayout.html:96 templates/login.html:74
+#: templates/project_swiper.html:140 templates/register.html:66
+#: templates/role.html:66
 msgid "Home"
 msgstr "首页"
 
-#: templates/alayout.html:94 templates/project_manage.html:2
-#: templates/project_manage.html:22 templates/project_swiper.html:142
+#: templates/alayout.html:101 templates/project_manage.html:2
+#: templates/project_manage.html:22 templates/project_swiper.html:145
 #: templates/publish.html:22
 msgid "My Projects"
 msgstr "我的项目"
 
-#: templates/alayout.html:98 templates/project_swiper.html:146
+#: templates/alayout.html:105 templates/project_swiper.html:149
 msgid "Create Project"
 msgstr "创建项目"
 
@@ -136,6 +187,7 @@ msgid "Joined"
 msgstr "加入时间"
 
 #: templates/apply.html:17 templates/project_list.html:20
+#: templates/project_one.html:14
 msgid "d ago"
 msgstr "天之前"
 
@@ -156,14 +208,33 @@ msgstr "提交"
 msgid "About me"
 msgstr "关于我"
 
-#: templates/chat.html:27 templates/chat.html:30 templates/user.html:88
-#: templates/user_list.html:93
-msgid "Chat"
-msgstr "私信"
-
 #: templates/chat.html:45 templates/message.html:123
 msgid "Send"
 msgstr "发送"
+
+#: templates/chat_box.html:2 templates/chat_box.html:16
+msgid "Chat box"
+msgstr "私信"
+
+#: templates/chat_box.html:23 templates/message_box.html:23
+msgid "d"
+msgstr "天前"
+
+#: templates/chat_box.html:26
+msgid "Sorry, currently no chat"
+msgstr "抱歉,暂无私信"
+
+#: templates/forgotpassword.html:2
+msgid "Forgot password"
+msgstr "忘记密码"
+
+#: templates/forgotpassword.html:12
+msgid "Please provide the valid email"
+msgstr "请提供有效的邮箱地址"
+
+#: templates/forgotpassword.html:25
+msgid "Confirm"
+msgstr "确认"
 
 #: templates/login.html:11
 msgid "Alancer Signin Page"
@@ -173,17 +244,22 @@ msgstr "Alancer登录页面"
 msgid "Please sign in"
 msgstr "请登录"
 
-#: templates/login.html:87
-msgid "User Name"
-msgstr "用户名"
+#: templates/login.html:87 templates/register.html:79
+msgid "Phone#"
+msgstr "手机号码"
 
 #: templates/login.html:89 templates/register.html:83
+#: templates/resetpassword.html:19
 msgid "Password"
 msgstr "密码"
 
 #: templates/login.html:92
 msgid "Remember me"
 msgstr "记住我"
+
+#: templates/login.html:96
+msgid "Forget your password"
+msgstr "忘记你的密码"
 
 #: templates/message.html:51
 msgid "Applying Messages"
@@ -200,10 +276,6 @@ msgstr "请输入信息"
 #: templates/message_box.html:2 templates/message_box.html:16
 msgid "Message box"
 msgstr "收件箱"
-
-#: templates/message_box.html:23
-msgid "d"
-msgstr "天前"
 
 #: templates/message_box.html:26
 msgid "Sorry, currently no message"
@@ -311,6 +383,7 @@ msgid "Du"
 msgstr "杜"
 
 #: templates/profile_client.html:50 templates/project_list.html:32
+#: templates/project_one.html:26
 msgid "Company"
 msgstr "公司/组织"
 
@@ -375,15 +448,15 @@ msgstr "有效时间"
 msgid "June to August"
 msgstr "从六月到八月"
 
-#: templates/project_list.html:23
+#: templates/project_list.html:23 templates/project_one.html:17
 msgid "Want to launch"
 msgstr "希望启动项目"
 
-#: templates/project_list.html:24
+#: templates/project_list.html:24 templates/project_one.html:18
 msgid "Get"
 msgstr "报酬"
 
-#: templates/project_list.html:25
+#: templates/project_list.html:25 templates/project_one.html:19
 msgid "Valid time"
 msgstr "有效时间"
 
@@ -495,25 +568,62 @@ msgstr "注册"
 msgid "Please sign up"
 msgstr "请注册"
 
-#: templates/register.html:79
-msgid "User name"
-msgstr "用户名"
-
-#: templates/register.html:85
+#: templates/register.html:85 templates/resetpassword.html:21
 msgid "Password again"
 msgstr "确认密码"
 
-#: templates/register.html:86
-msgid "To be a developer or project owner"
-msgstr "请选择作为开发者或项目发布者"
+#: templates/resetpassword.html:2
+#, fuzzy
+msgid "Reset password"
+msgstr "密码"
 
-#: templates/register.html:89
-msgid "I'm an intern"
-msgstr "我是实习生"
+#: templates/resetpassword.html:26
+msgid "Change Password"
+msgstr "修改密码"
 
-#: templates/register.html:90
-msgid "I'm seeking interns"
-msgstr "我要找实习生"
+#: templates/role.html:13
+msgid "Role?"
+msgstr "角色?"
+
+#: templates/role.html:76
+msgid "How to start yourt alancer trip?"
+msgstr "以何身份开启你的alancer"
+
+#: templates/role.html:79
+msgid "Find job"
+msgstr "找工作"
+
+#: templates/role.html:84
+msgid "Post job"
+msgstr "发工作"
+
+#: templates/search.html:6
+msgid "What kind of JDs would you like to search for?"
+msgstr "你想找哪类工作?"
+
+#: templates/search.html:9
+msgid "All JDs near me"
+msgstr "所有我附近的工作"
+
+#: templates/search.html:13
+msgid "Only JDs in my network"
+msgstr "我关系网内的工作"
+
+#: templates/search.html:17
+msgid "Custom search"
+msgstr "定制搜索"
+
+#: templates/search1.html:2
+msgid "Search1"
+msgstr "搜索"
+
+#: templates/search1.html:6
+msgid "Confirm your search criteria"
+msgstr "确认你的条件"
+
+#: templates/search1.html:49
+msgid "View search results"
+msgstr "查看搜索结果"
 
 #: templates/user.html:2
 msgid "User Digest"
@@ -647,4 +757,19 @@ msgstr "目前没有用户"
 
 #~ msgid "reviews"
 #~ msgstr "评论"
+
+#~ msgid "User Name"
+#~ msgstr "用户名"
+
+#~ msgid "User name"
+#~ msgstr "用户名"
+
+#~ msgid "I'm an intern"
+#~ msgstr "我是实习生"
+
+#~ msgid "I'm seeking interns"
+#~ msgstr "我要找实习生"
+
+#~ msgid "To be a developer or project owner"
+#~ msgstr "请选择作为开发者或项目发布者"
 

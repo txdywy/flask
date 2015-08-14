@@ -36,3 +36,4 @@ def get(key):
 def delete(key):
     return rcache.delete(key)
 
+setnx = rcache.setnx
