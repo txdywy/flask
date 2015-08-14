@@ -31,16 +31,27 @@
           <option>Backend</option>
         </select>
       <div>
+
+      <p></p>
+      <input type="text" class="form-control sm-4" placeholder="{{ _('Keywords') }}" id="sb"/>
+      <span class="input-group-btn">
+        <button class="btn btn-danger sendbutton" type="button">
+          <i class="glyphicon glyphicon-search"></i>
+          {{ _('Search') }}
+        </button>
+      </span>
       {#
       <form action="/project" class="form-signin">
         <input type="submit" value="{{ _('View search results') }}" class="btn btn-lg btn-primary btn-block">
       </form>
       #}
       <p>...</p>
+      {#
       <button class="btn btn-danger sendbutton">
         <span class="glyphicon glyphicon-send"></span>
         {{ _('Search') }}
       </button>
+      #}
     </div>
     
     <div id="sr">
@@ -56,6 +67,7 @@
         data: {'s1': $(".selectpicker#s1").val(),
                's2': $(".selectpicker#s2").val(),
                's3': $(".selectpicker#s3").val(),
+               's4': $("#sb").val(),
               },
         success: function (result) {
             //alert(result);
