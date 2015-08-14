@@ -928,14 +928,16 @@ def search2():
     s1 = request.form['s1']
     s2 = request.form['s2']
     s3 = request.form['s3']
+    s4 = request.form['s4']
     user_id = session.get('user_id')
     pas = {} 
     pats = {}     
     puds = {} 
     pics = {} 
     projects = Project.query.filter(or_(Project.desp.like("%" + s1 + "%"),
-                                         Project.location.like("%" + s2 + "%"),
-                                         Project.desp.like("%" + s3 + "%")
+                                        Project.location.like("%" + s2 + "%"),
+                                        Project.desp.like("%" + s3 + "%"),
+                                        Project.desp.like("%" + s4 + "%"),
                                         )).order_by(desc(Project.id)).all()
     clients = Client.query.all()
     cds = {client.id: client for client in clients}
