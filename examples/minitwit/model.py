@@ -66,6 +66,7 @@ class User(Base):
     approved = Column(Integer, default=0)
     refer1 = Column(String(512), default='')
     refer2 = Column(String(512), default='')
+    title = Column(String(50), default='')
 
     def __init__(self, username, pid, email, pw_hash):
         self.username = username

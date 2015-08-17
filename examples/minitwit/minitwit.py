@@ -621,7 +621,23 @@ def profile():
         client = Client.query.filter_by(user_id=user.user_id).first()
         return render_template('profile_client.html', user=user, client=client)
     else:
-        return render_template('profile.html', user=user)
+        return render_template('profile_candidate.html')
+        #return render_template('profile.html', user=user)
+
+
+@app.route('/add_candidate_info', methods=['POST'])
+@login_required
+def add_candidate_info():
+    user_id = session['user_id']
+    user = User.query.get(user_id)
+    user.username = request.form['name']
+    user.school = request.form['company']
+    user.city = request.form['city']
+    user.title = request.form['title']
+    flush(user)
+    flash(_('Successfully added your basic profile!'))
+    return render_template('profile.html', user=user)
+    
 
 @app.route('/project_info')
 @login_required
