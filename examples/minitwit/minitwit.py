@@ -354,6 +354,42 @@ def upload_image():
        print '=============== upload image failed ============ ', str(e)
        return NO_CONTENT_PICTURE
 
+@app.route('/upload_user_icon', methods=['POST'])
+@login_required
+def upload_user_icon():
+    user_id = session.get('user_id')
+    user = User.query.get(user_id)
+    try:
+        HEIGHT, WIDTH = 384, 240
+        #print '=======',vars(request)
+        c = request.files['file'].read()
+        #print '===========',c       
+        file_orig = StringIO(c)
+        im = Image.open(file_orig)
+        h, w = im.size
+        if h > HEIGHT or w > WIDTH:
+            im.thumbnail((HEIGHT, WIDTH), Image.ANTIALIAS)
+            file = StringIO()
+            h, w = im.size
+            if h==w:
+                im = im.rotate(90 * 3)
+            try:
+                im.save(file, 'JPEG')
+            except:
+                #for .gif
+                file = file_orig
+        else:
+            file = file_orig
+        lc_file = File('pi', file_orig)
+        lc_file.save()
+        user.icon = lc_file.url
+        flush(user)
+        return lc_file.url
+    except Exception, e:
+       print '=============== upload image failed ============ ', str(e)
+       return NO_CONTENT_PICTURE
+
+
 @app.route('/project_manage', methods=['GET'])
 @login_required
 def project_manage():
@@ -636,7 +672,7 @@ def add_candidate_info():
     user.title = request.form['title']
     flush(user)
     flash(_('Successfully added your basic profile!'))
-    return render_template('profile.html', user=user)
+    return render_template('profile_candidate_confirm.html', user=user)
     
 
 @app.route('/project_info')
