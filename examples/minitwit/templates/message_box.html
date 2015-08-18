@@ -11,24 +11,23 @@
 {% endblock headjs %}
 {% block body %}
   <div class="container">
-      <div class="row">
-        <div class="col-md-8">
-          <h2 class="page-header">{{ _("Message box") }}</h2>
-          <table class="table table-striped">
-            <tbody>
-              {% for mi in message_items %}
-              <tr class="clickable-row" data-href='{{ url_for('message_room', m_user_id=mi['m_user_id'], m_client_id=mi['m_client_id']) + '#page-bottom' }}'>
-                <td><img src="{{ mi['icon'] }}" class="img-rounded" alt="Cinque Terre" width="60" height="60"></td>
-                <td><b>{{ mi['m_username'] }}</b><br>{{ mi['message'] }}</td>
-                <td>{{ mi['days'] }}{{ _("d") }}</td>
-              </tr>
-              {% else %}
-              {{ _('Sorry, currently no message') }}
-              {% endfor %}
-            </tbody>
-          </table>    
-            
-        </div>
+    <div class="row">
+      <div class="col-md-8">
+        <h2 class="page-header">{{ _("Message box") }}</h2>
+        <table class="table table-striped">
+          <tbody>
+            {% for mi in message_items %}
+            <tr class="clickable-row" data-href='{{ url_for('message_room', m_user_id=mi['m_user_id'], m_client_id=mi['m_client_id']) + '#page-bottom' }}'>
+              <td><img src="{{ mi['icon'] }}" class="img-rounded" alt="Cinque Terre" width="60" height="60"></td>
+              <td><b>{{ mi['m_username'] }}</b><br>{{ mi['message'] }}</td>
+              <td>{{ mi['days'] }}{{ _("d") }}</td>
+            </tr>
+            {% else %}
+            {{ _('Sorry, currently no message') }}
+            {% endfor %}
+          </tbody>
+        </table>    
       </div>
+    </div>
   </div>
 {% endblock %}
