@@ -82,7 +82,7 @@ class User(Base):
 class Project(Base):
     __tablename__ = 'project'
     id = Column(Integer, primary_key=True)
-    title = Column(String(50), unique=True)
+    title = Column(String(50))
     client = Column(String(50))
     email = Column(String(120))
     desp = Column(String(500))

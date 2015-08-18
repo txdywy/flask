@@ -6,9 +6,9 @@
 <div class="container" style="padding-top: 100px;" >
   <!-- edit form column -->
     <section>
-      <h4>{{ _("Let's setup your job seeker profile.") }}</h4>
+      <h4>{{ _("Let's setup your employer profile.") }}</h4>
       <h6>{{ _('All fields are required.') }}</h6>
-      <form class="form-signin" method="post" action="/add_candidate_info">
+      <form class="form-signin" method="post" action="/add_employer_info">
         <input class="form-control" name="name" id="name" type="text" placeholder={{ _('Name') }} required>
         <input class="form-control" name="company" id="company" type="text" placeholder={{ _('Company') }} required>   
         <input class="form-control" name="title" id="title" type="text" placeholder={{ _('Title') }} required>

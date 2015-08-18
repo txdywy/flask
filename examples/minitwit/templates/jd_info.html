@@ -1,0 +1,24 @@
+{% extends "alayout.html" %}
+{% block headjs %}
+{% endblock headjs %}
+{% block title %}{{ _('POST JD') }}{% endblock %}
+{% block body %}
+<div class="container" style="padding-top: 100px;" >
+  <!-- edit form column -->
+    <section>
+      <h4>{{ _("Now create the JD you want to post.") }}</h4>
+      <form class="form-signin" method="post" action="/add_jd_info">
+        <input class="form-control" name="company" id="company" type="text" placeholder={{ _('Company name') }} required>   
+        <input class="form-control" name="location" id="location" type="text" placeholder={{ _('Location') }} required>
+        <input class="form-control" name="logo" id="logo" type="text" placeholder={{ _('Company logo') }} required>
+        <input class="form-control" name="role" id="role" type="text" placeholder={{ _('Role tag') }} required>
+        <input class="form-control" name="start" id="start" type="text" placeholder={{ _('Start date') }} required>
+        <input class="form-control" name="duration" id="duration" type="text" placeholder={{ _('Duration') }} required>
+        <input class="form-control" name="pitch" id="pitch" type="text" placeholder={{ _('Project pitch: why should people care?') }} required>
+        <input class="form-control" name="incentive" id="incentive" type="text" placeholder={{ _('Salary or other incentives?') }} required>
+        <input class="form-control" name="other" id="other" type="text" placeholder={{ _('Other requirements? (optional, hidden by default)') }} required>
+        <button class="btn btn-primary" type="submit">{{ _('Next') }}</button>
+        <span></span>
+      </form>
+    </section>
+{% endblock %}

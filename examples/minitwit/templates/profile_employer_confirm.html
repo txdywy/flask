@@ -1,0 +1,33 @@
+{% extends "alayout.html" %}
+{% block headjs %}
+<script src="//cdnjs.cloudflare.com/ajax/libs/dropzone/4.0.1/dropzone.js"></script>
+<link rel='stylesheet' href="//cdnjs.cloudflare.com/ajax/libs/dropzone/4.0.1/dropzone.css"/>
+<script>
+  Dropzone.options.imgUpload = {
+    dictDefaultMessage: "{{ _('Drag your image here---->') }}",
+    acceptedFiles: "image/*", // Accept images only
+    //maxFiles: "1",
+  };
+</script>
+{% endblock headjs %}
+{% block title %}{{ _('Profile') }}{% endblock %}
+{% block body %}
+<div class="container" >
+    <section>
+      <div align="center">
+        <h4>{{ _("Confirm profile") }}</h4>
+
+        <form action="/upload_employer_icon" class="dropzone" id="img-upload"></form>
+ 
+        <p><b>{{ user.username }}</b></p>
+        <p><b>{{ user.city }}, {{ user.country }}</b></p>
+        <p><b>{{ user.title }}</b></p>
+        <p></p>
+        <p>{{ _('About me') }} </p>
+        <p>{{ user.profile }} </p>
+        <form method="get" action='/add_jd_info'>
+          <button class="btn btn-lg btn-primary btn-block" type="submit">{{ _("Next") }}</button>
+        </form>
+      </div>
+    </section>
+{% endblock %}

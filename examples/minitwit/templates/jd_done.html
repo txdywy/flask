@@ -1,0 +1,16 @@
+{% extends "alayout.html" %}
+{% block title %}{{ _('JD Posted') }}{% endblock %}
+{% block body %}
+    <!-- Project Grid Section -->
+    <section id="portfolio">
+      <div class="container">
+        <h4>{{ _('Thank you.') }}</h4>
+        <p></p>
+        <p>{{ _('You have successfully created a new employer account and publish a JD.') }}</p>
+        <form method="get" action='/project'>
+          <button class="btn btn-lg btn-primary btn-block" type="submit">{{ _("Go to Alancer JDs") }}</button>
+        </form>
+      </div>
+    </section>
+
+{% endblock %}

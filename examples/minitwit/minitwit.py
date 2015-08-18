@@ -354,16 +354,11 @@ def upload_image():
        print '=============== upload image failed ============ ', str(e)
        return NO_CONTENT_PICTURE
 
-@app.route('/upload_user_icon', methods=['POST'])
-@login_required
-def upload_user_icon():
-    user_id = session.get('user_id')
-    user = User.query.get(user_id)
+
+def upload_img(request):
     try:
         HEIGHT, WIDTH = 384, 240
-        #print '=======',vars(request)
         c = request.files['file'].read()
-        #print '===========',c       
         file_orig = StringIO(c)
         im = Image.open(file_orig)
         h, w = im.size
@@ -382,12 +377,51 @@ def upload_user_icon():
             file = file_orig
         lc_file = File('pi', file_orig)
         lc_file.save()
-        user.icon = lc_file.url
-        flush(user)
-        return lc_file.url
+        return lc_file.url 
     except Exception, e:
        print '=============== upload image failed ============ ', str(e)
        return NO_CONTENT_PICTURE
+
+
+@app.route('/upload_user_icon', methods=['POST'])
+@login_required
+def upload_user_icon():
+    user_id = session.get('user_id')
+    user = User.query.get(user_id)
+    url = upload_img(request)
+    user.icon = lc_file.url
+    flush(user)
+    return url
+
+
+@app.route('/upload_employer_icon', methods=['POST'])
+@login_required
+def upload_employer_icon():
+    user_id = session.get('user_id')
+    user = User.query.get(user_id)
+    client = Client.query.filter_by(user_id=user_id).first()
+    url = upload_img(request)
+    user.icon = url
+    client.icon = url
+    flush(user)
+    flush(client)
+    return url
+
+@app.route('/upload_jd_img', methods=['POST'])
+@login_required
+def upload_jd_img():
+    pid = int(request.args.get('pid'))
+    project = Project.query.get(pid)
+    url = upload_img(request)
+    project.image_url = url
+    flush(project)
+    return url
+
+
+@app.route('/jd_publish')
+@login_required
+def jd_publish():
+    return render_template('jd_done.html')
 
 
 @app.route('/project_manage', methods=['GET'])
@@ -655,7 +689,8 @@ def profile():
     user = User.query.get(user_id)
     if user.role == User.USER_CLIENT:
         client = Client.query.filter_by(user_id=user.user_id).first()
-        return render_template('profile_client.html', user=user, client=client)
+        return render_template('profile_employer.html', user=user, client=client)
+        #return render_template('profile_client.html', user=user, client=client)
     else:
         return render_template('profile_candidate.html')
         #return render_template('profile.html', user=user)
@@ -673,6 +708,58 @@ def add_candidate_info():
     flush(user)
     flash(_('Successfully added your basic profile!'))
     return render_template('profile_candidate_confirm.html', user=user)
+
+
+@app.route('/add_jd_info', methods=['GET', 'POST'])
+@login_required
+def add_jd_info():
+    if(request.method == 'GET'):
+        return render_template('jd_info.html')
+    user_id = session['user_id']
+    user = User.query.get(user_id)
+    client = Client.query.filter_by(user_id=user.user_id).first()
+    project = Project()
+    project.client_id = client.id
+    project.title = request.form['logo']
+    project.client = client.name
+    project.desp = request.form['pitch']
+    project.incentive = request.form['incentive']
+    project.location = request.form['location']
+    project.valid_time = request.form['start'] + ',' + request.form['duration']
+    project.image_url = 'http://www.whichsocialmedia.com/wp-content/uploads/2013/04/no-logo.png'
+    flush(project)
+    
+    puds = {}
+    pics = {}
+    puds[project.id] = (datetime.now() - project.create_time).days
+    pics[project.id] = client.icon
+
+    t = _('You have successfully created your project')
+    flash(t + ' [%s]' % project.title)
+    return render_template('jd_employer_confirm.html', user=user, client=client, project=project, pics=pics, puds=puds) 
+
+
+@app.route('/add_employer_info', methods=['POST'])
+@login_required
+def add_employer_info():
+    user_id = session['user_id']
+    user = User.query.get(user_id)
+    user.username = request.form['name']
+    user.school = request.form['company']
+    user.city = request.form['city']
+    user.title = request.form['title']
+    user.country = 'China'
+    flush(user)
+    client = Client.query.filter_by(user_id=user.user_id).first()
+    client.location = '%s %s' % (user.city, user.country)
+    client.company = request.form['company']
+    client.title = request.form['title']
+    client.name = request.form['company']
+    client.email = user.email
+    flush(client)
+    
+    flash(_('Successfully added your basic profile!'))
+    return render_template('profile_employer_confirm.html', user=user, client=client)
     
 
 @app.route('/project_info')
