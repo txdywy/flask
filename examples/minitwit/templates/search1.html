@@ -40,6 +40,14 @@
           {{ _('Search') }}
         </button>
       </span>
+      <div class="checkbox">
+        <label><input type="checkbox" value="">{{ _('Alert me of new matching jobs.') }}</label>
+      </div>
+      <label>{{ _('Frequency') }}</label>
+      <select class="selectpicker show-tick" data-style="btn-primary" id="s4">
+        <option>{{ _('Every day') }}</option>
+        <option>{{ _('Each week') }}</option>
+      </select>
       {#
       <form action="/project" class="form-signin">
         <input type="submit" value="{{ _('View search results') }}" class="btn btn-lg btn-primary btn-block">
