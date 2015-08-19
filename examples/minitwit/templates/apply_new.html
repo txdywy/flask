@@ -1,0 +1,38 @@
+{% extends "alayout.html" %}
+{% block title %}{{ _('Review for JD') }}{% endblock %}
+{% block body %}
+  <section id="message">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8">
+          <h2 class="page-header">{{ _('Applying') }}</h2>
+            <h6>{{ _("Confirm your JD application") }}</h6>
+            <div class="media">
+              <span class="media-left">
+                <img class="img-responsive img-circle" width="100" length="100" src="{{ user.icon }}" />
+              </span>
+              <div class="media-right">
+                <p><b><font size="5">{{ user.username }}</font></b></p>
+                <p><b><font size="2">{{ _('School') }}: {{ user.school }}</font></b></p>
+                <p><b><font size="2">{{ _('City') }}: {{ user.city }}</font></b></p>  
+                {#
+                <p><b><font size="2">{{ _('Joined') }}: {{ ucd }}{{ _('d ago') }}</font></b></p>
+                #}
+              </div>
+            </div>
+
+            <div>
+              <p>
+                <i>
+                <font size="3">
+                {{ _('About me') }}: {{ user.profile }}
+                </font>
+                </i>
+              </p>
+            </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock %}

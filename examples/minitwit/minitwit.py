@@ -987,10 +987,10 @@ def message_room():
         else:
             return ''
 
-@app.route('/apply', methods=['GET'])
+@app.route('/apply_0', methods=['GET'])
 @login_required
 @message_secured
-def apply():
+def apply_0():
     m_user_id = request.args.get('m_user_id')
     m_client_id = request.args.get('m_client_id')
     project_id = request.args.get('project_id')
@@ -1006,6 +1006,26 @@ def apply():
     data['m_user_icon'] = m_user.icon
     ucd = (datetime.now() - m_user.create_time).days
     return render_template('apply.html', data=data, Message=Message, client=client, messages=messages, m_user_id=m_user_id, project_id=project_id, m_user=m_user, ucd=ucd)
+
+
+@app.route('/apply', methods=['GET'])
+@login_required
+def apply():
+    user_id = session['user_id']
+    project_id = request.args.get('project_id')
+    user = User.query.get(user_id)
+    project = Project.query.get(project_id)
+    return render_template('profile_candidate_complete.html', user=user, project=project)
+
+@app.route('/post_profile_complete', methods=['POST'])
+@login_required                
+def post_profile_complete():
+    project_id = request.form['project_id']
+    user_id = session['user_id']
+    user = User.query.get(user_id)
+    project = Project.query.get(project_id)
+
+    return render_template('apply_new.html', project=project, user=user)
 
 
 @app.route('/message_box', methods=['GET', 'POST'])

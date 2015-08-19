@@ -1,0 +1,49 @@
+{% extends "alayout.html" %}
+{% block headjs %}
+<script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.7.3/js/bootstrap-select.min.js"></script>
+<link rel='stylesheet' href='//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.7.3/css/bootstrap-select.min.css' type='text/css' media='all' />
+<script>  $('.selectpicker').selectpicker();</script>
+{% endblock headjs %}
+{% block title %}{{ _('Complete Profile') }}{% endblock %}
+{% block body %}
+<div class="container" style="padding-top: 100px;" >
+  <!-- edit form column -->
+    <section>
+      <h4>{{ _("Complete your profile in order to submit your application. See example profile.") }}</h4>
+      <h6>{{ _('*Required') }}</h6>
+      <form class="form-signin" method="post" action="/post_profile_complete">
+        <input type="hidden" value="{{ project.id }}" name="project_id">
+        <input class="form-control" name="name" id="name" type="text" value="{{ user.username }}"  placeholder={{ _('Name') }} required>
+        <input class="form-control" name="company" id="company" type="text" value="{{ user.school }}" placeholder={{ _('Company') }} required>   
+        <input class="form-control" name="title" id="title" type="text" value="{{ user.title }}" placeholder={{ _('Title') }} required>
+        <input class="form-control" name="companyp" id="companyp" type="text" placeholder={{ _('Previous company') }} required>
+        <input class="form-control" name="abt" id="abt" type="text" placeholder={{ _('About me intro') }} required>
+        <input class="form-control" name="edu" id="edu" type="text" placeholder={{ _('Education') }} required>
+
+        <h4>{{ _("Profile tags. These help your profile more visible in candidates search.") }}</h4>
+        <select class="selectpicker show-tick" data-style="btn-warning" id="s1">
+          <option>Area</option>
+          <option>Mobile</option>
+          <option>App</option>
+        </select>
+
+        <select class="selectpicker show-tick" data-style="btn-success" id="s2">
+          <option>Industry</option>
+          <option>Shanghai</option>
+          <option>Tokyo</option>
+        </select>
+
+        <select class="selectpicker show-tick" data-style="btn-info" id="s3">
+          <option>Senority</option>
+          <option>Devops</option>
+          <option>Designer</option>
+          <option>UX</option>
+          <option>Backend</option>
+        </select>
+                
+
+        <button class="btn btn-primary" type="submit">{{ _('Next') }}</button>
+        <span></span>
+      </form>
+    </section>
+{% endblock %}
