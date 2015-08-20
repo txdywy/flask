@@ -1025,7 +1025,17 @@ def post_profile_complete():
     user = User.query.get(user_id)
     project = Project.query.get(project_id)
 
-    return render_template('apply_new.html', project=project, user=user)
+    return render_template('apply_for_jd.html', project=project, user=user)
+
+
+@app.route('/review_for_jd', methods=['POST'])
+@login_required
+def review_for_jd():
+    project_id = request.form['project_id']
+    user_id = session['user_id']
+    user = User.query.get(user_id)
+    project = Project.query.get(project_id)
+    return render_template('review_for_jd.html', project=project, user=user)
 
 
 @app.route('/message_box', methods=['GET', 'POST'])

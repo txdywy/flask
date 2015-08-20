@@ -273,6 +273,7 @@ class ProjectApply(Base):
     valid = Column(Integer, index=True, default=1)
     create_time = Column(DATETIME(), index=True)   
     status = Column(Integer, index=True, default=PROJECT_APPLIED)
+    pitch = Column(String(512), default='')
 
     def __init__(self, user_id, project_id):
         self.user_id = user_id

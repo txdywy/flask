@@ -1,0 +1,60 @@
+{% extends "alayout.html" %}
+{% block title %}{{ _('Apply for JD') }}{% endblock %}
+{% block headjs %}
+<style>
+#message_send {
+  height: 40px;
+}
+.sendbutton{
+  height: 40px;
+  width: 105px;
+  /*
+  resize: horizontal;
+  */
+}
+</style>
+<script>
+  window.jQuery(document).ready(function($) {
+    $(".sendbutton").click(function() {
+      $.ajax({
+        url: '/review_for_jd',
+        type: 'POST',
+        data: {'project_id': $("#project_id").val(),},
+        success: function (result) {
+            //alert(result);
+            $("#review").html(result);
+        }
+      });
+      $("#pitch").hide()
+    });    
+  }); 
+</script>
+{% endblock headjs %}
+{% block body %}
+  <section id="message">
+    <div class="container">
+      <div class="row" id="pitch">
+        <div class="col-md-8">
+          <h2 class="page-header">{{ _('Applying') }}</h2>
+            <h6>{{ _("New job application") }}</h6>
+            <h5>{{ _("Your 1 minute pitch: why should this hiring manager consider you?") }}</h5>
+
+            
+
+          <div>
+            <input type="hidden" value="{{ project.id }}" id="project_id"> 
+            <textarea class="col-md-7 col-sm-7 col-xs-8" type="textarea" id="message_send" name="message" placeholder="{{ _('Input your message here') }}" maxlength="2048" rows="1" style="float:left;"> </textarea>
+            <button class="btn btn-info sendbutton col-sm-2">
+              <span class="glyphicon glyphicon-send">
+              </span>
+              {{ _('Send') }}
+            </button>
+          </div> 
+        </div>
+      </div>
+      <div class="row" id="review">
+
+      </div>
+    </div>
+  </section>
+{% endblock %}
