@@ -44,11 +44,48 @@
   <p></p>
 
   <h6>{{ _('Previous company') }}</h6>  
+  <p>...</p>
   <p></p>
 
+  <h6>{{ _('About me') }}</h6>
+  <p>{{ user.profile }}</p>
+  <p></p>
 
+  <h6>{{ _('Mrew info') }}</h6>
+  <p>Focus area: Mobile<p>
+  <p>Industry: Internet</p>
+  <p>Senority: VP</p>
+  <p>Education: Truth University</p>
+  <p></p>
+
+  <h6>{{ _('My urls') }}<h6>
+  <p>{{ user.refer1 }}</p>
+  <p>{{ user.refer2 }}</p>
+  <p></p>
+
+  <button class="btn btn-danger sendbutton">
+    <span class="glyphicon glyphicon-send"></span>
+    {{ _('Confirm') }}
+  </button>
 
 </div>
 <script>
   $('#pitch_review').text($("textarea#message_send").val())
+</script>
+<script>
+  window.jQuery(document).ready(function($) {
+    $(".sendbutton").click(function() {
+      $.ajax({
+        url: '/apply_confirm',
+        type: 'POST',
+        data: {'project_id': $("#project_id").val(),
+               'pitch': $("#pitch_review").text(),
+              },
+        success: function (data) {
+          alert("{{ _('Application submitted.') }}");
+          window.location.href = '/';
+        }
+      });
+    });    
+  });
 </script>

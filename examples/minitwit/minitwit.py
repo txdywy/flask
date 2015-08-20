@@ -1037,6 +1037,19 @@ def review_for_jd():
     project = Project.query.get(project_id)
     return render_template('review_for_jd.html', project=project, user=user)
 
+@app.route('/apply_confirm', methods=['POST'])
+@login_required
+def apply_confirm():
+    project_id = int(request.form['project_id'])
+    user_id = session['user_id']
+    pitch = request.form['pitch']
+    pa = ProjectApply.query.filter_by(project_id=project_id, user_id=user_id).first()
+    if not pa:
+        pa = ProjectApply(project_id=project_id, user_id=user_id)
+        pa.pitch = pitch
+        flush(pa)
+    return '1'
+
 
 @app.route('/message_box', methods=['GET', 'POST'])
 @login_required
