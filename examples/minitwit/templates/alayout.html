@@ -34,90 +34,93 @@
 
     <div class="container">
     <!-- Navigation -->
-        <nav class="navbar navbar-default navbar-fixed-top">
-            <div class="container">
-                <!-- Brand and toggle get grouped for better mobile display -->
-                <div class="navbar-header page-scroll">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" href="/">{{ _("Start") }} Alancer</a>
-                </div>
+      <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+          <!-- Brand and toggle get grouped for better mobile display -->
+          <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">{{ _("Start") }} Alancer</a>
+          </div>
 
-                <!-- Collect the nav links, forms, and other content for toggling -->
-                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                    <ul class="nav navbar-nav navbar-right">
-                        <li class="hidden">
-                            <a href="#page-top"></a>
-                        </li>
-                        <li class="page-scroll">
-                            {% if g.user %}
-                                <a href="{{ url_for('logout') }}">{{ _("sign out") }} [{{ g.user.username }}]</a>
-                            {% else %}
-                                <a href="{{ url_for('login') }}">{{ _("Sign in") }}</a>
-                            {% endif %}
-                        </li>
-			<li class="page-scroll">
-                            {% if g.user %}
-                                <a href="{{ url_for('profile') }}">{{ _("Profile") }}</a>
-                            {% endif %}
-                        </li>
-                        <li class="page-scroll">
-                            {% if not g.user %}
-                                <a href="{{ url_for('role') }}">{{ _("Sign up") }}</a>
-                            {% endif %}
-                        </li>
-                        <li class="page-scroll">
-                            <a href="{{ url_for('message_box') }}">{{ _("Message") }} <span class="badge">{{g.message_num}}</span></a>
-                        </li>
-                        <li class="page-scroll">
-                            <a href="/chat_box">{{ _("Chat") }}</a>
-                        </li>
-                        <li class="page-scroll">
-                            <a href="/project">{{ _("Project") }}</a>
-                        </li>
-                        <li class="page-scroll">
-                            <a href="/search">{{ _("Search") }}</a>
-                        </li>
-                        <!--
-                        <li class="page-scroll">
-                            <a href="/project_slider">Slider</a>
-                        </li>
-                        -->
-			            <li class="page-scroll">
-                            {% if g.user %}
-			                <a href="/users">{{ _("Community") }}</a>
-                            {% endif %}
-			            </li>
-                        <!--
-                        <li class="page-scroll">
-                            <a href="/">{{ _("Home") }}</a>
-                        </li>
-                        -->
-                        {% if g.user and g.isowner %}
-                        <li class="page-scroll">
-                            <a href="/project_manage">{{ _("My Projects") }}</a>
-                        </li>
-                        <!--
-                        <li class="page-scroll">
-                            <a href="/project_new">{{ _('Create Project') }}</a>
-                        </li>
-                        -->
-                        {% endif %}
-                        {% if g.user and g.admin_power %}
-                        <li class="page-scroll">
-                            <a href="/admin">{{ _("Admin") }}</a>
-                        </li>
-                        {% endif %}
-                    </ul>
-                </div>
-                <!-- /.navbar-collapse -->
-            </div>
-            <!-- /.container-fluid -->
-        </nav>
+          <!-- Collect the nav links, forms, and other content for toggling -->
+          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+              <li class="hidden">
+                <a href="#page-top"></a>
+              </li>
+              <li class="page-scroll">
+                {% if g.user %}
+                  <a href="{{ url_for('logout') }}">{{ _("sign out") }} [{{ g.user.username }}]</a>
+                {% else %}
+                  <a href="{{ url_for('login') }}">{{ _("Sign in") }}</a>
+                {% endif %}
+              </li>
+	          <li class="page-scroll">
+                {% if g.user %}
+                  <a href="{{ url_for('profile') }}">{{ _("Profile") }}</a>
+                {% endif %}
+              </li>
+              <li class="page-scroll">
+                {% if not g.user %}
+                  <a href="{{ url_for('role') }}">{{ _("Sign up") }}</a>
+                {% endif %}
+              </li>
+              <li class="page-scroll">
+                <a href="{{ url_for('message_box') }}">{{ _("Message") }} <span class="badge">{{g.message_num}}</span></a>
+              </li>
+              <li class="page-scroll">
+                <a href="/chat_box">{{ _("Chat") }}</a>
+              </li>
+              <li class="page-scroll">
+                <a href="/project">{{ _("Project") }}</a>
+              </li>
+              <li class="page-scroll">
+                <a href="/search">{{ _("Search") }}</a>
+              </li>
+              <!--
+              <li class="page-scroll">
+                  <a href="/project_slider">Slider</a>
+              </li>
+              -->
+	          <li class="page-scroll">
+                {% if g.user %}
+	            <a href="/users">{{ _("Community") }}</a>
+                {% endif %}
+	          </li>
+              <!--
+              <li class="page-scroll">
+                  <a href="/">{{ _("Home") }}</a>
+              </li>
+              -->
+              {% if g.user and g.isowner %}
+              <li class="page-scroll">
+                <a href="/project_manage">{{ _("My Projects") }}</a>
+              </li>
+              <li class="page-scroll">
+                <a href="/search_candidates">{{ _("View Candidates") }}</a>
+              </li>
+              <!--
+              <li class="page-scroll">
+                  <a href="/project_new">{{ _('Create Project') }}</a>
+              </li>
+              -->
+              {% endif %}
+              {% if g.user and g.admin_power %}
+              <li class="page-scroll">
+                <a href="/admin">{{ _("Admin") }}</a>
+              </li>
+              {% endif %}
+            </ul>
+          </div>
+          <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container-fluid -->
+      </nav>
     </div>
     <div class="body">
     {% with flashes = get_flashed_messages() %}
@@ -142,9 +145,9 @@
     -->
     <!-- Scroll to Top Button (Only visible on small and extra-small screen sizes) -->
     <div class="scroll-top page-scroll visible-lg visible-md visible-xs visble-sm">
-        <a class="btn btn-primary" href="#page-top">
-            <i class="fa fa-chevron-up"></i>
-        </a>
+      <a class="btn btn-primary" href="#page-top">
+        <i class="fa fa-chevron-up"></i>
+      </a>
     </div>
 
     <!-- jQuery -->
@@ -159,7 +162,8 @@
     <script src="js/cbpAnimatedHeader.js"></script>
 
     {% if g.user %}
-    <script type="text/javascript" src="http://cdn.bootcss.com/pnotify/2.0.0/pnotify.all.min.js"></script>    <link href="http://cdn.bootcss.com/pnotify/2.0.0/pnotify.all.min.css" media="all" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="http://cdn.bootcss.com/pnotify/2.0.0/pnotify.all.min.js"></script>    
+    <link href="http://cdn.bootcss.com/pnotify/2.0.0/pnotify.all.min.css" media="all" rel="stylesheet" type="text/css" />
     <script src="js/AV.push.js"></script>
     <script>
       var appId = "{{ LC_APP_ID }}";
@@ -168,12 +172,12 @@
     <script src="js/push.js"></script>
     {#
     <script type="text/javascript">
-        $(function(){
-            new PNotify({
-                title: 'Regular Notice',
-                text: 'Check me out! I\'m a notice.'
-            });
+      $(function(){
+        new PNotify({
+          title: 'Regular Notice',
+          text: 'Check me out! I\'m a notice.'
         });
+      });
     </script>
     #}
     {% endif %}
