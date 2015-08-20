@@ -26,6 +26,29 @@
   </div>
  
   <h6>{{ _('Role I am applying for') }}</h6>
+  <p>{{ project.title }}</p>
+  <p>{{ _('Tags') }}:</p>
+  <p>{{ _('Location') }}: {{ project.location}}</p>
   <p>{{ project.desp }}</p>
+  <p></p>
+
+  <h6>{{ _('What I can offer (1 min pitch)') }}</h6>
+  <p id="pitch_review"></p>
+  <p></p>
+
+  <h6>{{ _('Current role') }}</h6>
+  <p>{{ user.title }}, {{ user.school }}</p>
+  <p></p>
+
+  <p>-- {{ _('Rest of profile') }} --</p>
+  <p></p>
+
+  <h6>{{ _('Previous company') }}</h6>  
+  <p></p>
+
+
 
 </div>
+<script>
+  $('#pitch_review').text($("textarea#message_send").val())
+</script>
