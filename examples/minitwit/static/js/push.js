@@ -14,25 +14,25 @@ function createNew() {
 
     // 可以链式调用
     push.open(function() {
-        showLog('可以接收推送');
+        showLogNPN('可以接收推送');
         //showLogPN('欢迎')
     });
 
     // 监听推送消息
     push.on('message', function(data) {
-        showLog('message');
-        showLog(JSON.stringify(data));
+        showLogNPN('message');
+        showLogNPN(JSON.stringify(data));
     });
 
     // receive 方法是监听 message 的快捷方法
     push.receive(function(data) {
-        showLog('Receive 方法显示和监听 message 事件一致');
-        showLog(JSON.stringify(data));
+        showLogNPN('Receive 方法显示和监听 message 事件一致');
+        showLogNPN(JSON.stringify(data));
     });
 
     // 监听网络异常
     push.on('reuse', function() {
-        showLog('网络中断正在重试');
+        showLogNPN('网络中断正在重试');
     });
 
     // 发送一条推送
@@ -42,14 +42,14 @@ function createNew() {
         data: {LeanCloud: 123}
     }, function(result) {
         if (result) {
-            showLog('推送成功发送');
+            showLogNPN('推送成功发送');
         } else {
-            showLog('error');
+            showLogNPN('error');
         }
     });
 
     push.subscribe(['test123'], function(data) {
-        showLog('关注新的频道');
+        showLogNPN('关注新的频道');
     });
 
     push.send({
@@ -65,7 +65,7 @@ function createNew() {
         });
 
         push.unsubscribe(['test123'], function(data) {
-            showLog('取消关注新的频道');
+            showLogNPN('取消关注新的频道');
 
             push.send({
                 channels: ['test123'],
@@ -77,7 +77,7 @@ function createNew() {
     */
 }
 
-function showLog(msg) {
+function showLogNPN(msg) {
     console.log(msg);
 }
 
