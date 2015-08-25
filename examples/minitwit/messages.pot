@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2015-08-12 05:54+0000\n"
+"POT-Creation-Date: 2015-08-25 05:01+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,75 +17,79 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 1.3\n"
 
-#: minitwit.py:661
+#: minitwit.py:710 minitwit.py:762
+msgid "Successfully added your basic profile!"
+msgstr ""
+
+#: minitwit.py:738 minitwit.py:801
 msgid "You have successfully created your project"
 msgstr ""
 
-#: minitwit.py:685
+#: minitwit.py:825
 msgid "You have successfully updated your project"
 msgstr ""
 
-#: minitwit.py:720
+#: minitwit.py:860
 msgid "You have successfully updated your profile"
 msgstr ""
 
-#: minitwit.py:956
+#: minitwit.py:1197
 msgid "hahaha"
 msgstr ""
 
-#: minitwit.py:1068
+#: minitwit.py:1309
 msgid "You were logged in"
 msgstr ""
 
-#: minitwit.py:1072
+#: minitwit.py:1313
 msgid "Wrong with phone number or password"
 msgstr ""
 
-#: minitwit.py:1090
+#: minitwit.py:1331
 msgid "An email sent with password reset intro"
 msgstr ""
 
-#: minitwit.py:1099
+#: minitwit.py:1340
 msgid "Token expired"
 msgstr ""
 
-#: minitwit.py:1106 minitwit.py:1142
+#: minitwit.py:1347 minitwit.py:1383
 msgid "The two passwords do not match"
 msgstr ""
 
-#: minitwit.py:1111
+#: minitwit.py:1352
 msgid "Reset password token expired."
 msgstr ""
 
-#: minitwit.py:1118
+#: minitwit.py:1359
 msgid "You were successfully reset your password and you can login now"
 msgstr ""
 
-#: minitwit.py:1135
+#: minitwit.py:1376
 msgid "You have to enter a phone number"
 msgstr ""
 
-#: minitwit.py:1138
+#: minitwit.py:1379
 msgid "You have to enter a valid email address"
 msgstr ""
 
-#: minitwit.py:1140
+#: minitwit.py:1381
 msgid "You have to enter a password"
 msgstr ""
 
-#: minitwit.py:1168
+#: minitwit.py:1409
 msgid "Welcome to Alancer"
 msgstr ""
 
-#: minitwit.py:1172
+#: minitwit.py:1413
 msgid "You were successfully registered and can login now"
 msgstr ""
 
-#: minitwit.py:1188
+#: minitwit.py:1429
 msgid "You were logged out"
 msgstr ""
 
-#: templates/admin.html:2 templates/admin.html:14 templates/alayout.html:111
+#: templates/admin.html:2 templates/admin.html:14 templates/alayout.html:115
 #: templates/project_swiper.html:155
 msgid "Admin"
 msgstr ""
@@ -94,90 +98,103 @@ msgstr ""
 msgid "Project List"
 msgstr ""
 
-#: templates/alayout.html:46 templates/login.html:51
+#: templates/alayout.html:47 templates/login.html:51
 #: templates/project_swiper.html:93 templates/register.html:43
 #: templates/role.html:43
 msgid "Start"
 msgstr ""
 
-#: templates/alayout.html:57 templates/login.html:62
+#: templates/alayout.html:58 templates/login.html:62
 #: templates/project_swiper.html:104 templates/register.html:54
 #: templates/role.html:54
 msgid "sign out"
 msgstr ""
 
-#: templates/alayout.html:59 templates/login.html:64 templates/login.html:95
+#: templates/alayout.html:60 templates/login.html:64 templates/login.html:95
 #: templates/project_swiper.html:106 templates/register.html:56
 #: templates/role.html:56
 msgid "Sign in"
 msgstr ""
 
-#: templates/alayout.html:64 templates/profile.html:8 templates/profile.html:94
-#: templates/profile_client.html:8 templates/project_swiper.html:111
-#: templates/upc.html:16
+#: templates/alayout.html:65 templates/profile.html:8 templates/profile.html:94
+#: templates/profile_candidate.html:4
+#: templates/profile_candidate_confirm.html:13 templates/profile_client.html:8
+#: templates/profile_employer.html:4 templates/profile_employer_confirm.html:13
+#: templates/project_swiper.html:111 templates/upc.html:16
 msgid "Profile"
 msgstr ""
 
-#: templates/alayout.html:69 templates/login.html:69
+#: templates/alayout.html:70 templates/login.html:69
 #: templates/project_swiper.html:116 templates/register.html:61
 #: templates/register.html:101 templates/role.html:61
 msgid "Sign up"
 msgstr ""
 
-#: templates/alayout.html:73 templates/message.html:2
-#: templates/project_swiper.html:120
-msgid "Message"
-msgstr ""
-
-#: templates/alayout.html:76 templates/chat.html:27 templates/chat.html:30
-#: templates/project_swiper.html:123 templates/user.html:88
-#: templates/user_list.html:93
-msgid "Chat"
-msgstr ""
-
-#: templates/alayout.html:79 templates/project_list.html:9
-#: templates/project_one.html:2 templates/project_swiper.html:126
-msgid "Project"
-msgstr ""
-
-#: templates/alayout.html:82 templates/search.html:2
-msgid "Search"
-msgstr ""
-
-#: templates/alayout.html:91 templates/project_swiper.html:135
-msgid "Community"
-msgstr ""
-
-#: templates/alayout.html:96 templates/login.html:74
-#: templates/project_swiper.html:140 templates/register.html:66
-#: templates/role.html:66
-msgid "Home"
-msgstr ""
-
-#: templates/alayout.html:101 templates/project_manage.html:2
+#: templates/alayout.html:75 templates/project_manage.html:2
 #: templates/project_manage.html:22 templates/project_swiper.html:145
 #: templates/publish.html:22
 msgid "My Projects"
 msgstr ""
 
-#: templates/alayout.html:105 templates/project_swiper.html:149
+#: templates/alayout.html:78
+msgid "View Candidates"
+msgstr ""
+
+#: templates/alayout.html:82 templates/project_swiper.html:149
 msgid "Create Project"
 msgstr ""
 
-#: templates/apply.html:2 templates/project_list.html:36
+#: templates/alayout.html:87 templates/message.html:2
+#: templates/project_swiper.html:120
+msgid "Message"
+msgstr ""
+
+#: templates/alayout.html:90 templates/chat.html:27 templates/chat.html:30
+#: templates/project_swiper.html:123 templates/search_candidates_result.html:63
+#: templates/user.html:88 templates/user_list.html:93
+msgid "Chat"
+msgstr ""
+
+#: templates/alayout.html:93 templates/project_list.html:9
+#: templates/project_list_core.html:4 templates/project_one.html:2
+#: templates/project_swiper.html:126
+msgid "Project"
+msgstr ""
+
+#: templates/alayout.html:96 templates/search.html:2 templates/search1.html:40
+#: templates/search_candidates.html:46
+msgid "Search"
+msgstr ""
+
+#: templates/alayout.html:105 templates/project_swiper.html:135
+msgid "Community"
+msgstr ""
+
+#: templates/alayout.html:110 templates/login.html:74
+#: templates/project_swiper.html:140 templates/register.html:66
+#: templates/role.html:66
+msgid "Home"
+msgstr ""
+
+#: templates/apply.html:2 templates/project_list.html:39
+#: templates/project_list_core.html:36
 msgid "Apply"
 msgstr ""
 
-#: templates/apply.html:8
+#: templates/apply.html:8 templates/apply_for_jd.html:38
+#: templates/apply_new.html:8
 msgid "Applying"
 msgstr ""
 
-#: templates/apply.html:15 templates/profile.html:50
+#: templates/apply.html:15 templates/apply_new.html:16
+#: templates/profile.html:50 templates/review_for_jd.html:10
 msgid "School"
 msgstr ""
 
-#: templates/apply.html:16 templates/profile.html:56
-#: templates/profile_client.html:62
+#: templates/apply.html:16 templates/apply_new.html:17
+#: templates/profile.html:56 templates/profile_candidate.html:15
+#: templates/profile_client.html:62 templates/profile_employer.html:15
+#: templates/review_for_jd.html:11
 msgid "City"
 msgstr ""
 
@@ -185,7 +202,8 @@ msgstr ""
 msgid "Joined"
 msgstr ""
 
-#: templates/apply.html:17 templates/project_list.html:20
+#: templates/apply.html:17 templates/jd_employer_confirm.html:27
+#: templates/project_list.html:20 templates/project_list_core.html:15
 #: templates/project_one.html:14
 msgid "d ago"
 msgstr ""
@@ -203,12 +221,45 @@ msgstr ""
 msgid "Submit"
 msgstr ""
 
-#: templates/apply.html:37 templates/user.html:55 templates/user_list.html:75
+#: templates/apply.html:37 templates/apply_new.html:28
+#: templates/profile_candidate_confirm.html:26
+#: templates/profile_employer_confirm.html:26 templates/review_for_jd.html:22
+#: templates/review_for_jd.html:50 templates/search_candidates_result.html:45
+#: templates/user.html:55 templates/user_list.html:75
 msgid "About me"
 msgstr ""
 
-#: templates/chat.html:45 templates/message.html:123
+#: templates/apply_for_jd.html:2
+msgid "Apply for JD"
+msgstr ""
+
+#: templates/apply_for_jd.html:39
+msgid "New job application"
+msgstr ""
+
+#: templates/apply_for_jd.html:40
+msgid "Your 1 minute pitch: why should this hiring manager consider you?"
+msgstr ""
+
+#: templates/apply_for_jd.html:46 templates/message.html:119
+msgid "Input your message here"
+msgstr ""
+
+#: templates/apply_for_jd.html:50 templates/chat.html:45
+#: templates/message.html:123
 msgid "Send"
+msgstr ""
+
+#: templates/apply_new.html:2 templates/review_for_jd.html:2
+msgid "Review for JD"
+msgstr ""
+
+#: templates/apply_new.html:9 templates/review_for_jd.html:3
+msgid "Confirm your JD application"
+msgstr ""
+
+#: templates/apply_new.html:34 templates/review_for_jd.html:28
+msgid "Role I am applying for"
 msgstr ""
 
 #: templates/chat_box.html:2 templates/chat_box.html:16
@@ -231,8 +282,110 @@ msgstr ""
 msgid "Please provide the valid email"
 msgstr ""
 
-#: templates/forgotpassword.html:25
+#: templates/forgotpassword.html:25 templates/review_for_jd.html:68
 msgid "Confirm"
+msgstr ""
+
+#: templates/jd_done.html:2
+msgid "JD Posted"
+msgstr ""
+
+#: templates/jd_done.html:7
+msgid "Thank you."
+msgstr ""
+
+#: templates/jd_done.html:9
+msgid "You have successfully created a new employer account and publish a JD."
+msgstr ""
+
+#: templates/jd_done.html:11
+msgid "Go to Alancer JDs"
+msgstr ""
+
+#: templates/jd_employer_confirm.html:7
+msgid "Drag your project/company logo here---->"
+msgstr ""
+
+#: templates/jd_employer_confirm.html:13
+msgid "JD Confirm"
+msgstr ""
+
+#: templates/jd_employer_confirm.html:30 templates/project_list.html:23
+#: templates/project_list_core.html:18 templates/project_one.html:17
+msgid "Want to launch"
+msgstr ""
+
+#: templates/jd_employer_confirm.html:31 templates/project_list.html:24
+#: templates/project_list_core.html:19 templates/project_one.html:18
+msgid "Get"
+msgstr ""
+
+#: templates/jd_employer_confirm.html:32 templates/project_list.html:25
+#: templates/project_list_core.html:20 templates/project_one.html:19
+msgid "Valid time"
+msgstr ""
+
+#: templates/jd_employer_confirm.html:39 templates/profile_candidate.html:13
+#: templates/profile_candidate_complete.html:17
+#: templates/profile_client.html:50 templates/profile_employer.html:13
+#: templates/project_list.html:32 templates/project_list_core.html:27
+#: templates/project_one.html:26
+msgid "Company"
+msgstr ""
+
+#: templates/jd_employer_confirm.html:46
+msgid "Publish JD"
+msgstr ""
+
+#: templates/jd_info.html:4
+msgid "POST JD"
+msgstr ""
+
+#: templates/jd_info.html:9
+msgid "Now create the JD you want to post."
+msgstr ""
+
+#: templates/jd_info.html:11
+msgid "Company name"
+msgstr ""
+
+#: templates/jd_info.html:12 templates/review_for_jd.html:31
+msgid "Location"
+msgstr ""
+
+#: templates/jd_info.html:13
+msgid "Company logo"
+msgstr ""
+
+#: templates/jd_info.html:14
+msgid "Role tag"
+msgstr ""
+
+#: templates/jd_info.html:15
+msgid "Start date"
+msgstr ""
+
+#: templates/jd_info.html:16
+msgid "Duration"
+msgstr ""
+
+#: templates/jd_info.html:17
+msgid "Project pitch: why should people care?"
+msgstr ""
+
+#: templates/jd_info.html:18
+msgid "Salary or other incentives?"
+msgstr ""
+
+#: templates/jd_info.html:19
+msgid "Other requirements? (optional, hidden by default)"
+msgstr ""
+
+#: templates/jd_info.html:20 templates/profile_candidate.html:16
+#: templates/profile_candidate_complete.html:45
+#: templates/profile_employer.html:16
+#: templates/profile_employer_confirm.html:29
+msgid "Next"
 msgstr ""
 
 #: templates/login.html:11
@@ -266,10 +419,6 @@ msgstr ""
 
 #: templates/message.html:89 templates/message_more.html:36
 msgid "There's no message so far."
-msgstr ""
-
-#: templates/message.html:119
-msgid "Input your message here"
 msgstr ""
 
 #: templates/message_box.html:2 templates/message_box.html:16
@@ -377,21 +526,77 @@ msgstr ""
 msgid " characters remaining"
 msgstr ""
 
+#: templates/profile_candidate.html:9
+msgid "Let's setup your job seeker profile."
+msgstr ""
+
+#: templates/profile_candidate.html:10 templates/profile_employer.html:10
+msgid "All fields are required."
+msgstr ""
+
+#: templates/profile_candidate.html:12
+#: templates/profile_candidate_complete.html:16
+#: templates/profile_employer.html:12
+msgid "Name"
+msgstr ""
+
+#: templates/profile_candidate.html:14
+#: templates/profile_candidate_complete.html:18
+#: templates/profile_client.html:56 templates/profile_employer.html:14
+#: templates/publish.html:54
+msgid "Title"
+msgstr ""
+
+#: templates/profile_candidate_complete.html:7
+msgid "Complete Profile"
+msgstr ""
+
+#: templates/profile_candidate_complete.html:12
+msgid ""
+"Complete your profile in order to submit your application. See example "
+"profile."
+msgstr ""
+
+#: templates/profile_candidate_complete.html:13
+msgid "*Required"
+msgstr ""
+
+#: templates/profile_candidate_complete.html:19 templates/review_for_jd.html:46
+msgid "Previous company"
+msgstr ""
+
+#: templates/profile_candidate_complete.html:20
+msgid "About me intro"
+msgstr ""
+
+#: templates/profile_candidate_complete.html:21
+msgid "Education"
+msgstr ""
+
+#: templates/profile_candidate_complete.html:23
+msgid "Profile tags. These help your profile more visible in candidates search."
+msgstr ""
+
+#: templates/profile_candidate_confirm.html:7
+#: templates/profile_employer_confirm.html:7
+msgid "Drag your image here---->"
+msgstr ""
+
+#: templates/profile_candidate_confirm.html:18
+#: templates/profile_employer_confirm.html:18
+msgid "Confirm profile"
+msgstr ""
+
+#: templates/profile_candidate_confirm.html:29
+msgid "Get started"
+msgstr ""
+
 #: templates/profile_client.html:46
 msgid "Du"
 msgstr ""
 
-#: templates/profile_client.html:50 templates/project_list.html:32
-#: templates/project_one.html:26
-msgid "Company"
-msgstr ""
-
 #: templates/profile_client.html:52
 msgid "Google"
-msgstr ""
-
-#: templates/profile_client.html:56 templates/publish.html:54
-msgid "Title"
 msgstr ""
 
 #: templates/profile_client.html:58
@@ -404,6 +609,10 @@ msgstr ""
 
 #: templates/profile_client.html:102
 msgid "Legend and more..."
+msgstr ""
+
+#: templates/profile_employer.html:9
+msgid "Let's setup your employer profile."
 msgstr ""
 
 #: templates/project_info.html:8
@@ -447,23 +656,11 @@ msgstr ""
 msgid "June to August"
 msgstr ""
 
-#: templates/project_list.html:23 templates/project_one.html:17
-msgid "Want to launch"
-msgstr ""
-
-#: templates/project_list.html:24 templates/project_one.html:18
-msgid "Get"
-msgstr ""
-
-#: templates/project_list.html:25 templates/project_one.html:19
-msgid "Valid time"
-msgstr ""
-
-#: templates/project_list.html:39
+#: templates/project_list.html:42 templates/project_list_core.html:40
 msgid "Applied at"
 msgstr ""
 
-#: templates/project_list.html:46
+#: templates/project_list.html:49 templates/project_list_core.html:47
 msgid "There's no project so far."
 msgstr ""
 
@@ -579,6 +776,34 @@ msgstr ""
 msgid "Change Password"
 msgstr ""
 
+#: templates/review_for_jd.html:30
+msgid "Tags"
+msgstr ""
+
+#: templates/review_for_jd.html:35
+msgid "What I can offer (1 min pitch)"
+msgstr ""
+
+#: templates/review_for_jd.html:39
+msgid "Current role"
+msgstr ""
+
+#: templates/review_for_jd.html:43
+msgid "Rest of profile"
+msgstr ""
+
+#: templates/review_for_jd.html:54
+msgid "More info"
+msgstr ""
+
+#: templates/review_for_jd.html:61
+msgid "My urls"
+msgstr ""
+
+#: templates/review_for_jd.html:85
+msgid "Application submitted."
+msgstr ""
+
 #: templates/role.html:13
 msgid "Role?"
 msgstr ""
@@ -611,16 +836,73 @@ msgstr ""
 msgid "Custom search"
 msgstr ""
 
-#: templates/search1.html:2
+#: templates/search1.html:7
 msgid "Search1"
 msgstr ""
 
-#: templates/search1.html:6
+#: templates/search1.html:11
 msgid "Confirm your search criteria"
 msgstr ""
 
-#: templates/search1.html:49
-msgid "View search results"
+#: templates/search1.html:36 templates/search_candidates.html:42
+msgid "Keywords"
+msgstr ""
+
+#: templates/search1.html:44 templates/search_candidates.html:50
+msgid "Alert me of new matching jobs."
+msgstr ""
+
+#: templates/search1.html:46 templates/search_candidates.html:52
+msgid "Frequency"
+msgstr ""
+
+#: templates/search1.html:48 templates/search_candidates.html:54
+msgid "Every day"
+msgstr ""
+
+#: templates/search1.html:49 templates/search_candidates.html:55
+msgid "Each week"
+msgstr ""
+
+#: templates/search_candidates.html:7
+msgid "Search Candidates"
+msgstr ""
+
+#: templates/search_candidates.html:11
+msgid "What kind of candidates would you like to search for?"
+msgstr ""
+
+#: templates/search_candidates_result.html:5
+msgid "Search Candidates Result"
+msgstr ""
+
+#: templates/search_candidates_result.html:31 templates/user.html:36
+#: templates/user_list.html:56
+msgid "Developer"
+msgstr ""
+
+#: templates/search_candidates_result.html:35 templates/user.html:45
+#: templates/user_list.html:65
+msgid "Approved"
+msgstr ""
+
+#: templates/search_candidates_result.html:39 templates/user.html:49
+#: templates/user_list.html:69
+msgid "Pending"
+msgstr ""
+
+#: templates/search_candidates_result.html:51 templates/user.html:76
+#: templates/user_list.html:81
+msgid "Reference url 1"
+msgstr ""
+
+#: templates/search_candidates_result.html:57 templates/user.html:82
+#: templates/user_list.html:87
+msgid "Reference url 2"
+msgstr ""
+
+#: templates/search_candidates_result.html:70
+msgid "No candidate fulfills your criteria so far."
 msgstr ""
 
 #: templates/user.html:2
@@ -631,20 +913,8 @@ msgstr ""
 msgid "User"
 msgstr ""
 
-#: templates/user.html:36 templates/user_list.html:56
-msgid "Developer"
-msgstr ""
-
 #: templates/user.html:40 templates/user_list.html:60
 msgid "Project owner"
-msgstr ""
-
-#: templates/user.html:45 templates/user_list.html:65
-msgid "Approved"
-msgstr ""
-
-#: templates/user.html:49 templates/user_list.html:69
-msgid "Pending"
 msgstr ""
 
 #: templates/user.html:63
@@ -653,14 +923,6 @@ msgstr ""
 
 #: templates/user.html:69
 msgid "Owner title"
-msgstr ""
-
-#: templates/user.html:76 templates/user_list.html:81
-msgid "Reference url 1"
-msgstr ""
-
-#: templates/user.html:82 templates/user_list.html:87
-msgid "Reference url 2"
 msgstr ""
 
 #: templates/user_list.html:2 templates/user_list.html:10
