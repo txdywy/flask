@@ -1,0 +1,74 @@
+<div class="container">
+  <div class="row">
+    <div class="col-lg-12 text-center">
+      <h2>
+        {{ _('Search Candidates Result') }}
+      </h2>
+      <hr class="star-primary">
+    </div>
+  </div>
+  <div class="row">
+    {% for user in users %}
+    <div>
+      <div class="col-sm-4 portfolio-item" >
+        <img autofocus src="{{ user.icon }}" class="img-responsive img-centered img-thumbnail img-circle" alt="">
+        <div id="loctimebox">
+          <p class="alignleft" style="float:left;">
+            <i>
+              {{ user.username }}
+            </i>
+          </p>
+          <p class="alignright" style="float:right;">
+            <i>
+              {{ user.school }}, {{ user.city }}
+            </i>
+          </p>
+        </div>
+        <div style="clear: both;">
+        </div>
+        <p>
+          <span class="label label-info">
+            {{ _('Developer') }}
+          </span>
+          {% if user.approved == 1 %}
+          <span class="label label-danger glyphicon glyphicon-thumbs-up">
+            {{ _('Approved') }}
+          </span>
+          {% else %}
+          <span class="label label-warning glyphicon glyphicon-pushpin">
+            {{ _('Pending') }}
+          </span>
+          {% endif %}
+        </p>
+        <p>
+          <b>
+            {{ _('About me') }}: 
+          </b>
+          {{ user.profile }}
+        </p>
+        <p>
+          <b>
+            {{ _('Reference url 1') }}: 
+          </b>
+          {{ user.refer1 }}
+        </p>
+        <p>
+          <b>
+            {{ _('Reference url 2') }}: 
+          </b>
+          {{ user.refer2 }}
+        </p>
+        <form class="form-horizontal" role="form" method="post" action="/chat">
+          <input class="form-control" name="other_user_id" id = "other_user_id" value="{{ user.user_id }}" type="hidden">
+          <button class="btn btn-primary" type="submit">{{ _('Chat') }}</button>
+        </form>
+     </div>
+    </div>
+    {% else %}
+    <li>
+      <em>
+        {{ _("No candidate fulfills your criteria so far.") }}
+      </em>
+      {% endfor %}
+    </div>
+</div>

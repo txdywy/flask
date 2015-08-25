@@ -70,6 +70,19 @@
                   <a href="{{ url_for('role') }}">{{ _("Sign up") }}</a>
                 {% endif %}
               </li>
+              {% if g.user and g.isowner %}
+              <li class="page-scroll">
+                <a href="/project_manage">{{ _("My Projects") }}</a>
+              </li>
+              <li class="page-scroll">
+                <a href="/search_candidates">{{ _("View Candidates") }}</a>
+              </li>
+              <!--
+              <li class="page-scroll">
+                  <a href="/project_new">{{ _('Create Project') }}</a>
+              </li>
+              -->
+              {% endif %}
               <li class="page-scroll">
                 <a href="{{ url_for('message_box') }}">{{ _("Message") }} <span class="badge">{{g.message_num}}</span></a>
               </li>
@@ -97,19 +110,6 @@
                   <a href="/">{{ _("Home") }}</a>
               </li>
               -->
-              {% if g.user and g.isowner %}
-              <li class="page-scroll">
-                <a href="/project_manage">{{ _("My Projects") }}</a>
-              </li>
-              <li class="page-scroll">
-                <a href="/search_candidates">{{ _("View Candidates") }}</a>
-              </li>
-              <!--
-              <li class="page-scroll">
-                  <a href="/project_new">{{ _('Create Project') }}</a>
-              </li>
-              -->
-              {% endif %}
               {% if g.user and g.admin_power %}
               <li class="page-scroll">
                 <a href="/admin">{{ _("Admin") }}</a>

@@ -4,11 +4,11 @@
 <link rel='stylesheet' href='//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.7.3/css/bootstrap-select.min.css' type='text/css' media='all' />
 <script>  $('.selectpicker').selectpicker();</script>
 {% endblock headjs %}
-{% block title %}{{ _('Search1') }}{% endblock %}
+{% block title %}{{ _('Search Candidates') }}{% endblock %}
 {% block body %}
   <section id="portfolio">
     <div class="container">
-      <h4>{{ _('Confirm your search criteria') }}</h4>
+      <h4>{{ _('What kind of candidates would you like to search for?') }}</h4>
       
       <div class="row-fluid" align="center">      
         <select class="selectpicker show-tick" data-style="btn-warning" id="s1">
@@ -30,10 +30,16 @@
           <option>UX</option>
           <option>Backend</option>
         </select>
+        <select class="selectpicker show-tick" data-style="btn-default" id="s4">
+          <option>Senior</option>
+          <option>Junior</option>
+          <option>Manager</option>
+          <option>Principle</option>
+        </select>
       <div>
 
       <p></p>
-      <input type="text" class="form-control sm-4" placeholder="{{ _('Keywords') }}" id="s4"/>
+      <input type="text" class="form-control sm-4" placeholder="{{ _('Keywords') }}" id="s5"/>
       <span class="input-group-btn">
         <button class="btn btn-danger sendbutton" type="button">
           <i class="glyphicon glyphicon-search"></i>
@@ -70,12 +76,13 @@
   window.jQuery(document).ready(function($) {
     $(".sendbutton").click(function() {
       $.ajax({
-        url: '/search2',
+        url: '/search_candidates1',
         type: 'POST',
         data: {'s1': $(".selectpicker#s1").val(),
                's2': $(".selectpicker#s2").val(),
                's3': $(".selectpicker#s3").val(),
-               's4': $("#s4").val(),
+               's4': $(".selectpicker#s3").val(),
+               's5': $("#s5").val(),
               },
         success: function (result) {
             //alert(result);

@@ -280,6 +280,7 @@ def before_request():
         g.user = User.query.get(session['user_id'])
         g.admin_power = g.user.power & User.POWER_ADMIN
         g.isowner = g.user.role & User.USER_CLIENT
+        #print '===========', g.isowner,g.user.role, vars(g.user)
         g.message_num = get_user_message_num(g.user.user_id)
 
 @app.route('/wx', methods=['GET', 'POST'])
@@ -1140,6 +1141,26 @@ def search2():
     #print '----',pas
     #print '====',pats
     return render_template('project_list_core.html', cds=cds, projects=projects, pas=pas, pats=pats, puds=puds, pics=pics)
+
+
+@app.route('/search_candidates', methods=['GET'])
+@login_required
+def search_candidates():
+    return render_template('search_candidates.html')
+
+
+@app.route('/search_candidates1', methods=['POST'])
+@login_required
+def search_candidates1():
+    s1 = request.form['s1']
+    s2 = request.form['s2']
+    s3 = request.form['s3']
+    s4 = request.form['s4']
+    s5 = request.form['s5']
+    user_id = session.get('user_id')
+    users = User.query.filter_by(role=User.USER_STUDENT).filter(or_(User.city.like("%" + s2 + "%"),
+                                                                    User.profile.like("%" + s1 + s3 + s4 + s5 + "%"))).all()
+    return render_template('search_candidates_result.html', users=users)
 
 
 @app.route('/like', methods=['GET', 'POST'])
