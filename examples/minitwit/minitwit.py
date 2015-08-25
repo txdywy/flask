@@ -697,6 +697,18 @@ def profile():
         #return render_template('profile.html', user=user)
 
 
+@app.route('/about_me')
+@login_required
+def about_me():
+    user_id = session['user_id']
+    user = User.query.get(user_id)
+    if user.role == User.USER_CLIENT:
+        client = Client.query.filter_by(user_id=user.user_id).first()
+        return render_template('profile_client.html', user=user, client=client)
+    else:
+        return render_template('profile.html', user=user)
+
+
 @app.route('/add_candidate_info', methods=['POST'])
 @login_required
 def add_candidate_info():
