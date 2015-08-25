@@ -390,7 +390,7 @@ def upload_user_icon():
     user_id = session.get('user_id')
     user = User.query.get(user_id)
     url = upload_img(request)
-    user.icon = lc_file.url
+    user.icon = url
     flush(user)
     return url
 

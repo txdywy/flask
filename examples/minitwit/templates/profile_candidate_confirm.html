@@ -6,7 +6,9 @@
   Dropzone.options.imgUpload = {
     dictDefaultMessage: "{{ _('Drag your image here---->') }}",
     acceptedFiles: "image/*", // Accept images only
-    //maxFiles: "1",
+    addRemoveLinks: "true",
+    //maxFiles: 1,
+    maxFilesize: 3,
   };
 </script>
 {% endblock headjs %}
