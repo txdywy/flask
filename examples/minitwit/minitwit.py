@@ -1450,6 +1450,12 @@ def uptoken():
     d = {'uptoken': qiniu_agent.get_qn_token()}
     return json.dumps(d)
 
+
+@app.route('/qn')
+def qn():
+    return render_template('qn.html')
+
+
 def dformat(d):
     return str(d)[:10]
 
