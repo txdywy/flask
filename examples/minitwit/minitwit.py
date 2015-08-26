@@ -84,6 +84,7 @@ except:
     print '----------------no baidu stat js loaded----------------'
 
 from flask.ext.babel import Babel, gettext as _, get_locale
+import qiniu_agent
 
 PROJECT_IMAGE_KEY_TEMPLATE = 'projects/%s'
 PROJECT_IMAGE_URL_TEMPLATE = 'https://s3-us-west-2.amazonaws.com/alancer-images/' + PROJECT_IMAGE_KEY_TEMPLATE
@@ -1444,6 +1445,10 @@ def logout():
     #return redirect(url_for('public_timeline'))
 
 
+@app.route('/uptoken')
+def uptoken():
+    d = {'uptoken': qiniu_agent.get_qn_token()}
+    return json.dumps(d)
 
 def dformat(d):
     return str(d)[:10]
