@@ -1,6 +1,10 @@
 from config import *
 from qiniu import Auth
-q = Auth(QN_ACCESS_KEY, QN_SECRET_KEY)
+try:
+    q = Auth(QN_ACCESS_KEY, QN_SECRET_KEY)
+except:
+    q = None
+    print "==========no qiniu config loaded========"
 bucket_name = 'udon'
 
 def get_qn_token():

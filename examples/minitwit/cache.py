@@ -36,4 +36,8 @@ def get(key):
 def delete(key):
     return rcache.delete(key)
 
-setnx = rcache.setnx
+try:
+    setnx = rcache.setnx
+except:
+    setnx = None
+    print '========= no setnx'
