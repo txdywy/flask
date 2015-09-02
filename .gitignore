@@ -9,3 +9,6 @@ dist
 _mailinglist
 .tox
 config
+logs
+alancer.db
+oim.tar.gz
