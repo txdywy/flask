@@ -28,7 +28,7 @@
     <form class="form-horizontal" role="form" id="project_form" method="post" action="/create_project">
 
       <div ng-controller="formController">
-        <img ng-init="formData.image='http://media-cache-ak0.pinimg.com/736x/3d/b0/4a/3db04ab7349e7f791d3819b57230751d.jpg'" ng-src="{{ formData.image|angular }}" autofocus class="avatar img-thumbnail img-responsive img-centered" alt="{{ _('no new icon') }}">
+        <img ng-init="formData.image='http://media-cache-ak0.pinimg.com/736x/3d/b0/4a/3db04ab7349e7f791d3819b57230751d.jpg'" ng-src="{{ formData.image|angular }}" autofocus class="avatar img-thumbnail img-responsive img-centered" width=300 height=300 alt="{{ _('no new icon') }}">
         <input class="form-control" name="image_url" id = "image_url" value="{{ formData.image|angular }}" type="hidden">
       </div>
 
