@@ -1,0 +1,1 @@
+uwsgi --http :8000 --module minitwit --callable app --check-static ./static/

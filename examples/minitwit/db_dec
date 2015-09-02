@@ -1,0 +1,1 @@
+openssl enc -des -d -a -in alancer.enc -out alancer.db
