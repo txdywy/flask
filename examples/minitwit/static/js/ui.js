@@ -325,12 +325,6 @@ FileProgress.prototype.setComplete = function(up, info) {
 
             var ie = Qiniu.detectIEVersion();
             if (!(ie && ie <= 9)) {
-                var exif = Qiniu.exif(res.key);
-                if (exif) {
-                    var exifLink = $('<a href="" target="_blank">查看exif</a>');
-                    exifLink.attr('href', url + '?exif');
-                    infoWrapper.append(exifLink);
-                }
 
                 var imageInfo = Qiniu.imageInfo(res.key);
                 var infoArea = $('<div/>');

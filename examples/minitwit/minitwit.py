@@ -1456,6 +1456,16 @@ def qn():
     return render_template('qn.html')
 
 
+@app.route('/up')
+def up():
+    return render_template('up.html')
+
+
+@app.route('/tup')
+def tup():
+    return render_template('tup.html')
+
+
 def dformat(d):
     return str(d)[:10]
 

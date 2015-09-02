@@ -1,3 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>七牛云存储 - JavaScript SDK</title>
+	<link href="favicon.ico" rel="shortcut icon">
+	<link rel="stylesheet" href="bootstrap/css/bootstrap.css">
+	<link rel="stylesheet" href="main.css">
+	<link rel="stylesheet" href="js/highlight/highlight.css">
+
+	<!--[if lt IE 9]>
+      <script src="js/Respond-1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+<div class="container">
+    <div class="col-md-6">
+        <input type="hidden" id="domain" value="http://7xlcr1.com1.z0.glb.clouddn.com/">
+        <input type="hidden" id="uptoken_url" value="/uptoken">
+        <div id="container">
+            <a class="btn btn-default btn-lg " id="pickfiles" href="#" >
+                <i class="glyphicon glyphicon-plus"></i>
+                <span>选择文件</span>
+            </a>
+        </div>
+        <div id="img_up"></div>
+    </div>
+</div>
+
+
+
+
+<script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/plupload/plupload.full.min.js"></script>
+<script type="text/javascript" src="js/plupload/i18n/zh_CN.js"></script>
+<script type="text/javascript" src="/js/ui.js"></script>
+<script type="text/javascript" src="/js/qiniu.js"></script>
+<script type="text/javascript" src="/js/highlight/highlight.js"></script>
+<script>
 /*global Qiniu */
 /*global plupload */
 /*global FileProgress */
@@ -57,6 +97,8 @@ $(function() {
                 var progress = new FileProgress(file, 'fsUploadProgress');
                 progress.setComplete(up, info);
                 console.log(info)
+                var res = $.parseJSON(info);
+                $('#img_up').append('<img src="'+$('#domain').val()+res.key+'" autofocus class="img-circle center-block" width=200 height=200 alt="...">')
             },
             'Error': function(up, err, errTip) {
                 $('table').show();
@@ -227,3 +269,6 @@ $(function() {
     });
 
 });
+</script>
+</body>
+</html>
