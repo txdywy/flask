@@ -395,6 +395,18 @@ def upload_user_icon():
     flush(user)
     return url
 
+QN_IMG_URL_PREFIX = "http://7xlcr1.com1.z0.glb.clouddn.com/%s"
+@app.route('/upload_user_icon_qn', methods=['POST'])
+@login_required
+def upload_user_icon_qn():
+    user_id = session.get('user_id')
+    user = User.query.get(user_id)
+    key = request.form['key']
+    url = QN_IMG_URL_PREFIX % key
+    user.icon = url
+    flush(user)
+    return url
+
 
 @app.route('/upload_employer_icon', methods=['POST'])
 @login_required
@@ -408,6 +420,22 @@ def upload_employer_icon():
     flush(user)
     flush(client)
     return url
+
+
+@app.route('/upload_employer_icon_qn', methods=['POST'])
+@login_required
+def upload_employer_icon_qn():
+    user_id = session.get('user_id')
+    user = User.query.get(user_id)
+    client = Client.query.filter_by(user_id=user_id).first()
+    key = request.form['key']
+    url = QN_IMG_URL_PREFIX % key
+    user.icon = url
+    client.icon = url
+    flush(user)
+    flush(client)
+    return url
+
 
 @app.route('/upload_jd_img', methods=['POST'])
 @login_required
