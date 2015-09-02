@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2015-08-25 05:01+0000\n"
+"POT-Creation-Date: 2015-09-02 16:19+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,75 +17,75 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 1.3\n"
 
-#: minitwit.py:710 minitwit.py:762
+#: minitwit.py:751 minitwit.py:803
 msgid "Successfully added your basic profile!"
 msgstr ""
 
-#: minitwit.py:738 minitwit.py:801
+#: minitwit.py:779 minitwit.py:842
 msgid "You have successfully created your project"
 msgstr ""
 
-#: minitwit.py:825
+#: minitwit.py:866
 msgid "You have successfully updated your project"
 msgstr ""
 
-#: minitwit.py:860
+#: minitwit.py:901
 msgid "You have successfully updated your profile"
 msgstr ""
 
-#: minitwit.py:1197
+#: minitwit.py:1238
 msgid "hahaha"
 msgstr ""
 
-#: minitwit.py:1309
+#: minitwit.py:1350
 msgid "You were logged in"
 msgstr ""
 
-#: minitwit.py:1313
+#: minitwit.py:1354
 msgid "Wrong with phone number or password"
 msgstr ""
 
-#: minitwit.py:1331
+#: minitwit.py:1372
 msgid "An email sent with password reset intro"
 msgstr ""
 
-#: minitwit.py:1340
+#: minitwit.py:1381
 msgid "Token expired"
 msgstr ""
 
-#: minitwit.py:1347 minitwit.py:1383
+#: minitwit.py:1388 minitwit.py:1424
 msgid "The two passwords do not match"
 msgstr ""
 
-#: minitwit.py:1352
+#: minitwit.py:1393
 msgid "Reset password token expired."
 msgstr ""
 
-#: minitwit.py:1359
+#: minitwit.py:1400
 msgid "You were successfully reset your password and you can login now"
 msgstr ""
 
-#: minitwit.py:1376
+#: minitwit.py:1417
 msgid "You have to enter a phone number"
 msgstr ""
 
-#: minitwit.py:1379
+#: minitwit.py:1420
 msgid "You have to enter a valid email address"
 msgstr ""
 
-#: minitwit.py:1381
+#: minitwit.py:1422
 msgid "You have to enter a password"
 msgstr ""
 
-#: minitwit.py:1409
+#: minitwit.py:1450
 msgid "Welcome to Alancer"
 msgstr ""
 
-#: minitwit.py:1413
+#: minitwit.py:1454
 msgid "You were successfully registered and can login now"
 msgstr ""
 
-#: minitwit.py:1429
+#: minitwit.py:1470
 msgid "You were logged out"
 msgstr ""
 
@@ -118,8 +118,9 @@ msgstr ""
 
 #: templates/alayout.html:65 templates/profile.html:8 templates/profile.html:94
 #: templates/profile_candidate.html:4
-#: templates/profile_candidate_confirm.html:13 templates/profile_client.html:8
-#: templates/profile_employer.html:4 templates/profile_employer_confirm.html:13
+#: templates/profile_candidate_confirm.html:250 templates/profile_client.html:8
+#: templates/profile_employer.html:4
+#: templates/profile_employer_confirm.html:250
 #: templates/project_swiper.html:111 templates/upc.html:16
 msgid "Profile"
 msgstr ""
@@ -202,7 +203,7 @@ msgstr ""
 msgid "Joined"
 msgstr ""
 
-#: templates/apply.html:17 templates/jd_employer_confirm.html:27
+#: templates/apply.html:17 templates/jd_employer_confirm.html:29
 #: templates/project_list.html:20 templates/project_list_core.html:15
 #: templates/project_one.html:14
 msgid "d ago"
@@ -222,8 +223,8 @@ msgid "Submit"
 msgstr ""
 
 #: templates/apply.html:37 templates/apply_new.html:28
-#: templates/profile_candidate_confirm.html:26
-#: templates/profile_employer_confirm.html:26 templates/review_for_jd.html:22
+#: templates/profile_candidate_confirm.html:271
+#: templates/profile_employer_confirm.html:271 templates/review_for_jd.html:22
 #: templates/review_for_jd.html:50 templates/search_candidates_result.html:45
 #: templates/user.html:55 templates/user_list.html:75
 msgid "About me"
@@ -306,26 +307,26 @@ msgstr ""
 msgid "Drag your project/company logo here---->"
 msgstr ""
 
-#: templates/jd_employer_confirm.html:13
+#: templates/jd_employer_confirm.html:15
 msgid "JD Confirm"
 msgstr ""
 
-#: templates/jd_employer_confirm.html:30 templates/project_list.html:23
+#: templates/jd_employer_confirm.html:32 templates/project_list.html:23
 #: templates/project_list_core.html:18 templates/project_one.html:17
 msgid "Want to launch"
 msgstr ""
 
-#: templates/jd_employer_confirm.html:31 templates/project_list.html:24
+#: templates/jd_employer_confirm.html:33 templates/project_list.html:24
 #: templates/project_list_core.html:19 templates/project_one.html:18
 msgid "Get"
 msgstr ""
 
-#: templates/jd_employer_confirm.html:32 templates/project_list.html:25
+#: templates/jd_employer_confirm.html:34 templates/project_list.html:25
 #: templates/project_list_core.html:20 templates/project_one.html:19
 msgid "Valid time"
 msgstr ""
 
-#: templates/jd_employer_confirm.html:39 templates/profile_candidate.html:13
+#: templates/jd_employer_confirm.html:41 templates/profile_candidate.html:13
 #: templates/profile_candidate_complete.html:17
 #: templates/profile_client.html:50 templates/profile_employer.html:13
 #: templates/project_list.html:32 templates/project_list_core.html:27
@@ -333,7 +334,7 @@ msgstr ""
 msgid "Company"
 msgstr ""
 
-#: templates/jd_employer_confirm.html:46
+#: templates/jd_employer_confirm.html:48
 msgid "Publish JD"
 msgstr ""
 
@@ -384,7 +385,7 @@ msgstr ""
 #: templates/jd_info.html:20 templates/profile_candidate.html:16
 #: templates/profile_candidate_complete.html:45
 #: templates/profile_employer.html:16
-#: templates/profile_employer_confirm.html:29
+#: templates/profile_employer_confirm.html:274
 msgid "Next"
 msgstr ""
 
@@ -577,17 +578,22 @@ msgstr ""
 msgid "Profile tags. These help your profile more visible in candidates search."
 msgstr ""
 
-#: templates/profile_candidate_confirm.html:7
-#: templates/profile_employer_confirm.html:7
-msgid "Drag your image here---->"
+#: templates/profile_candidate_confirm.html:75
+#: templates/profile_employer_confirm.html:75
+msgid "Image uploaded"
 msgstr ""
 
-#: templates/profile_candidate_confirm.html:18
-#: templates/profile_employer_confirm.html:18
+#: templates/profile_candidate_confirm.html:255
+#: templates/profile_employer_confirm.html:255
 msgid "Confirm profile"
 msgstr ""
 
-#: templates/profile_candidate_confirm.html:29
+#: templates/profile_candidate_confirm.html:262
+#: templates/profile_employer_confirm.html:262
+msgid "Upload your image"
+msgstr ""
+
+#: templates/profile_candidate_confirm.html:274
 msgid "Get started"
 msgstr ""
 
