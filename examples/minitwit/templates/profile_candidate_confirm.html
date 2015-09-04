@@ -14,23 +14,24 @@
 {% endblock headjs %}
 {% block title %}{{ _('Profile') }}{% endblock %}
 {% block body %}
-<div class="container" >
-    <section>
+<div class="container" style="padding-top: 50px;"  >
+    <div>
       <div align="center">
         <h4>{{ _("Confirm profile") }}</h4>
 
         <form action="/upload_user_icon" class="dropzone" id="img-upload"></form>
  
         <p><b>{{ user.username }}</b></p>
-        <p><b>{{ user.school }}</b></p>
-        <p><b>{{ user.city }}, {{ user.country }}</b></p>
-        <p><b>{{ user.title }}</b></p>
+        <p><b>{{ user.title}}, {{ user.school }}</b></p>
+        <p><b>{{ user.city }}</b></p>
         <p></p>
+        {#
         <p>{{ _('About me') }} </p>
         <p>{{ user.profile }} </p>
+        #}
         <form method="get" action='/search'>
           <button class="btn btn-lg btn-primary btn-block" type="submit">{{ _("Get started") }}</button>
         </form>
       </div>
-    </section>
+    </div>
 {% endblock %}
