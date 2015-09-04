@@ -3,9 +3,9 @@
 {% endblock headjs %}
 {% block title %}{{ _('Profile') }}{% endblock %}
 {% block body %}
-<div class="container" style="padding-top: 100px;" >
+<div class="container" style="padding-top: 50px;" >
   <!-- edit form column -->
-    <section>
+    <div>
       <h4>{{ _("Let's setup your job seeker profile.") }}</h4>
       <h6>{{ _('All fields are required.') }}</h6>
       <form class="form-signin" method="post" action="/add_candidate_info">
@@ -16,5 +16,5 @@
         <button class="btn btn-primary" type="submit">{{ _('Next') }}</button>
         <span></span>
       </form>
-    </section>
+    </div>
 {% endblock %}
