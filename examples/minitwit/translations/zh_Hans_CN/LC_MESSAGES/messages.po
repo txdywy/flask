@@ -582,16 +582,15 @@ msgstr "简历标签,便于搜索"
 
 #: templates/profile_candidate_confirm.html:7
 #: templates/profile_employer_confirm.html:7
-#, fuzzy
 msgid "Drag your image here---->"
-msgstr "请输入信息"
+msgstr "请上传图片"
 
 #: templates/profile_candidate_confirm.html:20
 #: templates/profile_candidate_confirm_qn.html:255
 #: templates/profile_employer_confirm.html:20
 #: templates/profile_employer_confirm_qn.html:255
 msgid "Confirm profile"
-msgstr "确认简历"
+msgstr "确认用户信息"
 
 #: templates/profile_candidate_confirm.html:31
 #: templates/profile_candidate_confirm_qn.html:292

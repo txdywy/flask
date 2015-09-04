@@ -748,7 +748,7 @@ def add_candidate_info():
     user.city = request.form['city']
     user.title = request.form['title']
     flush(user)
-    flash(_('Successfully added your basic profile!'))
+    #flash(_('Successfully added your basic profile!'))
     return render_template('profile_candidate_confirm.html', user=user)
 
 
