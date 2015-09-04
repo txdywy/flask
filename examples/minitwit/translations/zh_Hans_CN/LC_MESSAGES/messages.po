@@ -333,7 +333,7 @@ msgstr "有效时间"
 #: templates/project_list.html:32 templates/project_list_core.html:27
 #: templates/project_one.html:26
 msgid "Company"
-msgstr "公司/组织"
+msgstr "公司"
 
 #: templates/jd_employer_confirm.html:48
 msgid "Publish JD"
@@ -541,14 +541,14 @@ msgstr "所有项目必填"
 #: templates/profile_candidate_complete.html:16
 #: templates/profile_employer.html:12
 msgid "Name"
-msgstr "用户名"
+msgstr "名字"
 
 #: templates/profile_candidate.html:14
 #: templates/profile_candidate_complete.html:18
 #: templates/profile_client.html:56 templates/profile_employer.html:14
 #: templates/publish.html:54
 msgid "Title"
-msgstr "职位/身份"
+msgstr "职位"
 
 #: templates/profile_candidate_complete.html:7
 msgid "Complete Profile"
