@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2015-09-02 16:19+0800\n"
+"POT-Creation-Date: 2015-09-04 02:34+0000\n"
 "PO-Revision-Date: 2015-05-18 11:55+0800\n"
 "Last-Translator: Ramen King <geniusron@gmail.com>\n"
 "Language-Team: zh_Hans_CN <LL@li.org>\n"
@@ -36,10 +36,6 @@ msgstr "您已成功更新简历"
 #: minitwit.py:1238
 msgid "hahaha"
 msgstr ""
-
-#: minitwit.py:1350
-msgid "You were logged in"
-msgstr "您已成功登录"
 
 #: minitwit.py:1354
 msgid "Wrong with phone number or password"
@@ -118,9 +114,11 @@ msgstr "登录"
 
 #: templates/alayout.html:65 templates/profile.html:8 templates/profile.html:94
 #: templates/profile_candidate.html:4
-#: templates/profile_candidate_confirm.html:250 templates/profile_client.html:8
-#: templates/profile_employer.html:4
-#: templates/profile_employer_confirm.html:250
+#: templates/profile_candidate_confirm.html:15
+#: templates/profile_candidate_confirm_qn.html:250
+#: templates/profile_client.html:8 templates/profile_employer.html:4
+#: templates/profile_employer_confirm.html:15
+#: templates/profile_employer_confirm_qn.html:250
 #: templates/project_swiper.html:111 templates/upc.html:16
 msgid "Profile"
 msgstr "关于我"
@@ -223,10 +221,13 @@ msgid "Submit"
 msgstr "提交"
 
 #: templates/apply.html:37 templates/apply_new.html:28
-#: templates/profile_candidate_confirm.html:271
-#: templates/profile_employer_confirm.html:271 templates/review_for_jd.html:22
-#: templates/review_for_jd.html:50 templates/search_candidates_result.html:45
-#: templates/user.html:55 templates/user_list.html:75
+#: templates/profile_candidate_confirm.html:28
+#: templates/profile_candidate_confirm_qn.html:289
+#: templates/profile_employer_confirm.html:28
+#: templates/profile_employer_confirm_qn.html:289
+#: templates/review_for_jd.html:22 templates/review_for_jd.html:50
+#: templates/search_candidates_result.html:45 templates/user.html:55
+#: templates/user_list.html:75
 msgid "About me"
 msgstr "关于我"
 
@@ -385,7 +386,8 @@ msgstr "其它要求?"
 #: templates/jd_info.html:20 templates/profile_candidate.html:16
 #: templates/profile_candidate_complete.html:45
 #: templates/profile_employer.html:16
-#: templates/profile_employer_confirm.html:274
+#: templates/profile_employer_confirm.html:31
+#: templates/profile_employer_confirm_qn.html:293
 msgid "Next"
 msgstr "下一步"
 
@@ -529,7 +531,7 @@ msgstr "剩余字符"
 
 #: templates/profile_candidate.html:9
 msgid "Let's setup your job seeker profile."
-msgstr "请填写简历"
+msgstr "请完善用户信息"
 
 #: templates/profile_candidate.html:10 templates/profile_employer.html:10
 msgid "All fields are required."
@@ -578,24 +580,33 @@ msgstr "教育背景"
 msgid "Profile tags. These help your profile more visible in candidates search."
 msgstr "简历标签,便于搜索"
 
-#: templates/profile_candidate_confirm.html:75
-#: templates/profile_employer_confirm.html:75
-msgid "Image uploaded"
-msgstr "上传图片完成"
+#: templates/profile_candidate_confirm.html:7
+#: templates/profile_employer_confirm.html:7
+#, fuzzy
+msgid "Drag your image here---->"
+msgstr "请输入信息"
 
-#: templates/profile_candidate_confirm.html:255
-#: templates/profile_employer_confirm.html:255
+#: templates/profile_candidate_confirm.html:20
+#: templates/profile_candidate_confirm_qn.html:255
+#: templates/profile_employer_confirm.html:20
+#: templates/profile_employer_confirm_qn.html:255
 msgid "Confirm profile"
 msgstr "确认简历"
 
-#: templates/profile_candidate_confirm.html:262
-#: templates/profile_employer_confirm.html:262
-msgid "Upload your image"
-msgstr "上传图片"
-
-#: templates/profile_candidate_confirm.html:274
+#: templates/profile_candidate_confirm.html:31
+#: templates/profile_candidate_confirm_qn.html:292
 msgid "Get started"
 msgstr "开始"
+
+#: templates/profile_candidate_confirm_qn.html:75
+#: templates/profile_employer_confirm_qn.html:75
+msgid "Image uploaded"
+msgstr "上传图片完成"
+
+#: templates/profile_candidate_confirm_qn.html:262
+#: templates/profile_employer_confirm_qn.html:262
+msgid "Upload your image"
+msgstr "上传图片"
 
 #: templates/profile_client.html:46
 msgid "Du"
@@ -1044,4 +1055,7 @@ msgstr "目前没有用户"
 
 #~ msgid "Drag your image here---->"
 #~ msgstr "上传图片"
+
+#~ msgid "You were logged in"
+#~ msgstr "您已成功登录"
 

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2015-09-02 16:19+0800\n"
+"POT-Creation-Date: 2015-09-04 02:34+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -35,10 +35,6 @@ msgstr ""
 
 #: minitwit.py:1238
 msgid "hahaha"
-msgstr ""
-
-#: minitwit.py:1350
-msgid "You were logged in"
 msgstr ""
 
 #: minitwit.py:1354
@@ -118,9 +114,11 @@ msgstr ""
 
 #: templates/alayout.html:65 templates/profile.html:8 templates/profile.html:94
 #: templates/profile_candidate.html:4
-#: templates/profile_candidate_confirm.html:250 templates/profile_client.html:8
-#: templates/profile_employer.html:4
-#: templates/profile_employer_confirm.html:250
+#: templates/profile_candidate_confirm.html:15
+#: templates/profile_candidate_confirm_qn.html:250
+#: templates/profile_client.html:8 templates/profile_employer.html:4
+#: templates/profile_employer_confirm.html:15
+#: templates/profile_employer_confirm_qn.html:250
 #: templates/project_swiper.html:111 templates/upc.html:16
 msgid "Profile"
 msgstr ""
@@ -223,10 +221,13 @@ msgid "Submit"
 msgstr ""
 
 #: templates/apply.html:37 templates/apply_new.html:28
-#: templates/profile_candidate_confirm.html:271
-#: templates/profile_employer_confirm.html:271 templates/review_for_jd.html:22
-#: templates/review_for_jd.html:50 templates/search_candidates_result.html:45
-#: templates/user.html:55 templates/user_list.html:75
+#: templates/profile_candidate_confirm.html:28
+#: templates/profile_candidate_confirm_qn.html:289
+#: templates/profile_employer_confirm.html:28
+#: templates/profile_employer_confirm_qn.html:289
+#: templates/review_for_jd.html:22 templates/review_for_jd.html:50
+#: templates/search_candidates_result.html:45 templates/user.html:55
+#: templates/user_list.html:75
 msgid "About me"
 msgstr ""
 
@@ -385,7 +386,8 @@ msgstr ""
 #: templates/jd_info.html:20 templates/profile_candidate.html:16
 #: templates/profile_candidate_complete.html:45
 #: templates/profile_employer.html:16
-#: templates/profile_employer_confirm.html:274
+#: templates/profile_employer_confirm.html:31
+#: templates/profile_employer_confirm_qn.html:293
 msgid "Next"
 msgstr ""
 
@@ -578,23 +580,31 @@ msgstr ""
 msgid "Profile tags. These help your profile more visible in candidates search."
 msgstr ""
 
-#: templates/profile_candidate_confirm.html:75
-#: templates/profile_employer_confirm.html:75
-msgid "Image uploaded"
+#: templates/profile_candidate_confirm.html:7
+#: templates/profile_employer_confirm.html:7
+msgid "Drag your image here---->"
 msgstr ""
 
-#: templates/profile_candidate_confirm.html:255
-#: templates/profile_employer_confirm.html:255
+#: templates/profile_candidate_confirm.html:20
+#: templates/profile_candidate_confirm_qn.html:255
+#: templates/profile_employer_confirm.html:20
+#: templates/profile_employer_confirm_qn.html:255
 msgid "Confirm profile"
 msgstr ""
 
-#: templates/profile_candidate_confirm.html:262
-#: templates/profile_employer_confirm.html:262
-msgid "Upload your image"
+#: templates/profile_candidate_confirm.html:31
+#: templates/profile_candidate_confirm_qn.html:292
+msgid "Get started"
 msgstr ""
 
-#: templates/profile_candidate_confirm.html:274
-msgid "Get started"
+#: templates/profile_candidate_confirm_qn.html:75
+#: templates/profile_employer_confirm_qn.html:75
+msgid "Image uploaded"
+msgstr ""
+
+#: templates/profile_candidate_confirm_qn.html:262
+#: templates/profile_employer_confirm_qn.html:262
+msgid "Upload your image"
 msgstr ""
 
 #: templates/profile_client.html:46
