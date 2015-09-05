@@ -31,7 +31,7 @@ import random
 import string
 from random import randint
 try:
-    import cache as cacheal 
+    import cache as cacheal
 except:
     print '================no cacheal=============='
     cacheal = None
@@ -76,7 +76,7 @@ except:
     print '------------import leancloud error------------'
 
 import chat as lcc
-    
+
 try:
     from config import ALANCER_BAIDU_STATS
 except:
@@ -226,7 +226,7 @@ def login_required(f):
         if 'user_id' in session:
             return f(*args, **kwargs)
         else:
-            return redirect(url_for('login')) 
+            return redirect(url_for('login'))
     return func
 
 def exr(f):
@@ -257,7 +257,7 @@ def power_required(power=User.POWER_ADMIN):
         @functools.wraps(f)
         def func(*args, **kwargs):
             if g.user.power & power:
-                return f(*args, **kwargs) 
+                return f(*args, **kwargs)
             else:
                 return redirect(url_for('login'))
         return func
@@ -307,7 +307,7 @@ def admin():
     cls = dict((p.id, classes[p.id % len(classes)]) for p in projects)
     clients = Client.query.all()
     users = User.query.all()
-    return render_template('admin.html', cls=cls, projects=projects, project_num=project_num, clients=clients, users=users)    
+    return render_template('admin.html', cls=cls, projects=projects, project_num=project_num, clients=clients, users=users)
 
 @app.route('/upload', methods=['POST'])
 @login_required
@@ -329,7 +329,7 @@ def upload():
 
 @app.route('/upload_image', methods=['POST'])
 @login_required
-def upload_image():        
+def upload_image():
     try:
         HEIGHT, WIDTH = 384, 240
         c = request.files['file'].read()
@@ -351,7 +351,7 @@ def upload_image():
             file = file_orig
         lc_file = File('pi', file_orig)
         lc_file.save()
-        return lc_file.url 
+        return lc_file.url
     except Exception, e:
        print '=============== upload image failed ============ ', str(e)
        return NO_CONTENT_PICTURE
@@ -379,7 +379,7 @@ def upload_img(request):
             file = file_orig
         lc_file = File('pi', file_orig)
         lc_file.save()
-        return lc_file.url 
+        return lc_file.url
     except Exception, e:
        print '=============== upload image failed ============ ', str(e)
        return NO_CONTENT_PICTURE
@@ -503,7 +503,7 @@ def bc():
 @login_required
 @power_required(power=User.POWER_ADMIN)
 def gp():
-    n = request.form['n']    
+    n = request.form['n']
     n = int(n) if n else 1
     for i in xrange(n):
         alfaker.gen_project()
@@ -530,7 +530,7 @@ def dp():
 def push():
     msg = request.form['msg']
     lcc.push_msg(msg)
-    flash('[%s] pushed to everyone!' % msg) 
+    flash('[%s] pushed to everyone!' % msg)
     return redirect(url_for('admin'))
 
 @app.route('/contact', methods=['POST'])
@@ -585,7 +585,7 @@ def project_swiper():
         if not projects:
             projects = Project.query.order_by(desc(Project.id)).all()
             cacheal.set(ALANCER_ALL_PROJECTS, projects, 300)
-        """    
+        """
         s = cacheal.get(ALANCER_USER_PROJECTS_INDEX % user_id)
         s = s if s else 0
         ns = (s + 10) % len(projects) if projects else 0
@@ -595,7 +595,7 @@ def project_swiper():
 @app.route('/inf')
 def inf():
     return render_template('inf.html')
- 
+
 @app.route('/infd')
 def infd():
     start = int(request.args.get('start'))
@@ -640,8 +640,8 @@ def project():
         """
         if project.icon:
             pics[project_id] = project.icon
-        else:    
-            pics[project_id] = "http://cdnvideo.dolimg.com/cdn_assets/189e27f7a893da854ad965e1406cc3878af80307.jpg" #get_pic_url(project.client) 
+        else:
+            pics[project_id] = "http://cdnvideo.dolimg.com/cdn_assets/189e27f7a893da854ad965e1406cc3878af80307.jpg" #get_pic_url(project.client)
         """
         pics[project_id] = cds[project.client_id].icon
     #print '----',pas
@@ -685,7 +685,7 @@ def user():
 @app.route('/users', methods=['POST', 'GET'])
 @login_required
 def users():
-    if request.method == 'GET': 
+    if request.method == 'GET':
         f = request.args.get('filter')
         filter = int(f if f else 0)
         if filter == 0:
@@ -770,7 +770,7 @@ def add_jd_info():
     project.valid_time = request.form['start'] + ',' + request.form['duration']
     project.image_url = 'http://www.whichsocialmedia.com/wp-content/uploads/2013/04/no-logo.png'
     flush(project)
-    
+
     puds = {}
     pics = {}
     puds[project.id] = (datetime.now() - project.create_time).days
@@ -778,7 +778,7 @@ def add_jd_info():
 
     t = _('You have successfully created your project')
     flash(t + ' [%s]' % project.title)
-    return render_template('jd_employer_confirm.html', user=user, client=client, project=project, pics=pics, puds=puds) 
+    return render_template('jd_employer_confirm.html', user=user, client=client, project=project, pics=pics, puds=puds)
 
 
 @app.route('/add_employer_info', methods=['POST'])
@@ -799,10 +799,10 @@ def add_employer_info():
     client.name = request.form['company']
     client.email = user.email
     flush(client)
-    
+
     flash(_('Successfully added your basic profile!'))
     return render_template('profile_employer_confirm.html', user=user, client=client)
-    
+
 
 @app.route('/project_info')
 @login_required
@@ -819,7 +819,7 @@ def project_info():
 @app.route('/project_new')
 @login_required
 def project_new():
-    return render_template('project_new.html')    
+    return render_template('project_new.html')
 
 @app.route('/create_project', methods=['POST'])
 @login_required
@@ -852,7 +852,7 @@ def edit_project():
     project = Project.query.get(project_id)
     client = Client.query.filter_by(user_id=user_id).first()
     if project.client_id != client.id:
-        abort(403)      
+        abort(403)
     project.title = request.form['title']
     project.client = request.form['client']
     project.desp = request.form['desp']
@@ -914,7 +914,7 @@ def chat():
     if(request.method == 'POST'):
         other_user_id = request.form['other_user_id']
     else:
-        other_user_id = request.args.get('other_user_id') 
+        other_user_id = request.args.get('other_user_id')
     other_user = User.query.get(other_user_id)
     chat = Chat.get_chat(user_id, other_user_id)
     if chat:
@@ -963,7 +963,7 @@ def message():
     data['m_client_icon'] = client_user.icon
     #print '---------------------',data
     message_room_link = ALANCER_HTTP_ROOT + url_for('message_room') + '?m_user_id=%s&m_client_id=%s#messageLabel' % (m_user_id, m_client.id)
-    mr = '<a href="%s" style="text-decoration:none;color:#3b5998" target="_blank">View project chat</a>' % message_room_link    
+    mr = '<a href="%s" style="text-decoration:none;color:#3b5998" target="_blank">View project chat</a>' % message_room_link
     pas = ProjectApply.query.filter_by(user_id=m_user.user_id).all()
     project_titles = ', '.join([Project.query.get(pa.project_id).title for pa in pas]) if pas else 'N/A'
     project = Project.query.get(project_id) if project_id else None
@@ -972,9 +972,9 @@ def message():
         email_notify = client_user.email
         name_from = m_user.username
         email_title = 'Re: Alancer: new reply from %s to your job posting' % name_from
-        email_body = '<br><br>'.join(['Hello %s,' % client_user.username, 
-                                        '%s from %s has replied to your %s project(s) post.' % (name_from, m_user.school, project_titles), 
-                                        'Click the link below to check it out.', mr]) 
+        email_body = '<br><br>'.join(['Hello %s,' % client_user.username,
+                                        '%s from %s has replied to your %s project(s) post.' % (name_from, m_user.school, project_titles),
+                                        'Click the link below to check it out.', mr])
     else:
         #to student
         email_notify = m_user.email
@@ -982,7 +982,7 @@ def message():
         email_title = 'Re: Alancer: new reply from %s at %s' % (name_from, m_client.company)
         email_body = '<br><br>'.join(['Hello %s,' % m_user.username,
                                         '%s from %s has replied back to you.' % (name_from, m_client.company),
-                                        'Click the link below to check it out.', mr])      
+                                        'Click the link below to check it out.', mr])
     util.send_email(email_title, email_body, email_notify)
     #print '-----------------',email_title, email_body, email_notify
     #util.send_email('[Alancer] New message from %s' % name_from, '%s: %s <br>%s' % (name_from, message, mr), email_notify)
@@ -1009,8 +1009,8 @@ def message_room():
         messages = messages[-ALANCER_MESSAGE_OFFSET:]
     else:
         messages = cacheal.get(ALANCER_USER_CLIENT_MESSAGES % (m_user_id, m_client_id))
-        messages = messages[-(ALANCER_MESSAGE_OFFSET*(index+1)):-(ALANCER_MESSAGE_OFFSET*index)] if messages else [] 
-    
+        messages = messages[-(ALANCER_MESSAGE_OFFSET*(index+1)):-(ALANCER_MESSAGE_OFFSET*index)] if messages else []
+
     client = Client.query.get(m_client_id)
     data = {}
     m_user = User.query.get(m_user_id)
@@ -1060,7 +1060,7 @@ def apply():
     return render_template('profile_candidate_complete.html', user=user, project=project)
 
 @app.route('/post_profile_complete', methods=['POST'])
-@login_required                
+@login_required
 def post_profile_complete():
     project_id = request.form['project_id']
     user_id = session['user_id']
@@ -1127,7 +1127,7 @@ def message_box():
 @login_required
 def chat_box():
     user_id = session['user_id']
-    uc = UserChat.query.filter_by(user_id=user_id).first() 
+    uc = UserChat.query.filter_by(user_id=user_id).first()
     us = []
     if uc:
         uid_set = uc.chat_list
@@ -1154,10 +1154,10 @@ def search2():
     s3 = request.form['s3']
     s4 = request.form['s4']
     user_id = session.get('user_id')
-    pas = {} 
-    pats = {}     
-    puds = {} 
-    pics = {} 
+    pas = {}
+    pats = {}
+    puds = {}
+    pics = {}
     projects = Project.query.filter(or_(Project.desp.like("%" + s1 + "%"),
                                         Project.location.like("%" + s2 + "%"),
                                         Project.desp.like("%" + s3 + "%"),
@@ -1165,18 +1165,18 @@ def search2():
                                         )).order_by(desc(Project.id)).all()
     clients = Client.query.all()
     cds = {client.id: client for client in clients}
-    for project in projects:        
+    for project in projects:
         project_id = project.id
         if user_id:
             pa = ProjectApply.query.filter_by(user_id=user_id, project_id=project_id).first()
             pas[project_id] = True if pa else False
-            pats[project_id] = str(pa.create_time)[:10] if pa else None 
+            pats[project_id] = str(pa.create_time)[:10] if pa else None
         puds[project_id] = (datetime.now() - project.create_time).days
-        """  
+        """
         if project.icon:
             pics[project_id] = project.icon
-        else:    
-            pics[project_id] = "http://cdnvideo.dolimg.com/cdn_assets/189e27f7a893da854ad965e1406cc3878af80307.jpg" #get_pic_url(project.client) 
+        else:
+            pics[project_id] = "http://cdnvideo.dolimg.com/cdn_assets/189e27f7a893da854ad965e1406cc3878af80307.jpg" #get_pic_url(project.client)
         """
         pics[project_id] = cds[project.client_id].icon
     #print '----',pas
@@ -1208,7 +1208,7 @@ def search_candidates1():
 @login_required
 def like():
     if request.method == 'GET':
-        return render_template(ALANCER_INDEX)    
+        return render_template(ALANCER_INDEX)
     project_id = request.form['project_id']
     user_id = session['user_id']
     user = User.query.get(user_id)
@@ -1360,7 +1360,7 @@ def forgotpassword():
 
 @app.route('/sendresetemail', methods=['POST'])
 def sendresetemail():
-    email = request.form['email'] 
+    email = request.form['email']
     user = User.query.filter_by(email=email).first()
     if not user:
         return redirect(url_for('login'))
@@ -1415,9 +1415,9 @@ def register():
     if request.method == 'POST':
         if not request.form['pid']:
             error = _('You have to enter a phone number')
-        elif not request.form['email'] or \
-                '@' not in request.form['email']:
-            error = _('You have to enter a valid email address')
+        #elif not request.form['email'] or \
+        #        '@' not in request.form['email']:
+        #    error = _('You have to enter a valid email address')
         elif not request.form['password']:
             error = _('You have to enter a password')
         elif request.form['password'] != request.form['password2']:
@@ -1425,18 +1425,13 @@ def register():
         #elif get_user_id(request.form['username']) is not None:
         #    error = 'The username is already taken'
         else:
-            #db = get_db()
-            #db.execute('''insert into user (
-            #  username, email, pw_hash) values (?, ?, ?)''',
-            #  [request.form['username'], request.form['email'],
-            #   generate_password_hash(request.form['password'])])
-            #db.commit()
             pid = request.form['pid']
             try:
                 pid = int(pid)
             except:
                 abort(404)
-            email = request.form['email']
+            #email = request.form['email']
+            email = ''
             username = fake.name()
             u = User(username=username, pid=pid, email=email, pw_hash=generate_password_hash(request.form['password']))
             u.icon = get_pic_url('lego %s %s' % (username, email))
@@ -1447,9 +1442,9 @@ def register():
             if isowner:
                 client = Client(name=u.username, email=u.email, user_id=u.user_id, icon=u.icon)
                 flush(client)
-            util.send_email(_('Welcome to Alancer'), ALANCER_WELCOME_BODY % url_for('project'), request.form['email'])
+            #util.send_email(_('Welcome to Alancer'), ALANCER_WELCOME_BODY % url_for('project'), request.form['email'])
             print '===========', ALANCER_WELCOME_BODY % ('http://%s/project' % ALANCER_HOST)
-            util.send_email('[Alancer Signup]', 'You have a new user [%s] @lancer!' % request.form['email'], ALANCER_SERVICE_EMAIL) 
+            #util.send_email('[Alancer Signup]', 'You have a new user [%s] @lancer!' % request.form['email'], ALANCER_SERVICE_EMAIL)
             session['user_id'] = u.user_id
             flash(_('You were successfully registered and can login now'))
             return redirect(url_for('profile'))

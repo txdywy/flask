@@ -7,7 +7,7 @@ import datetime
 import pygoogle
 from faker import Factory
 from mutable import MutableList, MutableSet
- 
+
 fake = Factory.create('en_US')
 
 try:
@@ -40,6 +40,35 @@ def init_db():
     #import yourapplication.models
     Base.metadata.create_all(bind=engine)
 
+class UserBk(Base):
+    USER_STUDENT = 0
+    USER_CLIENT = 1
+    POWER_ADMIN = 2**9
+
+    __tablename__ = 'user_bk'
+    user_id = Column(Integer, primary_key=True)
+    username = Column(String(50))
+    #email = Column(String(120), unique=True)
+    email = Column(String(120))
+    pid = Column(Integer, unique=True)
+    pw_hash = Column(String(128))
+    school = Column(String(128), default='')
+    city = Column(String(50), default='')
+    country = Column(String(50), default='')
+    zipcode = Column(String(50), default='')
+    phone = Column(String(50), default='')
+    role = Column(Integer, default=USER_STUDENT)
+    power = Column(Integer, default=0)
+    icon = Column(String(512))
+    profile = Column(String(512), default='')
+    create_time = Column(DATETIME())
+    firstname = Column(String(20), default='')
+    lastname = Column(String(20), default='')
+    approved = Column(Integer, default=0)
+    refer1 = Column(String(512), default='')
+    refer2 = Column(String(512), default='')
+    title = Column(String(50), default='')
+
 class User(Base):
     USER_STUDENT = 0
     USER_CLIENT = 1
@@ -48,13 +77,14 @@ class User(Base):
     __tablename__ = 'user'
     user_id = Column(Integer, primary_key=True)
     username = Column(String(50))
-    email = Column(String(120), unique=True)
+    #email = Column(String(120), unique=True)
+    email = Column(String(120))
     pid = Column(Integer, unique=True)
     pw_hash = Column(String(128))
     school = Column(String(128), default='')
     city = Column(String(50), default='')
     country = Column(String(50), default='')
-    zipcode = Column(String(50), default='')    
+    zipcode = Column(String(50), default='')
     phone = Column(String(50), default='')
     role = Column(Integer, default=USER_STUDENT)
     power = Column(Integer, default=0)
@@ -113,7 +143,7 @@ class Project(Base):
         if client_title:
             self.client_title = client_title
         if location:
-            self.location = location 
+            self.location = location
         if incentive:
             self.incentive = incentive
         if icon:
@@ -132,7 +162,7 @@ class Client(Base):
     company = Column(String(120), default='N/A')
     title = Column(String(120), default='N/A')
     icon = Column(String(512), default='http://img1.wikia.nocookie.net/__cb20140912133822/disney/images/6/6f/Baymax_Disney_INFINITY.png')
-    location = Column(String(50), default='From Cyberspace') 
+    location = Column(String(50), default='From Cyberspace')
 
     def __repr__(self):
         return '<Client %r>' % (self.name)
@@ -177,7 +207,7 @@ class Message(Base):
     message = Column(Text)
     flag = Column(Integer, default=MESSAGE_USER)
     create_time = Column(DATETIME())
-    
+
     def __init__(self, user_id, client_id, message, flag):
         self.user_id = user_id
         self.client_id = client_id
@@ -271,7 +301,7 @@ class ProjectApply(Base):
     user_id = Column(Integer, ForeignKey('user.user_id'))
     project_id = Column(Integer, ForeignKey('project.id'))
     valid = Column(Integer, index=True, default=1)
-    create_time = Column(DATETIME(), index=True)   
+    create_time = Column(DATETIME(), index=True)
     status = Column(Integer, index=True, default=PROJECT_APPLIED)
     pitch = Column(String(512), default='')
 
@@ -279,7 +309,7 @@ class ProjectApply(Base):
         self.user_id = user_id
         self.project_id = project_id
         self.create_time = datetime.datetime.now()
-  
+
     def __repr__(self):
         return  '<ProjectApply %r>' % (self.id)
 
@@ -291,7 +321,7 @@ class Contact(Base):
     email = Column(String(120))
     message = Column(String(512))
     create_time = Column(DATETIME())
-    
+
     def __init__(self, name, phone, email, message):
         self.name = name
         self.phone = phone
