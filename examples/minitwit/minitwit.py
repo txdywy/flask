@@ -1442,7 +1442,9 @@ def register():
                 flush(u)
             except Exception as e:
                 flash(_('Phone number already registered'))
-                return render_template('role.html')
+                #role = request.form['role']
+                role = int(request.args.get('role'))
+                return render_template('register.html', role=role)
             if isowner:
                 client = Client(name=u.username, email=u.email, user_id=u.user_id, icon=u.icon)
                 flush(client)
@@ -1452,6 +1454,8 @@ def register():
             session['user_id'] = u.user_id
             flash(_('You were successfully registered and can login now'))
             return redirect(url_for('profile'))
+    if not error:
+        flash(error)
     role = int(request.args.get('role'))
     return render_template('register.html', role=role)
 
