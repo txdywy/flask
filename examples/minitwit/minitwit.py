@@ -1443,6 +1443,7 @@ def register():
             except Exception as e:
                 flash(_('Phone number already registered'))
                 #role = request.form['role']
+                print '------------', str(e)
                 role = int(request.args.get('role'))
                 return render_template('register.html', role=role)
             if isowner:
@@ -1450,9 +1451,11 @@ def register():
                 flush(client)
             #util.send_email(_('Welcome to Alancer'), ALANCER_WELCOME_BODY % url_for('project'), request.form['email'])
             print '===========', ALANCER_WELCOME_BODY % ('http://%s/project' % ALANCER_HOST)
-            util.send_email('[Alancer Signup]', 'You have a new user [%s] @lancer!' % request.form['email'], ALANCER_SERVICE_EMAIL)
+            #util.send_email('[Alancer Signup]', 'You have a new user [%s] @lancer!' % request.form['email'], ALANCER_SERVICE_EMAIL)
+            util.send_email('[Alancer Signup]', 'You have a new user [%s] @lancer!' % request.form['pid'], ALANCER_SERVICE_EMAIL)
             session['user_id'] = u.user_id
             flash(_('You were successfully registered and can login now'))
+            #print '-----------------3333--------------------'
             return redirect(url_for('profile'))
     if error:
         flash(error)
