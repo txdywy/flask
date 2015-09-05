@@ -39,6 +39,10 @@ def update_db():
     with cd('~/flask/examples/minitwit/'):
         run('openssl enc -des -d -a -in alancer_db_enc -out alancer.db')
 
+def db():
+     with cd('~/flask/examples/minitwit/'):
+         run('./db_dec')
+
 def init_db():
     with cd('~/flask/examples/minitwit/'):
         run("python -c 'from model import *;init_db()'")
