@@ -112,6 +112,7 @@ from views import test, wechat
 
 # create our little application :)
 app = Flask(__name__)
+#app.debug = True
 app.register_blueprint(test.view)
 app.register_blueprint(wechat.view)
 app.config['BABEL_DEFAULT_LOCALE'] = 'zh_Hans_CN'
@@ -119,6 +120,7 @@ Triangle(app)
 app.config.from_object(__name__)
 app.config.from_envvar('MINITWIT_SETTINGS', silent=True)
 babel = Babel(app)
+app.config['TRAP_BAD_REQUEST_ERRORS'] = True
 
 def add_project(title, email='', desp='', client='N/A', image_url='', service='web dev', client_id=None, client_title='', location=''):
     p = Project(title, client, email, desp, image_url, service, client_id, client_title, location)
