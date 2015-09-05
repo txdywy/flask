@@ -1454,7 +1454,7 @@ def register():
             session['user_id'] = u.user_id
             flash(_('You were successfully registered and can login now'))
             return redirect(url_for('profile'))
-    if not error:
+    if error:
         flash(error)
     role = int(request.args.get('role'))
     return render_template('register.html', role=role)
