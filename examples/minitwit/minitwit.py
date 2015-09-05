@@ -1405,7 +1405,7 @@ You have successfully registered at aLancer. Click <a href="%s"><strong style="c
 """
 
 @app.route('/register', methods=['GET', 'POST'])
-@exr
+#@exr
 def register():
     """Registers the user."""
     if g.user:
@@ -1438,13 +1438,17 @@ def register():
             isowner = int(request.form.get('isowner'))
             if isowner:
                 u.role = User.USER_CLIENT
-            flush(u)
+            try:
+                flush(u)
+            except Exception as e:
+                flash(_('Phone number already registered'))
+                return render_template('role.html')
             if isowner:
                 client = Client(name=u.username, email=u.email, user_id=u.user_id, icon=u.icon)
                 flush(client)
             #util.send_email(_('Welcome to Alancer'), ALANCER_WELCOME_BODY % url_for('project'), request.form['email'])
             print '===========', ALANCER_WELCOME_BODY % ('http://%s/project' % ALANCER_HOST)
-            #util.send_email('[Alancer Signup]', 'You have a new user [%s] @lancer!' % request.form['email'], ALANCER_SERVICE_EMAIL)
+            util.send_email('[Alancer Signup]', 'You have a new user [%s] @lancer!' % request.form['email'], ALANCER_SERVICE_EMAIL)
             session['user_id'] = u.user_id
             flash(_('You were successfully registered and can login now'))
             return redirect(url_for('profile'))

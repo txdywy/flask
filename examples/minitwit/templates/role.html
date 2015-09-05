@@ -72,16 +72,28 @@
         </div>
         <!-- /.container-fluid -->
     </nav>
+    {% with flashes = get_flashed_messages() %}
+      {% if flashes %}
+        <div class="flashes">
+        {% for message in flashes %}
+          <div class="alert alert-info alert-dismissable">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</sp    an></button>
+            {{ message }}
+          </div>
+        {% endfor %}
+        </div>
+      {% endif %}
+    {% endwith %}
     <section>
       <h4>{{ _('How to start yourt alancer trip?') }}</h4>
       <form class="form-signin" method="post">
         <input type="hidden" name="role" value="0">
         <button class="btn btn-lg btn-primary btn-block" type="submit">{{ _("Find job") }}</button>
       </form>
-    
+
       <form class="form-signin" method="post">
-        <input type="hidden" name="role" value="1">        
-        <button class="btn btn-lg btn-primary btn-block" type="submit">{{ _("Post job") }}</button>          
+        <input type="hidden" name="role" value="1">
+        <button class="btn btn-lg btn-primary btn-block" type="submit">{{ _("Post job") }}</button>
       </form>
     </section>
     </div> <!-- /container -->
