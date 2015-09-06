@@ -10,7 +10,7 @@
 """
 #from gevent import monkey
 #monkey.patch_all()
-import time
+import time, urllib2
 from sqlite3 import dbapi2 as sqlite3
 from hashlib import md5
 from datetime import datetime
@@ -221,6 +221,18 @@ def gravatar_url(email, size=80):
     """Return the gravatar image for the given email address."""
     return 'http://www.gravatar.com/avatar/%s?d=identicon&s=%d' % \
         (md5(email.strip().lower().encode('utf-8')).hexdigest(), size)
+
+def get_gravatar_lc(key, size=200):
+    url = 'http://www.gravatar.com/avatar/%s?d=identicon&s=%d' % (key ,size)
+    r = urllib2.urlopen(url).read()
+    try:
+        file_orig = StringIO(r)
+        lc_file = File('pi', file_orig)
+        lc_file.save()
+        return lc_file.url
+    except Exception, e:
+        return 'http://ac-9dv47dhd.clouddn.com/0WIdCMxDWYPEeA5GE7A4hn4eXiY6lQb9zGxBX9Hs.pi'
+
 
 def login_required(f):
     @functools.wraps(f)
@@ -1470,7 +1482,8 @@ def register():
             email = ''
             username = fake.name()
             u = User(username=username, pid=pid, email=email, pw_hash=generate_password_hash(request.form['password']))
-            u.icon = get_pic_url('lego %s %s' % (username, email))
+            #u.icon = get_pic_url('lego %s %s' % (username, email))
+            u.icon = get_gravatar_lc(key=pid)
             isowner = int(request.form.get('isowner'))
             if isowner:
                 u.role = User.USER_CLIENT
