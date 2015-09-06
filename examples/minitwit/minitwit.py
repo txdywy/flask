@@ -234,6 +234,12 @@ def get_gravatar_lc(key, size=200):
         return 'http://ac-9dv47dhd.clouddn.com/0WIdCMxDWYPEeA5GE7A4hn4eXiY6lQb9zGxBX9Hs.pi'
 
 
+NUM_FB_ICONS = FbIcon.query.count()
+def get_fb_icon():
+    s = randint(1, NUM_FB_ICONS)
+    return FbIcon.query.get(s).icon
+
+
 def login_required(f):
     @functools.wraps(f)
     def func(*args, **kwargs):
@@ -1483,7 +1489,8 @@ def register():
             username = fake.name()
             u = User(username=username, pid=pid, email=email, pw_hash=generate_password_hash(request.form['password']))
             #u.icon = get_pic_url('lego %s %s' % (username, email))
-            u.icon = get_gravatar_lc(key=pid)
+            #u.icon = get_gravatar_lc(key=pid)
+            u.icon = get_fb_icon()
             isowner = int(request.form.get('isowner'))
             if isowner:
                 u.role = User.USER_CLIENT
