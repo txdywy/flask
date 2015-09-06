@@ -8,4 +8,10 @@ except:
 bucket_name = 'udon'
 
 def get_qn_token():
+    """
+    key will not be overwritten
+    """
     return q.upload_token(bucket_name)
+
+def get_qn_token_by_key(key):
+    return q.upload_token(bucket_name, key)
