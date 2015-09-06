@@ -1,0 +1,31 @@
+<form enctype="multipart/form-data">
+  <input name="key" type="hidden" value="{{ name }}" id="name">
+  <input name="token" type="hidden" value="{{ token }}" id="token">
+  <input name="file" type="file" id="file">
+</form>
+<button class="btn btn-info btn-lg" type="button" id="submit">
+  <span class="glyphicon glyphicon-ok"></span> 
+  Submit
+</button>
+<div id="sr">
+</div>
+<script type='text/javascript' src='http://cdn.bootcss.com/jquery/1.11.2/jquery.min.js'></script>
+<script>
+  window.jQuery(document).ready(function($) {
+    $("#submit").click(function() {
+      var formData = new FormData($('form')[0]);
+      $.ajax({
+        url: 'http://upload.qiniu.com/',
+        type: 'POST',
+        data: formData,
+        cache: false,
+        contentType: false,
+        processData: false,
+        success: function (result) {
+            alert(result.key);
+            $("#sr").html(result.key);
+        }
+      });
+    });    
+  }); 
+</script>

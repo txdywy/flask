@@ -1487,6 +1487,14 @@ def uptoken():
     return json.dumps(d)
 
 
+@app.route('/qnh5')
+def qnh5():
+    token = qiniu_agent.get_qn_token()
+    ts = time.time()
+    name = "%s_%s" % (str(datetime.now())[:10], md5(str(ts)).hexdigest())
+    return render_template('qnh5.html', token=token, name=name)
+
+
 @app.route('/qn')
 def qn():
     return render_template('qn.html')
