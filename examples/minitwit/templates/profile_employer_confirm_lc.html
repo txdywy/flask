@@ -10,21 +10,6 @@
     addRemoveLinks: "true",
     maxFilesize: 3,
   };
-
-  Dropzone.options.imgUpload = {
-    init: function() {
-      this.on("success", function(file, response) {
-        alert("{{ Image uploaded }}");
-        $("#user_icon").attr("src", $("#domain").val()+response.key+'?'+Math.random());
-        $.ajax({
-          url: '/up_employer_icon',
-          type: 'POST',
-          data: {'key': response.key,
-                },
-        });
-      });
-    }
-  };
 </script>
 {% endblock headjs %}
 {% block title %}{{ _('Profile') }}{% endblock %}
@@ -33,20 +18,15 @@
     <section>
       <div align="center">
         <h4>{{ _("Confirm profile") }}</h4>
-        <input id='domain' value="http://7xlcr1.com1.z0.glb.clouddn.com/" type="hidden">
-        <form action="http://upload.qiniu.com/" class="dropzone" id="img-upload">
-          <input name="key" type="hidden" value="{{ key }}" id="key">
-          <input name="token" type="hidden" value="{{ token }}" id="token">
-        </form>
-        <img src="{{ user.icon }}" autofocus class="img-circle center-block" width=200 height=200 alt="{{ _('no new icon') }}" id="user_icon">
+
+        <form action="/upload_employer_icon" class="dropzone" id="img-upload"></form>
+ 
         <p><b>{{ user.username }}</b></p>
         <p><b>{{ user.city }}, {{ user.country }}</b></p>
         <p><b>{{ user.title }}</b></p>
         <p></p>
-        {#
         <p>{{ _('About me') }} </p>
         <p>{{ user.profile }} </p>
-        #}
         <form method="get" action='/add_jd_info'>
           <button class="btn btn-lg btn-primary btn-block" type="submit">{{ _("Next") }}</button>
         </form>

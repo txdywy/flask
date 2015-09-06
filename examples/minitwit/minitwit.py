@@ -740,6 +740,39 @@ def about_me():
         return render_template('profile.html', user=user)
 
 
+def _gen_icon_key_pair(prefix='DEF', id='0'):
+    ts = time.time()
+    key = "%s_%s_%s_%s" % (prefix, id, str(datetime.now())[:10], md5(str(ts)).hexdigest())
+    token = qiniu_agent.get_qn_token_by_key(key=key)
+    return key, token
+
+
+@app.route('/up_user_icon', methods=['POST'])
+@login_required
+def up_user_icon():
+    user_id = session.get('user_id')
+    user = User.query.get(user_id)
+    key = request.form['key']
+    url = QN_IMG_URL_PREFIX % key
+    user.icon = url
+    flush(user)
+    return '1'
+
+
+@app.route('/up_employer_icon', methods=['POST'])
+@login_required
+def up_employer_icon():
+    user_id = session.get('user_id')
+    user = User.query.get(user_id)
+    client = Client.query.filter_by(user_id=user_id).first()
+    key = request.form['key']
+    url = QN_IMG_URL_PREFIX % key
+    user.icon = url
+    client.icon = url
+    flush(user)
+    flush(client)
+    return '1'
+
 @app.route('/add_candidate_info', methods=['POST'])
 @login_required
 def add_candidate_info():
@@ -750,8 +783,9 @@ def add_candidate_info():
     user.city = request.form['city']
     user.title = request.form['title']
     flush(user)
+    key, token = _gen_icon_key_pair(prefix='CAN', id=user_id)
     #flash(_('Successfully added your basic profile!'))
-    return render_template('profile_candidate_confirm.html', user=user)
+    return render_template('profile_candidate_confirm.html', user=user, key=key, token=token)
 
 
 @app.route('/add_jd_info', methods=['GET', 'POST'])
@@ -801,9 +835,9 @@ def add_employer_info():
     client.name = request.form['company']
     client.email = user.email
     flush(client)
-
-    flash(_('Successfully added your basic profile!'))
-    return render_template('profile_employer_confirm.html', user=user, client=client)
+    key, token = _gen_icon_key_pair(prefix='EMP', id=user_id)
+    #flash(_('Successfully added your basic profile!'))
+    return render_template('profile_employer_confirm.html', user=user, client=client, key=key, token=token)
 
 
 @app.route('/project_info')
