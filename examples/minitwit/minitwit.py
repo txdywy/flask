@@ -23,7 +23,7 @@ from boto.s3.connection import S3Connection
 from boto.s3.key import Key
 from PIL import Image
 from model import flush, db_session
-from model import Project, Contact, Client, User, UserLike, Message, ProjectApply, Chat, UserChat
+from model import Project, Contact, Client, User, UserLike, Message, ProjectApply, Chat, UserChat, FbIcon
 from sqlalchemy import desc, or_, and_
 import util, functools
 import simplejson as json

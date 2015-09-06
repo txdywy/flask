@@ -40,6 +40,17 @@ def init_db():
     #import yourapplication.models
     Base.metadata.create_all(bind=engine)
 
+
+class FbIcon(Base):
+    __tablename__ = 'fb_icon'
+    id = Column(Integer, primary_key=True)
+    url = Column(String(512))
+    icon = Column(String(512))
+
+    def __repr__(self):
+        return '<FbIcon %r>' % (self.id)
+
+
 class UserBk(Base):
     USER_STUDENT = 0
     USER_CLIENT = 1
