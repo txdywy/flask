@@ -1,3 +1,20 @@
+<script src="//cdnjs.cloudflare.com/ajax/libs/dropzone/4.0.1/dropzone.js"></script>
+<link rel='stylesheet' href="//cdnjs.cloudflare.com/ajax/libs/dropzone/4.0.1/dropzone.css"/>
+<script>
+  Dropzone.options.imgUpload = {
+    dictDefaultMessage: "{{ _('Drag your image here---->') }}",
+    acceptedFiles: "image/*", // Accept images only
+    //maxFiles: "1",
+    addRemoveLinks: "true",
+    maxFilesize: 3,
+  };
+</script>
+
+<form action="http://upload.qiniu.com/" class="dropzone" id="img-upload">
+  <input name="key" type="hidden" value="{{ name }}" id="name">
+  <input name="token" type="hidden" value="{{ token }}" id="token">
+</form>
+
 <form enctype="multipart/form-data">
   <input name="key" type="hidden" value="{{ name }}" id="name">
   <input name="token" type="hidden" value="{{ token }}" id="token">
