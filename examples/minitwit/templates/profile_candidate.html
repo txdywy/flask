@@ -31,13 +31,21 @@
 <script>
   window.jQuery(document).ready(function($) {
     $("#submit").click(function() {
+      var city=$(".selectpicker#city").val();
+      var name=$("#name").val();
+      var company=$("#company").val();
+      var title=$("#title").val();
+      if (!city || !name || !company || !title){
+        alert("{{ _('Parameters required') }}");
+        return
+      }
       $.ajax({
         url: '/add_candidate_info',
         type: 'POST',
-        data: {'city': $(".selectpicker#city").val(),
-               'name': $("#name").val(),
-               'company': $("#company").val(),
-               'title': $("#title").val(),
+        data: {'city': city,
+               'name': name,
+               'company': company,
+               'title': title,
               },
         success: function (result) {
             //alert(result);
