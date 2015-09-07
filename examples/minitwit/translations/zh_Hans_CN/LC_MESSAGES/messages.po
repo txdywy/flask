@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2015-09-07 16:10+0800\n"
+"POT-Creation-Date: 2015-09-07 16:15+0800\n"
 "PO-Revision-Date: 2015-05-18 11:55+0800\n"
 "Last-Translator: Ramen King <geniusron@gmail.com>\n"
 "Language-Team: zh_Hans_CN <LL@li.org>\n"
@@ -375,9 +375,9 @@ msgstr "薪酬"
 msgid "Other requirements? (optional, hidden by default)"
 msgstr "其它要求?"
 
-#: templates/jd_info.html:20 templates/profile_candidate.html:27
+#: templates/jd_info.html:20 templates/profile_candidate.html:28
 #: templates/profile_candidate_complete.html:45
-#: templates/profile_employer.html:27
+#: templates/profile_employer.html:28
 #: templates/profile_employer_confirm.html:48
 #: templates/profile_employer_confirm_lc.html:31
 #: templates/profile_employer_confirm_qn.html:293
@@ -564,7 +564,11 @@ msgstr "广州"
 msgid "Chengdu"
 msgstr "成都"
 
-#: templates/profile_candidate.html:39 templates/profile_employer.html:39
+#: templates/profile_candidate.html:25 templates/profile_employer.html:25
+msgid "Other"
+msgstr "其它"
+
+#: templates/profile_candidate.html:40 templates/profile_employer.html:40
 msgid "Parameters required"
 msgstr "信息必填"
 
