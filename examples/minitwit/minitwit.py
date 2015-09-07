@@ -1225,19 +1225,17 @@ def search1():
 @app.route('/search2', methods=['GET', 'POST'])
 @login_required
 def search2():
-    s1 = request.form['s1']
-    s2 = request.form['s2']
-    s3 = request.form['s3']
-    s4 = request.form['s4']
+    role = request.form['role']
+    location = request.form['location']
+
     user_id = session.get('user_id')
     pas = {}
     pats = {}
     puds = {}
     pics = {}
-    projects = Project.query.filter(or_(Project.desp.like("%" + s1 + "%"),
-                                        Project.location.like("%" + s2 + "%"),
-                                        Project.desp.like("%" + s3 + "%"),
-                                        Project.desp.like("%" + s4 + "%"),
+    projects = Project.query.filter(or_(Project.desp.like("%" + role + "%"),
+                                        Project.location.like("%" + location + "%"),
+                                        Project.desp.like("%" + str(randint(1, 100)) + "%")
                                         )).order_by(desc(Project.id)).all()
     clients = Client.query.all()
     cds = {client.id: client for client in clients}

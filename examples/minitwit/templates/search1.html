@@ -11,19 +11,18 @@
       <h4>{{ _('Confirm your search criteria') }}</h4>
       
       <div class="row-fluid" align="center">      
-        <select class="selectpicker show-tick" data-style="btn-warning" id="s1">
-          <option>Web</option>
-          <option>Mobile</option>
-          <option>App</option>
+
+        <select class="selectpicker show-tick" data-style="btn-success" id="location">
+          <option>{{ _('Beijing') }}</option>
+          <option>{{ _('Shanghai') }}</option>
+          <option>{{ _('Hangzhou') }}</option>
+          <option>{{ _('Shenzhen') }}</option>
+          <option>{{ _('Guangzhou') }}</option>
+          <option>{{ _('Chengdu') }}</option>
+          <option>{{ _('Other') }}</option>
         </select>
 
-        <select class="selectpicker show-tick" data-style="btn-success" id="s2">
-          <option>Beijing</option>
-          <option>Shanghai</option>
-          <option>Tokyo</option>
-        </select>
-
-        <select class="selectpicker show-tick" data-style="btn-info" id="s3">
+        <select class="selectpicker show-tick" data-style="btn-info" id="role">
           <option>Frontend Engineer</option>
           <option>Devops</option>
           <option>Designer</option>
@@ -33,7 +32,11 @@
       <div>
 
       <p></p>
+
+      {#
       <input type="text" class="form-control sm-4" placeholder="{{ _('Keywords') }}" id="s4"/>
+      #}
+
       <span class="input-group-btn">
         <button class="btn btn-danger sendbutton" type="button">
           <i class="glyphicon glyphicon-search"></i>
@@ -72,10 +75,8 @@
       $.ajax({
         url: '/search2',
         type: 'POST',
-        data: {'s1': $(".selectpicker#s1").val(),
-               's2': $(".selectpicker#s2").val(),
-               's3': $(".selectpicker#s3").val(),
-               's4': $("#s4").val(),
+        data: {'role': $(".selectpicker#role").val(),
+               'location': $(".selectpicker#location").val(),
               },
         success: function (result) {
             //alert(result);
