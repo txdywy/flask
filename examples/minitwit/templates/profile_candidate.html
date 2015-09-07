@@ -3,6 +3,12 @@
 <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.7.3/js/bootstrap-select.min.js"></script>
 <link rel='stylesheet' href='//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.7.3/css/bootstrap-select.min.css' type='text/css' media='all' />
 <script>  $('.selectpicker').selectpicker();</script>
+
+<script>
+$(document).ready(function(){
+    $('[data-toggle="popover"]').popover(); 
+});
+</script>
 {% endblock headjs %}
 {% block title %}{{ _('Profile') }}{% endblock %}
 {% block body %}
@@ -25,6 +31,9 @@
           <option>{{ _('Other') }}</option>
         </select>
       </form>
+      <p></p>
+      <a href="#" data-toggle="popover" title="Popover Header" data-content="Some content inside the popover">{{ _('Example') }}</a>
+      <p></p>
       <button class="btn btn-primary" type="button" id="submit">{{ _('Next') }}</button>
       <span></span>
     </div>
