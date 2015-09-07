@@ -801,8 +801,18 @@ def add_candidate_info():
     user.city = request.form['city']
     user.title = request.form['title']
     flush(user)
-    key, token = _gen_icon_key_pair(prefix='CAN', id=user_id)
+    return '1'
+    #key, token = _gen_icon_key_pair(prefix='CAN', id=user_id)
     #flash(_('Successfully added your basic profile!'))
+    #return render_template('profile_candidate_confirm.html', user=user, key=key, token=token)
+
+
+@app.route('/confirm_candidate_info')
+@login_required
+def confirm_candidate_info():
+    user_id = session['user_id']
+    user = User.query.get(user_id)
+    key, token = _gen_icon_key_pair(prefix='CAN', id=user_id)
     return render_template('profile_candidate_confirm.html', user=user, key=key, token=token)
 
 
@@ -853,10 +863,21 @@ def add_employer_info():
     client.name = request.form['company']
     client.email = user.email
     flush(client)
-    key, token = _gen_icon_key_pair(prefix='EMP', id=user_id)
+    #key, token = _gen_icon_key_pair(prefix='EMP', id=user_id)
     #flash(_('Successfully added your basic profile!'))
-    return render_template('profile_employer_confirm.html', user=user, client=client, key=key, token=token)
+    #return render_template('profile_employer_confirm.html', user=user, client=client, key=key, token=token)
+    return '1'
 
+
+@app.route('/confirm_employer_info')
+@login_required
+def confirm_employer_info():
+    user_id = session['user_id']
+    user = User.query.get(user_id)
+    client = Client.query.filter_by(user_id=user.user_id).first()
+    key, token = _gen_icon_key_pair(prefix='EMP', id=user_id)
+    return render_template('profile_employer_confirm.html', user=user, client=client, key=key, token=token)
+    
 
 @app.route('/project_info')
 @login_required

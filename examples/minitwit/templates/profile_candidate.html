@@ -1,5 +1,8 @@
 {% extends "alayout.html" %}
 {% block headjs %}
+<script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.7.3/js/bootstrap-select.min.js"></script>
+<link rel='stylesheet' href='//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.7.3/css/bootstrap-select.min.css' type='text/css' media='all' />
+<script>  $('.selectpicker').selectpicker();</script>
 {% endblock headjs %}
 {% block title %}{{ _('Profile') }}{% endblock %}
 {% block body %}
@@ -12,9 +15,36 @@
         <input class="form-control" name="name" id="name" type="text" placeholder={{ _('Name') }} required>
         <input class="form-control" name="company" id="company" type="text" placeholder={{ _('Company') }} required>   
         <input class="form-control" name="title" id="title" type="text" placeholder={{ _('Title') }} required>
-        <input class="form-control" name="city" id="city" type="text" placeholder={{ _('City') }} required>
-        <button class="btn btn-primary" type="submit">{{ _('Next') }}</button>
-        <span></span>
+        <select class="selectpicker show-tick" data-style="btn-success" id="city">
+          <option>{{ _('Beijing') }}</option>
+          <option>{{ _('Shanghai') }}</option>
+          <option>{{ _('Hangzhou') }}</option>
+          <option>{{ _('Shenzhen') }}</option>
+          <option>{{ _('Guangzhou') }}</option>
+          <option>{{ _('Chengdu') }}</option>
+        </select>
       </form>
+      <button class="btn btn-primary" type="button" id="submit">{{ _('Next') }}</button>
+      <span></span>
     </div>
+
+<script>
+  window.jQuery(document).ready(function($) {
+    $("#submit").click(function() {
+      $.ajax({
+        url: '/add_candidate_info',
+        type: 'POST',
+        data: {'city': $(".selectpicker#city").val(),
+               'name': $("#name").val(),
+               'company': $("#company").val(),
+               'title': $("#title").val(),
+              },
+        success: function (result) {
+            //alert(result);
+            window.location.href='/confirm_candidate_info';
+        }
+      });
+    });    
+  }); 
+</script>
 {% endblock %}
