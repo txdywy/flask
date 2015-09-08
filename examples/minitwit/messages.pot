@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2015-09-07 16:15+0800\n"
+"POT-Creation-Date: 2015-09-08 11:23+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -29,51 +29,51 @@ msgstr ""
 msgid "You have successfully updated your profile"
 msgstr ""
 
-#: minitwit.py:1314
+#: minitwit.py:1312
 msgid "hahaha"
 msgstr ""
 
-#: minitwit.py:1430
+#: minitwit.py:1428
 msgid "Wrong with phone number or password"
 msgstr ""
 
-#: minitwit.py:1448
+#: minitwit.py:1446
 msgid "An email sent with password reset intro"
 msgstr ""
 
-#: minitwit.py:1457
+#: minitwit.py:1455
 msgid "Token expired"
 msgstr ""
 
-#: minitwit.py:1464 minitwit.py:1500
+#: minitwit.py:1462 minitwit.py:1498
 msgid "The two passwords do not match"
 msgstr ""
 
-#: minitwit.py:1469
+#: minitwit.py:1467
 msgid "Reset password token expired."
 msgstr ""
 
-#: minitwit.py:1476
+#: minitwit.py:1474
 msgid "You were successfully reset your password and you can login now"
 msgstr ""
 
-#: minitwit.py:1493
+#: minitwit.py:1491
 msgid "You have to enter a phone number"
 msgstr ""
 
-#: minitwit.py:1498
+#: minitwit.py:1496
 msgid "You have to enter a password"
 msgstr ""
 
-#: minitwit.py:1522
+#: minitwit.py:1520
 msgid "Phone number already registered"
 msgstr ""
 
-#: minitwit.py:1535
+#: minitwit.py:1533
 msgid "You were successfully registered and can login now"
 msgstr ""
 
-#: minitwit.py:1554
+#: minitwit.py:1552
 msgid "You were logged out"
 msgstr ""
 
@@ -105,7 +105,7 @@ msgid "Sign in"
 msgstr ""
 
 #: templates/alayout.html:65 templates/profile.html:8 templates/profile.html:94
-#: templates/profile_candidate.html:7
+#: templates/profile_candidate.html:13
 #: templates/profile_candidate_confirm.html:27
 #: templates/profile_candidate_confirm_lc.html:15
 #: templates/profile_candidate_confirm_qn.html:250
@@ -154,7 +154,7 @@ msgstr ""
 msgid "Project"
 msgstr ""
 
-#: templates/alayout.html:96 templates/search.html:2 templates/search1.html:40
+#: templates/alayout.html:96 templates/search.html:2 templates/search1.html:43
 #: templates/search_candidates.html:46
 msgid "Search"
 msgstr ""
@@ -319,7 +319,7 @@ msgstr ""
 msgid "Valid time"
 msgstr ""
 
-#: templates/jd_employer_confirm.html:41 templates/profile_candidate.html:16
+#: templates/jd_employer_confirm.html:41 templates/profile_candidate.html:22
 #: templates/profile_candidate_complete.html:17
 #: templates/profile_client.html:50 templates/profile_employer.html:16
 #: templates/project_list.html:32 templates/project_list_core.html:27
@@ -375,7 +375,7 @@ msgstr ""
 msgid "Other requirements? (optional, hidden by default)"
 msgstr ""
 
-#: templates/jd_info.html:20 templates/profile_candidate.html:28
+#: templates/jd_info.html:20 templates/profile_candidate.html:37
 #: templates/profile_candidate_complete.html:45
 #: templates/profile_employer.html:28
 #: templates/profile_employer_confirm.html:48
@@ -469,8 +469,9 @@ msgstr ""
 msgid "University of Hello"
 msgstr ""
 
-#: templates/profile.html:58 templates/profile_candidate.html:19
+#: templates/profile.html:58 templates/profile_candidate.html:25
 #: templates/profile_client.html:64 templates/profile_employer.html:19
+#: templates/search1.html:16
 msgid "Beijing"
 msgstr ""
 
@@ -523,52 +524,62 @@ msgstr ""
 msgid " characters remaining"
 msgstr ""
 
-#: templates/profile_candidate.html:12
+#: templates/profile_candidate.html:18
 msgid "Let's setup your job seeker profile."
 msgstr ""
 
-#: templates/profile_candidate.html:13 templates/profile_employer.html:13
+#: templates/profile_candidate.html:19 templates/profile_employer.html:13
 msgid "All fields are required."
 msgstr ""
 
-#: templates/profile_candidate.html:15
+#: templates/profile_candidate.html:21
 #: templates/profile_candidate_complete.html:16
 #: templates/profile_employer.html:15
 msgid "Name"
 msgstr ""
 
-#: templates/profile_candidate.html:17
+#: templates/profile_candidate.html:23
 #: templates/profile_candidate_complete.html:18
 #: templates/profile_client.html:56 templates/profile_employer.html:17
 #: templates/publish.html:54
 msgid "Title"
 msgstr ""
 
-#: templates/profile_candidate.html:20 templates/profile_employer.html:20
+#: templates/profile_candidate.html:26 templates/profile_employer.html:20
+#: templates/search1.html:17
 msgid "Shanghai"
 msgstr ""
 
-#: templates/profile_candidate.html:21 templates/profile_employer.html:21
+#: templates/profile_candidate.html:27 templates/profile_employer.html:21
+#: templates/search1.html:18
 msgid "Hangzhou"
 msgstr ""
 
-#: templates/profile_candidate.html:22 templates/profile_employer.html:22
+#: templates/profile_candidate.html:28 templates/profile_employer.html:22
+#: templates/search1.html:19
 msgid "Shenzhen"
 msgstr ""
 
-#: templates/profile_candidate.html:23 templates/profile_employer.html:23
+#: templates/profile_candidate.html:29 templates/profile_employer.html:23
+#: templates/search1.html:20
 msgid "Guangzhou"
 msgstr ""
 
-#: templates/profile_candidate.html:24 templates/profile_employer.html:24
+#: templates/profile_candidate.html:30 templates/profile_employer.html:24
+#: templates/search1.html:21
 msgid "Chengdu"
 msgstr ""
 
-#: templates/profile_candidate.html:25 templates/profile_employer.html:25
+#: templates/profile_candidate.html:31 templates/profile_employer.html:25
+#: templates/search1.html:22
 msgid "Other"
 msgstr ""
 
-#: templates/profile_candidate.html:40 templates/profile_employer.html:40
+#: templates/profile_candidate.html:35
+msgid "Example"
+msgstr ""
+
+#: templates/profile_candidate.html:49 templates/profile_employer.html:40
 msgid "Parameters required"
 msgstr ""
 
@@ -882,26 +893,22 @@ msgid "Search1"
 msgstr ""
 
 #: templates/search1.html:11
-msgid "Confirm your search criteria"
+msgid "Search ideal jobs"
 msgstr ""
 
-#: templates/search1.html:36 templates/search_candidates.html:42
-msgid "Keywords"
-msgstr ""
-
-#: templates/search1.html:44 templates/search_candidates.html:50
+#: templates/search1.html:47 templates/search_candidates.html:50
 msgid "Alert me of new matching jobs."
 msgstr ""
 
-#: templates/search1.html:46 templates/search_candidates.html:52
+#: templates/search1.html:49 templates/search_candidates.html:52
 msgid "Frequency"
 msgstr ""
 
-#: templates/search1.html:48 templates/search_candidates.html:54
+#: templates/search1.html:51 templates/search_candidates.html:54
 msgid "Every day"
 msgstr ""
 
-#: templates/search1.html:49 templates/search_candidates.html:55
+#: templates/search1.html:52 templates/search_candidates.html:55
 msgid "Each week"
 msgstr ""
 
@@ -911,6 +918,10 @@ msgstr ""
 
 #: templates/search_candidates.html:11
 msgid "What kind of candidates would you like to search for?"
+msgstr ""
+
+#: templates/search_candidates.html:42
+msgid "Keywords"
 msgstr ""
 
 #: templates/search_candidates_result.html:5

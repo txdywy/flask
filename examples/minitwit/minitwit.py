@@ -1214,7 +1214,7 @@ def chat_box():
 @app.route('/search')
 @login_required
 def search():
-    return render_template('search.html')
+    return render_template('search1.html')
 
 @app.route('/search1')
 @login_required
