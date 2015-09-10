@@ -43,14 +43,29 @@
           {{ _('Search') }}
         </button>
       </span>
-      <div class="checkbox">
-        <label><input type="checkbox" value="">{{ _('Alert me of new matching jobs.') }}</label>
+
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" 
+              href="#collapseOne">
+              {{ _('Alert me of new matching jobs.') }}
+            </a>
+          </h4>
+        </div>
+        <div id="collapseOne" class="panel-collapse collapse out">
+          <div class="checkbox">
+            <label><input type="checkbox" value="">{{ _('Alert me of new matching jobs.') }}</label>
+          </div>
+          <label>{{ _('Frequency') }}</label>
+          <select class="selectpicker show-tick" data-style="btn-primary" id="fq">
+            <option>{{ _('Every day') }}</option>
+            <option>{{ _('Each week') }}</option>
+          </select>
+        </div>
       </div>
-      <label>{{ _('Frequency') }}</label>
-      <select class="selectpicker show-tick" data-style="btn-primary" id="fq">
-        <option>{{ _('Every day') }}</option>
-        <option>{{ _('Each week') }}</option>
-      </select>
+
+
       {#
       <form action="/project" class="form-signin">
         <input type="submit" value="{{ _('View search results') }}" class="btn btn-lg btn-primary btn-block">
