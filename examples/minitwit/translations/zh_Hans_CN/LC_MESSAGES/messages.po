@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2015-09-08 11:23+0800\n"
+"POT-Creation-Date: 2015-09-10 14:09+0800\n"
 "PO-Revision-Date: 2015-05-18 11:55+0800\n"
 "Last-Translator: Ramen King <geniusron@gmail.com>\n"
 "Language-Team: zh_Hans_CN <LL@li.org>\n"
@@ -149,7 +149,7 @@ msgid "Chat"
 msgstr "私信"
 
 #: templates/alayout.html:93 templates/project_list.html:9
-#: templates/project_list_core.html:4 templates/project_one.html:2
+#: templates/project_list_core.html:7 templates/project_one.html:2
 #: templates/project_swiper.html:126
 msgid "Project"
 msgstr "项目"
@@ -170,7 +170,7 @@ msgid "Home"
 msgstr "首页"
 
 #: templates/apply.html:2 templates/project_list.html:39
-#: templates/project_list_core.html:36
+#: templates/project_list_core.html:39
 msgid "Apply"
 msgstr "申请"
 
@@ -195,7 +195,7 @@ msgid "Joined"
 msgstr "加入时间"
 
 #: templates/apply.html:17 templates/jd_employer_confirm.html:29
-#: templates/project_list.html:20 templates/project_list_core.html:15
+#: templates/project_list.html:20 templates/project_list_core.html:18
 #: templates/project_one.html:14
 msgid "d ago"
 msgstr "天之前"
@@ -305,24 +305,24 @@ msgid "JD Confirm"
 msgstr "职位确认"
 
 #: templates/jd_employer_confirm.html:32 templates/project_list.html:23
-#: templates/project_list_core.html:18 templates/project_one.html:17
+#: templates/project_list_core.html:21 templates/project_one.html:17
 msgid "Want to launch"
 msgstr "希望启动项目"
 
 #: templates/jd_employer_confirm.html:33 templates/project_list.html:24
-#: templates/project_list_core.html:19 templates/project_one.html:18
+#: templates/project_list_core.html:22 templates/project_one.html:18
 msgid "Get"
 msgstr "报酬"
 
 #: templates/jd_employer_confirm.html:34 templates/project_list.html:25
-#: templates/project_list_core.html:20 templates/project_one.html:19
+#: templates/project_list_core.html:23 templates/project_one.html:19
 msgid "Valid time"
 msgstr "有效时间"
 
 #: templates/jd_employer_confirm.html:41 templates/profile_candidate.html:22
 #: templates/profile_candidate_complete.html:17
 #: templates/profile_client.html:50 templates/profile_employer.html:16
-#: templates/project_list.html:32 templates/project_list_core.html:27
+#: templates/project_list.html:32 templates/project_list_core.html:30
 #: templates/project_one.html:26
 msgid "Company"
 msgstr "公司"
@@ -712,13 +712,17 @@ msgstr "有效时间"
 msgid "June to August"
 msgstr "从六月到八月"
 
-#: templates/project_list.html:42 templates/project_list_core.html:40
+#: templates/project_list.html:42 templates/project_list_core.html:43
 msgid "Applied at"
 msgstr "申请时间"
 
-#: templates/project_list.html:49 templates/project_list_core.html:47
+#: templates/project_list.html:49 templates/project_list_core.html:50
 msgid "There's no project so far."
 msgstr "目前没有项目"
+
+#: templates/project_list_core.html:3
+msgid "Projects found:"
+msgstr "查询到项目数目:"
 
 #: templates/project_manage.html:24 templates/project_new.html:8
 msgid "New Project"
@@ -896,19 +900,20 @@ msgstr "搜索"
 msgid "Search ideal jobs"
 msgstr "搜索理想工作"
 
-#: templates/search1.html:47 templates/search_candidates.html:50
+#: templates/search1.html:52 templates/search1.html:58
+#: templates/search_candidates.html:50
 msgid "Alert me of new matching jobs."
 msgstr "提示我新工作"
 
-#: templates/search1.html:49 templates/search_candidates.html:52
+#: templates/search1.html:60 templates/search_candidates.html:52
 msgid "Frequency"
 msgstr "频率"
 
-#: templates/search1.html:51 templates/search_candidates.html:54
+#: templates/search1.html:62 templates/search_candidates.html:54
 msgid "Every day"
 msgstr "每天"
 
-#: templates/search1.html:52 templates/search_candidates.html:55
+#: templates/search1.html:63 templates/search_candidates.html:55
 msgid "Each week"
 msgstr "每周"
 
