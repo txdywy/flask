@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2015-09-10 14:09+0800\n"
+"POT-Creation-Date: 2015-09-10 16:02+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,63 +17,63 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 1.3\n"
 
-#: minitwit.py:844 minitwit.py:918
+#: minitwit.py:847 minitwit.py:921
 msgid "You have successfully created your project"
 msgstr ""
 
-#: minitwit.py:942
+#: minitwit.py:945
 msgid "You have successfully updated your project"
 msgstr ""
 
-#: minitwit.py:977
+#: minitwit.py:980
 msgid "You have successfully updated your profile"
 msgstr ""
 
-#: minitwit.py:1312
+#: minitwit.py:1315
 msgid "hahaha"
 msgstr ""
 
-#: minitwit.py:1428
+#: minitwit.py:1431
 msgid "Wrong with phone number or password"
 msgstr ""
 
-#: minitwit.py:1446
+#: minitwit.py:1449
 msgid "An email sent with password reset intro"
 msgstr ""
 
-#: minitwit.py:1455
+#: minitwit.py:1458
 msgid "Token expired"
 msgstr ""
 
-#: minitwit.py:1462 minitwit.py:1498
+#: minitwit.py:1465 minitwit.py:1501
 msgid "The two passwords do not match"
 msgstr ""
 
-#: minitwit.py:1467
+#: minitwit.py:1470
 msgid "Reset password token expired."
 msgstr ""
 
-#: minitwit.py:1474
+#: minitwit.py:1477
 msgid "You were successfully reset your password and you can login now"
 msgstr ""
 
-#: minitwit.py:1491
+#: minitwit.py:1494
 msgid "You have to enter a phone number"
 msgstr ""
 
-#: minitwit.py:1496
+#: minitwit.py:1499
 msgid "You have to enter a password"
 msgstr ""
 
-#: minitwit.py:1520
+#: minitwit.py:1523
 msgid "Phone number already registered"
 msgstr ""
 
-#: minitwit.py:1533
+#: minitwit.py:1536
 msgid "You were successfully registered and can login now"
 msgstr ""
 
-#: minitwit.py:1552
+#: minitwit.py:1555
 msgid "You were logged out"
 msgstr ""
 
@@ -109,7 +109,7 @@ msgstr ""
 #: templates/profile_candidate_confirm.html:27
 #: templates/profile_candidate_confirm_lc.html:15
 #: templates/profile_candidate_confirm_qn.html:250
-#: templates/profile_client.html:8 templates/profile_employer.html:7
+#: templates/profile_client.html:8 templates/profile_employer.html:37
 #: templates/profile_employer_confirm.html:27
 #: templates/profile_employer_confirm_lc.html:15
 #: templates/profile_employer_confirm_qn.html:250
@@ -321,7 +321,7 @@ msgstr ""
 
 #: templates/jd_employer_confirm.html:41 templates/profile_candidate.html:22
 #: templates/profile_candidate_complete.html:17
-#: templates/profile_client.html:50 templates/profile_employer.html:16
+#: templates/profile_client.html:50 templates/profile_employer.html:54
 #: templates/project_list.html:32 templates/project_list_core.html:30
 #: templates/project_one.html:26
 msgid "Company"
@@ -331,53 +331,65 @@ msgstr ""
 msgid "Publish JD"
 msgstr ""
 
-#: templates/jd_info.html:4
+#: templates/jd_info.html:7
+msgid "Please upload your company logo"
+msgstr ""
+
+#: templates/jd_info.html:14 templates/profile_candidate_confirm.html:14
+#: templates/profile_candidate_confirm_qn.html:75
+#: templates/profile_employer.html:14
+#: templates/profile_employer_confirm.html:14
+#: templates/profile_employer_confirm_qn.html:75
+msgid "Image uploaded"
+msgstr ""
+
+#: templates/jd_info.html:23
 msgid "POST JD"
 msgstr ""
 
-#: templates/jd_info.html:9
+#: templates/jd_info.html:29
 msgid "Now create the JD you want to post."
 msgstr ""
 
-#: templates/jd_info.html:11
+#: templates/jd_info.html:38
 msgid "Company name"
 msgstr ""
 
-#: templates/jd_info.html:12 templates/review_for_jd.html:31
+#: templates/jd_info.html:39 templates/review_for_jd.html:31
 msgid "Location"
 msgstr ""
 
-#: templates/jd_info.html:13
+#: templates/jd_info.html:40
 msgid "Company logo"
 msgstr ""
 
-#: templates/jd_info.html:14
+#: templates/jd_info.html:41
 msgid "Role tag"
 msgstr ""
 
-#: templates/jd_info.html:15
+#: templates/jd_info.html:42
 msgid "Start date"
 msgstr ""
 
-#: templates/jd_info.html:16
+#: templates/jd_info.html:43
 msgid "Duration"
 msgstr ""
 
-#: templates/jd_info.html:17
+#: templates/jd_info.html:44
 msgid "Project pitch: why should people care?"
 msgstr ""
 
-#: templates/jd_info.html:18
+#: templates/jd_info.html:45
 msgid "Salary or other incentives?"
 msgstr ""
 
-#: templates/jd_info.html:19
+#: templates/jd_info.html:46
 msgid "Other requirements? (optional, hidden by default)"
 msgstr ""
 
-#: templates/jd_info.html:20 templates/profile_candidate.html:37
+#: templates/jd_info.html:47 templates/profile_candidate.html:37
 #: templates/profile_candidate_complete.html:45
-#: templates/profile_employer.html:28
+#: templates/profile_employer.html:69
 #: templates/profile_employer_confirm.html:48
 #: templates/profile_employer_confirm_lc.html:31
 #: templates/profile_employer_confirm_qn.html:293
@@ -440,8 +452,9 @@ msgid "upload me"
 msgstr ""
 
 #: templates/profile.html:31 templates/profile_candidate_confirm.html:38
-#: templates/profile_client.html:31 templates/profile_employer_confirm.html:38
-#: templates/project_info.html:31 templates/project_new.html:31
+#: templates/profile_client.html:31 templates/profile_employer.html:49
+#: templates/profile_employer_confirm.html:38 templates/project_info.html:31
+#: templates/project_new.html:31
 msgid "no new icon"
 msgstr ""
 
@@ -470,7 +483,7 @@ msgid "University of Hello"
 msgstr ""
 
 #: templates/profile.html:58 templates/profile_candidate.html:25
-#: templates/profile_client.html:64 templates/profile_employer.html:19
+#: templates/profile_client.html:64 templates/profile_employer.html:57
 #: templates/search1.html:16
 msgid "Beijing"
 msgstr ""
@@ -528,58 +541,58 @@ msgstr ""
 msgid "Let's setup your job seeker profile."
 msgstr ""
 
-#: templates/profile_candidate.html:19 templates/profile_employer.html:13
+#: templates/profile_candidate.html:19 templates/profile_employer.html:51
 msgid "All fields are required."
 msgstr ""
 
 #: templates/profile_candidate.html:21
 #: templates/profile_candidate_complete.html:16
-#: templates/profile_employer.html:15
+#: templates/profile_employer.html:53
 msgid "Name"
 msgstr ""
 
 #: templates/profile_candidate.html:23
 #: templates/profile_candidate_complete.html:18
-#: templates/profile_client.html:56 templates/profile_employer.html:17
+#: templates/profile_client.html:56 templates/profile_employer.html:55
 #: templates/publish.html:54
 msgid "Title"
 msgstr ""
 
-#: templates/profile_candidate.html:26 templates/profile_employer.html:20
+#: templates/profile_candidate.html:26 templates/profile_employer.html:58
 #: templates/search1.html:17
 msgid "Shanghai"
 msgstr ""
 
-#: templates/profile_candidate.html:27 templates/profile_employer.html:21
+#: templates/profile_candidate.html:27 templates/profile_employer.html:59
 #: templates/search1.html:18
 msgid "Hangzhou"
 msgstr ""
 
-#: templates/profile_candidate.html:28 templates/profile_employer.html:22
+#: templates/profile_candidate.html:28 templates/profile_employer.html:60
 #: templates/search1.html:19
 msgid "Shenzhen"
 msgstr ""
 
-#: templates/profile_candidate.html:29 templates/profile_employer.html:23
+#: templates/profile_candidate.html:29 templates/profile_employer.html:61
 #: templates/search1.html:20
 msgid "Guangzhou"
 msgstr ""
 
-#: templates/profile_candidate.html:30 templates/profile_employer.html:24
+#: templates/profile_candidate.html:30 templates/profile_employer.html:62
 #: templates/search1.html:21
 msgid "Chengdu"
 msgstr ""
 
-#: templates/profile_candidate.html:31 templates/profile_employer.html:25
+#: templates/profile_candidate.html:31 templates/profile_employer.html:63
 #: templates/search1.html:22
 msgid "Other"
 msgstr ""
 
-#: templates/profile_candidate.html:35
+#: templates/profile_candidate.html:35 templates/profile_employer.html:67
 msgid "Example"
 msgstr ""
 
-#: templates/profile_candidate.html:49 templates/profile_employer.html:40
+#: templates/profile_candidate.html:49 templates/profile_employer.html:81
 msgid "Parameters required"
 msgstr ""
 
@@ -615,16 +628,9 @@ msgstr ""
 
 #: templates/profile_candidate_confirm.html:7
 #: templates/profile_candidate_confirm_lc.html:7
-#: templates/profile_employer_confirm.html:7
+#: templates/profile_employer.html:7 templates/profile_employer_confirm.html:7
 #: templates/profile_employer_confirm_lc.html:7 templates/qnh5.html:5
 msgid "Drag your image here---->"
-msgstr ""
-
-#: templates/profile_candidate_confirm.html:14
-#: templates/profile_candidate_confirm_qn.html:75
-#: templates/profile_employer_confirm.html:14
-#: templates/profile_employer_confirm_qn.html:75
-msgid "Image uploaded"
 msgstr ""
 
 #: templates/profile_candidate_confirm.html:32
@@ -667,7 +673,7 @@ msgstr ""
 msgid "Legend and more..."
 msgstr ""
 
-#: templates/profile_employer.html:12
+#: templates/profile_employer.html:42
 msgid "Let's setup your employer profile."
 msgstr ""
 
