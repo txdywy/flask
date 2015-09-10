@@ -1,24 +1,52 @@
 {% extends "alayout.html" %}
 {% block headjs %}
+<script src="//cdnjs.cloudflare.com/ajax/libs/dropzone/4.0.1/dropzone.js"></script>
+<link rel='stylesheet' href="//cdnjs.cloudflare.com/ajax/libs/dropzone/4.0.1/dropzone.css"/>
+<script>
+  Dropzone.options.imgUpload = {
+    dictDefaultMessage: "{{ _('Drag your image here---->') }}",
+    acceptedFiles: "image/*", // Accept images only
+    //maxFiles: "1",
+    addRemoveLinks: "true",
+    maxFilesize: 3,
+    init: function() {
+      this.on("success", function(file, response) {
+        alert("{{ _('Image uploaded') }}");
+        var icon = $("#domain").val()+response.key;
+        $("#jd_icon").attr("src", icon+'?'+Math.random());
+        $("icon").val(icon);
+      });
+    }
+  };
+</script>
 {% endblock headjs %}
 {% block title %}{{ _('POST JD') }}{% endblock %}
 {% block body %}
 <div class="container" style="padding-top: 30px;" >
   <!-- edit form column -->
     <section>
-      <h4>{{ _("Now create the JD you want to post.") }}</h4>
-      <form class="form-signin" method="post" action="/add_jd_info">
-        <input class="form-control" name="company" id="company" type="text" placeholder={{ _('Company name') }} required>   
-        <input class="form-control" name="location" id="location" type="text" placeholder={{ _('Location') }} required>
-        <input class="form-control" name="logo" id="logo" type="text" placeholder={{ _('Company logo') }} required>
-        <input class="form-control" name="role" id="role" type="text" placeholder={{ _('Role tag') }} required>
-        <input class="form-control" name="start" id="start" type="text" placeholder={{ _('Start date') }} required>
-        <input class="form-control" name="duration" id="duration" type="text" placeholder={{ _('Duration') }} required>
-        <input class="form-control" name="pitch" id="pitch" type="text" placeholder={{ _('Project pitch: why should people care?') }} required>
-        <input class="form-control" name="incentive" id="incentive" type="text" placeholder={{ _('Salary or other incentives?') }} required>
-        <input class="form-control" name="other" id="other" type="text" placeholder={{ _('Other requirements? (optional, hidden by default)') }} required>
-        <button class="btn btn-primary" type="submit">{{ _('Next') }}</button>
-        <span></span>
-      </form>
+      <div align="center">
+        <h4>{{ _("Now create the JD you want to post.") }}</h4>
+        <input id='domain' value="http://7xlcr1.com1.z0.glb.clouddn.com/" type="hidden">
+        <form action="http://upload.qiniu.com/" class="dropzone" id="img-upload">
+          <input name="key" type="hidden" value="{{ key }}" id="key">
+          <input name="token" type="hidden" value="{{ token }}" id="token">
+        </form>
+        <img src="" autofocus class="img-circle center-block" width=200 height=200 alt="" id="jd_icon">
+        <form class="form-signin" method="post" action="/add_jd_info">
+          <input class="form-control" name="icon" id="icon" type="hidden" value="">
+          <input class="form-control" name="company" id="company" type="text" placeholder={{ _('Company name') }} required>   
+          <input class="form-control" name="location" id="location" type="text" placeholder={{ _('Location') }} required>
+          <input class="form-control" name="logo" id="logo" type="text" placeholder={{ _('Company logo') }} required>
+          <input class="form-control" name="role" id="role" type="text" placeholder={{ _('Role tag') }} required>
+          <input class="form-control" name="start" id="start" type="text" placeholder={{ _('Start date') }} required>
+          <input class="form-control" name="duration" id="duration" type="text" placeholder={{ _('Duration') }} required>
+          <input class="form-control" name="pitch" id="pitch" type="text" placeholder={{ _('Project pitch: why should people care?') }} required>
+          <input class="form-control" name="incentive" id="incentive" type="text" placeholder={{ _('Salary or other incentives?') }} required>
+          <input class="form-control" name="other" id="other" type="text" placeholder={{ _('Other requirements? (optional, hidden by default)') }} required>
+          <button class="btn btn-primary" type="submit">{{ _('Next') }}</button>
+          <span></span>
+        </form>
+      </div>
     </section>
 {% endblock %}

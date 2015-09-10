@@ -821,9 +821,11 @@ def confirm_candidate_info():
 @app.route('/add_jd_info', methods=['GET', 'POST'])
 @login_required
 def add_jd_info():
-    if(request.method == 'GET'):
-        return render_template('jd_info.html')
     user_id = session['user_id']
+    if(request.method == 'GET'):
+        key, token = _gen_icon_key_pair(prefix='JD', id=user_id)
+        return render_template('jd_info.html', key=key, token=token)
+
     user = User.query.get(user_id)
     client = Client.query.filter_by(user_id=user.user_id).first()
     project = Project()
