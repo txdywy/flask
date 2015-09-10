@@ -740,7 +740,8 @@ def profile():
     user = User.query.get(user_id)
     if user.role == User.USER_CLIENT:
         client = Client.query.filter_by(user_id=user.user_id).first()
-        return render_template('profile_employer.html', user=user, client=client)
+        key, token = _gen_icon_key_pair(prefix='EMP', id=user_id)
+        return render_template('profile_employer.html', user=user, client=client, key=key, token=token)
         #return render_template('profile_client.html', user=user, client=client)
     else:
         return render_template('profile_candidate.html')
