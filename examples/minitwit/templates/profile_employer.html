@@ -40,12 +40,14 @@ $(document).ready(function(){
   <!-- edit form column -->
     <section>
       <h4>{{ _("Let's setup your employer profile.") }}</h4>
-      <input id='domain' value="http://7xlcr1.com1.z0.glb.clouddn.com/" type="hidden">
+      <div align="center">
+        <input id='domain' value="http://7xlcr1.com1.z0.glb.clouddn.com/" type="hidden">
         <form action="http://upload.qiniu.com/" class="dropzone" id="img-upload">
           <input name="key" type="hidden" value="{{ key }}" id="key">
           <input name="token" type="hidden" value="{{ token }}" id="token">
         </form>
         <img src="{{ user.icon }}" autofocus class="img-circle center-block" width=200 height=200 alt="{{ _('no new icon') }}" id="user_icon">
+      </div>
       <h6>{{ _('All fields are required.') }}</h6>
       <form class="form-signin" method="post" action="/add_employer_info">
         <input class="form-control" name="name" id="name" type="text" placeholder={{ _('Name') }} required>
@@ -89,7 +91,7 @@ $(document).ready(function(){
               },
         success: function (result) {
             //alert(result);
-            window.location.href='/confirm_employer_info';
+            window.location.href='/add_jd_info';
         }
       });
     });    
