@@ -333,7 +333,7 @@ msgstr "发布项目"
 
 #: templates/jd_info.html:7
 msgid "Please upload your company logo"
-msgstr "请上传你的公司标志"
+msgstr "请点此上传公司标志"
 
 #: templates/jd_info.html:14 templates/profile_candidate_confirm.html:14
 #: templates/profile_candidate_confirm_qn.html:75
