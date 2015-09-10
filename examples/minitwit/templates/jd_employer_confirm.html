@@ -1,16 +1,5 @@
 {% extends "alayout.html" %}
 {% block headjs %}
-<script src="//cdnjs.cloudflare.com/ajax/libs/dropzone/4.0.1/dropzone.js"></script>
-<link rel='stylesheet' href="//cdnjs.cloudflare.com/ajax/libs/dropzone/4.0.1/dropzone.css"/>
-<script>
-  Dropzone.options.imgUpload = {
-    dictDefaultMessage: "{{ _('Drag your project/company logo here---->') }}",
-    acceptedFiles: "image/*", // Accept images only
-    //maxFiles: "1",
-    addRemoveLinks: "true",
-    maxFilesize: 3,
-  };
-</script>
 {% endblock headjs %}
 {% block title %}{{ _('JD Confirm') }}{% endblock %}
 {% block body %}
@@ -19,8 +8,6 @@
       <div class="container">
         <div class="row">
           <div>
-            <form action="/upload_jd_img?pid={{ project.id }}" class="dropzone" id="img-upload">
-            </form>
             {% if project %}
               <div class="col-sm-4 portfolio-item" >
                 <img autofocus src="{{ project.image_url }}" class="img-responsive img-centered" alt="">

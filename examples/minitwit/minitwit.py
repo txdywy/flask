@@ -830,13 +830,13 @@ def add_jd_info():
     client = Client.query.filter_by(user_id=user.user_id).first()
     project = Project()
     project.client_id = client.id
-    project.title = request.form['logo']
     project.client = client.name
+    project.title = request.form['company']
     project.desp = request.form['pitch']
     project.incentive = request.form['incentive']
     project.location = request.form['location']
     project.valid_time = request.form['start'] + ',' + request.form['duration']
-    project.image_url = 'http://www.whichsocialmedia.com/wp-content/uploads/2013/04/no-logo.png'
+    project.image_url = request.form['icon'] if request.form['icon'] else 'http://www.whichsocialmedia.com/wp-content/uploads/2013/04/no-logo.png'
     flush(project)
 
     puds = {}

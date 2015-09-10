@@ -353,7 +353,7 @@ msgstr "现在请创建你的职位"
 
 #: templates/jd_info.html:38
 msgid "Company name"
-msgstr "公司/组织"
+msgstr "公司名称"
 
 #: templates/jd_info.html:39 templates/review_for_jd.html:31
 msgid "Location"
