@@ -19,7 +19,7 @@ def alancer():
     env.hosts = ['sushi', 'noodle', 'udon'] # 'polo' retired
 
 def vpn():
-    env.hosts = ['tempura', 'ramen', 'donut', 'nori']
+    env.hosts = ['tempura', 'ramen', 'donut', 'nori' , 'mm']
 
 def appflood():
     env.hosts = ['pre3-01', 'af_test', 'test3', 'sandbox']
