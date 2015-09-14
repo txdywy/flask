@@ -76,14 +76,14 @@
 
           <span class="label label-warning">{{ _('Duration') }}</span>
           <div class='input-group date' id='datetimepicker6'>
-            <input type='text' class="form-control" />
+            <input type='text' class="form-control" id="begin" />
             <span class="input-group-addon">
               <span class="glyphicon glyphicon-calendar"></span>
             </span>
           </div>
 
           <div class='input-group date' id='datetimepicker7'>
-            <input type='text' class="form-control" />
+            <input type='text' class="form-control" id="end" />
             <span class="input-group-addon">
               <span class="glyphicon glyphicon-calendar"></span>
             </span>
@@ -105,29 +105,33 @@
       var company=$("#company").val();
       var location=$(".selectpicker#location").val();
       var role=$(".selectpicker#role").val();
-      var icon=$("#icon").val()
-      var icon=$("#icon").val()
-      var icon=$("#icon").val()
-      var icon=$("#icon").val()
-      var city=$(".selectpicker#city").val();
-      var name=$("#name").val();
-      var company=$("#company").val();
-      var title=$("#title").val();
-      if (!city || !name || !company || !title){
+      var start=$("#start").val();
+      var begin=$("#begin").val();
+      var end=$("#end").val();
+      var duration = begin+' - '+end;
+      var pitch=$("#pitch").val();
+      var incentive=$("#incentive").val();
+      var other=$("#other").val();
+      if (!company || !pitch || !company || !pitch || !incentive){
         alert("{{ _('Parameters required') }}");
         return
       }
       $.ajax({
         url: '/add_jd_info',
         type: 'POST',
-        data: {'city': city,
-               'name': name,
+        data: {'icon': icon,
                'company': company,
-               'title': title,
+               'location': location,
+               'role': role,
+               'start': start,
+               'duration': duration,
+               'pitch': pitch,
+               'incentive': incentive,
+               'other': other,
               },
         success: function (result) {
-            //alert(result);
-            window.location.href='/confirm_candidate_info';
+            console.log(result);
+            window.location.href='/jd_employer_confirm?pid='+result;
         }
       });
     });    

@@ -838,7 +838,17 @@ def add_jd_info():
     project.valid_time = request.form['start'] + ',' + request.form['duration']
     project.image_url = request.form['icon'] if request.form['icon'] else 'http://www.whichsocialmedia.com/wp-content/uploads/2013/04/no-logo.png'
     flush(project)
+    return str(project.id)
 
+
+@app.route('/jd_employer_confirm', methods=['GET'])
+@login_required
+def jd_employer_confirm():
+    user_id = session['user_id']
+    user = User.query.get(user_id)
+    client = Client.query.filter_by(user_id=user.user_id).first()
+    pid = request.args.get('pid')
+    project = Project.query.get(pid)
     puds = {}
     pics = {}
     puds[project.id] = (datetime.now() - project.create_time).days
