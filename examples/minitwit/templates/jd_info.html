@@ -7,6 +7,9 @@
 <link rel='stylesheet' href='//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.7.3/css/bootstrap-select.min.css' type='text/css' media='all' />
 <script>  $('.selectpicker').selectpicker();</script>
 
+<script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment-with-locales.js"></script>
+<script src="/js/bootstrap-datetimepicker.min.js"></script>
+<link rel='stylesheet' href="/css/bootstrap-datetimepicker.min.css"/>
 
 <script>
   Dropzone.options.imgUpload = {
@@ -62,8 +65,14 @@
             <option>Backend</option>
           </select>
 
+        
+          <div class='input-group date' id='datetimepicker1'>
+            <input type='text' class="form-control" id="start"/>
+            <span class="input-group-addon">
+              <span class="glyphicon glyphicon-calendar"></span>
+            </span>
+          </div>
 
-          <input class="form-control" name="start" id="start" type="text" placeholder={{ _('Start date') }} required>
           <input class="form-control" name="duration" id="duration" type="text" placeholder={{ _('Duration') }} required>
           <input class="form-control" name="pitch" id="pitch" type="text" placeholder={{ _('Project pitch: why should people care?') }} required>
           <input class="form-control" name="incentive" id="incentive" type="text" placeholder={{ _('Salary or other incentives?') }} required>
@@ -109,4 +118,10 @@
     });    
   }); 
 </script>
+
+        <script type="text/javascript">
+            $(function () {
+                $('#datetimepicker1').datetimepicker();
+            });
+        </script>
 {% endblock %}
