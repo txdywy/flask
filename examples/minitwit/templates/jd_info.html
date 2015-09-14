@@ -65,7 +65,7 @@
             <option>Backend</option>
           </select>
 
-        
+          <span class="label label-danger">{{ _('Start date') }}</span>
           <div class='input-group date' id='datetimepicker1'>
             <input type='text' class="form-control" id="start"/>
             <span class="input-group-addon">
@@ -73,7 +73,22 @@
             </span>
           </div>
 
-          <input class="form-control" name="duration" id="duration" type="text" placeholder={{ _('Duration') }} required>
+
+          <span class="label label-warning">{{ _('Duration') }}</span>
+          <div class='input-group date' id='datetimepicker6'>
+            <input type='text' class="form-control" />
+            <span class="input-group-addon">
+              <span class="glyphicon glyphicon-calendar"></span>
+            </span>
+          </div>
+
+          <div class='input-group date' id='datetimepicker7'>
+            <input type='text' class="form-control" />
+            <span class="input-group-addon">
+              <span class="glyphicon glyphicon-calendar"></span>
+            </span>
+          </div>
+
           <input class="form-control" name="pitch" id="pitch" type="text" placeholder={{ _('Project pitch: why should people care?') }} required>
           <input class="form-control" name="incentive" id="incentive" type="text" placeholder={{ _('Salary or other incentives?') }} required>
           <input class="form-control" name="other" id="other" type="text" placeholder={{ _('Other requirements? (optional, hidden by default)') }} required>
@@ -119,9 +134,25 @@
   }); 
 </script>
 
-        <script type="text/javascript">
-            $(function () {
-                $('#datetimepicker1').datetimepicker();
-            });
-        </script>
+<script type="text/javascript">
+  $(function () {
+    $('#datetimepicker1').datetimepicker({defaultDate: "11/1/2015",});
+  });
+</script>
+
+<script type="text/javascript">
+  $(function () {
+    $('#datetimepicker6').datetimepicker({defaultDate: "11/1/2015",});
+    $('#datetimepicker7').datetimepicker({
+      useCurrent: false, //Important! See issue #1075
+      defaultDate: "11/11/2015"
+    });
+    $("#datetimepicker6").on("dp.change", function (e) {
+      $('#datetimepicker7').data("DateTimePicker").minDate(e.date);
+    });
+    $("#datetimepicker7").on("dp.change", function (e) {
+      $('#datetimepicker6').data("DateTimePicker").maxDate(e.date);
+    });
+  });
+</script>
 {% endblock %}
