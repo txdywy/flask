@@ -1582,6 +1582,16 @@ def qnh5():
     return render_template('qnh5.html', token=token, name=name)
 
 
+@app.route('/webup')
+def webup():
+    ts = time.time()
+    #name = "%s_%s" % (str(datetime.now())[:10], md5(str(ts)).hexdigest())
+    #token = qiniu_agent.get_qn_token_by_key(key=name)
+    name = ''
+    token = qiniu_agent.get_qn_token()
+    return render_template('webup.html', token=token, name=name)
+
+
 @app.route('/qn')
 def qn():
     return render_template('qn.html')
