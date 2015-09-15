@@ -58,7 +58,7 @@
                     </li>
                     <li class="page-scroll">
                         {% if not g.user %}
-                            <a href="{{ url_for('role') }}">{{ _("Sign up") }}</a>
+                            <a href="{{ url_for('register') }}">{{ _("Sign up") }}</a>
                         {% endif %}
                     </li>
                     <!--
@@ -112,11 +112,13 @@
           </select>
         </div>
         #}
+        {#
         {% if role==0 %}
         <input type="hidden" name="isowner" value="0">
         {% else %}
         <input type="hidden" name="isowner" value="1">
         {% endif %}
+        #}
         <label> </label>
         <button class="btn btn-lg btn-primary btn-block" type="submit">{{ _("Sign up") }}</button>
       </form>

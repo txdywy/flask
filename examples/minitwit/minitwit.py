@@ -1524,6 +1524,13 @@ def register():
             #u.icon = get_pic_url('lego %s %s' % (username, email))
             #u.icon = get_gravatar_lc(key=pid)
             u.icon = get_fb_icon()
+            try:
+                flush(u)
+            except Exception, e:
+                flash(_('Phone number already registered'))
+                print '------------', str(e)
+                return render_template('register.html')
+            """
             isowner = int(request.form.get('isowner'))
             if isowner:
                 u.role = User.USER_CLIENT
@@ -1538,6 +1545,7 @@ def register():
             if isowner:
                 client = Client(name=u.username, email=u.email, user_id=u.user_id, icon=u.icon)
                 flush(client)
+            """
             #util.send_email(_('Welcome to Alancer'), ALANCER_WELCOME_BODY % url_for('project'), request.form['email'])
             print '===========', ALANCER_WELCOME_BODY % ('http://%s/project' % ALANCER_HOST)
             #util.send_email('[Alancer Signup]', 'You have a new user [%s] @lancer!' % request.form['email'], ALANCER_SERVICE_EMAIL)
@@ -1545,19 +1553,32 @@ def register():
             session['user_id'] = u.user_id
             flash(_('You were successfully registered and can login now'))
             #print '-----------------3333--------------------'
-            return redirect(url_for('profile'))
+            #return redirect(url_for('profile'))
+            return redirect(url_for('role'))
     if error:
         flash(error)
-    role = int(request.args.get('role'))
-    return render_template('register.html', role=role)
+    #role = int(request.args.get('role'))
+    #return render_template('register.html', role=role)
+    return render_template('register.html')
+
 
 @app.route('/role', methods=['GET', 'POST'])
+@login_required
 def role():
     if request.method == 'GET':
         return render_template('role.html')
     if request.method == 'POST':
+        user_id = session['user_id']
+        u = User.query.get(user_id)
         role = int(request.form['role'])
-        return redirect(url_for('register', role=role))
+        isowner = role
+        if isowner:
+            u.role = User.USER_CLIENT
+            flush(u)
+            client = Client(name=u.username, email=u.email, user_id=u.user_id, icon=u.icon)
+            flush(client)
+        return redirect(url_for('profile'))
+        
 
 @app.route('/logout')
 def logout():
