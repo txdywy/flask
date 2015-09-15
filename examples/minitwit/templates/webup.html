@@ -2,6 +2,7 @@
 <script type='text/javascript' src='//cdn.bootcss.com/jquery/1.11.2/jquery.min.js'></script>
 
 <link rel="stylesheet" type="text/css" href="/css/webuploader/webuploader.css">
+<link rel="stylesheet" type="text/css" href="/css/webup.css">
 <script type='text/javascript' src='/js/webuploader/webuploader.min.js'></script>
 
 
@@ -102,6 +103,7 @@ jQuery(function() {
     // 文件上传成功，给item添加成功class, 用样式标记上传成功。
     uploader.on( 'uploadSuccess', function( file ) {
         $( '#'+file.id ).addClass('upload-state-done');
+        alert('Upload sucess!');
     });
 
     // 文件上传失败，现实上传出错。
@@ -119,7 +121,7 @@ jQuery(function() {
 
     // 完成上传完了，成功或者失败，先删除进度条。
     uploader.on( 'uploadComplete', function( file ) {
-        $( '#'+file.id ).find('.progress').remove();
+        //$( '#'+file.id ).find('.progress').remove();
     });
 });
 </script>
