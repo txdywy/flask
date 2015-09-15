@@ -1587,9 +1587,10 @@ def webup():
     ts = time.time()
     #name = "%s_%s" % (str(datetime.now())[:10], md5(str(ts)).hexdigest())
     #token = qiniu_agent.get_qn_token_by_key(key=name)
-    name = ''
-    token = qiniu_agent.get_qn_token()
-    return render_template('webup.html', token=token, name=name)
+    #name = ''
+    #token = qiniu_agent.get_qn_token()
+    key, token = _gen_icon_key_pair()
+    return render_template('webup.html', token=token, key=key)
 
 
 @app.route('/qn')

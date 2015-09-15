@@ -7,10 +7,6 @@
 
 <input id='domain' value="http://7xlcr1.com1.z0.glb.clouddn.com/" type="hidden">
 
-<form action="http://upload.qiniu.com/" class="dropzone" id="img-upload">
-  <input name="key" type="hidden" value="{{ name }}" id="name">
-  <input name="token" type="hidden" value="{{ token }}" id="token">
-</form>
 
 <!--dom结构部分-->
 <div id="uploader-demo">
@@ -18,40 +14,6 @@
     <div id="fileList" class="uploader-list"></div>
     <div id="filePicker">选择图片</div>
 </div>
-
-{#
-<form enctype="multipart/form-data" id="f2">
-  <input name="key" type="hidden" value="{{ name }}" id="name">
-  <input name="token" type="hidden" value="{{ token }}" id="token">
-  <input name="file" type="file" id="file">
-</form>
-<button class="btn btn-info btn-lg" type="button" id="submit">
-  <span class="glyphicon glyphicon-ok"></span> 
-  Submit
-</button>
-<div id="sr">
-</div>
-<script type='text/javascript' src='http://cdn.bootcss.com/jquery/1.11.2/jquery.min.js'></script>
-<script>
-  window.jQuery(document).ready(function($) {
-    $("#submit").click(function() {
-      var formData = new FormData($('form#f2')[0]);
-      $.ajax({
-        url: 'http://upload.qiniu.com/',
-        type: 'POST',
-        data: formData,
-        cache: false,
-        contentType: false,
-        processData: false,
-        success: function (result) {
-            alert(result.key);
-            $("#sr").html('<img src="'+$("#domain").val()+result.key+'">');
-        }
-      });
-    });    
-  }); 
-</script>
-#}
 
 <script>
 // 图片上传demo
@@ -94,13 +56,13 @@ jQuery(function() {
 
         formData: {
           token: '{{ token }}',
-          name: '{{ name }}',
+          key: '{{ key }}',
         }
     });
 
     // 当有文件添加进来的时候
     uploader.on( 'fileQueued', function( file ) {
-        //file.name = '{{ name }}';
+        //file.name = '{{ key }}';
         var $li = $(
                 '<div id="' + file.id + '" class="file-item thumbnail">' +
                     '<img>' +
