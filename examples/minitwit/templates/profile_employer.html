@@ -1,7 +1,7 @@
 {% extends "alayout.html" %}
 {% block headjs %}
-<script src="//cdnjs.cloudflare.com/ajax/libs/dropzone/4.0.1/dropzone.js"></script>
-<link rel='stylesheet' href="//cdnjs.cloudflare.com/ajax/libs/dropzone/4.0.1/dropzone.css"/>
+<script src="/js/dropzone.js"></script>
+<link rel='stylesheet' href="/css/dropzone.css"/>
 <script>
   Dropzone.options.imgUpload = {
     dictDefaultMessage: "{{ _('Drag your image here---->') }}",
@@ -24,8 +24,8 @@
   };
 </script>
 
-<script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.7.3/js/bootstrap-select.min.js"></script>
-<link rel='stylesheet' href='//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.7.3/css/bootstrap-select.min.css' type='text/css' media='all' />
+<script src="/js/bootstrap-select.min.js"></script>
+<link rel='stylesheet' href='/css/bootstrap-select.min.css' type='text/css' media='all' />
 <script>  $('.selectpicker').selectpicker();</script>
 
 <script>
