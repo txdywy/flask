@@ -87,6 +87,10 @@
         success: function (result) {
             //alert(result);
             $("#sr").html(result);
+            $('html,body').animate({
+              scrollTop: $("#sr").offset().top},
+              'slow'
+            );
         }
       });
     });    
