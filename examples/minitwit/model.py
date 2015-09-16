@@ -108,6 +108,11 @@ class User(Base):
     refer1 = Column(String(512), default='')
     refer2 = Column(String(512), default='')
     title = Column(String(50), default='')
+    edu = Column(String(128), default='')
+    company = Column(String(128), default='')
+    companyp = Column(String(128), default='')
+    senority = Column(String(128), default='')
+    
 
     def __init__(self, username, pid, email, pw_hash):
         self.username = username
