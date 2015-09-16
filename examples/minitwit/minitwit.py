@@ -1148,14 +1148,27 @@ def apply():
     project = Project.query.get(project_id)
     return render_template('profile_candidate_complete.html', user=user, project=project)
 
+
 @app.route('/post_profile_complete', methods=['POST'])
 @login_required
 def post_profile_complete():
     project_id = request.form['project_id']
     user_id = session['user_id']
     user = User.query.get(user_id)
+    user.edu = request.form['edu']
+    user.profile = request.form['abt']
+    flush(user)
     project = Project.query.get(project_id)
+    return str(project_id)
 
+
+@app.route('/apply_for_jd', methods=['GET'])
+@login_required
+def apply_for_jd():
+    project_id = request.args.get('pid')
+    user_id = session['user_id']
+    user = User.query.get(user_id)
+    project = Project.query.get(project_id)
     return render_template('apply_for_jd.html', project=project, user=user)
 
 

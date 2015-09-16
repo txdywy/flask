@@ -11,39 +11,73 @@
     <section>
       <h4>{{ _("Complete your profile in order to submit your application. See example profile.") }}</h4>
       <h6>{{ _('*Required') }}</h6>
-      <form class="form-signin" method="post" action="/post_profile_complete">
-        <input type="hidden" value="{{ project.id }}" name="project_id">
+      <form class="form-signin">
+        <input type="hidden" value="{{ project.id }}" name="project_id" id="project_id">
         <input class="form-control" name="name" id="name" type="text" value="{{ user.username }}"  placeholder={{ _('Name') }} required>
         <input class="form-control" name="company" id="company" type="text" value="{{ user.school }}" placeholder={{ _('Company') }} required>   
         <input class="form-control" name="title" id="title" type="text" value="{{ user.title }}" placeholder={{ _('Title') }} required>
-        <input class="form-control" name="companyp" id="companyp" type="text" placeholder={{ _('Previous company') }} required>
-        <input class="form-control" name="abt" id="abt" type="text" placeholder={{ _('About me intro') }} required>
-        <input class="form-control" name="edu" id="edu" type="text" placeholder={{ _('Education') }} required>
+        <input class="form-control" name="companyp" id="companyp" type="text" value="{{ user.companyp }}" placeholder={{ _('Previous company') }} required>
+        <input class="form-control" name="abt" id="abt" type="text" value="{{ user.profile }}" placeholder={{ _('About me intro') }} required>
+        <input class="form-control" name="edu" id="edu" type="text" value="{{ user.edu }}" placeholder={{ _('Education') }} required>
 
         <h4>{{ _("Profile tags. These help your profile more visible in candidates search.") }}</h4>
         <select class="selectpicker show-tick form-control" data-style="btn-warning" id="s1">
-          <option>Area</option>
           <option>Mobile</option>
           <option>App</option>
+          <option>PC</option>
         </select>
 
         <select class="selectpicker show-tick form-control" data-style="btn-success" id="s2">
-          <option>Industry</option>
+          <option>Beijing</option>
           <option>Shanghai</option>
           <option>Tokyo</option>
         </select>
 
-        <select class="selectpicker show-tick form-control" data-style="btn-info" id="s3">
-          <option>Senority</option>
+        <select class="selectpicker show-tick form-control" data-style="btn-info" id="senority">
           <option>Devops</option>
           <option>Designer</option>
           <option>UX</option>
           <option>Backend</option>
         </select>
                 
-
-        <button class="btn btn-primary form-control" type="submit">{{ _('Next') }}</button>
+        <p></p>
+        <button class="btn btn-primary form-control" type="button" id="submit">{{ _('Next') }}</button>
         <span></span>
       </form>
     </section>
+<script>
+  window.jQuery(document).ready(function($) {
+    $("#submit").click(function() {
+      var project_id=$("#project_id").val();
+      var name=$("#name").val();
+      //var location=$(".selectpicker#location").val();
+      //var role=$(".selectpicker#role").val();
+      var company=$("#company").val();
+      var title=$("#title").val();
+      var companyp=$("#companyp").val();
+      var abt=$("#abt").val();
+      var edu=$("#edu").val();
+      if (!company || !name || !company || !companyp || !edu || !abt){
+        alert("{{ _('Parameters required') }}");
+        return
+      }
+      $.ajax({
+        url: '/post_profile_complete',
+        type: 'POST',
+        data: {'project_id': project_id,
+               'name': name,
+               'company': company,
+               'title': title,
+               'companyp': companyp,
+               'abt': abt,
+               'edu': edu,
+              },
+        success: function (result) {
+            console.log(result);
+            window.location.href='/apply_for_jd?pid='+result;
+        }
+      });
+    });    
+  }); 
+</script>
 {% endblock %}
