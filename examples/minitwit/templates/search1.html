@@ -12,7 +12,7 @@
       
       <div class="row-fluid" align="center">      
 
-        <select class="selectpicker show-tick" data-style="btn-success" id="location">
+        <select class="selectpicker show-tick form-control" data-style="btn-success" id="location">
           <option>{{ _('Beijing') }}</option>
           <option>{{ _('Shanghai') }}</option>
           <option>{{ _('Hangzhou') }}</option>
@@ -22,7 +22,7 @@
           <option>{{ _('Other') }}</option>
         </select>
 
-        <select class="selectpicker show-tick" data-style="btn-info" id="role">
+        <select class="selectpicker show-tick form-control" data-style="btn-info" id="role">
           <option>Frontend Engineer</option>
           <option>Devops</option>
           <option>Designer</option>
@@ -36,13 +36,6 @@
       {#
       <input type="text" class="form-control sm-4" placeholder="{{ _('Keywords') }}" id="s4"/>
       #}
-
-      <span class="input-group-btn">
-        <button class="btn btn-danger sendbutton" type="button">
-          <i class="glyphicon glyphicon-search"></i>
-          {{ _('Search') }}
-        </button>
-      </span>
 
       <div class="panel panel-default">
         <div class="panel-heading">
@@ -65,6 +58,12 @@
         </div>
       </div>
 
+      <span class="input-group-btn">
+        <button class="btn btn-danger sendbutton form-control" type="button">
+          <i class="glyphicon glyphicon-search"></i>
+          {{ _('Search') }}
+        </button>
+      </span>
 
       {#
       <form action="/project" class="form-signin">
