@@ -375,9 +375,10 @@ def is_url(data):
         return None
     
 def fix_weibo_card(url):
-    if 'http://card.weibo.com/article/h5/s#cid=' in url:
+    if 'http://card.weibo.com/article/h5/' in url:
         prefix = 'http://card.weibo.com/article/aj/articleshow?cid='
-        url = prefix + url[39:]
+        #url = prefix + url[39:]
+        url = prefix + url[url.find('cid=') + 4:]
         return url
     else:
         return None
