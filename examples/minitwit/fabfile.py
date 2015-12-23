@@ -12,6 +12,12 @@ def send(file):
 def recv(file):
     get(file, './')
 
+def wget(url):
+    with cd('/tmp'):
+        run('wget ' + url)
+        f = url.split('/')[-1]
+        get(f, './')
+
 def dev():
     env.hosts = ['miso', 'airbb', 'nn', 'mm']
  
