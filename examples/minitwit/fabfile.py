@@ -18,17 +18,32 @@ def wget(url):
         f = url.split('/')[-1]
         get(f, './')
 
+def ups():
+    run('uptime -s')
+
+def upp():
+    run('uptime -p')
+
+HOST_DEV = ['miso', 'airbb', 'nn', 'mm']
+HOST_ALANCER = ['sushi', 'noodle', 'udon'] # 'polo' retired
+HOST_VPN = ['tempura', 'ramen', 'donut', 'nori' , 'mm']
+HOST_APPFLOOD = ['pre3-01', 'af_test', 'test3', 'sandbox', 'pre3-jp']
+HOST_ALL = HOST_DEV + HOST_ALANCER + HOST_VPN + HOST_APPFLOOD
+
 def dev():
-    env.hosts = ['miso', 'airbb', 'nn', 'mm']
+    env.hosts = HOST_DEV
  
 def alancer():
-    env.hosts = ['sushi', 'noodle', 'udon'] # 'polo' retired
+    env.hosts = HOST_ALANCER
 
 def vpn():
-    env.hosts = ['tempura', 'ramen', 'donut', 'nori' , 'mm']
+    env.hosts = HOST_VPN
 
 def appflood():
-    env.hosts = ['pre3-01', 'af_test', 'test3', 'sandbox']
+    env.hosts = HOST_APPFLOOD
+
+def all():
+    env.hosts = HOST_ALL
 
 def pull():
     with cd('~/flask/examples/minitwit/'):
