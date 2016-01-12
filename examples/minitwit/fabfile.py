@@ -18,6 +18,10 @@ def wget(url):
         f = url.split('/')[-1]
         get(f, './')
 
+@hosts(['bastion'])
+def bget(url):
+    wget(url)
+
 def ups():
     run('uptime -s')
 
