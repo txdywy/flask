@@ -193,7 +193,7 @@
 <script>
   daovoice('init', {
     app_id: "b6406a0c",
-    user_id: "NO_{{ _('g.user.user_id') }}", // 必填: 该用户在您系统上的唯一ID
+    user_id: "NO_{{ g.user.user_id }}", // 必填: 该用户在您系统上的唯一ID
     email: "{{ g.user.email }}", // 选填:  该用户在您系统上的主邮箱
     name: "{{ g.user.username }}", // 选填: 用户名
     signed_up: 1449821660 // 选填: 用户的注册时间，用Unix时间戳表示
