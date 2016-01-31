@@ -5,6 +5,7 @@ import json
 from functools import wraps
 import pytz
 import datetime
+from models.model_wxy import *
 
 tz = pytz.timezone('Asia/Shanghai')
 
@@ -12,6 +13,19 @@ URL = {'bearychat': 'https://hook.bearychat.com/=bw7K8/incoming/78e7c08a86df9f6f
        'slack': '',
        }
 WXY_URL = 'http://wxy.chinavalue.net'
+
+def set(key, value):
+    cvs = ChinaValueStat(key=key, data=value)
+    flush(cvs)
+    return cvs
+
+
+def get(key):
+    cvs = ChinaValueStat.query.filter_by(key=key).order_by(ChinaValueStat.id.desc()).first()
+    if cvs:
+        return cvs.data
+    else:
+        return None
 
 
 def post_alert(s='无', app='bearychat'):
@@ -53,13 +67,27 @@ def get_coun_result(html):
 def get_wxy():
     h = get_cv_html(WXY_URL)
     r = get_coun_result(h)
-    r = r.encode('utf8')
-    print r
     return r
 
+
+def check(key, value):
+    o = get(key)
+    if o==value:
+        return False
+    else:
+       set(key, value)
+       return True
+
+
+WXY_COUNT_KEY = 'wxy_count_key'
 
 def main():
     now = datetime.datetime.now(tz)
     s = get_wxy()
-    s += ' [%s 北京时间]\n' % str(now)[:19]
-    post_alert(s)
+    flag = check(WXY_COUNT_KEY, s) 
+    if flag:
+        s = s.encode('utf8')
+        s += ' [%s 北京时间]\n' % str(now)[:19]
+        print s
+        post_alert(s)
+    print flag
