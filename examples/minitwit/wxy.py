@@ -144,16 +144,20 @@ WXY_RANK_KEY = 'wxy_rank_key'
 def rank():
     now = datetime.datetime.now(tz)
     hour = now.hour
+    minute = now.minute
     s = get_wxy_rank()
     m = hashlib.md5()
     m.update(s)
     hv = m.hexdigest()
     flag = check(WXY_RANK_KEY, hv)   
     #print s
-    if flag or hour in (8, 12, 18, 22, 23, 0):
+    ts_flag = False
+    if hour in (8, 12, 18, 22, 23, 0) and minute == 0:
+        ts_flag = True
+    if flag or ts_flag:
         s += '\n[%s 北京时间]\n' % str(now)[:19]
         post_alert(s) 
-    print flag
+    print flag, ts_flag
 
 
 
