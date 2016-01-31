@@ -62,6 +62,50 @@ def get_coun_result(html):
     r = soup.find("div", {"class": "PageRight"}).find("dl", {"id": "AreaStat"}).findAll('li')[-1].get_text()
     return r
 
+WXY_FINANCE_URL = 'http://www.chinavalue.net/Finance/Elite.aspx'
+WXY_TOTAL_BLOG_URL = 'http://www.chinavalue.net/WeekArticle.aspx?Type=4'
+WXY_TOTAL_COL_URL = 'http://www.chinavalue.net/WeekArticle.aspx?Type=3'
+WXY_SEARCH_KEY = u'\u536b\u7965\u4e91'
+@ex('')
+def get_wxy_rank():
+    h = get_cv_html(WXY_FINANCE_URL)
+    s = BeautifulSoup(h)
+    blog_lis = s.find('div', {'id': 'divBlog'}).findAll('li')
+    blog_data = []
+    for i, li in enumerate(blog_lis):
+        if WXY_SEARCH_KEY in li.text:
+            blog_data.append((i+1, li.findAll('a')[0].text.strip()))    
+    blog_result = ['财经日志排名第%s位:%s' % (i[0], i[1].encode('utf8')) for i in blog_data]   
+    
+    col_lis = s.find('div', {'id': 'divColumn'}).findAll('li')
+    col_data = []
+    for i, li in enumerate(col_lis):
+        if WXY_SEARCH_KEY in li.text:
+            col_data.append((i+1, li.findAll('a')[1].text.strip())) 
+    col_result = ['财经专栏排名第%s位:%s' % (i[0], i[1].encode('utf8')) for i in col_data]
+
+    ht = get_cv_html(WXY_TOTAL_BLOG_URL)
+    st = BeautifulSoup(ht)
+    blt = st.find('div', {'class': 'SecContent'}).findAll('li')
+    bt_data = []
+    for i, li in enumerate(blt):
+        if WXY_SEARCH_KEY in li.text:
+            bt_data.append((i+1, li.findAll('a')[0].text.strip()))
+    bt_result = ['热点日志排名第%s位:%s' % (i[0], i[1].encode('utf8')) for i in bt_data]
+
+    hc = get_cv_html(WXY_TOTAL_COL_URL)
+    sc = BeautifulSoup(hc)
+    clt = sc.find('div', {'class': 'SecContent'}).findAll('li')
+    ct_data = []
+    for i, li in enumerate(clt):
+        if WXY_SEARCH_KEY in li.text:
+            ct_data.append((i+1, li.findAll('a')[0].text.strip()))
+    ct_result = ['热点专栏排名第%s位:%s' % (i[0], i[1].encode('utf8')) for i in ct_data]
+    
+    result = ct_result + bt_result + col_result + blog_result
+    return '\n'.join(result)
+
+
 
 @ex('')
 def get_wxy():
@@ -91,3 +135,9 @@ def main():
         print s
         post_alert(s)
     print flag
+
+
+def rank():
+    now = datetime.datetime.now(tz)
+    s = get_wxy_rank() + '\n[%s 北京时间]\n' % str(now)[:19]
+    post_alert(s) 
