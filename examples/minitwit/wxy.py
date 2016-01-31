@@ -6,6 +6,7 @@ from functools import wraps
 import pytz
 import datetime
 from models.model_wxy import *
+import hashlib
 
 tz = pytz.timezone('Asia/Shanghai')
 
@@ -137,7 +138,21 @@ def main():
     print flag
 
 
+
+WXY_RANK_KEY = 'wxy_rank_key'
+
 def rank():
     now = datetime.datetime.now(tz)
-    s = get_wxy_rank() + '\n[%s 北京时间]\n' % str(now)[:19]
-    post_alert(s) 
+    s = get_wxy_rank()
+    m = hashlib.md5()
+    m.update(s)
+    hv = m.hexdigest()
+    flag = check(WXY_RANK_KEY, hv)   
+    if flag:
+        s += '\n[%s 北京时间]\n' % str(now)[:19]
+        post_alert(s) 
+    print flag
+
+
+
+
