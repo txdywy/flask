@@ -4,6 +4,8 @@ import requests
 import json
 from functools import wraps
 import pytz
+import datetime
+
 tz = pytz.timezone('Asia/Shanghai')
 
 URL = {'bearychat': 'https://hook.bearychat.com/=bw7K8/incoming/78e7c08a86df9f6f89cb375cd324bdc7',
@@ -51,9 +53,11 @@ def get_wxy():
     h = get_cv_html(WXY_URL)
     r = get_coun_result(h)
     print r
-    return r
+    return r.encode('utf8')
 
 
 def main():
-    ac = get_wxy()
-    post_alert(ac)
+    now = datetime.datetime.now(tz)
+    s = get_wxy()
+    s += ' [%s 北京时间]\n' % str(now)[:19]
+    post_alert(s)
