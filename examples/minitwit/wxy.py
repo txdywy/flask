@@ -49,11 +49,13 @@ def get_coun_result(html):
     return r
 
 
+@ex('')
 def get_wxy():
     h = get_cv_html(WXY_URL)
     r = get_coun_result(h)
+    r = r.encode('utf8')
     print r
-    return r.encode('utf8')
+    return r
 
 
 def main():
