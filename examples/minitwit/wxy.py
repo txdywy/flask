@@ -200,7 +200,7 @@ def hit():
                 data.append((li.findAll('a')[1].text.strip(), li.find('div', {'class': 'HitComment'}).findAll('a')[0].text.strip()))
     text = ''
     for a,b in data:
-        print a,b
+        print a.encode('utf8'),b.encode('utf8')
         text += '[%s %s]\n' % (a, b)
     post_alert(text)
 
