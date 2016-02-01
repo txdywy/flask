@@ -1,4 +1,8 @@
 # -*- coding: utf-8 -*-
+import gevent
+from gevent import monkey
+monkey.patch_all()
+import urllib2
 from bs4 import BeautifulSoup
 import requests 
 import json
@@ -7,6 +11,7 @@ import pytz
 import datetime
 from models.model_wxy import *
 import hashlib
+import time
 
 tz = pytz.timezone('Asia/Shanghai')
 
@@ -14,6 +19,12 @@ URL = {'bearychat': 'https://hook.bearychat.com/=bw7K8/incoming/78e7c08a86df9f6f
        'slack': '',
        }
 WXY_URL = 'http://wxy.chinavalue.net'
+
+
+def fetch_page(url):
+    r = urllib2.urlopen(url).read()
+    return r
+
 
 def set(key, value):
     cvs = ChinaValueStat(key=key, data=value)
@@ -49,6 +60,17 @@ def ex(default=0):
             return r
         return func
     return wrapper
+
+
+def pace(fn):
+    @wraps(fn)
+    def func(*args, **kwds):
+        t0 = time.time()
+        r = fn(*args, **kwds)
+        t = time.time() - t0
+        print '---%s: %ss---' % (fn.__name__, t)
+        return r
+    return func
 
 
 @ex('')
@@ -158,6 +180,29 @@ def rank():
         s += '\n[%s 北京时间]\n' % str(now)[:19]
         post_alert(s) 
     print flag, ts_flag
+
+
+@pace
+def hit():
+
+    prefix = 'http://www.chinavalue.net/Blog/BlogList.aspx?CategoryID=3&page='
+    data = []
+    jobs = [gevent.spawn(fetch_page, prefix+str(i)) for i in xrange(1, 50)]
+    gevent.wait(jobs)
+    page = [j.value for j in jobs]
+    for p in page:
+        s = BeautifulSoup(p)
+        lis = s.find('div', {'class': 'EntryList'})
+        if not lis:continue
+        lis = lis.findAll('li')
+        for i, li in enumerate(lis):
+            if WXY_SEARCH_KEY in li.text:
+                data.append((li.findAll('a')[1].text.strip(), li.find('div', {'class': 'HitComment'}).findAll('a')[0].text.strip()))
+    text = ''
+    for a,b in data:
+        print a,b
+        text += '[%s %s]\n' % (a, b)
+    post_alert(text)
 
 
 
