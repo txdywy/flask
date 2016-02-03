@@ -12,3 +12,4 @@ config
 logs
 alancer.db
 oim.tar.gz
+wxy.db
