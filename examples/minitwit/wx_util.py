@@ -2,7 +2,7 @@
 import gevent
 #from gevent import monkey
 #monkey.patch_all()
-
+from ib import IB_BOOK
 import ierror, time
 from WXBizMsgCrypt import SHA1
 import xml.etree.ElementTree as ET
@@ -205,6 +205,16 @@ def reply_loc(user_name_from, user_name_to, x, y, k):
     body = WX_TEMPLATE_NEWS_BODY % (str(len(its)), items)
     return head + body
 
+
+def ib(content):
+    try:
+        a, b = content.split(' ')
+        a, b = int(a), int(b)
+        return IB_BOOK[a]+IB_BOOK[b]
+    except:
+        print '------not ib-------'
+        return None
+
 def reply(data):
     reply_tmp = WX_TEMPLATE_TEXT
     xml_recv = ET.fromstring(data)
@@ -265,6 +275,10 @@ def reply(data):
         result = '猫球棒棒大！'
         tmp = 1
     reply_tmp = WX_TEMPLATE_TEXT
+    ibr = ib(content)
+    if ibr:
+        tmp = 1
+        result = ibr
     if '小虎好棒' in content:
         tmp = 1
         reply_tmp = WX_TEMPLATE_IMG
