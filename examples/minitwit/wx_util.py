@@ -3,6 +3,7 @@ import gevent
 #from gevent import monkey
 #monkey.patch_all()
 from ib import IB_BOOK
+import stock
 import ierror, time
 from WXBizMsgCrypt import SHA1
 import xml.etree.ElementTree as ET
@@ -215,6 +216,17 @@ def ib(content):
         print '------not ib-------'
         return None
 
+def check_stock(content):
+    try:
+        if content == '!7':
+            return stock.get_us_stock()
+        if content == '!8':
+            return stock.get_cn_stock()
+    except:
+        print '------stock err------'
+        return None
+
+
 def reply(data):
     reply_tmp = WX_TEMPLATE_TEXT
     xml_recv = ET.fromstring(data)
@@ -279,6 +291,10 @@ def reply(data):
     if ibr:
         tmp = 1
         result = ibr
+    cs = check_stock(content)
+    if cs:
+        tmp = 1
+        result = cs
     if '小虎好棒' in content:
         tmp = 1
         reply_tmp = WX_TEMPLATE_IMG
