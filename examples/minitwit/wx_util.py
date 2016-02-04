@@ -208,7 +208,7 @@ def reply_loc(user_name_from, user_name_to, x, y, k):
 
 def ib(content):
     try:
-        a, b = content.split(' ')
+        a, b = content.split('.')
         a, b = int(a), int(b)
         return IB_BOOK[a]+IB_BOOK[b]
     except:
