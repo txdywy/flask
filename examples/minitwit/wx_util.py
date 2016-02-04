@@ -310,6 +310,8 @@ def reply(data):
     stock_url = check_stock_graph(content)
     if stock_url:
         response = make_response(WX_TEMPLATE_IMG_TEXT % (user_name_from, user_name_to, str(int(time.time())),     content, content, stock_url, stock_url))
+        response.content_type = 'application/xml'
+        return response
     if '小虎好棒' in content:
         tmp = 1
         reply_tmp = WX_TEMPLATE_IMG
