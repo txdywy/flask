@@ -8,6 +8,10 @@ US_STOCK = {'facebook': 'fb',
             'apple': 'aapl',
             'twitter': 'twtr',
             'ms': 'msft',
+            'g': 'goog',
+            'amazon': 'amzn',
+            'tsla': 'tsla',
+            'ali' : 'baba',
             }
 
 CN_STOCK = {'海天': 'sh603288',
