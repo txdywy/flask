@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import requests
+import datetime
 
 US_STOCK = {'facebook': 'fb',
             'msci': 'msci',
@@ -23,7 +24,7 @@ def get_us_stock():
     r = [i.split('"')[1].split(',')[:] for i in r]
     r = ['%s: $%s [$%s+$%s, $%s-$%s]\n' % (i[0], i[1], i[7], _diff(i[1], i[7]), i[6], _diff(i[6], i[1])) for i in r]
     r = '\n'.join(r)
-    return r
+    return r + '\n' + str(datetime.datetime.now())[:19]
 
 
 def get_cn_stock():
@@ -32,7 +33,7 @@ def get_cn_stock():
     r = [i.split('"')[1].split(',')[:] for i in r]
     r = ['%s: %s [%s+%s, %s-%s]\n' % (i[0], i[3], i[5], _diff(i[3], i[5]), i[4], _diff(i[4], i[5])) for i in r]
     r = '\n'.join(r)
-    return r
+    return r + '\n' + str(datetime.datetime.now())[:19]
 
 
 def _diff(a, b):
