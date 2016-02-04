@@ -20,16 +20,20 @@ SINA_STOCK_URL = 'http://hq.sinajs.cn/list=%s'
 def get_us_stock():
     r = requests.get(SINA_STOCK_URL % ','.join(['gb_' + i for i in US_STOCK.values()])).text.strip()
     r = r.split(';')[:-1]
-    r = [i.split('"')[1].split(',')[:2] for i in r]
-    r = ['%s: $%s\n' % (i[0], i[1]) for i in r]
-    r = ''.join(r)
+    r = [i.split('"')[1].split(',')[:] for i in r]
+    r = ['%s: $%s [$%s+$%s, $%s-$%s]\n' % (i[0], i[1], i[7], _diff(i[1], i[7]), i[6], _diff(i[6], i[1])) for i in r]
+    r = '\n'.join(r)
     return r
 
 
 def get_cn_stock():
     r = requests.get(SINA_STOCK_URL % ','.join(CN_STOCK.values())).text.strip()
     r = r.split(';')[:-1]
-    r = [i.split('"')[1].split(',')[:6] for i in r]
-    r = ['%s: %s [%s+%s, %s-%s]\n' % (i[0], i[3], i[5], round(float(i[3]) - float(i[5]), 3), i[4], round(float(i[4]) - float(i[3]), 3)) for i in r]
-    r = ''.join(r)
+    r = [i.split('"')[1].split(',')[:] for i in r]
+    r = ['%s: %s [%s+%s, %s-%s]\n' % (i[0], i[3], i[5], _diff(i[3], i[5]), i[4], _diff(i[4], i[5])) for i in r]
+    r = '\n'.join(r)
     return r
+
+
+def _diff(a, b):
+    return round(float(a) - float(b), 3)
