@@ -231,9 +231,11 @@ def check_stock_graph(content):
     if content[0] != '!':
         return None
     c = content[1:]
+    print c
     url = None
     if c in stock.US_STOCK:
         url = 'http://ichart.finance.yahoo.com/t?s=' + stock.US_STOCK[c]
+    c = c.encode('utf8')
     if c in stock.CN_STOCK:
         url = 'http://image.sinajs.cn/newchart/min/n/%s.gif' % stock.CN_STOCK[c]
     return url
