@@ -227,6 +227,18 @@ def check_stock(content):
         return None
 
 
+def check_stock_graph(content):
+    if content[0] != '!':
+        return None
+    c = content[1:]
+    url = None
+    if c in stock.US_STOCK:
+        url = 'http://ichart.finance.yahoo.com/t?s=' + stock.US_STOCK[c]
+    if c in stock.CN_STOCK:
+        url = 'http://image.sinajs.cn/newchart/min/n/%s.gif' % stock.CN_STOCK[c]
+    return url
+    
+
 def reply(data):
     reply_tmp = WX_TEMPLATE_TEXT
     xml_recv = ET.fromstring(data)
@@ -295,6 +307,9 @@ def reply(data):
     if cs:
         tmp = 1
         result = cs
+    stock_url = check_stock_graph(content)
+    if stock_url:
+        response = make_response(WX_TEMPLATE_IMG_TEXT % (user_name_from, user_name_to, str(int(time.time())),     content, content, stock_url, stock_url))
     if '小虎好棒' in content:
         tmp = 1
         reply_tmp = WX_TEMPLATE_IMG
