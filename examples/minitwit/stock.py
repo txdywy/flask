@@ -2,17 +2,17 @@
 import requests
 import datetime
 
-US_STOCK = {'facebook': 'fb',
+US_STOCK = {'fb': 'fb',
             'msci': 'msci',
             'jd': 'jd',
-            'apple': 'aapl',
-            'twitter': 'twtr',
+            'app': 'aapl',
+            'tw': 'twtr',
             'ms': 'msft',
             'g': 'goog',
-            'amazon': 'amzn',
+            'amz': 'amzn',
             'tsla': 'tsla',
             'ali' : 'baba',
-            'netflix': 'nflx',
+            'net': 'nflx',
             }
 
 CN_STOCK = {'海天': 'sh603288',
