@@ -32,6 +32,15 @@ def get_us_stock():
     return r + '\n' + str(datetime.datetime.now())[:19] + '\n' + '#盘内/终\n*盘前/后'.decode('utf8')
 
 
+def get_one_us_stock(k):
+    r = requests.get(SINA_STOCK_URL % 'gb_' + US_STOCK[k]).text.strip()
+    r = r.split('"')[1].split(',')[:]
+    i = r
+    r = '%s: \n#[$%s]\n#%s+%s \n#%s-%s\n*[$%s] %s\n*%s+%s \n*%s-%s\n' % (i[0], i[1], i[7], _diff(i[1], i[7]),     i[6], _diff(i[6], i[1]), i[21], _diff_sym(i[21], i[1]), i[7], _diff(i[21], i[7]), i[6], _diff(i[6], i[21]))
+    return r + '\n' + str(datetime.datetime.now())[:19] + '\n' + '#盘内/终\n*盘前/后'.decode('utf8')
+
+
+
 def _diff_sym(a, b):
     x = _diff(a, b)
     if x >= 0:
