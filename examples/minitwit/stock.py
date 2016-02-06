@@ -27,9 +27,18 @@ def get_us_stock():
     r = requests.get(SINA_STOCK_URL % ','.join(['gb_' + i for i in US_STOCK.values()])).text.strip()
     r = r.split(';')[:-1]
     r = [i.split('"')[1].split(',')[:] for i in r]
-    r = ['%s: \n#:$%s\n#%s+%s \n#%s-%s\n*:$%s\n*%s+%s \n*%s-%s' % (i[0], i[1], i[21], _diff(i[1], i[7]), i[6], _diff(i[6], i[1]), i[21], _diff(i[21], i[7]), _diff(i[6], i[21])) for i in r]
+    r = ['%s: \n#[$%s]\n#%s+%s \n#%s-%s\n*[$%s] %s\n*%s+%s \n*%s-%s\n' % (i[0], i[1], i[7], _diff(i[1], i[7]), i[6], _diff(i[6], i[1]), i[21], _diff_sym(i[21], i[1]), i[7], _diff(i[21], i[7]), i[6], _diff(i[6], i[21])) for i in r]
     r = '\n'.join(r)
-    return r + '\n' + str(datetime.datetime.now())[:19]
+    return r + '\n' + str(datetime.datetime.now())[:19] + '\n' + '#盘内/终\n*盘前/后'.decode('utf8')
+
+
+def _diff_sym(a, b):
+    x = _diff(a, b)
+    if x >= 0:
+        s = '+' + str(x)
+    else:
+        s = str(x)
+    return s
 
 
 def get_cn_stock():
