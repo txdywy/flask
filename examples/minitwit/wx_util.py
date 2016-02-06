@@ -293,6 +293,15 @@ def reply(data):
         response = make_response(reply_tmp % (user_name_from, user_name_to, str(int(time.time())), '你发送的东西微信后台不支持呢(*^__^*) 嘻嘻……'))
         response.content_type = 'application/xml'
         return response
+    else:
+        p = cachewx.get('WX_LAST_CONTENT')
+        if content == '!':
+            if p:
+                content = p
+                cachewx.set('WX_LAST_CONTENT', content, 10 * 60)
+        else:
+            cachewx.set('WX_LAST_CONTENT', content, 10 * 60)
+
     tmp = 0
     if '小虎' in content:
         result = '小虎最口耐！'
