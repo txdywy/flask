@@ -27,7 +27,7 @@ def get_us_stock():
     r = requests.get(SINA_STOCK_URL % ','.join(['gb_' + i for i in US_STOCK.values()])).text.strip()
     r = r.split(';')[:-1]
     r = [i.split('"')[1].split(',')[:] for i in r]
-    r = ['%s: \n$%s\n%s+%s \n%s-%s\n' % (i[0], i[1], i[7], _diff(i[1], i[7]), i[6], _diff(i[6], i[1])) for i in r]
+    r = ['%s: \n#:$%s\n*:$%s\n%s+%s \n%s-%s\n' % (i[0], i[1], i[21], i[7], _diff(i[1], i[7]), i[6], _diff(i[6], i[1])) for i in r]
     r = '\n'.join(r)
     return r + '\n' + str(datetime.datetime.now())[:19]
 
