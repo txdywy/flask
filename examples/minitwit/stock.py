@@ -32,11 +32,8 @@ def get_us_stock():
     return r + '\n' + str(datetime.datetime.now())[:19] + '\n' + '#盘内/终\n*盘前/后'.decode('utf8')
 
 
-def get_one_stock(k):
-    if k in US_STOCK:
-        r = requests.get(SINA_STOCK_URL % 'gb_' + US_STOCK[k]).text.strip()
-    if k in CN_STOCK:
-        r = requests.get(SINA_STOCK_URL % '' + CN_STOCK[k]).text.strip()
+def get_one_us_stock(k):
+    r = requests.get(SINA_STOCK_URL % 'gb_' + US_STOCK[k]).text.strip()
     r = r.split('"')[1].split(',')[:]
     i = r
     r = '%s: \n#[$%s]\n#%s+%s \n#%s-%s\n*[$%s] %s\n*%s+%s \n*%s-%s\n' % (i[0], i[1], i[7], _diff(i[1], i[7]),     i[6], _diff(i[6], i[1]), i[21], _diff_sym(i[21], i[1]), i[7], _diff(i[21], i[7]), i[6], _diff(i[6], i[21]))
@@ -59,6 +56,15 @@ def get_cn_stock():
     r = [i.split('"')[1].split(',')[:] for i in r]
     r = ['%s: \n%s\n%s+%s \n%s-%s\n' % (i[0], i[3], i[5], _diff(i[3], i[5]), i[4], _diff(i[4], i[3])) for i in r]
     r = '\n'.join(r)
+    return r + '\n' + str(datetime.datetime.now())[:19]
+
+
+def get_one_cn_stock(k):
+    r = requests.get(SINA_STOCK_URL % CN_STOCK[k]).text.strip()
+    i = r
+    r = i.split('"')[1].split(',')[:] 
+    i = r
+    r = '%s: \n%s\n%s+%s \n%s-%s\n' % (i[0], i[3], i[5], _diff(i[3], i[5]), i[4], _diff(i[4], i[3]))
     return r + '\n' + str(datetime.datetime.now())[:19]
 
 

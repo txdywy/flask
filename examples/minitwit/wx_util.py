@@ -311,7 +311,12 @@ def reply(data):
         result = cs
     stock_url = check_stock_graph(content)
     if stock_url:
-        body = stock.get_one_stock(content[1:])
+        k = content[1:]
+        body = ''
+        if k in stock.US_STOCK:
+            body = stock.get_one_us_stock(k)
+        if k in stock.CN_STOCK:
+            body = stock.get_one_cn_stock(k)
         response = make_response(WX_TEMPLATE_IMG_TEXT % (user_name_from, user_name_to, str(int(time.time())),     content, body, stock_url, stock_url))
         response.content_type = 'application/xml'
         return response
