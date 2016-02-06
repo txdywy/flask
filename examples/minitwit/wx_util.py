@@ -315,6 +315,7 @@ def reply(data):
         body = ''
         if k in stock.US_STOCK:
             body = stock.get_one_us_stock(k)
+        k = k.encode('utf8')
         if k in stock.CN_STOCK:
             body = stock.get_one_cn_stock(k)
         response = make_response(WX_TEMPLATE_IMG_TEXT % (user_name_from, user_name_to, str(int(time.time())),     content, body, stock_url, stock_url))
