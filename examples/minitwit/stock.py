@@ -13,6 +13,8 @@ US_STOCK = {'fb': 'fb',
             'tsla': 'tsla',
             'ali' : 'baba',
             'net': 'nflx',
+            'ko': 'ko',
+            'dis': 'dis',
             }
 
 CN_STOCK = {'海天': 'sh603288',
