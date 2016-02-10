@@ -15,11 +15,15 @@ US_STOCK = {'fb': 'fb',
             'net': 'nflx',
             'ko': 'ko',
             'dis': 'dis',
+            'data': 'data',
             }
 
 CN_STOCK = {'海天': 'sh603288',
             '天地': 'sh600582',
             '格力': 'sz000651',
+            '昆仑': 'sz300418',
+            '东阿': 'sz000423',
+            '海欣': 'sz002702',
             }
 
 SINA_STOCK_URL = 'http://hq.sinajs.cn/list=%s'
