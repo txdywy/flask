@@ -50,7 +50,7 @@ def get_us_stock():
     r = r.split(';')[:-1]
     r = [i.split('"')[1].split(',')[:] for i in r]
     r = ['%s: \n#[$%s]\n#%s+%s \n#%s-%s\n*[$%s] %s\n*%s+%s \n*%s-%s\n' % (i[0], i[1], i[7], _diff(i[1], i[7]), i[6], _diff(i[6], i[1]), i[21], _diff_sym(i[21], i[1]), i[7], _diff(i[21], i[7]), i[6], _diff(i[6], i[21])) for i in r]
-    b = [US_BASE[v] for k in US_BASE]
+    b = [US_BASE[k] for k in US_BASE]
     r = zip (r, b)
     r = [a + '\nBase: [%s]' % b for a, b in r]
     r = '\n'.join(r)
