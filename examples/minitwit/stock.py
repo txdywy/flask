@@ -52,7 +52,7 @@ def get_us_stock():
     r = ['%s: \n#[$%s]\n#%s+%s \n#%s-%s\n*[$%s] %s\n*%s+%s \n*%s-%s\n' % (i[0], i[1], i[7], _diff(i[1], i[7]), i[6], _diff(i[6], i[1]), i[21], _diff_sym(i[21], i[1]), i[7], _diff(i[21], i[7]), i[6], _diff(i[6], i[21])) for i in r]
     b = [US_BASE[k] for k in US_BASE]
     r = zip (r, b)
-    r = [a + '\nBase: [%s]' % b for a, b in r]
+    r = [a + 'Base: [%s]\n' % b for a, b in r]
     r = '\n'.join(r)
     return r + '\n' + str(datetime.datetime.now())[:19] + '\n' + '#盘内/终\n*盘前/后'.decode('utf8')
 
