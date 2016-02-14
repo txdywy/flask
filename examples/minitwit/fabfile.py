@@ -57,6 +57,19 @@ def restart():
     with cd('~/flask/examples/minitwit/'):
         run('supervisorctl restart alancer')
 
+def gitup():
+    with cd('~/flask/examples/minitwit/'):
+        run('git pull')
+        run('supervisorctl restart alancer')
+
+@hosts(['udon'])
+def ugitup():
+    gitup()
+
+@hosts(HOST_ALANCER)
+def agitup():
+    gitup()
+
 def install():
     run('cd ~/flask/examples/minitwit;sh install.sh')
 
