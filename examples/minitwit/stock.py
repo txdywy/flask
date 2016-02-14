@@ -16,6 +16,7 @@ US_STOCK = {'fb': 'fb',
             'ko': 'ko',
             'dis': 'dis',
             'data': 'data',
+            'gopro': 'gpro',
             }
 
 CN_STOCK = {'海天': 'sh603288',
@@ -40,6 +41,7 @@ US_BASE = { 'fb': 99,
             'ko': 41.9,
             'dis': 88,
             'data': 35,
+            'gopro': 9,
           }
 
 SINA_STOCK_URL = 'http://hq.sinajs.cn/list=%s'
