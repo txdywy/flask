@@ -174,7 +174,7 @@ def check_proxy(ip, port, anonymity=''):
 
 @pace
 def task_proxy():
-    print '[Active before: %s]' % Proxy.query.filter_by(active=1).count()
+    print '[Active before: %s/%s]' % (Proxy.query.filter_by(active=1).count(), Proxy.query.count())
     print fetch_proxy()
     ps = Proxy.query.all()
     now = datetime.datetime.now()
@@ -192,5 +192,5 @@ def task_proxy():
         i.update_time = now
         flush(i)
     pprint([vars(a) for a in Proxy.query.filter_by(active=1).all()])
-    print '[Active after: %s]' % Proxy.query.filter_by(active=1).count()
+    print '[Active after: %s/%s]' % (Proxy.query.filter_by(active=1).count(), Proxy.query.count())
 

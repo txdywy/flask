@@ -22,6 +22,7 @@ pkgs = ['boto',
         'bosonnlp',
         'gevent',
         'tqdm',
+        'requesocks',
        ]
 for pkg in pkgs:
     local(SUDO_PIP_INSTALL % pkg)
