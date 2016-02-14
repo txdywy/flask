@@ -8,6 +8,9 @@ import time
 from functools import wraps
 import socket
 from tqdm import tqdm
+import requesocks as rs
+sock_session = rs.session()
+
 init_db()
 
 def ex(default=0):
@@ -40,6 +43,15 @@ def pace(fn):
 def is_ip(ip):
     socket.inet_aton(ip)
     return True
+
+
+def get_sock_proxy():
+    r = requests.get('http://www.socks-proxy.net/').text
+    s = BeautifulSoup(r)
+    r = s.findAll('tr')[1:-1]
+    r = [a.findAll('td') for a in r]
+    r = [map(lambda x: x.get_text(), a) for a in r]
+    return r
 
 
 def get_us_proxy():
@@ -76,7 +88,7 @@ def update_proxy(result):
         port = item[1]
         code = item[2]
         country = item[3]
-        anonymity = item[4]
+        anonymity = item[4].lower()
         google = 0 if item[5]=='no' else 1
         https = 0 if item[6]=='no' else 1
         now = datetime.datetime.now()
@@ -95,6 +107,13 @@ def update_proxy(result):
                   create_time=now
                   )
         flush(p)
+
+
+@ex('Fetch Sock Failed')
+def fetch_sock_proxy():
+    r = get_sock_proxy()
+    update_proxy(r)
+    return 'Fetch Sock Succeed'
 
 
 @ex('Fetch UK Failed')
@@ -122,21 +141,34 @@ def fetch_proxy():
     return '\n'.join([fetch_uk_proxy(),
                       fetch_ssl_proxy(),
                       fetch_us_proxy(),
+                      fetch_sock_proxy(),
                      ])
 
 
-def check_proxy(ip, port):
-    pd = {"http": "http://%s:%s" % (ip, port)}
+def check_proxy(ip, port, anonymity=''):
     url = 'http://wtfismyip.com/text'
-    try:
-        t0 = time.time()
-        r = requests.get(url, proxies=pd, timeout=2)
-        t = time.time() - t0
-        print r.text, t
-        if is_ip(r.text): 
-            return True, t
-    except Exception, e:
-        print str(e)
+    if 'sock' not in anonymity:
+        pd = {"http": "http://%s:%s" % (ip, port)}
+        try:
+            t0 = time.time()
+            r = requests.get(url, proxies=pd, timeout=2)
+            t = time.time() - t0
+            print r.text, t, anonymity
+            if is_ip(r.text): 
+                return True, t
+        except Exception, e:
+            print str(e)
+    else:
+        sock_session.proxies = {'http': '%s://%s:%s' % (anonymity, ip, port)}
+        try:
+            t0 = time.time()
+            r = sock_session.get(url, timeout=2)
+            t = time.time() - t0
+            print r.text, t, anonymity
+            if is_ip(r.text):
+                return True, t
+        except Exception, e:
+            print str(e)
     return False, 2
 
 
@@ -151,7 +183,7 @@ def task_proxy():
             d = now - i.update_time
             if d.seconds < 60*60*6:
                 continue
-        r, t = check_proxy(i.ip,i.port)
+        r, t = check_proxy(i.ip, i.port, i.anonymity)
         print t, i.code
         if r:
             i.delay = int(t*1000)
