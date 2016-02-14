@@ -36,7 +36,7 @@ class Proxy(Base):
     anonymity = Column(String(32), default='', index=True)
     google = Column(Integer, default=0, index=True)
     https = Column(Integer, default=0, index=True)
-    delay = Column(Float, default=0)
+    delay = Column(Integer, default=0)
     update_time = Column(DATETIME(), default=datetime.datetime.now())
     create_time = Column(DATETIME(), default=datetime.datetime.now())
 

@@ -7,7 +7,8 @@ import datetime
 import time
 from functools import wraps
 import socket
-
+from tqdm import tqdm
+init_db()
 
 def ex(default=0):
     def wrapper(fn):
@@ -42,7 +43,26 @@ def is_ip(ip):
 
 
 def get_us_proxy():
-    r = requests.get('https://www.us-proxy.org/').text
+    r = requests.get('http://www.us-proxy.org/').text
+    s = BeautifulSoup(r)
+    r = s.findAll('tr')[1:-1]
+    r = [a.findAll('td') for a in r]
+    r = [map(lambda x: x.get_text(), a) for a in r]
+    return r
+
+
+def get_ssl_proxy():
+    r = requests.get('http://www.sslproxies.org/').text
+    s = BeautifulSoup(r)
+    r = s.findAll('tr')[1:-1]
+    r = [a.findAll('td') for a in r]
+    r = [map(lambda x: x.get_text(), a) for a in r]
+    #pprint(r)
+    return r
+
+
+def get_uk_proxy():
+    r = requests.get('http://free-proxy-list.net/uk-proxy.html').text
     s = BeautifulSoup(r)
     r = s.findAll('tr')[1:-1]
     r = [a.findAll('td') for a in r]
@@ -77,9 +97,32 @@ def update_proxy(result):
         flush(p)
 
 
-def fetch_proxy():
+@ex('Fetch UK Failed')
+def fetch_uk_proxy():
+    r = get_uk_proxy()
+    update_proxy(r)
+    return 'Fetch UK Succeed'
+
+
+@ex('Fetch SSL Failed')
+def fetch_ssl_proxy():
+    r = get_ssl_proxy()
+    update_proxy(r)
+    return 'Fetch SSL Succeed'
+    
+
+@ex('Fetch US Failed')
+def fetch_us_proxy():
     r = get_us_proxy()
     update_proxy(r)
+    return 'Fetch US Succeed'
+
+
+def fetch_proxy():
+    return '\n'.join([fetch_uk_proxy(),
+                      fetch_ssl_proxy(),
+                      fetch_us_proxy(),
+                     ])
 
 
 def check_proxy(ip, port):
@@ -89,13 +132,33 @@ def check_proxy(ip, port):
         t0 = time.time()
         r = requests.get(url, proxies=pd, timeout=2)
         t = time.time() - t0
-        #print r.text, t
+        print r.text, t
         if is_ip(r.text): 
             return True, t
     except Exception, e:
         print str(e)
     return False, 2
 
-a=Proxy.query.all()
-for i in a:
-    check_proxy(i.ip,i.port)
+
+@pace
+def task_proxy():
+    print '[Active before: %s]' % Proxy.query.filter_by(active=1).count()
+    print fetch_proxy()
+    ps = Proxy.query.all()
+    now = datetime.datetime.now()
+    for i in tqdm(ps):
+        if i.active==0:
+            d = now - i.update_time
+            if d.seconds < 60*60*6:
+                continue
+        r, t = check_proxy(i.ip,i.port)
+        print t, i.code
+        if r:
+            i.delay = int(t*1000)
+        else:
+            i.active = 0
+        i.update_time = now
+        flush(i)
+    pprint([vars(a) for a in Proxy.query.filter_by(active=1).all()])
+    print '[Active after: %s]' % Proxy.query.filter_by(active=1).count()
+
