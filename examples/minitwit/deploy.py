@@ -21,6 +21,7 @@ pkgs = ['boto',
         'mysql-python',
         'bosonnlp',
         'gevent',
+        'tqdm',
        ]
 for pkg in pkgs:
     local(SUDO_PIP_INSTALL % pkg)
