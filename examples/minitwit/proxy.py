@@ -9,6 +9,7 @@ from functools import wraps
 import socket
 from tqdm import tqdm
 import requesocks as rs
+import random
 sock_session = rs.session()
 
 init_db()
@@ -181,7 +182,7 @@ def task_proxy():
     for i in tqdm(ps):
         if i.active==0:
             d = now - i.update_time
-            if d.seconds < 60*60*6:
+            if d.seconds < 60*60*random.randrange(1, 6) + 60*random.randrange(0, 60):
                 continue
         r, t = check_proxy(i.ip, i.port, i.anonymity)
         print t, i.code
