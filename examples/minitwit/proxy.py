@@ -194,3 +194,22 @@ def task_proxy():
     pprint([vars(a) for a in Proxy.query.filter_by(active=1).all()])
     print '[Active after: %s/%s]' % (Proxy.query.filter_by(active=1).count(), Proxy.query.count())
 
+
+def get_active_num():
+    return Proxy.query.filter_by(active=1).count()
+    
+
+def get_all_num():
+    return Proxy.query.count()
+
+
+def check_status():
+    s = '[%s/%s]' % (get_active_num(), get_all_num())
+    return s
+
+
+def get_active():
+    ps = Proxy.query.filter_by(active=1).all()
+    ds = ['[{ip}:{port}]\n[{version}]\n[{code}]\n[{country}]\n\n'.format(ip=p.ip, port=p.port, version=p.anonymity if 'sock' in p.anonymity else p.anonymity+'/http', code=p.code, country=p.country) for p in ps]
+    r = ''.join(ds) + check_status()
+    return r

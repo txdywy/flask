@@ -51,6 +51,7 @@ sys.setdefaultencoding('utf-8')
 
 import codecs
 from textrank4zh import TextRank4Keyword, TextRank4Sentence
+import proxy
 
 URL_RE = re.compile(
         r'^(?:http)s?://' # http:// or https://
@@ -226,6 +227,14 @@ def check_stock(content):
         print '------stock err------'
         return None
 
+def px(content):
+    try:
+        if content == '!9':
+            return proxy.get_active()
+    except:
+        print '------proxy err------'
+        return None
+
 
 def check_stock_graph(content):
     if content[0] != '!':
@@ -318,6 +327,10 @@ def reply(data):
     if cs:
         tmp = 1
         result = cs
+    pxr = px(content)
+    if pxr:
+        tmp = 1
+        result = pxr
     stock_url = check_stock_graph(content)
     if stock_url:
         k = content[1:]
