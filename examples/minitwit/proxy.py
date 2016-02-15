@@ -169,7 +169,7 @@ def check_proxy(ip, port, anonymity=''):
                 return True, t
         except Exception, e:
             print str(e)
-    return False, 2
+    return False, -1
 
 
 @pace
@@ -213,3 +213,47 @@ def get_active():
     ds = ['[{ip}:{port}]\n[{version}]\n[{code}]\n[{country}]\n\n'.format(ip=p.ip, port=p.port, version=p.anonymity if 'sock' in p.anonymity else p.anonymity+'/http', code=p.code, country=p.country) for p in ps]
     r = ''.join(ds) + check_status()
     return r
+
+
+def check(ip, port, sock=None, timeout=2):
+    if not sock:
+        check_http(ip, port, timeout)
+    else:
+        check_sock(ip, port, timeout)
+
+
+def check_sock(ip, port, timeout=2, sock='socks5'):
+    url = 'http://wtfismyip.com/text'
+    sock_session.proxies = {'http': '%s://%s:%s' % (sock, ip, port)}
+    try:
+        t0 = time.time()
+        r = sock_session.get(url, timeout=timeout)
+        t = time.time() - t0
+        print r.text, t, sock
+        if is_ip(r.text):
+            return True, t
+    except Exception, e:
+        print str(e)
+    return False, -1
+
+
+def check_http(ip, port, timeout=2):
+    url = 'http://wtfismyip.com/text'
+    pd = {"http": "http://%s:%s" % (ip, port)}
+    try:
+        t0 = time.time()
+        r = requests.get(url, proxies=pd, timeout=timeout)
+        t = time.time() - t0
+        print r.text, t
+        if is_ip(r.text): 
+            return True, t
+    except Exception, e:
+        print str(e)
+    return False, -1
+
+
+
+
+
+
+
