@@ -30,7 +30,7 @@ def upp():
 
 HOST_DEV = ['miso', 'airbb', 'nn', 'mm']
 HOST_ALANCER = ['sushi', 'noodle', 'udon'] # 'polo' retired
-HOST_VPN = ['tempura', 'ramen', 'donut', 'nori' , 'mm', 'rib']
+HOST_VPN = ['tempura', 'ramen', 'donut', 'nori' , 'mm', 'rib', 'steak']
 HOST_APPFLOOD = ['pre3-01', 'af_test', 'test3', 'sandbox', 'pre3-jp']
 HOST_ALL = HOST_DEV + HOST_ALANCER + HOST_VPN + HOST_APPFLOOD
 
