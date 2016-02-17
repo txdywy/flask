@@ -1534,6 +1534,13 @@ def xp():
 @app.route('/fmp', methods=['GET'])
 def fmp():
     return render_template('fmp.html')
+    
+
+@app.route('/d', methods=['GET'])
+def d():
+    url = request.args.get('url')
+    x = url[url.find('id')+1:]
+    return '[fb_id_%s]' % x
 
 
 @app.route('/register', methods=['GET', 'POST'])

