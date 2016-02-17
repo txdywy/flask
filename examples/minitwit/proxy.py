@@ -184,10 +184,12 @@ def task_proxy():
             d = now - i.update_time
             if d.seconds < 60*60*random.randrange(1, 6) + 60*random.randrange(0, 60):
                 continue
+            i.active = 1
         r, t = check_proxy(i.ip, i.port, i.anonymity)
         print t, i.code
         if r:
             i.delay = int(t*1000)
+            i.hit += 1
         else:
             i.active = 0
         i.update_time = now
@@ -211,7 +213,14 @@ def check_status():
 
 def get_active():
     ps = Proxy.query.filter_by(active=1).all()
-    ds = ['[{ip}:{port}]\n[{version}]\n[{code}]\n[{country}]\n\n'.format(ip=p.ip, port=p.port, version=p.anonymity if 'sock' in p.anonymity else p.anonymity+'/http', code=p.code, country=p.country) for p in ps]
+    ds = ['[{ip}:{port}]\n[{version}]\n[{code}]\n[{country}]\n[hot: {hit}]\n\n'.format(ip=p.ip, port=p.port, version=p.anonymity if 'sock' in p.anonymity else p.anonymity+'/http', code=p.code, country=p.country, hit=p.hit) for p in ps]
+    r = ''.join(ds) + check_status()
+    return r
+
+
+def get_top_active():
+    ps = Proxy.query.filter_by(active=1).order_by(desc(Proxy.hit)).limit(10).all()
+    ds = ['[{ip}:{port}]\n[{version}]\n[{code}]\n[{country}]\n[hot: {hit}]\n\n'.format(ip=p.ip, port=p.port, version=p.anonymity if 'sock' in p.anonymity else p.anonymity+'/http', code=p.code, country=p.country, hit=p.hit) for p in ps]
     r = ''.join(ds) + check_status()
     return r
 

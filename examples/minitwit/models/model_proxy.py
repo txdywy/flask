@@ -1,7 +1,7 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy import Column, Integer, String, DATETIME, Text, ForeignKey, PickleType
+from sqlalchemy import Column, Integer, String, DATETIME, Text, ForeignKey, PickleType, desc
 from sqlalchemy.ext.mutable import MutableDict
 import datetime
 from mutable import MutableList, MutableSet
@@ -37,6 +37,7 @@ class Proxy(Base):
     google = Column(Integer, default=0, index=True)
     https = Column(Integer, default=0, index=True)
     delay = Column(Integer, default=0)
+    hit = Column(Integer, default=0)
     update_time = Column(DATETIME(), default=datetime.datetime.now())
     create_time = Column(DATETIME(), default=datetime.datetime.now())
 
