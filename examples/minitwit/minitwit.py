@@ -1530,6 +1530,12 @@ def xp():
     else:
         return render_template('xp.html')
 
+
+@app.route('/fmp', methods=['GET'])
+def fmp():
+    return render_template('fmp.html')
+
+
 @app.route('/register', methods=['GET', 'POST'])
 #@exr
 def register():
