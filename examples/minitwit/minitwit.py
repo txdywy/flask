@@ -30,6 +30,7 @@ import simplejson as json
 import random
 import string
 from random import randint
+from lxml import etree
 try:
     import cache as cacheal
 except:
@@ -1512,6 +1513,22 @@ def changepassword():
 ALANCER_WELCOME_BODY = """
 You have successfully registered at aLancer. Click <a href="%s"><strong style="color:#00188f;"><span style="color:#00188f;">here</span></strong></a> to view the latest internship openings being offered by verified business owners nearby you. We may send you notices of new openings as they are added in the future. -the Alancer Team
 """
+
+@app.route('/xp', methods=['GET', 'POST'])
+def xp():
+    if request.method == 'POST':
+        try:
+            url = request.form['url']
+            xpath = request.form['xpath']
+            response = urllib2.urlopen(url)
+            htmlparser = etree.HTMLParser()
+            tree = etree.parse(response, htmlparser)
+            x = tree.xpath(xpath)
+            return x[0].text
+        except:
+            return 'Hey dude, it is a demo' 
+    else:
+        return render_template('xp.html')
 
 @app.route('/register', methods=['GET', 'POST'])
 #@exr
