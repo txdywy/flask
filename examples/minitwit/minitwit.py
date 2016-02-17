@@ -321,7 +321,7 @@ def wx():
 
 @app.route('/px', methods=['GET'])
 def px():
-    r = proxy.get_active()
+    r = proxy.get_top_active(-1)
     r = r.replace('\n', '</br>')
     return r
 
