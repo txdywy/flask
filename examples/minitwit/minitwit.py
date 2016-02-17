@@ -85,6 +85,7 @@ except:
 
 from flask.ext.babel import Babel, gettext as _, get_locale
 import qiniu_agent
+import proxy
 
 PROJECT_IMAGE_KEY_TEMPLATE = 'projects/%s'
 PROJECT_IMAGE_URL_TEMPLATE = 'https://s3-us-west-2.amazonaws.com/alancer-images/' + PROJECT_IMAGE_KEY_TEMPLATE
@@ -316,6 +317,14 @@ def wx():
         print '------', request.data
         return wx_util.reply(request.data)
     return echostr
+
+
+@app.route('/px', methods=['GET'])
+def px():
+    r = proxy.get_active()
+    r = r.replace('\n', '</br>')
+    return r
+
 
 @app.route('/admin', methods=['GET'])
 @login_required

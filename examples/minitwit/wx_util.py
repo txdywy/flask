@@ -230,7 +230,7 @@ def check_stock(content):
 def px(content):
     try:
         if content == '!9':
-            return proxy.get_top_active()
+            return proxy.get_top_active() + '\n\nhttp://alancer.ml/px'
     except:
         print '------proxy err------'
         return None
