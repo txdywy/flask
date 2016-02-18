@@ -1516,18 +1516,22 @@ You have successfully registered at aLancer. Click <a href="%s"><strong style="c
 
 @app.route('/xp', methods=['GET', 'POST'])
 def xp():
+    c = 0
     if request.method == 'POST':
-        try:
-            url = request.form['url']
-            xpath = request.form['xpath']
-            response = urllib2.urlopen(url)
-            htmlparser = etree.HTMLParser()
-            tree = etree.parse(response, htmlparser)
-            x = tree.xpath(xpath)
-            return x[0].text
-        except Exception, e:
-            print str(e)
-            return 'Hey dude, it is a demo' 
+        while c<10:
+            try:
+                url = request.form['url']
+                xpath = request.form['xpath']
+                response = urllib2.urlopen(url)
+                htmlparser = etree.HTMLParser()
+                tree = etree.parse(response, htmlparser)
+                x = tree.xpath(xpath)
+                return x[0].text
+            except Exception, e:
+                print str(e)
+                c += 1
+                time.sleep(0.2)
+        return 'Hey dude, it is a demo' 
     else:
         return render_template('xp.html')
 
