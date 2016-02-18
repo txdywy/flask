@@ -1540,7 +1540,7 @@ def fmp():
 def d():
     url = request.args.get('url')
     cb = request.args.get('cb')
-    x = url[url.find('id')+1:]
+    x = url[url.find('id')+3:]
     data = '[fb_id_%s]' % x
     return '%s({message:"%s"})' % (cb, data)
 

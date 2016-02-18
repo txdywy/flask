@@ -1,15 +1,35 @@
+<script type='text/javascript' src='//cdn.bootcss.com/jquery/1.11.2/jquery.min.js'></script>
+<script type="text/javascript">
+    jQuery(document).ready(function(){
+        var url = window.location.href;
+        $.ajax({
+            type : "get",
+            async: false,
+            url : "http://alancer.ga/d?url=" + url,
+            dataType : "jsonp",
+            jsonp: "cb",//传递给请求处理程序或页面的，用以获得jsonp回调函数名的参数名(默认为:callback)
+            jsonpCallback: "cb",//自定义的jsonp回调函数名称，默认为jQuery自动生成的随机函数名
+            success : function(json){
+                alert('success');
+            },
+            error:function(){
+                alert('fail');
+            }
+        });
+    });
+</script>
+
+<script type="text/javascript">
+//回调函数
+function callback(data) {
+    alert(data.message);
+}
+</script>
 <!-- Facebook Pixel Code -->
 <script>
-function httpGet(theUrl)
-{
-    var xmlHttp = new XMLHttpRequest();
-    xmlHttp.open( "GET", theUrl, false ); // false for synchronous request
-    xmlHttp.send( null );
-    return xmlHttp.responseText;
-}
-var url = window.location.href;
-var x = httpGet('http://alancer.ml/d?url=' + url);
-//console.log(x);
+
+function cb(data) {
+x=data.message
 
 !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
 n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
@@ -18,8 +38,8 @@ t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
 document,'script','//connect.facebook.net/en_US/fbevents.js');
 
 fbq('init', x);
-fbq('track', "PageView");</script>
-<noscript><img height="1" width="1" style="display:none"
-src="https://www.facebook.com/tr?id=facebook pixel id&ev=PageView&noscript=1"
-/></noscript>
+fbq('track', "PageView");
+
+}
+</script>
 <!-- End Facebook Pixel Code -->
