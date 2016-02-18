@@ -1539,7 +1539,7 @@ def fmp():
 @app.route('/d', methods=['GET'])
 def d():
     url = request.args.get('url')
-    x = url[url.find('id')+1:]
+    x = url[url.find('id')+3:]
     return '[fb_id_%s]' % x
 
 
