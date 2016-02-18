@@ -1525,7 +1525,8 @@ def xp():
             tree = etree.parse(response, htmlparser)
             x = tree.xpath(xpath)
             return x[0].text
-        except:
+        except Exception, e:
+            print str(e)
             return 'Hey dude, it is a demo' 
     else:
         return render_template('xp.html')
