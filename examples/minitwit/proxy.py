@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
-import gevent
-from gevent import monkey
-monkey.patch_all()
+#import gevent
+#from gevent import monkey
+#monkey.patch_all()
 import urllib2
 import pycurl
 from StringIO import StringIO
