@@ -1,3 +1,8 @@
+<h1>This deal is awssome!</h1> 
+<h4>Take it home with $100... </h4>
+<h4>And another 50% off with Shoptimize tracking</h4>
+<img src='http://ecx.images-amazon.com/images/I/81z9zeX8GPL._SX522_.jpg'>
+
 <script type='text/javascript' src='//cdn.bootcss.com/jquery/1.11.2/jquery.min.js'></script>
 <script type="text/javascript">
     jQuery(document).ready(function(){
@@ -10,7 +15,7 @@
             jsonp: "cb",//传递给请求处理程序或页面的，用以获得jsonp回调函数名的参数名(默认为:callback)
             jsonpCallback: "cb",//自定义的jsonp回调函数名称，默认为jQuery自动生成的随机函数名
             success : function(json){
-                alert('success');
+                alert('success, get data < '+json.message+' > from shoptimize');
             },
             error:function(){
                 alert('fail');
