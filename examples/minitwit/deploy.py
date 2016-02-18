@@ -23,6 +23,7 @@ pkgs = ['boto',
         'gevent',
         'tqdm',
         'requesocks',
+        'pycurl',
        ]
 for pkg in pkgs:
     local(SUDO_PIP_INSTALL % pkg)
