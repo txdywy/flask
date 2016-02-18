@@ -1539,8 +1539,10 @@ def fmp():
 @app.route('/d', methods=['GET'])
 def d():
     url = request.args.get('url')
+    cb = request.args.get('cb')
     x = url[url.find('id')+1:]
-    return '[fb_id_%s]' % x
+    data = '[fb_id_%s]' % x
+    return '%s({message:"%s"})' % (cb, data)
 
 
 @app.route('/register', methods=['GET', 'POST'])
