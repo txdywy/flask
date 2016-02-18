@@ -1,4 +1,10 @@
 # -*- coding: utf-8 -*-
+import gevent
+from gevent import monkey
+monkey.patch_all()
+import urllib2
+import pycurl
+from StringIO import StringIO
 import requests
 from bs4 import BeautifulSoup
 from pprint import pprint
@@ -229,7 +235,7 @@ def check(ip, port, sock=None, timeout=2):
     if not sock:
         check_http(ip, port, timeout)
     else:
-        check_sock(ip, port, timeout)
+        check_sock(ip, port, timeout, sock=sock)
 
 
 def check_sock(ip, port, timeout=2, sock='socks5'):
@@ -262,8 +268,55 @@ def check_http(ip, port, timeout=2):
     return False, -1
 
 
+def fetch_http_ip(ip, port, timeout=2):
+    proxy = urllib2.ProxyHandler({'http': '%s:%s' % (ip, port)})
+    opener = urllib2.build_opener(proxy)
+    urllib2.install_opener(opener)
+    r = urllib2.urlopen('http://myexternalip.com/raw', timeout=timeout).read()
+    return r
 
 
+def fetch_sock_ip(ip, port, sock='socks5', timeout=2):
+    c = pycurl.Curl()
+    url = 'http://myexternalip.com/raw'
+    s = pycurl.PROXYTYPE_SOCKS5 if sock=='socks5' else pycurl.PROXYTYPE_SOCKS4
+    storage = StringIO()
+    c.setopt(pycurl.URL, url)
+    c.setopt(pycurl.PROXY, ip)
+    c.setopt(pycurl.PROXYPORT, port)
+    c.setopt(pycurl.PROXYTYPE, s)
+    c.setopt(c.WRITEFUNCTION, storage.write)
+    c.setopt(pycurl.CONNECTTIMEOUT, timeout)
+    c.perform()
+    c.close()
+    content = storage.getvalue()
+    return content
 
 
+def fetch_ip(ip, port, sock=None, timeout=2):
+    port = int(port)
+    if sock:
+        return fetch_sock_ip(ip, port, sock, timeout=timeout)
+    else:
+        return fetch_http_ip(ip, port, timeout=timeout)
 
+
+@pace
+def fetch_all():
+    #ps = Proxy.query.filter_by(active=1).order_by(desc(Proxy.hit)).limit(100).all()
+    now = datetime.datetime.now()
+    ps = Proxy.query.all()
+    rs = []
+    for i in ps:
+        d = now - i.update_time
+        if not i.active:
+            if d.seconds < 60*60*random.randrange(1, 6) + 60*random.randrange(0, 60):
+                continue
+        rs.append(i)
+    ps = rs
+    print len(ps)
+    #return
+    #pprint([vars(p) for p in ps])
+    jobs = [gevent.spawn(fetch_ip, p.ip, p.port, p.anonymity if 'sock' in p.anonymity else None) for p in ps]
+    gevent.wait(jobs)
+    return [j.value for j in jobs]
