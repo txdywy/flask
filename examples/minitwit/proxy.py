@@ -17,6 +17,7 @@ import socket
 from tqdm import tqdm
 import requesocks as rs
 import random
+import iso3166
 sock_session = rs.session()
 headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.109 Safari/537.36'}
 
@@ -182,10 +183,15 @@ def check_proxy(ip, port, anonymity=''):
 
 
 @pace
-def task_proxy():
+def task_proxy0():
     print '[Active before: %s/%s]' % (Proxy.query.filter_by(active=1).count(), Proxy.query.count())
     print fetch_proxy()
-    ps = Proxy.query.all()
+    print fetch_samair_proxy()
+
+
+@pace
+def task_proxy1(n=0, m=500):
+    ps = Proxy.query.offset(m*n).limit(m).all()
     now = datetime.datetime.now()
     for i in tqdm(ps):
         if i.active==0:
@@ -334,7 +340,7 @@ def get_samair_proxy(url):
     css_d = {i[1:i.find(':')]: i.split('"')[1] for i in css_r.split('\n')[:-1]}
     trs = s.find('table', {'id': 'proxylist'}).findAll('tr')[1:-1]
     r = [tr.findAll('td') for tr in trs]
-    r = [dict(ip=t[0].text, port=css_d[t[0].find('span')['class'][0]], anonymity=t[1].text, country=t[3].text) for t in r]
+    r = [dict(ip=t[0].text[:-1], port=css_d[t[0].find('span')['class'][0]], anonymity=t[1].text, country=t[3].text) for t in r]
     return r
 
 
@@ -347,3 +353,36 @@ def get_all_samair_proxy():
     return r
 
 
+@ex('')
+def _get_code(country):
+    return iso3166.countries.get('China').alpha2
+
+
+def update_samair_proxy(result):
+    for item in result:
+        ip = item['ip']
+        port = item['port']
+        code = _get_code(item['country'])
+        country = item['country']
+        anonymity = item['anonymity'].lower()
+        now = datetime.datetime.now()
+        key = '%s:%s' % (ip, port)
+        if Proxy.query.filter_by(key=key).first():
+            continue
+        p = Proxy(key=key,
+                  ip=ip,
+                  port=port,
+                  code=code,
+                  country=country,
+                  anonymity=anonymity,
+                  update_time=now,
+                  create_time=now,
+                  site=1
+                  )
+        flush(p)
+
+
+def fetch_samair_proxy():
+    r = get_all_samair_proxy()
+    update_samair_proxy(r)
+    return 'Samair Done'
