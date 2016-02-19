@@ -27,7 +27,7 @@ def init_db():
 class Proxy(Base):
     __tablename__ = 'proxy'
     id = Column(Integer, primary_key=True)
-    active = Column(Integer, default=1, index=True)
+    active = Column(Integer, default=2, index=True) #0: down #1: up #2: new and default
     key = Column(String(32), unique=True)
     ip = Column(String(16), index=True)
     port = Column(String(8), default='80', index=True)
