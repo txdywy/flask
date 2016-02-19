@@ -38,6 +38,7 @@ class Proxy(Base):
     https = Column(Integer, default=0, index=True)
     delay = Column(Integer, default=0)
     hit = Column(Integer, default=0)
+    site = Column(Integer, default=0) #0: free-proxy-list.net #1: http://www.samair.ru
     update_time = Column(DATETIME(), default=datetime.datetime.now())
     create_time = Column(DATETIME(), default=datetime.datetime.now())
 
