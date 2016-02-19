@@ -18,6 +18,7 @@ from tqdm import tqdm
 import requesocks as rs
 import random
 sock_session = rs.session()
+headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.109 Safari/537.36'}
 
 init_db()
 
@@ -54,7 +55,7 @@ def is_ip(ip):
 
 
 def get_sock_proxy():
-    r = requests.get('http://www.socks-proxy.net/').text
+    r = requests.get('http://www.socks-proxy.net/', headers=headers).text
     s = BeautifulSoup(r)
     r = s.findAll('tr')[1:-1]
     r = [a.findAll('td') for a in r]
@@ -63,7 +64,7 @@ def get_sock_proxy():
 
 
 def get_us_proxy():
-    r = requests.get('http://www.us-proxy.org/').text
+    r = requests.get('http://www.us-proxy.org/', headers=headers).text
     s = BeautifulSoup(r)
     r = s.findAll('tr')[1:-1]
     r = [a.findAll('td') for a in r]
@@ -72,7 +73,7 @@ def get_us_proxy():
 
 
 def get_ssl_proxy():
-    r = requests.get('http://www.sslproxies.org/').text
+    r = requests.get('http://www.sslproxies.org/', headers=headers).text
     s = BeautifulSoup(r)
     r = s.findAll('tr')[1:-1]
     r = [a.findAll('td') for a in r]
@@ -82,7 +83,7 @@ def get_ssl_proxy():
 
 
 def get_uk_proxy():
-    r = requests.get('http://free-proxy-list.net/uk-proxy.html').text
+    r = requests.get('http://free-proxy-list.net/uk-proxy.html', headers=headers).text
     s = BeautifulSoup(r)
     r = s.findAll('tr')[1:-1]
     r = [a.findAll('td') for a in r]
@@ -159,7 +160,7 @@ def check_proxy(ip, port, anonymity=''):
         pd = {"http": "http://%s:%s" % (ip, port)}
         try:
             t0 = time.time()
-            r = requests.get(url, proxies=pd, timeout=2)
+            r = requests.get(url, proxies=pd, timeout=2, headers=headers)
             t = time.time() - t0
             print r.text, t, anonymity
             if is_ip(r.text): 
@@ -259,7 +260,7 @@ def check_http(ip, port, timeout=2):
     pd = {"http": "http://%s:%s" % (ip, port)}
     try:
         t0 = time.time()
-        r = requests.get(url, proxies=pd, timeout=timeout)
+        r = requests.get(url, proxies=pd, timeout=timeout, headers=headers)
         t = time.time() - t0
         print r.text, t
         if is_ip(r.text): 
@@ -323,15 +324,26 @@ def fetch_all():
     return [j.value for j in jobs]
 
 
+@ex(default=[])
 def get_samair_proxy(url):
-   """samair.ru"""
-   r = requests.get(url).text
-   s = BeautifulSoup(r)
-   css_url = 'http://www.samair.ru%s' % s.findAll('link')[1]['href']
-   css_r = requests.get(css_url).text
-   css_d = {i[1:i.find(':')]: i.split('"')[1] for i in css_r.split('\n')[:-1]}
-   trs = s.find('table', {'id': 'proxylist'}).findAll('tr')[1:-1]
-   r = [tr.findAll('td') for tr in trs]
-   r = [(t[0].text, css_d[t[0].find('span')['class'][0]], t[1].text, t[2].text, t[3].text) for t in r]
-   print r
+    """samair.ru"""
+    r = requests.get(url, headers=headers).text
+    s = BeautifulSoup(r)
+    css_url = 'http://www.samair.ru%s' % s.findAll('link')[1]['href']
+    css_r = requests.get(css_url, headers=headers).text
+    css_d = {i[1:i.find(':')]: i.split('"')[1] for i in css_r.split('\n')[:-1]}
+    trs = s.find('table', {'id': 'proxylist'}).findAll('tr')[1:-1]
+    r = [tr.findAll('td') for tr in trs]
+    r = [dict(ip=t[0].text, port=css_d[t[0].find('span')['class'][0]], anonymity=t[1].text, country=t[3].text) for t in r]
+    return r
+
+
+@pace
+def get_all_samair_proxy():
+    r = []
+    for i in tqdm(range(1, 31)):
+        t = get_samair_proxy('http://www.samair.ru/proxy/proxy-%s.htm' % (str(i) if i>9 else '0' + str(i)))
+        r += t
+    return r
+
 
