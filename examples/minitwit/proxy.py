@@ -3,7 +3,8 @@
 #from gevent import monkey
 #monkey.patch_all()
 import urllib2
-import pycurl
+try:import pycurl
+except:pass
 from StringIO import StringIO
 import requests
 from bs4 import BeautifulSoup
@@ -320,3 +321,17 @@ def fetch_all():
     jobs = [gevent.spawn(fetch_ip, p.ip, p.port, p.anonymity if 'sock' in p.anonymity else None) for p in ps]
     gevent.wait(jobs)
     return [j.value for j in jobs]
+
+
+def get_samair_proxy(url):
+   """samair.ru"""
+   r = requests.get(url).text
+   s = BeautifulSoup(r)
+   css_url = 'http://www.samair.ru%s' % s.findAll('link')[1]['href']
+   css_r = requests.get(css_url).text
+   css_d = {i[1:i.find(':')]: i.split('"')[1] for i in css_r.split('\n')[:-1]}
+   trs = s.find('table', {'id': 'proxylist'}).findAll('tr')[1:-1]
+   r = [tr.findAll('td') for tr in trs]
+   r = [(t[0].text, css_d[t[0].find('span')['class'][0]], t[1].text, t[2].text, t[3].text) for t in r]
+   print r
+
