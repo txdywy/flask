@@ -18,6 +18,7 @@ from tqdm import tqdm
 import requesocks as rs
 import random
 import iso3166
+import base64
 sock_session = rs.session()
 headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.109 Safari/537.36'}
 
@@ -356,7 +357,7 @@ def get_all_samair_proxy():
 
 @ex('')
 def _get_code(country):
-    return iso3166.countries.get('China').alpha2
+    return iso3166.countries.get(country).alpha2
 
 
 def update_samair_proxy(result):
@@ -393,3 +394,68 @@ def gen_cron_task(n=20, m=1000):
     a = "*/20 * * * * cd /home/ubuntu/flask/examples/minitwit; python -c 'import proxy as p;p.task_proxy1(%s, %s)' >> /home/ubuntu/proxy1_%s.log 2>&1"
     for i in range(n):
         print a % (i, m, i)
+
+
+@ex([])
+def get_cool_proxy(url):
+    r = requests.get(url, headers=headers)
+    if r.status_code == 404:
+        return []
+    r = r.text
+    #print r
+    s = BeautifulSoup(r)
+    trs0 = s.find('table').findAll('tr')[1:]
+    trs = []
+    for t in trs0:
+        tds = t.findAll('td')
+        if len(tds)>1:
+            trs.append(tds)
+    r = [dict(ip=_parse_cool_ip(i[0].find('script').text), port=i[1].text, country=i[3].text, anonymity=i[5].text) for i in trs]
+    #print r
+    return r
+
+
+def _parse_cool_ip(raw):
+    r = raw.split('"')[1]
+    r = r.encode('rot13')
+    r = base64.b64decode(r)
+    return r
+
+
+@pace
+def get_all_cool_proxy():
+    r = []
+    for i in tqdm(range(1, 21)):
+        t = get_cool_proxy('http://www.cool-proxy.net/proxies/http_proxy_list/page:%s' % i)
+        r += t
+    return r
+
+
+def update_cool_proxy(result):
+    for item in result:
+        ip = item['ip']
+        port = item['port']
+        code = _get_code(item['country'])
+        country = item['country']
+        anonymity = item['anonymity'].lower()
+        now = datetime.datetime.now()
+        key = '%s:%s' % (ip, port)
+        if Proxy.query.filter_by(key=key).first():
+            continue
+        p = Proxy(key=key,
+                  ip=ip,
+                  port=port,
+                  code=code,
+                  country=country,
+                  anonymity=anonymity,
+                  update_time=now,
+                  create_time=now,
+                  site=2
+                  )
+        flush(p)
+
+
+def fetch_cool_proxy():
+    r = get_all_cool_proxy()
+    update_cool_proxy(r)
+    return 'Cool Done'
