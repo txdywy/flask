@@ -386,3 +386,9 @@ def fetch_samair_proxy():
     r = get_all_samair_proxy()
     update_samair_proxy(r)
     return 'Samair Done'
+
+
+def gen_cron_task(n=20, m=1000):
+    a = "*/20 * * * * cd /home/ubuntu/flask/examples/minitwit; python -c 'import proxy as p;p.task_proxy1(%s, %s)' >> /home/ubuntu/proxy1_%s.log 2>&1"
+    for i in range(n):
+        print a % (i, m, i)
