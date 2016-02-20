@@ -1,7 +1,7 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy import Column, Integer, String, DATETIME, Text, ForeignKey, PickleType, desc
+from sqlalchemy import Column, Integer, String, DATETIME, Text, ForeignKey, PickleType, desc, func
 from sqlalchemy.ext.mutable import MutableDict
 import datetime
 from mutable import MutableList, MutableSet

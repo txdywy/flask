@@ -231,6 +231,13 @@ def check_status():
     return s + '\n' + st
 
 
+def check_code_status():
+    code_act = db_session.query(Proxy.code, Proxy.country, func.count(1)).filter_by(active=1).group_by(Proxy.code).all()
+    code_act = sorted(code_act, key=lambda x: x[2], reverse=True)
+    sc = '\n'.join(['[%s (%s): %s]' % (a, b, c) for a, b, c in code_act])
+    return sc
+
+
 def get_active():
     ps = Proxy.query.filter_by(active=1).all()
     ds = ['[No.{i}]\n[{ip}:{port}]\n[{version}]\n[{code}]\n[{country}]\n[{site}]\n[hot: {hit}]\n\n'.format(i=i, ip=p.ip, port=p.port, version=p.anonymity if 'sock' in p.anonymity else p.anonymity+'/http', code=p.code, country=p.country, hit=p.hit, site=p.get_site()) for i, p in enumerate(ps)]
@@ -242,7 +249,8 @@ def get_top_active(n=10):
     ps = Proxy.query.filter_by(active=1).order_by(desc(Proxy.hit)).limit(n).all()
     ds = ['[No.{i}]\n[{ip}:{port}]\n[{version}]\n[{code}]\n[{country}]\n[{site}]\n[hot: {hit}]\n\n'.format(i=i, ip=p.ip, port=p.port, version=p.anonymity if 'sock' in p.anonymity else p.anonymity+'/http', code=p.code, country=p.country, hit=p.hit, site=p.get_site()) for i, p in enumerate(ps)]
     h = check_status()
-    r = '%s\n\n%s%s' % (h, ''.join(ds), h)
+    c = check_code_status()
+    r = '%s\n\n%s%s' % (h + '\n\n' + c, ''.join(ds), h)
     return r
 
 
