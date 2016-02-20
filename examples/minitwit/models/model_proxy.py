@@ -26,6 +26,9 @@ def init_db():
 
 class Proxy(Base):
     __tablename__ = 'proxy'
+    site_map = {0: 'free-proxy-list.net',
+                1: 'samair.ru',
+                }
     id = Column(Integer, primary_key=True)
     active = Column(Integer, default=2, index=True) #0: down #1: up #2: new and default
     key = Column(String(32), unique=True)
@@ -44,4 +47,7 @@ class Proxy(Base):
 
     def __repr__(self):
         return '<Proxy %r>' % (self.id)
-
+   
+    def get_site(self):
+        r = Proxy.site_map.get(self.site)
+        return r if r else ''
