@@ -188,6 +188,7 @@ def task_proxy0():
     print '[Active before: %s/%s]' % (Proxy.query.filter_by(active=1).count(), Proxy.query.count())
     print fetch_proxy()
     print fetch_samair_proxy()
+    print fetch_cool_proxy()
 
 
 @pace
