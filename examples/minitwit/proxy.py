@@ -358,6 +358,20 @@ def get_all_samair_proxy():
 
 @ex('')
 def _get_code(country):
+    if 'Vietnam'.lower() in country.lower():
+        return 'VN'
+    if 'Venezuela'.lower() in country.lower():
+        return 'VE'
+    if 'Kazakstan'.lower() in country.lower():
+        return 'KZ'
+    if 'Bolivia'.lower() in country.lower():
+        return 'BO'
+    if 'Serbia and Montenegro'.lower() in country.lower():
+        return 'CS'
+    if 'Congo, The Democratic Republic of the'.lower() in country.lower():
+        return 'CD'
+    if 'Palestinian Territory'.lower() in country.lower():
+        return 'PS'
     return iso3166.countries.get(country).alpha2
 
 
