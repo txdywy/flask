@@ -224,7 +224,11 @@ def get_all_num():
 
 def check_status():
     s = '[%s/%s]' % (get_active_num(), get_all_num())
-    return s
+    sum_all = {k: v for k, v in db_session.query(Proxy.site, func.count(1)).group_by(Proxy.site).all()}
+    sum_act = {k: v for k, v in db_session.query(Proxy.site, func.count(1)).filter_by(active=1).group_by(Proxy.site).all()}
+    st = ['[%s: %s/%s]' % (k, sum_act.get(k, 0), sum_all[k]) for k in sum_all]
+    st = '\n'.join(st)
+    return s + '\n' + st
 
 
 def get_active():
