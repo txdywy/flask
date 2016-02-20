@@ -228,14 +228,15 @@ def check_status():
 def get_active():
     ps = Proxy.query.filter_by(active=1).all()
     ds = ['[No.{i}]\n[{ip}:{port}]\n[{version}]\n[{code}]\n[{country}]\n[{site}]\n[hot: {hit}]\n\n'.format(i=i, ip=p.ip, port=p.port, version=p.anonymity if 'sock' in p.anonymity else p.anonymity+'/http', code=p.code, country=p.country, hit=p.hit, site=p.get_site()) for i, p in enumerate(ps)]
-    r = ''.join(ds) + check_status()
+    r = check_status() + '\n\n' + ''.join(ds)
     return r
 
 
 def get_top_active(n=10):
     ps = Proxy.query.filter_by(active=1).order_by(desc(Proxy.hit)).limit(n).all()
     ds = ['[No.{i}]\n[{ip}:{port}]\n[{version}]\n[{code}]\n[{country}]\n[{site}]\n[hot: {hit}]\n\n'.format(i=i, ip=p.ip, port=p.port, version=p.anonymity if 'sock' in p.anonymity else p.anonymity+'/http', code=p.code, country=p.country, hit=p.hit, site=p.get_site()) for i, p in enumerate(ps)]
-    r = ''.join(ds) + check_status()
+    h = check_status()
+    r = '%s\n\n%s%s' % (h, ''.join(ds), h)
     return r
 
 
