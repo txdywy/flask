@@ -248,6 +248,16 @@ def check_stock_graph(content):
     if c in stock.CN_STOCK:
         url = 'http://image.sinajs.cn/newchart/min/n/%s.gif' % stock.CN_STOCK[c]
     return url
+
+
+def reply_qr(c, user_name_from, user_name_to):
+    r = c.strip().split(' ')
+    if 'qr' in  r[-1].lower():
+        c = r[0]
+    else:
+        return None
+    img_url = 'http://api.qrserver.com/v1/create-qr-code/?size=150x150&data=' + urllib2.quote(c)
+    return _gen_img_response(user_name_from, user_name_to, 'QRCode', c, img_url, img_url)
     
 
 def reply(data):
@@ -319,6 +329,8 @@ def reply(data):
         result = '猫球棒棒大！'
         tmp = 1
     reply_tmp = WX_TEMPLATE_TEXT
+    qr = reply_qr(content, user_name_from, user_name_to)
+    if qr:return qr
     ibr = ib(content)
     if ibr:
         tmp = 1
@@ -389,6 +401,13 @@ def reply(data):
             response = make_response(get_google_news(user_name_from, user_name_to, content))
     response.content_type = 'application/xml'
     return response
+
+
+def _gen_img_response(user_name_from, user_name_to, title, body, img_url, ref_url):
+    response = make_response(WX_TEMPLATE_IMG_TEXT % (user_name_from, user_name_to, str(int(time.time())), title, body, img_url, ref_url))
+    response.content_type = 'application/xml'
+    return response
+
 
 def unicode_is_zh(data):
     if re.compile(u'[\u4e00-\u9fa5]+').search(data):
