@@ -307,7 +307,7 @@ def reply(data):
         if content == 'C':
             if p:
                 content = p
-                cachewx.set('WX_LAST_CONTENT', content, 60 * 60)
+                cachewx.set('WX_LAST_CONTENT', content, 60 * 60 * 24)
         else:
             cachewx.set('WX_LAST_CONTENT', content, 10 * 60)
 
