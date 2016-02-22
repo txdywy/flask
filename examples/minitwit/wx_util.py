@@ -17,6 +17,7 @@ from bosonnlp import BosonNLP
 from urlparse import urlparse, parse_qs
 WX_CACHE_GENERAL_KEY = 'wx.cache.general.key.%s'
 WX_CACHE_RESULT_KEY = 'wx.cache.result.key.%s'
+WX_LAST_CONTENT_TIMEOUT = 24 * 60 * 60
 from config import ALANCER_HOST
 try:
     from config import WX_TULING_API_KEY
@@ -317,9 +318,9 @@ def reply(data):
         if content == 'C':
             if p:
                 content = p
-                cachewx.set('WX_LAST_CONTENT', content, 60 * 60 * 24)
+                cachewx.set('WX_LAST_CONTENT', content, WX_LAST_CONTENT_TIMEOUT)
         else:
-            cachewx.set('WX_LAST_CONTENT', content, 10 * 60)
+            cachewx.set('WX_LAST_CONTENT', content, WX_LAST_CONTENT_TIMEOUT)
 
     tmp = 0
     if '小虎' in content:
