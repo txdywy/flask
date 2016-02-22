@@ -1,0 +1,5 @@
+#!/usr/local/bin/python
+import sys
+import proxy as p
+cmd = 'p.%s' % ' '.join(sys.argv[1:])
+print eval(cmd)
