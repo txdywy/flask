@@ -189,6 +189,7 @@ def task_proxy0():
     print fetch_proxy()
     print fetch_samair_proxy()
     print fetch_cool_proxy()
+    print fetch_nntime_proxy()
 
 
 @pace
@@ -386,6 +387,14 @@ def _get_code(country):
         return 'CD'
     if 'Palestinian Territory'.lower() in country.lower():
         return 'PS'
+    if 'Libyan Arab Jamahiriya'.lower() in country.lower():
+        return 'LY'
+    if 'Macedonia'.lower() in country.lower():
+        return 'MK'
+    if 'Moldova, Republic'.lower() in country.lower():
+        return 'MD'
+    if 'Satellite Provider'.lower() in country.lower():
+        return 'A2'
     return iso3166.countries.get(country).alpha2
 
 
@@ -509,7 +518,7 @@ def get_nntime_proxy(url):
         item = {}
         raw = i[1].text
         item['ip'] = raw[:raw.find('d')]
-        print raw
+        #print raw
         item['port'] = ''.join([str(jsd[x]) for x in raw[raw.find(':')+3:-1].split('+')])
         item['port'] = item['port'] if item['port'] else '80'
         item['country'] = i[4].text.split('(')[0].strip()
