@@ -413,10 +413,11 @@ def update_samair_proxy(result):
         flush(p)
 
 
+@ex('Fetch Samair Failed')
 def fetch_samair_proxy():
     r = get_all_samair_proxy()
     update_samair_proxy(r)
-    return 'Samair Done'
+    return 'Fetch Samair Success'
 
 
 def gen_cron_task(n=20, m=1000):
@@ -484,7 +485,73 @@ def update_cool_proxy(result):
         flush(p)
 
 
+@ex('Fetch Cool Failed')
 def fetch_cool_proxy():
     r = get_all_cool_proxy()
     update_cool_proxy(r)
-    return 'Cool Done'
+    return 'Fetch Cool Success'
+
+
+#@ex([])
+def get_nntime_proxy(url):
+    r0 = requests.get(url, headers=headers)
+    if r0.status_code == 404:
+        return []
+    r0 = r0.text
+    s0 = BeautifulSoup(r0)
+    js = s0.findAll('script')[1].text.replace(';', ',')
+    jsd = eval('dict(%s)' % js) 
+    jsd[''] = ''
+    trs = s0.find('table', {'id': 'proxylist'}).findAll('tr',{'class': ('odd', 'even')})
+    trs = [tr.findAll('td') for tr in trs]
+    r0 = []
+    for i in trs:
+        item = {}
+        raw = i[1].text
+        item['ip'] = raw[:raw.find('d')]
+        print raw
+        item['port'] = ''.join([str(jsd[x]) for x in raw[raw.find(':')+3:-1].split('+')])
+        item['port'] = item['port'] if item['port'] else '80'
+        item['country'] = i[4].text.split('(')[0].strip()
+        item['anonymity'] = i[2].text.strip()
+        r0.append(item)
+    return r0
+
+
+@pace
+def get_all_nntime_proxy():
+    r = []
+    for i in tqdm(range(1, 71)):
+        t = get_nntime_proxy('http://nntime.com/proxy-list-%s.htm' % (str(i) if i>9 else '0' + str(i)))
+        r += t
+    return r
+
+
+def update_nntime_proxy(result):
+    for item in result:
+        ip = item['ip']
+        port = item['port']
+        code = _get_code(item['country'])
+        country = item['country']
+        anonymity = item['anonymity'].lower()
+        now = datetime.datetime.now()
+        key = '%s:%s' % (ip, port)
+        if Proxy.query.filter_by(key=key).first():
+            continue
+        p = Proxy(key=key,
+                  ip=ip,
+                  port=port,
+                  code=code,
+                  country=country,
+                  anonymity=anonymity,
+                  update_time=now,
+                  create_time=now,
+                  site=3
+                  )
+        flush(p)
+
+@ex('Fetch Nntime Failed')
+def fetch_nntime_proxy():
+    r = get_all_nntime_proxy()
+    update_nntime_proxy(r)
+    return 'Fetch Nntime Success'

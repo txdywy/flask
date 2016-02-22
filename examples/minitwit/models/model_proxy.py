@@ -29,6 +29,7 @@ class Proxy(Base):
     site_map = {0: 'free-proxy-list.net',
                 1: 'samair.ru',
                 2: 'cool-proxy.net',
+                3: 'nntime.com',
                 }
     id = Column(Integer, primary_key=True)
     active = Column(Integer, default=2, index=True) #0: down #1: up #2: new and default
@@ -42,7 +43,7 @@ class Proxy(Base):
     https = Column(Integer, default=0, index=True)
     delay = Column(Integer, default=0)
     hit = Column(Integer, default=0)
-    site = Column(Integer, default=0) #0: free-proxy-list.net #1: http://www.samair.ru #2: cool-proxy.net
+    site = Column(Integer, default=0) #0: free-proxy-list.net #1: http://www.samair.ru #2: cool-proxy.net #3: nntime.com
     update_time = Column(DATETIME(), default=datetime.datetime.now())
     create_time = Column(DATETIME(), default=datetime.datetime.now())
 
