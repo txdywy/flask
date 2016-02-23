@@ -57,6 +57,8 @@ BaseRequest = {}
 ContactList = []
 My = []
 SyncKey = []
+MemberList = []
+MemberMap = {}
 
 try:
     xrange
@@ -438,7 +440,7 @@ def syncCheck():
     response = wxb_urllib.urlopen(request)
     data = response.read().decode('utf-8', 'replace')
 
-    # print(data)
+    print('心跳', data)
 
     # window.synccheck={retcode:"0",selector:"2"}
     regx = r'window.synccheck={retcode:"(\d+)",selector:"(\d+)"}'
@@ -448,6 +450,12 @@ def syncCheck():
     selector = pm.group(2)
 
     return selector
+
+
+def get_member(username):
+    if username == My['UserName']:
+        return My
+    return MemberMap.get(username)
 
 
 def webwxsync():
@@ -465,8 +473,25 @@ def webwxsync():
     request.add_header('ContentType', 'application/json; charset=UTF-8')
     response = wxb_urllib.urlopen(request)
     data = response.read().decode('utf-8', 'replace')
+    
+    #print('-'*50)
+    #print('收信', data)
+    #print('='*50)
 
-    # print(data)
+    d = json.loads(data)#.replace('\n', ''))
+    global test
+    test = d
+    if d[u"AddMsgCount"]>0:
+
+        msgs = d["AddMsgList"]
+        #print('收信', data)
+        print('收信了:>>>>>>>>>>>>>>>>>>>>>>')
+        for msg in msgs:
+            m_fr = get_member(msg[u"FromUserName"])
+            m_to = get_member(msg[u"ToUserName"])
+            u_fr = m_fr["NickName"] if m_fr else msg[u"FromUserName"]
+            u_to = m_to["NickName"] if m_to else msg[u"ToUserName"]
+            print(u'[%s]->[%s]: ' % (u_fr, u_to), msg.get("Content"))
 
     dic = json.loads(data)
     SyncKey = dic['SyncKey']
@@ -523,9 +548,8 @@ def send(content, target_nickname):
     #print('===send===data', data)
 
 
-
 def main():
-    global MemberList
+    global MemberList, MemberMap
     try:
         ssl._create_default_https_context = ssl._create_unverified_context
 
@@ -563,6 +587,7 @@ def main():
         print('初始化胜利')
 
     MemberList = webwxgetcontact()
+    MemberMap = {m[u'UserName']: m for m in MemberList}
 
     print('开启心跳线程')
     thread.start_new_thread(heartBeatLoop, ())
