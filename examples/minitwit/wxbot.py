@@ -59,6 +59,8 @@ My = []
 SyncKey = []
 MemberList = []
 MemberMap = {}
+ALERT_MEMBER = []
+ALERT_FLAG = False
 
 try:
     xrange
@@ -66,6 +68,24 @@ try:
 except:
     # python 3
     pass
+
+
+def set_alert():
+    global ALERT_FLAG
+    ALERT_FLAG = True
+
+
+def clean_alert():
+    global ALERT_FLAG
+    ALERT_FLAG = False
+
+
+def send_alert():
+    if ALERT_FLAG:
+        if My:
+            send('大王来啦!!!', My['NickName'])
+    else:
+        return
 
 
 def responseState(func, BaseResponse):
@@ -78,6 +98,17 @@ def responseState(func, BaseResponse):
         return False
 
     return True
+
+
+def add_alert_member(nickname=None):
+    global ALERT_MEMBER
+    if nickname:
+        ALERT_MEMBER.append(nickname)
+       
+
+def clean_alert_member():
+    global ALERT_MEMBER
+    ALERT_MEMBER = []
 
 
 def to8(u):
@@ -311,10 +342,11 @@ def webwxgetcontact():
 
     dic = json.loads(data)
     MemberList = dic['MemberList']
+    return MemberList
 
+def special_user():
     # 倒序遍历,不然删除的时候出问题..
-    SpecialUsers = ["newsapp", "fmessage", "filehelper", "weibo", "qqmail", "tmessage", "qmessage", "qqsync", "floatbottle", "lbsapp", "shakeapp", "medianote", "qqfriend", "readerapp", "blogapp", "facebookapp", "masssendapp",
-                    "meishiapp", "feedsapp", "voip", "blogappweixin", "weixin", "brandsessionholder", "weixinreminder", "wxid_novlwrv3lqwv11", "gh_22b87fa7cb3c", "officialaccounts", "notification_messages", "wxitil", "userexperience_alarm"]
+    SpecialUsers = ["newsapp", "fmessage", "filehelper", "weibo", "qqmail", "tmessage", "qmessage", "qqsync", "floatbottle", "lbsapp", "shakeapp", "medianote", "qqfriend", "readerapp", "blogapp", "facebookapp", "masssendapp", "meishiapp", "feedsapp", "voip", "blogappweixin", "weixin", "brandsessionholder", "weixinreminder", "wxid_novlwrv3lqwv11", "gh_22b87fa7cb3c", "officialaccounts", "notification_messages", "wxitil", "userexperience_alarm"]
     for i in range(len(MemberList) - 1, -1, -1):
         Member = MemberList[i]
         if Member['VerifyFlag'] & 8 != 0:  # 公众号/服务号
@@ -492,6 +524,9 @@ def webwxsync():
             u_fr = m_fr["NickName"] if m_fr else msg[u"FromUserName"]
             u_to = m_to["NickName"] if m_to else msg[u"ToUserName"]
             print(u'[%s]->[%s]: ' % (u_fr, u_to), msg.get("Content"))
+            if u_fr in ALERT_MEMBER:
+                print('<<<<<<<<<<<<<<<<<<<<<大王来啦!快接驾!!!>>>>>>>>>>>>>>>>>>>>')
+                set_alert()
 
     dic = json.loads(data)
     SyncKey = dic['SyncKey']
@@ -506,6 +541,7 @@ def heartBeatLoop():
         if selector != '0':
             webwxsync()
         time.sleep(1)
+        send_alert()
 
 test=0
 def send(content, target_nickname):
