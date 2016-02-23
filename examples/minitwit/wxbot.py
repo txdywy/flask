@@ -7,6 +7,8 @@ import sys
 reload(sys)
 sys.setdefaultencoding('utf-8')
 
+from pprint import pprint
+
 import os
 try:
     from urllib import urlencode, quote_plus
@@ -24,7 +26,6 @@ import re
 import time
 import xml.dom.minidom
 import json
-import sys
 import math
 import subprocess
 import ssl
@@ -75,6 +76,22 @@ def responseState(func, BaseResponse):
         return False
 
     return True
+
+
+def to8(u):
+    if type(u)==str:
+        return u
+    if type(u)==unicode:
+        return u.encode('utf8')
+    return ''
+
+
+def toU(s):
+    if type(s)==str:
+        return s.decode('utf8')
+    if type(s)==unicode:
+        return s
+    return u''
 
 
 def getRequest(url, data=None):
@@ -465,8 +482,11 @@ def heartBeatLoop():
             webwxsync()
         time.sleep(1)
 
-
-def send(content, target_nickname='海鸟'.decode('utf8')):
+test=0
+def send(content, target_nickname):
+    global test
+    content = toU(content)
+    target_nickname = toU(target_nickname)
     for i in MemberList:
         if i['NickName']==target_nickname:
             to = i
@@ -493,7 +513,13 @@ def send(content, target_nickname='海鸟'.decode('utf8')):
     request.add_header('ContentType', 'application/json; charset=UTF-8')
     response = wxb_urllib.urlopen(request)
     data = response.read().decode('utf-8', 'replace')
-
+    test=data
+    d = json.loads(data.replace('\n', ''))
+    if d[ u'BaseResponse'][u'Ret']==0:
+        print('消息送达')
+    else:
+        print('消息失败[%s]' % d[ u'BaseResponse'][u'Ret'])
+        print('send result:', data)
     #print('===send===data', data)
 
 
