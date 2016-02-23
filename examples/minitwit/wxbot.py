@@ -2,6 +2,11 @@
 # coding=utf-8
 from __future__ import print_function
 
+#in case of using json.dumps with ensure_ascii=False 
+import sys
+reload(sys)
+sys.setdefaultencoding('utf-8')
+
 import os
 try:
     from urllib import urlencode, quote_plus
@@ -73,8 +78,13 @@ def responseState(func, BaseResponse):
 
 
 def getRequest(url, data=None):
+    """
+     #this is to ensure the data is in utf-8, not any /uxxxx style string produced by json.dumps. Generally, browser with a meta header will handle /uxxxx style unicode well. However it seems wechat handle /uxxxx with its repr not encoding ones.
+    if type(data) == unicode, it works well
+    else (str), exception will pass and finally will handle str data
+    """
     try:
-        data = data.encode('utf-8')
+        data = data.encode('utf-8') 
     except:
         pass
     finally:
@@ -255,7 +265,6 @@ def webwxinit():
 
     global ContactList, My, SyncKey
     dic = json.loads(data)
-    print(dic)
     ContactList = dic['ContactList']
     My = dic['User']
     SyncKey = dic['SyncKey']
@@ -266,9 +275,7 @@ def webwxinit():
 
 def webwxgetcontact():
 
-    url = base_uri + \
-        '/webwxgetcontact?pass_ticket=%s&skey=%s&r=%s' % (
-            pass_ticket, skey, int(time.time()))
+    url = base_uri + '/webwxgetcontact?pass_ticket=%s&skey=%s&r=%s' % (pass_ticket, skey, int(time.time()))
 
     request = getRequest(url=url)
     request.add_header('ContentType', 'application/json; charset=UTF-8')
@@ -459,20 +466,19 @@ def heartBeatLoop():
         time.sleep(1)
 
 
-def pmes(c, MemberList):
+def send(content, target_nickname='海鸟'.decode('utf8')):
     for i in MemberList:
-        if i['NickName']=='海鸟'.decode('utf8'):
+        if i['NickName']==target_nickname:
             to = i
+            break
     ts = time.time()
     tid = str(int(ts * 10000000))
-    url = base_uri + \
-        '/webwxsendmsg?pass_ticket=%s&r=%s' % (
-            pass_ticket, int(ts))
+    url = base_uri + '/webwxsendmsg?pass_ticket=%s&r=%s' % (pass_ticket, int(ts))
     params = {
         'BaseRequest': BaseRequest,
         'Msg': {
             'ClientMsgId': tid, 
-            'Content': My['NickName'],
+            'Content': content,
             'FromUserName': My['UserName'],
             'LocalID': tid,
             'ToUserName': to['UserName'],
@@ -480,17 +486,20 @@ def pmes(c, MemberList):
         }
     }
 
-    request = getRequest(url=url, data=json.dumps(params))
+    #print('----params----',params)
+    data=json.dumps(params, ensure_ascii=False)
+    request = getRequest(url=url, data=data)
+    #print('====data====',data)
     request.add_header('ContentType', 'application/json; charset=UTF-8')
     response = wxb_urllib.urlopen(request)
     data = response.read().decode('utf-8', 'replace')
 
-    print(data)
+    #print('===send===data', data)
 
 
 
 def main():
-
+    global MemberList
     try:
         ssl._create_default_https_context = ssl._create_unverified_context
 
@@ -518,10 +527,14 @@ def main():
     if not login():
         print('登录失败')
         return
+    else:
+        print('登录成功')
 
     if not webwxinit():
         print('初始化失败')
         return
+    else:
+        print('初始化胜利')
 
     MemberList = webwxgetcontact()
 
@@ -530,8 +543,6 @@ def main():
 
     MemberCount = len(MemberList)
     print('通讯录共%s位好友' % MemberCount)
-
-    pmes('发现帅锅💂一枚', MemberList)
 
 
 
@@ -628,3 +639,7 @@ if __name__ == '__main__':
     print('本程序的查询结果可能会引起一些心理上的不适,请小心使用...')
     main()
     print('回车键退出...')
+
+
+
+main()
