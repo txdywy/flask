@@ -558,7 +558,26 @@ def webwxsync():
             m_to = get_member(msg[u"ToUserName"])
             u_fr = m_fr["NickName"] if m_fr else msg[u"FromUserName"]
             u_to = m_to["NickName"] if m_to else msg[u"ToUserName"]
-            print(u'[%s]->[%s]: ' % (u_fr, u_to), msg.get("Content"))
+            content = msg.get("Content", "")
+            #print('====raw====')
+            ##print(msg)
+            #pprint(msg)
+            #print('----raw----')
+            array = content.split(':<br/>')
+            if len(array) == 1:
+                content = array[0]
+                user = None
+            else:
+                content = content[len(array[0])+6:]
+                user_id = array[0]
+                member = MemberMap.get(user_id)
+                user = member['NickName'] if member else '非我好友'
+            msg_type =  msg.get('MsgType')
+            msg_content = '[%s]' % content if not user else '[%s]@[%s]' % (user, content)
+            if msg_type in (51, 49, ): #51: enter a room  #49: news push
+                print('A Msg[%s]' % msg_type)
+            else:
+                print(u'[%s]->[%s]: ' % (u_fr, u_to), msg_content, '[Msg:%s]'%str(msg_type))
             if u_fr in ALERT_MEMBER:
                 print('<<<<<<<<<<<<<<<<<<<<<大王来啦!快接驾!!!>>>>>>>>>>>>>>>>>>>>')
                 ALERT_LAST_MSG_FROM[u_fr] = time.time()
@@ -613,7 +632,7 @@ def send(content, target_nickname):
     request.add_header('ContentType', 'application/json; charset=UTF-8')
     response = wxb_urllib.urlopen(request)
     data = response.read().decode('utf-8', 'replace')
-    test=data
+    #test=data
     d = json.loads(data.replace('\n', ''))
     if d[ u'BaseResponse'][u'Ret']==0:
         print('消息送达')
