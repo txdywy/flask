@@ -60,6 +60,8 @@ SyncKey = []
 MemberList = []
 MemberMap = {}
 ALERT_MEMBER = []
+ALERT_LAST_MSG_FROM = {}
+ALERT_LAST_MSG_REPLY = {}
 ALERT_FLAG = False
 
 try:
@@ -70,27 +72,60 @@ except:
     pass
 
 
-def set_alert():
-    global ALERT_FLAG
-    ALERT_FLAG = True
+ALERT_TIMEOUT = 60 * 1
+def check_alert():
+    now = time.time()
+    for k in ALERT_LAST_MSG_FROM:
+        if (now-ALERT_LAST_MSG_FROM[k])>ALERT_TIMEOUT and not ALERT_FLAG:
+            if k not in ALERT_LAST_MSG_REPLY:
+                return True
+            if k in ALERT_LAST_MSG_REPLY and ALERT_LAST_MSG_REPLY[k] < ALERT_LAST_MSG_FROM[k]:
+                return True
+    return False
+
+
+def init_alert():
+    add_alert('Tingting')
 
 
 def clean_alert():
+    global ALERT_MEMBER
+    global ALERT_LAST_MSG_FROM
+    global ALERT_LAST_MSG_REPLY
     global ALERT_FLAG
     ALERT_FLAG = False
+    ALERT_MEMBER = []
+    ALERT_LAST_MSG_FROM = {}
+    ALERT_LAST_MSG_REPLY = {}
+    show_alert()
+
+
+def re_alert():
+    global ALERT_LAST_MSG_FROM, ALERT_LAST_MSG_REPLY, ALERT_FLAG
+    ALERT_FLAG = False
+    ALERT_LAST_MSG_FROM = {}
+    ALERT_LAST_MSG_REPLY = {}
+    show_alert()
+
+
+def show_alert():
+    print('ALERT_FLAG: ', ALERT_FLAG)
+    print('ALERT_MEMBER: ', ALERT_MEMBER)
+    print('ALERT_LAST_MSG_FROM: ', ALERT_LAST_MSG_FROM)
+    print('ALERT_LAST_MSG_REPLY: ', ALERT_LAST_MSG_REPLY)
 
 
 def start_alert():
+    global ALERT_FLAG
     if sys.platform.find('darwin') >= 0:
+        ALERT_FLAG = True
         subprocess.call(['open', 'alert.mp3'])
+        print('*' * 20 + '大王呼叫,全体集合!' + '*' * 20)
 
 
 def send_alert():
-    if ALERT_FLAG:
-        if My:
-            send('大王来啦!!!', My['NickName'])
-    else:
-        return
+    if My:
+        send('大王来啦!!!', My['NickName'])
 
 
 def responseState(func, BaseResponse):
@@ -105,16 +140,11 @@ def responseState(func, BaseResponse):
     return True
 
 
-def add_alert_member(nickname=None):
+def add_alert(nickname=None):
     global ALERT_MEMBER
     if nickname:
         ALERT_MEMBER.append(nickname)
        
-
-def clean_alert_member():
-    global ALERT_MEMBER
-    ALERT_MEMBER = []
-
 
 def to8(u):
     if type(u)==str:
@@ -516,7 +546,7 @@ def webwxsync():
     #print('='*50)
 
     d = json.loads(data)#.replace('\n', ''))
-    global test
+    global test, ALERT_LAST_MSG_FROM, ALERT_LAST_MSG_REPLY
     test = d
     if d[u"AddMsgCount"]>0:
 
@@ -531,7 +561,9 @@ def webwxsync():
             print(u'[%s]->[%s]: ' % (u_fr, u_to), msg.get("Content"))
             if u_fr in ALERT_MEMBER:
                 print('<<<<<<<<<<<<<<<<<<<<<大王来啦!快接驾!!!>>>>>>>>>>>>>>>>>>>>')
-                set_alert()
+                ALERT_LAST_MSG_FROM[u_fr] = time.time()
+            if u_to in ALERT_MEMBER:
+                ALERT_LAST_MSG_REPLY[u_to] = time.time()
 
     dic = json.loads(data)
     SyncKey = dic['SyncKey']
@@ -546,6 +578,8 @@ def heartBeatLoop():
         if selector != '0':
             webwxsync()
         time.sleep(1)
+        if check_alert():
+            start_alert()
 
 
 test=0
