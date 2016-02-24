@@ -37,7 +37,7 @@ except:
     print '================no cacheal=============='
     cacheal = None
 try:
-    import wx_util
+    import wx_util, qy_util
 except:
     print '------------wx_util import err-----------'
     wx_util = None
@@ -328,7 +328,7 @@ def qy():
     echostr = request.args.get('echostr')
     if request.method == 'POST':
         print '======qy======', request.data
-        return 
+        return qy_util.reply(request.data) 
     print '==============',echostr
     key = 'AESEncodingKey'
     token = 'token'
