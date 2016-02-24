@@ -48,7 +48,7 @@ except:
     ALANCER_HOST = 'alancer.ga'
 
 import ierror
-from WXBizMsgCrypt import SHA1
+from wx_crypt.WXBizMsgCrypt import SHA1, WXBizMsgCrypt
 import xml.etree.ElementTree as ET
 from pygoogle import get_pic_url
 import alfaker
@@ -318,6 +318,25 @@ def wx():
         print '------', request.data
         return wx_util.reply(request.data)
     return echostr
+
+
+@app.route('/qy', methods=['GET', 'POST'])
+def qy():
+    msg_signature = request.args.get('msg_signature')
+    timestamp = request.args.get('timestamp')
+    nonce = request.args.get('nonce')
+    echostr = request.args.get('echostr')
+    if request.method == 'POST':
+        print '======qy======', request.data
+        return 
+    print '==============',echostr
+    key = 'AESEncodingKey'
+    token = 'token'
+    corpid = 'corpid'
+    c = WXBizMsgCrypt(token, key, corpid)
+    r = c.VerifyURL(msg_signature, timestamp, nonce, echostr)
+    print '+++++++++++',r
+    return str(r[1])
 
 
 @app.route('/px', methods=['GET'])
