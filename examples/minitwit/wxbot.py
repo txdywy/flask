@@ -80,6 +80,11 @@ def clean_alert():
     ALERT_FLAG = False
 
 
+def start_alert():
+    if sys.platform.find('darwin') >= 0:
+        subprocess.call(['open', 'alert.mp3'])
+
+
 def send_alert():
     if ALERT_FLAG:
         if My:
@@ -541,7 +546,7 @@ def heartBeatLoop():
         if selector != '0':
             webwxsync()
         time.sleep(1)
-        send_alert()
+
 
 test=0
 def send(content, target_nickname):
