@@ -224,3 +224,18 @@ IB_BOOK = {
     223: 'kim',
     224: 'rvf',
 }
+
+IB_BOOK = {}
+with open('ib_st.txt', 'r') as f:
+    c = f.readlines()
+    for line in c:
+        x = line.strip().split(' ')
+        for i in range(len(x)/2):
+            IB_BOOK[int(x[i*2])] = x[i*2+1]
+print IB_BOOK            
+print 'check keys if any lost:'
+for i in range(1, 225):
+    if i not in IB_BOOK:
+        print i
+
+
