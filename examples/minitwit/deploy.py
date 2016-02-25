@@ -25,6 +25,7 @@ pkgs = ['boto',
         'requesocks',
         'pycurl',
         'iso3166',
+        'pytesseract',
        ]
 for pkg in pkgs:
     local(SUDO_PIP_INSTALL % pkg)
