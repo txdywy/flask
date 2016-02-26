@@ -640,7 +640,7 @@ def webwxsync():
             if msg_type in (51, 49, ): #51: enter a room  #49: news push
                 print('A Msg[%s]' % msg_type)
             else:
-                print(u'[%s]->[%s]: ' % (u_fr, u_to), msg_content, '[Msg:%s]'%str(msg_type))
+                print(u'[%s]->[%s]: ' % (u_fr, u_to), to8(msg_content), '[Msg:%s]'%str(msg_type))
             if u_fr in ALERT_MEMBER:
                 print('<<<<<<<<<<<<<<<<<<<<<大王来啦!快接驾!!!>>>>>>>>>>>>>>>>>>>>')
                 ALERT_LAST_MSG_FROM[u_fr] = time.time()
