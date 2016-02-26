@@ -38,7 +38,7 @@ MAX_GROUP_NUM = 35  # 每组人数
 INTERFACE_CALLING_INTERVAL = 20  # 接口调用时间间隔, 间隔太短容易出现"操作太频繁", 会被限制操作半小时左右
 MAX_PROGRESS_LEN = 50
 
-SERVER_QR_PATH = os.path.join(os.getcwd(), 'www/qrcode.jpg')
+SERVER_QR_PATH = os.path.join(os.getcwd(), 'static/qrcode.jpg')
 QRImagePath = os.path.join(os.getcwd(), 'qrcode.jpg')
 
 tip = 0
@@ -224,6 +224,9 @@ def showQRImage():
 
     tip = 1
 
+    global IS_SERVER
+    if sys.platform.find('linux') >= 0:
+        IS_SERVER = True
     if IS_SERVER:
         with open(SERVER_QR_PATH, 'wb') as f:
             f.write(response.read())
