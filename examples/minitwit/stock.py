@@ -20,22 +20,22 @@ US_STOCK = {'fb': 'fb',
             }
 
 CN_STOCK = {'海天': 'sh603288',
-            '天地': 'sh600582',
+            #'天地': 'sh600582',
             '格力': 'sz000651',
-            '昆仑': 'sz300418',
-            '东阿': 'sz000423',
-            '海欣': 'sz002702',
+            #'昆仑': 'sz300418',
+            #'东阿': 'sz000423',
+            #'海欣': 'sz002702',
             }
             
-US_BASE = { 'fb': 99,
+US_BASE = { 'fb': 100,
             'msci': 63,
             'jd': 22.3,
-            'app': 93,
+            'app': 93.5,
             'tw': 14.3,
             'ms': 48,
-            'g': 670,
+            'g': 690,
             'amz': 475,
-            'tsla': 141,
+            'tsla': 165,
             'ali' : 60,
             'net': 80,
             'ko': 41.9,
@@ -56,7 +56,7 @@ def get_us_stock():
     r = zip (r, b)
     r = [a + 'Base: [%s]\n' % b for a, b in r]
     r = '\n'.join(r)
-    return r + '\n' + str(datetime.datetime.now())[:19] + '\n' + '#盘内/终\n*盘前/后'.decode('utf8')
+    return r + '\n' + str(datetime.datetime.now())[:19] + '\n' + '#盘内/终\n*盘前/后'.decode('utf8') + '\n[B:23772/23000]'
 
 
 def get_one_us_stock(k):
@@ -83,7 +83,7 @@ def get_cn_stock():
     r = [i.split('"')[1].split(',')[:] for i in r]
     r = ['%s: \n%s\n%s+%s \n%s-%s\n' % (i[0], i[3], i[5], _diff(i[3], i[5]), i[4], _diff(i[4], i[3])) for i in r]
     r = '\n'.join(r)
-    return r + '\n' + str(datetime.datetime.now())[:19]
+    return r + '\n' + str(datetime.datetime.now())[:19] + '\n[B:99254/118772.5]'
 
 
 def get_one_cn_stock(k):

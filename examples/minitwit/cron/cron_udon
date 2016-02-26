@@ -1,0 +1,67 @@
+# Edit this file to introduce tasks to be run by cron.
+# 
+# Each task to run has to be defined through a single line
+# indicating with different fields when the task will be run
+# and what command to run for the task
+# 
+# To define the time you can provide concrete values for
+# minute (m), hour (h), day of month (dom), month (mon),
+# and day of week (dow) or use '*' in these fields (for 'any').# 
+# Notice that tasks will be started based on the cron's system
+# daemon's notion of time and timezones.
+# 
+# Output of the crontab jobs (including errors) is sent through
+# email to the user the crontab file belongs to (unless redirected).
+# 
+# For example, you can run a backup of all your user accounts
+# at 5 a.m every week with:
+# 0 5 * * 1 tar -zcf /var/backups/home.tgz /home/
+# 
+# For more information see the manual pages of crontab(5) and cron(8)
+# 
+# m h  dom mon dow   command
+0 4 * * * cd ~/hackerbell/; sh zh_new.sh
+0 1 * * * cd ~/hackerbell/; sh zh_top.sh
+0 4 * * * cd ~/hackerbell/; sh zh_top.sh
+0 7 * * * cd ~/hackerbell/; sh zh_top.sh
+0 0 * * * cd /home/ubuntu/flask/examples/minitwit;python -c 'import cron as c;c.task_lc()'
+30 */8 * * * cd /home/ubuntu/flask/examples/minitwit;sh restart
+1 * * * * cd /home/ubuntu/flask/examples/minitwit; /usr/bin/python -c 'import wxy;wxy.main()' >> /home/ubuntu/myjob.log 2>&1
+2 * * * * cd /home/ubuntu/flask/examples/minitwit; /usr/bin/python -c 'import wxy;wxy.main()' >> /home/ubuntu/myjob.log 2>&1
+5 * * * * cd /home/ubuntu/flask/examples/minitwit; /usr/bin/python -c 'import wxy;wxy.main()' >> /home/ubuntu/myjob.log 2>&1
+15 * * * * cd /home/ubuntu/flask/examples/minitwit; /usr/bin/python -c 'import wxy;wxy.main()' >> /home/ubuntu/myjob.log 2>&1
+30 * * * * cd /home/ubuntu/flask/examples/minitwit; /usr/bin/python -c 'import wxy;wxy.main()' >> /home/ubuntu/myjob.log 2>&1
+50 * * * * cd /home/ubuntu/flask/examples/minitwit; /usr/bin/python -c 'import wxy;wxy.main()' >> /home/ubuntu/myjob.log 2>&1
+55 * * * * cd /home/ubuntu/flask/examples/minitwit; /usr/bin/python -c 'import wxy;wxy.main()' >> /home/ubuntu/myjob.log 2>&1
+*/5 * * * * cd /home/ubuntu/flask/examples/minitwit; python -c 'import wxy;wxy.rank()' >> /home/ubuntu/rank.log 2>&1
+15 23 * * * cd /home/ubuntu/flask/examples/minitwit; python -c 'import wxy;wxy.hit()' >> /home/ubuntu/hit.log 2>&1
+15 0 * * * cd /home/ubuntu/flask/examples/minitwit; python -c 'import wxy;wxy.hit()' >> /home/ubuntu/hit.log 2>&1
+15 4 * * * cd /home/ubuntu/flask/examples/minitwit; python -c 'import wxy;wxy.hit()' >> /home/ubuntu/hit.log 2>&1
+15 10 * * * cd /home/ubuntu/flask/examples/minitwit; python -c 'import wxy;wxy.hit()' >> /home/ubuntu/hit.log 2>&1
+15 11 * * * cd /home/ubuntu/flask/examples/minitwit; python -c 'import wxy;wxy.hit()' >> /home/ubuntu/hit.log 2>&1
+15 12 * * * cd /home/ubuntu/flask/examples/minitwit; python -c 'import wxy;wxy.hit()' >> /home/ubuntu/hit.log 2>&1
+15 13 * * * cd /home/ubuntu/flask/examples/minitwit; python -c 'import wxy;wxy.hit()' >> /home/ubuntu/hit.log 2>&1
+15 14 * * * cd /home/ubuntu/flask/examples/minitwit; python -c 'import wxy;wxy.hit()' >> /home/ubuntu/hit.log 2>&1
+15 15 * * * cd /home/ubuntu/flask/examples/minitwit; python -c 'import wxy;wxy.hit()' >> /home/ubuntu/hit.log 2>&1
+55 23 * * * cd /home/ubuntu/flask/examples/minitwit; python -c 'import wxy;wxy.hit()' >> /home/ubuntu/hit.log 2>&1
+*/5 * * * * cd /home/ubuntu/flask/examples/minitwit; python -c 'import proxy as p;p.task_proxy0()' >> /home/ubuntu/proxy0.log 2>&1
+*/20 * * * * cd /home/ubuntu/flask/examples/minitwit; python -c 'import proxy as p;p.task_proxy1(0, 1000)' >> /home/ubuntu/proxy1_0.log 2>&1
+*/20 * * * * cd /home/ubuntu/flask/examples/minitwit; python -c 'import proxy as p;p.task_proxy1(1, 1000)' >> /home/ubuntu/proxy1_1.log 2>&1
+*/20 * * * * cd /home/ubuntu/flask/examples/minitwit; python -c 'import proxy as p;p.task_proxy1(2, 1000)' >> /home/ubuntu/proxy1_2.log 2>&1
+*/20 * * * * cd /home/ubuntu/flask/examples/minitwit; python -c 'import proxy as p;p.task_proxy1(3, 1000)' >> /home/ubuntu/proxy1_3.log 2>&1
+*/20 * * * * cd /home/ubuntu/flask/examples/minitwit; python -c 'import proxy as p;p.task_proxy1(4, 1000)' >> /home/ubuntu/proxy1_4.log 2>&1
+*/20 * * * * cd /home/ubuntu/flask/examples/minitwit; python -c 'import proxy as p;p.task_proxy1(5, 1000)' >> /home/ubuntu/proxy1_5.log 2>&1
+*/20 * * * * cd /home/ubuntu/flask/examples/minitwit; python -c 'import proxy as p;p.task_proxy1(6, 1000)' >> /home/ubuntu/proxy1_6.log 2>&1
+*/20 * * * * cd /home/ubuntu/flask/examples/minitwit; python -c 'import proxy as p;p.task_proxy1(7, 1000)' >> /home/ubuntu/proxy1_7.log 2>&1
+*/20 * * * * cd /home/ubuntu/flask/examples/minitwit; python -c 'import proxy as p;p.task_proxy1(8, 1000)' >> /home/ubuntu/proxy1_8.log 2>&1
+*/20 * * * * cd /home/ubuntu/flask/examples/minitwit; python -c 'import proxy as p;p.task_proxy1(9, 1000)' >> /home/ubuntu/proxy1_9.log 2>&1
+*/20 * * * * cd /home/ubuntu/flask/examples/minitwit; python -c 'import proxy as p;p.task_proxy1(10, 1000)' >> /home/ubuntu/proxy1_10.log 2>&1
+*/20 * * * * cd /home/ubuntu/flask/examples/minitwit; python -c 'import proxy as p;p.task_proxy1(11, 1000)' >> /home/ubuntu/proxy1_11.log 2>&1
+*/20 * * * * cd /home/ubuntu/flask/examples/minitwit; python -c 'import proxy as p;p.task_proxy1(12, 1000)' >> /home/ubuntu/proxy1_12.log 2>&1
+*/20 * * * * cd /home/ubuntu/flask/examples/minitwit; python -c 'import proxy as p;p.task_proxy1(13, 1000)' >> /home/ubuntu/proxy1_13.log 2>&1
+*/20 * * * * cd /home/ubuntu/flask/examples/minitwit; python -c 'import proxy as p;p.task_proxy1(14, 1000)' >> /home/ubuntu/proxy1_14.log 2>&1
+*/20 * * * * cd /home/ubuntu/flask/examples/minitwit; python -c 'import proxy as p;p.task_proxy1(15, 1000)' >> /home/ubuntu/proxy1_15.log 2>&1
+*/20 * * * * cd /home/ubuntu/flask/examples/minitwit; python -c 'import proxy as p;p.task_proxy1(16, 1000)' >> /home/ubuntu/proxy1_16.log 2>&1
+*/20 * * * * cd /home/ubuntu/flask/examples/minitwit; python -c 'import proxy as p;p.task_proxy1(17, 1000)' >> /home/ubuntu/proxy1_17.log 2>&1
+*/20 * * * * cd /home/ubuntu/flask/examples/minitwit; python -c 'import proxy as p;p.task_proxy1(18, 1000)' >> /home/ubuntu/proxy1_18.log 2>&1
+*/20 * * * * cd /home/ubuntu/flask/examples/minitwit; python -c 'import proxy as p;p.task_proxy1(19, 1000)' >> /home/ubuntu/proxy1_19.log 2>&1

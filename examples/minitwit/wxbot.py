@@ -119,10 +119,12 @@ def show_alert():
 
 def start_alert():
     global ALERT_FLAG
+    print('*' * 20 + '大王呼叫,全体集合!' + '*' * 20)
+    ALERT_FLAG = True
     if sys.platform.find('darwin') >= 0:
-        ALERT_FLAG = True
         subprocess.call(['open', 'alert.mp3'])
-        print('*' * 20 + '大王呼叫,全体集合!' + '*' * 20)
+    else:
+        os.startfile('alert.mp3')
 
 
 def send_alert():
