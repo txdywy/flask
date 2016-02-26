@@ -32,11 +32,13 @@ import ssl
 import thread
 
 DEBUG = False
+IS_SERVER = False
 
 MAX_GROUP_NUM = 35  # 每组人数
 INTERFACE_CALLING_INTERVAL = 20  # 接口调用时间间隔, 间隔太短容易出现"操作太频繁", 会被限制操作半小时左右
 MAX_PROGRESS_LEN = 50
 
+SERVER_QR_PATH = os.path.join(os.getcwd(), 'www/qrcode.jpg')
 QRImagePath = os.path.join(os.getcwd(), 'qrcode.jpg')
 
 tip = 0
@@ -220,18 +222,24 @@ def showQRImage():
 
     tip = 1
 
-    f = open(QRImagePath, 'wb')
-    f.write(response.read())
-    f.close()
-
-    if sys.platform.find('darwin') >= 0:
-        subprocess.call(['open', QRImagePath])
-    elif sys.platform.find('linux') >= 0:
-        subprocess.call(['xdg-open', QRImagePath])
+    if IS_SERVER:
+        with open(SERVER_QR_PATH, 'wb') as f
+            f.write(response.read())
+        print('请扫码二维码登录,地址 http://alancer.ml/qrcode.jpg')
+        
     else:
-        os.startfile(QRImagePath)
+        f = open(QRImagePath, 'wb')
+        f.write(response.read())
+        f.close()
 
-    print('请使用微信扫描二维码以登录')
+        if sys.platform.find('darwin') >= 0:
+            subprocess.call(['open', QRImagePath])
+        elif sys.platform.find('linux') >= 0:
+            subprocess.call(['xdg-open', QRImagePath])
+        else:
+            os.startfile(QRImagePath)
+
+        print('请使用微信扫描二维码以登录')
 
 
 def waitForLogin():
@@ -642,8 +650,11 @@ def send(content, target_nickname):
     #print('===send===data', data)
 
 
-def main():
+def main(server=False):
+    global IS_SERVER
     global MemberList, MemberMap
+    if server:
+        IS_SERVER = True
     try:
         ssl._create_default_https_context = ssl._create_unverified_context
 
