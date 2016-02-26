@@ -646,11 +646,16 @@ def webwxsync():
                 ALERT_LAST_MSG_FROM[u_fr] = time.time()
             if u_to in ALERT_MEMBER:
                 ALERT_LAST_MSG_REPLY[u_to] = time.time()
-            if ROBOT_ON and My['NickName']==u_to:
+            if ROBOT_ON and My['NickName']==u_to and u_to!=u_fr:
                 if msg[u"FromUserName"] in MemberMap:
                     bot_re = tre(content)
                     send(bot_re, u_fr)
                     print('我自动回复[%s]-->[%s]' % (u_to, bot_re))
+            if u_to==u_fr:
+                if 'robot on' in content:
+                    robot_on()
+                if 'robot off' in content:
+                    robot_off()
 
     dic = json.loads(data)
     SyncKey = dic['SyncKey']
