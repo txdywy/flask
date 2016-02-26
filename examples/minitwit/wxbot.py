@@ -579,7 +579,7 @@ def syncCheck():
     retcode = pm.group(1)
     selector = pm.group(2)
 
-    return selector
+    return retcode, selector
 
 
 def get_member(username):
@@ -661,7 +661,10 @@ def webwxsync():
 
 def heartBeatLoop():
     while True:
-        selector = syncCheck()
+        ret, selector = syncCheck()
+        if ret == '1001':
+            print('Err Code 1001 and exit system.')
+            sys.exit(0)
         if selector != '0':
             webwxsync()
         time.sleep(1)
