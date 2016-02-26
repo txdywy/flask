@@ -662,8 +662,8 @@ def webwxsync():
 def heartBeatLoop():
     while True:
         ret, selector = syncCheck()
-        if ret == '1001':
-            print('Err Code 1001 and exit system.')
+        if ret == '1100':
+            print('Err Code 1100 and exit system.')
             sys.exit(0)
         if selector != '0':
             webwxsync()
