@@ -224,6 +224,8 @@ def check_stock(content):
             return stock.get_us_stock()
         if content == '!8':
             return stock.get_cn_stock()
+        if content == '!6':
+            return stock.get_us_in_stock()
     except:
         print '------stock err------'
         return None

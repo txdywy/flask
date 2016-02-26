@@ -59,6 +59,35 @@ def get_us_stock():
     return r + '\n' + str(datetime.datetime.now())[:19] + '\n' + '#盘内/终\n*盘前/后'.decode('utf8') + '\n[B:23772/23000]'
 
 
+def get_us_in_stock():
+    r = requests.get(SINA_STOCK_URL % ','.join(['gb_' + US_STOCK[i] for i in US_STOCK])).text.strip()
+    r = r.split(';')[:-1]
+    r = [i.split('"')[1].split(',')[:] for i in r]
+    a = r
+    r = ['%s: \n#[$%s]\n#%s+%s \n#%s-%s\n*[$%s] %s\n*%s+%s \n*%s-%s\n' % (i[0], i[1], i[7], _diff(i[1], i[7]), i[6], _diff(i[6], i[1]), i[21], _diff_sym(i[21], i[1]), i[7], _diff(i[21], i[7]), i[6], _diff(i[6], i[21])) for i in r] 
+    b = [US_BASE[k] for k in US_BASE]
+    r = zip (r, b, a)
+    r = [a + 'Base: [%s]\n' % b for a, b, c in r if _check_in(c[1], c[6], b)]
+    r = '\n'.join(r)
+    if not r:
+        r = '没有符合要求的哟\n静候时机\n'
+    return r + '\n' + str(datetime.datetime.now())[:19] + '\n' + '#盘内/终\n*盘前/后'.decode('utf8') + '\n[B:23772/23000]'
+
+
+def _check_in(v1, v2, base):
+    ratio = 0.006
+    v1, v2, base = float(v1), float(v2), float(base)
+    if v1>=base:
+        if (v1-base)/base < ratio:
+            return True
+    if 0<v1<base or 0<v2<base:
+        return True
+    if v2>=base:
+        if (v2-base)/base < ratio:
+            return True
+    return False
+
+
 def get_one_us_stock(k):
     r = requests.get(SINA_STOCK_URL % 'gb_' + US_STOCK[k]).text.strip()
     r = r.split('"')[1].split(',')[:]
