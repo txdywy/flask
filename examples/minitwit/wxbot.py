@@ -225,7 +225,7 @@ def showQRImage():
     tip = 1
 
     if IS_SERVER:
-        with open(SERVER_QR_PATH, 'wb') as f
+        with open(SERVER_QR_PATH, 'wb') as f:
             f.write(response.read())
         print('请扫码二维码登录,地址 http://alancer.ml/qrcode.jpg')
         
@@ -679,7 +679,10 @@ def main(server=False):
     while waitForLogin() != '200':
         pass
 
-    os.remove(QRImagePath)
+    if IS_SERVER:
+        os.remove(SERVER_QR_PATH)
+    else:
+        os.remove(QRImagePath)
 
     if not login():
         print('登录失败')
