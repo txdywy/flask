@@ -8,6 +8,7 @@ reload(sys)
 sys.setdefaultencoding('utf-8')
 
 from pprint import pprint
+from functools import wraps
 
 import os
 try:
@@ -30,9 +31,19 @@ import math
 import subprocess
 import ssl
 import thread
+import urllib2
+
+try:
+    from config import WX_TULING_API_KEY
+except:
+    print('-----------------no TULING api key--------------')
+    WX_TULING_API_KEY = ''
+WX_TULING_API_URL = 'http://www.tuling123.com/openapi/api?key=' + WX_TULING_API_KEY + '&info=%s'
+
 
 DEBUG = False
 IS_SERVER = False
+ROBOT_ON = False
 
 MAX_GROUP_NUM = 35  # 每组人数
 INTERFACE_CALLING_INTERVAL = 20  # 接口调用时间间隔, 间隔太短容易出现"操作太频繁", 会被限制操作半小时左右
@@ -72,6 +83,45 @@ try:
 except:
     # python 3
     pass
+
+
+def ex(default=0):
+    def wrapper(fn):
+        @wraps(fn)
+        def func(*args, **kwds):
+            try:
+                r = fn(*args, **kwds)
+            except Exception, e:
+                r = default
+                print('[%s][%s]' % (fn.__name__, str(e)))
+                #print traceback.format_exc()
+            return r
+        return func
+    return wrapper
+
+
+def pace(fn):
+    @wraps(fn)
+    def func(*args, **kwds):
+        t0 = time.time()
+        r = fn(*args, **kwds)
+        t = time.time() - t0
+        print('---%s: %ss---' % (fn.__name__, t)) 
+        return r
+
+
+def show():
+    print('ROBOT_ON: %s' % ROBOT_ON)
+
+
+def robot_on():
+    global ROBOT_ON
+    ROBOT_ON = True
+
+
+def robot_off():
+    global ROBOT_ON
+    ROBOT_ON = False
 
 
 ALERT_TIMEOUT = 60 * 1
@@ -596,6 +646,11 @@ def webwxsync():
                 ALERT_LAST_MSG_FROM[u_fr] = time.time()
             if u_to in ALERT_MEMBER:
                 ALERT_LAST_MSG_REPLY[u_to] = time.time()
+            if ROBOT_ON and My['NickName']==u_to:
+                if msg[u"FromUserName"] in MemberMap:
+                    bot_re = tre(content)
+                    send(bot_re, u_fr)
+                    print('我自动回复[%s]-->[%s]' % (u_to, bot_re))
 
     dic = json.loads(data)
     SyncKey = dic['SyncKey']
@@ -802,6 +857,11 @@ if __name__ == '__main__':
     main()
     print('回车键退出...')
 
+
+@ex('error')
+def tre(words='你是谁'):
+    r = urllib2.urlopen(WX_TULING_API_URL % words).read()
+    return json.loads(r)['text']
 
 
 main()
