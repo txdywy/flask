@@ -49,6 +49,10 @@ def appflood():
 def all():
     env.hosts = HOST_ALL
 
+def ti(n):
+    with cd('~/flask/examples/minitwit/'):
+        run("python -c 'import ticket as t;t.ti(%s)'" % n)
+
 def pull():
     with cd('~/flask/examples/minitwit/'):
         run('git pull')
