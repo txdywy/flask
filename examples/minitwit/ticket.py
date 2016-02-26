@@ -8,5 +8,5 @@ def ti(n=10):
     for i in range(n):
         ur= u % (random.randint(2,250),random.randint(2,250),random.randint(2,250),random.randint(2,250))+urllib.quote('%s:%s:%s'%(random.randint(2,58),random.randint(2,58),random.randint(2,58),))
         x=r.get(ur,headers=headers)
-        time.sleep(1)
+        time.sleep(random.randint(1,60))
         print x.text
