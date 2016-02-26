@@ -662,14 +662,12 @@ def main(server=False):
         IS_SERVER = True
     try:
         ssl._create_default_https_context = ssl._create_unverified_context
-
-        opener = wxb_urllib.build_opener(
-            wxb_urllib.HTTPCookieProcessor(CookieJar()))
-        opener.addheaders = [
-            ('User-agent', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.125 Safari/537.36')]
-        wxb_urllib.install_opener(opener)
-    except:
-        pass
+    except Exception, e:
+        print('ssl模块加载问题', str(e))
+        
+    opener = wxb_urllib.build_opener(wxb_urllib.HTTPCookieProcessor(CookieJar()))
+    opener.addheaders = [('User-agent', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.125 Safari/537.36')]
+    wxb_urllib.install_opener(opener)
 
     if not getUUID():
         print('获取uuid失败')
