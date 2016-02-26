@@ -346,6 +346,14 @@ def px():
     return r
 
 
+@app.route('/ti', methods=['GET'])
+def ti():
+    import ticket
+    d = ticket.rank()
+    d = [' '.join([i[0], str(i[1])]) for i in d]
+    return '</br>'.join(d)
+
+
 @app.route('/admin', methods=['GET'])
 @login_required
 @power_required(power=User.POWER_ADMIN)
