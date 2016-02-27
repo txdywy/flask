@@ -237,7 +237,7 @@ def px(content):
         if '投票' in content:
             import ticket
             d = ticket.rank()
-            return '\n'.join([i[0]+':'+str(i[1]) for i in d])[:300]
+            return '\n'.join([i[0]+':'+str(i[1]) for i in d])[:70]
         if '刷票' in content:
             import ticket
             try:
