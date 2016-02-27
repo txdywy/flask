@@ -199,7 +199,7 @@ def task_proxy1(n=0, m=500):
     for i in tqdm(ps):
         if i.active==0:
             d = now - i.update_time
-            if d.seconds < 60*60*random.randrange(1, 6) + 60*random.randrange(0, 60):
+            if d.seconds < 60*60*random.randrange(3, 12) + 60*random.randrange(0, 60):
                 continue
             i.active = 1
         r, t = check_proxy(i.ip, i.port, i.anonymity)
