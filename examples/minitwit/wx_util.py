@@ -234,6 +234,19 @@ def px(content):
     try:
         if content == '!9':
             return proxy.get_top_active() + '\n\nhttp://alancer.ml/px'
+        if '投票' in content:
+            import ticket
+            d = ticket.rank()
+            return '\n'.join([i[0]+':'+str(i[1]) for i in d])[:300]
+        if '刷票' in content:
+            import ticket
+            try:
+                i = content.find('刷票')
+                n = int(content[i+1:])
+            except:
+                n = 10
+            ticket.ti(n, 3)
+            return '刷%s票中' % n
     except:
         print '------proxy err------'
         return None
