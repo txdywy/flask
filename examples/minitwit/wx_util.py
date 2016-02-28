@@ -262,8 +262,8 @@ def px(content):
         if content == '!9':
             return proxy.get_top_active() + '\n\nhttp://alancer.ml/px'
         if '投票' in content:
-            d = ticket.rank()
-            return '\n'.join([i[0]+':'+str(i[1]) for i in d])[:70]
+            d = ticket.rank()[:5]
+            return '\n'.join(['[第%s位]' % (n+1) + i[0]+':'+str(i[1]) for n, i in enumerate(d)])
         if '刷票' in content:
             try:
                 #i = content.find('刷票')
