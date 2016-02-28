@@ -177,12 +177,13 @@ def start_alert():
         os.startfile('alert.mp3')
 
 
-def report_redbag():
+def report_redbag(fr='发红包的'):
     print('#' * 20 + '红包来了，快去抢哇!' + '#' * 20)
     if sys.platform.find('darwin') >= 0:
         subprocess.call(['open', 'redbag.mp3'])
     else:
         os.startfile('redbag.mp3')
+    send('[%s]发来了红包，快去抢耶！' % fr, My['NickName'])
 
 
 def send_alert():
@@ -645,8 +646,8 @@ def webwxsync():
                 user = member['NickName'] if member else '非我好友'
             msg_type =  msg.get('MsgType')
             msg_content = '[%s]' % content if not user else '[%s]@[%s]' % (user, content)
-            if msg_type == 10000:
-                report_redbag()
+            if check_redbag(content, msg_type):
+                report_redbag(u_fr)
             if msg_type in (51, 49, ): #51: enter a room  #49: news push
                 print('A Msg[%s]' % msg_type)
             else:
@@ -672,6 +673,12 @@ def webwxsync():
 
     state = responseState('webwxsync', dic['BaseResponse'])
     return state
+
+
+def check_redbag(msg, msg_type):
+    if msg_type == 10000 and u'\u6536\u5230\u7ea2\u5305\uff0c\u8bf7\u5728\u624b\u673a\u4e0a\u67e5\u770b' in msg:
+        return True
+    return False
 
 
 def heartBeatLoop():
