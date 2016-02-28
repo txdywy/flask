@@ -41,3 +41,11 @@ def tr():
     d = rank()
     t = '\n'.join([i[0]+':'+str(i[1]) for i in d])
     post_alert(t)
+
+
+def top1():
+    d = rank()
+    t = d[0]
+    if t[0]!= u'\u6c11\u65cf\u821e\u300a\u7ffb\u8eab\u519c\u5974\u628a\u6b4c\u5531\u300b':
+        ti(10, 5)
+
