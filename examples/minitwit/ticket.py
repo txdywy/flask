@@ -39,7 +39,7 @@ def rank():
 
 def tr():
     d = rank()
-    t = '\n'.join([i[0]+':'+str(i[1]) for i in d])
+    t = '\n'.join('[第%s名]' % n + [i[0]+':'+str(i[1]) for n, i in enumerate(d)])
     post_alert(t)
 
 
