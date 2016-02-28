@@ -780,6 +780,12 @@ def main(server=False):
     print('通讯录共%s位好友' % MemberCount)
 
 
+def main_loop():
+    main()
+    while True:
+        print('Ping... %s' % time.time())
+        time.sleep(60 * 60)
+
 
 def more():
     ChatRoomName = ''
@@ -872,7 +878,7 @@ if sys.stdout.encoding == 'cp936':
 if __name__ == '__main__':
 
     print('本程序的查询结果可能会引起一些心理上的不适,请小心使用...')
-    main()
+    main_loop()
     print('回车键退出...')
 
 
@@ -882,4 +888,4 @@ def tre(words='你是谁'):
     return json.loads(r)['text']
 
 
-main()
+#main()
