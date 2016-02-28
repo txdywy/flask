@@ -177,6 +177,14 @@ def start_alert():
         os.startfile('alert.mp3')
 
 
+def report_redbag():
+    print('#' * 20 + '红包来了，快去抢哇!' + '#' * 20)
+    if sys.platform.find('darwin') >= 0:
+        subprocess.call(['open', 'redbag.mp3'])
+    else:
+        os.startfile('redbag.mp3')
+
+
 def send_alert():
     if My:
         send('大王来啦!!!', My['NickName'])
@@ -637,6 +645,8 @@ def webwxsync():
                 user = member['NickName'] if member else '非我好友'
             msg_type =  msg.get('MsgType')
             msg_content = '[%s]' % content if not user else '[%s]@[%s]' % (user, content)
+            if msg_type == 10000:
+                report_redbag()
             if msg_type in (51, 49, ): #51: enter a room  #49: news push
                 print('A Msg[%s]' % msg_type)
             else:
