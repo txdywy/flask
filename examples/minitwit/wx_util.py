@@ -53,6 +53,33 @@ sys.setdefaultencoding('utf-8')
 import codecs
 from textrank4zh import TextRank4Keyword, TextRank4Sentence
 import proxy
+import ticket
+import threading, Queue
+
+class TiAsyncTask(threading.Thread):
+
+    def __init__(self):
+        threading.Thread.__init__(self)
+        self.tasks = Queue.Queue()
+        self.setDaemon(True)
+        print '=====thread init====='
+
+    def put(self, d): 
+        self.tasks.put(d)
+
+    def run(self):
+        while True:
+            try:
+                d = self.tasks.get(timeout=1)
+                if d:
+                    ticket.ti(int(d), 3)
+                print '=====thread task done===='
+            except Exception, e:
+                #print '-----threading err-----', str(e)
+                pass
+        time.sleep(5)
+
+TICKET_ASYNC_THREAD = TiAsyncTask()
 
 URL_RE = re.compile(
         r'^(?:http)s?://' # http:// or https://
@@ -235,22 +262,29 @@ def px(content):
         if content == '!9':
             return proxy.get_top_active() + '\n\nhttp://alancer.ml/px'
         if '投票' in content:
-            import ticket
             d = ticket.rank()
             return '\n'.join([i[0]+':'+str(i[1]) for i in d])[:70]
         if '刷票' in content:
-            import ticket
             try:
-                i = content.find('刷票')
-                n = int(content[i+1:])
-            except:
+                #i = content.find('刷票')
+                #print type(content)
+                #print len(content)
+                n = int(content[2:])
+            except Exception, e:
                 n = 10
-            ticket.ti(n, 3)
+                print '-----', str(e)
+            if not TICKET_ASYNC_THREAD.isAlive():
+                try: 
+                    TICKET_ASYNC_THREAD.start()
+                    print '-----thread started-----'
+                except Exception, e:
+                    print '-----thread failed-----', str(e)
+            TICKET_ASYNC_THREAD.put(n)            
             return '刷%s票中' % n
     except:
         print '------proxy err------'
         return None
-
+    
 
 def check_stock_graph(content):
     if content[0] != '!':
