@@ -350,7 +350,7 @@ def px():
 def ti():
     import ticket
     d = ticket.rank()
-    d = ['第%s位'%(n+1) + ' '.join([i[0], str(i[1])]) for n, i in enumerate(d)]
+    d = ['[第%s位]'%(n+1) + ' '.join([i[0], str(i[1])]) for n, i in enumerate(d)]
     return '</br>'.join(d)
 
 
