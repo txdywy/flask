@@ -327,15 +327,18 @@ def qy():
     nonce = request.args.get('nonce')
     echostr = request.args.get('echostr')
     if request.method == 'POST':
-        print '======qy======', request.data
-        return qy_util.reply(request.data) 
-    print '==============',echostr
+        #print '======qy======', request.data
+        ret = qy_util.reply(request.data, msg_signature, timestamp, nonce) 
+        response = make_response(ret)
+        response.content_type = 'application/xml'
+        return response
+    #print '==============',echostr
     key = 'AESEncodingKey'
     token = 'token'
     corpid = 'corpid'
     c = WXBizMsgCrypt(token, key, corpid)
     r = c.VerifyURL(msg_signature, timestamp, nonce, echostr)
-    print '+++++++++++',r
+    #print '+++++++++++',r
     return str(r[1])
 
 
