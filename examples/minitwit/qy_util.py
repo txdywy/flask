@@ -1,7 +1,9 @@
+# -*- coding: utf-8 -*-
 import wx_crypt.WXBizMsgCrypt as WXC
 import xml.etree.ElementTree as ET
 import time
 from pprint import pprint
+import requests
 try:
     from config import QY_KEY, QY_TOKEN, QY_CORPID
 except Exception, e:
@@ -30,8 +32,14 @@ class QYMsgProcess(object):
         self.timestamp = timestamp
         self.nonce = nonce
         ret, content = QY_MSG_CRYPT.DecryptMsg(data, signature, timestamp, nonce)
+        print '=============',content
         xml_recv = ET.fromstring(content)
         self.to_user, self.fr_user = self.re_fr_user, self.re_to_user = xml_recv.find("ToUserName").text, xml_recv.find("FromUserName").text
+        try:self.event = xml_recv.find("Event").text
+        except:self.event = None
+        try:self.event_key = xml_recv.find("EventKey").text
+        except:self.event_key = None
+
     
     def show(self):
         pprint(vars(self))
@@ -43,9 +51,32 @@ class QYMsgProcess(object):
         return result
             
 
+def get_dsp_stat():
+    data = requests.post('http://sandbox.appflood.com:1200/check')
+    return data.json()['text']
+
+
+def get_fmp_stat():
+    data = requests.post('http://sandbox.appflood.com:1200/check_fmp')
+    return data.json()['text']
+
+
+def get_aff_stat():
+    data = requests.post('http://sandbox.appflood.com:1200/check_aff') 
+    return data.json()['text']
+
+
 def reply(data, msg_signature, timestamp, nonce):
     msg = QYMsgProcess(data, msg_signature, timestamp, nonce)
     msg.show()
-    return msg.re_text('hello good')
+    if 'dsp' == msg.event_key:
+        text = get_dsp_stat()
+    elif 'fmp' == msg.event_key:
+        text = get_fmp_stat()
+    elif 'aff' == msg.event_key:
+        text = get_aff_stat()
+    else:
+        text = '还没实现哦'
+    return msg.re_text(text)
 
 
