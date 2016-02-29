@@ -346,12 +346,16 @@ def px():
     return r
 
 
-@app.route('/ti', methods=['GET'])
+@app.route('/ti', methods=['GET', 'POST'])
 def ti():
     import ticket
-    d = ticket.rank()
-    d = ['[第%s位]'%(n+1) + ' '.join([i[0], str(i[1])]) for n, i in enumerate(d)]
-    return '</br>'.join(d)
+    if request.method == 'GET': 
+        d = ticket.rank()
+        d = ['[第%s位]'%(n+1) + ' '.join([i[0], str(i[1])]) for n, i in enumerate(d)]
+        body = '</br>'.join(d)
+        return render_template('ti.html', body=body)
+    else:
+       return 'aaa'
 
 
 @app.route('/admin', methods=['GET'])
