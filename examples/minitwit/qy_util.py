@@ -76,7 +76,7 @@ def reply(data, msg_signature, timestamp, nonce):
     elif 'aff' == msg.event_key:
         text = get_aff_stat()
     else:
-        text = '还没实现哦'
+        text = '还没实现event[%s]哦' % str(msg.event)
     return msg.re_text(text)
 
 
