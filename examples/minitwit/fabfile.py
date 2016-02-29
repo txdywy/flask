@@ -1,4 +1,5 @@
 from fabric.api import * 
+import datetime
 env.use_ssh_config = True
 #env.hosts = ['sushi', 'polo', 'noodle']
 def localhost():
@@ -33,6 +34,20 @@ HOST_ALANCER = ['sushi', 'noodle', 'udon'] # 'polo' retired
 HOST_VPN = ['tempura', 'ramen', 'donut', 'nori' , 'mm', 'rib', 'steak']
 HOST_APPFLOOD = ['pre3-01', 'af_test', 'test3', 'sandbox', 'pre3-jp']
 HOST_ALL = HOST_DEV + HOST_ALANCER + HOST_VPN + HOST_APPFLOOD
+
+HOST_LAUNCH_DATE = {
+    'udon': datetime.datetime(2015, 6, 5),
+    'sushi': datetime.datetime(2015, 4, 6),
+    'noodle': datetime.datetime(2015, 4, 7),
+}
+
+def timeout():
+    host = env.host_string
+    launch_date = HOST_LAUNCH_DATE.get(host)
+    if launch_date:
+        today = datetime.datetime.today()
+        days = (today - launch_date).days
+        print 'EC2 [%s] will be timeout in [%s] days' % (host, 365 - days)
 
 def dev():
     env.hosts = HOST_DEV
