@@ -1,0 +1,14 @@
+<script type='text/javascript' src='//cdn.bootcss.com/jquery/1.11.2/jquery.min.js'></script>
+<script>
+  var auto_refresh = setInterval(
+  function(){
+    $('#load_updates').load('ti?r=1').fadeIn("slow");
+  }, 10000); // refresh every x milliseconds
+
+</script>
+<div id="load_updates">
+  {% for d in data %}
+    {{ d }}
+    </br>
+  {% endfor %}
+</div>

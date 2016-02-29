@@ -355,10 +355,11 @@ def ti():
     if request.method == 'GET': 
         d = ticket.rank()
         d = ['[第%s位]'%(n+1) + ' '.join([i[0], str(i[1])]) for n, i in enumerate(d)]
-        body = '</br>'.join(d)
-        return render_template('ti.html', body=body)
-    else:
-       return 'aaa'
+        r = request.args.get('r')
+        if r:
+            return '</br>'.join(d)
+        else:
+            return render_template('ti.html', data=d)
 
 
 @app.route('/admin', methods=['GET'])
