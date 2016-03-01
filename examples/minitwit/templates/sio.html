@@ -1,0 +1,22 @@
+<html>  
+<head>  
+    <title></title>  
+    <script src="//cdnjs.cloudflare.com/ajax/libs/socket.io/1.3.6/socket.io.min.js"></script>  
+    <script type="text/javascript">  
+        function doit() {  
+            var socket = io.connect('http://' + document.domain + ':' + location.port);  
+            socket.on('news', function (data) {//接收到服务器发送过来的名为'new'的数据  
+                console.log(data.hello);//data为应服务器发送过来的数据。  
+                socket.emit('my new event', { my:'new data' });//向服务器发送数据，实现双向数据传输  
+            });  
+            socket.on('other', function (data) {//接收另一个名为'other'数据，  
+                console.log(data.hello);  
+                socket.emit('event1', { my:'other data' });  
+            });  
+        }  
+    </script>  
+</head>  
+<body>  
+<button id='btn' onclick="doit()">click me</button>  
+</body>  
+</html>  

@@ -26,6 +26,8 @@ pkgs = ['boto',
         'pycurl',
         'iso3166',
         'pytesseract',
+        'flask-socketio',
+        'eventlet',
        ]
 for pkg in pkgs:
     local(SUDO_PIP_INSTALL % pkg)
