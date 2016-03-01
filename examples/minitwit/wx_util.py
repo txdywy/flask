@@ -77,7 +77,7 @@ class TiAsyncTask(threading.Thread):
             except Exception, e:
                 #print '-----threading err-----', str(e)
                 pass
-        time.sleep(5)
+            time.sleep(5)
 
 TICKET_ASYNC_THREAD = TiAsyncTask()
 
