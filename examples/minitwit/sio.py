@@ -11,13 +11,14 @@ def index():
 
 @socketio.on('connect')
 def handle_connection():
-    print('connected')
+    print('-' * 20 + 'connected' + '-' * 20)
     emit('news', { 'hello': 'world' })
 
 @socketio.on('message')
 def handle_message(message):
     print('received message: ' + message)
-    send(message)
+    send('re:' + message)
+    emit('other', { 'hello': 'hahahahah' })
 
 if __name__ == '__main__':
     socketio.run(app, debug=True, port=1233, host='0.0.0.0')
