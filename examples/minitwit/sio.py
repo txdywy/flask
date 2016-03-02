@@ -67,6 +67,8 @@ def init_thread():
         thread.daemon = True
         thread.start()
         print '*'*20 + 'Thread init' + '*'*20
+    if not thread.isAlive():
+        thread.start()
 
 
 @app.route('/')
