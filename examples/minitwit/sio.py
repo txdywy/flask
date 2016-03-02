@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 #!/usr/bin/env python
 
 # Set this variable to "threading", "eventlet" or "gevent" to test the
@@ -37,6 +38,7 @@ from flask import Flask, render_template
 from flask_socketio import SocketIO, emit, send
 from threading import Thread
 import time
+import ticket
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'secret!'
@@ -47,10 +49,15 @@ def background_stuff():
      """ python code in main.py """
      print 'In background_stuff'
      while True:
-         time.sleep(1)
+         d = ticket.rank()
+         #for i in d:
+         #    print i
+         d = ['[第%s位]'.decode('utf8')%(n+1) + ' '.join([i[0], str(i[1])]) for n, i in enumerate(d)]
+         data = '</br>'.join(d)
+         time.sleep(5)
          t = str(time.clock())
-         print '==='
-         socketio.emit('news', {'hello': 'This is data', 'time': t}, broadcast=True)
+         print '===', t
+         socketio.emit('ticket', {'rank': data, 'time': t}, broadcast=True)
 
 
 def init_thread():
