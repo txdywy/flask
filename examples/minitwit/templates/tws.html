@@ -4,16 +4,31 @@
     <script type='text/javascript' src='//cdn.bootcss.com/jquery/1.11.2/jquery.min.js'></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/socket.io/1.4.5/socket.io.min.js"></script>  
     <script type="text/javascript">  
+        function get_random_color() {
+            var letters = '0123456789ABCDEF'.split('');
+            var color = '#';
+            for (var i = 0; i < 6; i++) {
+                color += letters[Math.round(Math.random() * 15)];
+            }
+            return color;
+        }
         var socket = io.connect('http://alancer.ga:1233');
         socket.on('ticket', function (data) {//接收到服务器发送过来的名为'new'的数据  
             //console.log(ticket.rank);//data为应服务器发送过来的数据。  
             if (data.rank.length > 0)
-                text = new Date($.now()) + '</br></br>' + data.rank;
+                text = data.rank;
+                $('#date').html(new Date($.now()) + '').fadeIn("slow");
+                var color = get_random_color();
+                $('#date').css('background-color', color);
                 $('#load_updates').html(text).fadeIn("slow")
         });  
     </script>  
 </head>  
 <body>  
+<div id="date" class="animate">
+投票结果自动刷新:
+</div>
+</br>
 <div id="load_updates">
   {% for d in data %}
     {{ d }}
