@@ -348,13 +348,13 @@ def px():
     r = r.replace('\n', '</br>')
     return r
 
-
+SIO_HOSTS = ['alancer.ga:1233', 'alancer.tk:1233']
 @app.route('/tws', methods=['GET'])
 def tws():
     import ticket
     d = ticket.rank()
     d = ['[第%s位]'%(n+1) + ' '.join([i[0], str(i[1])]) for n, i in enumerate(d)]
-    return render_template('tws.html', data=d)
+    return render_template('tws.html', data=d, host=SIO_HOSTS[randint(0,1)])
 
 
 @app.route('/ti', methods=['GET', 'POST'])

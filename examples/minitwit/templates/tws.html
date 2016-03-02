@@ -12,7 +12,7 @@
             }
             return color;
         }
-        var socket = io.connect('http://alancer.ga:1233');
+        var socket = io.connect('http://{{ host }}');
         socket.on('ticket', function (data) {//接收到服务器发送过来的名为'new'的数据  
             //console.log(ticket.rank);//data为应服务器发送过来的数据。  
             if (data.rank.length > 0)
