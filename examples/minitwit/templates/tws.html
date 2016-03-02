@@ -8,7 +8,8 @@
         socket.on('ticket', function (data) {//接收到服务器发送过来的名为'new'的数据  
             //console.log(ticket.rank);//data为应服务器发送过来的数据。  
             if (data.rank.length > 0)
-                $('#load_updates').html(data.rank).fadeIn("slow")
+                text = new Date($.now()) + '</br></br>' + data.rank;
+                $('#load_updates').html(text).fadeIn("slow")
         });  
     </script>  
 </head>  
