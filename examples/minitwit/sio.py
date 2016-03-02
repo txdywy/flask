@@ -62,13 +62,11 @@ def background_stuff():
 
 def init_thread():
     global thread
-    if thread is None:
+    if thread is None or not thread.isAlive():
         thread = Thread(target=background_stuff)
         thread.daemon = True
         thread.start()
         print '*'*20 + 'Thread init' + '*'*20
-    if not thread.isAlive():
-        thread.start()
 
 
 @app.route('/')
