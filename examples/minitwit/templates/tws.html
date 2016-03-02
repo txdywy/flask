@@ -1,0 +1,23 @@
+<html>  
+<head>  
+    <title></title>  
+    <script type='text/javascript' src='//cdn.bootcss.com/jquery/1.11.2/jquery.min.js'></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/socket.io/1.4.5/socket.io.min.js"></script>  
+    <script type="text/javascript">  
+        var socket = io.connect('http://alancer.ga:1233');
+        socket.on('ticket', function (data) {//接收到服务器发送过来的名为'new'的数据  
+            //console.log(ticket.rank);//data为应服务器发送过来的数据。  
+            if (data.rank.length > 0)
+                $('#load_updates').html(data.rank).fadeIn("slow")
+        });  
+    </script>  
+</head>  
+<body>  
+<div id="load_updates">
+  {% for d in data %}
+    {{ d }}
+    </br>
+  {% endfor %}
+</div>
+</body>  
+</html>  
