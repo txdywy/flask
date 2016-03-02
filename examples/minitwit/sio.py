@@ -53,25 +53,33 @@ def background_stuff():
          socketio.emit('news', {'hello': 'This is data', 'time': t}, broadcast=True)
 
 
-@app.route('/')
-def index():
+def init_thread():
     global thread
     if thread is None:
         thread = Thread(target=background_stuff)
         thread.daemon = True
         thread.start()
+        print '*'*20 + 'Thread init' + '*'*20
+
+
+@app.route('/')
+def index():
     return render_template('sio.html')
+
 
 @socketio.on('connect')
 def handle_connection():
     print('-' * 20 + 'connected' + '-' * 20)
     emit('news', { 'hello': 'world' })
+    init_thread()
+
 
 @socketio.on('message')
 def handle_message(message):
     print('received message: ' + message)
     send('re:' + message)
     emit('other', { 'hello': 'hahahahah' })
+
 
 if __name__ == '__main__':
     socketio.run(app, debug=True, port=1233, host='0.0.0.0')

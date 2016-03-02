@@ -4,7 +4,8 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/socket.io/1.4.5/socket.io.min.js"></script>  
     <script type="text/javascript">  
         function doit() {  
-            var socket = io.connect('http://' + document.domain + ':' + location.port);  
+            //var socket = io.connect('http://' + document.domain + ':' + location.port);  
+            var socket = io.connect('http://alancer.ga:1233');
             socket.on('news', function (data) {//接收到服务器发送过来的名为'new'的数据  
                 console.log(data.hello);//data为应服务器发送过来的数据。  
                 socket.emit('my new event', { my:'new data' });//向服务器发送数据，实现双向数据传输  

@@ -349,6 +349,11 @@ def px():
     return r
 
 
+@app.route('/tws', methods=['GET'])
+def tws():
+    return render_template('sio.html')
+
+
 @app.route('/ti', methods=['GET', 'POST'])
 def ti():
     import ticket
