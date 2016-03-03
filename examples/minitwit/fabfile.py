@@ -130,3 +130,16 @@ def dns(url):
                   ]
     for dns in dns_server:
         run('nslookup %s %s' % (url, dns))
+
+def killall(key):
+    run('ps -ef|grep %s|grep -v grep|cut -c 9-15' % key)
+    run('ps -ef|grep %s|grep -v grep|cut -c 9-15|xargs kill -9' % key)
+
+def cron():
+    run('service cron status')
+
+def cronon():
+    run('sudo service cron start')
+
+def cronoff():
+    run('sudo service cron stop')
