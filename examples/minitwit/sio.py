@@ -49,7 +49,8 @@ def background_stuff():
      """ python code in main.py """
      print 'In background_stuff'
      while True:
-         d = ticket.rank()
+         try:d = ticket.rank()
+         except:d = []
          #for i in d:
          #    print i
          d = ['[第%s位]'.decode('utf8')%(n+1) + ' '.join([i[0], str(i[1])]) for n, i in enumerate(d)]
