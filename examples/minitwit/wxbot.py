@@ -72,6 +72,7 @@ My = []
 SyncKey = []
 MemberList = []
 MemberMap = {}
+MemberNickMap = {}
 ALERT_MEMBER = []
 ALERT_LAST_MSG_FROM = {}
 ALERT_LAST_MSG_REPLY = {}
@@ -699,10 +700,11 @@ def send(content, target_nickname):
     global test
     content = toU(content)
     target_nickname = toU(target_nickname)
-    for i in MemberList:
-        if i['NickName']==target_nickname:
-            to = i
-            break
+    to = MemberNickMap[target_nickname]
+    #for i in MemberList:
+    #    if i['NickName']==target_nickname:
+    #        to = i
+    #        break
     ts = time.time()
     tid = str(int(ts * 10000000))
     url = base_uri + '/webwxsendmsg?pass_ticket=%s&r=%s' % (pass_ticket, int(ts))
@@ -737,7 +739,7 @@ def send(content, target_nickname):
 
 def main(server=False):
     global IS_SERVER
-    global MemberList, MemberMap
+    global MemberList, MemberMap, MemberNickMap
     if server:
         IS_SERVER = True
     try:
@@ -779,6 +781,7 @@ def main(server=False):
 
     MemberList = webwxgetcontact()
     MemberMap = {m[u'UserName']: m for m in MemberList}
+    MemberNickMap =  {m[u'NickName']: m for m in MemberList}
 
     print('开启心跳线程')
     thread.start_new_thread(heartBeatLoop, ())
