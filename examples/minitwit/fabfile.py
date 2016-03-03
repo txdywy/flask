@@ -34,12 +34,23 @@ HOST_ALANCER = ['sushi', 'noodle', 'udon'] # 'polo' retired
 HOST_VPN = ['tempura', 'ramen', 'donut', 'nori' , 'mm', 'rib', 'steak']
 HOST_APPFLOOD = ['pre3-01', 'af_test', 'test3', 'sandbox', 'pre3-jp']
 HOST_ALL = HOST_DEV + HOST_ALANCER + HOST_VPN + HOST_APPFLOOD
+HOST_TBK = HOST_DEV + HOST_VPN
+
 
 HOST_LAUNCH_DATE = {
     'udon': datetime.datetime(2015, 6, 5),
     'sushi': datetime.datetime(2015, 4, 6),
     'noodle': datetime.datetime(2015, 4, 7),
 }
+
+def hls():
+    print 'HOST_DEV: ' + str(HOST_DEV)
+    print 'HOST_ALANCER: ' + str(HOST_ALANCER)
+    print 'HOST_VPN: ' + str(HOST_VPN)
+    print 'HOST_APPFLOOD: ' + str(HOST_APPFLOOD)
+    print 'HOST_ALL: ' + str(HOST_ALL)
+    print 'HOST_TBK: ' + str(HOST_TBK)
+
 
 def timeout():
     host = env.host_string
