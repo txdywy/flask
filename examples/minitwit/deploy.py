@@ -28,6 +28,7 @@ pkgs = ['boto',
         'pytesseract',
         'flask-socketio',
         'eventlet',
+        'gunicorn==18.0',
        ]
 for pkg in pkgs:
     local(SUDO_PIP_INSTALL % pkg)
