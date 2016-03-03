@@ -10,8 +10,25 @@ pxs = Proxy.query.filter_by(active=1).all()
 pxs = [p for p in pxs if 'sock' not in p.anonymity]
 print 'Valid http proxy: [%s]' % len(pxs)
 
-def geti(id=15, px=None):
-    #px = pxs[randint(0, len(pxs)-1)]
+
+def ex(default=0):
+    def wrapper(fn):
+        @wraps(fn)
+        def func(*args, **kwds):
+            try:
+                r = fn(*args, **kwds)
+            except Exception, e:
+                r = default
+                print '[%s][%s]' % (fn.__name__, str(e))
+                #print traceback.format_exc()
+            return r
+        return func
+    return wrapper
+
+@ex('')
+def geti(id=5, px=None, timeout=60):
+    if not px:
+        px = pxs[randint(0, len(pxs)-1)]
     headers = {'Referer': 'http://events.chncpa.org/wmx2016/mobile/pages/jmpx.php', 
                'X-Requested-With': 'XMLHttpRequest', 
                'User-Agent': fake.user_agent(),
@@ -29,5 +46,6 @@ def geti(id=15, px=None):
     turl = url.format(ip=ip, id=id, dtime=dtime)
     pd = {"http": "http://%s:%s" % (px.ip, px.port)}
     print px.ip, px.port
-    result = requests.get(turl, headers=headers, proxies=pd)
+    result = requests.get(turl, headers=headers, proxies=pd, timeout=timeout)
     print result.text, turl, result.request.headers
+    return result.text

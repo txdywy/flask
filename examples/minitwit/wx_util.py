@@ -72,7 +72,10 @@ class TiAsyncTask(threading.Thread):
             try:
                 d = self.tasks.get(timeout=1)
                 if d:
-                    ticket.ti(int(d), 3)
+                    #ticket.ti(int(d), 3)
+                    import nti
+                    for i in xrange(int(d)):
+                        nti.geti()
                 print '=====thread task done===='
             except Exception, e:
                 #print '-----threading err-----', str(e)
