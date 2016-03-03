@@ -44,12 +44,12 @@ HOST_LAUNCH_DATE = {
 }
 
 def hls():
-    print 'HOST_DEV: ' + str(HOST_DEV)
-    print 'HOST_ALANCER: ' + str(HOST_ALANCER)
-    print 'HOST_VPN: ' + str(HOST_VPN)
-    print 'HOST_APPFLOOD: ' + str(HOST_APPFLOOD)
-    print 'HOST_ALL: ' + str(HOST_ALL)
-    print 'HOST_TBK: ' + str(HOST_TBK)
+    print 'HOST_DEV: ' + ','.join(HOST_DEV)
+    print 'HOST_ALANCER: ' + ','.join(HOST_ALANCER)
+    print 'HOST_VPN: ' + ','.join(HOST_VPN)
+    print 'HOST_APPFLOOD: ' + ','.join(HOST_APPFLOOD)
+    print 'HOST_ALL: ' + ','.join(HOST_ALL)
+    print 'HOST_TBK: ' + ','.join(HOST_TBK)
 
 
 def timeout():
@@ -59,6 +59,9 @@ def timeout():
         today = datetime.datetime.today()
         days = (today - launch_date).days
         print 'EC2 [%s] will be timeout in [%s] days' % (host, 365 - days)
+
+def tbk():
+    env.hosts = HOST_TBK
 
 def dev():
     env.hosts = HOST_DEV
