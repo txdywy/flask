@@ -72,3 +72,37 @@ def _check_result(result, px):
         p.sit = (p.sit+1) if p.sit else 1
     flush(p)
 
+
+@ex('')
+def beti(id=5, px=None, timeout=60):
+    if not px:
+        ps = ProxyHit.query.filter(ProxyHit.hit>0).all()
+        p = ps[randint(0, len(ps)-1)]
+        px = Proxy.query.filter_by(key=p.key).first()
+    headers = {'Referer': 'http://events.chncpa.org/wmx2016/mobile/pages/jmpx.php', 
+               'X-Requested-With': 'XMLHttpRequest', 
+               'User-Agent': fake.user_agent(),
+               'Accept': 'application/json, text/javascript, */*; q=0.01',
+               'Accept-Encoding': 'gzip, deflate, sdch',
+               'Accept-Language': 'en-US,en;q=0.8,zh-CN;q=0.6',
+               'Cache-Control': 'no-cache',
+               'Host': 'events.chncpa.org',
+               'Pragma': 'no-cache', 
+               } 
+    now = datetime.datetime.now()
+    dtime = str(now)[:19]
+    dtime = urllib.quote_plus(dtime)
+    ip = px.ip
+    turl = url.format(ip=ip, id=id, dtime=dtime)
+    pd = {"http": "http://%s:%s" % (px.ip, px.port)}
+    print '[%s:%s %s]' % (px.ip, px.port, px.anonymity)
+    if 'sock' in px.anonymity:
+        sock_session.proxies = {'http': '%s://%s:%s' % (px.anonymity, px.ip, px.port)}
+        result = sock_session.get(url, timeout=timeout, headers=headers)
+    else:
+        result = requests.get(turl, headers=headers, proxies=pd, timeout=timeout)
+    _check_result(result.text, px)
+    print result.text, result._content
+    print turl, result.request.headers
+    return vars(result)
+
