@@ -157,3 +157,8 @@ def cronon():
 
 def cronoff():
     run('sudo service cron stop')
+
+def ti():
+    with cd('~/flask/examples/minitwit/'):
+        run("python -c 'import ticket as t;t.ti(1,1,5)'")
+

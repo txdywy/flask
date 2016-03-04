@@ -7,7 +7,8 @@ import random
 import datetime
 from bs4 import BeautifulSoup
 import urllib2
-import pycurl
+try:import pycurl
+except:pass
 from faker import Factory
 import urllib
 fake = Factory.create('en_US')
