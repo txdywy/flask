@@ -53,3 +53,21 @@ class Proxy(Base):
     def get_site(self):
         r = Proxy.site_map.get(self.site)
         return r if r else ''
+
+
+class ProxyHit(Base):
+    __tablename__ = 'proxy_hit'
+    id = Column(Integer, primary_key=True)
+    key = Column(String(32), unique=True)
+    hit = Column(Integer, default=0)
+    sit = Column(Integer, default=0)
+    update_time = Column(DATETIME(), default=datetime.datetime.now())
+
+    def __repr__(self):
+        return '<ProxyHit %r>' % (self.id)
+
+
+
+
+
+

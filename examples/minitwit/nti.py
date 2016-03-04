@@ -10,7 +10,7 @@ sock_session = rs.session()
 fake = Factory.create('en_US')
 url = 'http://events.chncpa.org/wmx2016/action/pctou.php?id={id}&user_ip={ip}&time={dtime}'
 pxs = Proxy.query.filter_by(active=1).all()
-#pxs = [p for p in pxs if 'sock' not in p.anonymity]
+pxs = [p for p in pxs if 'sock' not in p.anonymity]
 print 'Valid http proxy: [%s]' % len(pxs)
 
 
@@ -54,6 +54,21 @@ def geti(id=5, px=None, timeout=60):
         result = sock_session.get(url, timeout=timeout, headers=headers)
     else:
         result = requests.get(turl, headers=headers, proxies=pd, timeout=timeout)
+    _check_result(result.text, px)
     print result.text, result._content
     print turl, result.request.headers
     return vars(result)
+
+
+def _check_result(result, px):
+    key = '%s:%s' % (px.ip, px.port)
+    p = ProxyHit.query.filter_by(key=key).first()
+    if not p:
+        p = ProxyHit(key=key)
+        vars(p)
+    if '{' in result and '}' in result and 'number' in result:
+        p.hit = (p.hit+1) if p.hit else 1
+    else:
+        p.sit = (p.sit+1) if p.sit else 1
+    flush(p)
+
