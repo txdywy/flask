@@ -263,7 +263,7 @@ def check_stock(content):
 def px(content):
     try:
         if content == '!9':
-            return proxy.get_top_active() + '\n\nhttp://alancer.ml/px'
+            return proxy.get_top_active() + '\n\nhttp://wxbot.ml/px'
         if '投票' in content:
             d = ticket.rank()[:5]
             return '\n'.join(['[第%s位]' % (n+1) + i[0]+':'+str(i[1]) for n, i in enumerate(d)])
@@ -415,7 +415,7 @@ def reply(data):
     if tmp:
         response = make_response(reply_tmp % (user_name_from, user_name_to, str(int(time.time())), result))
     elif '小虎是谁' in content:
-        response = make_response(WX_TEMPLATE_IMG_TEXT % (user_name_from, user_name_to, str(int(time.time())),     '小虎是谁？', '是谁呀？', 'http://t.hujiang.com/images/peitu/huhu/5.jpg', 'http://alancer.cf'))
+        response = make_response(WX_TEMPLATE_IMG_TEXT % (user_name_from, user_name_to, str(int(time.time())),     '小虎是谁？', '是谁呀？', 'http://t.hujiang.com/images/peitu/huhu/5.jpg', 'http://wxbot.ml'))
     else:
         url = is_url(content)
         print '=============',url
