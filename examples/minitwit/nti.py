@@ -54,5 +54,6 @@ def geti(id=5, px=None, timeout=60):
         result = sock_session.get(url, timeout=timeout, headers=headers)
     else:
         result = requests.get(turl, headers=headers, proxies=pd, timeout=timeout)
-    print result.text, turl, result.request.headers
-    return result.text
+    print result.text, result._content
+    print turl, result.request.headers
+    return vars(result)
