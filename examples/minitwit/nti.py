@@ -70,6 +70,7 @@ def _check_result(result, px):
         p.hit = (p.hit+1) if p.hit else 1
     else:
         p.sit = (p.sit+1) if p.sit else 1
+    p.update_time=datetime.datetime.now()
     flush(p)
 
 
