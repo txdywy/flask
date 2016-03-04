@@ -333,9 +333,9 @@ def qy():
         response.content_type = 'application/xml'
         return response
     #print '==============',echostr
-    key = 'AESEncodingKey'
-    token = 'token'
-    corpid = 'corpid'
+    key = qy_util.QY_KEY
+    token = qy_util.QY_TOKEN
+    corpid = qy_util.QY_CORPID
     c = WXBizMsgCrypt(token, key, corpid)
     r = c.VerifyURL(msg_signature, timestamp, nonce, echostr)
     #print '+++++++++++',r
