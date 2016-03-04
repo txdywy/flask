@@ -4,10 +4,13 @@ from faker import Factory
 import requests
 from proxy import *
 from random import randint
+import requesocks as rs
+
+sock_session = rs.session()
 fake = Factory.create('en_US')
 url = 'http://events.chncpa.org/wmx2016/action/pctou.php?id={id}&user_ip={ip}&time={dtime}'
 pxs = Proxy.query.filter_by(active=1).all()
-pxs = [p for p in pxs if 'sock' not in p.anonymity]
+#pxs = [p for p in pxs if 'sock' not in p.anonymity]
 print 'Valid http proxy: [%s]' % len(pxs)
 
 
@@ -45,7 +48,11 @@ def geti(id=5, px=None, timeout=60):
     ip = px.ip
     turl = url.format(ip=ip, id=id, dtime=dtime)
     pd = {"http": "http://%s:%s" % (px.ip, px.port)}
-    print px.ip, px.port
-    result = requests.get(turl, headers=headers, proxies=pd, timeout=timeout)
+    print '[%s:%s %s]' % (px.ip, px.port, px.anonymity)
+    if 'sock' in px.anonymity:
+        sock_session.proxies = {'http': '%s://%s:%s' % (px.anonymity, px.ip, px.port)}
+        result = sock_session.get(url, timeout=timeout, headers=headers)
+    else:
+        result = requests.get(turl, headers=headers, proxies=pd, timeout=timeout)
     print result.text, turl, result.request.headers
     return result.text
