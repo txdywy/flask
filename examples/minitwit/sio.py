@@ -53,7 +53,7 @@ def background_stuff():
          except:d = []
          #for i in d:
          #    print i
-         d = ['[第%s位]'.decode('utf8')%(n+1) + ' '.join([i[0], str(i[1])]) for n, i in enumerate(d)]
+         d = ['[第%s位]'.decode('utf8')%(n+1) + ' '.join([i[0], str(i[1])]) + ' +%s'%(d[0][1]-i[1]) for n, i in enumerate(d)]
          data = '</br>'.join(d)
          time.sleep(5)
          t = str(time.clock())
