@@ -266,7 +266,7 @@ def px(content):
             return proxy.get_top_active() + '\n\nhttp://wxbot.ml/px'
         if '投票' in content:
             d = ticket.rank()[:5]
-            return '\n'.join(['[第%s位]' % (n+1) + i[0]+':'+str(i[1]) for n, i in enumerate(d)])
+            return '\n'.join(['[第%s位]' % (n+1) + i[0]+':'+str(i[1]) + ' +%s' % (d[0][1]-i[1]) for n, i in enumerate(d)])
         if '刷票' in content:
             try:
                 #i = content.find('刷票')

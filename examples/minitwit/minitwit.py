@@ -353,7 +353,7 @@ SIO_HOSTS = ['wxbot.ga:1233', 'wxbot.tk:1233']
 def tws():
     import ticket
     d = ticket.rank()
-    d = ['[第%s位]'%(n+1) + ' '.join([i[0], str(i[1])]) for n, i in enumerate(d)]
+    d = ['[第%s位]'%(n+1) + ' '.join([i[0], str(i[1])]) + ' +%s'%(d[0][1]-i[1]) for n, i in enumerate(d)]
     return render_template('tws.html', data=d, host=SIO_HOSTS[randint(0,1)])
 
 
