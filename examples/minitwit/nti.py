@@ -42,7 +42,7 @@ def geti(id=5, px=None, timeout=60):
                'Host': 'events.chncpa.org',
                'Pragma': 'no-cache', 
                } 
-    now = datetime.datetime.now()
+    now = datetime.datetime.now() - datetime.timedelta(days=1)
     dtime = str(now)[:19]
     dtime = urllib.quote_plus(dtime)
     ip = px.ip
