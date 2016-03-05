@@ -32,10 +32,10 @@ def ti(n=10, lap=60*7, id=5, timeout=60):
                'Host': 'events.chncpa.org',
                'Pragma': 'no-cache',
               } 
-    now = datetime.datetime.now() - datetime.timedelta(days=1)
-    dtime = str(now)[:19]
-    dtime = urllib.quote_plus(dtime)
     for i in range(n):
+        now = datetime.datetime.now() - datetime.timedelta(days=1)
+        dtime = str(now)[:19]
+        dtime = urllib.quote_plus(dtime)
         ip = '%s.%s.%s.%s' % (random.randint(2,250),random.randint(2,250),random.randint(2,250),random.randint(2,250))
         ur = u.format(ip=ip, id=id, dtime=dtime)
         try:
