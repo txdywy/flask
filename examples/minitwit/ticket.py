@@ -32,7 +32,7 @@ def ti(n=10, lap=60*7, id=5, timeout=60):
                'Host': 'events.chncpa.org',
                'Pragma': 'no-cache',
               } 
-    now = datetime.datetime.now()
+    now = datetime.datetime.now() - datetime.timedelta(days=1)
     dtime = str(now)[:19]
     dtime = urllib.quote_plus(dtime)
     for i in range(n):
