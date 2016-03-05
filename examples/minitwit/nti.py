@@ -107,3 +107,6 @@ def beti(id=5, px=None, timeout=60):
     print turl, result.request.headers
     return vars(result)
 
+def task(n=300):
+    for _ in xrange(n):
+        geti()
