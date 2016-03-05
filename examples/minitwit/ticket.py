@@ -20,7 +20,7 @@ def post_alert(s='无', app='bearychat'):
     r.post(url, data = json.dumps(payload), headers = headers)
 
 
-def ti(n=10, lap=60*7, id=5):
+def ti(n=10, lap=60*7, id=5, timeout=60):
     u = 'http://events.chncpa.org/wmx2016/action/pctou.php?id={id}&user_ip={ip}&time={dtime}'
     headers = {'Referer': 'http://events.chncpa.org/wmx2016/mobile/pages/jmpx.php', 
                'X-Requested-With': 'XMLHttpRequest', 
@@ -38,12 +38,15 @@ def ti(n=10, lap=60*7, id=5):
     for i in range(n):
         ip = '%s.%s.%s.%s' % (random.randint(2,250),random.randint(2,250),random.randint(2,250),random.randint(2,250))
         ur = u.format(ip=ip, id=id, dtime=dtime)
-        x = r.get(ur,headers=headers)
-        print x.text
-        print x.request.headers
-        print ur
-        time.sleep(random.randint(1, lap))
-        print x.text
+        try:
+			x = r.get(ur,headers=headers, timeout=timeout)
+			print x.text
+			print x.request.headers
+			print ur
+			time.sleep(random.randint(1, lap))
+			print x.text
+        except Exception, e:
+            print str(e)
 
 
 def rank():
