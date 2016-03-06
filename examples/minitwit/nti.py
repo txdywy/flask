@@ -29,7 +29,7 @@ def ex(default=0):
     return wrapper
 
 @ex('')
-def geti(id=5, px=None, timeout=60):
+def geti(id=5, px=None, timeout=60, fix=False):
     if not px:
         px = pxs[randint(0, len(pxs)-1)]
     headers = {'Referer': 'http://events.chncpa.org/wmx2016/mobile/pages/jmpx.php', 
@@ -42,6 +42,9 @@ def geti(id=5, px=None, timeout=60):
                'Host': 'events.chncpa.org',
                'Pragma': 'no-cache', 
                } 
+    if fix:
+        px.ip = 'mm.hosts.ml'
+        px.port = 8888
     now = datetime.datetime.now() - datetime.timedelta(days=1)
     dtime = str(now)[:19]
     dtime = urllib.quote_plus(dtime)
