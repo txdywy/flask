@@ -348,7 +348,7 @@ def px():
     r = r.replace('\n', '</br>')
     return r
 
-SIO_HOSTS = ['wxbot.ga:1233', 'wxbot.tk:1233']
+SIO_HOSTS = ['wxbot.ga:1233']
 @app.route('/tws', methods=['GET'])
 def tws():
     import ticket
