@@ -92,6 +92,60 @@ def reply(data, msg_signature, timestamp, nonce):
     return msg.re_text(text)
 
 
+def get_poll():
+    import ticket
+    d = ticket.rank()[:5]
+    return '\n'.join(['[第%s位]' % (n+1) + i[0]+':'+str(i[1]) + ' +%s' % (d[0][1]-i[1]) for n, i in enumerate(d)])
+
+
+def set_ti():
+    n = 100
+    from wx_util import TICKET_ASYNC_THREAD
+    if not TICKET_ASYNC_THREAD.isAlive():
+        try:
+            TICKET_ASYNC_THREAD.start()
+            print '-----thread started-----'
+        except Exception, e:
+            print '-----thread failed-----', str(e)
+    TICKET_ASYNC_THREAD.put(n)
+    return '刷%s票中' % n
+
+
+def get_px():
+    import proxy
+    return proxy.get_top_active() + '\n\nhttp://wxbot.ml/px'
+
+
+def get_us_stock():
+    import stock
+    return stock.get_us_stock()
+
+
+def get_cn_stock():
+    import stock
+    return stock.get_cn_stock()
+
+
+def hhmm_reply(data, msg_signature, timestamp, nonce):
+    msg = QYMsgProcess(data, msg_signature, timestamp, nonce)
+    msg.show()
+    if 'poll' == msg.event_key:
+        text = get_poll()
+    elif 'ti' == msg.event_key:
+        text = set_ti()
+    elif 'px' == msg.event_key:
+        text = get_px()
+    elif 'us' == msg.event_key:
+        text = get_us_stock()
+    elif 'cn' == msg.event_key:
+        text = get_cn_stock()
+    else:
+        #text = '还没实现event[%s]哦' % str(msg.event)
+        text = ''
+    print '==========',text
+    return msg.re_text(text)
+
+
 ACCESS_TOKEN_GROUP = (None, time.time())
 def get_access_token():
     global ACCESS_TOKEN_GROUP

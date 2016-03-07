@@ -342,6 +342,28 @@ def qy():
     return str(r[1])
 
 
+@app.route('/hhmm', methods=['GET', 'POST'])
+def hhmm():
+    msg_signature = request.args.get('msg_signature')
+    timestamp = request.args.get('timestamp')
+    nonce = request.args.get('nonce')
+    echostr = request.args.get('echostr')
+    if request.method == 'POST':
+        #print '======qy======', request.data
+        ret = qy_util.hhmm_reply(request.data, msg_signature, timestamp, nonce) 
+        response = make_response(ret)
+        response.content_type = 'application/xml'
+        return response
+    #print '==============',echostr
+    key = qy_util.QY_KEY
+    token = qy_util.QY_TOKEN
+    corpid = qy_util.QY_CORPID
+    c = WXBizMsgCrypt(token, key, corpid)
+    r = c.VerifyURL(msg_signature, timestamp, nonce, echostr)
+    #print '+++++++++++',r
+    return str(r[1])
+
+
 @app.route('/px', methods=['GET'])
 def px():
     r = proxy.get_top_active(-1)
