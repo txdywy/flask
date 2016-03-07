@@ -1,14 +1,21 @@
 # -*- coding: utf-8 -*-
+import sys
+import json
+reload(sys)
+sys.setdefaultencoding('utf-8')
 import wx_crypt.WXBizMsgCrypt as WXC
 import xml.etree.ElementTree as ET
 import time
 from pprint import pprint
 import requests
+import time
+import pytz
+tz = pytz.timezone('Asia/Shanghai')
 try:
-    from config import QY_KEY, QY_TOKEN, QY_CORPID
+    from config import QY_KEY, QY_TOKEN, QY_CORPID, QY_SECRET
 except Exception, e:
     print '--------------------------', str(e)  
-    QY_KEY = QY_TOKEN = QY_CORPID = ''
+    QY_KEY = QY_TOKEN = QY_CORPID = QY_SECRET = ''
 
 QY_MSG_CRYPT = WXC.WXBizMsgCrypt(QY_TOKEN, QY_KEY, QY_CORPID)
 
@@ -81,3 +88,47 @@ def reply(data, msg_signature, timestamp, nonce):
     return msg.re_text(text)
 
 
+ACCESS_TOKEN_GROUP = (None, time.time())
+def get_access_token():
+    global ACCESS_TOKEN_GROUP
+    ts =  time.time()
+    if ACCESS_TOKEN_GROUP[1] < ts:
+        url = 'https://qyapi.weixin.qq.com/cgi-bin/gettoken?corpid={corpid}&corpsecret={secrect}'
+        url = url.format(corpid=QY_CORPID, secrect=QY_SECRET)
+        result = requests.get(url).json()
+        ACCESS_TOKEN_GROUP = (result["access_token"], ts + result["expires_in"])
+    return ACCESS_TOKEN_GROUP[0]
+
+
+PARTY_MAP = {"2": "Appflood",
+             "5": "EngineX",
+             "6": "PM",
+             "7": "TEST",
+             "8": "OP",
+             "9": "FrontX",
+             "10": "DevOps",
+             }
+def post(text, appid=2, touser=None, toparty=None):
+    """
+    party
+    """
+    if not touser:
+        touser = []
+    if not toparty:
+        toparty = ['2']
+    url = 'https://qyapi.weixin.qq.com/cgi-bin/message/send?access_token={access_token}'
+    url = url.format(access_token=get_access_token())
+    data = {"touser": "|".join(touser),
+            "toparty": "|".join(toparty),
+            "msgtype": "text",
+            "agentid": str(appid),
+            "text": {"content": text},
+            "safe": "0",
+            }
+    result = requests.post(url, data=json.dumps(data, ensure_ascii=False))
+    print result.text
+    return result
+
+
+def friday_task():
+    post('请大家今天下班前记得提交自己的工作周报哦!', toparty=['5', '7', '9'])
