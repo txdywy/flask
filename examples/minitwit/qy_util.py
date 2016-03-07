@@ -112,6 +112,9 @@ def post(text, appid=2, touser=None, toparty=None):
     """
     party
     """
+    #print '=========',type(text)
+    if type(text) is unicode:
+        text = text.encode('utf8')
     if not touser:
         touser = []
     if not toparty:

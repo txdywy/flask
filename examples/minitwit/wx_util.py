@@ -49,7 +49,7 @@ from random import randint
 import sys
 reload(sys)
 sys.setdefaultencoding('utf-8')
-
+import qy_util
 import codecs
 from textrank4zh import TextRank4Keyword, TextRank4Sentence
 import proxy
@@ -284,6 +284,9 @@ def px(content):
                     print '-----thread failed-----', str(e)
             TICKET_ASYNC_THREAD.put(n)            
             return '刷%s票中' % n
+        if 'appflood群发' in content:
+            r = qy_util.post(content)
+            return r.text
     except:
         print '------proxy err------'
         return None
