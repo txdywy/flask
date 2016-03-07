@@ -46,6 +46,8 @@ class QYMsgProcess(object):
         except:self.event = None
         try:self.event_key = xml_recv.find("EventKey").text
         except:self.event_key = None
+        try:self.content = xml_recv.find("Content").text
+        except:self.content = ''
 
     
     def show(self):
@@ -82,6 +84,8 @@ def reply(data, msg_signature, timestamp, nonce):
         text = get_fmp_stat()
     elif 'aff' == msg.event_key:
         text = get_aff_stat()
+    elif '群发' in msg.content:
+        text = msg.content
     else:
         #text = '还没实现event[%s]哦' % str(msg.event)
         text = ''
