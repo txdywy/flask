@@ -1,0 +1,1 @@
+python -c 'import ticket as t; t.ti(1,1)'
