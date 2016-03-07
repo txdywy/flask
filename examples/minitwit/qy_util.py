@@ -85,7 +85,7 @@ def reply(data, msg_signature, timestamp, nonce):
     elif 'aff' == msg.event_key:
         text = get_aff_stat()
     elif '群发' in msg.content:
-        text = msg.content
+        text = post(msg.content).text
     else:
         #text = '还没实现event[%s]哦' % str(msg.event)
         text = ''
