@@ -27,7 +27,7 @@ CN_STOCK = {'海天': 'sh603288',
             #'海欣': 'sz002702',
             }
             
-US_BASE = { 'fb': 100,
+US_BASES = { 'fb': 100,
             'msci': 63,
             'jd': 22.3,
             'app': 93.5,
@@ -45,18 +45,21 @@ US_BASE = { 'fb': 100,
           }
 
 SINA_STOCK_URL = 'http://hq.sinajs.cn/list=%s'
-
+US_CASH = 23669
+US_BASE = 23000
+CN_CASH = 129516
+CN_BASE = 121147 + 10000 + 100 + 5 * 1
 
 def get_us_stock():
     r = requests.get(SINA_STOCK_URL % ','.join(['gb_' + US_STOCK[i] for i in US_STOCK])).text.strip()
     r = r.split(';')[:-1]
     r = [i.split('"')[1].split(',')[:] for i in r]
     r = ['%s: \n#[$%s]\n#%s+%s \n#%s-%s\n*[$%s] %s\n*%s+%s \n*%s-%s\n' % (i[0], i[1], i[7], _diff(i[1], i[7]), i[6], _diff(i[6], i[1]), i[21], _diff_sym(i[21], i[1]), i[7], _diff(i[21], i[7]), i[6], _diff(i[6], i[21])) for i in r]
-    b = [US_BASE[k] for k in US_BASE]
+    b = [US_BASES[k] for k in US_BASES]
     r = zip (r, b)
     r = [a + 'Base: [%s]\n' % b for a, b in r]
     r = '\n'.join(r)
-    return r + '\n' + str(datetime.datetime.now())[:19] + '\n' + '#盘内/终\n*盘前/后'.decode('utf8') + '\n[B:23772/23000]'
+    return r + '\n' + str(datetime.datetime.now())[:19] + '\n' + '#盘内/终\n*盘前/后'.decode('utf8') + '\n[B:%s/%s][%+d]' % (US_CASH, US_BASE, US_CASH-US_BASE)
 
 
 def get_us_in_stock():
@@ -65,13 +68,13 @@ def get_us_in_stock():
     r = [i.split('"')[1].split(',')[:] for i in r]
     a = r
     r = ['%s: \n#[$%s]\n#%s+%s \n#%s-%s\n*[$%s] %s\n*%s+%s \n*%s-%s\n' % (i[0], i[1], i[7], _diff(i[1], i[7]), i[6], _diff(i[6], i[1]), i[21], _diff_sym(i[21], i[1]), i[7], _diff(i[21], i[7]), i[6], _diff(i[6], i[21])) for i in r] 
-    b = [US_BASE[k] for k in US_BASE]
+    b = [US_BASES[k] for k in US_BASES]
     r = zip (r, b, a)
     r = [a + 'Base: [%s]\n' % b for a, b, c in r if _check_in(c[1], c[6], b)]
     r = '\n'.join(r)
     if not r:
         r = '没有符合要求的哟\n静候时机\n'
-    return r + '\n' + str(datetime.datetime.now())[:19] + '\n' + '#盘内/终\n*盘前/后'.decode('utf8') + '\n[B:23772/23000]'
+    return r + '\n' + str(datetime.datetime.now())[:19] + '\n' + '#盘内/终\n*盘前/后'.decode('utf8') + '\n[B:%s/%s][%+d]' % (US_CASH, US_BASE, US_CASH-US_BASE)
 
 
 def _check_in(v1, v2, base):
@@ -93,7 +96,7 @@ def get_one_us_stock(k):
     r = r.split('"')[1].split(',')[:]
     i = r
     r = '%s: \n#[$%s]\n#%s+%s \n#%s-%s\n*[$%s] %s\n*%s+%s \n*%s-%s\n' % (i[0], i[1], i[7], _diff(i[1], i[7]),     i[6], _diff(i[6], i[1]), i[21], _diff_sym(i[21], i[1]), i[7], _diff(i[21], i[7]), i[6], _diff(i[6], i[21]))
-    return r + 'Base: %s' % US_BASE[k] + '\n\n' + str(datetime.datetime.now())[:19] + '\n' + '#盘内/终\n*盘前/后'.decode('utf8')
+    return r + 'Base: %s' % US_BASES[k] + '\n\n' + str(datetime.datetime.now())[:19] + '\n' + '#盘内/终\n*盘前/后'.decode('utf8')
 
 
 
@@ -112,7 +115,7 @@ def get_cn_stock():
     r = [i.split('"')[1].split(',')[:] for i in r]
     r = ['%s: \n%s\n%s+%s \n%s-%s\n' % (i[0], i[3], i[5], _diff(i[3], i[5]), i[4], _diff(i[4], i[3])) for i in r]
     r = '\n'.join(r)
-    return r + '\n' + str(datetime.datetime.now())[:19] + '\n[B:113714/121147]'
+    return r + '\n' + str(datetime.datetime.now())[:19] + '\n[B:%s/%s][%+d]' % (CN_CASH, CN_BASE, CN_CASH-CN_BASE)
 
 
 def get_one_cn_stock(k):
