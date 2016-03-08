@@ -59,7 +59,7 @@ def get_us_stock():
     r = zip (r, b)
     r = [a + 'Base: [%s]\n' % b for a, b in r]
     r = '\n'.join(r)
-    return r + '\n' + str(datetime.datetime.now())[:19] + '\n' + '#盘内/终\n*盘前/后'.decode('utf8') + '\n[B:%s/%s]' % (US_CASH, US_BASE)
+    return r + '\n' + str(datetime.datetime.now())[:19] + '\n' + '#盘内/终\n*盘前/后'.decode('utf8') + '\n[B:%s/%s][%+d]' % (US_CASH, US_BASE, US_CASH-US_BASE)
 
 
 def get_us_in_stock():
@@ -74,7 +74,7 @@ def get_us_in_stock():
     r = '\n'.join(r)
     if not r:
         r = '没有符合要求的哟\n静候时机\n'
-    return r + '\n' + str(datetime.datetime.now())[:19] + '\n' + '#盘内/终\n*盘前/后'.decode('utf8') + '\n[B:%s/%s]' % (US_CASH, US_BASE)
+    return r + '\n' + str(datetime.datetime.now())[:19] + '\n' + '#盘内/终\n*盘前/后'.decode('utf8') + '\n[B:%s/%s][%+d]' % (US_CASH, US_BASE, US_CASH-US_BASE)
 
 
 def _check_in(v1, v2, base):
@@ -115,7 +115,7 @@ def get_cn_stock():
     r = [i.split('"')[1].split(',')[:] for i in r]
     r = ['%s: \n%s\n%s+%s \n%s-%s\n' % (i[0], i[3], i[5], _diff(i[3], i[5]), i[4], _diff(i[4], i[3])) for i in r]
     r = '\n'.join(r)
-    return r + '\n' + str(datetime.datetime.now())[:19] + '\n[B:%s/%s]' % (CN_CASH, CN_BASE)
+    return r + '\n' + str(datetime.datetime.now())[:19] + '\n[B:%s/%s][%+d]' % (CN_CASH, CN_BASE, US_CASH-US_BASE)
 
 
 def get_one_cn_stock(k):
