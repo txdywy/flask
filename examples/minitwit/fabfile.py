@@ -34,7 +34,7 @@ HOST_ALANCER = ['sushi', 'noodle', 'udon'] # 'polo' retired
 HOST_VPN = ['tempura', 'ramen', 'donut', 'nori' , 'mm', 'rib', 'steak']
 HOST_APPFLOOD = ['pre3-01', 'af_test', 'test3', 'sandbox', 'pre3-jp']
 HOST_ALL = HOST_DEV + HOST_ALANCER + HOST_VPN + HOST_APPFLOOD
-HOST_TBK = HOST_DEV + HOST_VPN
+HOST_TBK = HOST_DEV + HOST_VPN + ['sushi', 'noodle']
 
 
 HOST_LAUNCH_DATE = {
@@ -44,12 +44,12 @@ HOST_LAUNCH_DATE = {
 }
 
 def hls():
-    print 'HOST_DEV: ' + ','.join(HOST_DEV)
-    print 'HOST_ALANCER: ' + ','.join(HOST_ALANCER)
-    print 'HOST_VPN: ' + ','.join(HOST_VPN)
-    print 'HOST_APPFLOOD: ' + ','.join(HOST_APPFLOOD)
-    print 'HOST_ALL: ' + ','.join(HOST_ALL)
-    print 'HOST_TBK: ' + ','.join(HOST_TBK)
+    print 'HOST_DEV[%s]: ' % len(HOST_DEV) + ','.join(HOST_DEV)
+    print 'HOST_ALANCER[%s]: ' % len(HOST_ALANCER)+ ','.join(HOST_ALANCER)
+    print 'HOST_VPN[%s]: ' % len(HOST_VPN) + ','.join(HOST_VPN)
+    print 'HOST_APPFLOOD[%s]: ' % len(HOST_APPFLOOD) + ','.join(HOST_APPFLOOD)
+    print 'HOST_ALL[%s]: ' % len(HOST_ALL) + ','.join(HOST_ALL)
+    print 'HOST_TBK[%s]: ' % len(HOST_TBK) + ','.join(HOST_TBK)
 
 
 def timeout():
