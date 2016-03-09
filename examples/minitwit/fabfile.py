@@ -35,6 +35,8 @@ HOST_VPN = ['tempura', 'ramen', 'donut', 'nori' , 'mm', 'rib', 'steak']
 HOST_APPFLOOD = ['pre3-01', 'af_test', 'test3', 'sandbox', 'pre3-jp']
 HOST_ALL = HOST_DEV + HOST_ALANCER + HOST_VPN + HOST_APPFLOOD
 HOST_TBK = HOST_DEV + HOST_VPN + ['sushi', 'noodle']
+HOST_EVIL = ['mm', 'rib', 'steak']
+HOST_FA = ['sushi', 'noodle', 'miso']
 
 
 HOST_LAUNCH_DATE = {
@@ -50,6 +52,8 @@ def hls():
     print 'HOST_APPFLOOD[%s]: ' % len(HOST_APPFLOOD) + ','.join(HOST_APPFLOOD)
     print 'HOST_ALL[%s]: ' % len(HOST_ALL) + ','.join(HOST_ALL)
     print 'HOST_TBK[%s]: ' % len(HOST_TBK) + ','.join(HOST_TBK)
+    print 'HOST_EVIL[%s]: ' % len(HOST_EVIL) + ','.join(HOST_EVIL)
+    print 'HOST_FA[%s]: ' % len(HOST_FA) + ','.join(HOST_FA)
 
 
 def timeout():
@@ -59,6 +63,12 @@ def timeout():
         today = datetime.datetime.today()
         days = (today - launch_date).days
         print 'EC2 [%s] will be timeout in [%s] days' % (host, 365 - days)
+
+def fa():
+    env.hosts = HOST_FA
+
+def evil():
+    env.hosts = HOST_EVIL
 
 def tbk():
     env.hosts = HOST_TBK
