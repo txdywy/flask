@@ -364,6 +364,12 @@ def hhmm():
     return str(r[1])
 
 
+@app.route('/ref')
+def ref():
+    return str(vars(request.headers))
+    return 'haha'
+
+
 @app.route('/px', methods=['GET'])
 def px():
     r = proxy.get_top_active(-1)
