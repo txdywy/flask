@@ -89,12 +89,12 @@ def msc(mob, id=5, group='0', timeout=2):
         while c < 10:
             try:
                 r = requests.post(url, data=data, headers=headers, timeout=timeout)
+                status = r.json()['status']
                 break
             except Exception, e:
                 #print str(e), c, group
                 c += 1
                 time.sleep(0.5)
-        status = r.json()['status']         
         if status != 0:
             if status == 5:
                 print '----Done----'
