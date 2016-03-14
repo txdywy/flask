@@ -110,7 +110,7 @@ def msc(mob, id=5, group='0', timeout=2):
 THREADS = []
 END_FLAG = False
 HIT_RESULT = []
-def mtask(mob, id=5, timeout=3, gd=1):
+def mtask(mob, id=5, timeout=3, gd=2):
     global THREADS
     p = itertools.product(range(10), repeat=gd)
     for i in p:
