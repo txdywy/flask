@@ -49,8 +49,9 @@ SINA_STOCK_URL = 'http://hq.sinajs.cn/list=%s'
 US_CASH = 23669
 US_BASE = 23000
 CN_CASH = 117057
-CN_BASE = 100000 + 18000
-#Fri Mar 11 13:10:04 CST 2016
+CN_BASE = 100000
+CN_PROFIT = 1343.35
+#Mon Mar 14 10:33:43 CST 2016
 
 def get_us_stock():
     r = requests.get(SINA_STOCK_URL % ','.join(['gb_' + US_STOCK[i] for i in US_STOCK])).text.strip()
@@ -117,7 +118,7 @@ def get_cn_stock():
     r = [i.split('"')[1].split(',')[:] for i in r]
     r = ['%s: \n%s\n%s+%s \n%s-%s\n' % (i[0], i[3], i[5], _diff(i[3], i[5]), i[4], _diff(i[4], i[3])) for i in r]
     r = '\n'.join(r)
-    return r + '\n' + str(datetime.datetime.now())[:19] + '\n[B:%s/%s][%+d]' % (CN_CASH, CN_BASE, CN_CASH-CN_BASE)
+    return r + '\n' + str(datetime.datetime.now())[:19] + '\n[B:%s/%s][%+d]' % (CN_CASH, CN_BASE, CN_CASH-CN_BASE) + '\n[P:%s]' % CN_PROFIT
 
 
 def get_one_cn_stock(k):
