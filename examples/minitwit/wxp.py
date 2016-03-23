@@ -1,10 +1,36 @@
 # -*- coding: utf-8 -*-
 import requests
 import json
+from functools import wraps
 
-def p():
-    openid = "o7VbEjuienGcLf33ZQ-V8bk0g67Q"
-    openid = "o7VbEjtmpDA2YpVB3osiogcH6cTw"
+OPEN_ID = ["o7VbEjuienGcLf33ZQ-V8bk0g67Q",
+           "o7VbEjtmpDA2YpVB3osiogcH6cTw",
+           ]
+
+
+def main():
+    for i, openid in enumerate(OPEN_ID):
+        print '-----------%s------------' % i
+        p(openid)
+
+
+def ex(default=0):
+    def wrapper(fn):
+        @wraps(fn)
+        def func(*args, **kwds):
+            try:
+                r = fn(*args, **kwds)
+            except Exception, e:
+                r = default
+                print '[%s][%s]' % (fn.__name__, str(e))
+                #print traceback.format_exc()
+            return r
+        return func
+    return wrapper
+
+
+@ex("error")
+def p(openid="o7VbEjuienGcLf33ZQ-V8bk0g67Q"):
     host = "http://wx83214.weixiaoxin.com/Vipvote/vote?wid=83214&id=4753&openid={openid}".format(openid=openid)
     para = {}#{"wid": "83214",
             #"id": "4753",
@@ -25,8 +51,8 @@ def p():
                }
 
     r = requests.post(url=host, data=data, params=para, headers=headers)
-    print r.text
+    print len(r.text)
     a = json.loads(r.text)
     for k in a:
-        print k, a[k]
+        print openid, k, a[k]
     return r
