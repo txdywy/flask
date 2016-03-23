@@ -2,9 +2,11 @@
 import requests
 import json
 from functools import wraps
+import time
 
 OPEN_ID = ["o7VbEjuienGcLf33ZQ-V8bk0g67Q",
            "o7VbEjtmpDA2YpVB3osiogcH6cTw",
+           "o7VbEjh-r-f9-TTtOwbZXXcgMITY",
            ]
 
 
@@ -32,6 +34,7 @@ def ex(default=0):
 @ex("error")
 def p(openid="o7VbEjuienGcLf33ZQ-V8bk0g67Q"):
     host = "http://wx83214.weixiaoxin.com/Vipvote/vote?wid=83214&id=4753&openid={openid}".format(openid=openid)
+    ts = int(time.time())
     para = {}#{"wid": "83214",
             #"id": "4753",
             #"openid": "o7VbEjuienGcLf33ZQ-V8bk0g67Q",
@@ -41,7 +44,7 @@ def p(openid="o7VbEjuienGcLf33ZQ-V8bk0g67Q"):
             }
     headers = {"X-Requested-With": "XMLHttpRequest",
                "User-Agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 9_2_1 like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Mobile/13D15 MicroMessenger/6.3.15 NetType/WIFI Language/zh_CN",
-               "Cookie": "Hm_lpvt_50e8608aef835699234de1e805173bbd=1458712338; Hm_lvt_50e8608aef835699234de1e805173bbd=1458712333; PHPSESSID=9k1rr2jk43qict1725qpsj5fh3; c_4753=o8qVGuD1L07_kBZ5IhTWj7bhxMnE; vipvopenid_83214_4753={openid}; vipvoteopenid_83214_4753={openid}".format(openid=openid),
+               "Cookie": "Hm_lpvt_50e8608aef835699234de1e805173bbd={ts}; Hm_lvt_50e8608aef835699234de1e805173bbd={ts}; PHPSESSID=9k1rr2jk43qict1725qpsj5fh3; c_4753=o8qVGuD1L07_kBZ5IhTWj7bhxMnE; vipvopenid_83214_4753={openid}; vipvoteopenid_83214_4753={openid}".format(openid=openid, ts=ts),
                "Accept": "application/json, text/javascript, */*; q=0.01",
                "Accept-Encoding": "gzip, deflate",
                "Accept-Language": "zh-cn",
