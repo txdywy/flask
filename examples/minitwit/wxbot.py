@@ -684,7 +684,11 @@ def check_redbag(msg, msg_type):
 
 def heartBeatLoop():
     while True:
-        ret, selector = syncCheck()
+        try:
+            ret, selector = syncCheck()
+        except Exception, e:
+            print ('!!!!!!!!!!!!!' + str(e))
+            continue
         if ret in ('1100', '1101'):
             print('Err Code %s and exit system.' % ret)
             sys.exit(0)
