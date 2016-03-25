@@ -46,9 +46,9 @@ US_BASES = { 'fb': 100,
           }
 
 SINA_STOCK_URL = 'http://hq.sinajs.cn/list=%s'
-US_CASH = 24177
+US_CASH = 24130
 US_BASE = 23000
-CN_CASH = 100000 - 54234
+CN_CASH = 45837.64
 CN_BASE = 100000 - 54234
 CN_PROFIT = 1343.35
 #Mon Mar 14 10:33:43 CST 2016
