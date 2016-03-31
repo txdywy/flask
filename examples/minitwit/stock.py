@@ -46,7 +46,7 @@ US_BASES = { 'fb': 100,
           }
 
 SINA_STOCK_URL = 'http://hq.sinajs.cn/list=%s'
-US_CASH = 24130
+US_CASH = 24499
 US_BASE = 23000
 CN_CASH = 46013 - 247
 CN_BASE = 100000 - 54234
@@ -62,7 +62,7 @@ def get_us_stock():
     r = zip (r, b)
     r = [a + 'Base: [%s]\n' % b for a, b in r]
     r = '\n'.join(r)
-    return r + '\n' + str(datetime.datetime.now())[:19] + '\n' + '#盘内/终\n*盘前/后'.decode('utf8') + '\n[B:%s/%s][%+d]' % (US_CASH, US_BASE, US_CASH-US_BASE)
+    return r + '\n' + str(datetime.datetime.now())[:19] + '\n' + '#盘内/终\n*盘前/后'.decode('utf8') + '\n[B:%s/%s][%+d][%+.2f%%]' % (US_CASH, US_BASE, US_CASH-US_BASE, (US_CASH-US_BASE)*100.0/US_BASE)
 
 
 def get_us_in_stock():
