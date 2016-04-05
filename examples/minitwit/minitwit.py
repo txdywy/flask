@@ -370,6 +370,11 @@ def ref():
     return 'haha'
 
 
+@app.route('/red')
+def red():
+    return redirect("http://wxbot.ml/ref", code=302)
+
+
 @app.route('/px', methods=['GET'])
 def px():
     r = proxy.get_top_active(-1)
