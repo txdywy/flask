@@ -30,20 +30,28 @@ def upp():
     run('uptime -p')
 
 HOST_DEV = ['miso', 'airbb', 'nn', 'mm']
-HOST_ALANCER = ['sushi', 'noodle', 'udon'] # 'polo' retired
-HOST_VPN = ['tempura', 'ramen', 'donut', 'nori' , 'mm', 'rib', 'steak']
+HOST_ALANCER = ['udon', 'natto'] # ['polo', 'sushi', 'noodle'] retired
+HOST_VPN = ['nori' , 'mm', 'rib', 'steak'] # 'tempura', 'ramen', 'donut' retired
 HOST_APPFLOOD = ['pre3-01', 'af_test', 'test3', 'sandbox', 'pre3-jp']
 HOST_ALL = HOST_DEV + HOST_ALANCER + HOST_VPN + HOST_APPFLOOD
-HOST_TBK = HOST_DEV + HOST_VPN + ['sushi', 'noodle']
+HOST_TBK = HOST_DEV + HOST_VPN
 HOST_EVIL = ['mm', 'rib', 'steak']
-HOST_FA = ['sushi', 'noodle', 'miso', 'nn', 'ramen']
+HOST_FA = ['miso', 'nn']
 
 
 HOST_LAUNCH_DATE = {
     'udon': datetime.datetime(2015, 6, 5),
     'sushi': datetime.datetime(2015, 4, 6),
     'noodle': datetime.datetime(2015, 4, 7),
+    'natto': datetime.datetime(2015, 5, 23),
 }
+
+
+HOST_INDEX = {'01': 'rib',   #kr
+              '02': 'steak', #kr
+              '03': 'natto', #jp
+             }
+
 
 def hls():
     print 'HOST_DEV[%s]: ' % len(HOST_DEV) + ','.join(HOST_DEV)
