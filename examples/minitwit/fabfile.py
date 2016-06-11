@@ -43,7 +43,7 @@ HOST_LAUNCH_DATE = {
     'udon': datetime.datetime(2015, 6, 5),
     'sushi': datetime.datetime(2015, 4, 6),
     'noodle': datetime.datetime(2015, 4, 7),
-    'natto': datetime.datetime(2015, 5, 23),
+    'natto': datetime.datetime(2016, 5, 23),
 }
 
 
