@@ -31,7 +31,7 @@ def upp():
 
 HOST_DEV = ['miso', 'airbb', 'nn', 'mm']
 HOST_ALANCER = ['natto'] # ['polo', 'sushi', 'noodle', 'udon'] retired
-HOST_VPN = ['mm', 'rib', 'steak'] # ['tempura', 'ramen', 'donut', 'nori',] retired
+HOST_VPN = ['mm', 'rib', 'steak', 'tonkatsu', ] # ['tempura', 'ramen', 'donut', 'nori',] retired
 HOST_APPFLOOD = ['pre3-01', 'af_test', 'test3', 'sandbox', 'pre3-jp']
 HOST_ALL = HOST_DEV + HOST_ALANCER + HOST_VPN + HOST_APPFLOOD
 HOST_TBK = HOST_DEV + HOST_VPN
@@ -44,12 +44,14 @@ HOST_LAUNCH_DATE = {
     'sushi': datetime.datetime(2015, 4, 6),
     'noodle': datetime.datetime(2015, 4, 7),
     'natto': datetime.datetime(2016, 5, 23),
+    'tonkatsu': datetime.datetime(2016, 6, 13),
 }
 
 
-HOST_INDEX = {'01': 'rib',   #kr
-              '02': 'steak', #kr
-              '03': 'natto', #jp
+HOST_INDEX = {'01': 'rib',      #kr
+              '02': 'steak',    #kr
+              '03': 'natto',    #jp
+              '04': 'tonkatsu', #jp
              }
 
 
