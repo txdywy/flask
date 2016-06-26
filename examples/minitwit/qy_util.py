@@ -193,3 +193,7 @@ def post(text, appid=2, touser=None, toparty=None):
 
 def friday_task():
     post('请大家今天下班前记得提交自己的工作周报哦!', toparty=['5', '7', '9'])
+
+
+def monday_task():
+    post('请上周五忘了提交周报的同学补交哦......', toparty=['5', '7', '9'])
