@@ -165,6 +165,9 @@ PARTY_MAP = {"2": "Appflood",
              "8": "OP",
              "9": "FrontX",
              "10": "DevOps",
+             "11": "HR",
+             "12": "Data",
+             "13": "AntiSpam",
              }
 def post(text, appid=2, touser=None, toparty=None):
     """
