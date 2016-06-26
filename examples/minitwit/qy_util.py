@@ -197,3 +197,7 @@ def friday_task():
 
 def monday_task():
     post('请上周五忘了提交周报的同学补交哦......', toparty=['5', '7', '9'])
+
+
+def saturday_task():
+    post('友情提示提交周报:)', toparty=['5', '7', '9'])
