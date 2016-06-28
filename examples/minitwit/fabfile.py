@@ -45,6 +45,7 @@ HOST_LAUNCH_DATE = {
     'noodle': datetime.datetime(2015, 4, 7),
     'natto': datetime.datetime(2016, 5, 23),
     'tonkatsu': datetime.datetime(2016, 6, 13),
+    'curry': datetime.datetime(2016, 6, 27),
 }
 
 
@@ -52,6 +53,7 @@ HOST_INDEX = {'01': 'rib',      #kr
               '02': 'steak',    #kr
               '03': 'natto',    #jp
               '04': 'tonkatsu', #jp
+              '05': 'curry',    #in
              }
 
 
