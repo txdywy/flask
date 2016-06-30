@@ -126,7 +126,7 @@ def get_cn_stock():
     r = [i.split('"')[1].split(',')[:] for i in r]
     r = ['%s: \n%s\n%s+%s \n%s-%s\n' % (i[0], i[3], i[5], _diff(i[3], i[5]), i[4], _diff(i[4], i[3])) for i in r]
     r = '\n'.join(r)
-    return r + '\n' + str(datetime.datetime.now())[:19] + '\n[B:%s/%s][%+d]' % (CN_CASH, CN_BASE, CN_CASH-CN_BASE) + '\n[P:%s]' % CN_PROFIT
+    return r + '\n' + str(datetime.datetime.now())[:19] + '\n[B:%s/%s][%+d]' % (CN_CASH, CN_BASE, CN_CASH-CN_BASE) + '\n[P:%s]' % CN_PROFIT + '\n[PR:%+.2f%%]' % (CN_PROFIT * 100.0/CN_BASE)
 
 
 def get_one_cn_stock(k):
