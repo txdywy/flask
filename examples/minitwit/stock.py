@@ -58,8 +58,8 @@ CN_CASH = 46013 - 247 + 54234 + 30000
 #Wed Apr 20 13:52:49 CST 2016
 CN_BASE = 100000 - 54234 + 54234 + 30000 
 #Wed Apr 20 13:52:49 CST 2016
-CN_PROFIT = 1343.35 + 247
-#Mon Mar 14 10:33:43 CST 2016
+CN_PROFIT = 1343.35 + 247 + 5000
+#Fri Jul  1 09:51:23 CST 2016
 
 def get_us_stock():
     r = requests.get(SINA_STOCK_URL % ','.join(['gb_' + US_STOCK[i] for i in US_STOCK])).text.strip()
