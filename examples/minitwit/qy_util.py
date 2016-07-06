@@ -208,3 +208,7 @@ def saturday_task():
 
 def thursday_task():
     post('请本周五下午分享的同学给大家提前发布一下分享内容,邮件请抄送appflood_engineer/pm_appflood/sa/data@papayamobile.com', toparty=['5', '7', '9'])
+
+
+def fmp_cr():
+    post('(e)FMP同学今天code review提醒?', toparty=['5'])
