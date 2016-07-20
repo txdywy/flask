@@ -372,14 +372,23 @@ def ref():
 
 @app.route('/red')
 def red():
-    return redirect("http://wxbot.ml/ref", code=302)
+    r = redirect("http://atracking.appflood.com", code=302)
+    k = str(datetime.now())
+    rp = make_response(r)
+    rp.set_cookie('red',value=k)
+    rp.set_etag(k)
+    return rp
 
 
 @app.route('/px', methods=['GET'])
 def px():
     r = proxy.get_top_active(-1)
     r = r.replace('\n', '</br>')
-    return r
+    rp = make_response(r)
+    k = str(time.time())
+    rp.set_etag(k)
+    rp.set_cookie('cookie_name',value=k)
+    return rp
 
 SIO_HOSTS = ['wxbot.ga:1233']
 @app.route('/tws', methods=['GET'])
