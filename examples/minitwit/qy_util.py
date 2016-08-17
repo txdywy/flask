@@ -212,4 +212,4 @@ def thursday_task():
 
 
 def fmp_cr():
-    post('(e)FMP同学今天code review提醒? [调查:大家是否认同code review的时候应该认真高效不带手机?]', toparty=['5'])
+    post('Facebook项目同学今天code review提醒O(∩_∩)O哈哈~', toparty=['5'])
