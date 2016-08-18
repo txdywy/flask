@@ -29,20 +29,20 @@ def ups():
 def upp():
     run('uptime -p')
 
-HOST_DEV = ['miso', 'airbb', 'nn', 'mm']
+HOST_DEV = ['airbb', 'nn', 'mm'] # ['miso', ] retired
 HOST_ALANCER = ['natto'] # ['polo', 'sushi', 'noodle', 'udon'] retired
 HOST_VPN = ['mm', 'rib', 'steak', 'tonkatsu', ] # ['tempura', 'ramen', 'donut', 'nori',] retired
 HOST_APPFLOOD = ['pre3-01', 'af_test', 'test3', 'sandbox', 'pre3-jp']
 HOST_ALL = HOST_DEV + HOST_ALANCER + HOST_VPN + HOST_APPFLOOD
 HOST_TBK = HOST_DEV + HOST_VPN
 HOST_EVIL = ['mm', 'rib', 'steak']
-HOST_FA = ['miso', 'nn']
+HOST_FA = ['nn'] # ['miso', ] retired
 
 
 HOST_LAUNCH_DATE = {
-    'udon': datetime.datetime(2015, 6, 5),
-    'sushi': datetime.datetime(2015, 4, 6),
-    'noodle': datetime.datetime(2015, 4, 7),
+    #'udon': datetime.datetime(2015, 6, 5),
+    #'sushi': datetime.datetime(2015, 4, 6),
+    #'noodle': datetime.datetime(2015, 4, 7),
     'airbb': datetime.datetime(2015, 8, 26),
     'nn': datetime.datetime(2015, 8, 29),
     'mm': datetime.datetime(2015, 8, 31),
