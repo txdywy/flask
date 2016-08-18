@@ -46,6 +46,9 @@ HOST_LAUNCH_DATE = {
     'airbb': datetime.datetime(2015, 8, 26),
     'nn': datetime.datetime(2015, 8, 29),
     'mm': datetime.datetime(2015, 8, 31),
+    #####-----------------------------------#####
+    'rib': datetime.datetime(2016, 2, 16),
+    'steak': datetime.datetime(2016, 2, 16),
     'natto': datetime.datetime(2016, 5, 23),
     'tonkatsu': datetime.datetime(2016, 6, 13),
     'curry': datetime.datetime(2016, 6, 27),
