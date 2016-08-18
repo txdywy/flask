@@ -1,0 +1,1 @@
+openssl enc -des -e -a -in ~/.ssh/config -out ssh_con.enc
