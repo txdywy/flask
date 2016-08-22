@@ -1,0 +1,5 @@
+#download
+rsync -avz ubuntu@server:/path/file ./path/file --Progress
+
+#upload
+rsync -avz ./. ubuntu@server:/path/file --progress
