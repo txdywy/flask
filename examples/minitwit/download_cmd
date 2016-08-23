@@ -1,0 +1,4 @@
+axel -n 9 "https://222.186.128.146/cdn.baidupcs.com/file/87671d01a637b83e5977353e7?xcode=45abddad=1765086594250528-727172238&time=1380794627&sign=FDTAXER-DCb740ccc551u3np1Tc%3D&&fn=tool.zip&wshc_siphost=ipdbm"
+
+
+wget -c -O onlyone.tp "https://222.186.128.160/cdn.baidupcs.com/file/564f7b2886c01e5314463b33eb111054?xcode=00497548280707571-250528-148753LpXzLkD&to=cb&f7356&sh=1&fn=BoA%20-%20%A3%29.tp&wshc_tag=0&wsiphost=ipdbm"
