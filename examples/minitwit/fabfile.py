@@ -55,6 +55,7 @@ HOST_LAUNCH_DATE = {
     'koala': datetime.datetime(2016, 8, 18),
     'ham': datetime.datetime(2016, 8, 18),
     'wiener': datetime.datetime(2016, 9, 1),
+    'crab': datetime.datetime(2016, 9, 1),
 }
 
 
@@ -66,6 +67,7 @@ HOST_INDEX = {'01': 'rib',      #kr@yahoo
               '06': 'koala',    #au@yahoo
               '07': 'ham',      #us-east@yahoo
               '08': 'wiener',   #eu-frank@outlook
+              '09': 'crab',     #us-west-cali@outlook
              }
 
 
