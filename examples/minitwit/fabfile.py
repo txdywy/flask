@@ -54,6 +54,7 @@ HOST_LAUNCH_DATE = {
     'curry': datetime.datetime(2016, 6, 27),
     'koala': datetime.datetime(2016, 8, 18),
     'ham': datetime.datetime(2016, 8, 18),
+    'wiener': datetime.datetime(2016, 9, 1),
 }
 
 
@@ -64,6 +65,7 @@ HOST_INDEX = {'01': 'rib',      #kr
               '05': 'curry',    #in
               '06': 'koala',    #au
               '07': 'ham',      #us-east
+              '08': 'wiener',   #eu-frank
              }
 
 
