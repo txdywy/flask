@@ -58,14 +58,14 @@ HOST_LAUNCH_DATE = {
 }
 
 
-HOST_INDEX = {'01': 'rib',      #kr
-              '02': 'steak',    #kr
-              '03': 'natto',    #jp
-              '04': 'ton',      #jp
-              '05': 'curry',    #in
-              '06': 'koala',    #au
-              '07': 'ham',      #us-east
-              '08': 'wiener',   #eu-frank
+HOST_INDEX = {'01': 'rib',      #kr@yahoo
+              '02': 'steak',    #kr@yahoo
+              '03': 'natto',    #jp@yahoo
+              '04': 'ton',      #jp@yahoo
+              '05': 'curry',    #in@yahoo
+              '06': 'koala',    #au@yahoo
+              '07': 'ham',      #us-east@yahoo
+              '08': 'wiener',   #eu-frank@outlook
              }
 
 
