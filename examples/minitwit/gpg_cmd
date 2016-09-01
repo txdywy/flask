@@ -1,0 +1,8 @@
+sudo apt-get install rng-tools
+sudo rngd -f -r /dev/urandom
+
+gpg --gen-key
+gpg --list-secret-keys --keyid-format LONG
+gpg --armor --export  xxxxxxxx
+git config --global user.signingkey  xxxxxxxx
+
