@@ -5,4 +5,5 @@ gpg --gen-key
 gpg --list-secret-keys --keyid-format LONG
 gpg --armor --export  xxxxxxxx
 git config --global user.signingkey  xxxxxxxx
+git config --global commit.gpgsign true
 
