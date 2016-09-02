@@ -31,7 +31,7 @@ def upp():
 
 HOST_DEV = [] # ['miso', 'airbb', 'nn', 'mm', ] retired
 HOST_ALANCER = ['natto'] # ['polo', 'sushi', 'noodle', 'udon'] retired
-HOST_VPN = ['rib', 'steak', 'natto', 'ton', 'curry', 'koala', 'ham'] # ['tempura', 'ramen', 'donut', 'nori', 'mm', ] retired
+HOST_VPN = ['rib', 'steak', 'natto', 'ton', 'curry', 'koala', 'ham', 'wiener', 'crab'] # ['tempura', 'ramen', 'donut', 'nori', 'mm', ] retired
 HOST_APPFLOOD = ['pre3-01', 'af_test', 'test3', 'sandbox', 'pre3-jp']
 HOST_ALL = HOST_DEV + HOST_ALANCER + HOST_VPN + HOST_APPFLOOD
 HOST_TBK = HOST_DEV + HOST_VPN
@@ -56,6 +56,8 @@ HOST_LAUNCH_DATE = {
     'ham': datetime.datetime(2016, 8, 18),
     'wiener': datetime.datetime(2016, 9, 1),
     'crab': datetime.datetime(2016, 9, 1),
+    'laksa': datetime.datetime(2016, 9, 2),
+    'stew': datetime.datetime(2016, 9, 2),
 }
 
 
@@ -67,7 +69,9 @@ HOST_INDEX = {'01': 'rib',      #kr@yahoo
               '06': 'koala',    #au@yahoo
               '07': 'ham',      #us-east@yahoo
               '08': 'wiener',   #eu-frank@outlook
-              '09': 'crab',     #us-west-cali@outlook
+              '09': 'crab',     #us-west-cal@outlook
+              '10': 'laksa',    #sg@outlook
+              '11': 'stew',     #eu-ire@outlook
              }
 
 
