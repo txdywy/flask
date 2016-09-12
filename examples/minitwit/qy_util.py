@@ -203,7 +203,8 @@ def monday_task():
 
 
 def saturday_task():
-    post('[提醒]友情提示提交周报:)', toparty=['5', '7', '9', '11', '13', '14'])
+    pass
+    #post('[提醒]友情提示提交周报:)', toparty=['5', '7', '9', '11', '13', '14'])
 
 
 def thursday_task():
