@@ -213,4 +213,4 @@ def thursday_task():
 
 
 def fmp_cr():
-    post('[提醒]Facebook项目同学今天code reviewO(∩_∩)O哈哈~', toparty=['5'])
+    post('[提醒]Facebook项目同学今天code reviewO(∩_∩)O~ Phabricator工具用起来!', toparty=['5'])
