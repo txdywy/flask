@@ -199,7 +199,7 @@ def friday_task():
 
 
 def monday_task():
-    post('[提醒]请上周五忘了提交周报的同学补交哦......', toparty=['5', '7', '9', '11', '13', '14'])
+    post('[提醒]请各组LEADER提交上周项目周报', toparty=['18'])
 
 
 def saturday_task():
