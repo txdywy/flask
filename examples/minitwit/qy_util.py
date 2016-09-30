@@ -10,6 +10,7 @@ from pprint import pprint
 import requests
 import time
 import pytz
+import stock
 tz = pytz.timezone('Asia/Shanghai')
 try:
     from config import QY_KEY, QY_TOKEN, QY_CORPID, QY_SECRET
@@ -139,6 +140,10 @@ def hhmm_reply(data, msg_signature, timestamp, nonce):
         text = get_us_stock()
     elif 'cn' == msg.event_key:
         text = get_cn_stock()
+    elif 'haitian' == msg.event_key:
+        text = stock.get_one_cn_stock('海天')
+    elif 'vcel' == msg.event_key:
+        text = stock.get_one_us_stock('vcel')
     else:
         #text = '还没实现event[%s]哦' % str(msg.event)
         text = ''
