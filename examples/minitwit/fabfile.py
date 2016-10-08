@@ -37,7 +37,7 @@ def ip():
 
 HOST_DEV = [] # ['miso', 'airbb', 'nn', 'mm', ] retired
 HOST_ALANCER = ['natto'] # ['polo', 'sushi', 'noodle', 'udon'] retired
-HOST_VPN = ['rib', 'steak', 'natto', 'ton', 'curry', 'koala', 'ham', 'wiener', 'crab', 'bbq', 'pie', 'stew'] # ['tempura', 'ramen', 'donut', 'nori', 'mm', ] retired
+HOST_VPN = ['rib', 'steak', 'natto', 'ton', 'curry', 'koala', 'ham', 'wiener', 'crab', 'laksa', 'bbq', 'pie', 'stew'] # ['tempura', 'ramen', 'donut', 'nori', 'mm', ] retired
 HOST_APPFLOOD = ['pre3-01', 'af_test', 'test3', 'sandbox', 'pre3-jp']
 HOST_ALL = HOST_DEV + HOST_ALANCER + HOST_VPN + HOST_APPFLOOD
 HOST_TBK = HOST_DEV + HOST_VPN
