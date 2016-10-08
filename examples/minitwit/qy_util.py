@@ -127,6 +127,15 @@ def get_cn_stock():
     return stock.get_cn_stock()
 
 
+def get_ec2():
+    import fabfile
+    d = fabfile.HOST_DATA
+    t = []
+    for k in d:
+        t.append('[%s]' % k + '::%s::[%s][%s]' % d[k])
+    return '\n'.join(t) 
+
+
 def hhmm_reply(data, msg_signature, timestamp, nonce):
     msg = QYMsgProcess(data, msg_signature, timestamp, nonce)
     msg.show()
@@ -144,6 +153,8 @@ def hhmm_reply(data, msg_signature, timestamp, nonce):
         text = stock.get_one_cn_stock('海天')
     elif 'vcel' == msg.event_key:
         text = stock.get_one_us_stock('vcel')
+    elif 'ip' == msg.event_key:
+        text = get_ec2()
     else:
         #text = '还没实现event[%s]哦' % str(msg.event)
         text = ''
