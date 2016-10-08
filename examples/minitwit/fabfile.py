@@ -29,6 +29,12 @@ def ups():
 def upp():
     run('uptime -p')
 
+def ip():
+    print '------------'
+    print env.host_string
+    print env.host
+    print HOST_DATA[env.host_string]
+
 HOST_DEV = [] # ['miso', 'airbb', 'nn', 'mm', ] retired
 HOST_ALANCER = ['natto'] # ['polo', 'sushi', 'noodle', 'udon'] retired
 HOST_VPN = ['rib', 'steak', 'natto', 'ton', 'curry', 'koala', 'ham', 'wiener', 'crab', 'bbq', 'pie', 'stew'] # ['tempura', 'ramen', 'donut', 'nori', 'mm', ] retired
@@ -76,6 +82,21 @@ HOST_INDEX = {'01': 'rib',      #kr@yahoo
               '11': 'stew',     #eu-ire@gmail
               '12': 'bbq',      #sa@gmail
               '13': 'pie',      #us-west-ore@gmail
+             }
+
+HOST_DATA = {'rib'   : ('01', 'kr',    'yahoo'),
+             'steak' : ('02', 'kr',    'yahoo'),
+             'natto' : ('03', 'jp',    'yahoo'),
+             'ton'   : ('04', 'jp',    'yahoo'),
+             'curry' : ('05', 'in',    'yahoo'),
+             'koala' : ('06', 'au',    'yahoo'),
+             'ham'   : ('07', 'ue',    'yahoo'),
+             'wiener': ('08', 'eu-de', 'outlook'),
+             'crab'  : ('09', 'uw-ca', 'outlook'),
+             'laksa' : ('10', 'sg',    'outlook'),
+             'stew'  : ('11', 'eu-ir', 'gmail'),
+             'bbq'   : ('12', 'sa',    'gmail'),
+             'pie'   : ('13', 'pie',   'gmail'),
              }
 
 
