@@ -30,10 +30,11 @@ def upp():
     run('uptime -p')
 
 def ip():
-    print '------------'
     print env.host_string
     print env.host
-    print HOST_DATA[env.host_string]
+    x = HOST_DATA[env.host_string]
+    print x
+    print '-' * ( len(' '.join(x)) + 10 ) + '\n'
 
 HOST_DEV = [] # ['miso', 'airbb', 'nn', 'mm', ] retired
 HOST_ALANCER = ['natto'] # ['polo', 'sushi', 'noodle', 'udon'] retired
@@ -159,6 +160,11 @@ def gitup():
     with cd('~/flask/examples/minitwit/'):
         run('git pull')
         run('supervisorctl restart alancer')
+
+def ikeup():
+    with cd('~/ubuntu_vpn/'):
+        run('git pull')
+        run('./ikev2.sh')
 
 @hosts(['udon'])
 def ugitup():
