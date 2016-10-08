@@ -96,7 +96,7 @@ HOST_DATA = {'rib'   : ('01', 'kr',    'yahoo'),
              'laksa' : ('10', 'sg',    'outlook'),
              'stew'  : ('11', 'eu-ir', 'gmail'),
              'bbq'   : ('12', 'sa',    'gmail'),
-             'pie'   : ('13', 'pie',   'gmail'),
+             'pie'   : ('13', 'uw-or',   'gmail'),
              }
 
 

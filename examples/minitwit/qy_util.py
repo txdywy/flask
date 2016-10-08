@@ -132,7 +132,7 @@ def get_ec2():
     d = fabfile.HOST_DATA
     t = []
     for k in d:
-        t.append('[%s]' % k + '::%s::[%s][%s]' % d[k])
+        t.append('[%s]' % k + '__%s__\n[%s][%s]\n' % d[k])
     return '\n'.join(t) 
 
 
