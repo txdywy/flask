@@ -32,7 +32,7 @@ def upp():
 def ip():
     print env.host_string
     print env.host
-    x = HOST_DATA[env.host_string]
+    x = HOST_DATA.get(env.host_string, 'no host found')
     print x
     print '-' * ( len(' '.join(x)) + 10 ) + '\n'
 
