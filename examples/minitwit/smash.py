@@ -115,6 +115,9 @@ def random_collect(sample=4):
             rcache.set('smash_bid', t)
             print 'bid1:' + bid
             collect()
+            tz = pytz.timezone('Asia/Shanghai')
+            now = datetime.datetime.now(tz)
+            qy_util.post('重新登录，bid:' + bid + '\n北京时间:' + str(now)[:19], toparty=['19'])
 
 
 
