@@ -4,6 +4,7 @@ from pprint import pprint
 import datetime
 import pytz
 from random import randint
+import time
 try:
     import qy_util
 except:
@@ -54,4 +55,5 @@ def random_collect(sample=4):
     s = randint(0, sample)
     print s
     if s == 0:
+        time.sleep(s * 3)
         collect()
