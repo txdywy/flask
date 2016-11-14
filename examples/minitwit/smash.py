@@ -30,7 +30,10 @@ def collect():
     pprint(o)
     resources_gained = str(o['resources_gained']['1'])
     print resources_gained
-    #qy_util.post('SMASH自动采集金币:' + resources_gained, touser=['txdywy'])
+    try:
+        qy_util.post('SMASH自动采集金币:' + resources_gained, touser=['txdywy'])
+    except:
+        print '没有微信推送'
     print 'SMASH自动采集金币:' + resources_gained
 
 
