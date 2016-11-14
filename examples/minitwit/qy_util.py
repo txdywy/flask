@@ -136,6 +136,17 @@ def get_ec2():
     return '\n'.join(t) 
 
 
+def set_smash():
+    from cache import rcache
+    f = rcache.get('smash_collect')
+    if not f:
+        s = '✅开始自动收集金币，停止游戏'
+        rcache.set('smash_collect', '1')
+    else:
+        s = '❌停止自动收集,开始游戏'
+        rcache.set('smash_collect', '')
+    return s
+
 def hhmm_reply(data, msg_signature, timestamp, nonce):
     msg = QYMsgProcess(data, msg_signature, timestamp, nonce)
     msg.show()
@@ -155,6 +166,8 @@ def hhmm_reply(data, msg_signature, timestamp, nonce):
         text = stock.get_one_us_stock('vcel')
     elif 'ip' == msg.event_key:
         text = get_ec2()
+    elif 'sm' == msg.event_key:
+        text = set_smash()
     else:
         #text = '还没实现event[%s]哦' % str(msg.event)
         text = ''
