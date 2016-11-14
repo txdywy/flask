@@ -114,7 +114,7 @@ def random_collect(sample=4):
             bid = t
             rcache.set('smash_bid', t)
             print 'bid1:' + bid
-        collect()
+            collect()
 
 
 
