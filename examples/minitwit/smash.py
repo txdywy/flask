@@ -105,7 +105,7 @@ def random_collect(sample=4):
     s = randint(0, sample)
     print s
     if s == 0:
-        time.sleep(s * 3)
+        time.sleep(randint(0, 15))
         f = collect()
         if not f:
             bid = rcache.get('smash_bid')
