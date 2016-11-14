@@ -105,7 +105,8 @@ def random_collect(sample=4):
         return
     s = randint(0, sample)
     print s
-    if s == 0:
+    n = datetime.datetime.now()
+    if s == 0 or n.minute == 0:
         for i in tqdm(range(0, randint(0, 15))):
             time.sleep(1)
         f = collect()
