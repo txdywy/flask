@@ -59,6 +59,9 @@ def login():
     #print t
     o = json.loads(r.text)
     pprint(o)
+    t = o['refresh_token']
+    print 'bid:' + t
+    return t
 
 
 def collect():
