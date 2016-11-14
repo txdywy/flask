@@ -85,7 +85,8 @@ def collect():
         return False
     #print resources_gained
     try:
-        qy_util.post('SMASH自动采集金币:%s/%s' % (resources_gained, resources_total) + '\n能量值:%s/%s' % (energy_now, energy_cap) +'\n北京时间:' + str(now)[:19], toparty=['19'])
+        if now.minute % 20 == 0 
+            qy_util.post('SMASH自动采集金币:%s/%s' % (resources_gained, resources_total) + '\n能量值:%s/%s' % (energy_now, energy_cap) +'\n北京时间:' + str(now)[:19], toparty=['19'])
     except Exception, e:
         print '没有微信推送'
         print str(e)
@@ -114,7 +115,7 @@ def random_collect(sample=4):
             bid = t
             rcache.set('smash_bid', t)
             print 'bid1:' + bid
-            collect()
+            #collect()
             tz = pytz.timezone('Asia/Shanghai')
             now = datetime.datetime.now(tz)
             qy_util.post('重新登录，bid:' + bid + '\n北京时间:' + str(now)[:19], toparty=['19'])
