@@ -3,6 +3,7 @@ import requests, sys, json
 from pprint import pprint
 import datetime
 import pytz
+from random import randint
 try:
     import qy_util
 except:
@@ -42,4 +43,10 @@ def collect():
 
 
 
-collect()
+#collect()
+
+def random_collect(sample=1):
+    s = randint(0, sample)
+    print s
+    if s == 0:
+        collect()
