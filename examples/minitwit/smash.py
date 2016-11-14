@@ -32,20 +32,25 @@ def collect():
     #print t
     o = json.loads(r.text)
     pprint(o)
-    resources_gained = str(o['resources_gained']['1'])
+    try:
+        resources_gained = str(o['resources_gained']['1'])
+    except Exception, e:
+        str(e)
+        qy_util.post(str(e) + '\n北京时间:' + str(now)[:19], toparty=['19'])
     print resources_gained
     now = datetime.datetime.now(tz)
     try:
         qy_util.post('SMASH自动采集金币:' + resources_gained + '\n北京时间:' + str(now)[:19], toparty=['19'])
-    except:
+    except Exception, e:
         print '没有微信推送'
+        print str(e)
     print 'SMASH自动采集金币:' + resources_gained
 
 
 
 #collect()
 
-def random_collect(sample=1):
+def random_collect(sample=4):
     s = randint(0, sample)
     print s
     if s == 0:
