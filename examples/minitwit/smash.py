@@ -1,11 +1,16 @@
+# -*- coding: utf-8 -*-
 import requests, sys, json
 from pprint import pprint
-import qy_util
+try:
+    import qy_util
+except:
+    pass
+bid = 'iUo0KQj6R2ghgZoObEXAxezvdHYzxwpZzwq7tI0Upu0Y3dXCP1GSkPP2IrQpZ/pICD2KISz0FC5jS4eDb57qBg=='
 headers = {
     'Host': 'api.smash.athinkingape.com',
-    'SquidAuthToken': 'Bearer id=tW4fTvv//CvSZxJBX1fOUwlT4ClVGqAmy3qsCpYRtCykknH/Cc1knROyEv00Iwf/qSfTeSjMYPYc9TT5GgQFgw==',
+    'SquidAuthToken': 'Bearer id=' + bid,
     'Accept': '*/*',
-    'Authorization': 'Bearer id=tW4fTvv//CvSZxJBX1fOUwlT4ClVGqAmy3qsCpYRtCykknH/Cc1knROyEv00Iwf/qSfTeSjMYPYc9TT5GgQFgw==',
+    'Authorization': 'Bearer id=' + bid,
     'Content-Type': 'application/x-www-form-urlencoded',
     'ClientVersion': '91',
     'Accept-Language': 'en-us',
@@ -20,11 +25,13 @@ headers = {
 def collect():
     r = requests.post('https://199.167.22.55/game/city/collect_resources/', headers=headers, verify=False)
     t = r.text
+    #print t
     o = json.loads(r.text)
-    #pprint(o)
-    resources_gained = o['resources_gained']
+    pprint(o)
+    resources_gained = str(o['resources_gained']['1'])
     print resources_gained
-    qy_util.post('SMASH自动采集金币:' + resources_gained, touser=['txdywy'])
+    #qy_util.post('SMASH自动采集金币:' + resources_gained, touser=['txdywy'])
+    print 'SMASH自动采集金币:' + resources_gained
 
 
 
