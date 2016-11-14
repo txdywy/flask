@@ -8,10 +8,11 @@ import time
 try:
     import qy_util
     from cache import rcache
-    bid = rcache.get('smash_bid', '')
+    bid = rcache.get('smash_bid')
 except:
-    bid = ''
     pass
+bid = bid if bid else ''
+print bid
 tz = pytz.timezone('Asia/Shanghai')
 headers = {
     'Host': 'api.smash.athinkingape.com',
@@ -60,8 +61,8 @@ def login():
     t = r.text
     #print t
     o = json.loads(r.text)
-    pprint(o)
-    t = o['refresh_token']
+    #pprint(o)
+    t = o['access_token']
     print 'bid:' + t
     return t
 
@@ -72,6 +73,7 @@ def collect():
     #print t
     o = json.loads(r.text)
     pprint(o)
+    now = datetime.datetime.now(tz)
     try:
         resources_gained = str(int(o['resources_gained']['1']))
         resources_total = str(int(o['resources']['1']))
@@ -81,8 +83,7 @@ def collect():
         str(e)
         qy_util.post(str(e) + '\n北京时间:' + str(now)[:19], toparty=['19'])
         return False
-    print resources_gained
-    now = datetime.datetime.now(tz)
+    #print resources_gained
     try:
         qy_util.post('SMASH自动采集金币:%s/%s' % (resources_gained, resources_total) + '\n能量值:%s/%s' % (energy_now, energy_cap) +'\n北京时间:' + str(now)[:19], toparty=['19'])
     except Exception, e:
@@ -96,7 +97,7 @@ def collect():
 #collect()
 
 def random_collect(sample=4):
-    flag = rcache.get('smash_collect', None)
+    flag = rcache.get('smash_collect')
     if not flag:
         print '终止运行'
         return
@@ -106,8 +107,12 @@ def random_collect(sample=4):
         time.sleep(s * 3)
         f = collect()
         if not f:
+            bid = rcache.get('smash_bid')
+            bid = bid if bid else ''
             print 'bid0:' + bid
             t = login()
+            bid = t
+            rcache.set('smash_bid', t)
             print 'bid1:' + bid
         collect()
 
