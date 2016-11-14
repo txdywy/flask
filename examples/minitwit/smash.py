@@ -121,6 +121,8 @@ def random_collect(sample=4):
             tz = pytz.timezone('Asia/Shanghai')
             now = datetime.datetime.now(tz)
             qy_util.post('重新登录，bid:' + bid + '\n北京时间:' + str(now)[:19], toparty=['19'])
+    else:
+        print '随机选择退出了😝'
 
 
 
