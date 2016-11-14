@@ -7,10 +7,12 @@ from random import randint
 import time
 try:
     import qy_util
+    from cache import rcache
+    bid = rcache.get('smash_bid', '')
 except:
+    bid = ''
     pass
 tz = pytz.timezone('Asia/Shanghai')
-bid = 'iUo0KQj6R2ghgZoObEXAxezvdHYzxwpZzwq7tI0Upu0Y3dXCP1GSkPP2IrQpZ/pICD2KISz0FC5jS4eDb57qBg=='
 headers = {
     'Host': 'api.smash.athinkingape.com',
     'SquidAuthToken': 'Bearer id=' + bid,
@@ -41,6 +43,7 @@ def collect():
     except Exception, e:
         str(e)
         qy_util.post(str(e) + '\n北京时间:' + str(now)[:19], toparty=['19'])
+        return False
     print resources_gained
     now = datetime.datetime.now(tz)
     try:
@@ -49,14 +52,27 @@ def collect():
         print '没有微信推送'
         print str(e)
     print 'SMASH自动采集金币:' + resources_gained
+    return True
 
 
 
 #collect()
 
 def random_collect(sample=4):
+    flag = rcache.get('smash_collect', None)
+    if not flag:
+        print '终止运行'
+        return
     s = randint(0, sample)
     print s
     if s == 0:
         time.sleep(s * 3)
+        f = collect()
+        if not f:
+            print 'bid0:' + bid
+            t = login()
+            print 'bid1:' + bid
         collect()
+
+
+
