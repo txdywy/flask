@@ -23,7 +23,8 @@ def collect():
     o = json.loads(r.text)
     #pprint(o)
     resources_gained = o['resources_gained']
-    qy_util.post('resources_gained', touser='txdywy')
+    print resources_gained
+    qy_util.post('SMASH自动采集金币:' + resources_gained, touser=['txdywy'])
 
 
 
