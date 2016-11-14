@@ -28,6 +28,43 @@ headers = {
     'X-devilfish-api': '91',
     }
 
+login_headers = {
+    'Host': 'api.smash.athinkingape.com',
+    'Content-Type': 'application/x-www-form-urlencoded',
+    'Connection': 'keep-alive',
+    'X-devilfish-api': '91',
+    'ClientVersion': '91',
+    'Accept': '*/*',
+    'User-Agent': 'ata bundle_id=com.tofulabs.smash2 version=91',
+    'Content-Length': '967',
+    'Accept-Language': 'en-us',
+    'Accept-Encoding': 'gzip, deflate',
+}
+
+
+def login():
+    payload = {
+        'bundle_id': 'com.tofulabs.smash2',
+        'channel_id': '12',
+        'scope': '["all"]',
+        'client_information': '{"hardware_version":"iPhone7,1","user_agent":"Mozilla\/5.0 (iPhone; CPU iPhone OS 10_1_1 like Mac OS X) AppleWebKit\/602.2.14 (KHTML, like Gecko) Mobile\/14B100","application_tracking_enabled":false,"os_version":"10.1.1","advertiser_tracking_enabled":true,"os_name":"iPhone OS","jailbroken":false,"openudid":"fbf3555669549c31a6ee20a998bb18459d6898d3","udid_vendor":"C82958F8-18DA-42AC-80A6-8E1DEC429174","udid_advertising":"53BEAE8D-3583-4B20-A185-29FAD155EDC6"}',
+        'client_version': '91',
+        'grant_type': 'refresh_token',
+        'version': '1122',
+        'asset_version': '1477513611',
+        'client_secret': 'n0ts0s3cr3t',
+        'client_id' : 'com.tofulabs.smash2',
+        'refresh_token': 'cUfzZAQiGodEbS+4ckRP9NwM/Zt9NB2Y9ls+ju8TXs6Gjvw6COvS+kAJxZp3dHMpylsKdPZX2xbk4LTUz/v5og==',
+    }
+    r = requests.post('https://199.167.22.55/game/auth/login/', headers=login_headers, verify=False, data=payload)
+    t = r.text
+    #print t
+    o = json.loads(r.text)
+    pprint(o)
+    t = o['refresh_token']
+    print 'bid:' + t
+    return t
+
 
 def collect():
     r = requests.post('https://199.167.22.55/game/city/collect_resources/', headers=headers, verify=False)
