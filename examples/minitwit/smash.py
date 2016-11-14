@@ -34,14 +34,17 @@ def collect():
     o = json.loads(r.text)
     pprint(o)
     try:
-        resources_gained = str(o['resources_gained']['1'])
+        resources_gained = str(int(o['resources_gained']['1']))
+        resources_total = str(int(o['resources']['1']))
+        energy_now = str(int(o['game_user']['energy']))
+        energy_cap = str(int(o['game_user']['energy_cap']))
     except Exception, e:
         str(e)
         qy_util.post(str(e) + '\n北京时间:' + str(now)[:19], toparty=['19'])
     print resources_gained
     now = datetime.datetime.now(tz)
     try:
-        qy_util.post('SMASH自动采集金币:' + resources_gained + '\n北京时间:' + str(now)[:19], toparty=['19'])
+        qy_util.post('SMASH自动采集金币:%s/%s' % (resources_gained, resources_total) + '\n能量值:%s/%s' % (energy_now, energy_cap) +'\n北京时间:' + str(now)[:19], toparty=['19'])
     except Exception, e:
         print '没有微信推送'
         print str(e)
