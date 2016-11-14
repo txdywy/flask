@@ -36,7 +36,7 @@ def collect():
     print resources_gained
     now = datetime.datetime.now(tz)
     try:
-        qy_util.post('SMASH自动采集金币:' + resources_gained + '\n北京时间:' + str(now)[:19], touser=['txdywy'])
+        qy_util.post('SMASH自动采集金币:' + resources_gained + '\n北京时间:' + str(now)[:19], toparty=['19'])
     except:
         print '没有微信推送'
     print 'SMASH自动采集金币:' + resources_gained
