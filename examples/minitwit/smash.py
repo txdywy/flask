@@ -9,6 +9,7 @@ try:
     import qy_util
     from cache import rcache
     bid = rcache.get('smash_bid')
+    from tqdm import tqdm
 except:
     pass
 bid = bid if bid else ''
@@ -72,7 +73,7 @@ def collect():
     t = r.text
     #print t
     o = json.loads(r.text)
-    pprint(o)
+    ####debug####pprint(o)
     now = datetime.datetime.now(tz)
     try:
         resources_gained = str(int(o['resources_gained']['1']))
@@ -90,7 +91,7 @@ def collect():
     except Exception, e:
         print '没有微信推送'
         print str(e)
-    print 'SMASH自动采集金币:' + resources_gained
+    print 'SMASH自动采集金币:%s/%s' % (resources_gained, resources_total) + '\n能量值:%s/%s' % (energy_now, energy_cap) +'\n北京时间:' + str(now)[:19]
     return True
 
 
@@ -105,7 +106,8 @@ def random_collect(sample=4):
     s = randint(0, sample)
     print s
     if s == 0:
-        time.sleep(randint(0, 15))
+        for i in tqdm(range(0, randint(0, 15))):
+            time.sleep(1)
         f = collect()
         if not f:
             bid = rcache.get('smash_bid')
