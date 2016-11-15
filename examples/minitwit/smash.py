@@ -44,6 +44,13 @@ login_headers = {
 }
 
 
+def notify(s='默认信息😴 ', appid=3, toparty=None):
+    if not toparty:
+        toparty = ['20']
+    now = datetime.datetime.now(tz)
+    qy_util.post(s + '\n北京时间:' + str(now)[:19], appid=appid, toparty=toparty)
+
+
 def target():
     payload = {
         'hard_refresh': '1',
@@ -135,6 +142,14 @@ def login():
     t = o['access_token']
     print 'bid:' + t
     return t
+
+
+def refresh():
+    t = login()
+    rcache.set('smash_bid', t)
+    s = '🍉 已经更新bid:%s' % t
+    print s
+    notify(s=s)
 
 
 def collect():
