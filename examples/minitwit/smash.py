@@ -82,12 +82,12 @@ def collect():
         energy_cap = str(int(o['game_user']['energy_cap']))
     except Exception, e:
         str(e)
-        qy_util.post(str(e) + '\n北京时间:' + str(now)[:19], toparty=['19'])
+        qy_util.post(str(e) + '\n北京时间:' + str(now)[:19], appid=3, toparty=['20'])
         return False
     #print resources_gained
     try:
         if now.minute % 20 == 0: 
-            qy_util.post('SMASH自动采集金币:%s/%s' % (resources_gained, resources_total) + '\n能量值:%s/%s' % (energy_now, energy_cap) +'\n北京时间:' + str(now)[:19], toparty=['19'])
+            qy_util.post('SMASH自动采集金币:%s/%s' % (resources_gained, resources_total) + '\n能量值:%s/%s' % (energy_now, energy_cap) +'\n北京时间:' + str(now)[:19], appid=3, toparty=['20'])
     except Exception, e:
         print '没有微信推送'
         print str(e)
@@ -124,7 +124,7 @@ def random_collect(sample=4):
             collect()
             tz = pytz.timezone('Asia/Shanghai')
             now = datetime.datetime.now(tz)
-            qy_util.post('重新登录，bid:' + bid + '\n北京时间:' + str(now)[:19], toparty=['19'])
+            qy_util.post('重新登录，bid:' + bid + '\n北京时间:' + str(now)[:19], appid=3, toparty=['20'])
     else:
         print '随机选择退出了😝'
 
