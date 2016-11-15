@@ -54,9 +54,27 @@ def target():
     o = json.loads(r.text)
     target_user_id, target_type, energy_cost = o['pvp_targets'][2]['target_user']['user_id'], o['pvp_targets'][2]['target_type'], o['pvp_targets'][2]['energy_cost']
     return target_user_id, target_type, energy_cost
-    
 
-print '=====',target()
+
+#print '=====',target()
+def battle(target_user_id, target_type='2', energy_cost='6'):
+    payload = [
+        ('target_id', target_user_id),
+        ('monster_id', '16988815'),
+        ('monster_id', '16988814'),
+        ('monster_id', '16992346'),
+        ('target_type', target_type),
+        ('time_when_attackable', str(int(time.time()))),
+        ('version', '1126'),
+    ]
+    r = requests.post('https://199.167.22.55/game/battle/begin_battle/', headers=headers, verify=False, data=payload)
+    t = r.text
+    #print t
+    o = json.loads(r.text)
+    pprint(o)
+
+target_user_id, target_type, energy_cost = target()
+battle(target_user_id=target_user_id)
 
 
 def login():
