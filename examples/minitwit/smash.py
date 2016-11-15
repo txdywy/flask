@@ -52,8 +52,9 @@ def target():
     t = r.text
     #print t
     o = json.loads(r.text)
-    target_user_id, target_type, energy_cost = o['pvp_targets'][2]['target_user']['user_id'], o['pvp_targets'][2]['target_type'], o['pvp_targets'][2]['energy_cost']
-    return target_user_id, target_type, energy_cost
+    #pprint(o)
+    target_user_id, target_type, energy_cost, target_user = o['pvp_targets'][2]['target_user']['user_id'], o['pvp_targets'][2]['target_type'], o['pvp_targets'][2]['energy_cost'], o['pvp_targets'][2]['target_user']
+    return target_user_id, target_type, energy_cost, target_user
 
 
 #print '=====',target()
@@ -72,9 +73,19 @@ def battle(target_user_id, target_type='2', energy_cost='6'):
     #print t
     o = json.loads(r.text)
     pprint(o)
+    return o
+    
 
-target_user_id, target_type, energy_cost = target()
-battle(target_user_id=target_user_id)
+def auto_battle():
+    now = datetime.datetime.now(tz)
+    target_user_id, target_type, energy_cost, target_user = target()
+    print '=====', target_user_id, target_type, energy_cost
+    pprint(target_user)
+    o = battle(target_user_id=target_user_id)
+    s = o.get('exception')
+    s = s.get('message') if s else None
+    qy_util.post('SMASH自动战斗触发:\n'+ (str(o) if not s else s) + '\n北京时间:' + str(now)[:19], appid=3, toparty=['20'])
+    
 
 
 def login():
