@@ -149,6 +149,17 @@ def set_smash():
         rcache.set('smash_collect', '')
     return s
 
+
+def get_battle():
+    import smash 
+    return smash.auto_battle()
+
+
+def get_gold():
+    import smash
+    return smash.collect()
+
+
 def hhmm_reply(data, msg_signature, timestamp, nonce):
     msg = QYMsgProcess(data, msg_signature, timestamp, nonce)
     msg.show()
@@ -170,6 +181,12 @@ def hhmm_reply(data, msg_signature, timestamp, nonce):
         text = get_ec2()
     elif 'sm' == msg.event_key:
         text = set_smash()
+    elif 'ba' == msg.event_key:
+        text = get_battle()
+        time.sleep(2)
+        text += '✔️ 还不能战✌️ '
+    elif 'go' == msg.event_key:
+        text = get_gold()
     else:
         #text = '还没实现event[%s]哦' % str(msg.event)
         text = ''

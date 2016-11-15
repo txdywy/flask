@@ -105,7 +105,7 @@ def auto_battle():
     if t == 0:
         qy_util.post('SMASH自动战斗触发:失败，应该需要重新登录🏮' + '\n北京时间:' + str(now)[:19], appid=3, toparty=['20'])
         print '赶上不能登录了呢😯'
-        return 
+        return  
     elif t == 1:
         print '能量不够而已😝'
         return
@@ -115,8 +115,9 @@ def auto_battle():
     o = battle(target_user_id=target_user_id)
     s = o.get('exception')
     s = s.get('message') if s else None
-    print 'SMASH自动战斗触发:\n'+ (str(o) if not s else (s + '😞')) + '\n北京时间:' + str(now)[:19]
+    text = 'SMASH自动战斗触发:\n'+ (str(o) if not s else (s + '😞')) + '\n北京时间:' + str(now)[:19]
     qy_util.post('SMASH自动战斗触发:\n'+ ('✅ 自动大干了一场!' if not s else (s + '😞')) + '\n北京时间:' + str(now)[:19], appid=3, toparty=['20'])
+    return text
     
 
 
@@ -175,8 +176,9 @@ def collect():
     except Exception, e:
         print '没有微信推送'
         print str(e)
-    print 'SMASH自动采集金币:%s/%s' % (resources_gained, resources_total) + '\n能量值:%s/%s' % (energy_now, energy_cap) +'\n北京时间:' + str(now)[:19]
-    return True
+    text = 'SMASH自动采集金币:%s/%s' % (resources_gained, resources_total) + '\n能量值:%s/%s' % (energy_now, energy_cap) +'\n北京时间:' + str(now)[:19]
+    print text
+    return text
 
 
 
