@@ -183,8 +183,8 @@ def hhmm_reply(data, msg_signature, timestamp, nonce):
         text = set_smash()
     elif 'ba' == msg.event_key:
         text = get_battle()
-        time.sleep(2)
-        text += '✔️ 还不能战✌️ '
+        time.sleep(0.5)
+        text = str(text) + '✔️ 还不能战✌️ '
     elif 'go' == msg.event_key:
         text = get_gold()
     else:
