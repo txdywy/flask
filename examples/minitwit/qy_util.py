@@ -138,10 +138,12 @@ def get_ec2():
 
 def set_smash():
     from cache import rcache
+    import smash
     f = rcache.get('smash_collect')
     if not f:
         s = '✅开始自动收集金币，停止游戏'
         rcache.set('smash_collect', '1')
+        smash.login()
     else:
         s = '❌停止自动收集,开始游戏'
         rcache.set('smash_collect', '')
