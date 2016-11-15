@@ -60,6 +60,10 @@ def target():
         pprint(o)        
         return 
     target_user_id, target_type, energy_cost, target_user = o['pvp_targets'][2]['target_user']['user_id'], o['pvp_targets'][2]['target_type'], o['pvp_targets'][2]['energy_cost'], o['pvp_targets'][2]['target_user']
+    energy = o['game_user']['energy']
+    if int(energy) < int(energy_cost):
+        print '能量不足以战斗🔋 [%s/%s]' % (int(energy), int(energy_cost))
+        return 
     return target_user_id, target_type, energy_cost, target_user
 
 
