@@ -84,7 +84,7 @@ def battle(target_user_id, target_type='2', energy_cost='6'):
     t = r.text
     #print t
     o = json.loads(r.text)
-    pprint(o)
+    #pprint(o)
     return o
     
 
@@ -108,7 +108,8 @@ def auto_battle():
     o = battle(target_user_id=target_user_id)
     s = o.get('exception')
     s = s.get('message') if s else None
-    qy_util.post('SMASH自动战斗触发:\n'+ (str(o) if not s else s) + '\n北京时间:' + str(now)[:19], appid=3, toparty=['20'])
+    print 'SMASH自动战斗触发:\n'+ (str(o) if not s else (s + '😞')) + '\n北京时间:' + str(now)[:19]
+    qy_util.post('SMASH自动战斗触发:\n'+ (str(o) if not s else (s + '😞')) + '\n北京时间:' + str(now)[:19], appid=3, toparty=['20'])
     
 
 
