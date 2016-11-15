@@ -58,12 +58,12 @@ def target():
     except:
         print '获取不到敌人'
         pprint(o)        
-        return 
+        return 0 
     target_user_id, target_type, energy_cost, target_user = o['pvp_targets'][2]['target_user']['user_id'], o['pvp_targets'][2]['target_type'], o['pvp_targets'][2]['energy_cost'], o['pvp_targets'][2]['target_user']
     energy = o['game_user']['energy']
     if int(energy) < int(energy_cost):
         print '能量不足以战斗🔋 [%s/%s]' % (int(energy), int(energy_cost))
-        return 
+        return 1
     return target_user_id, target_type, energy_cost, target_user
 
 
@@ -93,9 +93,13 @@ def auto_battle():
         return
     now = datetime.datetime.now(tz)
     t = target()
-    if not t:
+    if t == 0:
         qy_util.post('SMASH自动战斗触发:失败，应该需要重新登录🏮' + '\n北京时间:' + str(now)[:19], appid=3, toparty=['20'])
+        print '赶上不能登录了呢😯'
         return 
+    elif t == 1:
+        print '能量不够而已😝'
+        return
     target_user_id, target_type, energy_cost, target_user = t
     print '=====', target_user_id, target_type, energy_cost
     pprint(target_user)
