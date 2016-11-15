@@ -83,6 +83,10 @@ def battle(target_user_id, target_type='2', energy_cost='6'):
     
 
 def auto_battle():
+    flag = rcache.get('smash_collect')
+    if not flag:
+        print '终止运行'
+        return
     now = datetime.datetime.now(tz)
     t = target()
     if not t:
