@@ -44,6 +44,20 @@ login_headers = {
 }
 
 
+def target():
+    payload = {
+        'hard_refresh': '1',
+    }
+    r = requests.post('https://199.167.22.55/game/battle/get_targets/', headers=headers, verify=False, data=payload)
+    t = r.text
+    #print t
+    o = json.loads(r.text)
+    target_user_id = o['pvp_targets'][2]['target_user']['user_id']
+    return target_user_id
+
+print '=====',target()
+
+
 def login():
     payload = {
         'bundle_id': 'com.tofulabs.smash2',
