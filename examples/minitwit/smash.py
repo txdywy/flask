@@ -52,8 +52,9 @@ def target():
     t = r.text
     #print t
     o = json.loads(r.text)
-    target_user_id = o['pvp_targets'][2]['target_user']['user_id']
-    return target_user_id
+    target_user_id, target_type, energy_cost = o['pvp_targets'][2]['target_user']['user_id'], o['pvp_targets'][2]['target_type'], o['pvp_targets'][2]['energy_cost']
+    return target_user_id, target_type, energy_cost
+    
 
 print '=====',target()
 
