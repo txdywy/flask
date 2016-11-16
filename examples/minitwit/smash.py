@@ -66,6 +66,12 @@ def reward(rid='13386436'):
 
 def auto_reward():
     o = reward()
+    #pprint(o)
+    if not o.get('exception'):
+        text = '[🍊 ]SMASH自动收集奖励🏅 :' + i['headline']
+        print text
+        notify(s=text)
+        time.sleep(1)
     ts = time.time()
     for i in o['pending_repeat_bonuses']:
         print '======'
@@ -74,7 +80,7 @@ def auto_reward():
             x = reward(rid=str(i['id']))
             #pprint(x)
             if not x.get('exception'):
-                text = 'SMASH自动收集奖励🏅:' + i['headline']
+                text = 'SMASH自动收集奖励🏅 :' + i['headline']
                 print text
                 notify(s=text)
                 time.sleep(1)
