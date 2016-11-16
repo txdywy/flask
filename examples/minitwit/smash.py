@@ -182,7 +182,7 @@ def auto_battle():
     s = o.get('exception')
     s = s.get('message') if s else None
     text = 'SMASH自动战斗触发:\n'+ (str(o) if not s else (s + '😞')) + '\n北京时间:' + str(now)[:19]
-    qy_util.post('SMASH自动战斗触发:\n'+ (('✅ 自动大干了一场!剩余能量🔋 :' + str(_cal_energy(o))) if not s else (s + '😞')) + '\n北京时间:' + str(now)[:19], appid=3, toparty=['20'])
+    qy_util.post('SMASH自动战斗触发:\n'+ (('✅ 自动大干了一场!剩余能量🔋 %s ,消耗能量⚡️ %s:' + (str(_cal_energy(o)), str(energy_cost))) if not s else (s + '😞')) + '\n北京时间:' + str(now)[:19], appid=3, toparty=['20'])
     return text
     
 
