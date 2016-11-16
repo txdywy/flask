@@ -51,6 +51,18 @@ def notify(s='默认信息😴 ', appid=3, toparty=None):
     qy_util.post(s + '\n北京时间:' + str(now)[:19], appid=appid, toparty=toparty)
 
 
+def reward(rid='13386436'):
+    payload = {
+        'repeat_bonus_id': rid,
+        'version': '1126',
+    }
+    r = requests.post('https://199.167.22.55/game/store/collect_repeat_bonus/', headers=headers, verify=False, data=payload)
+    t = r.text
+    #print t
+    o = json.loads(r.text)
+    pprint(o)
+
+
 def target():
     payload = {
         'hard_refresh': '1',
