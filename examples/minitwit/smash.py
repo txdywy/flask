@@ -65,6 +65,10 @@ def reward(rid='13386436'):
 
 
 def auto_reward():
+    flag = rcache.get('smash_collect')
+    if not flag:
+        print '终止运行'
+        return
     o = reward()
     #pprint(o)
     if not o.get('exception'):
