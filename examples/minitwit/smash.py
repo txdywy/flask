@@ -108,10 +108,11 @@ def target():
     try:
         reta = o['revenge_targets'][0]
     except:
-        print '获取不到复仇对象😝'
+        print '获取不到复仇对象😝 ,开始主动找茬😯 '
     if not reta:
         try:
-            o['pvp_targets']
+            ta = o['pvp_targets'][2]
+            print '获取到战斗对象☺️ '
         except:
             print '获取不到敌人'
             pprint(o)        
@@ -181,7 +182,7 @@ def auto_battle():
     s = o.get('exception')
     s = s.get('message') if s else None
     text = 'SMASH自动战斗触发:\n'+ (str(o) if not s else (s + '😞')) + '\n北京时间:' + str(now)[:19]
-    qy_util.post('SMASH自动战斗触发:\n'+ (('✅ 自动大干了一场!剩余能量🔋 :' + _cal_energy(o)) if not s else (s + '😞')) + '\n北京时间:' + str(now)[:19], appid=3, toparty=['20'])
+    qy_util.post('SMASH自动战斗触发:\n'+ (('✅ 自动大干了一场!剩余能量🔋 :' + str(_cal_energy(o))) if not s else (s + '😞')) + '\n北京时间:' + str(now)[:19], appid=3, toparty=['20'])
     return text
     
 
