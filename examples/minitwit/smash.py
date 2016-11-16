@@ -103,13 +103,24 @@ def target():
     #print t
     o = json.loads(r.text)
     #pprint(o)
+
+    reta = None
     try:
-        o['pvp_targets']
+        reta = o['revenge_targets'][0]
     except:
-        print '获取不到敌人'
-        pprint(o)        
-        return 0 
-    target_user_id, target_type, energy_cost, target_user = o['pvp_targets'][2]['target_user']['user_id'], o['pvp_targets'][2]['target_type'], o['pvp_targets'][2]['energy_cost'], o['pvp_targets'][2]['target_user']
+        print '获取不到复仇对象😝'
+    if not reta:
+        try:
+            o['pvp_targets']
+        except:
+            print '获取不到敌人'
+            pprint(o)        
+            return 0 
+    else:
+        ta = reta
+    target_user_id, target_type, energy_cost, target_user = ta['target_user']['user_id'], ta['target_type'], ta['energy_cost'], ta['target_user']
+
+
     energy_base = o['game_user']['energy']
     energy_last_modified = o['game_user']['energy_last_modified']
     energy_regen_rate = o['game_user']['energy_regen_rate']
