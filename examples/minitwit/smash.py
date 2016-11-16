@@ -68,9 +68,11 @@ def auto_reward():
     o = reward()
     ts = time.time()
     for i in o['pending_repeat_bonuses']:
+        print '======'
+        pprint(i)
         if i['next_collect_time'] < ts:
             x = reward(rid=str(i['id']))
-            pprint(x)
+            #pprint(x)
             if not x.get('exception'):
                 text = 'SMASH自动收集奖励🏅:' + i['headline']
                 print text
