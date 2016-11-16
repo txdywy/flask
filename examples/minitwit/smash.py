@@ -122,6 +122,14 @@ def target():
     return target_user_id, target_type, energy_cost, target_user
 
 
+def _cal_energy(o):
+    energy_base = o['game_user']['energy']
+    energy_last_modified = o['game_user']['energy_last_modified']
+    energy_regen_rate = o['game_user']['energy_regen_rate']
+    energy = int(energy_base + (time.time() - energy_last_modified) / 60 / energy_regen_rate)
+    return energy
+
+
 #print '=====',target()
 def battle(target_user_id, target_type='2', energy_cost='6'):
     payload = [
@@ -145,16 +153,16 @@ def auto_battle():
     flag = rcache.get('smash_collect')
     if not flag:
         print '终止运行'
-        return
+        return '终止运行'
     now = datetime.datetime.now(tz)
     t = target()
     if t == 0:
         qy_util.post('SMASH自动战斗触发:失败，应该需要重新登录🏮' + '\n北京时间:' + str(now)[:19], appid=3, toparty=['20'])
         print '赶上不能登录了呢😯'
-        return  
+        return '赶上不能登录了呢😯' 
     elif t == 1:
         print '能量不够而已😝'
-        return
+        return '能量不够而已😝'
     target_user_id, target_type, energy_cost, target_user = t
     print '=====', target_user_id, target_type, energy_cost
     pprint(target_user)
@@ -162,7 +170,7 @@ def auto_battle():
     s = o.get('exception')
     s = s.get('message') if s else None
     text = 'SMASH自动战斗触发:\n'+ (str(o) if not s else (s + '😞')) + '\n北京时间:' + str(now)[:19]
-    qy_util.post('SMASH自动战斗触发:\n'+ ('✅ 自动大干了一场!' if not s else (s + '😞')) + '\n北京时间:' + str(now)[:19], appid=3, toparty=['20'])
+    qy_util.post('SMASH自动战斗触发:\n'+ (('✅ 自动大干了一场!剩余能量🔋 :' + _cal_get(o)) if not s else (s + '😞')) + '\n北京时间:' + str(now)[:19], appid=3, toparty=['20'])
     return text
     
 
@@ -209,7 +217,7 @@ def collect():
     try:
         resources_gained = str(int(o['resources_gained']['1']))
         resources_total = str(int(o['resources']['1']))
-        energy_now = str(int(o['game_user']['energy']))
+        energy_now = str(_cal_energy(o))
         energy_cap = str(int(o['game_user']['energy_cap']))
     except Exception, e:
         str(e)
