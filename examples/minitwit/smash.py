@@ -110,9 +110,12 @@ def target():
         pprint(o)        
         return 0 
     target_user_id, target_type, energy_cost, target_user = o['pvp_targets'][2]['target_user']['user_id'], o['pvp_targets'][2]['target_type'], o['pvp_targets'][2]['energy_cost'], o['pvp_targets'][2]['target_user']
-    energy = o['game_user']['energy']
+    energy_base = o['game_user']['energy']
+    energy_last_modified = o['game_user']['energy_last_modified']
+    energy_regen_rate = o['game_user']['energy_regen_rate']
+    energy = int(energy_base + (time.time() - energy_last_modified) / 60 / energy_regen_rate)
     print '================🔋', energy
-    energy = 100 # api can not get accurate value, currently
+    #energy = 100 # api can not get accurate value, currently
     if int(energy) < int(energy_cost):
         print '能量不足以战斗🔋 [%s/%s]' % (int(energy), int(energy_cost))
         return 1
