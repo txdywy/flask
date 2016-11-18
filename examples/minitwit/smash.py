@@ -237,8 +237,9 @@ def collect():
         return False
     #print resources_gained
     try:
-        if now.minute % 20 == 0: 
-            qy_util.post('SMASH自动采集金币:%s/%s' % (resources_gained, resources_total) + '\n能量值:%s/%s' % (energy_now, energy_cap) +'\n北京时间:' + str(now)[:19], appid=3, toparty=['20'])
+        pass
+        #if now.minute % 20 == 0: 
+        #    qy_util.post('SMASH自动采集金币:%s/%s' % (resources_gained, resources_total) + '\n能量值:%s/%s' % (energy_now, energy_cap) +'\n北京时间:' + str(now)[:19], appid=3, toparty=['20'])
     except Exception, e:
         print '没有微信推送'
         print str(e)
