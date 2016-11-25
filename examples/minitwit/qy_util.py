@@ -143,7 +143,7 @@ def set_smash():
     if not f:
         s = '✅开始自动收集金币，停止游戏'
         rcache.set('smash_collect', '1')
-        smash.refresh()
+        #smash.refresh()
     else:
         s = '❌停止自动收集,开始游戏'
         rcache.set('smash_collect', '')
