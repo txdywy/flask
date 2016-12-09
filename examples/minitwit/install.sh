@@ -8,6 +8,7 @@ else
     sudo python get-pip.py
 fi
 sudo apt-get install gcc g++ python-dev postfix sqlite mysql-client libjpeg-dev libmysqlclient-dev nginx mailutils sharutils vnstat python-lxml tesseract-ocr
+sudo apt-get install libcurl4-openssl-dev
 sudo vnstat -u -i eth0
 sudo chown -R vnstat:vnstat /var/lib/vnstat
 
