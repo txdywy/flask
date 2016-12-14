@@ -82,7 +82,7 @@ def auto_reward():
         pprint(i)
         if i['next_collect_time'] < ts:
             x = reward(rid=str(i['id']))
-            #pprint(x)
+            pprint(x)
             if not x.get('exception'):
                 text = 'SMASH自动收集奖励🏅 :' + i['headline']
                 print text
