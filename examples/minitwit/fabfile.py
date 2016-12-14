@@ -38,7 +38,7 @@ def ip():
 
 HOST_DEV = [] # ['miso', 'airbb', 'nn', 'mm', ] retired
 HOST_ALANCER = ['natto'] # ['polo', 'sushi', 'noodle', 'udon'] retired
-HOST_VPN = ['rib', 'steak', 'natto', 'ton', 'curry', 'koala', 'ham', 'wiener', 'crab', 'laksa', 'bbq', 'pie', 'stew', 'suki', 'bacon', 'chip', 'buckeye', ] # ['tempura', 'ramen', 'donut', 'nori', 'mm', ] retired
+HOST_VPN = ['rib', 'steak', 'natto', 'ton', 'curry', 'koala', 'ham', 'wiener', 'crab', 'laksa', 'bbq', 'pie', 'stew', 'suki', 'bacon', 'chip', 'buckeye', 'fish', ] # ['tempura', 'ramen', 'donut', 'nori', 'mm', ] retired
 HOST_APPFLOOD = ['pre3-01', 'af_test', 'test3', 'sandbox', 'pre3-jp']
 HOST_ALL = HOST_DEV + HOST_ALANCER + HOST_VPN + HOST_APPFLOOD
 HOST_TBK = HOST_DEV + HOST_VPN
@@ -71,6 +71,7 @@ HOST_LAUNCH_DATE = {
     'bacon': datetime.datetime(2016, 12, 9), 
     'chip': datetime.datetime(2016, 12, 14),
     'buckeye': datetime.datetime(2016, 12, 14),
+    'fish': datetime.datetime(2016, 12, 14),
 }
 
 
@@ -91,6 +92,7 @@ HOST_INDEX = {'01': 'rib',      #kr@yahoo
               '15': 'bacon',    #ca@gmail
               '16': 'chip',     #uk@outlook
               '17': 'buckeye',  #us-east-oh@outlook
+              '18': 'fish',     #uk@outlook
              }
 
 HOST_DATA = {'rib'    : ('01', 'kr',    'yahoo'),
@@ -110,6 +112,7 @@ HOST_DATA = {'rib'    : ('01', 'kr',    'yahoo'),
              'bacon'  : ('15', 'ca',    'gmail'),
              'chip'   : ('16', 'uk',    'outlook'),
              'buckeye': ('17', 'ue-oh', 'outlook'),
+             'fish'   : ('18', 'uk',    'outlook'),
              }
 
 
