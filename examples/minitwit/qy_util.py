@@ -11,6 +11,7 @@ import requests
 import time
 import pytz
 import stock
+import psutil
 tz = pytz.timezone('Asia/Shanghai')
 try:
     from config import QY_KEY, QY_TOKEN, QY_CORPID, QY_SECRET
@@ -150,9 +151,14 @@ def set_smash():
     return s
 
 
+def get_sys_info():
+    return "CPU[%s/100] MEM[%s/100]" % (psutil.cpu_percent(), psutil.virtual_memory().percent)
+
+
 def get_battle():
-    import smash 
-    return smash.auto_battle()
+    #import smash 
+    #return smash.auto_battle()
+    return get_sys_info()
 
 
 def get_gold():
