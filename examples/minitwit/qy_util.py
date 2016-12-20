@@ -152,7 +152,15 @@ def set_smash():
 
 
 def get_sys_info():
-    return "CPU[%s/100] MEM[%s/100]" % (psutil.cpu_percent(), psutil.virtual_memory().percent)
+    s0 = "CPU[%s/100] MEM[%s/100]\n" % (psutil.cpu_percent(), psutil.virtual_memory().percent)
+    mem = psutil.virtual_memory().percent
+    if mem > 70:
+        from fabric.api import local
+        local('pgrep python | xargs kill -9')
+        s1 = "CPU[%s/100] MEM[%s/100]\n" % (psutil.cpu_percent(), psutil.virtual_memory().percent)
+    else:
+        s1 = "MEM is OK\n"
+    return s0 + s1
 
 
 def get_battle():
