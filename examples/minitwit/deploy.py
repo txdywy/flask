@@ -32,6 +32,8 @@ pkgs = ['boto',
         'eventlet',
         'gunicorn==18.0',
         'bypy',
+        'ptpython',
+        'psutil',
        ]
 for pkg in pkgs:
     local(SUDO_PIP_INSTALL % pkg)
