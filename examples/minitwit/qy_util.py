@@ -275,4 +275,5 @@ def thursday_task():
 
 
 def fmp_cr():
-    post('[建议]大家最近是不是很少用Phabricator了...大家有什么推动code review方面的建议呢？', toparty=['5'])
+    #post('[建议]大家最近是不是很少用Phabricator了...大家有什么推动code review方面的建议呢？', toparty=['5'])
+    pass
