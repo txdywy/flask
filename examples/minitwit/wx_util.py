@@ -384,6 +384,10 @@ def reply(data):
     if '猫球' in content:
         result = '猫球棒棒大！'
         tmp = 1
+    if len(content) < 8 and content[0] == '#':
+        tmp = 1
+        import ofo
+        result = ofo.KEYS.get(content[1:], '新车🚲 ')
     reply_tmp = WX_TEMPLATE_TEXT
     qr = reply_qr(content, user_name_from, user_name_to)
     if qr:return qr
