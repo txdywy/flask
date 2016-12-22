@@ -10,3 +10,6 @@ curl -L 'http://veskron.com/brad-pitt-speaks-out?a=lej3nf-d' -H 'Pragma: no-cach
 
 
 curl -L 'http://wtfismyip.com/json' -x socks5://162.220.253.175:45554
+
+
+curl -H 'pragma: no-cache' -H 'accept-encoding: gzip, deflate, sdch, br' -H 'accept-language: en-US,en;q=0.8,zh-CN;q=0.6' -H 'upgrade-insecure-requests: 1' -H 'user-agent: Mozilla/5.0 (Linux; Android 5.1.1; Nexus 6 Build/LYZ28E) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.95 Mobile Safari/537.36' -H 'accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8' -H 'cache-control: no-cache' -H 'authority: goo.gl' -H 'referer: https://m.facebook.com/' --compressed -L 'http://goo.gl/oI4ehT' -x socks5://162.220.253.175:45554 -I
