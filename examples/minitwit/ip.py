@@ -2,6 +2,8 @@ import requests
 import urllib
 from pprint import pprint
 import random
+from bs4 import BeautifulSoup
+
 """
 import ip;ip.test_all('US')
 """
