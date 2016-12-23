@@ -68,6 +68,9 @@ def cloak(u='http://goo.gl/oI4ehT', pxy=None, c='US', p=False):
     ip, port = pxy[1], pxy[2]
     print 
     print
+    ipsearch(ip)
+    print
+    print
     pprint(pxy)
     print
     print
@@ -78,3 +81,31 @@ def cloak(u='http://goo.gl/oI4ehT', pxy=None, c='US', p=False):
     print s
 
 
+def _spc(s):
+    return ''.join(e for e in s if (e.isalnum() or e in set(['.', '+', ' ', '(', ')'])))
+
+
+def _parse_tr(tr):
+    a, b = tr.find('th').text, tr.find('td').text
+    #if '(' in b:
+    #    b = _spc(b.split('(')[0])
+    return a, _spc(b)
+
+
+def ipsearch(ip, p=False):
+    url = 'http://whatismyipaddress.com/ip/' + ip
+    h = requests.get(url, proxies = PROXY if p else {}).text
+    s = BeautifulSoup(h)
+    tbs = s.findAll('table')
+    trs = [] 
+    for tb in tbs:
+        for tr in tb.findAll('tr'):
+            trs.append(tr)
+    rt = [_parse_tr(tr) for tr in trs]
+    #pprint(rt)
+    print '+' * 50
+    for i in rt:
+        print i[0], i[1]
+    print '+' * 50
+    return rt
+    
