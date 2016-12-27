@@ -78,7 +78,8 @@ def auto_help():
         return
     o = help()
     pprint(o)
-    notify(s=str(o)[:200])
+    if o.get('achievements'):
+        notify(s=str(o)[:200])
 
 
 def auto_reward():
