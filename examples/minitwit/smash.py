@@ -77,7 +77,8 @@ def auto_help():
         print '终止运行'
         return
     o = help()
-    notify(s=str(o)[:100])
+    pprint(o)
+    notify(s=str(o)[:200])
 
 
 def auto_reward():
