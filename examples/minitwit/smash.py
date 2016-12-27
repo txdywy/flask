@@ -64,6 +64,22 @@ def reward(rid='13386436'):
     return o
 
 
+def help():
+    r = requests.post('https://199.167.22.55/game/help/help_all/', headers=headers, verify=False)
+    t = r.text
+    o = json.loads(r.text)
+    return o
+
+
+def auto_help():
+    flag = rcache.get('smash_collect')
+    if not flag:
+        print '终止运行'
+        return
+    o = help()
+    notify(s=str(o)[:100])
+
+
 def auto_reward():
     flag = rcache.get('smash_collect')
     if not flag:
