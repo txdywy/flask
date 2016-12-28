@@ -54,7 +54,7 @@ def notify(s='默认信息😴 ', appid=3, toparty=None):
 def reward(rid='13386436'):
     payload = {
         'repeat_bonus_id': rid,
-        'version': '1126',
+        'version': '1182',
     }
     r = requests.post('https://199.167.22.55/game/store/collect_repeat_bonus/', headers=headers, verify=False, data=payload)
     t = r.text
