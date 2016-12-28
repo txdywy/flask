@@ -64,6 +64,27 @@ def reward(rid='13386436'):
     return o
 
 
+def repair():
+    payload = {
+        'city_id': '23842266',
+    }
+    r = requests.post('https://199.167.22.55/game/city/repair_city/', headers=headers, verify=False, data=payload)
+    t = r.text
+    #print t
+    o = json.loads(r.text)
+    #pprint(o)
+    return o
+
+
+def auto_repair():
+    flag = rcache.get('smash_collect')
+    if not flag:
+        print '终止运行'
+        return
+    o = repair()
+    pprint(o)
+
+
 def request_help(tid='17119510', tp='4'):
     payload = {
         'task_id': tid,
