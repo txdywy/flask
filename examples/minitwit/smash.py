@@ -64,6 +64,46 @@ def reward(rid='13386436'):
     return o
 
 
+def request_help(tid='17119510', tp='4'):
+    payload = {
+        'task_id': tid,
+        'task_type': '4',
+    }
+    r = requests.post('https://199.167.22.55/game/help/request_help/', headers=headers, verify=False, data=payload)
+    t = r.text
+    #print t
+    o = json.loads(r.text)
+    #pprint(o)
+    return o
+
+
+def auto_request_help():
+    flag = rcache.get('smash_collect')
+    if not flag:
+        print '终止运行'
+        return
+    x = []
+    # $$ task
+    o = request_help('1760224', '3')
+    x.append(o)
+    time.sleep(1)
+
+    # monster help
+    o = request_help('16988815', '4')
+    x.append(o)
+    time.sleep(1)
+
+    o = request_help('16992346', '4')
+    x.append(o)
+    time.sleep(1)
+
+    o = request_help('17119510', '4')
+    x.append(o)
+    time.sleep(1)
+
+    pprint(x)
+
+
 def help():
     r = requests.post('https://199.167.22.55/game/help/help_all/', headers=headers, verify=False)
     t = r.text
