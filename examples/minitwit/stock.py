@@ -59,14 +59,17 @@ US_CASH = 27101
 #2016.07.26 #26491
 #2016.08.08 #27101
 US_BASE = 23000
-CN_CASH = 46013 - 247 + 54234 + 30000 + 1745.93 - 1745.93
-#Wed Apr 20 13:52:49 CST 2016
-CN_BASE = 100000 - 54234 + 54234 + 30000
-#Wed Apr 20 13:52:49 CST 2016
-CN_PROFIT = 1343.35 + 247 + 5000 + 2418.05 + 1745.93
+CN_CASH = 46013 - 247 + 54234 + 30000 + 1745.93 - 1745.93 + 10000 - 672.27
+#Fri Dec 30 08:54:29 UTC 2016
+CN_BASE = 100000 - 54234 + 54234 + 30000 + 10000
+#Fri Dec 30 08:54:29 UTC 2016
+CN_PROFIT = 1343.35 + 247 + 5000 + 2418.05 + 1745.93 - 672.27
 #Fri Jul  1 09:51:23 CST 2016
 #Mon Jul  4 11:35:45 CST 2016
 #Tue Sep  6 09:36:49 CST 2016 +1745.93
+#Fri Dec 30 08:54:29 UTC 2016 -672.27
+CN_PROFIT_2016 = 10082.06
+CN_RATE_2016 = 7.2
 
 def get_us_stock():
     r = requests.get(SINA_STOCK_URL % ','.join(['gb_' + US_STOCK[i] for i in US_STOCK])).text.strip()
@@ -133,7 +136,7 @@ def get_cn_stock():
     r = [i.split('"')[1].split(',')[:] for i in r]
     r = ['%s: \n%s\n%s+%s \n%s-%s\n' % (i[0], i[3], i[5], _diff(i[3], i[5]), i[4], _diff(i[4], i[3])) for i in r]
     r = '\n'.join(r)
-    return r + '\n' + str(datetime.datetime.now())[:19] + '\n[B:%s/%s][%+d]' % (CN_CASH, CN_BASE, CN_CASH-CN_BASE) + '\n[P:%s]' % CN_PROFIT + '\n[PR:%+.2f%%]' % (CN_PROFIT * 100.0/CN_BASE)
+    return r + '\n' + str(datetime.datetime.now())[:19] + '\n[B:%s/%s][%+d]' % (CN_CASH, CN_BASE, CN_CASH-CN_BASE) + '\n[P:%s]' % CN_PROFIT + '\n[PR:%+.2f%%]' % (CN_PROFIT * 100.0/CN_BASE) + '\n[2016.P:%s]' % CN_PROFIT_2016 + '\n[PR:%+.2f%%]' % CN_RATE_2016
 
 
 def get_one_cn_stock(k):
