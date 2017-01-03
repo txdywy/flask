@@ -52,24 +52,29 @@ US_BASES = { 'fb': 100,
           }
 
 SINA_STOCK_URL = 'http://hq.sinajs.cn/list=%s'
-US_CASH = 27101
+US_CASH = 24485
 #2016.04.06 #24924
 #2016.06.30 #24523
 #2016.07.15 #26149
 #2016.07.26 #26491
 #2016.08.08 #27101
+#2016.12.31 #24485
+US_PROFIT_2016 = 24485 - 23000
+US_RATE_2016 = 6.5
+US_RATE_2016_SUMIT = 17.8
 US_BASE = 23000
-CN_CASH = 46013 - 247 + 54234 + 30000 + 1745.93 - 1745.93 + 10000 - 672.27
+CN_CASH = 140000 + 232.63
 #Fri Dec 30 08:54:29 UTC 2016
-CN_BASE = 100000 - 54234 + 54234 + 30000 + 10000
+CN_BASE = 140000
 #Fri Dec 30 08:54:29 UTC 2016
-CN_PROFIT = 1343.35 + 247 + 5000 + 2418.05 + 1745.93 - 672.27
+CN_PROFIT = 0
 #Fri Jul  1 09:51:23 CST 2016
 #Mon Jul  4 11:35:45 CST 2016
 #Tue Sep  6 09:36:49 CST 2016 +1745.93
 #Fri Dec 30 08:54:29 UTC 2016 -672.27
-CN_PROFIT_2016 = 10082.06
-CN_RATE_2016 = 7.2
+#Tue Jan  3 15:27:29 CST 2017 +672.27 start as 140000 since 2017
+CN_PROFIT_2016 = 10082.06 + 672.27 #adjust by 2017.1.3
+CN_RATE_2016 = 7.7
 
 def get_us_stock():
     r = requests.get(SINA_STOCK_URL % ','.join(['gb_' + US_STOCK[i] for i in US_STOCK])).text.strip()
@@ -80,7 +85,7 @@ def get_us_stock():
     r = zip (r, b)
     r = [a + 'Base: [%s]\n' % b for a, b in r]
     r = '\n'.join(r)
-    return r + '\n' + str(datetime.datetime.now())[:19] + '\n' + '#盘内/终\n*盘前/后'.decode('utf8') + '\n[B:%s/%s][%+d][%+.2f%%]' % (US_CASH, US_BASE, US_CASH-US_BASE, (US_CASH-US_BASE)*100.0/US_BASE)
+    return r + '\n' + str(datetime.datetime.now())[:19] + '\n' + '#盘内/终\n*盘前/后'.decode('utf8') + '\n[B:%s/%s][%+d][%+.2f%%]' % (US_CASH, US_BASE, US_CASH-US_BASE, (US_CASH-US_BASE)*100.0/US_BASE) + '\n[2016.P:%s]' % US_PROFIT_2016 + '\n[PR:%+.2f%%]' % US_RATE_2016
 
 
 def get_us_in_stock():
