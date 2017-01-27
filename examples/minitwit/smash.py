@@ -237,6 +237,7 @@ def target():
 
 
 def _cal_energy(o):
+    return 0
     energy_base = o['game_user']['energy']
     energy_last_modified = o['game_user']['energy_last_modified']
     energy_regen_rate = o['game_user']['energy_regen_rate']
@@ -332,7 +333,7 @@ def collect():
         resources_gained = str(int(o['resources_gained']['1']))
         resources_total = str(int(o['resources']['1']))
         energy_now = str(_cal_energy(o))
-        energy_cap = str(int(o['game_user']['energy_cap']))
+        energy_cap = '0'#str(int(o['game_user']['energy_cap']))
     except Exception, e:
         str(e)
         qy_util.post(str(e) + '\n北京时间:' + str(now)[:19], appid=3, toparty=['20'])
