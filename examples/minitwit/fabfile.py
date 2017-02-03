@@ -38,7 +38,27 @@ def ip():
 
 HOST_DEV = [] # ['miso', 'airbb', 'nn', 'mm', ] retired
 HOST_ALANCER = ['natto'] # ['polo', 'sushi', 'noodle', 'udon'] retired
-HOST_VPN = ['rib', 'steak', 'natto', 'ton', 'curry', 'koala', 'ham', 'wiener', 'crab', 'laksa', 'bbq', 'pie', 'stew', 'suki', 'bacon', 'chip', 'buckeye', 'fish', 'ice', ] # ['tempura', 'ramen', 'donut', 'nori', 'mm', ] retired
+HOST_VPN = ['rib', 
+            'steak', 
+            'natto', 
+            'ton', 
+            'curry', 
+            'koala', 
+            'ham', 
+            'wiener', 
+            'crab', 
+            'laksa', 
+            'bbq', 
+            'pie', 
+            'stew', 
+            'suki', 
+            'bacon', 
+            'chip', 
+            'buckeye', 
+            'fish', 
+            'ice', 
+            'kim',
+            ] # ['tempura', 'ramen', 'donut', 'nori', 'mm', ] retired
 HOST_APPFLOOD = ['pre3-01', 'af_test', 'test3', 'sandbox', 'pre3-jp']
 HOST_ALL = HOST_DEV + HOST_ALANCER + HOST_VPN + HOST_APPFLOOD
 HOST_TBK = HOST_DEV + HOST_VPN
@@ -73,6 +93,7 @@ HOST_LAUNCH_DATE = {
     'buckeye': datetime.datetime(2016, 12, 14),
     'fish': datetime.datetime(2016, 12, 14),
     'ice': datetime.datetime(2016, 12, 20),
+    'kim': datetime.datetime(2017, 2, 3),
 }
 
 
@@ -95,6 +116,7 @@ HOST_INDEX = {'01': 'rib',      #kr@yahoo
               '17': 'buckeye',  #us-east-oh@outlook
               '18': 'fish',     #uk@outlook
               '19': 'ice',      #us-east-oh@outlook
+              '20': 'kim',      #kr@163
              }
 
 HOST_DATA = {'rib'    : ('01', 'kr',    'yahoo'),
@@ -116,6 +138,7 @@ HOST_DATA = {'rib'    : ('01', 'kr',    'yahoo'),
              'buckeye': ('17', 'ue-oh', 'outlook'),
              'fish'   : ('18', 'uk',    'outlook'),
              'ice'    : ('19', 'ue-oh', 'outlook'),
+             'kim'    : ('20', 'kr',    '163'),
              }
 
 
