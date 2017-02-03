@@ -38,9 +38,7 @@ def ip():
 
 HOST_DEV = [] # ['miso', 'airbb', 'nn', 'mm', ] retired
 HOST_ALANCER = ['natto'] # ['polo', 'sushi', 'noodle', 'udon'] retired
-HOST_VPN = ['rib', 
-            'steak', 
-            'natto', 
+HOST_VPN = ['natto', 
             'ton', 
             'curry', 
             'koala', 
@@ -58,11 +56,11 @@ HOST_VPN = ['rib',
             'fish', 
             'ice', 
             'kim',
-            ] # ['tempura', 'ramen', 'donut', 'nori', 'mm', ] retired
+            ] # ['tempura', 'ramen', 'donut', 'nori', 'mm', 'rib', 'steak', ] retired
 HOST_APPFLOOD = ['pre3-01', 'af_test', 'test3', 'sandbox', 'pre3-jp']
 HOST_ALL = HOST_DEV + HOST_ALANCER + HOST_VPN + HOST_APPFLOOD
 HOST_TBK = HOST_DEV + HOST_VPN
-HOST_EVIL = [ 'rib', 'steak']
+HOST_EVIL = []
 HOST_FA = [] # ['miso', 'nn', ] retired
 
 
@@ -73,9 +71,9 @@ HOST_LAUNCH_DATE = {
     #'airbb': datetime.datetime(2015, 8, 26),
     #'nn': datetime.datetime(2015, 8, 29),
     #'mm': datetime.datetime(2015, 8, 31),
+    #'rib': datetime.datetime(2016, 2, 16),
+    #'steak': datetime.datetime(2016, 2, 16),
     #####-----------------------------------#####
-    'rib': datetime.datetime(2016, 2, 16),
-    'steak': datetime.datetime(2016, 2, 16),
     'natto': datetime.datetime(2016, 5, 23),
     'ton': datetime.datetime(2016, 8, 18),
     'curry': datetime.datetime(2016, 6, 27),
@@ -97,8 +95,8 @@ HOST_LAUNCH_DATE = {
 }
 
 
-HOST_INDEX = {'01': 'rib',      #kr@yahoo
-              '02': 'steak',    #kr@yahoo
+HOST_INDEX = {#'01': 'rib',      #kr@yahoo
+              #'02': 'steak',    #kr@yahoo
               '03': 'natto',    #jp@yahoo
               '04': 'ton',      #jp@yahoo
               '05': 'curry',    #in@yahoo
@@ -119,8 +117,8 @@ HOST_INDEX = {'01': 'rib',      #kr@yahoo
               '20': 'kim',      #kr@163
              }
 
-HOST_DATA = {'rib'    : ('01', 'kr',    'yahoo'),
-             'steak'  : ('02', 'kr',    'yahoo'),
+HOST_DATA = {#'rib'    : ('01', 'kr',    'yahoo'),
+             #'steak'  : ('02', 'kr',    'yahoo'),
              'natto'  : ('03', 'jp',    'yahoo'),
              'ton'    : ('04', 'jp',    'yahoo'),
              'curry'  : ('05', 'in',    'yahoo'),
