@@ -8,6 +8,7 @@ import xml.etree.ElementTree as ET
 import time
 from pprint import pprint
 import requests
+from bs4 import BeautifulSoup
 import time
 import pytz
 import stock
@@ -160,7 +161,21 @@ def get_sys_info():
         s1 = "CPU[%s/100] MEM[%s/100]\n" % (psutil.cpu_percent(), psutil.virtual_memory().percent)
     else:
         s1 = "MEM is OK\n"
-    return s0 + s1
+    ############################
+    #temp google play rank check
+    ############################
+    u='https://play.google.com/store/apps/category/GAME_CASINO/collection/topselling_free?gl=au&authuser=0'
+    a='start=450&num=100&numChildren=0&cctcss=square-cover&cllayout=NORMAL&ipf=1&xhr=1&token=pLa9Popn4u2QqG2_5u6thgzjxsI%3A1486387681054'
+    b=a.split('&')
+    d=[i.split('=') for i in b]
+    d={i[0]:i[1] for i in d}
+    r=requests.post(url=u,data=d,verify=False).text
+    s=BeautifulSoup(r)
+    a=s.findAll("div", { "class" : "card" })
+    a=[i.findAll('a')[1].attrs['aria-label'] for i in a]
+    a=[i for i in a if 'super win' in i]
+    ############################
+    return s0 + s1 + str(a)
 
 
 def get_battle():
