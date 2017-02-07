@@ -173,9 +173,9 @@ def get_sys_info():
     s=BeautifulSoup(r)
     a=s.findAll("div", { "class" : "card" })
     a=[i.findAll('a')[1].attrs['aria-label'] for i in a]
-    a=[i for i in a if 'super win' in i]
+    a=[i for i in a if 'super win' in i or 'Mega Win Vegas' in i]
     ############################
-    return s0 + s1 + str(a)
+    return s0 + s1 + '\n'.join(a)
 
 
 def get_battle():
