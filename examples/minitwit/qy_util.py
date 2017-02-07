@@ -165,7 +165,7 @@ def get_sys_info():
     #temp google play rank check
     ############################
     a = fetch_rank(start=50) + fetch_rank(start=400) + fetch_rank(start=500)
-    a=[i for i in a if 'super win' in i or 'Mega Win Vegas' in i or ('Free Vegas Casino' in i ) or 'Wonderful Wizard of Oz' in i]
+    a=[i for i in a if 'super win' in i or 'Mega Win Vegas' in i or ('Free Vegas Casino' in i and 'Lucky' not in i) or 'Wonderful Wizard of Oz' in i]
     ############################
     return s0 + s1 + '\n'.join(a)
 
