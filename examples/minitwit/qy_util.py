@@ -165,7 +165,7 @@ def get_sys_info():
     #temp google play rank check
     ############################
     u='https://play.google.com/store/apps/category/GAME_CASINO/collection/topselling_free?gl=au&authuser=0'
-    a='start=450&num=100&numChildren=0&cctcss=square-cover&cllayout=NORMAL&ipf=1&xhr=1&token=pLa9Popn4u2QqG2_5u6thgzjxsI%3A1486387681054'
+    a='start=400&num=120&numChildren=0&cctcss=square-cover&cllayout=NORMAL&ipf=1&xhr=1&token=pLa9Popn4u2QqG2_5u6thgzjxsI%3A1486387681054'
     b=a.split('&')
     d=[i.split('=') for i in b]
     d={i[0]:i[1] for i in d}
