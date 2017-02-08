@@ -164,8 +164,15 @@ def get_sys_info():
     ############################
     #temp google play rank check
     ############################
+    a = fetch_rank(start=50) + fetch_rank(start=400) + fetch_rank(start=500)
+    a=[i for i in a if 'super win' in i or 'Mega Win Vegas' in i or ('Free Vegas Casino' in i and 'Lucky' not in i) or 'Wonderful Wizard of Oz' in i]
+    ############################
+    return s0 + s1 + '\n'.join(a)
+
+
+def fetch_rank(start=400, num=100):
     u='https://play.google.com/store/apps/category/GAME_CASINO/collection/topselling_free?gl=au&authuser=0'
-    a='start=450&num=100&numChildren=0&cctcss=square-cover&cllayout=NORMAL&ipf=1&xhr=1&token=pLa9Popn4u2QqG2_5u6thgzjxsI%3A1486387681054'
+    a='start={start}&num={num}&numChildren=0&cctcss=square-cover&cllayout=NORMAL&ipf=1&xhr=1&token=pLa9Popn4u2QqG2_5u6thgzjxsI%3A1486387681054'.format(start=start,num=num)
     b=a.split('&')
     d=[i.split('=') for i in b]
     d={i[0]:i[1] for i in d}
@@ -173,9 +180,8 @@ def get_sys_info():
     s=BeautifulSoup(r)
     a=s.findAll("div", { "class" : "card" })
     a=[i.findAll('a')[1].attrs['aria-label'] for i in a]
-    a=[i for i in a if 'super win' in i or 'Mega Win Vegas' in i]
-    ############################
-    return s0 + s1 + '\n'.join(a)
+    #a=[i for i in a if 'super win' in i or 'Mega Win Vegas' in i or 'Free Vegas Casino' in i]
+    return a
 
 
 def get_battle():
