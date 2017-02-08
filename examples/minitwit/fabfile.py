@@ -52,11 +52,10 @@ HOST_VPN = ['natto',
             'suki', 
             'bacon', 
             'chip', 
-            'buckeye', 
             'fish', 
             'ice', 
             'kim',
-            ] # ['tempura', 'ramen', 'donut', 'nori', 'mm', 'rib', 'steak', ] retired
+            ] # ['tempura', 'ramen', 'donut', 'nori', 'mm', 'rib', 'steak', 'buckeye',] retired
 HOST_APPFLOOD = ['pre3-01', 'af_test', 'test3', 'sandbox', 'pre3-jp']
 HOST_ALL = HOST_DEV + HOST_ALANCER + HOST_VPN + HOST_APPFLOOD
 HOST_TBK = HOST_DEV + HOST_VPN
@@ -73,6 +72,7 @@ HOST_LAUNCH_DATE = {
     #'mm': datetime.datetime(2015, 8, 31),
     #'rib': datetime.datetime(2016, 2, 16),
     #'steak': datetime.datetime(2016, 2, 16),
+    #'buckeye': datetime.datetime(2016, 12, 14),
     #####-----------------------------------#####
     'natto': datetime.datetime(2016, 5, 23),
     'ton': datetime.datetime(2016, 8, 18),
@@ -88,7 +88,6 @@ HOST_LAUNCH_DATE = {
     'suki': datetime.datetime(2016, 10, 10), 
     'bacon': datetime.datetime(2016, 12, 9), 
     'chip': datetime.datetime(2016, 12, 14),
-    'buckeye': datetime.datetime(2016, 12, 14),
     'fish': datetime.datetime(2016, 12, 14),
     'ice': datetime.datetime(2016, 12, 20),
     'kim': datetime.datetime(2017, 2, 3),
@@ -97,6 +96,7 @@ HOST_LAUNCH_DATE = {
 
 HOST_INDEX = {#'01': 'rib',      #kr@yahoo
               #'02': 'steak',    #kr@yahoo
+              #'17': 'buckeye',  #us-east-oh@outlook
               '03': 'natto',    #jp@yahoo
               '04': 'ton',      #jp@yahoo
               '05': 'curry',    #in@yahoo
@@ -111,7 +111,6 @@ HOST_INDEX = {#'01': 'rib',      #kr@yahoo
               '14': 'suki',     #jp@gmail
               '15': 'bacon',    #ca@gmail
               '16': 'chip',     #uk@outlook
-              '17': 'buckeye',  #us-east-oh@outlook
               '18': 'fish',     #uk@outlook
               '19': 'ice',      #us-east-oh@outlook
               '20': 'kim',      #kr@163
@@ -119,6 +118,7 @@ HOST_INDEX = {#'01': 'rib',      #kr@yahoo
 
 HOST_DATA = {#'rib'    : ('01', 'kr',    'yahoo'),
              #'steak'  : ('02', 'kr',    'yahoo'),
+             #'buckeye': ('17', 'ue-oh', 'outlook'),
              'natto'  : ('03', 'jp',    'yahoo'),
              'ton'    : ('04', 'jp',    'yahoo'),
              'curry'  : ('05', 'in',    'yahoo'),
@@ -126,14 +126,13 @@ HOST_DATA = {#'rib'    : ('01', 'kr',    'yahoo'),
              'ham'    : ('07', 'ue',    'yahoo'),
              'wiener' : ('08', 'eu-de', 'outlook'),
              'crab'   : ('09', 'uw-ca', 'outlook'),
-             'laksa'  : ('10', 'sg',    'outlook'),
+              'laksa'  : ('10', 'sg',    'outlook'),
              'stew'   : ('11', 'eu-ir', 'gmail'),
              'bbq'    : ('12', 'sa',    'gmail'),
              'pie'    : ('13', 'uw-or', 'gmail'),
              'suki'   : ('14', 'jp',    'gmail'),
              'bacon'  : ('15', 'ca',    'gmail'),
              'chip'   : ('16', 'uk',    'outlook'),
-             'buckeye': ('17', 'ue-oh', 'outlook'),
              'fish'   : ('18', 'uk',    'outlook'),
              'ice'    : ('19', 'ue-oh', 'outlook'),
              'kim'    : ('20', 'kr',    '163'),
