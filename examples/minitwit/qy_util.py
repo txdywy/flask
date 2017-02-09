@@ -13,6 +13,8 @@ import time
 import pytz
 import stock
 import psutil
+import threading
+import Queue
 tz = pytz.timezone('Asia/Shanghai')
 try:
     from config import QY_KEY, QY_TOKEN, QY_CORPID, QY_SECRET
@@ -32,6 +34,40 @@ QY_TEXT = """
    <Content><![CDATA[{content}]]></Content>
 </xml>
 """
+
+class QyAsyncTask(threading.Thread):
+
+    def __init__(self):
+        threading.Thread.__init__(self)
+        self.tasks = Queue.Queue()
+        self.setDaemon(True)
+        print '=====thread init====='
+
+    def put(self, d):
+        if not self.isAlive():
+            try:
+                self.start()
+                print '-----thread started-----'
+            except Exception, e:
+                print '-----thread failed-----', str(e)
+        self.tasks.put(d)
+
+    def run(self):
+        while True:
+            try:
+                d = self.tasks.get(timeout=1)
+                if d:
+                    cm = sys.modules[__name__]
+                    x = getattr(cm, d)
+                    x()
+                print '=====thread task done===='
+            except Exception, e:
+                #print '-----threading err-----', str(e)
+                pass
+            time.sleep(5)
+
+QY_ASYNC_THREAD = QyAsyncTask()
+
 
 
 class QYMsgProcess(object):
@@ -164,10 +200,17 @@ def get_sys_info():
     ############################
     #temp google play rank check
     ############################
-    a = fetch_rank(start=50) + fetch_rank(start=400) + fetch_rank(start=500)
-    a=[i for i in a if 'super win' in i or 'Mega Win Vegas' in i or ('Free Vegas Casino' in i and 'Lucky' not in i) or 'Wonderful Wizard of Oz' in i]
+    #a = fetch_rank(start=50) + fetch_rank(start=300) + fetch_rank(start=200)
+    #a=[i for i in a if 'super win' in i or 'Mega Win Vegas' in i or ('Free Vegas Casino' in i and 'Lucky' not in i) or 'Wonderful Wizard of Oz' in i]
+    QY_ASYNC_THREAD.put('rank_test')
     ############################
-    return s0 + s1 + '\n'.join(a)
+    return s0 + s1 + '\n异步任务随后推送...\n'
+
+
+def rank_test():
+    a = fetch_rank(start=50) + fetch_rank(start=300) + fetch_rank(start=200)
+    a=[i for i in a if 'super win' in i or 'Mega Win Vegas' in i or ('Free Vegas Casino' in i and 'Lucky' not in i) or 'Wonderful Wizard of Oz' in i]
+    post('\n'.join(a), appid=3, toparty=['20'])
 
 
 def fetch_rank(start=400, num=100):
