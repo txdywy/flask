@@ -208,8 +208,8 @@ def get_sys_info():
 
 
 def rank_test():
-    a = fetch_rank(start=50) + fetch_rank(start=300) + fetch_rank(start=200)
-    a=[i for i in a if 'super win' in i or 'Mega Win Vegas' in i or ('Free Vegas Casino' in i and 'Lucky' not in i) or 'Wonderful Wizard of Oz' in i]
+    a = fetch_rank(start=1) + fetch_rank(start=100) + fetch_rank(start=300) + fetch_rank(start=200) + fetch_rank(start=400) + fetch_rank(start=500)
+    a=[i for i in a if 'super win' in i or 'Mega Win Vegas' in i or ('Free Vegas Casino' in i and 'Lucky' not in i and '-' not in i) or 'Wonderful Wizard of Oz' in i]
     post('\n'.join(a), appid=3, toparty=['20'])
 
 
