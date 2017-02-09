@@ -15,6 +15,7 @@ import stock
 import psutil
 import threading
 import Queue
+import datetime
 tz = pytz.timezone('Asia/Shanghai')
 try:
     from config import QY_KEY, QY_TOKEN, QY_CORPID, QY_SECRET
@@ -208,9 +209,13 @@ def get_sys_info():
 
 
 def rank_test():
+    t0 = time.time()
     a = fetch_rank(start=1) + fetch_rank(start=100) + fetch_rank(start=300) + fetch_rank(start=200) + fetch_rank(start=400) + fetch_rank(start=500)
     a=[i for i in a if 'super win' in i or 'Mega Win Vegas' in i or ('Free Vegas Casino' in i and 'Lucky' not in i and '-' not in i) or 'Wonderful Wizard of Oz' in i]
-    post('\n'.join(a), appid=3, toparty=['20'])
+    t1 = time.time()
+    t = unicode(datetime.datetime.now(tz))[:19]
+    print t, t1-t0
+    post('[%s]\n[%ss]\n' % (t, t1-t0) + '\n'.join(a), appid=3, toparty=['20'])
 
 
 def fetch_rank(start=400, num=100):
