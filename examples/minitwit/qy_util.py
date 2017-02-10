@@ -19,11 +19,13 @@ import datetime
 tz = pytz.timezone('Asia/Shanghai')
 try:
     from config import QY_KEY, QY_TOKEN, QY_CORPID, QY_SECRET
+    from config import JKB_KEY, JKB_TOKEN, JKB_CORPID, JKB_SECRET
 except Exception, e:
     print '--------------------------', str(e)  
     QY_KEY = QY_TOKEN = QY_CORPID = QY_SECRET = ''
 
 QY_MSG_CRYPT = WXC.WXBizMsgCrypt(QY_TOKEN, QY_KEY, QY_CORPID)
+JKB_MSG_CRYPT = WXC.WXBizMsgCrypt(JKB_TOKEN, JKB_KEY, JKB_CORPID)
 
 
 QY_TEXT = """
@@ -73,12 +75,16 @@ QY_ASYNC_THREAD = QyAsyncTask()
 
 class QYMsgProcess(object):
 
-    def __init__(self, data, signature, timestamp, nonce):
+    def __init__(self, data, signature, timestamp, nonce, cat=0):
         self.data = data
         self.signature = signature
         self.timestamp = timestamp
         self.nonce = nonce
-        ret, content = QY_MSG_CRYPT.DecryptMsg(data, signature, timestamp, nonce)
+        if cat==0:
+            MC = QY_MSG_CRYPT
+        if cat==1:
+            MC = JKB_MSG_CRYPT
+        ret, content = MC.DecryptMsg(data, signature, timestamp, nonce)
         print '=============',content
         xml_recv = ET.fromstring(content)
         self.to_user, self.fr_user = self.re_fr_user, self.re_to_user = xml_recv.find("ToUserName").text, xml_recv.find("FromUserName").text
@@ -126,6 +132,17 @@ def reply(data, msg_signature, timestamp, nonce):
         text = get_aff_stat()
     elif '群发' in msg.content:
         text = post(msg.content).text
+    else:
+        #text = '还没实现event[%s]哦' % str(msg.event)
+        text = ''
+    return msg.re_text(text)
+
+
+def jkb_reply(data, msg_signature, timestamp, nonce):
+    msg = QYMsgProcess(data, msg_signature, timestamp, nonce, cat=1)
+    msg.show()
+    if '群发' in msg.content:
+        text = post(msg.content, appid=4, toparty=['5', '21']).text
     else:
         #text = '还没实现event[%s]哦' % str(msg.event)
         text = ''

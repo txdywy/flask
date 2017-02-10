@@ -342,6 +342,28 @@ def qy():
     return str(r[1])
 
 
+@app.route('/jkb', methods=['GET', 'POST'])
+def jkb():
+    msg_signature = request.args.get('msg_signature')
+    timestamp = request.args.get('timestamp')
+    nonce = request.args.get('nonce')
+    echostr = request.args.get('echostr')
+    if request.method == 'POST':
+        print '======jkb======', request.data
+        ret = qy_util.jkb_reply(request.data, msg_signature, timestamp, nonce)
+        response = make_response(ret)
+        response.content_type = 'application/xml'
+        return response
+    #print '==============',echostr
+    key = qy_util.JKB_KEY
+    token = qy_util.JKB_TOKEN
+    corpid = qy_util.JKB_CORPID
+    c = WXBizMsgCrypt(token, key, corpid)
+    r = c.VerifyURL(msg_signature, timestamp, nonce, echostr)
+    #print '+++++++++++',r
+    return str(r[1])
+
+
 @app.route('/hhmm', methods=['GET', 'POST'])
 def hhmm():
     msg_signature = request.args.get('msg_signature')
