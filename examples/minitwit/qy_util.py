@@ -228,7 +228,7 @@ def get_sys_info():
 def rank_test():
     t0 = time.time()
     a = fetch_rank(start=1) + fetch_rank(start=100) + fetch_rank(start=300) + fetch_rank(start=200) + fetch_rank(start=400) + fetch_rank(start=500)
-    a=[i for i in a if 'super win' in i or 'Mega Win Vegas' in i or ('Free Vegas Casino' in i and 'Lucky' not in i and '-' not in i) or 'Wonderful Wizard of Oz' in i or 'Casino VIP Deluxe - Free Slot' in i or ('Casino™' in i and 'Slots' not in i and 'SLOTS' not in i)]
+    a=[i for i in a if 'TEEN PATTI MASTER - LIVE!' in i or 'super win' in i or 'Mega Win Vegas' in i or ('Free Vegas Casino' in i and 'Lucky' not in i and '-' not in i) or 'Wonderful Wizard of Oz' in i or 'Casino VIP Deluxe - Free Slot' in i or ('Casino™' in i and 'Slots' not in i and 'SLOTS' not in i)]
     t1 = time.time()
     t = unicode(datetime.datetime.now(tz))[:19]
     print t, t1-t0
