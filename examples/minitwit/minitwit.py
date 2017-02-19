@@ -33,13 +33,15 @@ from random import randint
 from lxml import etree
 try:
     import cache as cacheal
-except:
+except Exception, e:
     print '================no cacheal=============='
+    print str(e)
     cacheal = None
 try:
     import wx_util, qy_util
-except:
+except Exception, e:
     print '------------wx_util import err-----------'
+    print str(e)
     wx_util = None
 try:
     from config import ALANCER_HOST

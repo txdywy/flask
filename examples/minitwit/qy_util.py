@@ -227,16 +227,19 @@ def get_sys_info():
 
 def rank_test():
     t0 = time.time()
-    a = fetch_rank(start=1) + fetch_rank(start=100) + fetch_rank(start=300) + fetch_rank(start=200) + fetch_rank(start=400) + fetch_rank(start=500)
-    a=[i for i in a if 'TEEN PATTI MASTER - LIVE!' in i or 'super win' in i or 'Mega Win Vegas' in i or ('Free Vegas Casino' in i and 'Lucky' not in i and '-' not in i) or 'Wonderful Wizard of Oz' in i or 'Casino VIP Deluxe - Free Slot' in i or ('Casino™' in i and 'Slots' not in i and 'SLOTS' not in i)]
+    a = []
+    for i in [1, 100, 200, 300, 400, 500]:
+        a += fetch_rank(start=i) + fetch_rank(start=i, cat='GAME_ROLE_PLAYING', country='ca')
+    #a = fetch_rank(start=1) + fetch_rank(start=100) + fetch_rank(start=300) + fetch_rank(start=200) + fetch_rank(start=400) + fetch_rank(start=500)
+    a=[i for i in a if 'Fleet Commander:Pacific' in i or 'TEEN PATTI MASTER - LIVE!' in i or 'super win' in i or 'Mega Win Vegas' in i or ('Free Vegas Casino' in i and 'Lucky' not in i and '-' not in i) or 'Wonderful Wizard of Oz' in i or 'Casino VIP Deluxe - Free Slot' in i or ('Casino™' in i and 'Slots' not in i and 'SLOTS' not in i)]
     t1 = time.time()
     t = unicode(datetime.datetime.now(tz))[:19]
     print t, t1-t0
     post('[%s]\n[%ss]\n' % (t, t1-t0) + '\n'.join(a), appid=3, toparty=['20'])
 
 
-def fetch_rank(start=400, num=100):
-    u='https://play.google.com/store/apps/category/GAME_CASINO/collection/topselling_free?gl=au&authuser=0'
+def fetch_rank(start=400, num=100, cat='GAME_CASINO', country='au'):
+    u='https://play.google.com/store/apps/category/{cat}/collection/topselling_free?gl={country}&authuser=0'.format(cat=cat, country=country)
     a='start={start}&num={num}&numChildren=0&cctcss=square-cover&cllayout=NORMAL&ipf=1&xhr=1&token=pLa9Popn4u2QqG2_5u6thgzjxsI%3A1486387681054'.format(start=start,num=num)
     b=a.split('&')
     d=[i.split('=') for i in b]
