@@ -458,7 +458,13 @@ def reply(data):
             response = make_response(reply_tmp % (user_name_from, user_name_to, str(int(time.time())), result))
         else:
             #print '========',repr(content)
-            response = make_response(get_google_news(user_name_from, user_name_to, content))
+            #response = make_response(get_google_news(user_name_from, user_name_to, content))
+            r = ds_reply(content)
+            sense = '' #bs_sentiment(content)
+            result = '%s' % sense + json.loads(r)['text']
+            response = make_response(reply_tmp % (user_name_from, user_name_to, str(int(time.time())), result))
+            response.content_type = 'application/xml'
+            return response
     response.content_type = 'application/xml'
     return response
 
