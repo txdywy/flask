@@ -228,6 +228,7 @@ def get_sys_info():
 def rank_test():
     t0 = time.time()
     a = []
+    b = []
     for i in [1, 100, 200, 300, 400, 500]:
         a += fetch_rank(start=i) + fetch_rank(start=i, cat='GAME_ROLE_PLAYING', country='ca') + fetch_rank(start=i, cat='GAME_ROLE_PLAYING', country='de') 
         b += fetch_rank(start=i, cat='GAME_CASINO', country='my')
