@@ -225,6 +225,44 @@ def get_sys_info():
     return s0 + s1 + '\n异步任务随后推送...\n'
 
 
+TARGETS = {'com.superwin.freeslots': 'super win',
+           'com.fleetcommander.ships': 'Fleet Commander:Pacific',
+           'com.megawin.vegas.slots.free': 'Mega Win Vegas Casino Slots',
+           'com.absolutist.casinoabs': 'Free Vegas Casino',
+           'net.RocketSpeed.WonderfulWizardSlots': 'Wonderful Wizard of Oz Slots',
+           'com.huuuge.freespins': 'Casino™',
+           'com.casino.vip.deluxe.free.slot': 'Casino VIP Deluxe - Free Slot',
+           'com.yiihua.teenpatti': 'TEEN PATTI MASTER - LIVE!',
+           'com.oasgames.mugua.mlomgen6': 'Trial Of Heroes: Online RPG',
+          }
+
+
+def fetch_revst(pkg='casino.classic.grandwin.vegas.slots.free.andriod'):
+    u = 'https://play.google.com/store/apps/details?id={pkg}'.format(pkg=pkg)
+    r = requests.get(url=u, verify=False).text
+    s = BeautifulSoup(r)
+    a = s.find("div", { "class" : 'rating-box'})
+    sc = a.find("div", { "class" : 'score-container'}).findAll("meta")
+    rate, votes_total = [getattr(i, 'attrs')['content'] for i in sc]
+    rh = a.find("div", { "class" : 'rating-histogram'}).findAll("div")
+    votes = [i.find("span", { "class" : 'bar-number'}).text.replace(',', '') for i in rh]
+    print rate, votes_total, votes
+    return [rate, votes_total] + votes
+
+
+def get_app_rv():
+    result = []
+    for k in TARGETS:
+        x = fetch_revst(k)
+        result.append([TARGETS[k]] + x)
+    print result
+    r = [tuple([i[0], float(i[1]), i[2]] + [100*float(t)/float(i[2]) for t in i[3:]]) for i in result]
+    pprint(r)
+    r = ['[%s][%.2f][%s][%2d%%,%2d%%,%2d%%,%2d%%,%2d%%]\n' % i for i in r]
+    #'[%s][%.2f][%s][%.2f%%,%.2f%%,%.2f%%,%.2f%%,%.2f%%]\n'
+    return ''.join(r)
+
+
 def rank_test():
     t0 = time.time()
     a = []
@@ -236,6 +274,7 @@ def rank_test():
     a=[i for i in a if 'Trial Of Heroes: Online RPG' in i or 'Fleet Commander:Pacific' in i or 'TEEN PATTI MASTER - LIVE!' in i or 'super win' in i or 'Mega Win Vegas' in i or ('Free Vegas Casino' in i and 'Lucky' not in i and '-' not in i) or 'Wonderful Wizard of Oz' in i or 'Casino VIP Deluxe - Free Slot' in i or ('Casino™' in i and 'Slots' not in i and 'SLOTS' not in i)]
     b=[i for i in b if 'super win' in i]
     a += b
+    a.append(get_app_rv())
     t1 = time.time()
     t = unicode(datetime.datetime.now(tz))[:19]
     print t, t1-t0
