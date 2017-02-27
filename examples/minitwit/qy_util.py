@@ -235,7 +235,7 @@ TARGETS = {'com.superwin.freeslots': 'super win',
            #'com.yiihua.teenpatti': 'TEEN PATTI MASTER - LIVE!',
            'com.oasgames.mugua.mlomgen6': 'Trial Of Heroes: Online RPG',
            'com.megarama.magicslots': 'Magic Slots Free',
-           'Twin Dragons Slot Machine': 'Twin Dragons Slot Machine',
+           'slots.popnplay.twindragons': 'Twin Dragons Slot Machine',
           }
 
 
