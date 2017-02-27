@@ -235,6 +235,7 @@ TARGETS = {'com.superwin.freeslots': 'super win',
            #'com.yiihua.teenpatti': 'TEEN PATTI MASTER - LIVE!',
            'com.oasgames.mugua.mlomgen6': 'Trial Of Heroes: Online RPG',
            'com.megarama.magicslots': 'Magic Slots Free',
+           'Twin Dragons Slot Machine': 'Twin Dragons Slot Machine',
           }
 
 
@@ -272,7 +273,7 @@ def rank_test():
         a += fetch_rank(start=i) + fetch_rank(start=i, cat='GAME_ROLE_PLAYING', country='ca') + fetch_rank(start=i, cat='GAME_ROLE_PLAYING', country='de') 
         b += fetch_rank(start=i, cat='GAME_CASINO', country='my')
     #a = fetch_rank(start=1) + fetch_rank(start=100) + fetch_rank(start=300) + fetch_rank(start=200) + fetch_rank(start=400) + fetch_rank(start=500)
-    a=[i for i in a if 'Trial Of Heroes: Online RPG' in i or 'Fleet Commander:Pacific' in i or 'TEEN PATTI MASTER - LIVE!' in i or 'super win' in i or 'Mega Win Vegas' in i or ('Free Vegas Casino' in i and 'Lucky' not in i and '-' not in i and 'Party' not in i) or 'Wonderful Wizard of Oz' in i or 'Casino VIP Deluxe - Free Slot' in i or ('Casino™' in i and 'Slots' not in i and 'SLOTS' not in i)]
+    a=[i for i in a if 'Twin Dragons Slot Machine' in i or 'Magic Slots Free' in i or 'Trial Of Heroes: Online RPG' in i or 'Fleet Commander:Pacific' in i or 'TEEN PATTI MASTER - LIVE!' in i or 'super win' in i or 'Mega Win Vegas' in i or ('Free Vegas Casino' in i and 'Lucky' not in i and '-' not in i and 'Party' not in i) or 'Wonderful Wizard of Oz' in i or 'Casino VIP Deluxe - Free Slot' in i or ('Casino™' in i and 'Slots' not in i and 'SLOTS' not in i)]
     b=[i+'[my]' for i in b if 'super win' in i]
     a += b
     c = [get_app_rv()]
