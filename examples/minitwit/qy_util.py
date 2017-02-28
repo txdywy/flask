@@ -284,7 +284,7 @@ def rank_test():
     u=[i+'[de]' for i in b if 'Trial Of Heroes: Online RPG' in i]
     b=[i+'[my]' for i in b if 'super win' in i]
     p=[i+'[sg]' for i in p if 'Trial Of Heroes: Online RPG' in i]
-    a += b + p + q + u
+    a += (b + p + q + u)
     c = [get_app_rv()]
     t1 = time.time()
     t = unicode(datetime.datetime.now(tz))[:19]
