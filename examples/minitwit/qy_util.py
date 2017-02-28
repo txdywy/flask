@@ -280,8 +280,8 @@ def rank_test():
         p += fetch_rank(start=i, cat='GAME_CASINO', country='sg')
     #a = fetch_rank(start=1) + fetch_rank(start=100) + fetch_rank(start=300) + fetch_rank(start=200) + fetch_rank(start=400) + fetch_rank(start=500)
     a=[i+'[au]' for i in a if 'Twin Dragons Slot Machine' in i or 'Magic Slots Free' in i or 'TEEN PATTI MASTER - LIVE!' in i or 'super win' in i or 'Mega Win Vegas' in i or ('Free Vegas Casino' in i and 'Lucky' not in i and '-' not in i and 'Party' not in i) or 'Wonderful Wizard of Oz' in i or 'Casino VIP Deluxe - Free Slot' in i or ('Casino™' in i and 'Slots' not in i and 'SLOTS' not in i)]
-    q=[i+'[ca]' for i in b if 'Fleet Commander:Pacific' in i]
-    u=[i+'[de]' for i in b if 'Trial Of Heroes: Online RPG' in i]
+    q=[i+'[ca]' for i in q if 'Fleet Commander:Pacific' in i]
+    u=[i+'[de]' for i in u if 'Trial Of Heroes: Online RPG' in i]
     b=[i+'[my]' for i in b if 'super win' in i]
     p=[i+'[sg]' for i in p if 'Trial Of Heroes: Online RPG' in i]
     a += (b + p + q + u)
