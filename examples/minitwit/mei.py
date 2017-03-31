@@ -19,6 +19,20 @@ $'https://www.instagram.com/query/'
 
 tz = pytz.timezone('Asia/Shanghai')
 
+
+
+def inst_init(url='https://www.instagram.com/djxin_tw/'):
+    r = requests.get(url=url, verify=False)
+    cookies = r.cookies.get_dict()
+    t = r.text
+    n = t.find('end_cursor')
+    t = t[n:]
+    m = t.find('}')
+    t =  t[:m]
+    end_cursor = t.split('"')[2]
+    return cookies, end_cursor
+
+
 def get_inst(key='hinzajoa'):
     url = 'https://www.instagram.com/' + key + '/' 
     r = requests.get(url=url, verify=False).text
