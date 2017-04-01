@@ -1,0 +1,1 @@
+openssl enc -des -d -a -in mei.enc -out mei.db
