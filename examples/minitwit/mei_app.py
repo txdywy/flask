@@ -29,7 +29,7 @@ def index():
 @app.route('/query', methods=['POST'])
 def query():
     ims = mm.InstMei.query.all()
-    ims = random.sample(ims, 12)
+    ims = random.sample(ims, 3)
     return render_template('mei_query.html', ims=ims)
 
 
