@@ -15,8 +15,9 @@ from datetime import datetime
 from flask import Flask, request, session, url_for, redirect, \
      render_template, abort, g, flash, _app_ctx_stack, make_response
 import flask
+import models.model_mei as mm
+import random
 app = Flask(__name__)
-
 
 
 @app.route('/')
@@ -27,7 +28,9 @@ def index():
 
 @app.route('/query', methods=['POST'])
 def query():
-    return render_template('mei_query.html')
+    ims = mm.InstMei.query.all()
+    ims = random.sample(ims, 12)
+    return render_template('mei_query.html', ims=ims)
 
 
 
