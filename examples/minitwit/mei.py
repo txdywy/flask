@@ -54,23 +54,43 @@ def inst_query(start_cursor, cookies, ref_url, user_id):
     }
     data='q=ig_user({uid})+%7B+media.after({sc}%2C+12)+%7B%0A++count%2C%0A++nodes+%7B%0A++++__typename%2C%0A++++caption%2C%0A++++code%2C%0A++++comments+%7B%0A++++++count%0A++++%7D%2C%0A++++comments_disabled%2C%0A++++date%2C%0A++++dimensions+%7B%0A++++++height%2C%0A++++++width%0A++++%7D%2C%0A++++display_src%2C%0A++++id%2C%0A++++is_video%2C%0A++++likes+%7B%0A++++++count%0A++++%7D%2C%0A++++owner+%7B%0A++++++id%0A++++%7D%2C%0A++++thumbnail_src%2C%0A++++video_views%0A++%7D%2C%0A++page_info%0A%7D%0A+%7D&ref=users%3A%3Ashow&query_id=17849115430193904'.format(sc=start_cursor, uid=user_id)
     r = requests.post(url=url, cookies=cookies, data=data, headers=headers, proxies=PROXY, verify=False)
+    t = r.text
+    #print user_id
+    d = json.loads(t)
+    #print d
+    media = d['media']
+    page_info = media['page_info']
+    end_cursor = page_info['end_cursor']
+    count = media['count']
+    nodes = media['nodes'] 
+    return end_cursor, nodes, count
+
+
+def inst_fetch(id='djxin_tw'):
+    r = []
+    url = 'https://www.instagram.com/%s/' % id
+    start_cursor, cookies, ref_url, user_id = inst_init(url)
+    #first query
+    end_cursor, nodes, count = inst_query(start_cursor, cookies, ref_url, user_id)
+    print '-'*50, count, id
+    #if ok loop
+    r += nodes
+    c = 1
+    s = 2
+    while nodes:
+        time.sleep(s)
+        start_cursor = end_cursor
+        try:
+            end_cursor, nodes, count = inst_query(start_cursor, cookies, ref_url, user_id)
+        except Exception, e:
+            print str(e)
+            s = s * 2
+            print '!'*50, s
+            continue
+        r += nodes
+        c += 1
+        print '='*50, c, s
+        pprint(len(nodes))
+        if s > 2:
+            s = s / 2
     return r
-
-
-def get_inst(key='hinzajoa'):
-    url = 'https://www.instagram.com/' + key + '/' 
-    r = requests.get(url=url, verify=False).text
-    s = BeautifulSoup(r)
-    a = s.findAll("div", { "class" : 'single-review'})
-    x = []
-    print len(a)
-    for i in a:
-        star = i.find("div", {"class": "tiny-star"}).attrs['aria-label']
-        star = int(star.split(' ')[2])
-        if star > 3:
-            rev = i.find("div", {"class": "review-body"})
-            title = rev.find("span").text
-            content = rev.text
-            x.append([star, title, content])
-
-    
