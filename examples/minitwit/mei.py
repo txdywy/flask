@@ -7,6 +7,7 @@ import datetime
 import csv
 import time
 import json
+import models.model_mei as md
 
 """
 curl -i -s -k  -X $'POST' \
@@ -94,3 +95,19 @@ def inst_fetch(id='djxin_tw'):
         if s > 2:
             s = s / 2
     return r
+
+
+def inst_new(id):
+    nodes = inst_fetch(id)
+    c = 0
+    for n in nodes:
+        m = md.InstMei(inst_owner=id,
+                       inst_code=n['code'],
+                       inst_ts=n['date'],
+                       display_src=n['display_src'],
+                       inst_id=n['id'],
+                       thumbnail_src=n['thumbnail_src']
+        )
+        md.flush(m)
+        c += 1
+        print '-'*50, c
