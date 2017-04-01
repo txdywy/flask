@@ -25,6 +25,11 @@ def index():
     return render_template('mei.html')
 
 
+@app.route('/query', methods=['POST'])
+def query():
+    return render_template('mei_query.html')
+
+
 
 
 

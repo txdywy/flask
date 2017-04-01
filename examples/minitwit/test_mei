@@ -1,0 +1,1 @@
+uwsgi --http :8008 --module mei_app --callable app --check-static ./static/mei/
