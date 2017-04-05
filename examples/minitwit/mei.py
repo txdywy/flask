@@ -111,3 +111,56 @@ def inst_new(id):
         md.flush(m)
         c += 1
         print '-'*50, c
+
+
+def inst_update(id='djxin_tw'):
+    r = []
+    url = 'https://www.instagram.com/%s/' % id
+    start_cursor, cookies, ref_url, user_id = inst_init(url)
+    #first query
+    end_cursor, nodes, count = inst_query(start_cursor, cookies, ref_url, user_id)
+    print '-'*50, count, id
+    old_count = md.InstMei.query.filter_by(inst_owner=id).count()
+    if old_count >= count:
+        print '-'*50, id, 'no update', old_count, count
+        return 
+    #if ok loop
+    r += nodes
+    c = 1
+    s = 2
+    while nodes:
+        flag = False
+        for n in nodes:
+            #pprint(n)
+            x = md.InstMei.query.filter_by(inst_code=(n['code'])).first()
+            if x:
+                flag = True
+            else:
+                m = md.InstMei(inst_owner=id,
+                               inst_code=n['code'],
+                               inst_ts=n['date'],
+                               display_src=n['display_src'],
+                               inst_id=n['id'],
+                               thumbnail_src=n['thumbnail_src']
+                )
+                md.flush(m)
+        if flag:
+            print '*'*50, 'done update', old_count, count
+            return
+
+        time.sleep(s)
+        start_cursor = end_cursor
+        try:
+            end_cursor, nodes, count = inst_query(start_cursor, cookies, ref_url, user_id)
+        except Exception, e:
+            print str(e)
+            s = s * 2
+            print '!'*50, s
+            continue
+        r += nodes
+        c += 1
+        print '='*50, c, s
+        pprint(len(nodes))
+        if s > 2:
+            s = s / 2
+    return
