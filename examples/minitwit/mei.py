@@ -18,6 +18,14 @@ curl -i -s -k  -X $'POST' \
 $'https://www.instagram.com/query/'
 """
 
+
+"""
+Found a better way to get json from inst:
+Init call get end_cursor, use end_cursor as max_id to keep retrieve more
+
+https://www.instagram.com/djxin_tw/?__a=1&max_id=1474857804955451050
+"""
+
 tz = pytz.timezone('Asia/Shanghai')
 
 
