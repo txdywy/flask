@@ -19,7 +19,7 @@ import models.model_mei as mm
 import random
 app = Flask(__name__)
 
-
+MEI_COUNT = mm.InstMei.query.count()
 @app.route('/')
 @app.route('/index')
 def index():
@@ -28,8 +28,10 @@ def index():
 
 @app.route('/query', methods=['POST'])
 def query():
-    ims = mm.InstMei.query.all()
-    ims = random.sample(ims, 3)
+    #ims = mm.InstMei.query.all()
+    #ims = random.sample(ims, 3)
+    r = [random.randint(1, MEI_COUNT), random.randint(1, MEI_COUNT), random.randint(1, MEI_COUNT)]
+    ims = mm.InstMei.query.filter(mm.InstMei.id.in_(r)).all()
     return render_template('mei_query.html', ims=ims)
 
 
