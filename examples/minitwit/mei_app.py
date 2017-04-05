@@ -23,7 +23,9 @@ MEI_COUNT = mm.InstMei.query.count()
 @app.route('/')
 @app.route('/index')
 def index():
-    return render_template('mei.html')
+    r = [random.randint(1, MEI_COUNT), random.randint(1, MEI_COUNT), random.randint(1, MEI_COUNT)]
+    ims = mm.InstMei.query.filter(mm.InstMei.id.in_(r)).all()
+    return render_template('mei.html', ims=ims)
 
 
 @app.route('/query', methods=['POST'])

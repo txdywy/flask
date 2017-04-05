@@ -111,6 +111,14 @@ $(function(){
 <div id="wrapper">
 
     <div id="container">
+        {% for im in ims %}
+        <div class="grid">
+            <div class="imgholder"><img class="lazy" src="images/pixel.gif" data-original="{{ im.thumbnail_src }}"  /></div>
+            <strong>{{ im.inst_code }}</strong>
+            <p>美妞12356</p>
+        </div>
+        {% endfor %}
+        <!-->
         <div class="grid">
             <div class="imgholder"><img class="lazy" src="images/pixel.gif" data-original="https://ig-s-d-a.akamaihd.net/hphotos-ak-xat1/t51.2885-15/s640x640/sh0.08/e35/c0.135.1080.1080/17596473_831638606988855_5886372032014188544_n.jpg"  /></div>
         </div>
@@ -120,11 +128,12 @@ $(function(){
         <div class="grid">
             <div class="imgholder"><img class="lazy" src="images/pixel.gif" data-original="https://ig-s-c-a.akamaihd.net/hphotos-ak-xat1/t51.2885-15/s640x640/sh0.08/e35/17596560_842200209254570_3052717111655792640_n.jpg"  /></div>
         </div>    
+        <!-->
     </div>
 
 </div>
 
-
+<!-->
 <div id="test" style="display:none;">
     <div class="grid">
             <div class="imgholder"><img class="lazy" src="images/pixel.gif" data-original="https://ig-s-a-a.akamaihd.net/hphotos-ak-xat1/t51.2885-15/s640x640/sh0.08/e35/c0.135.1080.1080/17439023_288414768246560_6639868316896722944_n.jpg"  /></div>
@@ -145,5 +154,6 @@ $(function(){
             <div class="meta"><a href="http://www.htmleaf.com/" target="_blank">点击查看>>></a></div>
         </div>
 </div>
+<!-->
 </body>
 </html>
