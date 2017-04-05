@@ -164,3 +164,16 @@ def inst_update(id='djxin_tw'):
         if s > 2:
             s = s / 2
     return
+
+
+OWNER_LIST = [
+    'cindyprado',
+    'djxin_tw',
+    'hinzajoa',
+    'jenna_chew',
+    'leannabartlett',
+    'yui_xin_',
+]
+def up():
+    for id in OWNER_LIST:
+        inst_update(id)
