@@ -10,6 +10,93 @@
 <script type="text/javascript" src="js/jquery.lazyload.min.js"></script>
 <script type="text/javascript" src="js/blocksit.min.js"></script>
 
+
+<script type="text/javascript">
+conWidth = 880;
+col = 1;
+$('#container').width(conWidth);
+$('#container').BlocksIt({
+    numOfCol: col,
+    offsetX: 8,
+    offsetY: 8
+});
+$(function(){
+    $("img.lazy").lazyload({        
+        load:function(){
+            $('#container').BlocksIt({
+                numOfCol:1,
+                offsetX: 8,
+                offsetY: 8
+            });
+        }
+    });    
+    $(window).scroll(function(){
+            // 当滚动到最底部以上50像素时， 加载新内容
+        if ($(document).height() - $(this).scrollTop() - $(this).height()<250){
+            console.log('aaa')
+            /*
+            $('#container').append($("#test").html());        
+            $('#container').BlocksIt({
+                numOfCol:1,
+                offsetX: 8,
+                offsetY: 8
+            });
+            $("img.lazy").lazyload();
+           */
+            $.ajax({
+                url: '/query',
+                type: 'POST',
+                data: {'last_id': 1
+                      },
+                success: function (result) {
+                    console.log(result);
+                    //$('#container').html(result)
+                    $('#container').append(result);        
+                    $('#container').BlocksIt({
+                        numOfCol:1,
+                        offsetX: 8,
+                        offsetY: 8
+                    });
+                    $("img.lazy").lazyload();
+                    
+                }
+            });
+            
+        }
+    });
+    
+    //window resize
+    var currentWidth = 1100;
+    $(window).resize(function() {
+        var winWidth = $(window).width();
+        //alert(winWidth);
+        var conWidth;
+        if(winWidth < 660) {
+            conWidth = 440;
+            col = 1
+        } else if(winWidth < 880) {
+            conWidth = 660;
+            col = 1
+        } else if(winWidth < 1100) {
+            conWidth = 880;
+            col = 1;
+        } else {
+            conWidth = 1100;
+            col = 1;
+        }
+        
+        if(conWidth != currentWidth) {
+            currentWidth = conWidth;
+            $('#container').width(conWidth);
+            $('#container').BlocksIt({
+                numOfCol: col,
+                offsetX: 8,
+                offsetY: 8
+            });
+        }
+    });
+});
+</script>
 </head>
 <body>
 
@@ -52,83 +139,7 @@
         </div>
 </div>
 
-<script type="text/javascript">
-$(function(){
-    $("img.lazy").lazyload({        
-        load:function(){
-            $('#container').BlocksIt({
-                numOfCol:1,
-                offsetX: 8,
-                offsetY: 8
-            });
-        }
-    });    
-    $(window).scroll(function(){
-            // 当滚动到最底部以上50像素时， 加载新内容
-        if ($(document).height() - $(this).scrollTop() - $(this).height()<150){
-            console.log('aaa')
-            /*
-            $('#container').append($("#test").html());        
-            $('#container').BlocksIt({
-                numOfCol:1,
-                offsetX: 8,
-                offsetY: 8
-            });
-            $("img.lazy").lazyload();
-           */
-            $.ajax({
-                url: '/query',
-                type: 'POST',
-                data: {'last_id': 1
-                      },
-                success: function (result) {
-                    console.log(result);
-                    //$('#container').html(result)
-                    $('#container').append(result);        
-                    $('#container').BlocksIt({
-                        numOfCol:1,
-                        offsetX: 8,
-                        offsetY: 8
-                    });
-                    $("img.lazy").lazyload();
-                    
-                }
-            });
-            
-        }
-    });
-    
-    //window resize
-    var currentWidth = 1100;
-    $(window).resize(function() {
-        var winWidth = $(window).width();
-        var conWidth;
-        if(winWidth < 660) {
-            conWidth = 440;
-            col = 1
-        } else if(winWidth < 880) {
-            conWidth = 660;
-            col = 1
-        } else if(winWidth < 1100) {
-            conWidth = 880;
-            col = 1;
-        } else {
-            conWidth = 1100;
-            col = 1;
-        }
-        
-        if(conWidth != currentWidth) {
-            currentWidth = conWidth;
-            $('#container').width(conWidth);
-            $('#container').BlocksIt({
-                numOfCol: col,
-                offsetX: 8,
-                offsetY: 8
-            });
-        }
-    });
-});
-</script>
+
 
 </body>
 </html>
