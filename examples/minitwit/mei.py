@@ -173,6 +173,13 @@ OWNER_LIST = [
     'jenna_chew',
     'leannabartlett',
     'yui_xin_',
+    'emrata',
+    'danbilzerian',
+    'joannakrupa',
+    'actressclara',
+    'melwitharosee',
+    'rachelc00k',
+    'elizabethcturner',
 ]
 def up():
     for id in OWNER_LIST:
