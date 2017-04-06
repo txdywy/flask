@@ -30,7 +30,8 @@ tz = pytz.timezone('Asia/Shanghai')
 
 
 
-def inst_init(url='https://www.instagram.com/djxin_tw/'):
+def inst_init(id='djxin_tw'):
+    url = 'https://www.instagram.com/%s/' % id
     r = requests.get(url=url, verify=False)
     cookies = r.cookies.get_dict()
     t = r.text
@@ -43,6 +44,17 @@ def inst_init(url='https://www.instagram.com/djxin_tw/'):
     n = t.find('"owner": {"id"')
     t = t[n: n+50]
     user_id = t.split('"')[5]
+    return end_cursor, cookies, url, user_id
+    #return inst_init__a(id)
+
+
+def inst_init__a(id='djxin_tw'):
+    url = 'https://www.instagram.com/%s/?__a=1' % id
+    r = requests.get(url=url, verify=False)
+    x = json.loads(r.text)
+    end_cursor = x['user']['media']['page_info']['end_cursor']
+    cookies = r.cookies.get_dict()
+    user_id = x['user']['id']
     return end_cursor, cookies, url, user_id
 
 
@@ -77,8 +89,7 @@ def inst_query(start_cursor, cookies, ref_url, user_id):
 
 def inst_fetch(id='djxin_tw'):
     r = []
-    url = 'https://www.instagram.com/%s/' % id
-    start_cursor, cookies, ref_url, user_id = inst_init(url)
+    start_cursor, cookies, ref_url, user_id = inst_init(id)
     #first query
     end_cursor, nodes, count = inst_query(start_cursor, cookies, ref_url, user_id)
     print '-'*50, count, id
@@ -123,8 +134,7 @@ def inst_new(id):
 
 def inst_update(id='djxin_tw'):
     r = []
-    url = 'https://www.instagram.com/%s/' % id
-    start_cursor, cookies, ref_url, user_id = inst_init(url)
+    start_cursor, cookies, ref_url, user_id = inst_init(id)
     #first query
     end_cursor, nodes, count = inst_query(start_cursor, cookies, ref_url, user_id)
     print '-'*50, count, id
