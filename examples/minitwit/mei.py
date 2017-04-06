@@ -198,7 +198,7 @@ OWNER_LIST = [
     'melwitharosee',
     'rachelc00k',
     'elizabethcturner',
-    'rinajackmimi',
+    #'rinajackmimi',
 ]
 def up():
     for id in OWNER_LIST:
