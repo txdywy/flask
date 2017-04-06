@@ -272,19 +272,23 @@ def rank_test():
     p = []
     q = []
     u = []
+    m = []
     for i in [1, 100, 200, 300, 400, 500]:
         a += fetch_rank(start=i) 
         q += fetch_rank(start=i, cat='GAME_ROLE_PLAYING', country='ca')
         u += fetch_rank(start=i, cat='GAME_ROLE_PLAYING', country='de') 
         b += fetch_rank(start=i, cat='GAME_CASINO', country='my')
         p += fetch_rank(start=i, cat='GAME_ROLE_PLAYING', country='sg')
+        m += fetch_rank(start=i, cat='GAME_CASINO', country='us')
     #a = fetch_rank(start=1) + fetch_rank(start=100) + fetch_rank(start=300) + fetch_rank(start=200) + fetch_rank(start=400) + fetch_rank(start=500)
     a=[i+'[au]' for i in a if 'Twin Dragons Slot Machine' in i or 'Magic Slots Free' in i or 'TEEN PATTI MASTER - LIVE!' in i or 'super win' in i or 'Mega Win Vegas' in i or ('Free Vegas Casino' in i and 'Lucky' not in i and '-' not in i and 'Party' not in i) or 'Wonderful Wizard of Oz' in i or 'Casino VIP Deluxe - Free Slot' in i or ('Casino™' in i and 'Slots' not in i and 'SLOTS' not in i)]
     q=[i+'[ca]' for i in q if 'Fleet Commander:Pacific' in i]
     u=[i+'[de]' for i in u if 'Trial Of Heroes: Online RPG' in i]
     b=[i+'[my]' for i in b if 'super win' in i]
     p=[i+'[sg]' for i in p if 'Trial Of Heroes: Online RPG' in i]
-    a += (b + p + q + u)
+    m=[i+'[us]' for i in m if 'super win' in i or 'Mega Win Vegas' in i]
+
+    a += (b + p + q + u + m)
     c = [get_app_rv()]
     t1 = time.time()
     t = unicode(datetime.datetime.now(tz))[:19]
