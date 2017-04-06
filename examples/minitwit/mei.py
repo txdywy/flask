@@ -26,9 +26,14 @@ Init call get end_cursor, use end_cursor as max_id to keep retrieve more
 https://www.instagram.com/djxin_tw/?__a=1&max_id=1474857804955451050
 """
 
+"""
+sessionid in cookie for private inst; shuffled ex:
+cookies['sessionid']='IGSC593b290e94db4cfc6431895d3d4afbbf4d369643c4163593f29e808716:EdNgfqySh6SDEQ5Zx7FQeQGHtYNc:{"asns":{"time":1491448126,"103.211.193.88":135391},"_auth_user_id":0002323020,"_platform":4,"_auth_user_backend":"accounts.backends.CaseInsensitiveModelBackend","last_refreshed":1491448127.0286159515,"_auth_user_hash":"","_token":"2969173752:ZOYZQFh3sPzMzvhXQ51CooOAbUVvhq8F:8b8c328f724c0df8c8cba73615054f50873ccdd33e8f3b6a97e5b2227","_token_ver":2}'
+"""
+
 tz = pytz.timezone('Asia/Shanghai')
 
-
+SESSION_ID = None
 
 def inst_init(id='djxin_tw'):
     url = 'https://www.instagram.com/%s/' % id
@@ -44,6 +49,8 @@ def inst_init(id='djxin_tw'):
     n = t.find('"owner": {"id"')
     t = t[n: n+50]
     user_id = t.split('"')[5]
+    if SESSION_ID:
+        cookies['sessionid'] = SESSION_ID
     return end_cursor, cookies, url, user_id
     #return inst_init__a(id)
 
@@ -198,8 +205,16 @@ OWNER_LIST = [
     'melwitharosee',
     'rachelc00k',
     'elizabethcturner',
-    #'rinajackmimi',
+]
+
+PRIVATE_LIST = [
+    'rinajackmimi',
 ]
 def up():
     for id in OWNER_LIST:
         inst_update(id)
+    
+    #default off
+    if SESSION_ID:
+        for id in PRIVATE_LIST:
+            inst_update(id)
