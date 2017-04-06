@@ -65,6 +65,133 @@ def inst_init__a(id='djxin_tw'):
     return end_cursor, cookies, url, user_id
 
 
+def inst_init_private(id='rinajackmimi', session_id=None):
+    if not session_id:
+        session_id = SESSION_ID
+    url = 'https://www.instagram.com/%s/?__a=1' % id
+    r = requests.get(url=url, verify=False)
+    x = json.loads(r.text)
+    end_cursor = x['user']['media']['page_info']['end_cursor']
+    cookies = r.cookies.get_dict()
+    user_id = x['user']['id']
+    cookies['sessionid'] = session_id
+    count = x['user']['media']['count']
+    return end_cursor, cookies, url, user_id, count 
+
+
+def inst_private__a(id='rinajackmimi', session_id=None):
+    nodes = []
+    s = 2
+    c = 1
+    if not session_id:
+        session_id = SESSION_ID
+    print '!'*50, session_id
+    if not session_id:
+        return nodes
+    end_cursor, cookies, url, user_id = inst_init__a(id)
+    max_id = end_cursor
+    cookies['sessionid'] = session_id
+    while True:
+        time.sleep(s)
+        url = 'https://www.instagram.com/%s/?__a=1&max_id=%s' % (id, max_id)
+        try:
+            r = requests.get(url=url, cookies=cookies, verify=False)
+        except Exception, e:
+            print str(e)
+            s = s * 2
+            print '!'*50, s
+            continue
+        #print r.text
+        x = json.loads(r.text)
+        n = x['user']['media']['nodes']
+        nodes += n
+        end_cursor = x['user']['media']['page_info']['end_cursor']
+        count = x['user']['media']['count']
+        has_next_page = x['user']['media']['page_info']['has_next_page']
+        max_id = end_cursor
+        c += 1
+        print '='*50, c, s, count, id
+        pprint(len(n))
+        if s > 2:
+            s = s / 2
+        if not has_next_page:
+            break
+    return nodes
+
+
+def inst_new_private(id, session_id=None):
+    nodes = inst_private__a(id, session_id)
+    c = 0
+    for n in nodes:
+        m = md.InstMei(inst_owner=id,
+                       inst_code=n['code'],
+                       inst_ts=n['date'],
+                       display_src=n['display_src'],
+                       inst_id=n['id'],
+                       thumbnail_src=n['thumbnail_src']
+        )
+        md.flush(m)
+        c += 1
+        print '-'*50, c
+
+
+def inst_update_private(id='rinajackmimi', session_id=None):
+    max_id, cookies, ref_url, user_id, count = inst_init_private(id, session_id)
+    print '-'*50, count, id
+    old_count = md.InstMei.query.filter_by(inst_owner=id).count()
+    if old_count >= count:
+        print '-'*50, id, 'no update', old_count, count
+        return 
+    #if ok loop
+    c = 1
+    s = 2
+    while True:
+        flag = False
+        time.sleep(s)
+        url = 'https://www.instagram.com/%s/?__a=1&max_id=%s' % (id, max_id)
+        try:
+            r = requests.get(url=url, cookies=cookies, verify=False)
+        except Exception, e:
+            print str(e)
+            s = s * 2
+            print '!'*50, s
+            continue
+        #print r.text
+        x = json.loads(r.text)
+        nodes = x['user']['media']['nodes']
+        end_cursor = x['user']['media']['page_info']['end_cursor']
+        count = x['user']['media']['count']
+        has_next_page = x['user']['media']['page_info']['has_next_page']
+        max_id = end_cursor
+        pprint(nodes)
+        for n in nodes:
+            #pprint(n)
+            x = md.InstMei.query.filter_by(inst_code=(n['code'])).first()
+            if x:
+                flag = True
+                print ';'*50,n['code']
+            else:
+                m = md.InstMei(inst_owner=id,
+                               inst_code=n['code'],
+                               inst_ts=n['date'],
+                               display_src=n['display_src'],
+                               inst_id=n['id'],
+                               thumbnail_src=n['thumbnail_src']
+                )
+                md.flush(m)
+        c += 1
+        print '='*50, c, s, count, id
+        pprint(len(n))
+        if s > 2:
+            s = s / 2
+        if not has_next_page:
+            break
+        if flag:
+            print '*'*50, 'done update', old_count, count
+            return
+    return
+
+
 PROXY = {'http': 'http://127.0.0.1:8080',
          'https': 'http://127.0.0.1:8080',
         }
@@ -213,8 +340,9 @@ PRIVATE_LIST = [
 def up():
     for id in OWNER_LIST:
         inst_update(id)
-    
+
+def up_private():
     #default off
     if SESSION_ID:
         for id in PRIVATE_LIST:
-            inst_update(id)
+            inst_update_private(id)
