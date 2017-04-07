@@ -1,0 +1,2 @@
+grep 12356 /var/log/nginx/access.log | awk -F " " '{a[$1]++ } END  { for (b in a) { print b, "\t", a[b] } }'
+grep 12356 /var/log/nginx/access.log | awk -F " " '{a[$1]++ } END  { for (b in a) { print b, "\t", a[b] } }' | wc -l
