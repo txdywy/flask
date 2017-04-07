@@ -289,11 +289,11 @@ def rank_test():
     m=[i+'[us]' for i in m if 'super win' in i or 'Mega Win Vegas' in i]
 
     a += (b + p + q + u + m)
-    c = [get_app_rv()]
+    #c = [get_app_rv()]
     t1 = time.time()
     t = unicode(datetime.datetime.now(tz))[:19]
     print t, t1-t0
-    post('[%s]\n[%ss]\n' % (t, t1-t0) + '\n'.join(c), appid=3, toparty=['20'])
+    #post('[%s]\n[%ss]\n' % (t, t1-t0) + '\n'.join(c), appid=3, toparty=['20'])
     post('[%s]\n[%ss]\n' % (t, t1-t0) + '\n'.join(a), appid=3, toparty=['20'])
 
 
