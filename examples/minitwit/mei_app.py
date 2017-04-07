@@ -65,7 +65,7 @@ def query():
         ant = APPNEXT_INST
     else:
         ant = ''
-    return render_template('mei_query.html', ims=imsi, app_next_tag=ant)
+    return render_template('mei_query.html', ims=ims, app_next_tag=ant)
 
 
 
