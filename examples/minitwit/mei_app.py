@@ -19,8 +19,7 @@ import models.model_mei as mm
 import random
 app = Flask(__name__)
 
-APPNEXT_INST = """
-<script type="text/javascript">
+APPNEXT_INST = """<script type='text/javascript'>
  var Appnext = {
        android_id: 'ae43833b-91cd-4a3d-9a43-156a1a369eba',
        ios_id: 'e086edd6-92b0-48f5-97f0-174a45a33e94',
@@ -46,6 +45,7 @@ APPNEXT_INST = """
 </script>
 
 """
+APPNEXT_INST=""
 MEI_COUNT = mm.InstMei.query.count()
 @app.route('/')
 @app.route('/index')
