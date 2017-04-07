@@ -40,7 +40,7 @@ $(function(){
     $(window).scroll(function(){
             // 当滚动到最底部以上50像素时， 加载新内容
         if ($(document).height() - $(this).scrollTop() - $(this).height()<250){
-            console.log('aaa')
+            //console.log('aaa')
             /*
             $('#container').append($("#test").html());        
             $('#container').BlocksIt({
@@ -50,13 +50,42 @@ $(function(){
             });
             $("img.lazy").lazyload();
            */
+            var y = Math.random()
+            if (y<0.1){
+                console.log('10% chance get ant')
+                $('#appnextiframe').remove()
+                x="<div class='grid'><div id='appnextiframe'> <\/div><\/div>\
+       <script type='text/javascript'>\
+            var Appnext = {\
+           android_id: 'ae43833b-91cd-4a3d-9a43-156a1a369eba',\
+           ios_id: 'e086edd6-92b0-48f5-97f0-174a45a33e94',\
+              parent_url:window.location.origin,\
+              cnt: '',\
+              pbk: '',\
+              creative:'',\
+              subid:'',\
+              b_color:'',\
+              auto_play:'',\
+              b_title:'',\
+              title:'' ,\
+              ad_server:''    \
+            };\
+            (function(){\
+               var _s=document.createElement('script');\
+               _s.type='text/javascript';\
+               _s.async=true;\
+               _s.src='https://appnext.hs.llnwd.net/tools/tags/widget300x250/m.js';\
+               (document.body)?document.body.appendChild(_s):document.head.appendChild(_s);         \
+             })();<\/script>"
+                $('#container').append(x);
+            }
             $.ajax({
                 url: '/query',
                 type: 'POST',
                 data: {'last_id': 1
                       },
                 success: function (result) {
-                    console.log(result);
+                    //console.log(result);
                     //$('#container').html(result)
                     $('#container').append(result);        
                     $('#container').BlocksIt({
@@ -144,7 +173,9 @@ $(function(){
 <div id="wrapper">
     <div id="container" align="center">
         <div class="grid">
-            <div class="imgholder" id="appnextiframe"> </div>
+            <div id="appnextiframe"> </div>
+        </div>
+        <div class="grid">
             <div class="imgholder"><img class="lazy" src="images/pixel.gif"   /></div>
             <font size="7" face="Verdana">
             <a href="https://mei12356.com">
@@ -193,6 +224,7 @@ $(function(){
     })();
     </script>
     -->
+    <!--
     <script type="text/javascript">
         var Appnext = {
           android_id: 'ae43833b-91cd-4a3d-9a43-156a1a369eba',
@@ -216,6 +248,7 @@ $(function(){
            (document.body)?document.body.appendChild(_s):document.head.appendChild(_s);         
          })();
     </script>
+    -->
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),

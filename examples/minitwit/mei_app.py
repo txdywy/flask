@@ -27,7 +27,7 @@ def index():
     ims = mm.InstMei.query.filter(mm.InstMei.id.in_(r)).all()
     return render_template('mei.html', ims=ims)
 
-ANT_RATE = 0.05
+ANT_RATE = 0.02
 @app.route('/query', methods=['POST'])
 def query():
     #ims = mm.InstMei.query.all()
