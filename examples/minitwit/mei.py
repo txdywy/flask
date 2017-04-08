@@ -350,10 +350,22 @@ OWNER_LIST = [u'milaazul', u'red_fox_official1', u'_milenangel_', u'itsdeedster'
 
 PRIVATE_LIST = [
     'rinajackmimi',
+    'nuuu.07',
 ]
+
+EXCLUDE_LIST = [
+    'nike',
+    'instagram',
+]
+OWNER_LIST = [i for i in OWNER_LIST if i not in PRIVATE_LIST and i not in EXCLUDE_LIST]
+
 def up():
+    c = 1
+    k = len(OWNER_LIST)
     for id in OWNER_LIST:
         inst_update(id)
+        print c, k
+        c += 1
 
 def up_private():
     #default off
