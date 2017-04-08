@@ -79,6 +79,18 @@ def inst_init_private(id='rinajackmimi', session_id=None):
     return end_cursor, cookies, url, user_id, count 
 
 
+def inst_get_following():
+    url = 'https://www.instagram.com/graphql/query/?query_id=17874545323001329&id=2969173752&first=200'
+    cookies = {}
+    cookies['sessionid'] = SESSION_ID
+    r = requests.get(url=url, cookies=cookies, verify=False)
+    d = json.loads(r.text)
+    nodes = d['data']['user']['edge_follow']['edges']
+    r = [n['node']['username'] for n in nodes]
+    print r
+    return r
+
+
 def inst_private__a(id='rinajackmimi', session_id=None):
     nodes = []
     s = 2
@@ -333,6 +345,8 @@ OWNER_LIST = [
     'rachelc00k',
     'elizabethcturner',
 ]
+
+OWNER_LIST = [u'milaazul', u'red_fox_official1', u'_milenangel_', u'itsdeedster', u'sabrinalynnci', u'emilybloomofficial', u'alice_posse', u'stormy.jpeg', u'sky3mfc', u'sandrageorgiapopa', u'kitty_catxox', u'heyashleytea', u'alexapond_', u'callmems.molly', u'emilytokes', u'rise_xo', u'nintend.xo', u'sunnhii3e', u'lunalanie', u'reyasroom', u'verabambii', u'verabambilive', u'reya__sunshine', u'nataliesng', u'lexivixi', u'svetabily', u'helga_model', u'galina_dub', u'lovelynnc', u'highestheaven', u'kristinabasham', u'lindseypelas', u'saraunderwood', u'playboy', u'bikinidolls', u'sitabellan', u'adrianneho', u'chodakowskaewa', u'karolina_pisarek', u'rosylip123', u'bygracekim', u'lovelyjoohee', u'seojin_ban', u'mi_______u', u'anllela_sagra', u'sommerray2', u'sommerray', u'lynaritaa', u'juli.annee', u'lovely_ahyeong', u'superbaby_dy', u'jieun_han', u'cxxsomi', u'baby_bin47', u'angelyunmi', u'leejina.angel', u'park_sihyun', u'sylvia.1204', u'shamandalie.sg', u'riae_', u'eliselaurenne', u'darshelle_stevens', u'jazzychewter', u'super_kaif', u'ukrainian.beautiful.girls', u'hot.berries', u'hot_girls_everyday_', u'flinktheworld', u'naomihype', u'willypelayo', u'georgecortina', u'skyjuu', u'niponas.kawaii', u'love.curve', u'terminushoot', u'lie.wilawan', u'mariaskyy', u'kkaaww', u'amouranth', u'madi.kat', u'casteels', u'rosiehw', u'realbarbarapalvin', u'marthahunt', u'romeestrijd', u'josephineskriver', u'mirandakerr', u'bellahadid', u'gigihadid', u'taylor_hill', u'angelcandices', u'doutzen', u'alessandraambrosio', u'chiaraferragni', u'itskaylaerin', u'amythunderbolt', u'misalynnclp', u'inran_hibiki', u'makihojyo', u'kizaki_jessica', u'asukakiraran', u'yua_mikami', u'shibuya_yuri', u'l92833', u'vickycc061', u'cherry_quahst', u'laine_laineng', u'maybe_iamawesome', u'gatitayan888', u'_reiikoyuii', u'peiyu0515', u'instababe_universe', u'insta_hotpeople', u'fffrofaizzz', u'cuteprettygirls', u'instababes.asian', u'sg.my.babes', u'edyta_zajac', u'laboon_girls', u'japanese_cutie_girls', u'gravuremagazine', u'melwitharosee', u'leannabartlett', u'cindyprado', u'emrata', u'danbilzerian', u'hinzajoa', u'lizwenya', u'gingerwangim', u'carinalinn_', u'mayjam101', u'liu1ting', u'jjdogdiary', u'mikibaby_w', u'icicbaby', u'crysta1lee', u'cyndi811213', u'yuibabeshop', u'yui_xin_', u'pinkyyyy520', u'sabrinaanellie', u'hwangbarbie', u'hilaryhrhoda', u'actressclara', u'djxin_tw', u'officialhatano', u'jenna_chew', u'chiababy116', u'alicebambam', u'joanne_722', u'chi_7_7_', u'44lucifer77', u'lucycecile', u'nuuu.07', u'rinajackmimi', u'joannakrupa', u'lenagercke', u'kaypikefashion', u'victoriassecret', u'arianagrande', u'nike', u'instagram']
 
 PRIVATE_LIST = [
     'rinajackmimi',
