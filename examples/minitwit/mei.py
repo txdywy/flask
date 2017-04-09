@@ -85,8 +85,8 @@ def inst_init_private(id='rinajackmimi', session_id=None):
     return end_cursor, cookies, url, user_id, count 
 
 
-def inst_get_following():
-    url = 'https://www.instagram.com/graphql/query/?query_id=17874545323001329&id=2969173752&first=200'
+def inst_get_following(n=1000):
+    url = 'https://www.instagram.com/graphql/query/?query_id=17874545323001329&id=2969173752&first=' + str(n)
     cookies = {}
     cookies['sessionid'] = SESSION_ID
     r = requests.get(url=url, cookies=cookies, verify=False)
@@ -181,7 +181,7 @@ def inst_update_private(id='rinajackmimi', session_id=None):
         count = x['user']['media']['count']
         has_next_page = x['user']['media']['page_info']['has_next_page']
         max_id = end_cursor
-        pprint(nodes)
+        #pprint(nodes)
         for n in nodes:
             #pprint(n)
             x = md.InstMei.query.filter_by(inst_code=(n['code'])).first()
@@ -368,6 +368,14 @@ EXCLUDE_LIST = [
     'instagram',
 ]
 OWNER_LIST = [i for i in OWNER_LIST if i not in PRIVATE_LIST and i not in EXCLUDE_LIST]
+
+
+def test_new(c)
+    set_cookie(c)
+    global OWNER_LIST
+    OWNER_LIST = inst_get_following()
+    OWNER_LIST = [i for i in OWNER_LIST if i not in PRIVATE_LIST and i not in EXCLUDE_LIST]
+    up()
 
 def up():
     c = 1
