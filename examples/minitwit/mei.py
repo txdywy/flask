@@ -361,6 +361,7 @@ PRIVATE_LIST = [
     'rinajackmimi',
     'nuuu.07',
     'mybossgirls',
+    'mainitipanty',
 ]
 
 EXCLUDE_LIST = [
