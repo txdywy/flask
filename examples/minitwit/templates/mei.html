@@ -141,7 +141,7 @@ $(function(){
         </div>
         {% for im in ims %}
         <div class="grid">
-            <div class="imgholder"><img class="lazy" src="http://ac-9dv47dhd.clouddn.com/4d66dbf20b9b68609551.gif" data-original="{{ im.thumbnail_src }}"  /></div>
+            <div class="imgholder"><img class="lazy" src="http://ac-9dv47dhd.clouddn.com/4d66dbf20b9b68609551.gif" data-original="{{ 'https://ig-s-c-a.akamaihd.net/hphotos-ak-xat1/t51.2885-15/s640x640/sh0.08/e35/c0.134.1080.1080/' + im.thumbnail_src.split('/')[-1] }}"  /></div>
             <strong>{{ im.inst_code }}</strong>
             <p>美妞12356</p>
         </div>
