@@ -362,6 +362,7 @@ PRIVATE_LIST = [
     'nuuu.07',
     'mybossgirls',
     'mainitipanty',
+    'beautiful_hip',
 ]
 
 EXCLUDE_LIST = [
