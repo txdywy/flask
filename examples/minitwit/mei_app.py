@@ -32,7 +32,7 @@ ANT_RATE = 0.02
 def query():
     #ims = mm.InstMei.query.all()
     #ims = random.sample(ims, 3)
-    r = [ random.randint(1, MEI_COUNT)]
+    r = [random.randint(1, MEI_COUNT), random.randint(1, MEI_COUNT)]
     ims = mm.InstMei.query.filter(mm.InstMei.id.in_(r)).all()
     ant = False if random.random() > ANT_RATE else True
     return render_template('mei_query.html', ims=ims, ant=ant)
