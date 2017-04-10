@@ -24,6 +24,7 @@ def init_db():
     #import yourapplication.models
     Base.metadata.create_all(bind=engine)
 
+CDN_PREFIX = 'https://ig-s-c-a.akamaihd.net/hphotos-ak-xat1/t51.2885-15/s640x640/sh0.08/e35/c0.134.1080.1080/'
 class InstMei(Base):
     __tablename__ = 'inst_mei'
     id = Column(Integer, primary_key=True)
@@ -39,6 +40,9 @@ class InstMei(Base):
 
     def __repr__(self):
         return '<InstMei %r>' % (self.id)
+
+    def pic_url(self):
+        return CDN_PREFIX + self.thumbnail_src.split('/')[-1]
 
 
 
