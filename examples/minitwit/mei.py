@@ -365,6 +365,10 @@ PRIVATE_LIST = [
     'beautiful_hip',
     'ranranranran026',
     'fallen_angel__666__',
+    'h_r_k_nts',
+    'ri30ri30',
+    's3xysophia',
+    'yui_4402',
 ]
 
 EXCLUDE_LIST = [
