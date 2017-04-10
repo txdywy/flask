@@ -17,12 +17,19 @@ from flask import Flask, request, session, url_for, redirect, \
 import flask
 import models.model_mei as mm
 import random
+import koji as mcache
 app = Flask(__name__)
 
-MEI_COUNT = mm.InstMei.query.count()
+def get_mei_count():
+    c = mcache.get('MEI_COUNT')
+    c = c if c else mm.InstMei.query.count()
+    mcache.set('MEI_COUNT', c, 60)
+    return c
+
 @app.route('/')
 @app.route('/index')
 def index():
+    MEI_COUNT = get_mei_count()
     r = [random.randint(1, MEI_COUNT), random.randint(1, MEI_COUNT), random.randint(1, MEI_COUNT)]
     ims = mm.InstMei.query.filter(mm.InstMei.id.in_(r)).all()
     return render_template('mei.html', ims=ims, mc=MEI_COUNT)
@@ -30,6 +37,7 @@ def index():
 ANT_RATE = 0.02
 @app.route('/query', methods=['POST'])
 def query():
+    MEI_COUNT = get_mei_count()
     #ims = mm.InstMei.query.all()
     #ims = random.sample(ims, 3)
     r = [random.randint(1, MEI_COUNT), random.randint(1, MEI_COUNT)]
