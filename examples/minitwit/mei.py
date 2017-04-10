@@ -369,6 +369,7 @@ PRIVATE_LIST = [
     'ri30ri30',
     's3xysophia',
     'yui_4402',
+    'meri6_6meri',
 ]
 
 EXCLUDE_LIST = [
@@ -384,15 +385,26 @@ def test_new(c):
     OWNER_LIST = inst_get_following()
     OWNER_LIST = [i for i in OWNER_LIST if i not in PRIVATE_LIST and i not in EXCLUDE_LIST]
     up()
+    up_private()
 
 def up():
+    global PRIVATE_LIST
+    private_new = []
     c = 1
     k = len(OWNER_LIST)
     for id in OWNER_LIST:
         print '='*50, id
-        inst_update(id)
+        try:
+            inst_update(id)
+        except:
+            print '*'*50, 'new private id', id
+            private_new.append(id)
+            PRIVATE_LIST.append(id)
         print '+'*50, c, k
         c += 1
+    print '%'*50, private_new
+    with open('np.txt', 'a') as f:
+        f.write(str(private_new)+'\n')
 
 def up_private():
     #default off
