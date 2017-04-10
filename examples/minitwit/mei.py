@@ -76,6 +76,8 @@ def inst_init_private(id='rinajackmimi', session_id=None):
         session_id = SESSION_ID
     url = 'https://www.instagram.com/%s/?__a=1' % id
     r = requests.get(url=url, verify=False)
+    #print r.text
+    print '='*50, url
     x = json.loads(r.text)
     end_cursor = x['user']['media']['page_info']['end_cursor']
     cookies = r.cookies.get_dict()
@@ -361,7 +363,7 @@ PRIVATE_LIST = [
     'rinajackmimi',
     'nuuu.07',
     'mybossgirls',
-    'mainitipanty',
+    #'mainitipanty',
     'beautiful_hip',
     'ranranranran026',
     'fallen_angel__666__',
