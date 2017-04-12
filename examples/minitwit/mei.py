@@ -412,7 +412,7 @@ def up():
 def up_private():
     #default off
     global PRIVATE_LIST
-    PRIVATE_LIST = [ i for i in PRIVATE_LIST and i not in EXCLUDE_LIST]
+    PRIVATE_LIST = [ i for i in PRIVATE_LIST if i not in EXCLUDE_LIST]
     if SESSION_ID:
         for id in PRIVATE_LIST:
             inst_update_private(id)
