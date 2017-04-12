@@ -377,6 +377,7 @@ PRIVATE_LIST = [
 EXCLUDE_LIST = [
     'nike',
     'instagram',
+    'bodygirlsdaily',
 ]
 OWNER_LIST = [i for i in OWNER_LIST if i not in PRIVATE_LIST and i not in EXCLUDE_LIST]
 
@@ -410,6 +411,8 @@ def up():
 
 def up_private():
     #default off
+    global PRIVATE_LIST
+    PRIVATE_LIST = [ i for i in PRIVATE_LIST and i not in EXCLUDE_LIST]
     if SESSION_ID:
         for id in PRIVATE_LIST:
             inst_update_private(id)
