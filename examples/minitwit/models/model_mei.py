@@ -48,7 +48,7 @@ class InstMei(Base):
         d = {}
         d['id'] = self.id
         d['owner'] = self.inst_owner
-        d['secret'] = ''
+        d['secret'] = self.thumbnail_src.split('/')[-1]
         d['server'] = ''
         d['farm'] = 4
         d['title'] = self.inst_code
