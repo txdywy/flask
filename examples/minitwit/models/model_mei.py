@@ -44,6 +44,18 @@ class InstMei(Base):
     def pic_url(self):
         return CDN_PREFIX + self.thumbnail_src.split('/')[-1]
 
+    def to_dict(self):
+        d = {}
+        d['id'] = self.id
+        d['owner'] = self.inst_owner
+        d['secret'] = ''
+        d['server'] = ''
+        d['farm'] = 4
+        d['title'] = self.inst_code
+        d['ispublic'] = 1
+        d['isfriend'] = 0
+        d['isfamily'] = 0
+        return d
 
 
 

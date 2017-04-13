@@ -18,7 +18,9 @@ import flask
 import models.model_mei as mm
 import random
 import koji as mcache
+import json
 app = Flask(__name__)
+app.debug = True
 
 def get_mei_count():
     c = mcache.get('MEI_COUNT')
@@ -52,3 +54,21 @@ def query():
 def api():
     return "https://ig-s-b-a.akamaihd.net/hphotos-ak-xta1/t51.2885-15/e35/17265902_267101913747541_3627374961242406912_n.jpg"
 
+
+@app.route('/recent')
+def recent():
+    MEI_COUNT = get_mei_count()
+    total = 1000
+    s = [random.randint(1, MEI_COUNT) for i in xrange(total)]
+    ims = mm.InstMei.query.filter(mm.InstMei.id.in_(s)).all()
+    ims = [i.to_dict() for i in ims]
+    r = {}
+    r['photos'] = {}
+    r['photos']['page'] = 1
+    r['photos']['pages'] = 4
+    r['photos']['perpage'] = 300
+    r['photos']['total'] = total
+    r['photos']['photo'] = ims
+    r['stat'] = 'ok'
+    x = json.dumps(r)
+    return 'jsonFlickrApi(%s)' % x 
