@@ -48,4 +48,7 @@ def query():
 
 
 
+@app.route('/api')
+def api():
+    return "https://ig-s-b-a.akamaihd.net/hphotos-ak-xta1/t51.2885-15/e35/17265902_267101913747541_3627374961242406912_n.jpg"
 

@@ -378,6 +378,7 @@ EXCLUDE_LIST = [
     'nike',
     'instagram',
     'bodygirlsdaily',
+    'college.girlz',
 ]
 OWNER_LIST = [i for i in OWNER_LIST if i not in PRIVATE_LIST and i not in EXCLUDE_LIST]
 
