@@ -29,8 +29,14 @@ GP_INST_OWNER = [
     'alicebambam',
     'jenna_chew',
     'actressclara',
-    'hwangbarbie',
+    #'hwangbarbie',
     'icicbaby',
+    'chiababy116',
+    'cyndi811213',
+    'crysta1lee',
+    'mikibaby_w',
+    'mayjam101',
+    'hinzajoa',
 
 ]
 GP_ID_LIST = mm.InstMei.query.filter(mm.InstMei.inst_owner.in_(GP_INST_OWNER)).all()
