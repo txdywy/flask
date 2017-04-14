@@ -24,11 +24,14 @@ app.debug = True
 
 GP_INST_OWNER = [
     'djxin_tw',
-    'joannakrupa',
-    'lenagercke',
     'lucycecile',
     '44lucifer77',
     'alicebambam',
+    'jenna_chew',
+    'actressclara',
+    'hwangbarbie',
+    'icicbaby',
+
 ]
 GP_ID_LIST = mm.InstMei.query.filter(mm.InstMei.inst_owner.in_(GP_INST_OWNER)).all()
 GP_ID_LIST = [x.id for x in GP_ID_LIST]
