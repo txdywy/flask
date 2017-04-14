@@ -79,6 +79,7 @@ def recent():
     s = random.sample(GP_ID_LIST, 1000)
     ims = mm.InstMei.query.filter(mm.InstMei.id.in_(s)).all()
     ims = [i.to_dict() for i in ims]
+    random.shuffle(ims)
     r = {}
     r['photos'] = {}
     r['photos']['page'] = 1
