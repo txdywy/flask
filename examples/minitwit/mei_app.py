@@ -37,7 +37,19 @@ GP_INST_OWNER = [
     'mikibaby_w',
     'mayjam101',
     'hinzajoa',
-
+    'emrata',
+    'cindyprado',
+    'leananabartlett',
+    'melwitharosee',
+    'sg.my.babes',
+    'peiyu0515',
+    'laine_laineng',
+    'vickycc061',
+    'cherry_quahst',
+    'chiaraferragni',
+    'josephineskriver',
+    'jieun_han',
+    'lovelyjoohee',
 ]
 GP_ID_LIST = mm.InstMei.query.filter(mm.InstMei.inst_owner.in_(GP_INST_OWNER)).all()
 GP_ID_LIST = [x.id for x in GP_ID_LIST]
@@ -145,10 +157,10 @@ def recent():
     total = 1000
     #s = [random.randint(1, MEI_COUNT) for i in xrange(total)]
 
-    #s = random.sample(GP_ID_LIST, 1000)
-    #ims = mm.InstMei.query.filter(mm.InstMei.id.in_(s)).all()
-    ims = get_temp_ims()
-    ims = ims * 10
+    s = random.sample(GP_ID_LIST, 1000)
+    ims = mm.InstMei.query.filter(mm.InstMei.id.in_(s)).all()
+    #ims = get_temp_ims()
+    #ims = ims * 10
     total = len(ims)
     ims = [i.to_dict() for i in ims]
     random.shuffle(ims)
