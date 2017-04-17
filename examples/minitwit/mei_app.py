@@ -77,13 +77,79 @@ def api():
     return "https://ig-s-b-a.akamaihd.net/hphotos-ak-xta1/t51.2885-15/e35/17265902_267101913747541_3627374961242406912_n.jpg"
 
 
+TEMP_LIST = ['2MKACyCBAs',
+ 'of5-BaoySM',
+ 'BHuwr9yD7mr',
+ '_wC8z9wEfM',
+ '_iYu_FQEfq',
+ '7W5-cmQESx',
+ 'BHZ1DsPj0Ob',
+ '9tWRx3QEQG',
+ 'BHkCmK1D5W5',
+ 'BL80SfFAyHV',
+ '_gDZOHoyQc',
+ 'BBE7X25iIjA',
+ 'hgN0BXoyZp',
+ '1GXqeNoyZm',
+ 'xJw85-IyQe',
+ 'BSTqxRgA6vZ',
+ 'BQakf6Lgvct',
+ '_b8FJys95s',
+ 'w5uvpNIyf2',
+ '9LKTmVIyd_',
+ 'BHdKZ4WhmNj',
+ 'BBmtqgOB08p',
+ 'BDC6l5AIyX4',
+ '6n2pfuiBPr',
+ 'BOOiEjNjgaJ',
+ 'BMoRqeejRwU',
+ 'rrjf4WoyQB',
+ '-_vzuuqQ3z',
+ '5Cr4ikoyTx',
+ 'd4NXT3oyRC',
+ 'z6sQy7oyat',
+ 'gGvHQzIyW5',
+ 'sHyu80oyfj',
+ 'BOqiCf2jaGl',
+ '_GWd9CoyYR',
+ '0MFXryIyc9',
+ 'fw6I15CIoM',
+ 'w4NMPKoydC',
+ 'eM8YeHIyYl',
+ 'BJAD7HhDqnQ',
+ 'BSI6guxl9CI',
+ 'BC8Ky2RIycU',
+ 'BHkzzPyBhAD',
+ 'lmWNNXB01H',
+ 'BDh_vuqqQ6o',
+ 'k4jxZhIyYx',
+ 'BDPeEVcKQ-r',
+ 'wL8ZbiQETl',
+ 'pgl1OvoySD',
+ 'ZSTY2koyfI',
+ '8KYn4zIyYk',
+ '5RQtE4IyXu',
+ '_x2NuRiIoA',
+ 'BQe9i4rjeBM',
+ ]
+
+
+def get_temp_ims():
+    ims = mm.InstMei.query.filter(mm.InstMei.inst_code.in_(TEMP_LIST)).all()
+    return ims
+    
+
 @app.route('/recent')
 def recent():
     MEI_COUNT = get_mei_count()
     total = 1000
     #s = [random.randint(1, MEI_COUNT) for i in xrange(total)]
-    s = random.sample(GP_ID_LIST, 1000)
-    ims = mm.InstMei.query.filter(mm.InstMei.id.in_(s)).all()
+
+    #s = random.sample(GP_ID_LIST, 1000)
+    #ims = mm.InstMei.query.filter(mm.InstMei.id.in_(s)).all()
+    ims = get_temp_ims()
+    ims = ims * 10
+    total = len(ims)
     ims = [i.to_dict() for i in ims]
     random.shuffle(ims)
     r = {}
