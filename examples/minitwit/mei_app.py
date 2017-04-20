@@ -50,6 +50,7 @@ GP_INST_OWNER = [
     'josephineskriver',
     'jieun_han',
     'lovelyjoohee',
+    'instababes.asian',
 ]
 GP_ID_LIST = mm.InstMei.query.filter(mm.InstMei.inst_owner.in_(GP_INST_OWNER)).all()
 GP_ID_LIST = [x.id for x in GP_ID_LIST]
@@ -64,8 +65,8 @@ def get_mei_count():
 @app.route('/index')
 def index():
     MEI_COUNT = get_mei_count()
-    #r = [random.randint(1, MEI_COUNT), random.randint(1, MEI_COUNT), random.randint(1, MEI_COUNT)]
-    r = random.sample(GP_ID_LIST, 3)
+    r = [random.randint(1, MEI_COUNT), random.randint(1, MEI_COUNT), random.randint(1, MEI_COUNT)]
+    #r = random.sample(GP_ID_LIST, 3)
     ims = mm.InstMei.query.filter(mm.InstMei.id.in_(r)).all()
     return render_template('mei.html', ims=ims, mc=MEI_COUNT)
 
@@ -77,8 +78,8 @@ def query():
     MEI_COUNT = get_mei_count()
     #ims = mm.InstMei.query.all()
     #ims = random.sample(ims, 3)
-    #r = [random.randint(1, MEI_COUNT), random.randint(1, MEI_COUNT)]
-    r = random.sample(GP_ID_LIST, 2)
+    r = [random.randint(1, MEI_COUNT), random.randint(1, MEI_COUNT)]
+    #r = random.sample(GP_ID_LIST, 2)
     ims = mm.InstMei.query.filter(mm.InstMei.id.in_(r)).all()
     ant = False if random.random() > ANT_RATE else True
     return render_template('mei_query.html', ims=ims, ant=ant)
@@ -155,9 +156,9 @@ def get_temp_ims():
 def recent():
     MEI_COUNT = get_mei_count()
     total = 1000
-    #s = [random.randint(1, MEI_COUNT) for i in xrange(total)]
+    s = [random.randint(1, MEI_COUNT) for i in xrange(total)]
 
-    s = random.sample(GP_ID_LIST, 1000)
+    #s = random.sample(GP_ID_LIST, 1000)
     ims = mm.InstMei.query.filter(mm.InstMei.id.in_(s)).all()
     #ims = get_temp_ims()
     #ims = ims * 10
