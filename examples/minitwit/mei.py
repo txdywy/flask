@@ -87,7 +87,7 @@ def inst_init_private(id='rinajackmimi', session_id=None):
     return end_cursor, cookies, url, user_id, count 
 
 
-def inst_get_following(n=1000):
+def inst_get_following(n=10000):
     url = 'https://www.instagram.com/graphql/query/?query_id=17874545323001329&id=2969173752&first=' + str(n)
     cookies = {}
     cookies['sessionid'] = SESSION_ID
