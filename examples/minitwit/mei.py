@@ -93,7 +93,7 @@ def inst_get_following(n=9999):
     cookies['sessionid'] = SESSION_ID
     r = requests.get(url=url, cookies=cookies, verify=False)
     d = json.loads(r.text)
-    pprint(d)
+    #pprint(d)
     nodes = d['data']['user']['edge_follow']['edges']
     r = [n['node']['username'] for n in nodes]
     print r
