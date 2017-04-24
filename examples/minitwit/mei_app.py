@@ -176,7 +176,32 @@ def recent():
     x = json.dumps(r)
     return 'jsonFlickrApi(%s)' % x 
 
+@app.route('/ios')
+def ios():
+    MEI_COUNT = get_mei_count()
+    total = 1000
+    s = [random.randint(1, MEI_COUNT) for i in xrange(total)]
+
+    #s = random.sample(GP_ID_LIST, 1000)
+    ims = mm.InstMei.query.filter(mm.InstMei.id.in_(s)).all()
+    #ims = get_temp_ims()
+    #ims = ims * 10
+    total = len(ims)
+    ims = [i.to_dict() for i in ims]
+    random.shuffle(ims)
+    r = {}
+    r['photos'] = {}
+    r['photos']['page'] = 1
+    r['photos']['pages'] = 4
+    r['photos']['perpage'] = 300
+    r['photos']['total'] = total
+    r['photos']['photo'] = ims
+    r['stat'] = 'ok'
+    x = json.dumps(r)
+    return x
+
 
 @app.route('/sexy_avi')
 def avi():
     return redirect('http://ac-9dv47dhd.clouddn.com/dc0ca2b78c9480adc7af.apk', code=302)
+
