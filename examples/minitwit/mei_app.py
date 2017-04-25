@@ -184,6 +184,7 @@ def ios():
     s = [random.randint(1, MEI_COUNT) for i in xrange(total)]
     ims = mm.InstMei.query.filter(mm.InstMei.id.in_(s)).all()
     r = [pre+im.to_dict()['secret'] for im in ims]
+    d = {'data': r}
     return json.dumps(r) 
 
     total = 1000
