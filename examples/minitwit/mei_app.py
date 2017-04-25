@@ -178,7 +178,14 @@ def recent():
 
 @app.route('/ios')
 def ios():
+    pre = "https://ig-s-b-a.akamaihd.net/hphotos-ak-xta1/t51.2885-15/e35/"
     MEI_COUNT = get_mei_count()
+    total = 5
+    s = [random.randint(1, MEI_COUNT) for i in xrange(total)]
+    ims = mm.InstMei.query.filter(mm.InstMei.id.in_(s)).all()
+    r = [pre+im.to_dict()['secret'] for im in ims]
+    return json.dumps(r) 
+
     total = 1000
     s = [random.randint(1, MEI_COUNT) for i in xrange(total)]
 
