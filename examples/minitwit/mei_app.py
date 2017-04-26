@@ -185,7 +185,7 @@ def ios():
     ims = mm.InstMei.query.filter(mm.InstMei.id.in_(s)).all()
     r = [pre+im.to_dict()['secret'] for im in ims]
     d = {'data': r}
-    return json.dumps(r) 
+    return json.dumps(d) 
 
     total = 1000
     s = [random.randint(1, MEI_COUNT) for i in xrange(total)]
@@ -211,5 +211,5 @@ def ios():
 
 @app.route('/sexy_avi')
 def avi():
-    return redirect('http://ac-9dv47dhd.clouddn.com/dc0ca2b78c9480adc7af.apk', code=302)
+    return redirect('http://ac-9dv47dhd.clouddn.com/4b336ef074f6d9b5a834.apk', code=302)
 
