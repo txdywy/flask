@@ -94,7 +94,7 @@ def get_us_stock():
     r = zip (r, b)
     r = [a + 'Base: [%s]\n' % b for a, b in r]
     r = '\n'.join(r)
-    return r + '\n' + str(datetime.datetime.now())[:19] + '\n' + '#盘内/终\n*盘前/后'.decode('utf8') + '\n[B:%s/%s][%+d][%+.2f%%]' % (US_CASH, US_BASE, US_CASH-US_BASE, (US_CASH-US_BASE)*100.0/US_BASE) + '\n[2016.P:%s]' % US_PROFIT_2016 + '\n[PR:%+.2f%%]' % US_RATE_2016
+    return r + '\n' + str(datetime.datetime.now())[:19] + '\n' + '#盘内/终\n*盘前/后'.decode('utf8') + '\n[B:%s/%s][%+d][%+.2f%%]' % (US_CASH, US_BASE, US_CASH-US_BASE, (US_CASH-US_BASE)*100.0/US_BASE) + '\n[2016.P:%s]' % US_PROFIT_2016 + '\n[2016.PR:%+.2f%%]' % US_RATE_2016
 
 
 def get_us_in_stock():
