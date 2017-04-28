@@ -226,3 +226,10 @@ def avi():
 @app.route('/more')
 def more():
     return str(mm.InstMeiMore.query.count()) + '\n'
+
+
+@app.route('/pin')
+def pin():
+    return '1'
+
+
