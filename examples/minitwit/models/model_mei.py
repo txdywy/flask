@@ -58,5 +58,35 @@ class InstMei(Base):
         return d
 
 
+class InstMeiMore(Base):
+    __tablename__ = 'inst_mei_more'
+    id = Column(Integer, primary_key=True)
+    inst_owner = Column(String(32), default='', index=True)
+    active = Column(Integer, default=1, index=True) #0: down #1: up
+    inst_code = Column(String(16), default='', index=True)
+    inst_ts = Column(Integer, default=0)
+    display_src = Column(Text, default='')
+    inst_id = Column(String(16), index=True)
+    thumbnail_src = Column(Text, default='')
+    update_time = Column(DATETIME(), default=datetime.datetime.now())
+    create_time = Column(DATETIME(), default=datetime.datetime.now())
 
+    def __repr__(self):
+        return '<InstMei %r>' % (self.id)
+
+    def pic_url(self):
+        return CDN_PREFIX + self.thumbnail_src.split('/')[-1]
+
+    def to_dict(self):
+        d = {}
+        d['id'] = self.id
+        d['owner'] = self.inst_owner
+        d['secret'] = self.thumbnail_src.split('/')[-1]
+        d['server'] = ''
+        d['farm'] = 4
+        d['title'] = self.inst_code
+        d['ispublic'] = 1
+        d['isfriend'] = 0
+        d['isfamily'] = 0
+        return d
 
