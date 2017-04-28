@@ -61,6 +61,14 @@ def get_mei_count():
     mcache.set('MEI_COUNT', c, 60)
     return c
 
+
+def get_mei_more_count():
+    c = mcache.get('MEI_MORE_COUNT')
+    c = c if c else mm.InstMeiMore.query.count()
+    mcache.set('MEI_MORE_COUNT', c, 60)
+    return c
+
+
 @app.route('/')
 @app.route('/index')
 def index():
@@ -179,12 +187,13 @@ def recent():
 @app.route('/ios')
 def ios():
     pre = "https://ig-s-b-a.akamaihd.net/hphotos-ak-xta1/t51.2885-15/e35/"
-    MEI_COUNT = get_mei_count()
+    MEI_COUNT = get_mei_more_count()
     total = 5
     s = [random.randint(1, MEI_COUNT) for i in xrange(total)]
-    ims = mm.InstMeiMore.query.filter(mm.InstMei.id.in_(s)).all()
+    ims = mm.InstMeiMore.query.filter(mm.InstMeiMore.id.in_(s)).all()
     r = [pre+im.to_dict()['secret'] for im in ims]
     d = {'data': r}
+    print d
     return json.dumps(d) 
 
     total = 1000
@@ -213,3 +222,7 @@ def ios():
 def avi():
     return redirect('http://ac-9dv47dhd.clouddn.com/4b336ef074f6d9b5a834.apk', code=302)
 
+
+@app.route('/more')
+def more():
+    return str(mm.InstMeiMore.query.count()) + '\n'
