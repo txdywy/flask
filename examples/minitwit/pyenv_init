@@ -1,2 +1,6 @@
 https://github.com/pyenv/pyenv-installer
 https://github.com/pyenv/pyenv/wiki/Common-build-problems
+http://stackoverflow.com/questions/15608236/eclipse-and-google-app-engine-importerror-no-module-named-sysconfigdata-nd-u
+
+
+install uwsgi, supervisor by ubuntu
