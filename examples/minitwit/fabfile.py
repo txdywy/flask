@@ -56,6 +56,7 @@ HOST_VPN = ['natto',
             'ice', 
             'kim',
             'mei',
+            'wei',
             ] # ['tempura', 'ramen', 'donut', 'nori', 'mm', 'rib', 'steak', 'buckeye',] retired
 HOST_APPFLOOD = ['pre3-01', 'af_test', 'test3', 'sandbox', 'pre3-jp']
 HOST_ALL = HOST_DEV + HOST_ALANCER + HOST_VPN + HOST_APPFLOOD
@@ -93,6 +94,7 @@ HOST_LAUNCH_DATE = {
     'ice': datetime.datetime(2016, 12, 20),
     'kim': datetime.datetime(2017, 2, 3),
     'mei': datetime.datetime(2017, 5, 2),
+    'wei': datetime.datetime(2017, 5, 5),
 }
 
 
@@ -117,6 +119,7 @@ HOST_INDEX = {#'01': 'rib',      #kr@yahoo
               '19': 'ice',      #us-east-oh@outlook
               '20': 'kim',      #kr@163
               '21': 'mei',      #jp@163
+              '22': 'wei',      #jp@163
              }
 
 HOST_DATA = {#'rib'    : ('01', 'kr',    'yahoo'),
@@ -139,7 +142,8 @@ HOST_DATA = {#'rib'    : ('01', 'kr',    'yahoo'),
              'fish'   : ('18', 'uk',    'outlook'),
              'ice'    : ('19', 'ue-oh', 'outlook'),
              'kim'    : ('20', 'kr',    '163'),
-             'mei'     : ('21', 'jp',    '163'),
+             'mei'    : ('21', 'jp',    '163'),
+             'wei'    : ('22', 'jp',    '163'),
              }
 
 
