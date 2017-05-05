@@ -187,7 +187,7 @@ def recent():
 @app.route('/ios')
 def ios():
     pre = "https://ig-s-b-a.akamaihd.net/hphotos-ak-xta1/t51.2885-15/e35/"
-    flag = random.randint(0, 1)
+    flag = 1#random.randint(0, 1)
     MEI_COUNT = get_mei_more_count() if flag else get_mei_count()
     total = 5
     s = [random.randint(1, MEI_COUNT) for i in xrange(total)]
