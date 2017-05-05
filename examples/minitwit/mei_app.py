@@ -187,10 +187,11 @@ def recent():
 @app.route('/ios')
 def ios():
     pre = "https://ig-s-b-a.akamaihd.net/hphotos-ak-xta1/t51.2885-15/e35/"
-    MEI_COUNT = get_mei_more_count()
+    flag = random.randint(0, 1)
+    MEI_COUNT = get_mei_more_count() if flag else get_mei_count()
     total = 5
     s = [random.randint(1, MEI_COUNT) for i in xrange(total)]
-    ims = mm.InstMeiMore.query.filter(mm.InstMeiMore.id.in_(s)).all()
+    ims = mm.InstMeiMore.query.filter(mm.InstMeiMore.id.in_(s)).all() if flag else mm.InstMei.query.filter(mm.InstMei.id.in_(s)).all()
     r = [pre+im.to_dict()['secret'] for im in ims]
     d = {'data': r}
     print d
