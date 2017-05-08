@@ -259,7 +259,7 @@ def dance():
         x["secret"] = i
         x["owner"] = ""
         x["id"] = ""
-        ims.append(i)
+        ims.append(x)
     total = len(ims)
     random.shuffle(ims)
     r = {}
