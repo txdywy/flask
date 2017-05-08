@@ -243,6 +243,21 @@ DANCE_QUEEN_LIST = [
     'http://ac-9dv47dhd.clouddn.com/63f28c98914f9218f26a.JPG',
     'http://ac-9dv47dhd.clouddn.com/219f5d1a182fd71691dc.JPG',
     'http://ac-9dv47dhd.clouddn.com/1bf2e4f9ddcb02beb9bb.JPG',
+    'http://ac-9dv47dhd.clouddn.com/b1e152a3018c6b2399e2.JPG',
+    'http://ac-9dv47dhd.clouddn.com/08a7c183216b8cd0c2ee.JPG',
+    'http://ac-9dv47dhd.clouddn.com/62f257ecdd3fc6d12985.JPG',
+    'http://ac-9dv47dhd.clouddn.com/e4148aee8d98a1058f70.JPG',
+    'http://ac-9dv47dhd.clouddn.com/0f73edd01dc37caa76ef.JPG',
+    'http://ac-9dv47dhd.clouddn.com/61ba1d921a1a8dc17de9.JPG',
+    'http://ac-9dv47dhd.clouddn.com/e21eded8ab2391dff4a1.JPG',
+    'http://ac-9dv47dhd.clouddn.com/147bff7ac8e939a10946.JPG',
+    'http://ac-9dv47dhd.clouddn.com/93cfa14d327c73a58fa2.JPG',
+    'http://ac-9dv47dhd.clouddn.com/1f2b5af29c0c47f39398.JPG',
+    'http://ac-9dv47dhd.clouddn.com/8cd056c1cc5dd120a644.JPG',
+    'http://ac-9dv47dhd.clouddn.com/f5b9e39e74aeff15354f.JPG',
+    'http://ac-9dv47dhd.clouddn.com/de53e1886534b2dee676.JPG',
+    'http://ac-9dv47dhd.clouddn.com/f04766aa020fabe846d1.JPG',
+    'http://ac-9dv47dhd.clouddn.com/001102eed9e80f63798c.JPG',
 ]
 
 @app.route('/dance')
