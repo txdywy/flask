@@ -234,3 +234,42 @@ def pin():
     return '1'
 
 
+DANCE_QUEEN_LIST = [
+    'http://ac-9dv47dhd.clouddn.com/1bf2e4f9ddcb02beb9bb.JPG',
+    'http://ac-9dv47dhd.clouddn.com/56c4dbc4888d98079af2.JPG',
+    'http://ac-9dv47dhd.clouddn.com/0d9c1a6ab5f9767a3017.JPG',
+    'http://ac-9dv47dhd.clouddn.com/efd4f611e9e648416b94.JPG',
+    'http://ac-9dv47dhd.clouddn.com/3ec458b11674adb7dc7d.JPG',
+    'http://ac-9dv47dhd.clouddn.com/63f28c98914f9218f26a.JPG',
+    'http://ac-9dv47dhd.clouddn.com/219f5d1a182fd71691dc.JPG',
+    'http://ac-9dv47dhd.clouddn.com/1bf2e4f9ddcb02beb9bb.JPG',
+]
+
+@app.route('/dance')
+def dance():
+    ims = []
+    for i in DANCE_QUEEN_LIST:
+        x = {}
+        x["isfamily"] = 0
+        x["title"] = "京城舞王"
+        x["farm"] = 4
+        x["ispublic"] = 1
+        x["server"] = ""
+        x["isfriend"] = 0
+        x["secret"] = i
+        x["owner"] = ""
+        x["id"] = ""
+        ims.append(i)
+    total = len(ims)
+    random.shuffle(ims)
+    r = {}
+    r['photos'] = {}
+    r['photos']['page'] = 1
+    r['photos']['pages'] = 4
+    r['photos']['perpage'] = 300
+    r['photos']['total'] = total
+    r['photos']['photo'] = ims
+    r['stat'] = 'ok'
+    x = json.dumps(r)
+    return 'jsonFlickrApi(%s)' % x
+
