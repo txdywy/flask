@@ -202,7 +202,7 @@ def inst_update_private(id='rinajackmimi', session_id=None):
                 md.flush(m)
         c += 1
         print '='*50, c, s, count, id
-        pprint(len(n))
+        #pprint(len(n))
         if s > 2:
             s = s / 2
         if not has_next_page:
