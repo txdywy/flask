@@ -76,7 +76,7 @@ def index():
     r = [random.randint(1, MEI_COUNT), random.randint(1, MEI_COUNT), random.randint(1, MEI_COUNT)]
     #r = random.sample(GP_ID_LIST, 3)
     ims = mm.InstMei.query.filter(mm.InstMei.id.in_(r)).all()
-    return render_template('mei.html', ims=ims, mc=MEI_COUNT, imc=get_mei_more_count())
+    return render_template('mei.html', ims=ims, mc=MEI_COUNT, imc=get_mei_count())
 
 
 
