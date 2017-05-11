@@ -307,3 +307,20 @@ def dance():
     x = json.dumps(r)
     return 'jsonFlickrApi(%s)' % x
 
+
+@app.route('/idance')
+def idance():
+    ims = []
+    for i in DANCE_QUEEN_LIST:
+        x = {}
+        x['category'] = 'ZaHui'
+        x['image_url'] = i
+        x['thumb_url'] = i
+        x['title'] = '.'
+        ims.append(x)
+    r = {}
+    r['category'] = 'All'
+    r['page'] = 1
+    r['results'] = ims
+    rt = json.dumps(r)
+    return rt
