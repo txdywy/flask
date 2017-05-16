@@ -231,6 +231,12 @@ def more():
 
 @app.route('/pin')
 def pin():
+    id = request.args.get('id')
+    d = mm.Dance.query.get(id)
+    if not d:
+        return '0'
+    d.like += 1
+    mm.flush(d)
     return '1'
 
 
