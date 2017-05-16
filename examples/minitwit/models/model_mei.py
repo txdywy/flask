@@ -90,3 +90,21 @@ class InstMeiMore(Base):
         d['isfamily'] = 0
         return d
 
+
+class Dance(Base):
+    __tablename__ = 'dance'
+    id = Column(Integer, primary_key=True)
+    category = Column(String(32), default='', index=True)
+    like = Column(Integer, default=0)
+    title = Column(Text, default='')
+    image_url = Column(Text, default='')
+    update_time = Column(DATETIME(), default=datetime.datetime.now())
+    create_time = Column(DATETIME(), default=datetime.datetime.now())
+
+    def __repr__(self):
+        return '<Dance %r>' % (self.id)
+
+
+
+
+

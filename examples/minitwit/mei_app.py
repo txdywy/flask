@@ -311,14 +311,15 @@ def dance():
 @app.route('/idance')
 def idance():
     ims = []
-    for i in DANCE_QUEEN_LIST:
+    ds = mm.Dance.query.all()
+    for i in ds:
         x = {}
-        x['category'] = 'ZaHui'
-        x['image_url'] = i
-        x['thumb_url'] = i
-        x['title'] = '.'
-        x['id'] = str(random.randint(1, 100))
-        x['like'] = str(random.randint(1, 100))
+        x['category'] = 'ZaHui' #i.category
+        x['image_url'] = i.image_url
+        x['thumb_url'] = i.image_url
+        x['title'] = i.title
+        x['id'] = str(i.id)
+        x['like'] = str(i.like)
         ims.append(x)
     r = {}
     r['category'] = 'All'
