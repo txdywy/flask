@@ -318,7 +318,7 @@ def idance():
         x['thumb_url'] = i
         x['title'] = '.'
         x['id'] = str(random.randint(1, 100))
-        x['like'] = '11'#str(random.randint(1, 100))
+        x['like'] = str(random.randint(1, 100))
         ims.append(x)
     r = {}
     r['category'] = 'All'
