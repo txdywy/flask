@@ -17,9 +17,9 @@ US_STOCK = {'fb': 'fb',
             'dis': 'dis',
             'data': 'data',
             'gopro': 'gpro',
-            'square': 'sq',
-            'yrd': 'yrd',
-            'vcel': 'vcel',
+            #'square': 'sq',
+            #'yrd': 'yrd',
+            #'vcel': 'vcel',
             }
 
 CN_STOCK = {'海天': 'sh603288',
