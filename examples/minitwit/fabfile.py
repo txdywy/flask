@@ -37,9 +37,8 @@ def ip():
     print '-' * ( len(' '.join(x)) + 10 ) + '\n'
 
 HOST_DEV = [] # ['miso', 'airbb', 'nn', 'mm', ] retired
-HOST_ALANCER = ['natto'] # ['polo', 'sushi', 'noodle', 'udon'] retired
-HOST_VPN = ['natto', 
-            'ton', 
+HOST_ALANCER = ['wei'] # ['polo', 'sushi', 'noodle', 'udon', 'natto'] retired
+HOST_VPN = ['ton', 
             'curry', 
             'koala', 
             'ham', 
@@ -57,7 +56,7 @@ HOST_VPN = ['natto',
             'kim',
             'mei',
             'wei',
-            ] # ['tempura', 'ramen', 'donut', 'nori', 'mm', 'rib', 'steak', 'buckeye',] retired
+            ] # ['tempura', 'ramen', 'donut', 'nori', 'mm', 'rib', 'steak', 'buckeye', 'natto', ] retired
 HOST_APPFLOOD = ['pre3-01', 'af_test', 'test3', 'sandbox', 'pre3-jp']
 HOST_ALL = HOST_DEV + HOST_ALANCER + HOST_VPN + HOST_APPFLOOD
 HOST_TBK = HOST_DEV + HOST_VPN
@@ -76,7 +75,8 @@ HOST_LAUNCH_DATE = {
     #'steak': datetime.datetime(2016, 2, 16),
     #'buckeye': datetime.datetime(2016, 12, 14),
     #####-----------------------------------#####
-    'natto': datetime.datetime(2016, 5, 23),
+    #'natto': datetime.datetime(2016, 5, 23),
+    #####-----------------------------------#####
     'ton': datetime.datetime(2016, 8, 18),
     'curry': datetime.datetime(2016, 6, 27),
     'koala': datetime.datetime(2016, 8, 18),
@@ -101,7 +101,7 @@ HOST_LAUNCH_DATE = {
 HOST_INDEX = {#'01': 'rib',      #kr@yahoo
               #'02': 'steak',    #kr@yahoo
               #'17': 'buckeye',  #us-east-oh@outlook
-              '03': 'natto',    #jp@yahoo
+              #'03': 'natto',    #jp@yahoo
               '04': 'ton',      #jp@yahoo
               '05': 'curry',    #in@yahoo
               '06': 'koala',    #au@yahoo
@@ -125,7 +125,7 @@ HOST_INDEX = {#'01': 'rib',      #kr@yahoo
 HOST_DATA = {#'rib'    : ('01', 'kr',    'yahoo'),
              #'steak'  : ('02', 'kr',    'yahoo'),
              #'buckeye': ('17', 'ue-oh', 'outlook'),
-             'natto'  : ('03', 'jp',    'yahoo'),
+             #'natto'  : ('03', 'jp',    'yahoo'),
              'ton'    : ('04', 'jp',    'yahoo'),
              'curry'  : ('05', 'in',    'yahoo'),
              'koala'  : ('06', 'au',    'yahoo'),
