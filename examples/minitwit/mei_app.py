@@ -288,7 +288,9 @@ DANCE_QUEEN_LIST = [
 @app.route('/dance')
 def dance():
     ims = []
-    for i in DANCE_QUEEN_LIST:
+    ds = mm.Dance.query.all()
+    ds = sorted(ds, key=lambda x:x.like, reverse=True)
+    for i in ds:#DANCE_QUEEN_LIST:
         x = {}
         x["isfamily"] = 0
         x["title"] = "京城舞王"
@@ -296,12 +298,12 @@ def dance():
         x["ispublic"] = 1
         x["server"] = ""
         x["isfriend"] = 0
-        x["secret"] = i
+        x["secret"] = i.image_url
         x["owner"] = ""
         x["id"] = ""
         ims.append(x)
     total = len(ims)
-    random.shuffle(ims)
+    #random.shuffle(ims)
     r = {}
     r['photos'] = {}
     r['photos']['page'] = 1
