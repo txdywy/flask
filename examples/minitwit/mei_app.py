@@ -318,6 +318,7 @@ def dance():
 def idance():
     ims = []
     ds = mm.Dance.query.all()
+    ds = sorted(ds, key=lambda x:x.like, reverse=True)
     for i in ds:
         x = {}
         x['category'] = 'ZaHui' #i.category
