@@ -403,7 +403,7 @@ PixelNumber.prototype.remove = function () {
     this.numbers.removeAll()
 };
 jQuery(document).ready(function ($) {
-    var a = 'I am playing Cube Bounce and got ' + score + ' score, a very fun new game!';
+    var a = 'I am playing Ice Ball and got ' + score + ' score, a very fun new game!';
     var b = $('.rrssb-buttons');
     b.rrssb({
         title: a,
