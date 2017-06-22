@@ -39,7 +39,6 @@ def ip():
 HOST_DEV = [] # ['miso', 'airbb', 'nn', 'mm', ] retired
 HOST_ALANCER = ['wei'] # ['polo', 'sushi', 'noodle', 'udon', 'natto'] retired
 HOST_VPN = ['ton', 
-            'curry', 
             'koala', 
             'ham', 
             'wiener', 
@@ -57,7 +56,7 @@ HOST_VPN = ['ton',
             'mei',
             'wei',
             'iit',
-            ] # ['tempura', 'ramen', 'donut', 'nori', 'mm', 'rib', 'steak', 'buckeye', 'natto', ] retired
+            ] # ['tempura', 'ramen', 'donut', 'nori', 'mm', 'rib', 'steak', 'buckeye', 'natto', 'curry', ] retired
 HOST_APPFLOOD = ['pre3-01', 'af_test', 'test3', 'sandbox', 'pre3-jp']
 HOST_ALL = HOST_DEV + HOST_ALANCER + HOST_VPN + HOST_APPFLOOD
 HOST_TBK = HOST_DEV + HOST_VPN
@@ -77,9 +76,9 @@ HOST_LAUNCH_DATE = {
     #'buckeye': datetime.datetime(2016, 12, 14),
     #####-----------------------------------#####
     #'natto': datetime.datetime(2016, 5, 23),
+    #'curry': datetime.datetime(2016, 6, 27),
     #####-----------------------------------#####
     'ton': datetime.datetime(2016, 8, 18),
-    'curry': datetime.datetime(2016, 6, 27),
     'koala': datetime.datetime(2016, 8, 18),
     'ham': datetime.datetime(2016, 8, 18),
     'wiener': datetime.datetime(2016, 9, 1),
@@ -105,7 +104,7 @@ HOST_INDEX = {#'01': 'rib',      #kr@yahoo
               #'17': 'buckeye',  #us-east-oh@outlook
               #'03': 'natto',    #jp@yahoo
               '04': 'ton',      #jp@yahoo
-              '05': 'curry',    #in@yahoo
+              #'05': 'curry',    #in@yahoo
               '06': 'koala',    #au@yahoo
               '07': 'ham',      #us-east@yahoo
               '08': 'wiener',   #eu-frank@outlook
@@ -130,7 +129,7 @@ HOST_DATA = {#'rib'    : ('01', 'kr',    'yahoo'),
              #'buckeye': ('17', 'ue-oh', 'outlook'),
              #'natto'  : ('03', 'jp',    'yahoo'),
              'ton'    : ('04', 'jp',    'yahoo'),
-             'curry'  : ('05', 'in',    'yahoo'),
+             #'curry'  : ('05', 'in',    'yahoo'),
              'koala'  : ('06', 'au',    'yahoo'),
              'ham'    : ('07', 'ue',    'yahoo'),
              'wiener' : ('08', 'eu-de', 'outlook'),
