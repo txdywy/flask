@@ -1,3 +1,7 @@
+import sys
+# sys.setdefaultencoding() does not exist, here!
+reload(sys)  # Reload does the trick!
+sys.setdefaultencoding('UTF8')
 import json
 import requests
 from pprint import pprint
@@ -22,10 +26,13 @@ def getvu():
 # requests.get('https://api.v2.swag.live/inbox?page=1&since=1498814696&limit=64', headers=headers)
 
     x = json.loads(r.text)
-    result = [i['media']['previewUrl'] for i in x]
+    result = [(i['caption']['text'],i['media']['previewUrl']) for i in x]
     return result
 
 x = getvu()
+c=0
 for u in x:
+    c+=1
     print u
+    print "<a href=%s>%s</a>"%(u[1],u[0])
     print ''
