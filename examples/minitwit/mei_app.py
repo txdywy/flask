@@ -184,7 +184,7 @@ def recent():
     x = json.dumps(r)
     return 'jsonFlickrApi(%s)' % x 
 
-@app.route('/recent1')
+@app.route('/recent')
 def recent1():
     MEI_COUNT = get_mei_more_count()
     total = 1000
@@ -208,7 +208,7 @@ def recent1():
     x = json.dumps(r)
     return 'jsonFlickrApi(%s)' % x 
 
-@app.route('/recent')
+@app.route('/recent1')
 def recent_tmp():
     MEI_COUNT = get_mei_count()
     total = 1000
