@@ -160,7 +160,7 @@ def get_temp_ims():
     return ims
     
 
-@app.route('/recent0')
+@app.route('/recent')
 def recent():
     MEI_COUNT = get_mei_count()
     total = 1000
@@ -184,7 +184,7 @@ def recent():
     x = json.dumps(r)
     return 'jsonFlickrApi(%s)' % x 
 
-@app.route('/recent')
+@app.route('/recent1')
 def recent1():
     MEI_COUNT = get_mei_more_count()
     total = 1000
