@@ -92,7 +92,7 @@ def inst_init_private(id='rinajackmimi', session_id=None):
 
 def inst_get_following(n=9999):
     #id for 2017
-    url = 'https://www.instagram.com/graphql/query/?query_id=17874545323001329&id=5387788258&first=' + str(n)
+    url = 'https://www.instagram.com/graphql/query/?query_id=17874545323001329&id=5387644807&first=' + str(n)
     cookies = {}
     cookies['sessionid'] = SESSION_ID
     r = requests.get(url=url, cookies=cookies, verify=False)
