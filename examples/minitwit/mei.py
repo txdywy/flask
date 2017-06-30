@@ -420,4 +420,7 @@ def up_private():
     PRIVATE_LIST = [ i for i in PRIVATE_LIST if i not in EXCLUDE_LIST]
     if SESSION_ID:
         for id in PRIVATE_LIST:
-            inst_update_private(id)
+            try:
+                inst_update_private(id)
+            except:
+                print 'error pass:', id
