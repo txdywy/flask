@@ -328,6 +328,16 @@ Spikes.prototype.setSpikes = function (c, d) {
                 d = getRandomArray(this.spikeSideNumber, 1, 2)
             } else if (score <= 10) {
                 d = getRandomArray(this.spikeSideNumber, 1, 3)
+            } else if (score <= 40) {
+                d = getRandomArray(this.spikeSideNumber, 1, 4)
+            } else if (score <= 70) {
+                d = getRandomArray(this.spikeSideNumber, 1, 5)
+            } else if (score <= 80) {
+                d = getRandomArray(this.spikeSideNumber, 1, 6)
+            } else if (score <= 90) {
+                d = getRandomArray(this.spikeSideNumber, 1, 7)
+            } else if (score <= 95) {
+                d = getRandomArray(this.spikeSideNumber, 1, 8)
             } else {
                 d = getRandomArray(this.spikeSideNumber, 1, 9)
             }
