@@ -407,7 +407,8 @@ def up():
         print '='*50, id
         try:
             inst_update(id)
-        except:
+        except Exception, e:
+            print '!'*180, str(e)
             print '*'*50, 'new private id', id
             private_new.append(id)
             PRIVATE_LIST.append(id)
