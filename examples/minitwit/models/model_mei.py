@@ -72,7 +72,7 @@ class InstMeiMore(Base):
     create_time = Column(DATETIME(), default=datetime.datetime.now())
 
     def __repr__(self):
-        return '<InstMei %r>' % (self.id)
+        return '<InstMeiMore %r>' % (self.id)
 
     def pic_url(self):
         return CDN_PREFIX + self.thumbnail_src.split('/')[-1]
@@ -107,4 +107,38 @@ class Dance(Base):
 
 
 
+class InstMeiVideo(Base):
+    __tablename__ = 'inst_mei_video'
+    id = Column(Integer, primary_key=True)
+    inst_owner = Column(String(32), default='', index=True)
+    active = Column(Integer, default=1, index=True) #0: down #1: up
+    inst_code = Column(String(16), default='', index=True)
+    inst_ts = Column(Integer, default=0)
+    video_src = Column(Text, default='')
+    inst_id = Column(String(16), index=True)
+    thumbnail_src = Column(Text, default='')
+    update_time = Column(DATETIME(), default=datetime.datetime.now())
+    create_time = Column(DATETIME(), default=datetime.datetime.now())
+
+    def __repr__(self):
+        return '<InstMeiVideo %r>' % (self.id)
+
+    def pic_url(self):
+        return CDN_PREFIX + self.thumbnail_src.split('/')[-1]
+
+    def video_url(self):
+        return CDN_PREFIX + self.video_src.split('/')[-1]
+
+
+
+class InstMeiVideoCount(Base):
+    __tablename__ = 'inst_mei_video_count'
+    id = Column(Integer, primary_key=True)
+    inst_owner = Column(String(32), default='', index=True)
+    count = Column(Integer, default=0)
+    update_time = Column(DATETIME(), default=datetime.datetime.now())
+    create_time = Column(DATETIME(), default=datetime.datetime.now())
+
+    def __repr__(self):
+        return '<InstMeiVideoCount %r>' % (self.id)
 
