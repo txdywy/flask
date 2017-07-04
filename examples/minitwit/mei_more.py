@@ -406,7 +406,7 @@ def up():
     for id in OWNER_LIST:
         print '='*50, id
         try:
-            inst_update(id)
+            inst_update_private(id)
         except Exception, e:
             print '!'*180, str(e)
             print '*'*50, 'new private id', id
