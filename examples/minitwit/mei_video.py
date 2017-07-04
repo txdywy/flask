@@ -154,7 +154,7 @@ def inst_new_private(id, session_id=None):
                 m = md.InstMeiVideo(inst_owner=id,
                        inst_code=n['code'],
                        inst_ts=n['date'],
-                       video_src=n['video_src'],
+                       video_src=video_src,
                        inst_id=n['id'],
                        thumbnail_src=n['thumbnail_src']
                 )
@@ -221,7 +221,7 @@ def inst_update_private(id='rinajackmimi', session_id=None):
                         m = md.InstMeiVideo(inst_owner=id,
                                inst_code=n['code'],
                                inst_ts=n['date'],
-                               video_src=n['video_src'],
+                               video_src=video_src,
                                inst_id=n['id'],
                                thumbnail_src=n['thumbnail_src']
                         )
@@ -312,7 +312,7 @@ def inst_new(id):
                 m = md.InstMeiVideo(inst_owner=id,
                        inst_code=n['code'],
                        inst_ts=n['date'],
-                       video_src=n['video_src'],
+                       video_src=video_src,
                        inst_id=n['id'],
                        thumbnail_src=n['thumbnail_src']
                 )
@@ -349,7 +349,7 @@ def inst_update(id='djxin_tw'):
                         m = md.InstMeiVideo(inst_owner=id,
                                inst_code=n['code'],
                                inst_ts=n['date'],
-                               video_src=n['video_src'],
+                               video_src=video_src,
                                inst_id=n['id'],
                                thumbnail_src=n['thumbnail_src']
                         )
