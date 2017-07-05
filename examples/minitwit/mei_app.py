@@ -69,6 +69,14 @@ def get_mei_more_count():
     return c
 
 
+def get_mei_video_count():
+    c = mcache.get('MEI_VIDEO_COUNT')
+    c = c if c else mm.InstMeiVideo.query.count()
+    mcache.set('MEI_VIDEO_COUNT', c, 60)
+    return c
+
+
+
 @app.route('/index_old')
 def index():
     MEI_COUNT = get_mei_count()
@@ -408,7 +416,26 @@ def data():
     return json.dumps(result) 
 
 
+@app.route('/v')
+def video():
+    MEI_COUNT = get_mei_video_count()
+    #r = [random.randint(1, MEI_COUNT), random.randint(1, MEI_COUNT), random.randint(1, MEI_COUNT)]
+    #r = random.sample(GP_ID_LIST, 3)
+    #ims = mm.InstMei.query.filter(mm.InstMei.id.in_(r)).all()
+    return render_template('video.html', mc=MEI_COUNT, imc=MEI_COUNT)
 
+
+@app.route('/vdata')
+def vdata():
+    MEI_COUNT = get_mei_video_count()
+    r = [random.randint(1, MEI_COUNT) for i in xrange(20)]
+    ims = mm.InstMeiVideo.query.filter(mm.InstMeiVideo.id.in_(r)).all()
+    result = {}
+    result["total"] = len(ims)
+    d = [{'image': im.video_url(), 'width':192, } for im in ims]
+    result["result"] = d
+    print result
+    return json.dumps(result)
 
 
 
