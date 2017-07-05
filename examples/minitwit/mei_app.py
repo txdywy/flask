@@ -384,3 +384,8 @@ def idance():
     r['results'] = ims
     rt = json.dumps(r)
     return rt
+
+
+@app.route('/wf')
+def waterfall():
+    return render_template('waterfall.html') 
