@@ -69,8 +69,7 @@ def get_mei_more_count():
     return c
 
 
-@app.route('/')
-@app.route('/index')
+@app.route('/index_old')
 def index():
     MEI_COUNT = get_mei_count()
     r = [random.randint(1, MEI_COUNT), random.randint(1, MEI_COUNT), random.randint(1, MEI_COUNT)]
@@ -385,7 +384,8 @@ def idance():
     rt = json.dumps(r)
     return rt
 
-
+@app.route('/')
+@app.route('/index')
 @app.route('/wf')
 def waterfall():
     MEI_COUNT = get_mei_count()
