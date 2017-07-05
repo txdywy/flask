@@ -388,4 +388,8 @@ def idance():
 
 @app.route('/wf')
 def waterfall():
-    return render_template('waterfall.html') 
+    MEI_COUNT = get_mei_count()
+    r = [random.randint(1, MEI_COUNT), random.randint(1, MEI_COUNT), random.randint(1, MEI_COUNT)]
+    #r = random.sample(GP_ID_LIST, 3)
+    ims = mm.InstMei.query.filter(mm.InstMei.id.in_(r)).all()
+    return render_template('waterfall.html', ims=ims, mc=MEI_COUNT, imc=get_mei_count())
