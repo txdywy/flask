@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>Shot Video!</title>
     <link rel="stylesheet" href="css/reset.css">
-    <link rel="stylesheet" href="css/waterfall.css">
+    <link rel="stylesheet" href="css/video.css">
 
     <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
     <script>
@@ -58,8 +58,10 @@
 <script type="text/x-handlebars-template" id="waterfall-tpl">
 {% raw %}
 {{#result}}
-    <div class="item">
-        <video src="{{image}}" width="{{width}}" height="{{height}}" />
+    <div class="item" width="720">
+        <a href="{{video}}">
+        <img src="{{pic}}" width="720"/>
+        </a>
     </div>
 {{/result}}
 {% endraw %}
@@ -70,7 +72,8 @@
 <script>
 $('#container').waterfall({
     itemCls: 'item',
-    colWidth: 222,  
+    colWidth: 720,  
+    fitWidth: true, 
     gutterWidth: 15,
     gutterHeight: 15,
     checkImagesLoaded: false,

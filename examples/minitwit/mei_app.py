@@ -428,7 +428,7 @@ def video():
 @app.route('/vdata')
 def vdata():
     MEI_COUNT = get_mei_video_count()
-    r = [random.randint(1, MEI_COUNT) for i in xrange(20)]
+    r = [random.randint(1, MEI_COUNT) for i in xrange(5)]
     ims = mm.InstMeiVideo.query.filter(mm.InstMeiVideo.id.in_(r)).all()
     result = {}
     result["total"] = len(ims)
