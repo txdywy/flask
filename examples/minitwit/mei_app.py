@@ -432,7 +432,7 @@ def vdata():
     ims = mm.InstMeiVideo.query.filter(mm.InstMeiVideo.id.in_(r)).all()
     result = {}
     result["total"] = len(ims)
-    d = [{'image': im.video_url(), 'width':192, } for im in ims]
+    d = [{'video': im.video_url(), 'pic': im.pic_url() } for im in ims]
     result["result"] = d
     print result
     return json.dumps(result)

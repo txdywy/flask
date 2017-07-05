@@ -25,6 +25,7 @@ def init_db():
     Base.metadata.create_all(bind=engine)
 
 CDN_PREFIX = 'https://ig-s-c-a.akamaihd.net/hphotos-ak-xat1/'
+CDN_PREFIX_VIDEO = 'https://ig-l-d-a.akamaihd.net/hphotos-ak-xta1/'
 class InstMei(Base):
     __tablename__ = 'inst_mei'
     id = Column(Integer, primary_key=True)
@@ -127,7 +128,7 @@ class InstMeiVideo(Base):
         return CDN_PREFIX + self.thumbnail_src.split('/')[-1]
 
     def video_url(self):
-        return CDN_PREFIX + self.video_src.split('/')[-1]
+        return CDN_PREFIX_VIDEO + self.video_src.split('/')[-1]
 
 
 
