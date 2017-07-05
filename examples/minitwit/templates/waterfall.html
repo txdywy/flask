@@ -5,7 +5,9 @@
     <title>mei12356</title>
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/waterfall.css">
-
+    <link rel='stylesheet prefetch' href='//cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.1/photoswipe.min.css'>
+    <link rel='stylesheet prefetch' href='//cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.1/default-skin/default-skin.min.css'>
+    <link rel="stylesheet" href="css/sw_style.css">
     <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
     <script>
       (adsbygoogle = window.adsbygoogle || []).push({
@@ -54,19 +56,72 @@
         </div>
     </div>
 
-<div id="container"></div>
+<div id="container" class="my-gallery" itemscope itemtype="http://schema.org/ImageGallery"></div>
 <script type="text/x-handlebars-template" id="waterfall-tpl">
 {% raw %}
 {{#result}}
     <div class="item">
-        <img src="{{image}}" width="{{width}}" height="{{height}}" />
-    </div>
+    <figure itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
+      <a href="{{image}}" itemprop="contentUrl" data-size="1024x1024">
+          <img src="{{image}}" itemprop="thumbnail" alt="Image description" align="center"/>
+      </a>
+      <figcaption itemprop="caption description">Image caption  1</figcaption>
+
+    </figure>
+     </div>
 {{/result}}
 {% endraw %}
 </script>
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="pswp__bg"></div>
+    <div class="pswp__scroll-wrap">
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+          </div>
+        </div>
+</div>
+
+
+
+
+
+
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/handlebars.js/1.0.0/handlebars.min.js"></script>
 <script src="js/waterfall.min.js"></script>
+<script src='//cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.1/photoswipe.min.js'></script>
+<script src='//cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.1/photoswipe-ui-default.min.js'></script>
+<script src="js/sw_index.js"></script>
 <script>
 $('#container').waterfall({
     itemCls: 'item',
