@@ -13,7 +13,7 @@
 import time, urllib2
 from datetime import datetime
 from flask import Flask, request, session, url_for, redirect, \
-     render_template, abort, g, flash, _app_ctx_stack, make_response
+     render_template, abort, g, flash, _app_ctx_stack, make_response, jsonify
 import flask
 import models.model_mei as mm
 import random
@@ -389,7 +389,27 @@ def idance():
 @app.route('/wf')
 def waterfall():
     MEI_COUNT = get_mei_count()
-    r = [random.randint(1, MEI_COUNT), random.randint(1, MEI_COUNT), random.randint(1, MEI_COUNT)]
+    #r = [random.randint(1, MEI_COUNT), random.randint(1, MEI_COUNT), random.randint(1, MEI_COUNT)]
     #r = random.sample(GP_ID_LIST, 3)
+    #ims = mm.InstMei.query.filter(mm.InstMei.id.in_(r)).all()
+    return render_template('waterfall.html', mc=MEI_COUNT, imc=MEI_COUNT)
+
+
+@app.route('/data')
+def data():
+    MEI_COUNT = get_mei_count()
+    r = [random.randint(1, MEI_COUNT) for i in xrange(20)]
     ims = mm.InstMei.query.filter(mm.InstMei.id.in_(r)).all()
-    return render_template('waterfall.html', ims=ims, mc=MEI_COUNT, imc=get_mei_count())
+    result = {}
+    result["total"] = len(ims)
+    d = [{'image': im.pic_url(), 'width':192, } for im in ims]
+    result["result"] = d
+    print result
+    return json.dumps(result) 
+
+
+
+
+
+
+
