@@ -438,5 +438,30 @@ def vdata():
     return json.dumps(result)
 
 
+@app.route('/vadata')
+def vadata():
+    MEI_COUNT = get_mei_video_count()
+    r = [random.randint(1, MEI_COUNT) for i in xrange(7)]
+    ims = mm.InstMeiVideo.query.filter(mm.InstMeiVideo.id.in_(r)).all()
+    result = {}
+    d = [{'mp4_url': im.video_url(), 'cover': im.pic_url(), 'vid': im.inst_code, "videosource": "新媒体", "title": "@Fastgram"} for im in ims]
+    result["视频"] = d
+    return json.dumps(result)
 
 
+
+NET_EASE = """
+{
+    "视频": [
+        {
+            "cover": "https://ig-s-c-a.akamaihd.net/hphotos-ak-xat1/t51.2885-15/e15/c236.0.607.607/19424735_1575822739228175_4756809119363497984_n.jpg",
+            "danmu": 1,
+            "mp4_url": "https://ig-s-c-a.akamaihd.net/hphotos-ak-xat1/t51.2885-15/18384898_339905169758823_4439346246607437824_n.mp4",
+            "title": "权健4-3恒大，又是一种别样感受",
+            "topicImg": "http://vimg1.ws.126.net/image/snapshot/2017/5/3/J/VCIJP3P3J.jpg",
+            "vid": "VINILEG3L",
+            "videosource": "新媒体"
+        }
+    ]
+}
+"""
