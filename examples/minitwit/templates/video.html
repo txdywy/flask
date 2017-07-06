@@ -20,7 +20,6 @@
 <div id="header">
     <h1>Shot Video!</h1>
 </div>
-
     <div id="container0" align="center">
         <div class="grid">
             <div class="imgholder"><img class="lazy" src="http://ac-9dv47dhd.clouddn.com/4d66dbf20b9b68609551.gif"   /></div>
@@ -59,9 +58,9 @@
 <script type="text/x-handlebars-template" id="waterfall-tpl">
 {% raw %}
 {{#result}}
-    <div class="item" width="720">
+    <div class="item" width="222">
         <a href="{{video}}">
-        <img src="{{pic}}" width="720"/>
+        <img src="{{pic}}" width="222"/>
         </a>
     </div>
 {{/result}}
@@ -73,7 +72,7 @@
 <script>
 $('#container').waterfall({
     itemCls: 'item',
-    colWidth: 720,  
+    colWidth: 222,  
     fitWidth: true, 
     gutterWidth: 15,
     gutterHeight: 15,
