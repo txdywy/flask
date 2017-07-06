@@ -406,7 +406,7 @@ def waterfall():
 @app.route('/data')
 def data():
     MEI_COUNT = get_mei_count()
-    r = [random.randint(1, MEI_COUNT) for i in xrange(20)]
+    r = [random.randint(1, MEI_COUNT) for i in xrange(7)]
     ims = mm.InstMei.query.filter(mm.InstMei.id.in_(r)).all()
     result = {}
     result["total"] = len(ims)
