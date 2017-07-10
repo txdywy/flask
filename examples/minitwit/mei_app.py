@@ -443,6 +443,7 @@ def vadata():
     MEI_COUNT = get_mei_video_count()
     r = [random.randint(1, MEI_COUNT) for i in xrange(7)]
     ims = mm.InstMeiVideo.query.filter(mm.InstMeiVideo.id.in_(r)).all()
+    #ims = mm.InstMeiVideo.query.filter(mm.InstMeiVideo.id.in_(range(8))).all() 
     result = {}
     d = [{'mp4_url': im.video_url(), 'cover': im.pic_url(), 'vid': im.inst_code, "videosource": "新媒体", "title": "@Fastgram"} for im in ims]
     result["视频"] = d
