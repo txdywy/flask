@@ -56,6 +56,7 @@ HOST_VPN = ['ton',
             'mei',
             'wei',
             'iit',
+            'tod',
             ] # ['tempura', 'ramen', 'donut', 'nori', 'mm', 'rib', 'steak', 'buckeye', 'natto', 'curry', ] retired
 HOST_APPFLOOD = ['pre3-01', 'af_test', 'test3', 'sandbox', 'pre3-jp']
 HOST_ALL = HOST_DEV + HOST_ALANCER + HOST_VPN + HOST_APPFLOOD
@@ -96,6 +97,7 @@ HOST_LAUNCH_DATE = {
     'mei': datetime.datetime(2017, 5, 2),
     'wei': datetime.datetime(2017, 5, 5),
     'iit': datetime.datetime(2017, 6, 7),
+    'tod': datetime.datetime(2017, 7, 10),
 }
 
 
@@ -122,6 +124,7 @@ HOST_INDEX = {#'01': 'rib',      #kr@yahoo
               '21': 'mei',      #jp@163
               '22': 'wei',      #jp@163
               '23': 'iit',      #in@gmail
+              '24': 'tod',      #jp@gmail
              }
 
 HOST_DATA = {#'rib'    : ('01', 'kr',    'yahoo'),
@@ -147,6 +150,7 @@ HOST_DATA = {#'rib'    : ('01', 'kr',    'yahoo'),
              'mei'    : ('21', 'jp',    '163'),
              'wei'    : ('22', 'jp',    '163'),
              'iit'    : ('23', 'in',    'gmail'),
+             'tod'    : ('24', 'jp',    'gmail'),
              }
 
 
