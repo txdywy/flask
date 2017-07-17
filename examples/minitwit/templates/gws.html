@@ -57,12 +57,7 @@
               },
         success: function (result) {
             //alert(result);
-            $("textarea#message_send").val('');
-            $('#loader').fadeIn('slow', function() {
-                $('#loader').fadeOut('slow', function() {
-                    $('#result-container').append(result).fadeIn(999);
-                }); 
-            }); 
+            $('#result-container').append(result).fadeIn(999);
         }
       });
     });    
