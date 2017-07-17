@@ -8,7 +8,10 @@ def gen_dict_file():
     with open('/usr/share/dict/british-english', 'r') as f:
         b = f.readlines()
     b = set([i.strip('\n').lower() for i in b])
-    r = a.union(b)
+    with open('/home/f22/Downloads/web2', 'r') as f:
+        c = f.readlines()
+    c = set([i.strip('\n').lower() for i in c])
+    r = a.union(b).union(c)
     with open('gws.txt', 'w') as f:
         for i in r:
             f.write(i+'\n')
