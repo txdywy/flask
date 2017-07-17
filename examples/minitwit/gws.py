@@ -16,6 +16,7 @@ def gen_dict_file():
 
 
 def guess_word(pattern='',  letters=''):
+    pattern, letters = pattern.lower(), letters.lower()
     with open('gws.txt', 'r') as f:
         ws = f.readlines()
     ws = [i.strip('\n') for i in ws]
@@ -30,6 +31,8 @@ def guess_word(pattern='',  letters=''):
         f = True
         if len(i) ==  length:
             for x in i:
+                if not lets:
+                    continue
                 if x not in lets:
                     f = False
                     break
