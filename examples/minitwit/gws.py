@@ -13,3 +13,34 @@ def gen_dict_file():
         for i in r:
             f.write(i+'\n')
     print len(r)
+
+
+def guess_word(pattern='',  letters=''):
+    with open('gws.txt', 'r') as f:
+        ws = f.readlines()
+    ws = [i.strip('\n') for i in ws]
+    length = len(pattern)
+    pt = {}
+    for idx, i in enumerate(pattern):
+        if i.isalpha():
+            pt[idx] = i
+    lets = set(letters)
+    r = []
+    for i in ws:
+        f = True
+        if len(i) ==  length:
+            for x in i:
+                if x not in lets:
+                    f = False
+                    break
+        else:
+            continue
+        if f:
+            ff = True
+            for idx in pt:
+                if pt[idx]!=i[idx]:
+                    ff = False
+                    break
+            if ff:
+                r.append(i)
+    return r
