@@ -19,6 +19,7 @@ import models.model_mei as mm
 import random
 import koji as mcache
 import json
+import gws
 app = Flask(__name__)
 app.debug = True
 
@@ -466,3 +467,21 @@ NET_EASE = """
     ]
 }
 """
+
+
+@app.route('/gws', methods=['POST'])
+def gws_post():
+    p = request.form['pattern']
+    l = request.form['letters']
+    t0 = time.time()
+    r = gws.guess_word(p, l)
+    t = time.time() - t0
+    x = str(len(r))
+    r = ' '.join(r)
+    return 'time: ' + str(t) + ' \nresult(%s): '%x + r
+
+
+@app.route('/guess')
+def guess():
+    return render_template('gws.html')
+
