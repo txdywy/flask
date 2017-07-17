@@ -478,7 +478,7 @@ def gws_post():
     t = time.time() - t0
     x = str(len(r))
     r = ' '.join(r)
-    return 'time: ' + str(t) + ' \nresult(%s): '%x + r
+    return 'time: ' + str(t) + '<p></p>result(%s): '%x + r
 
 
 @app.route('/guess')
