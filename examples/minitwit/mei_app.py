@@ -13,12 +13,13 @@
 import time, urllib2
 from datetime import datetime
 from flask import Flask, request, session, url_for, redirect, \
-     render_template, abort, g, flash, _app_ctx_stack, make_response
+     render_template, abort, g, flash, _app_ctx_stack, make_response, jsonify
 import flask
 import models.model_mei as mm
 import random
 import koji as mcache
 import json
+import gws
 app = Flask(__name__)
 app.debug = True
 
@@ -69,8 +70,15 @@ def get_mei_more_count():
     return c
 
 
-@app.route('/')
-@app.route('/index')
+def get_mei_video_count():
+    c = mcache.get('MEI_VIDEO_COUNT')
+    c = c if c else mm.InstMeiVideo.query.count()
+    mcache.set('MEI_VIDEO_COUNT', c, 60)
+    return c
+
+
+
+@app.route('/index_old')
 def index():
     MEI_COUNT = get_mei_count()
     r = [random.randint(1, MEI_COUNT), random.randint(1, MEI_COUNT), random.randint(1, MEI_COUNT)]
@@ -184,6 +192,54 @@ def recent():
     x = json.dumps(r)
     return 'jsonFlickrApi(%s)' % x 
 
+@app.route('/recent1')
+def recent1():
+    MEI_COUNT = get_mei_more_count()
+    total = 1000
+    s = [random.randint(1, MEI_COUNT) for i in xrange(total)]
+
+    #s = random.sample(GP_ID_LIST, 1000)
+    ims = mm.InstMeiMore.query.filter(mm.InstMeiMore.id.in_(s)).all()
+    #ims = get_temp_ims()
+    #ims = ims * 10
+    total = len(ims)
+    ims = [i.to_dict() for i in ims]
+    random.shuffle(ims)
+    r = {}
+    r['photos'] = {}
+    r['photos']['page'] = 1
+    r['photos']['pages'] = 4
+    r['photos']['perpage'] = 300
+    r['photos']['total'] = total
+    r['photos']['photo'] = ims
+    r['stat'] = 'ok'
+    x = json.dumps(r)
+    return 'jsonFlickrApi(%s)' % x 
+
+@app.route('/recent1')
+def recent_tmp():
+    MEI_COUNT = get_mei_count()
+    total = 1000
+    s = [random.randint(1, MEI_COUNT) for i in xrange(total)]
+
+    #s = random.sample(GP_ID_LIST, 1000)
+    #ims = mm.InstMei.query.filter(mm.InstMei.id.in_(s)).all()
+    ims = get_temp_ims()
+    ims = ims * 10
+    total = len(ims)
+    ims = [i.to_dict() for i in ims]
+    random.shuffle(ims)
+    r = {}
+    r['photos'] = {}
+    r['photos']['page'] = 1
+    r['photos']['pages'] = 4
+    r['photos']['perpage'] = 300
+    r['photos']['total'] = total
+    r['photos']['photo'] = ims
+    r['stat'] = 'ok'
+    x = json.dumps(r)
+    return 'jsonFlickrApi(%s)' % x
+
 @app.route('/ios')
 def ios():
     pre = "https://ig-s-b-a.akamaihd.net/hphotos-ak-xta1/t51.2885-15/e35/"
@@ -226,7 +282,7 @@ def avi():
 
 @app.route('/more')
 def more():
-    return str(mm.InstMeiMore.query.count()) + '\n'
+    return str(mm.InstMeiMore.query.count()) + '\n' + str(mm.InstMeiVideo.query.count()) + '\n'
 
 
 @app.route('/pin')
@@ -336,3 +392,96 @@ def idance():
     r['results'] = ims
     rt = json.dumps(r)
     return rt
+
+@app.route('/')
+@app.route('/index')
+@app.route('/wf')
+def waterfall():
+    MEI_COUNT = get_mei_count()
+    #r = [random.randint(1, MEI_COUNT), random.randint(1, MEI_COUNT), random.randint(1, MEI_COUNT)]
+    #r = random.sample(GP_ID_LIST, 3)
+    #ims = mm.InstMei.query.filter(mm.InstMei.id.in_(r)).all()
+    return render_template('waterfall.html', mc=MEI_COUNT, imc=MEI_COUNT)
+
+
+@app.route('/data')
+def data():
+    MEI_COUNT = get_mei_count()
+    r = [random.randint(1, MEI_COUNT) for i in xrange(7)]
+    ims = mm.InstMei.query.filter(mm.InstMei.id.in_(r)).all()
+    result = {}
+    result["total"] = len(ims)
+    d = [{'image': im.pic_url(), 'width':192, } for im in ims]
+    result["result"] = d
+    print result
+    return json.dumps(result) 
+
+
+@app.route('/v')
+def video():
+    MEI_COUNT = get_mei_video_count()
+    #r = [random.randint(1, MEI_COUNT), random.randint(1, MEI_COUNT), random.randint(1, MEI_COUNT)]
+    #r = random.sample(GP_ID_LIST, 3)
+    #ims = mm.InstMei.query.filter(mm.InstMei.id.in_(r)).all()
+    return render_template('video.html', mc=MEI_COUNT, imc=MEI_COUNT)
+
+
+@app.route('/vdata')
+def vdata():
+    MEI_COUNT = get_mei_video_count()
+    r = [random.randint(1, MEI_COUNT) for i in xrange(5)]
+    ims = mm.InstMeiVideo.query.filter(mm.InstMeiVideo.id.in_(r)).all()
+    result = {}
+    result["total"] = len(ims)
+    d = [{'video': im.video_url(), 'pic': im.pic_url() } for im in ims]
+    result["result"] = d
+    print result
+    return json.dumps(result)
+
+
+@app.route('/vadata')
+def vadata():
+    MEI_COUNT = get_mei_video_count()
+    r = [random.randint(1, MEI_COUNT) for i in xrange(7)]
+    ims = mm.InstMeiVideo.query.filter(mm.InstMeiVideo.id.in_(r)).all()
+    #ims = mm.InstMeiVideo.query.filter(mm.InstMeiVideo.id.in_(range(8))).all() 
+    result = {}
+    d = [{'mp4_url': im.video_url(), 'cover': im.pic_url(), 'vid': im.inst_code, "videosource": "新媒体", "title": "@Fastgram"} for im in ims]
+    result["视频"] = d
+    return json.dumps(result)
+
+
+
+NET_EASE = """
+{
+    "视频": [
+        {
+            "cover": "https://ig-s-c-a.akamaihd.net/hphotos-ak-xat1/t51.2885-15/e15/c236.0.607.607/19424735_1575822739228175_4756809119363497984_n.jpg",
+            "danmu": 1,
+            "mp4_url": "https://ig-s-c-a.akamaihd.net/hphotos-ak-xat1/t51.2885-15/18384898_339905169758823_4439346246607437824_n.mp4",
+            "title": "权健4-3恒大，又是一种别样感受",
+            "topicImg": "http://vimg1.ws.126.net/image/snapshot/2017/5/3/J/VCIJP3P3J.jpg",
+            "vid": "VINILEG3L",
+            "videosource": "新媒体"
+        }
+    ]
+}
+"""
+
+
+@app.route('/gws', methods=['POST'])
+def gws_post():
+    p = request.form['pattern']
+    l = request.form['letters']
+    t0 = time.time()
+    r = gws.guess_word(p, l)
+    t = time.time() - t0
+    x = str(len(r))
+    r = ' '.join(r)
+    return 'time: ' + str(t) + '<p></p>result(%s): '%x + r
+
+
+@app.route('/guess')
+def guess():
+    return render_template('gws.html')
+

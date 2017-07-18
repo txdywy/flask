@@ -1,0 +1,10 @@
+
+https://www.tecmint.com/install-wordpress-on-ubuntu-16-04-with-lamp/
+
+
+#404问题
+感谢大家，问题已经解决了。主要是ubuntu下的apache2和网上的大部分教程不一样，首先要用命令：
+sudo a2enmod rewrite
+开启位于/etc/apache2/mods_avilable里面的rewrite模块，然后
+vim /etc/apache2/apache2.conf
+把<Directory /var/www/>里面的#AllowOverride None#改为#AllowOverride All#

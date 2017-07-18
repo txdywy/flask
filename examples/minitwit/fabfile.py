@@ -39,7 +39,6 @@ def ip():
 HOST_DEV = [] # ['miso', 'airbb', 'nn', 'mm', ] retired
 HOST_ALANCER = ['wei'] # ['polo', 'sushi', 'noodle', 'udon', 'natto'] retired
 HOST_VPN = ['ton', 
-            'curry', 
             'koala', 
             'ham', 
             'wiener', 
@@ -56,7 +55,9 @@ HOST_VPN = ['ton',
             'kim',
             'mei',
             'wei',
-            ] # ['tempura', 'ramen', 'donut', 'nori', 'mm', 'rib', 'steak', 'buckeye', 'natto', ] retired
+            'iit',
+            'tod',
+            ] # ['tempura', 'ramen', 'donut', 'nori', 'mm', 'rib', 'steak', 'buckeye', 'natto', 'curry', ] retired
 HOST_APPFLOOD = ['pre3-01', 'af_test', 'test3', 'sandbox', 'pre3-jp']
 HOST_ALL = HOST_DEV + HOST_ALANCER + HOST_VPN + HOST_APPFLOOD
 HOST_TBK = HOST_DEV + HOST_VPN
@@ -76,9 +77,9 @@ HOST_LAUNCH_DATE = {
     #'buckeye': datetime.datetime(2016, 12, 14),
     #####-----------------------------------#####
     #'natto': datetime.datetime(2016, 5, 23),
+    #'curry': datetime.datetime(2016, 6, 27),
     #####-----------------------------------#####
     'ton': datetime.datetime(2016, 8, 18),
-    'curry': datetime.datetime(2016, 6, 27),
     'koala': datetime.datetime(2016, 8, 18),
     'ham': datetime.datetime(2016, 8, 18),
     'wiener': datetime.datetime(2016, 9, 1),
@@ -95,6 +96,8 @@ HOST_LAUNCH_DATE = {
     'kim': datetime.datetime(2017, 2, 3),
     'mei': datetime.datetime(2017, 5, 2),
     'wei': datetime.datetime(2017, 5, 5),
+    'iit': datetime.datetime(2017, 6, 7),
+    'tod': datetime.datetime(2017, 7, 10),
 }
 
 
@@ -103,7 +106,7 @@ HOST_INDEX = {#'01': 'rib',      #kr@yahoo
               #'17': 'buckeye',  #us-east-oh@outlook
               #'03': 'natto',    #jp@yahoo
               '04': 'ton',      #jp@yahoo
-              '05': 'curry',    #in@yahoo
+              #'05': 'curry',    #in@yahoo
               '06': 'koala',    #au@yahoo
               '07': 'ham',      #us-east@yahoo
               '08': 'wiener',   #eu-frank@outlook
@@ -120,6 +123,8 @@ HOST_INDEX = {#'01': 'rib',      #kr@yahoo
               '20': 'kim',      #kr@163
               '21': 'mei',      #jp@163
               '22': 'wei',      #jp@163
+              '23': 'iit',      #in@gmail
+              '24': 'tod',      #jp@gmail
              }
 
 HOST_DATA = {#'rib'    : ('01', 'kr',    'yahoo'),
@@ -127,12 +132,12 @@ HOST_DATA = {#'rib'    : ('01', 'kr',    'yahoo'),
              #'buckeye': ('17', 'ue-oh', 'outlook'),
              #'natto'  : ('03', 'jp',    'yahoo'),
              'ton'    : ('04', 'jp',    'yahoo'),
-             'curry'  : ('05', 'in',    'yahoo'),
+             #'curry'  : ('05', 'in',    'yahoo'),
              'koala'  : ('06', 'au',    'yahoo'),
              'ham'    : ('07', 'ue',    'yahoo'),
              'wiener' : ('08', 'eu-de', 'outlook'),
              'crab'   : ('09', 'uw-ca', 'outlook'),
-              'laksa'  : ('10', 'sg',    'outlook'),
+             'laksa'  : ('10', 'sg',    'outlook'),
              'stew'   : ('11', 'eu-ir', 'gmail'),
              'bbq'    : ('12', 'sa',    'gmail'),
              'pie'    : ('13', 'uw-or', 'gmail'),
@@ -144,6 +149,8 @@ HOST_DATA = {#'rib'    : ('01', 'kr',    'yahoo'),
              'kim'    : ('20', 'kr',    '163'),
              'mei'    : ('21', 'jp',    '163'),
              'wei'    : ('22', 'jp',    '163'),
+             'iit'    : ('23', 'in',    'gmail'),
+             'tod'    : ('24', 'jp',    'gmail'),
              }
 
 

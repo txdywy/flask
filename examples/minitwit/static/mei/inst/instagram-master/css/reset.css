@@ -1,0 +1,19 @@
+*{
+	margin: 0;
+	padding: 0;
+}
+a,a:hover{
+	text-decoration: none;
+	color: #003569;
+}
+ul,li,th,tr,td{
+	list-style: none;
+}
+input{
+	outline: none;
+	-webkit-appearance:none;
+	border: 0;
+}
+body, button, input, textarea{
+	font-family: 'proxima-nova','Helvetica Neue',Arial,Helvetica,sans-serif;
+}

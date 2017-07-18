@@ -380,6 +380,9 @@ EXCLUDE_LIST = [
     'instagram',
     'bodygirlsdaily',
     'college.girlz',
+    'mybossgirls',
+    'yui_4402',
+    'david_shagabaev',
 ]
 OWNER_LIST = [i for i in OWNER_LIST if i not in PRIVATE_LIST and i not in EXCLUDE_LIST]
 
@@ -400,8 +403,9 @@ def up():
     for id in OWNER_LIST:
         print '='*50, id
         try:
-            inst_update(id)
-        except:
+            inst_update_private(id)
+        except Exception, e:
+            print '!'*180, str(e)
             print '*'*50, 'new private id', id
             private_new.append(id)
             PRIVATE_LIST.append(id)
@@ -417,4 +421,7 @@ def up_private():
     PRIVATE_LIST = [ i for i in PRIVATE_LIST if i not in EXCLUDE_LIST]
     if SESSION_ID:
         for id in PRIVATE_LIST:
-            inst_update_private(id)
+            try:
+                inst_update_private(id)
+            except:
+                print 'error pass:', id

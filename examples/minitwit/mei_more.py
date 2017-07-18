@@ -92,7 +92,7 @@ def inst_init_private(id='rinajackmimi', session_id=None):
 
 def inst_get_following(n=9999):
     #id for 2017
-    url = 'https://www.instagram.com/graphql/query/?query_id=17874545323001329&id=5387644807&id=5387644807&first=' + str(n)
+    url = 'https://www.instagram.com/graphql/query/?query_id=17874545323001329&id=5387644807&first=' + str(n)
     cookies = {}
     cookies['sessionid'] = SESSION_ID
     r = requests.get(url=url, cookies=cookies, verify=False)
@@ -206,7 +206,7 @@ def inst_update_private(id='rinajackmimi', session_id=None):
                 md.flush(m)
         c += 1
         print '='*50, c, s, count, id
-        pprint(len(n))
+        #pprint(len(n))
         if s > 2:
             s = s / 2
         if not has_next_page:
@@ -384,6 +384,8 @@ EXCLUDE_LIST = [
     'instagram',
     'bodygirlsdaily',
     'college.girlz',
+    'mybossgirls',
+    'yui_4402',
 ]
 OWNER_LIST = [i for i in OWNER_LIST if i not in PRIVATE_LIST and i not in EXCLUDE_LIST]
 
@@ -404,8 +406,9 @@ def up():
     for id in OWNER_LIST:
         print '='*50, id
         try:
-            inst_update(id)
-        except:
+            inst_update_private(id)
+        except Exception, e:
+            print '!'*180, str(e)
             print '*'*50, 'new private id', id
             private_new.append(id)
             PRIVATE_LIST.append(id)
@@ -421,4 +424,8 @@ def up_private():
     PRIVATE_LIST = [ i for i in PRIVATE_LIST if i not in EXCLUDE_LIST]
     if SESSION_ID:
         for id in PRIVATE_LIST:
-            inst_update_private(id)
+            try:
+                inst_update_private(id)
+            except:
+                print 'error pass:', id
+

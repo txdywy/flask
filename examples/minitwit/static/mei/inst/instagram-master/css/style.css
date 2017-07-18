@@ -1,0 +1,318 @@
+html,body{
+	height: 100%;
+}
+body{
+	min-width: 1280px;
+}
+.nav{
+	border-bottom: 1px solid #dbdbdb;
+	height: 77px;
+}
+.navCon{
+	max-width: 1010px;
+	width: 100%;
+	text-align: center;
+	overflow: auto;
+	margin: 0 auto;
+	padding: 26px 40px;
+	box-sizing: border-box;
+	/*line-height: 35px;*/
+}
+.navConLogo{
+	float: left;
+}
+.navConSearch{
+	display: inline;
+}
+.navConSearch input{
+	border: solid 1px #dbdbdb;
+	border-radius: 3px;
+	padding: 3px 10px 3px 26px;
+	height: 28px;
+	-webkit-box-sizing: border-box;
+	font-size: 14px;
+	text-align: center;
+	background-color: #fafafa;
+	color: #999;
+}
+.serchLogo{
+	background-image: url(../img/logo.png);
+	background-repeat: no-repeat;
+	background-position: -682px -200px;
+	/*background-position: -504px -106px;*/
+	height: 10px;
+	width: 10px;
+	display: inline-block;
+	position: relative;
+	/*left: -205px;*/
+	left: -135px;
+	/*top: 5px;*/
+}
+.navConLogo a{
+	float: left;
+	width: 176px;
+	height: 35px;
+	background-image: url(../img/logo.png);
+	background-position: -504px -176px;
+}
+.navConUser{
+	float: right;
+	overflow: auto;
+	box-sizing: border-box;
+	height: 35px;
+}
+.navConUser a{
+	float: left;
+	width: 24px;
+	height: 24px;
+}
+.navConUser a:nth-child(1){
+	background-image: url(../img/logo.png);
+	background-position: -633px -321px;
+}
+.navConUser a:nth-child(2){
+	background-image: url(../img/logo.png);
+	background-position: -610px -585px;
+	margin-left: 30px;
+}
+.navConUser a:nth-child(3){
+	background-image: url(../img/logo.png);
+	background-position: -54px -635px;
+	margin-left: 30px;
+}
+.main{
+	background-color: #fafafa;
+}
+.mainCon{
+	background-color: #fafafa;
+}
+.con,.listUser{
+	margin: 0 auto;
+	max-width: 600px;
+	width: 100%;
+}
+.conTopPhoto{
+	padding: 10px;
+	background-color: #fff;
+	margin-bottom: 20px;
+}
+.closeIcon{
+	height: 36px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 36px;
+    z-index: 2;
+    background: 0 0;
+    border: none;
+    cursor: pointer;
+    outline: none;
+}
+.closeIcon::before{
+	color: #c7c7c7;
+    content: '\00D7';
+    display: block;
+    font-size: 36px;
+    font-weight: 100;
+    line-height: 36px;
+    margin: 0;
+    padding: 0;
+}
+.addBtn{
+	color: #3897f0;
+    font: inherit;
+    margin: 0;
+    background: 0 0;
+    border: none;
+    cursor: pointer;
+    outline: none;
+	margin: 10px auto;
+	position: relative;
+
+}
+.addBtnCon{
+	text-align: center;
+}
+.addBtnC{
+	display: inline-block;
+	background-image: url(../img/logo.png);
+	background-repeat: no-repeat;
+	background-position: -460px -352px;
+	height: 80px;
+	width: 80px;
+}
+.btnFile{
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	cursor: pointer;
+	opacity: 0;
+}
+.cardHead{
+	height: 64px;
+	padding: 14px 20px;
+	box-sizing: border-box;
+	vertical-align: baseline;
+	overflow: auto;
+}
+.roundPhoto,.roundUserPhoto{
+	width: 30px;
+	height: 30px;
+	border-radius: 50%;
+	margin: -1px 10px -1px -5px;
+	background-color: #fafafa;
+	border: 1px solid #dbdbdb;
+	box-sizing: border-box;
+	display: inline-block;
+	float: left;
+}
+.roundUserPhoto{
+	margin: 0;
+	border: 0;
+}
+.cardUser{
+	float: left;
+	overflow: auto;
+}
+.cardUser a{
+	float: left;
+	margin-top: 7px;
+}
+.messageTime{
+	float: right;
+	font-size: 15px;
+	color: #999;
+	line-height: 35px;
+}
+.cardImg{
+	overflow: auto;
+	border-top: 1px solid #dbdbdb;
+}
+.cardFoot{
+	padding: 0 20px;
+}
+.cardUserImg{
+	width: 100%;
+	height: 100%;
+	float: left;
+}
+.cardFTop{
+	margin-top: 20px;
+	margin-bottom: 7px;
+	font-weight: 600;
+	font-size: 14px;
+}
+.cardFMiddle{
+	margin-left: -24px;
+	margin-right: -24px;
+	padding-left: 24px;
+	padding-right: 24px;
+	margin-top: -5px;
+	padding-top: 5px;
+	margin-bottom: 7px;
+}
+.cardFMiddleList{
+	margin-bottom: 7px;
+	position: relative;
+	word-wrap: break-word;
+	font-size: 13.33px;
+}
+.cardFBottom{
+	margin-top: 17px;
+	/*min-height: 68px;*/
+	padding: 20px 0;
+	border-top: 1px solid #dbdbdb;
+}
+.cardFBottomZ{
+	float: left;
+	background-image: url(../img/logo.png);
+	background-repeat: no-repeat;
+	background-position: -506px -585px;
+	height: 24px;
+	width: 24px;
+	margin-right: 10px;
+	margin-top: -3px;
+}
+.cardFBottomInput{
+	width: 470px;
+	line-height: 18px;
+	font-size: 15px;
+}
+.cardFBottomMore{
+	float: right;
+	background-image: url(../img/logo.png);
+	background-repeat: no-repeat;
+	background-position: -493px -448px;
+	height: 44px;
+	background-color: transparent;
+	border: 0;
+	cursor: pointer;
+	margin-left: 5px;
+	margin-right: -10px;
+	padding: 0;
+	margin-top: -10px;
+	width: 44px;
+}
+h1{
+	font-size: 13.33px;
+}
+.mask{
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 100%;
+	min-width: 1280px;
+	width: 100%;
+	opacity: 0.3;
+	background-color: #000;
+}
+.footer{
+	padding: 0 20px;
+	background-color: #fafafa;
+}
+.footerCon{
+	padding: 10px 0;
+	text-align: center;
+	font-size: 12px;
+    font-weight: 600;
+    margin: 0 auto;
+    text-transform: uppercase;
+    width: 100%;
+}
+.footerCon ul{
+	overflow: auto;
+	text-align: center;
+	
+}
+.footerCon ul:nth-child(2){
+	margin-top: 10px;
+}
+.footerCon ul li{
+	display: inline;
+	margin-left: 15px;
+}
+@media (min-width: 640px){
+.con{
+	padding-top: 60px;
+}
+.conTopPhoto{
+	background-color: #fff;
+	border: 1px solid #efefef;
+	border-radius: 3px;
+	margin-left: -1px;
+	margin-right: -1px;
+	position: relative;
+}
+.listUserCard{
+	background-color: #fff;
+	border: 1px solid #efefef;
+	border-radius: 3px;
+	margin-left: -1px;
+	margin-right: -1px;
+	margin-bottom: 40px;
+}
+}
