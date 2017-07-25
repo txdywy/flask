@@ -319,6 +319,10 @@ def get_btc():
     result = 'okc status:\n'
     result += 'total: ' + total + '\n'
     result += '\n'.join(['%s: %s'%(k,free[k]) for k in free])
+    result +='\n\n'
+    ps = [(i,okcc.get_price(co=i)['ticker']) for i in ['btc','eth','ltc']]
+    ps = [x[0] + '\n' + x[1]['last'] + '\n' + x[1]['low'] + '\n' + x[1]['high'] +'\n'  for x in ps]
+    result += '\n'.join(ps)
     return result + '\n\n'
 
 

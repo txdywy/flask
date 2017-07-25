@@ -22,6 +22,8 @@ okcoinFuture = OKCoinFuture(okcoinRESTURL,apikey,secretkey)
 def get_status():
     return okcoinSpot.userinfo()
 
+def get_price(co="btc", cu="cny"):
+    return okcoinSpot.ticker('%s_%s'%(co,cu))
 #print (u' 现货行情 ')
 #print (okcoinSpot.ticker('btc_usd'))
 
