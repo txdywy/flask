@@ -17,6 +17,8 @@ import threading
 import Queue
 import datetime
 from okc import Client as okcc
+from hb.Util import *
+from hb import HuobiService as hbs
 tz = pytz.timezone('Asia/Shanghai')
 try:
     from config import QY_KEY, QY_TOKEN, QY_CORPID, QY_SECRET
@@ -323,6 +325,19 @@ def get_btc():
     ps = [(i,okcc.get_price(co=i)['ticker']) for i in ['btc','eth','ltc']]
     ps = [x[0] + '\n' + x[1]['last'] + '\n' + x[1]['low'] + '+%s' % _diff(x[1]['last'], x[1]['low']) + '\n' + x[1]['high'] + '-%s' % _diff(x[1]['high'], x[1]['last']) + '\n'  for x in ps]
     result += '\n'.join(ps)
+    result += '\n--------------------\n\n'
+    result += 'hb status:\n'
+    hb_status = hbs.getAccountInfo(ACCOUNT_INFO)
+    hb_btc = hb_status['available_btc_display']
+    hb_ltc = hb_status['available_ltc_display']
+    hb_total = hb_status['total']
+    hb_cny = hb_status['available_cny_display']
+    hb_btc_frozen = hb_status['frozen_btc_display']
+    result += 'btc: ' + hb_btc + '\n'
+    result += 'ltc: ' + hb_ltc + '\n'
+    result += 'cny: ' + hb_cny + '\n'
+    result += 'btc_pend: ' + hb_btc_frozen + '\n'
+    result += 'total: ' + hb_total + '\n'
     return result + '\n\n'
 
 
