@@ -46,9 +46,9 @@ US_BASES = { 'fb': 100,
             'dis': 88,
             'data': 35,
             'gopro': 9,
-            'square': 12,
-            'yrd': 13,
-            'vcel': 3.12,
+            #'square': 12,
+            #'yrd': 13,
+            #'vcel': 3.12,
           }
 
 SINA_STOCK_URL = 'http://hq.sinajs.cn/list=%s'
