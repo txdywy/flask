@@ -16,6 +16,7 @@ import psutil
 import threading
 import Queue
 import datetime
+from okc import Client as okcc
 tz = pytz.timezone('Asia/Shanghai')
 try:
     from config import QY_KEY, QY_TOKEN, QY_CORPID, QY_SECRET
@@ -311,6 +312,16 @@ def fetch_rank(start=400, num=100, cat='GAME_CASINO', country='au'):
     return a
 
 
+def get_btc():
+    okc_status = json.loads(okcc.get_status())
+    total = okc_status['info']['funds']['asset']['total']
+    free = okc_status['info']['funds']['free']
+    result = 'okc status:\n'
+    result += 'total: ' + total + '\n'
+    result += '\n'.join(['%s: %s'%(k,free[k]) for k in free])
+    return result + '\n\n'
+
+
 def get_battle():
     #import smash 
     #return smash.auto_battle()
@@ -335,6 +346,8 @@ def hhmm_reply(data, msg_signature, timestamp, nonce):
         text = get_us_stock()
     elif 'cn' == msg.event_key:
         text = get_cn_stock()
+    elif 'btc' == msg.event_key:
+        text = get_btc()
     elif 'haitian' == msg.event_key:
         text = stock.get_one_cn_stock('海天')
     elif 'vcel' == msg.event_key:
