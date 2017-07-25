@@ -321,9 +321,13 @@ def get_btc():
     result += '\n'.join(['%s: %s'%(k,free[k]) for k in free])
     result +='\n\n'
     ps = [(i,okcc.get_price(co=i)['ticker']) for i in ['btc','eth','ltc']]
-    ps = [x[0] + '\n' + x[1]['last'] + '\n' + x[1]['low'] + '\n' + x[1]['high'] +'\n'  for x in ps]
+    ps = [x[0] + '\n' + x[1]['last'] + '\n' + x[1]['low'] + '+%s' % _diff(x[1]['last'], x[1]['low']) + '\n' + x[1]['high'] + '-%s' % _diff(x[1]['high'], x[1]['last']) + '\n'  for x in ps]
     result += '\n'.join(ps)
     return result + '\n\n'
+
+
+def _diff(a, b):
+    return round(float(a) - float(b), 3)
 
 
 def get_battle():
