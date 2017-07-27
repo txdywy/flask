@@ -455,7 +455,7 @@ def reply(data):
                 result += '\n'
                 result += '\xe3\x80\x90' + '关键词' + '\xe3\x80\x91' + "\xe3\x80\x90%s\xe3\x80\x91" % " ".join(seg_list)
                 result += '\n'
-                result += '\xF0\x9F\x8C\x8D' + '\xe3\x80\x90' + '摘要' + '\xe3\x80\x91' + "\xe3\x80\x90%s\xe3\x80\x91" % get_text_digest(content)
+                result += '\xe3\x80\x90' + '摘要' + '\xe3\x80\x91' + '\xF0\x9F\x8C\x8D' +  "\xe3\x80\x90%s\xe3\x80\x91" % get_text_digest(content)
                 cachewx.set(rkey, result, 60 * 10)
             print '--------',result
             response = make_response(reply_tmp % (user_name_from, user_name_to, str(int(time.time())), result))
@@ -578,7 +578,7 @@ def bs_sentiment(w=''):
     print r
     p = int(r[0][0] * 100)
     n = 100 - p
-    return '%sx%s%sx%s ' % (POSITIVE_EMOJI, p, NEGATIVE_EMOJI, n)
+    return ' %sx%s %sx%s ' % (POSITIVE_EMOJI, p, NEGATIVE_EMOJI, n)
 
 def bs_calssify(w=''):
     r = BSNLP.classify([w])
