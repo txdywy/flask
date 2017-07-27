@@ -450,8 +450,11 @@ def reply(data):
             else:
                 seg_list = get_key_words(content)
                 result =  '\xe3\x80\x90' + '文章情感晴雨表:%s' % bs_sentiment(content) + '\xe3\x80\x91'
+                result += '\n'
                 result += '\xe3\x80\x90' + '文章分类:%s' % bs_calssify(content) + '\xe3\x80\x91'
-                result += '\xe3\x80\x90' + '关键词' + '\xe3\x80\x91' + "\xe3\x80\x90%s\xe3\x80\x91" % "🐯".join(seg_list)
+                result += '\n'
+                result += '\xe3\x80\x90' + '关键词' + '\xe3\x80\x91' + "\xe3\x80\x90%s\xe3\x80\x91" % " ".join(seg_list)
+                result += '\n'
                 result += '\xF0\x9F\x8C\x8D' + '\xe3\x80\x90' + '摘要' + '\xe3\x80\x91' + "\xe3\x80\x90%s\xe3\x80\x91" % get_text_digest(content)
                 cachewx.set(rkey, result, 60 * 10)
             print '--------',result
@@ -565,8 +568,8 @@ def ds_reply(words='你是谁'):
     r = urllib2.urlopen(WX_TULING_API_URL % words).read()
     return r
 
-POSITIVE_EMOJI = '😆'
-NEGATIVE_EMOJI = '😰'
+POSITIVE_EMOJI = '😁'#'😆'
+NEGATIVE_EMOJI = '😞'#'😰'
 def bs_sentiment(w=''):
     """
     [+, -]
