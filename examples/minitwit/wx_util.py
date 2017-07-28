@@ -426,13 +426,15 @@ def reply(data):
     else:
         url = is_url(content)
         print '=============',url
+        title = ''
         if url:
             key = WX_CACHE_GENERAL_KEY % url
             content = cachewx.get(key)
             if not content:
-                content = get_text_by_url(url)
+                content, title = get_text_by_url(url)
                 cachewx.set(key, content, 60 * 10)
-            print '+++++++++++++',url,content
+            print '+++++++++++++',url,content,title
+            print '=============',title
         else:
             if unicode_is_zh(content) and len(content) < 200:
                 r = ds_reply(content)
@@ -449,13 +451,19 @@ def reply(data):
                 response = make_response(reply_tmp % (user_name_from, user_name_to, str(int(time.time())), result))
             else:
                 seg_list = get_key_words(content)
-                result =  '\xe3\x80\x90' + '文章情感晴雨表:%s' % bs_sentiment(content) + '\xe3\x80\x91'
-                result += '\n'
+                result = '\xe3\x80\x90' + '标题:%s' % title + '\xe3\x80\x91'
+                result += '\n\n'
+                result +=  '\xe3\x80\x90' + '文章情感晴雨表:%s' % bs_sentiment(content) + '\xe3\x80\x91'
+                result += '\n\n'
                 result += '\xe3\x80\x90' + '文章分类:%s' % bs_calssify(content) + '\xe3\x80\x91'
-                result += '\n'
+                result += '\n\n'
                 result += '\xe3\x80\x90' + '关键词' + '\xe3\x80\x91' + "\xe3\x80\x90%s\xe3\x80\x91" % " ".join(seg_list)
-                result += '\n'
+                result += '\n\n'
                 result += '\xe3\x80\x90' + '摘要' + '\xe3\x80\x91' + '\xF0\x9F\x8C\x8D' +  "\xe3\x80\x90%s\xe3\x80\x91" % get_text_digest(content)
+                result += '\n\n'
+                result += '阅读原文'
+                result += '\n\n'
+                result += url
                 cachewx.set(rkey, result, 60 * 10)
             print '--------',result
             response = make_response(reply_tmp % (user_name_from, user_name_to, str(int(time.time())), result))
@@ -513,6 +521,8 @@ def get_text_by_url(url="http://www.cnn.com"):
     if docid:
         html = json.loads(html[12:-1])[docid]['body']
     soup = BeautifulSoup(html)
+    al = html
+    title = al[al.find('<title>') + 7 : al.find('</title>')]
 
     # 36kr
     if fix_36kr(url):
@@ -528,7 +538,7 @@ def get_text_by_url(url="http://www.cnn.com"):
 
     tlist = text.split('\n')
     tlist = sorted(tlist, key=lambda x:len(x))
-    return tlist[-1]
+    return tlist[-1], title
 
 def is_url(data):
     data = data.strip()
