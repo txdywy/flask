@@ -38,8 +38,7 @@ def ip():
 
 HOST_DEV = [] # ['miso', 'airbb', 'nn', 'mm', ] retired
 HOST_ALANCER = ['wei'] # ['polo', 'sushi', 'noodle', 'udon', 'natto'] retired
-HOST_VPN = ['ton', 
-            'koala', 
+HOST_VPN = ['koala', 
             'ham', 
             'wiener', 
             'crab', 
@@ -58,7 +57,7 @@ HOST_VPN = ['ton',
             'iit',
             'tod',
             'thu',
-            ] # ['tempura', 'ramen', 'donut', 'nori', 'mm', 'rib', 'steak', 'buckeye', 'natto', 'curry', ] retired
+            ] # ['tempura', 'ramen', 'donut', 'nori', 'mm', 'rib', 'steak', 'buckeye', 'natto', 'curry', 'ton', ] retired
 HOST_APPFLOOD = ['pre3-01', 'af_test', 'test3', 'sandbox', 'pre3-jp']
 HOST_ALL = HOST_DEV + HOST_ALANCER + HOST_VPN + HOST_APPFLOOD
 HOST_TBK = HOST_DEV + HOST_VPN
@@ -80,7 +79,7 @@ HOST_LAUNCH_DATE = {
     #'natto': datetime.datetime(2016, 5, 23),
     #'curry': datetime.datetime(2016, 6, 27),
     #####-----------------------------------#####
-    'ton': datetime.datetime(2016, 8, 18),
+    #'ton': datetime.datetime(2016, 8, 18), 
     'koala': datetime.datetime(2016, 8, 18),
     'ham': datetime.datetime(2016, 8, 18),
     'wiener': datetime.datetime(2016, 9, 1),
@@ -107,7 +106,7 @@ HOST_INDEX = {#'01': 'rib',      #kr@yahoo
               #'02': 'steak',    #kr@yahoo
               #'17': 'buckeye',  #us-east-oh@outlook
               #'03': 'natto',    #jp@yahoo
-              '04': 'ton',      #jp@yahoo
+              #'04': 'ton',      #jp@yahoo JCB8327
               #'05': 'curry',    #in@yahoo
               '06': 'koala',    #au@yahoo
               '07': 'ham',      #us-east@yahoo
@@ -134,7 +133,7 @@ HOST_DATA = {#'rib'    : ('01', 'kr',    'yahoo'),
              #'steak'  : ('02', 'kr',    'yahoo'),
              #'buckeye': ('17', 'ue-oh', 'outlook'),
              #'natto'  : ('03', 'jp',    'yahoo'),
-             'ton'    : ('04', 'jp',    'yahoo'),
+             #'ton'    : ('04', 'jp',    'yahoo'),
              #'curry'  : ('05', 'in',    'yahoo'),
              'koala'  : ('06', 'au',    'yahoo'),
              'ham'    : ('07', 'ue',    'yahoo'),
