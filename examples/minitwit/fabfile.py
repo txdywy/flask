@@ -38,8 +38,7 @@ def ip():
 
 HOST_DEV = [] # ['miso', 'airbb', 'nn', 'mm', ] retired
 HOST_ALANCER = ['wei'] # ['polo', 'sushi', 'noodle', 'udon', 'natto'] retired
-HOST_VPN = ['ham', 
-            'wiener', 
+HOST_VPN = ['wiener', 
             'crab', 
             'laksa', 
             'bbq', 
@@ -56,7 +55,7 @@ HOST_VPN = ['ham',
             'iit',
             'tod',
             'thu',
-            ] # ['tempura', 'ramen', 'donut', 'nori', 'mm', 'rib', 'steak', 'buckeye', 'natto', 'curry', 'ton', 'koala', ] retired
+            ] # ['tempura', 'ramen', 'donut', 'nori', 'mm', 'rib', 'steak', 'buckeye', 'natto', 'curry', 'ton', 'koala', 'ham',] retired
 HOST_APPFLOOD = ['pre3-01', 'af_test', 'test3', 'sandbox', 'pre3-jp']
 HOST_ALL = HOST_DEV + HOST_ALANCER + HOST_VPN + HOST_APPFLOOD
 HOST_TBK = HOST_DEV + HOST_VPN
@@ -80,7 +79,7 @@ HOST_LAUNCH_DATE = {
     #####-----------------------------------#####
     #'ton': datetime.datetime(2016, 8, 18), 
     #'koala': datetime.datetime(2016, 8, 18),
-    'ham': datetime.datetime(2016, 8, 18),
+    #'ham': datetime.datetime(2016, 8, 18),
     'wiener': datetime.datetime(2016, 9, 1),
     'crab': datetime.datetime(2016, 9, 1),
     'laksa': datetime.datetime(2016, 9, 2),
@@ -108,7 +107,7 @@ HOST_INDEX = {#'01': 'rib',      #kr@yahoo
               #'04': 'ton',      #jp@yahoo JCB8327
               #'05': 'curry',    #in@yahoo
               #'06': 'koala',    #au@yahoo JCB8327
-              '07': 'ham',      #us-east@yahoo
+              #'07': 'ham',      #us-east@yahoo JCB8327
               '08': 'wiener',   #eu-frank@outlook
               '09': 'crab',     #us-west-cal@outlook
               '10': 'laksa',    #sg@outlook
@@ -135,7 +134,7 @@ HOST_DATA = {#'rib'    : ('01', 'kr',    'yahoo'),
              #'ton'    : ('04', 'jp',    'yahoo'),
              #'curry'  : ('05', 'in',    'yahoo'),
              #'koala'  : ('06', 'au',    'yahoo'),
-             'ham'    : ('07', 'ue',    'yahoo'),
+             #'ham'    : ('07', 'ue',    'yahoo'),
              'wiener' : ('08', 'eu-de', 'outlook'),
              'crab'   : ('09', 'uw-ca', 'outlook'),
              'laksa'  : ('10', 'sg',    'outlook'),
