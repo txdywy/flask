@@ -108,23 +108,23 @@ HOST_INDEX = {#'01': 'rib',      #kr@yahoo
               #'05': 'curry',    #in@yahoo
               #'06': 'koala',    #au@yahoo JCB8327
               #'07': 'ham',      #us-east@yahoo JCB8327
-              '08': 'wiener',   #eu-frank@outlook
-              '09': 'crab',     #us-west-cal@outlook
-              '10': 'laksa',    #sg@outlook
-              '11': 'stew',     #eu-ire@gmail
-              '12': 'bbq',      #sa@gmail
-              '13': 'pie',      #us-west-ore@gmail
-              '14': 'suki',     #jp@gmail
-              '15': 'bacon',    #ca@gmail
-              '16': 'chip',     #uk@outlook
-              '18': 'fish',     #uk@outlook
-              '19': 'ice',      #us-east-oh@outlook
-              '20': 'kim',      #kr@163
-              '21': 'mei',      #jp@163
-              '22': 'wei',      #jp@163
-              '23': 'iit',      #in@gmail
-              '24': 'tod',      #jp@gmail
-              '25': 'thu',      #jp@gmail
+              '08': 'wiener',   #eu-frank@outlook M6786
+              '09': 'crab',     #us-west-cal@outlook M6786
+              '10': 'laksa',    #sg@outlook M6786
+              '11': 'stew',     #eu-ire@gmail M6786
+              '12': 'bbq',      #sa@gmail JCB8327
+              '13': 'pie',      #us-west-ore@gmail M6786
+              '14': 'suki',     #jp@gmail M6786
+              '15': 'bacon',    #ca@gmail V8490
+              '16': 'chip',     #uk@outlook M5179
+              '18': 'fish',     #uk@outlook JCB8327
+              '19': 'ice',      #us-east-oh@outlook AE8921
+              '20': 'kim',      #kr@163 V2903
+              '21': 'mei',      #jp@163 AE8921
+              '22': 'wei',      #jp@163 V2903
+              '23': 'iit',      #in@gmail V2903
+              '24': 'tod',      #jp@gmail AE0288
+              '25': 'thu',      #jp@gmail M8250
              }
 
 HOST_DATA = {#'rib'    : ('01', 'kr',    'yahoo'),
