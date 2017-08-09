@@ -453,8 +453,8 @@ def reply(data):
                 seg_list = get_key_words(content)
                 result = '\xe3\x80\x90' + '标题:%s' % title + '\xe3\x80\x91'
                 result += '\n\n'
-                result += content
-                """
+                #result += content
+                
                 result +=  '\xe3\x80\x90' + '文章情感晴雨表:%s' % bs_sentiment(content) + '\xe3\x80\x91'
                 result += '\n\n'
                 result += '\xe3\x80\x90' + '文章分类:%s' % bs_calssify(content) + '\xe3\x80\x91'
@@ -463,11 +463,14 @@ def reply(data):
                 result += '\n\n'
                 result += '\xe3\x80\x90' + '摘要' + '\xe3\x80\x91' + '\xF0\x9F\x8C\x8D' +  "\xe3\x80\x90%s\xe3\x80\x91" % get_text_digest(content)
                 result += '\n\n'
-                result += '阅读原文'
+                result += '<a href="%s">阅读原文</a>' % url
                 result += '\n\n'
-                result += url
-                """
+                print url
                 cachewx.set(rkey, result, 60 * 10)
+                """
+                cachewx.set(str(time.time()), result, 60 * 10)
+                result
+                """
             print '--------',result
             response = make_response(reply_tmp % (user_name_from, user_name_to, str(int(time.time())), result))
         else:
@@ -538,6 +541,7 @@ def get_text_by_url(url="http://www.cnn.com"):
     # get text
     text = soup.get_text()
     print '--------------------'
+    print text
 
     tlist = text.split('\n')
     tlist = sorted(tlist, key=lambda x:len(x))
