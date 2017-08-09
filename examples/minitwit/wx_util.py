@@ -453,6 +453,8 @@ def reply(data):
                 seg_list = get_key_words(content)
                 result = '\xe3\x80\x90' + '标题:%s' % title + '\xe3\x80\x91'
                 result += '\n\n'
+                result += content
+                """
                 result +=  '\xe3\x80\x90' + '文章情感晴雨表:%s' % bs_sentiment(content) + '\xe3\x80\x91'
                 result += '\n\n'
                 result += '\xe3\x80\x90' + '文章分类:%s' % bs_calssify(content) + '\xe3\x80\x91'
@@ -464,6 +466,7 @@ def reply(data):
                 result += '阅读原文'
                 result += '\n\n'
                 result += url
+                """
                 cachewx.set(rkey, result, 60 * 10)
             print '--------',result
             response = make_response(reply_tmp % (user_name_from, user_name_to, str(int(time.time())), result))
