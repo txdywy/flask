@@ -1648,6 +1648,13 @@ def xp():
 @app.route('/fmp', methods=['GET'])
 def fmp():
     return render_template('fmp.html')
+
+
+@app.route('/hy', methods=['GET'])
+def hy():
+    k = request.args.get('k')
+    r = cacheal.get(k)
+    return r
     
 
 @app.route('/d', methods=['GET'])

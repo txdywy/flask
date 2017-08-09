@@ -451,26 +451,25 @@ def reply(data):
                 response = make_response(reply_tmp % (user_name_from, user_name_to, str(int(time.time())), result))
             else:
                 seg_list = get_key_words(content)
+                p = '<p></p><p></p>'
                 result = '\xe3\x80\x90' + '标题:%s' % title + '\xe3\x80\x91'
-                result += '\n\n'
-                #result += content
-                
+                result += p
                 result +=  '\xe3\x80\x90' + '文章情感晴雨表:%s' % bs_sentiment(content) + '\xe3\x80\x91'
-                result += '\n\n'
+                result += p
                 result += '\xe3\x80\x90' + '文章分类:%s' % bs_calssify(content) + '\xe3\x80\x91'
-                result += '\n\n'
+                result += p
                 result += '\xe3\x80\x90' + '关键词' + '\xe3\x80\x91' + "\xe3\x80\x90%s\xe3\x80\x91" % " ".join(seg_list)
-                result += '\n\n'
+                result += p
                 result += '\xe3\x80\x90' + '摘要' + '\xe3\x80\x91' + '\xF0\x9F\x8C\x8D' +  "\xe3\x80\x90%s\xe3\x80\x91" % get_text_digest(content)
-                result += '\n\n'
-                result += '<a href="%s">阅读原文</a>' % url
-                result += '\n\n'
-                print url
-                cachewx.set(rkey, result, 60 * 10)
-                """
-                cachewx.set(str(time.time()), result, 60 * 10)
-                result
-                """
+                result += p
+                #result += '<a href="%s">阅读原文</a>' % url
+                result += '\xe3\x80\x90' + '原文' + '\xe3\x80\x91 ' + content
+                result += p
+                k =  str(time.time())
+                #print url
+                #cachewx.set(rkey, result, 60 * 10)
+                cachewx.set(k, result, 60 * 10)
+                result = '<a href="%s">阅读原文</a>' % ('http://wxbt.ml/hy?k='+k)
             print '--------',result
             response = make_response(reply_tmp % (user_name_from, user_name_to, str(int(time.time())), result))
         else:
