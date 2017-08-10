@@ -455,7 +455,7 @@ def reply(data):
             if result:
                 response = make_response(reply_tmp % (user_name_from, user_name_to, str(int(time.time())), result))
             else:
-                result = _abs_content(url, title, content) if abs_flag else _full_content(url, title, content) 
+                result = _abs_content(url, title, content, rkey) if abs_flag else _full_content(url, title, content, rkey) 
             print '--------',result
             response = make_response(reply_tmp % (user_name_from, user_name_to, str(int(time.time())), result))
         else:
@@ -471,7 +471,7 @@ def reply(data):
     return response
 
 
-def _full_content(url, title, content):
+def _full_content(url, title, content, rkey):
     seg_list = get_key_words(content)
     p = '<p>%s</p>'
     result = p % ('\xe3\x80\x90' + '标题:%s' % title + '\xe3\x80\x91')
@@ -486,7 +486,7 @@ def _full_content(url, title, content):
     return result
 
 
-def _abs_content(url, title, content):
+def _abs_content(url, title, content, rkey):
     seg_list = get_key_words(content)
     p = '/n/n'
     result = '\xe3\x80\x90' + '标题:%s' % title + '\xe3\x80\x91'
