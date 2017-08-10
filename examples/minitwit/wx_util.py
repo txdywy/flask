@@ -472,6 +472,8 @@ def reply(data):
 
 
 def _full_content(url, title, content, rkey):
+    content0 = content
+    content = content.replace('<p>','\n').replace('</p>','\n')
     seg_list = get_key_words(content)
     p = '<p>%s</p>'
     result = p % ('\xe3\x80\x90' + '标题:%s' % title + '\xe3\x80\x91')
@@ -479,7 +481,7 @@ def _full_content(url, title, content, rkey):
     result += p % ('\xe3\x80\x90' + '文章分类:%s' % bs_calssify(content) + '\xe3\x80\x91')
     result += p % ('\xe3\x80\x90' + '关键词' + '\xe3\x80\x91' + "\xe3\x80\x90%s\xe3\x80\x91" % " ".join(seg_list))
     result += p % ('\xe3\x80\x90' + '摘要' + '\xe3\x80\x91' + '\xF0\x9F\x8C\x8D' +  "\xe3\x80\x90%s\xe3\x80\x91" % get_text_digest(content))
-    result += p % ('\xe3\x80\x90' + '原文' + '\xe3\x80\x91 ' + content)
+    result += p % ('\xe3\x80\x90' + '原文' + '\xe3\x80\x91 ' + content0)
     k =  str(time.time())
     cachewx.set(k, result, 60 * 10)
     result = '<a href="%s">阅读原文</a>' % ('http://wxbt.ml/hy?k='+k)
@@ -487,6 +489,7 @@ def _full_content(url, title, content, rkey):
 
 
 def _abs_content(url, title, content, rkey):
+    content = content.replace('<p>','\n').replace('</p>','\n')
     seg_list = get_key_words(content)
     p = '\n\n'
     result = '\xe3\x80\x90' + '标题:%s' % title + '\xe3\x80\x91'
@@ -561,7 +564,7 @@ def get_text_by_url(url="http://www.cnn.com"):
     # get text
     if 'mp.weixin.qq.com' in url:
     	soup = soup.find("div", {"id": "js_content"}) 
-    	sections = soup.findAll("p")
+    	sections = soup.findAll()
     	texts = [i.get_text() for i in sections]
     	print texts
     	return ''.join(['<p>%s</p>' % t for t in texts]), title
