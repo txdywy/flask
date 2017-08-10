@@ -424,6 +424,11 @@ def reply(data):
     elif '小虎是谁' in content:
         response = make_response(WX_TEMPLATE_IMG_TEXT % (user_name_from, user_name_to, str(int(time.time())),     '小虎是谁？', '是谁呀？', 'http://t.hujiang.com/images/peitu/huhu/5.jpg', 'http://wxbot.ml'))
     else:
+    	if content[-1] == 'z' and content[-2] == ' ':
+    		content = content[:-2]
+    		abs_flag = True
+    	else:
+    		abs_flag = False
         url = is_url(content)
         print '=============',url
         title = ''
@@ -450,26 +455,7 @@ def reply(data):
             if result:
                 response = make_response(reply_tmp % (user_name_from, user_name_to, str(int(time.time())), result))
             else:
-                seg_list = get_key_words(content)
-                p = '<p></p><p></p>'
-                result = '\xe3\x80\x90' + '标题:%s' % title + '\xe3\x80\x91'
-                result += p
-                result +=  '\xe3\x80\x90' + '文章情感晴雨表:%s' % bs_sentiment(content) + '\xe3\x80\x91'
-                result += p
-                result += '\xe3\x80\x90' + '文章分类:%s' % bs_calssify(content) + '\xe3\x80\x91'
-                result += p
-                result += '\xe3\x80\x90' + '关键词' + '\xe3\x80\x91' + "\xe3\x80\x90%s\xe3\x80\x91" % " ".join(seg_list)
-                result += p
-                result += '\xe3\x80\x90' + '摘要' + '\xe3\x80\x91' + '\xF0\x9F\x8C\x8D' +  "\xe3\x80\x90%s\xe3\x80\x91" % get_text_digest(content)
-                result += p
-                #result += '<a href="%s">阅读原文</a>' % url
-                result += '\xe3\x80\x90' + '原文' + '\xe3\x80\x91 ' + content
-                result += p
-                k =  str(time.time())
-                #print url
-                #cachewx.set(rkey, result, 60 * 10)
-                cachewx.set(k, result, 60 * 10)
-                result = '<a href="%s">阅读原文</a>' % ('http://wxbt.ml/hy?k='+k)
+                result = _abs_content(url, content) if abs_flag else _full_content(url, content) 
             print '--------',result
             response = make_response(reply_tmp % (user_name_from, user_name_to, str(int(time.time())), result))
         else:
@@ -483,6 +469,41 @@ def reply(data):
             return response
     response.content_type = 'application/xml'
     return response
+
+
+def _full_content(url, content):
+    seg_list = get_key_words(content)
+    p = '<p>%s</p>'
+    result = p % ('\xe3\x80\x90' + '标题:%s' % title + '\xe3\x80\x91')
+    result += p % ('\xe3\x80\x90' + '文章情感晴雨表:%s' % bs_sentiment(content) + '\xe3\x80\x91')
+    result += p % ('\xe3\x80\x90' + '文章分类:%s' % bs_calssify(content) + '\xe3\x80\x91')
+    result += p % ('\xe3\x80\x90' + '关键词' + '\xe3\x80\x91' + "\xe3\x80\x90%s\xe3\x80\x91" % " ".join(seg_list))
+    result += p % ('\xe3\x80\x90' + '摘要' + '\xe3\x80\x91' + '\xF0\x9F\x8C\x8D' +  "\xe3\x80\x90%s\xe3\x80\x91" % get_text_digest(content))
+    result += p % ('\xe3\x80\x90' + '原文' + '\xe3\x80\x91 ' + content)
+    k =  str(time.time())
+    cachewx.set(k, result, 60 * 10)
+    result = '<a href="%s">阅读原文</a>' % ('http://wxbt.ml/hy?k='+k)
+    return result
+
+
+def _abs_content(url, content):
+    seg_list = get_key_words(content)
+    p = '/n/n'
+    result = '\xe3\x80\x90' + '标题:%s' % title + '\xe3\x80\x91'
+    result += p
+    result +=  '\xe3\x80\x90' + '文章情感晴雨表:%s' % bs_sentiment(content) + '\xe3\x80\x91'
+    result += p
+    result += '\xe3\x80\x90' + '文章分类:%s' % bs_calssify(content) + '\xe3\x80\x91'
+    result += p
+    result += '\xe3\x80\x90' + '关键词' + '\xe3\x80\x91' + "\xe3\x80\x90%s\xe3\x80\x91" % " ".join(seg_list)
+    result += p
+    result += '\xe3\x80\x90' + '摘要' + '\xe3\x80\x91' + '\xF0\x9F\x8C\x8D' +  "\xe3\x80\x90%s\xe3\x80\x91" % get_text_digest(content)
+    result += p
+    result += '<a href="%s">阅读原文</a>' % url
+    result += p
+    print url
+    cachewx.set(rkey, result, 60 * 10)
+    return result
 
 
 def _gen_img_response(user_name_from, user_name_to, title, body, img_url, ref_url):
