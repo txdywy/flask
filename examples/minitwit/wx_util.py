@@ -559,6 +559,12 @@ def get_text_by_url(url="http://www.cnn.com"):
         script.extract()    # rip it out
 
     # get text
+    if 'mp.weixin.qq.com' in url:
+    	soup = soup.find("div", {"id": "js_content"}) 
+    	sections = soup.findAll("section")
+    	texts = [i.get_text() for i in sections]
+    	print texts
+    	return '\n\n'.join(texts), title
     text = soup.get_text()
     print '--------------------'
     print text
