@@ -1654,7 +1654,7 @@ def fmp():
 def hy():
     k = request.args.get('k')
     r = cacheal.get(k)
-    return r
+    return r if r else 'passed'
     
 
 @app.route('/d', methods=['GET'])
