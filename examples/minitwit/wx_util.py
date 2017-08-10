@@ -488,7 +488,7 @@ def _full_content(url, title, content, rkey):
 
 def _abs_content(url, title, content, rkey):
     seg_list = get_key_words(content)
-    p = '/n/n'
+    p = '\n\n'
     result = '\xe3\x80\x90' + '标题:%s' % title + '\xe3\x80\x91'
     result += p
     result +=  '\xe3\x80\x90' + '文章情感晴雨表:%s' % bs_sentiment(content) + '\xe3\x80\x91'
