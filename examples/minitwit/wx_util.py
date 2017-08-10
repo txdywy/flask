@@ -566,8 +566,12 @@ def get_text_by_url(url="http://www.cnn.com"):
     	soup = soup.find("div", {"id": "js_content"}) 
     	sections = soup.findAll()
     	texts = [i.get_text() for i in sections if i.name in ('p','section')]
-    	print texts
-    	return ''.join(['<p>%s</p>' % t for t in texts]), title
+        texts_n = []
+        for t in texts:
+            if t not in texts_n:
+                texts_n.append(t)
+    	print texts_n
+    	return ''.join(['<p>%s</p>' % t for t in texts_n]), title
     text = soup.get_text()
     print '--------------------'
     print text
