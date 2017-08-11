@@ -3,7 +3,7 @@ import gevent
 #from gevent import monkey
 #monkey.patch_all()
 from ib import IB_BOOK
-import stock
+import stock, hashlib
 import ierror, time
 from WXBizMsgCrypt import SHA1
 import xml.etree.ElementTree as ET
