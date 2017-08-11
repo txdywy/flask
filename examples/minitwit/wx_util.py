@@ -455,7 +455,13 @@ def reply(data):
             if result:
                 response = make_response(reply_tmp % (user_name_from, user_name_to, str(int(time.time())), result))
             else:
-                result = _abs_content(url, title, content, rkey) if abs_flag else _full_content(url, title, content, rkey) 
+            	uk = 'HYRESULT_' + hashlib.md5(url).hexdigest()
+            	r = cachewx.get(uk)
+            	if r:
+            		result = r
+            	else:
+                    result = _abs_content(url, title, content, rkey) if abs_flag else _full_content(url, title, content, rkey) 
+                    cachewx.set(uk, result, 60 * 10)
             print '--------',result
             response = make_response(reply_tmp % (user_name_from, user_name_to, str(int(time.time())), result))
         else:
