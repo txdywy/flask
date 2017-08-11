@@ -570,8 +570,15 @@ def get_text_by_url(url="http://www.cnn.com"):
         for t in texts:
             if t not in texts_n:
                 texts_n.append(t)
-    	print texts_n
-    	return ''.join(['<p>%s</p>' % t for t in texts_n]), title
+        s = sum([len(i) for i in texts_n]) / 3 
+        texts_nn = []
+        for t in texts_n:
+        	if len(t) < s:
+        		texts_nn.append(t)
+        	else:
+        		print '-----large p-----', t
+    	print texts_nn
+    	return ''.join(['<p>%s</p>' % t for t in texts_nn]), title
     text = soup.get_text()
     print '--------------------'
     print text
