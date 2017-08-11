@@ -570,6 +570,8 @@ def get_text_by_url(url="http://www.cnn.com"):
     # get text
     if 'mp.weixin.qq.com' in url:
     	soup = soup.find("div", {"id": "js_content"}) 
+    	texts = soup.strings
+    	"""
     	sections = soup.findAll()
     	texts = [i.get_text() for i in sections if i.name in ('p','section')]
         texts_n = []
@@ -579,12 +581,14 @@ def get_text_by_url(url="http://www.cnn.com"):
         s = sum([len(i) for i in texts_n]) / 3 
         texts_nn = []
         for t in texts_n:
-        	if len(t) < s:
+        	if len(t) < s and :
         		texts_nn.append(t)
         	else:
         		print '-----large p-----', t
     	print texts_nn
-    	return ''.join(['<p>%s</p>' % t for t in texts_nn]), title
+    	"""
+    	print texts
+    	return ''.join(['<p>%s</p>' % t for t in texts]), title
     text = soup.get_text()
     print '--------------------'
     print text
