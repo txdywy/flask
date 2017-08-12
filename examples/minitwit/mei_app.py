@@ -503,5 +503,5 @@ def fq():
         i += 1
         if i%3 == 0:
             r.append('<p><!--Ads1--></p>')
-    return ''.join()
+    return ''.join(r)
 
