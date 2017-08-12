@@ -495,5 +495,5 @@ def fq():
     ms = random.sample(ms, 10)
     urls = [m.pic_url() for m in ms]
     print urls
-    return ''.join(['<p>%s</p>' % u for u in urls])
+    return ''.join(['<p><img src="%s" width="640" class="alignnone size-medium" /></p>' % u for u in urls])
 
