@@ -495,7 +495,7 @@ def fq():
     ms = random.sample(ms, 20)
     urls = [m.pic_url() for m in ms]
     print urls
-    hs = ['<p><img src="%s" width="640" class="aligncenter size-medium" /></p>' % u for u in urls]
+    hs = ['<p><img src="%s" width="640" class="alignnone size-medium" /></p>' % u for u in urls]
     r = []
     i = 0
     for x in hs:
