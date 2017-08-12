@@ -492,8 +492,16 @@ def fq():
     m = mm.InstMei.query.get(random.randint(1, size))
     inst_owner = m.inst_owner
     ms = mm.InstMei.query.filter_by(inst_owner=inst_owner).all()
-    ms = random.sample(ms, 10)
+    ms = random.sample(ms, 20)
     urls = [m.pic_url() for m in ms]
     print urls
-    return ''.join(['<p><img src="%s" width="640" class="alignnone size-medium" /></p>' % u for u in urls])
+    hs = ['<p><img src="%s" width="640" class="alignnone size-medium" /></p>' % u for u in urls]
+    r = []
+    i = 0
+    for x in hs:
+        r.append(x)
+        i += 1
+        if i%3 == 0:
+            r.append('<p><!--Ads1--></p>')
+    return ''.join()
 
