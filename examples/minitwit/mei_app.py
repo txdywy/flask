@@ -485,3 +485,15 @@ def gws_post():
 def guess():
     return render_template('gws.html')
 
+
+@app.route('/fq')
+def fq():
+    size = get_mei_count()
+    m = mm.InstMei.query.get(random.randint(1, size))
+    inst_owner = m.inst_owner
+    ms = mm.InstMei.query.filter_by(inst_owner=inst_owner).all()
+    ms = random.sample(ms, 10)
+    urls = [m.pic_url() for m in ms]
+    print urls
+    return ''.join(['<p>%s</p>' % u for u in urls])
+
