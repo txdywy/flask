@@ -13,7 +13,12 @@ print '\n\n\n'
 
 hs = ['<img src="%s" width="640" class="alignnone size-medium" />' % u for u in r]
 
+i=0
 for u in hs:
     print u
+    i+=1
+    if i%3 == 0 and i<len(hs):
+        print
+        print '<!--RndAds-->'
     print
 
