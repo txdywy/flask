@@ -481,7 +481,7 @@ def _full_content(url, title, content, rkey):
     content0 = content
     content = content.replace('<p>','\n').replace('</p>','\n')
     seg_list = get_key_words(content)
-    p = '<p>%s</p>'
+    p = '<p>%s</p></br>'
     result = p % ('\xe3\x80\x90' + '标题:%s' % title + '\xe3\x80\x91')
     result += p % ('\xe3\x80\x90' + '文章情感晴雨表:%s' % bs_sentiment(content) + '\xe3\x80\x91')
     result += p % ('\xe3\x80\x90' + '文章分类:%s' % bs_calssify(content) + '\xe3\x80\x91')
