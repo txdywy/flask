@@ -588,7 +588,7 @@ def get_text_by_url(url="http://www.cnn.com"):
     	print texts_nn
     	"""
     	print texts
-    	return ''.join(['<p>%s</p>' % t for t in texts]), title
+    	return ''.join(['<p>%s</p></br>' % t for t in texts]), title
     text = soup.get_text()
     print '--------------------'
     print text
