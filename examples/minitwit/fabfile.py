@@ -38,12 +38,7 @@ def ip():
 
 HOST_DEV = [] # ['miso', 'airbb', 'nn', 'mm', ] retired
 HOST_ALANCER = ['wei'] # ['polo', 'sushi', 'noodle', 'udon', 'natto'] retired
-HOST_VPN = ['wiener', 
-            'crab', 
-            'laksa', 
-            'bbq', 
-            'pie', 
-            'stew', 
+HOST_VPN = [            
             'suki', 
             'bacon', 
             'chip', 
@@ -56,7 +51,7 @@ HOST_VPN = ['wiener',
             'tod',
             'thu',
             'usc',
-            ] # ['tempura', 'ramen', 'donut', 'nori', 'mm', 'rib', 'steak', 'buckeye', 'natto', 'curry', 'ton', 'koala', 'ham',] retired
+            ] # ['tempura', 'ramen', 'donut', 'nori', 'mm', 'rib', 'steak', 'buckeye', 'natto', 'curry', 'ton', 'koala', 'ham', 'wiener', 'crab', 'laksa', 'stew', 'bbq', ] retired
 HOST_APPFLOOD = ['pre3-01', 'af_test', 'test3', 'sandbox', 'pre3-jp']
 HOST_ALL = HOST_DEV + HOST_ALANCER + HOST_VPN + HOST_APPFLOOD
 HOST_TBK = HOST_DEV + HOST_VPN
@@ -81,12 +76,12 @@ HOST_LAUNCH_DATE = {
     #'ton': datetime.datetime(2016, 8, 18), 
     #'koala': datetime.datetime(2016, 8, 18),
     #'ham': datetime.datetime(2016, 8, 18),
-    'wiener': datetime.datetime(2016, 9, 1),
-    'crab': datetime.datetime(2016, 9, 1),
-    'laksa': datetime.datetime(2016, 9, 2),
-    'bbq': datetime.datetime(2016, 9, 2),
-    'pie': datetime.datetime(2016, 9, 5),
-    'stew': datetime.datetime(2016, 9, 5),
+    #'wiener': datetime.datetime(2016, 9, 1),
+    #'crab': datetime.datetime(2016, 9, 1),
+    #'laksa': datetime.datetime(2016, 9, 2),
+    #'bbq': datetime.datetime(2016, 9, 2),
+    #'pie': datetime.datetime(2016, 9, 5),
+    #'stew': datetime.datetime(2016, 9, 5),
     'suki': datetime.datetime(2016, 10, 10), 
     'bacon': datetime.datetime(2016, 12, 9), 
     'chip': datetime.datetime(2016, 12, 14),
@@ -110,12 +105,12 @@ HOST_INDEX = {#'01': 'rib',      #kr@yahoo
               #'05': 'curry',    #in@yahoo
               #'06': 'koala',    #au@yahoo JCB8327
               #'07': 'ham',      #us-east@yahoo JCB8327
-              '08': 'wiener',   #eu-frank@outlook M6786
-              '09': 'crab',     #us-west-cal@outlook M6786
-              '10': 'laksa',    #sg@outlook M6786
-              '11': 'stew',     #eu-ire@gmail M6786
-              '12': 'bbq',      #sa@gmail JCB8327
-              '13': 'pie',      #us-west-ore@gmail M6786
+              #'08': 'wiener',   #eu-frank@outlook M6786
+              #'09': 'crab',     #us-west-cal@outlook M6786
+              #'10': 'laksa',    #sg@outlook M6786
+              #'11': 'stew',     #eu-ire@gmail M6786
+              #'12': 'bbq',      #sa@gmail JCB8327
+              #'13': 'pie',      #us-west-ore@gmail M6786
               '14': 'suki',     #jp@gmail M6786
               '15': 'bacon',    #ca@gmail V8490
               '16': 'chip',     #uk@outlook M5179
@@ -138,12 +133,12 @@ HOST_DATA = {#'rib'    : ('01', 'kr',    'yahoo'),
              #'curry'  : ('05', 'in',    'yahoo'),
              #'koala'  : ('06', 'au',    'yahoo'),
              #'ham'    : ('07', 'ue',    'yahoo'),
-             'wiener' : ('08', 'eu-de', 'outlook'),
-             'crab'   : ('09', 'uw-ca', 'outlook'),
-             'laksa'  : ('10', 'sg',    'outlook'),
-             'stew'   : ('11', 'eu-ir', 'gmail'),
-             'bbq'    : ('12', 'sa',    'gmail'),
-             'pie'    : ('13', 'uw-or', 'gmail'),
+             #'wiener' : ('08', 'eu-de', 'outlook'),
+             #'crab'   : ('09', 'uw-ca', 'outlook'),
+             #'laksa'  : ('10', 'sg',    'outlook'),
+             #'stew'   : ('11', 'eu-ir', 'gmail'),
+             #'bbq'    : ('12', 'sa',    'gmail'),
+             #'pie'    : ('13', 'uw-or', 'gmail'),
              'suki'   : ('14', 'jp',    'gmail'),
              'bacon'  : ('15', 'ca',    'gmail'),
              'chip'   : ('16', 'uk',    'outlook'),
