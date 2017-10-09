@@ -39,7 +39,6 @@ def ip():
 HOST_DEV = [] # ['miso', 'airbb', 'nn', 'mm', ] retired
 HOST_ALANCER = ['wei'] # ['polo', 'sushi', 'noodle', 'udon', 'natto'] retired
 HOST_VPN = [            
-            'suki', 
             'bacon', 
             'chip', 
             'fish', 
@@ -55,7 +54,7 @@ HOST_VPN = [
             'ucr',
             'sta',
             ] # ['tempura', 'ramen', 'donut', 'nori', 'mm', 'rib', 'steak', 'buckeye', 'natto', 
-              #  'curry', 'ton', 'koala', 'ham', 'wiener', 'crab', 'laksa', 'stew', 'bbq', ] retired
+              #  'curry', 'ton', 'koala', 'ham', 'wiener', 'crab', 'laksa', 'stew', 'bbq', 'suki', ] retired
 HOST_APPFLOOD = ['pre3-01', 'af_test', 'test3', 'sandbox', 'pre3-jp']
 HOST_ALL = HOST_DEV + HOST_ALANCER + HOST_VPN + HOST_APPFLOOD
 HOST_TBK = HOST_DEV + HOST_VPN
@@ -86,7 +85,7 @@ HOST_LAUNCH_DATE = {
     #'bbq': datetime.datetime(2016, 9, 2),
     #'pie': datetime.datetime(2016, 9, 5),
     #'stew': datetime.datetime(2016, 9, 5),
-    'suki': datetime.datetime(2016, 10, 10), 
+    #'suki': datetime.datetime(2016, 10, 10), 
     'bacon': datetime.datetime(2016, 12, 9), 
     'chip': datetime.datetime(2016, 12, 14),
     'fish': datetime.datetime(2016, 12, 14),
@@ -118,7 +117,7 @@ HOST_INDEX = {#'01': 'rib',      #kr@yahoo
               #'11': 'stew',     #eu-ire@gmail M6786
               #'12': 'bbq',      #sa@gmail JCB8327
               #'13': 'pie',      #us-west-ore@gmail M6786
-              '14': 'suki',     #jp@gmail M6786
+              #'14': 'suki',     #jp@gmail M6786
               '15': 'bacon',    #ca@gmail V8490
               '16': 'chip',     #uk@outlook M5179
               '18': 'fish',     #uk@outlook JCB8327
@@ -149,7 +148,7 @@ HOST_DATA = {#'rib'    : ('01', 'kr',    'yahoo'),
              #'stew'   : ('11', 'eu-ir', 'gmail'),
              #'bbq'    : ('12', 'sa',    'gmail'),
              #'pie'    : ('13', 'uw-or', 'gmail'),
-             'suki'   : ('14', 'jp',    'gmail'),
+             #'suki'   : ('14', 'jp',    'gmail'),
              'bacon'  : ('15', 'ca',    'gmail'),
              'chip'   : ('16', 'uk',    'outlook'),
              'fish'   : ('18', 'uk',    'outlook'),
