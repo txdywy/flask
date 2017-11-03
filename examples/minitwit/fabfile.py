@@ -131,7 +131,7 @@ HOST_INDEX = {#'01': 'rib',      #kr@yahoo
               '26': 'usc',      #usw1@gmail AE8921
               '27': 'cal',      #usw1@gmail V8490
               '28': 'ucr',      #jp@gmail JCB0774
-              '29': 'sta',      #usw1@gmail AE8921
+              '29': 'sta',      #usw1@gmail AE8921  hacked, down
              }
 
 HOST_DATA = {#'rib'    : ('01', 'kr',    'yahoo'),
