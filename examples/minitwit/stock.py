@@ -20,6 +20,8 @@ US_STOCK = {'fb': 'fb',
             #'square': 'sq',
             #'yrd': 'yrd',
             #'vcel': 'vcel',
+            'qcom': 'qcom',
+            'snap': 'snap',
             }
 
 CN_STOCK = {'海天味业': 'sh603288',
@@ -34,7 +36,7 @@ CN_STOCK = {'海天味业': 'sh603288',
             '京东方': 'sz000725',
             }
             
-US_BASES = { 'fb': 100,
+US_BASES = {'fb': 100,
             'msci': 63,
             'jd': 22.3,
             'app': 93.5,
@@ -52,6 +54,9 @@ US_BASES = { 'fb': 100,
             #'square': 12,
             #'yrd': 13,
             #'vcel': 3.12,
+            'qcom': 70,
+            'snap': 25,
+
           }
 
 SINA_STOCK_URL = 'http://hq.sinajs.cn/list=%s'
