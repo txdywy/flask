@@ -53,6 +53,7 @@ HOST_VPN = [
             'cal',
             'ucr',
             'sta',
+            'dox',
             ] # ['tempura', 'ramen', 'donut', 'nori', 'mm', 'rib', 'steak', 'buckeye', 'natto', 
               #  'curry', 'ton', 'koala', 'ham', 'wiener', 'crab', 'laksa', 'stew', 'bbq', 'suki', ] retired
 HOST_APPFLOOD = ['pre3-01', 'af_test', 'test3', 'sandbox', 'pre3-jp']
@@ -100,6 +101,7 @@ HOST_LAUNCH_DATE = {
     'cal': datetime.datetime(2017, 9, 5),
     'ucr': datetime.datetime(2017, 9, 13),
     'sta': datetime.datetime(2017, 9, 14),
+    'dox': datetime.datetime(2017,11, 17),
 }
 
 
@@ -132,6 +134,7 @@ HOST_INDEX = {#'01': 'rib',      #kr@yahoo
               '27': 'cal',      #usw1@gmail V8490
               '28': 'ucr',      #jp@gmail JCB0774
               '29': 'sta',      #usw1@gmail AE8921  hacked, down
+              '30': 'dox',      #kr@gmail JCB6070
              }
 
 HOST_DATA = {#'rib'    : ('01', 'kr',    'yahoo'),
@@ -163,6 +166,7 @@ HOST_DATA = {#'rib'    : ('01', 'kr',    'yahoo'),
              'cal'    : ('27', 'usw1',  'gmail'),
              'ucr'    : ('28', 'jp',    'gmail'),
              'sta'    : ('29', 'usw1',  'gmail'),
+             'dox'    : ('30', 'kr',    'gmail'),
              }
 
 
