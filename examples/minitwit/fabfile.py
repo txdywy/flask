@@ -39,10 +39,6 @@ def ip():
 HOST_DEV = [] # ['miso', 'airbb', 'nn', 'mm', ] retired
 HOST_ALANCER = ['wei'] # ['polo', 'sushi', 'noodle', 'udon', 'natto'] retired
 HOST_VPN = [            
-            'bacon', 
-            'chip', 
-            'fish', 
-            'ice', 
             'kim',
             'mei',
             'wei',
@@ -55,7 +51,8 @@ HOST_VPN = [
             'sta',
             'dox',
             ] # ['tempura', 'ramen', 'donut', 'nori', 'mm', 'rib', 'steak', 'buckeye', 'natto', 
-              #  'curry', 'ton', 'koala', 'ham', 'wiener', 'crab', 'laksa', 'stew', 'bbq', 'suki', ] retired
+              #  'curry', 'ton', 'koala', 'ham', 'wiener', 'crab', 'laksa', 'stew', 'bbq', 'suki', 
+              #  'bacon', 'chip', 'fish', 'ice', ] retired
 HOST_APPFLOOD = ['pre3-01', 'af_test', 'test3', 'sandbox', 'pre3-jp']
 HOST_ALL = HOST_DEV + HOST_ALANCER + HOST_VPN + HOST_APPFLOOD
 HOST_TBK = HOST_DEV + HOST_VPN
@@ -87,10 +84,10 @@ HOST_LAUNCH_DATE = {
     #'pie': datetime.datetime(2016, 9, 5),
     #'stew': datetime.datetime(2016, 9, 5),
     #'suki': datetime.datetime(2016, 10, 10), 
-    'bacon': datetime.datetime(2016, 12, 9), 
-    'chip': datetime.datetime(2016, 12, 14),
-    'fish': datetime.datetime(2016, 12, 14),
-    'ice': datetime.datetime(2016, 12, 20),
+    #'bacon': datetime.datetime(2016, 12, 9), 
+    #'chip': datetime.datetime(2016, 12, 14),
+    #'fish': datetime.datetime(2016, 12, 14),
+    #'ice': datetime.datetime(2016, 12, 20),
     'kim': datetime.datetime(2017, 2, 3),
     'mei': datetime.datetime(2017, 5, 2),
     'wei': datetime.datetime(2017, 5, 5),
@@ -120,10 +117,10 @@ HOST_INDEX = {#'01': 'rib',      #kr@yahoo
               #'12': 'bbq',      #sa@gmail JCB8327
               #'13': 'pie',      #us-west-ore@gmail M6786
               #'14': 'suki',     #jp@gmail M6786
-              '15': 'bacon',    #ca@gmail V8490
-              '16': 'chip',     #uk@outlook M5179
-              '18': 'fish',     #uk@outlook JCB8327
-              '19': 'ice',      #us-east-oh@outlook AE8921
+              #'15': 'bacon',    #ca@gmail V8490
+              #'16': 'chip',     #uk@outlook M5179
+              #'18': 'fish',     #uk@outlook JCB8327
+              #'19': 'ice',      #us-east-oh@outlook AE8921
               '20': 'kim',      #kr@163 V2903
               '21': 'mei',      #jp@163 AE8921
               '22': 'wei',      #jp@163 V2903
@@ -152,10 +149,10 @@ HOST_DATA = {#'rib'    : ('01', 'kr',    'yahoo'),
              #'bbq'    : ('12', 'sa',    'gmail'),
              #'pie'    : ('13', 'uw-or', 'gmail'),
              #'suki'   : ('14', 'jp',    'gmail'),
-             'bacon'  : ('15', 'ca',    'gmail'),
-             'chip'   : ('16', 'uk',    'outlook'),
-             'fish'   : ('18', 'uk',    'outlook'),
-             'ice'    : ('19', 'ue-oh', 'outlook'),
+             #'bacon'  : ('15', 'ca',    'gmail'),
+             #'chip'   : ('16', 'uk',    'outlook'),
+             #'fish'   : ('18', 'uk',    'outlook'),
+             #'ice'    : ('19', 'ue-oh', 'outlook'),
              'kim'    : ('20', 'kr',    '163'),
              'mei'    : ('21', 'jp',    '163'),
              'wei'    : ('22', 'jp',    '163'),
