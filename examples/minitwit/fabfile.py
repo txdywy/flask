@@ -122,7 +122,7 @@ HOST_INDEX = {#'01': 'rib',      #kr@yahoo
               #'18': 'fish',     #uk@outlook JCB8327
               #'19': 'ice',      #us-east-oh@outlook AE8921
               '20': 'kim',      #kr@163 V2903
-              '21': 'mei',      #jp@163 AE8921
+              '21': 'mei',      #jp@163 AE8921    down; mv to new IP
               '22': 'wei',      #jp@163 V2903
               '23': 'iit',      #in@gmail V2903
               '24': 'tod',      #jp@gmail AE0288
@@ -130,7 +130,7 @@ HOST_INDEX = {#'01': 'rib',      #kr@yahoo
               '26': 'usc',      #usw1@gmail AE8921
               '27': 'cal',      #usw1@gmail V8490
               '28': 'ucr',      #jp@gmail JCB0774
-              '29': 'sta',      #usw1@gmail AE8921  hacked, down
+              '29': 'sta',      #usw1@gmail AE8921  hacked, down; mv to paris, Fr. new pem
               '30': 'dox',      #kr@gmail JCB6070
              }
 
