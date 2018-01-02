@@ -78,11 +78,23 @@ US_CASH = 35082
 #2017.10.13 #34257
 #2017.12.19 #35965
 #2017.12.31 #35082
+
+#US2016
 US_PROFIT_2016 = 24485 - 23000
 US_RATE_2016 = 6.5
 US_RATE_2016_SUMIT = 17.8
-US_BASE = 24485
+US_BASE_2016 = 24485
+
+#US2017
+US_PROFIT_2017 = 10597
+US_RATE_2017 = 43.28
+US_BASE_2017 = 35082
+
+US_BASE = US_BASE_2017
+
 #Tue Feb 14 14:35:57 CST 2017
+#Tue Jan  2 09:56:46 CST 2018
+
 CN_CASH = 240000
 #Thu Jan  5 11:37:48 CST 2017 +100000(MA)
 #Tue Feb 14 14:35:57 CST 2017
@@ -113,7 +125,10 @@ def get_us_stock():
     r = zip (r, b)
     r = [a + 'Base: [%s]\n' % b for a, b in r]
     r = '\n'.join(r)
-    return r + '\n' + str(datetime.datetime.now())[:19] + '\n' + '#盘内/终\n*盘前/后'.decode('utf8') + '\n[B:%s/%s][%+d][%+.2f%%]' % (US_CASH, US_BASE, US_CASH-US_BASE, (US_CASH-US_BASE)*100.0/US_BASE) + '\n[2016.P:%s]' % US_PROFIT_2016 + '\n[2016.PR:%+.2f%%]' % US_RATE_2016
+    u2016_status = '\n[2016.P:%s]' % US_PROFIT_2016 + '\n[2016.PR:%+.2f%%]' % US_RATE_2016 + '\n' 
+    u2017_status = '\n[2017.P:%s]' % US_PROFIT_2017 + '\n[2017.PR:%+.2f%%]' % US_RATE_2017 + '\n'
+    now_status = str(datetime.datetime.now())[:19] + '\n' + '#盘内/终\n*盘前/后'.decode('utf8') + '\n[B:%s/%s][%+d][%+.2f%%]' % (US_CASH, US_BASE, US_CASH-US_BASE, (US_CASH-US_BASE)*100.0/US_BASE)
+    return r + u2016_status + u2017_status + '\n' + now_status  
 
 
 def get_us_in_stock():
