@@ -101,6 +101,8 @@ CN_PROFIT = 5966.48 + 1314.30 + 5000 + 5000
 #Mon Dec 18 10:27:34 CST 2017 +5000.00 (deposit 5000.00)
 CN_PROFIT_2016 = 10082.06 + 672.27 #adjust by 2017.1.3
 CN_RATE_2016 = 7.7
+CN_PROFIT_2017 = 58961.94
+CN_RATE_2017 = 10.87
 
 def get_us_stock():
     r = requests.get(SINA_STOCK_URL % ','.join(['gb_' + US_STOCK[i] for i in US_STOCK])).text.strip()
@@ -171,7 +173,10 @@ def get_cn_stock():
     p = (n-o)/o *100
     cn_status = "\n\n now:%s\n base:%s\n prof:%+.2f%%\n diff:%+.2f" % (n,o,p,n-o)
     r = '\n'.join(r)
-    return r + '\n' + str(datetime.datetime.now())[:19] + '\n[B:%s/%s][%+d][%+.2f%%]' % (CN_CASH, CN_BASE, (CN_CASH-CN_BASE), (CN_CASH-CN_BASE)/CN_BASE*100) + '\n[P_out:%s]' % CN_PROFIT + '\n[PR_out:%+.2f%%]' % (CN_PROFIT * 100.0/CN_BASE) + '\n[2016.P:%s]' % CN_PROFIT_2016 + '\n[PR:%+.2f%%]' % CN_RATE_2016 + cn_status
+    c2016_status = '\n[2016.P:%s]' % CN_PROFIT_2016 + '\n[PR:%+.2f%%]' % CN_RATE_2016 + '\n'
+    c2017_status = '\n[2017.P:%s]' % CN_PROFIT_2017 + '\n[PR:%+.2f%%]' % CN_RATE_2017 + '\n[PR_out:17280.78]' + '\n[PR_wait:41681.16]' + '\n[PR_mom:32882.36]' + '\n'
+    now_status = '\n[B:%s/%s][%+d][%+.2f%%]' % (CN_CASH, CN_BASE, (CN_CASH-CN_BASE), (CN_CASH-CN_BASE)/CN_BASE*100) + '\n[P_out:%s]' % CN_PROFIT + '\n[PR_out:%+.2f%%]' % (CN_PROFIT * 100.0/CN_BASE)
+    return r + '\n' + str(datetime.datetime.now())[:19] + c2016_status + c2017_status + now_status + cn_status
 
 
 def get_one_cn_stock(k):
