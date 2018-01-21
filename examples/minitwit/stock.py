@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import requests
 import datetime
+import json
 
 US_STOCK = {'fb': 'fb',
             'msci': 'msci',
@@ -210,3 +211,39 @@ def get_one_cn_stock(k):
 
 def _diff(a, b):
     return round(float(a) - float(b), 3)
+
+
+def _get_crypto_price(c='BTC'):
+    url = "https://min-api.cryptocompare.com/data/price?fsym=%s&tsyms=USD" % c
+    r = requests.get(url)
+    d = json.loads(r.text)
+    return float(d['USD'])
+
+def _get_usd2cny():
+    url = "http://api.fixer.io/latest?base=USD"
+    r = requests.get(url)
+    d = json.loads(r.text)
+    return float(d['rates']['CNY'])
+
+def blockchian():
+    btc = [0.00892748, #huobi 500
+           0.02224942, #cola  2000
+           ]
+    eth = [0.124254, #cola   1000
+           0.069223, #parity 500
+           ]
+    eos = [0.99800000, #huobi 0
+           ]
+    base_cny = 500.0 + 2000.0 + 1000.0 + 500.0
+    btc_usd = _get_crypto_price('BTC')
+    eth_usd = _get_crypto_price('ETH')
+    eos_usd = _get_crypto_price('EOS')
+    usd2cny = _get_usd2cny()
+    base_usd = base_cny / usd2cny
+    pv_usd = sum(btc) * btc_usd + sum(eth) * eth_usd + sum(eos) * eos_usd
+    pv_cny = pv_usd * usd2cny
+    return pv_usd, base_usd, pv_cny, base_cny
+
+
+
+
