@@ -225,7 +225,7 @@ def _get_usd2cny():
     d = json.loads(r.text)
     return float(d['rates']['CNY'])
 
-def blockchian():
+def blockchain():
     btc = [0.00892748, #huobi 500
            0.02224942, #cola  2000
            ]
