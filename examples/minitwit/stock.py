@@ -242,7 +242,7 @@ def blockchain():
     base_usd = base_cny / usd2cny
     pv_usd = sum(btc) * btc_usd + sum(eth) * eth_usd + sum(eos) * eos_usd
     pv_cny = pv_usd * usd2cny
-    return pv_usd, base_usd, pv_cny, base_cny
+    return pv_usd, base_usd, pv_cny, base_cny, btc_usd*usd2cny, eth_usd*usd2cny, eos_usd*usd2cny
 
 
 
