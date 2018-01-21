@@ -299,3 +299,7 @@ def ti():
     with cd('~/flask/examples/minitwit/'):
         run("python -c 'import ticket as t;t.ti(1,1,5)'")
 
+GCE_REPO = {
+    "gce-tw": "tw",   #11@gmail JCB0774 2018.01.17 
+    "gce-ca": "ca",   #== 
+}
