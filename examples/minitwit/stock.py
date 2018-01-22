@@ -225,7 +225,7 @@ def _get_usd2cny():
     d = json.loads(r.text)
     return float(d['rates']['CNY'])
 
-def blockchain():
+def _bc():
     btc = [0.00892748, #huobi 500
            0.02224942, #cola  2000
            ]
@@ -242,7 +242,20 @@ def blockchain():
     base_usd = base_cny / usd2cny
     pv_usd = sum(btc) * btc_usd + sum(eth) * eth_usd + sum(eos) * eos_usd
     pv_cny = pv_usd * usd2cny
-    return pv_usd, base_usd, pv_cny, base_cny, btc_usd*usd2cny, eth_usd*usd2cny, eos_usd*usd2cny
+    return pv_usd, base_usd, pv_cny, base_cny, btc_usd*usd2cny, eth_usd*usd2cny, eos_usd*usd2cny, sum(btc), sum(eth), sum(eos)
+
+
+def blockchain():
+    pv_usd, base_usd, pv_cny, base_cny, btc_price_cny, eth_price_cny, eos_price_cny, btc_v, eth_v, eos_v = _bc()
+    result = '\n[USD:%.2f/%.2f]' % (pv_usd, base_usd) + \
+             '\n[CNY:%.2f/%.2f]' % (pv_cny, base_cny) + \
+             '\n[BTC:%.2f]' % btc_price_cny + \
+             '\n[ETH:%.2f]' % eth_price_cny + \
+             '\n[EOS:%.2f]' % eos_price_cny + \
+             '\n[btc:%.8f]' % btc_v + \
+             '\n[eth:%.8f]' % eth_v + \
+             '\n[eos:%.8f]' % eos_v 
+    return result    
 
 
 
