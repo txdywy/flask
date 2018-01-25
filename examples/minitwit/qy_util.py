@@ -315,7 +315,13 @@ def fetch_rank(start=400, num=100, cat='GAME_CASINO', country='au'):
 
 
 def get_btc():
-    return str(stock.blockchain())
+    from cache import rcache
+    x = rcache.get('BTC')
+    if not x:
+        x = str(stock.blockchain())
+        rcache.set('BTC', x, 60)        
+    return x
+
     okc_status = json.loads(okcc.get_status())
     total = okc_status['info']['funds']['asset']['total']
     free = okc_status['info']['funds']['free']
