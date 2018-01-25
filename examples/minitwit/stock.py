@@ -226,7 +226,8 @@ def _get_usd2cny():
     return float(d['rates']['CNY'])
 
 def _bc():
-    btc = [0.00892748, #huobi 500
+	#Thu Jan 25 09:43:05 CST 2018 add XRP
+    btc = [0.00000001, #huobi 500  change to eos/xrp/iost
            0.02224942, #cola  2000
            ]
     eth = [0.124254, #cola   1000
@@ -234,27 +235,50 @@ def _bc():
            ]
     eos = [0.99800000, #huobi 0
            ]
+    xrp = [23.9520000, #hupbi 0
+           ]
+    iost = [1.32734000, #huobi 0
+           ]
     base_cny = 500.0 + 2000.0 + 1000.0 + 500.0
     btc_usd = _get_crypto_price('BTC')
     eth_usd = _get_crypto_price('ETH')
     eos_usd = _get_crypto_price('EOS')
+    xrp_usd = _get_crypto_price('XRP')
+    iost_usd = _get_crypto_price('IOST')
     usd2cny = _get_usd2cny()
     base_usd = base_cny / usd2cny
-    pv_usd = sum(btc) * btc_usd + sum(eth) * eth_usd + sum(eos) * eos_usd
+    pv_usd = sum(btc) * btc_usd + sum(eth) * eth_usd + sum(eos) * eos_usd + sum(xrp) * xrp_usd + sum(iost) * iost_usd + 
     pv_cny = pv_usd * usd2cny
-    return pv_usd, base_usd, pv_cny, base_cny, btc_usd*usd2cny, eth_usd*usd2cny, eos_usd*usd2cny, sum(btc), sum(eth), sum(eos)
+    return pv_usd, 
+           base_usd, 
+           pv_cny, 
+           base_cny, 
+           btc_usd*usd2cny, 
+           eth_usd*usd2cny, 
+           eos_usd*usd2cny, 
+           xrp_usd*usd2cny, 
+           iost_usd*usd2cny, 
+           sum(btc), 
+           sum(eth), 
+           sum(eos),
+           sum(xrp),
+           sum(iost)
 
 
 def blockchain():
-    pv_usd, base_usd, pv_cny, base_cny, btc_price_cny, eth_price_cny, eos_price_cny, btc_v, eth_v, eos_v = _bc()
+    pv_usd, base_usd, pv_cny, base_cny, btc_price_cny, eth_price_cny, eos_price_cny, xrp_price_cny, iost_price_cny, btc_v, eth_v, eos_v, xrp_v, iost_v = _bc()
     result = '\n[USD:%.2f/%.2f]' % (pv_usd, base_usd) + \
              '\n[CNY:%.2f/%.2f]' % (pv_cny, base_cny) + \
              '\n[BTC:%.2f]' % btc_price_cny + \
              '\n[ETH:%.2f]' % eth_price_cny + \
              '\n[EOS:%.2f]' % eos_price_cny + \
+             '\n[XRP:%.2f]' % xrp_price_cny + \
+             '\n[IOST:%.2f]' % iost_price_cny + \
              '\n[btc:%.8f]' % btc_v + \
              '\n[eth:%.8f]' % eth_v + \
-             '\n[eos:%.8f]' % eos_v 
+             '\n[eos:%.8f]' % eos_v + \
+             '\n[xrp:%.8f]' % xrp_v + \
+             '\n[iost:%.8f]' % iost_v 
     return result    
 
 
