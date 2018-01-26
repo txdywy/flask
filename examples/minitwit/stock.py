@@ -261,7 +261,7 @@ def blockchain():
              '\n[ETH:%.2f(%.2f)]' % (eth_price_cny, eth_price_cny*eth_v) + \
              '\n[EOS:%.2f(%.2f)]' % (eos_price_cny, eos_price_cny*eos_v) + \
              '\n[XRP:%.2f(%.2f)]' % (xrp_price_cny, xrp_price_cny*xrp_v) + \
-             '\n[IOST:%.2f]' % iost_price_cny + \
+             '\n[IOST:%.2f]' % (iost_price_cny, iost_price_cny*iost_v) + \
              '\n[btc:%.8f]' % btc_v + \
              '\n[eth:%.8f]' % eth_v + \
              '\n[eos:%.8f]' % eos_v + \
