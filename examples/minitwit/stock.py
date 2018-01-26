@@ -227,7 +227,8 @@ def _get_usd2cny():
 
 def _bc():
 	#Thu Jan 25 09:43:05 CST 2018 add XRP
-    btc = [0.00000001, #huobi 500  change to eos/xrp/iost
+	#Fri Jan 26 10:35:19 CST 2018 +IOST +BTC +200CNY +GEMS 3725
+    btc = [0.01713759, #huobi 500  change to eos/xrp/iost +2000 and iost
            0.02224942, #cola  2000
            ]
     eth = [0.124254, #cola   1000
@@ -237,9 +238,9 @@ def _bc():
            ]
     xrp = [23.9520000, #hupbi 0
            ]
-    iost = [1.32734000, #huobi 0
+    iost = [998.32934000, #huobi 0
            ]
-    base_cny = 500.0 + 2000.0 + 1000.0 + 500.0
+    base_cny = 500.0 + 2000.0 + 1000.0 + 500.0 + 2000.0
     btc_usd = _get_crypto_price('BTC')
     eth_usd = _get_crypto_price('ETH')
     eos_usd = _get_crypto_price('EOS')
@@ -265,7 +266,8 @@ def blockchain():
              '\n[eth:%.8f]' % eth_v + \
              '\n[eos:%.8f]' % eos_v + \
              '\n[xrp:%.8f]' % xrp_v + \
-             '\n[iost:%.8f]' % iost_v 
+             '\n[iost:%.8f]' % iost_v + \
+             '\n[GEMS:0.5eth 3725CNY]'
     return result    
 
 
