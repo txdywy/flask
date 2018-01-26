@@ -257,10 +257,10 @@ def blockchain():
     pv_usd, base_usd, pv_cny, base_cny, btc_price_cny, eth_price_cny, eos_price_cny, xrp_price_cny, iost_price_cny, btc_v, eth_v, eos_v, xrp_v, iost_v = _bc()
     result = '\n[USD:%.2f/%.2f]' % (pv_usd, base_usd) + \
              '\n[CNY:%.2f/%.2f]' % (pv_cny, base_cny) + \
-             '\n[BTC:%.2f]' % btc_price_cny + \
-             '\n[ETH:%.2f]' % eth_price_cny + \
-             '\n[EOS:%.2f]' % eos_price_cny + \
-             '\n[XRP:%.2f]' % xrp_price_cny + \
+             '\n[BTC:%.2f(%.2f)]' % (btc_price_cny, btc_price_cny*btc_v) + \
+             '\n[ETH:%.2f(%.2f)]' % (eth_price_cny, eth_price_cny*eth_v) + \
+             '\n[EOS:%.2f(%.2f)]' % (eos_price_cny, eos_price_cny*eos_v) + \
+             '\n[XRP:%.2f(%.2f)]' % (xrp_price_cny, xrp_price_cny*xrp_v) + \
              '\n[IOST:%.2f]' % iost_price_cny + \
              '\n[btc:%.8f]' % btc_v + \
              '\n[eth:%.8f]' % eth_v + \
