@@ -320,6 +320,8 @@ def get_btc():
     if not x:
         x = str(stock.blockchain())
         rcache.set('BTC', x, 60)        
+        post(x, appid=3, toparty=['20'])
+        return '...'
     return x
 
     okc_status = json.loads(okcc.get_status())
