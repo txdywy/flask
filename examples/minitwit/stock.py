@@ -268,6 +268,7 @@ def blockchain():
              '\n[xrp:%.8f]' % xrp_v + \
              '\n[iost:%.8f]' % iost_v + \
              '\n[GEMS:0.5eth 3725CNY]'
+             '\n[Orchid:0.5eth 2952CNY]'
     return result    
 
 
