@@ -233,7 +233,7 @@ def _bc():
            ]
     eth = [0.124254, #cola    1000
            0.0602,   #imtoken 500
-           0.0470,   #imtoken $52.99
+           0.0470,   #imtoken $53.66
            ]
     eos = [5.98800000, #huobi 0
            ]
@@ -247,7 +247,7 @@ def _bc():
     xrp_usd = _get_crypto_price('XRP')
     iost_usd = _get_crypto_price('IOST')
     usd2cny = _get_usd2cny()
-    base_cny = 500.0 + 2000.0 + 1000.0 + 500.0 + 2000.0 + 52.99 * usd2cny
+    base_cny = 500.0 + 2000.0 + 1000.0 + 500.0 + 2000.0 + 53.66 * usd2cny
     base_usd = base_cny / usd2cny
     pv_usd = sum(btc) * btc_usd + sum(eth) * eth_usd + sum(eos) * eos_usd + sum(xrp) * xrp_usd + sum(iost) * iost_usd 
     pv_cny = pv_usd * usd2cny
