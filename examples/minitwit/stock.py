@@ -228,7 +228,7 @@ def _get_usd2cny():
 def _bc():
 	#Thu Jan 25 09:43:05 CST 2018 add XRP
 	#Fri Jan 26 10:35:19 CST 2018 +IOST +BTC +200CNY +GEMS 3725
-    btc = [0.01713759, #huobi 500  change to eos/xrp/iost +2000 and iost
+    btc = [0.00000253, #huobi 500  change to eos/xrp/iost +2000 and iost
            0.02224942, #cola  2000
            ]
     eth = [0.124254, #cola    1000
@@ -241,21 +241,24 @@ def _bc():
            ]
     iost = [998.32934000, #huobi 0
            ]
+    neo = [1.19061400, # huobi 0
+           ]
     btc_usd = _get_crypto_price('BTC')
     eth_usd = _get_crypto_price('ETH')
     eos_usd = _get_crypto_price('EOS')
     xrp_usd = _get_crypto_price('XRP')
     iost_usd = _get_crypto_price('IOST')
+    neo_usd = _get_crypto_price('NEO')
     usd2cny = _get_usd2cny()
     base_cny = 500.0 + 2000.0 + 1000.0 + 500.0 + 2000.0 + 53.66 * usd2cny
     base_usd = base_cny / usd2cny
     pv_usd = sum(btc) * btc_usd + sum(eth) * eth_usd + sum(eos) * eos_usd + sum(xrp) * xrp_usd + sum(iost) * iost_usd 
     pv_cny = pv_usd * usd2cny
-    return pv_usd, base_usd, pv_cny, base_cny, btc_usd*usd2cny, eth_usd*usd2cny, eos_usd*usd2cny, xrp_usd*usd2cny, iost_usd*usd2cny, sum(btc), sum(eth), sum(eos), sum(xrp), sum(iost)
+    return pv_usd, base_usd, pv_cny, base_cny, btc_usd*usd2cny, eth_usd*usd2cny, eos_usd*usd2cny, xrp_usd*usd2cny, iost_usd*usd2cny, neo_usd*usd2cny, sum(btc), sum(eth), sum(eos), sum(xrp), sum(iost), sum(neo)
 
 
 def blockchain():
-    pv_usd, base_usd, pv_cny, base_cny, btc_price_cny, eth_price_cny, eos_price_cny, xrp_price_cny, iost_price_cny, btc_v, eth_v, eos_v, xrp_v, iost_v = _bc()
+    pv_usd, base_usd, pv_cny, base_cny, btc_price_cny, eth_price_cny, eos_price_cny, xrp_price_cny, iost_price_cny, neo_price_cny, btc_v, eth_v, eos_v, xrp_v, iost_v, neo_v = _bc()
     result = '\n[USD:%.2f/%.2f]' % (pv_usd, base_usd) + \
              '\n[CNY:%.2f/%.2f]' % (pv_cny, base_cny) + \
              '\n[BTC:%.2f(%.2f)]' % (btc_price_cny, btc_price_cny*btc_v) + \
@@ -263,11 +266,13 @@ def blockchain():
              '\n[EOS:%.2f(%.2f)]' % (eos_price_cny, eos_price_cny*eos_v) + \
              '\n[XRP:%.2f(%.2f)]' % (xrp_price_cny, xrp_price_cny*xrp_v) + \
              '\n[IOST:%.2f(%.2f)]' % (iost_price_cny, iost_price_cny*iost_v) + \
+             '\n[NEO:%.2f(%.2f)]' % (neo_price_cny, neo_price_cny*neo_v) + \
              '\n[btc:%.8f]' % btc_v + \
              '\n[eth:%.8f]' % eth_v + \
              '\n[eos:%.8f]' % eos_v + \
              '\n[xrp:%.8f]' % xrp_v + \
              '\n[iost:%.8f]' % iost_v + \
+             '\n[neo:%.8f]' % neo_v + \
              '\n[Total:%dCNY]' % (base_cny + 3725 + 3952) + \
              '\n[GEMS:0.5eth 3725CNY]' + \
              '\n[Orchid:0.5eth 3952CNY]'
