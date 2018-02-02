@@ -61,7 +61,7 @@ US_BASES = {'fb': 100,
           }
 
 SINA_STOCK_URL = 'http://hq.sinajs.cn/list=%s'
-US_CASH = 37161
+US_CASH = 38707
 #2016.04.06 #24924
 #2016.06.30 #24523
 #2016.07.15 #26149
@@ -84,6 +84,7 @@ US_CASH = 37161
 #2018.01.09 #37045
 #2018.01.12 #37161
 #2018.01.15 #36511
+#2018.02.02 #38707
 
 #US2016
 US_PROFIT_2016 = 24485 - 23000
@@ -133,8 +134,11 @@ def get_us_stock():
     r = '\n'.join(r)
     u2016_status = '\n[2016.P:%s]' % US_PROFIT_2016 + '\n[2016.PR:%+.2f%%]' % US_RATE_2016 + '\n' 
     u2017_status = '\n[2017.P:%s]' % US_PROFIT_2017 + '\n[2017.PR:%+.2f%%]' % US_RATE_2017 + '\n'
-    now_status = str(datetime.datetime.now())[:19] + '\n' + '#盘内/终\n*盘前/后'.decode('utf8') + '\n[B:%s/%s][%+d][%+.2f%%]' % (US_CASH, US_BASE, US_CASH-US_BASE, (US_CASH-US_BASE)*100.0/US_BASE)
-    return r + u2016_status + u2017_status + '\n' + now_status  
+    now_status = str(datetime.datetime.now())[:19] + '\n' + '#盘内/终\n*盘前/后'.decode('utf8') + '\n[IB:%s/%s][%+d][%+.2f%%]' % (US_CASH, US_BASE, US_CASH-US_BASE, (US_CASH-US_BASE)*100.0/US_BASE)
+    rb_base = 1000+700+200#502.76
+    rb_cash = 1902.14 #Fri Feb  2 16:16:36 CST 2018
+    rb_status = '\n[RB:%s/%s][%+d][%+.2f%%]' % (rb_cash, rb_base, rb_cash-rb_base, (rb_cash-rb_base)*100.0/rb_base)
+    return r + u2016_status + u2017_status + '\n' + now_status + '\n' + rb_status 
 
 
 def get_us_in_stock():
