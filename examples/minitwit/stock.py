@@ -231,21 +231,23 @@ def _get_usd2cny():
 
 def _bc():
 	#Thu Jan 25 09:43:05 CST 2018 add XRP
-	#Fri Jan 26 10:35:19 CST 2018 +IOST +BTC +200CNY +GEMS 3725
-    btc = [0.00000253, #huobi 500  change to eos/xrp/iost +2000 and iost
+	#Fri Jan 26 10:35:19 CST 2018 +IOST +BTC +200CNY +GEMS 3725CNY +Orchid 3952CNY
+        #Fri Feb  9 16:53:51 CST 2018 +ETH 1000CNY
+    btc = [0.0402588, #huobi 500  ... 2000+ (4000)
            0.02224942, #cola  2000
            ]
     eth = [0.124254, #cola    1000
            0.0602,   #imtoken 500
            0.0470,   #imtoken $53.66
+           0.189753, #cola    1000   2018.2.9
            ]
-    eos = [5.98800000, #huobi 0
+    eos = [0, #huobi 0
            ]
-    xrp = [23.9520000, #hupbi 0
+    xrp = [0, #hupbi 0
            ]
-    iost = [998.32934000, #huobi 0
+    iost = [0, #huobi 0
            ]
-    neo = [1.19061400, # huobi 0
+    neo = [0, # huobi 0
            ]
     btc_usd = _get_crypto_price('BTC')
     eth_usd = _get_crypto_price('ETH')
@@ -254,7 +256,7 @@ def _bc():
     iost_usd = _get_crypto_price('IOST')
     neo_usd = _get_crypto_price('NEO')
     usd2cny = _get_usd2cny()
-    base_cny = 500.0 + 2000.0 + 1000.0 + 500.0 + 2000.0 + 53.66 * usd2cny
+    base_cny = 500.0 + 2000.0 + 1000.0 + 500.0 + 2000.0 + 53.66 * usd2cny + 1000.0
     base_usd = base_cny / usd2cny
     pv_usd = sum(btc) * btc_usd + sum(eth) * eth_usd + sum(eos) * eos_usd + sum(xrp) * xrp_usd + sum(iost) * iost_usd 
     pv_cny = pv_usd * usd2cny
