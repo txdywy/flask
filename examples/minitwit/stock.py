@@ -136,8 +136,9 @@ def get_us_stock():
     u2016_status = '\n[2016.P:%s]' % US_PROFIT_2016 + '\n[2016.PR:%+.2f%%]' % US_RATE_2016 + '\n' 
     u2017_status = '\n[2017.P:%s]' % US_PROFIT_2017 + '\n[2017.PR:%+.2f%%]' % US_RATE_2017 + '\n'
     now_status = str(datetime.datetime.now())[:19] + '\n' + '#盘内/终\n*盘前/后'.decode('utf8') + '\n[IB:%s/%s][%+d][%+.2f%%]' % (US_CASH, US_BASE, US_CASH-US_BASE, (US_CASH-US_BASE)*100.0/US_BASE)
-    rb_base = 1000+700+200#502.76
-    rb_cash = 1902.14 #Fri Feb  2 16:16:36 CST 2018
+    rb_base = 1000 + 700 + 502.76 + 25 # $25 payout for transfer failure
+    rb_cash = 2156.57 #Thu Mar  8 15:57:02 CST 2018    
+    #1902.14 #Fri Feb  2 16:16:36 CST 2018
     rb_status = '\n[RB:%s/%s][%+d][%+.2f%%]' % (rb_cash, rb_base, rb_cash-rb_base, (rb_cash-rb_base)*100.0/rb_base)
     return r + u2016_status + u2017_status + '\n' + now_status + '\n' + rb_status 
 
@@ -264,7 +265,8 @@ def _bc():
     neo_usd = _get_crypto_price('NEO')
     usd2cny = _get_usd2cny()
     base_cny = 500.0 + 2000.0 + 1000.0 + 500.0 + 2000.0 + 53.66 * usd2cny + \
-               2000.0 #btc eth each 1k 2018.2.9
+               2000.0 + \ #btc eth each 1k 2018.2.9
+               2000.0     #btc eth each 1k 2018.3.8
     base_usd = base_cny / usd2cny
     pv_usd = sum(btc) * btc_usd + sum(eth) * eth_usd + sum(eos) * eos_usd + sum(xrp) * xrp_usd + sum(iost) * iost_usd 
     pv_cny = pv_usd * usd2cny
