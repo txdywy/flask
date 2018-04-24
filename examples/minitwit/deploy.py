@@ -34,6 +34,7 @@ pkgs = ['boto',
         'bypy',
         'ptpython',
         'psutil',
+        'Faker',
        ]
 for pkg in pkgs:
     local(SUDO_PIP_INSTALL % pkg)
