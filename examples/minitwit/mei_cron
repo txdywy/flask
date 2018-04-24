@@ -1,0 +1,3 @@
+1 1 * * 1 cd /home/ubuntu/; ./letsencrypt.sh ./letsencrypt_mei_ml.conf >> /home/ubuntu/lets_mei_ml.log 2>&1; sudo service nginx reload
+1 1 * * 1 cd /home/ubuntu/; ./letsencrypt.sh ./letsencrypt_mei_com.conf >> /home/ubuntu/lets_mei_com.log 2>&1; sudo service nginx reload
+2 2 */1 * * cd /home/ubuntu/db_bk; cp /home/ubuntu/flask/examples/minitwit/mei.db .; date >> /home/ubuntu/db_bk/x.log
