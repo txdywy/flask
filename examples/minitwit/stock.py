@@ -61,7 +61,7 @@ US_BASES = {'fb': 100,
           }
 
 SINA_STOCK_URL = 'http://hq.sinajs.cn/list=%s'
-US_CASH = 39239
+US_CASH = 37969
 #2016.04.06 #24924
 #2016.06.30 #24523
 #2016.07.15 #26149
@@ -87,6 +87,7 @@ US_CASH = 39239
 #2018.02.02 #38707
 #2018.03.08 #38662
 #2018.03.12 #39239
+#2018.05.12 #37969
 
 #US2016
 US_PROFIT_2016 = 24485 - 23000
@@ -140,7 +141,8 @@ def get_us_stock():
     u2017_status = '\n[2017.P:%s]' % US_PROFIT_2017 + '\n[2017.PR:%+.2f%%]' % US_RATE_2017 + '\n'
     now_status = str(datetime.datetime.now())[:19] + '\n' + '#盘内/终\n*盘前/后'.decode('utf8') + '\n[IB:%s/%s][%+d][%+.2f%%]' % (US_CASH, US_BASE, US_CASH-US_BASE, (US_CASH-US_BASE)*100.0/US_BASE)
     rb_base = 1000 + 700 + 502.76 + 25 # $25 payout for transfer failure
-    rb_cash = 2244.11 #Mon Mar 12 15:45:47 CST 2018
+    rb_cash = 1973.66 #Sat May 12 09:44:44 CST 2018
+    #2244.11 #Mon Mar 12 15:45:47 CST 2018
     #2156.57 #Thu Mar  8 15:57:02 CST 2018    
     #1902.14 #Fri Feb  2 16:16:36 CST 2018
     rb_status = '\n[RB:%s/%s][%+d][%+.2f%%]' % (rb_cash, rb_base, rb_cash-rb_base, (rb_cash-rb_base)*100.0/rb_base)
