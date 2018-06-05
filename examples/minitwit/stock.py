@@ -234,10 +234,10 @@ def _get_crypto_price(c='BTC'):
     return float(d['USD'])
 
 def _get_usd2cny():
-    url = "http://api.fixer.io/latest?base=USD"
+    url = "http://www.apilayer.net/api/live?access_key=4060b590cbcbcbbf02db39c1acd2efde&format=1"
     r = requests.get(url)
     d = json.loads(r.text)
-    return float(d['rates']['CNY'])
+    return float(d['quotes']['USDCNY'])
 
 def _bc():
 	#Thu Jan 25 09:43:05 CST 2018 add XRP
