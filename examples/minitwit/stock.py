@@ -250,6 +250,8 @@ def _bc():
         #Mon Apr  9 13:44:09 CST 2018 +BTC 1000CNY
         #Sat May 12 09:44:44 CST 2018 +ETH 1000CNY
         #Sat May 12 09:44:44 CST 2018 +BTC 1000CNY
+        #Fri Jun  8 16:14:41 CST 2018 +ETH 1000CNY
+        #Fri Jun  8 16:14:41 CST 2018 +BTC 1000CNY
     btc = [#0.0402588, #huobi 500  ... 2000+ (4000)
            0.02224942, #cola  2000
            0.01870556, #cola  1000   2018.2.9
@@ -257,6 +259,7 @@ def _bc():
            0.02203554, #cola  1000   2018.4.9
            0.01770225, #cola  1000   2018.5.12
            0.05194554, #huobi 2556   2018.6.8
+           0.02024291, #cola  1000   2018.6.8
            ]
     eth = [0.124254, #cola    1000
            0.0602,   #imtoken 500
@@ -265,6 +268,7 @@ def _bc():
            0.198610, #cola    1000   2018.3.8
            0.380228, #cola    1000   2018.4.9
            0.218341, #cola    1000   2018.5.12
+           0.256542, #cola    1000   2018.6.8
            ]
     eos = [0, #huobi 0
            ]
@@ -285,11 +289,13 @@ def _bc():
                2000.0 + \
                2000.0 + \
                2000.0 + \
+               2000.0 + \
                2000.0
                #btc eth each 1k 2018.2.9    
                #btc eth each 1k 2018.3.8
                #btc eth each 1k 2018.4.9
                #btc eth each 1k 2018.5.12
+               #btc eth each 1k 2018.6.8
     base_usd = base_cny / usd2cny
     pv_usd = sum(btc) * btc_usd + sum(eth) * eth_usd + sum(eos) * eos_usd + sum(xrp) * xrp_usd + sum(iost) * iost_usd 
     pv_cny = pv_usd * usd2cny
