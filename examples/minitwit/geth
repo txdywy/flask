@@ -1,0 +1,1 @@
+geth --cache=1024 --maxpeers 9999 --light
