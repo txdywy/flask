@@ -39,7 +39,6 @@ def ip():
 HOST_DEV = [] # ['miso', 'airbb', 'nn', 'mm', ] retired
 HOST_ALANCER = ['wei'] # ['polo', 'sushi', 'noodle', 'udon', 'natto'] retired
 HOST_VPN = [            
-            'thu',
             'usc',
             'cal',
             'ucr',
@@ -48,7 +47,7 @@ HOST_VPN = [
             'dad',
             ] # ['tempura', 'ramen', 'donut', 'nori', 'mm', 'rib', 'steak', 'buckeye', 'natto', 
               #  'curry', 'ton', 'koala', 'ham', 'wiener', 'crab', 'laksa', 'stew', 'bbq', 'suki', 
-              #  'bacon', 'chip', 'fish', 'ice', 'kim', 'mei', 'wei', 'iit', 'tod', ] retired
+              #  'bacon', 'chip', 'fish', 'ice', 'kim', 'mei', 'wei', 'iit', 'tod', 'thu',  ] retired
 HOST_APPFLOOD = ['pre3-01', 'af_test', 'test3', 'sandbox', 'pre3-jp']
 HOST_ALL = HOST_DEV + HOST_ALANCER + HOST_VPN + HOST_APPFLOOD
 HOST_TBK = HOST_DEV + HOST_VPN
@@ -89,7 +88,7 @@ HOST_LAUNCH_DATE = {
     #'wei': datetime.datetime(2017, 5, 5),
     #'iit': datetime.datetime(2017, 6, 7),
     #'tod': datetime.datetime(2017, 7, 10),
-    'thu': datetime.datetime(2017, 7, 27),
+    #'thu': datetime.datetime(2017, 7, 27),
     'usc': datetime.datetime(2017, 8, 8),
     'cal': datetime.datetime(2017, 9, 5),
     'ucr': datetime.datetime(2017, 9, 13),
@@ -123,7 +122,7 @@ HOST_INDEX = {#'01': 'rib',      #kr@yahoo
               #'22': 'wei',      #jp@163 V2903
               #'23': 'iit',      #in@gmail V2903
               #'24': 'tod',      #jp@gmail AE0288
-              '25': 'thu',      #jp@gmail M8250
+              #'25': 'thu',      #jp@gmail M8250
               '26': 'usc',      #usw1@gmail AE8921
               '27': 'cal',      #usw1@gmail V8490
               '28': 'ucr',      #jp@gmail JCB0774
@@ -156,7 +155,7 @@ HOST_DATA = {#'rib'    : ('01', 'kr',    'yahoo'),
              #'wei'    : ('22', 'jp',    '163'),
              #'iit'    : ('23', 'in',    'gmail'),
              #'tod'    : ('24', 'jp',    'gmail'),
-             'thu'    : ('25', 'jp',    'gmail'),
+             #'thu'    : ('25', 'jp',    'gmail'),
              'usc'    : ('26', 'usw1',  'gmail'),
              'cal'    : ('27', 'usw1',  'gmail'),
              'ucr'    : ('28', 'jp',    'gmail'),
