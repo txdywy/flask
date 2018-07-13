@@ -35,7 +35,25 @@ CN_STOCK = {'海天味业': 'sh603288',
             '中炬高新': 'sh600872',
             '比亚迪': 'sz002594',
             '京东方': 'sz000725',
+}
+
+BZ_STOCK ={ '英维克':   ('sz002837', 15.25),
+            '大丰实业': ('sh603081', 12.61),
+            '伟隆股份': ('sz002871', 19.48),
+            '同兴达':   ('sz002845', 18.57),
+            '名臣健康': ('sz002919', 35.5),
+            '亚翔集成': ('sh603929', 19.61),
+            '京华激光': ('sh603607', 25.94),
+            '通达动力': ('sz002576', 9.21),
+            '春秋电子': ('sh603890', 17.83),
+            '联明股份': ('sh603006', 11.23),
+            '珀莱雅':   ('sh603605', 45.98),
+            '鼎信通讯': ('sh603421', 19.63),
+            '好利来':   ('sz002729', 26.01), 
+            '快意电梯': ('sz002774', 8.74),
+            '盐津铺子': ('sz002847', 31.44),
             }
+
             
 US_BASES = {'fb': 100,
             'msci': 63,
@@ -132,6 +150,18 @@ CN_RATE_2016 = 7.7
 CN_PROFIT_2017 = 58961.94
 CN_RATE_2017 = 10.87
 
+
+def get_bz_cn_stock():
+    q = ','.join([i[0] for i in BZ_STOCK.values()])
+    r = requests.get(SINA_STOCK_URL % q).text.strip()
+    lines = r.split(';')[:-1]
+    data = []
+    for i in lines:
+        print i,'==='
+        i = i.split('"')[1].split(',')[:]
+        data.append((i[0], i[3], i[5], i[4])) 
+    return data, str(datetime.datetime.now())[:19]
+
 def get_us_stock():
     r = requests.get(SINA_STOCK_URL % ','.join(['gb_' + US_STOCK[i] for i in US_STOCK])).text.strip()
     r = r.split(';')[:-1]
@@ -225,6 +255,7 @@ def get_one_cn_stock(k):
     i = r
     r = i.split('"')[1].split(',')[:] 
     i = r
+    print i, '===='
     r = '%s: \n%s\n%s+%s \n%s-%s\n' % (i[0], i[3], i[5], _diff(i[3], i[5]), i[4], _diff(i[4], i[3]))
     return r + '\n' + str(datetime.datetime.now())[:19]
 
