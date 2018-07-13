@@ -485,6 +485,7 @@ def bz_alert():
     print result
     if result:
         result = [r[2]+':'+r[3]+'/'+str(r[1]) for r in result]
+        result.append('上述股票已达到买入点')
         result.append(unicode(datetime.datetime.now(tz))[:19])
         result = '\n'.join(result)
         post(str(result), appid=1000002, toparty=['22'])
