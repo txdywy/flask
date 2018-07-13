@@ -152,14 +152,15 @@ CN_RATE_2017 = 10.87
 
 
 def get_bz_cn_stock():
-    q = ','.join([i[0] for i in BZ_STOCK.values()])
+    d = BZ_STOCK.values()
+    q = ','.join([i[0] for i in d])
     r = requests.get(SINA_STOCK_URL % q).text.strip()
     lines = r.split(';')[:-1]
-    data = []
-    for i in lines:
+    data = [[i[0], i[1]] for i in d]
+    for idx, i in enumerate(lines):
         print i,'==='
         i = i.split('"')[1].split(',')[:]
-        data.append((i[0], i[3], i[5], i[4])) 
+        data[idx].extend([i[0], i[3], i[5], i[4]]) 
     return data, str(datetime.datetime.now())[:19]
 
 def get_us_stock():
