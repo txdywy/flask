@@ -424,6 +424,7 @@ PARTY_MAP = {"2": "Appflood",
              "12": "Data",
              "13": "AntiSpam",
              "21": "AdOps",
+             "22": "股神",
              }
 def post(text, appid=2, touser=None, toparty=None):
     """
@@ -478,10 +479,14 @@ def bz_alert():
     result = []
     for d in data:
         target = d[1]
-        price = double(d[3])
-        if price <= target:
+        price = float(d[3])
+        if price >= target:
             result.append(d)
     print result
+    if result:
+        result = [r[2]+':'+r[3]+'/'+str(r[1]) for r in result]
+        result = '\n'.join(result)
+        post(str(result), appid=1000002, toparty=['22'])
     
 
 
