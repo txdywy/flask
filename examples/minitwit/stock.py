@@ -161,7 +161,7 @@ def get_bz_cn_stock():
         print i,'==='
         i = i.split('"')[1].split(',')[:]
         data[idx].extend([i[0], i[3], i[5], i[4]]) 
-    return data, str(datetime.datetime.now())[:19]
+    return data
 
 def get_us_stock():
     r = requests.get(SINA_STOCK_URL % ','.join(['gb_' + US_STOCK[i] for i in US_STOCK])).text.strip()

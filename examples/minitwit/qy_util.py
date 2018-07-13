@@ -471,3 +471,30 @@ def thursday_task():
 def fmp_cr():
     #post('[建议]大家最近是不是很少用Phabricator了...大家有什么推动code review方面的建议呢？', toparty=['5'])
     pass
+
+
+def bz_alert():
+    data = stock.get_bz_cn_stock()
+    result = []
+    for d in data:
+        target = d[1]
+        price = double(d[3])
+        if price <= target:
+            result.append(d)
+    print result
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
