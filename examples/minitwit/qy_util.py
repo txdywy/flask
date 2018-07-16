@@ -480,7 +480,7 @@ def bz_alert():
     for d in data:
         target = d[1]
         price = float(d[3])
-        if price <= target + 0.5 and price > 0:
+        if price <= target + 0.3 and price > 0:
             result.append(d)
     print result
     if result:
