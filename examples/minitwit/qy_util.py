@@ -479,35 +479,18 @@ def bz_alert():
     result = []
     for d in data:
         target = d[1]
-        price = float(d[3])
-        if price <= target + 0.3 and price > 0:
+        price = float(d[4])
+        gap = d[2]
+        if price <= target + gap and price > 0:
             result.append(d)
     print result
     if result:
-        result = [r[2]+':'+r[3]+'/'+str(r[1]) for r in result]
-        result.append('上述股票就快达到买入点???')
+        result = [r[3]+':'+r[4]+'/'+str(r[1]) for r in result]
+        result.append('快到买点，关注!!!')
         result.append(unicode(datetime.datetime.now(tz))[:19])
         result = '\n'.join(result)
         post(str(result), appid=1000002, toparty=['22'])
     
-
-def bz_alert0():
-    data = stock.get_bz_cn_stock()
-    result = []
-    for d in data:
-        target = d[1]
-        price = float(d[3])
-        if price <= target and price > 0:
-            result.append(d)
-    print result
-    if result:
-        result = [r[2]+':'+r[3]+'/'+str(r[1]) for r in result]
-        result.append('上述股票已达到买入点!!!')
-        result.append(unicode(datetime.datetime.now(tz))[:19])
-        result = '\n'.join(result)
-        post(str(result), appid=1000002, toparty=['22'])
-
-
 
 
 

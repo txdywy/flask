@@ -37,10 +37,10 @@ CN_STOCK = {'海天味业': 'sh603288',
             '京东方': 'sz000725',
 }
 
-BZ_STOCK ={ '集泰股份':   ('sz002909', 17.76),
-            '国泰集团': ('sh603977', 8.48),
-            '雷鸣科化': ('sh600985', 9.97),
-            '申科股份': ('sz002633', 9.51),
+BZ_STOCK ={ '集泰股份': ('sz002909', 17.76, 0.5),
+            '国泰集团': ('sh603977', 8.48, 0.5),
+            '雷鸣科化': ('sh600985', 9.97, 0.75),
+            '申科股份': ('sz002633', 9.51, 0.75),
             }
 
             
@@ -145,7 +145,7 @@ def get_bz_cn_stock():
     q = ','.join([i[0] for i in d])
     r = requests.get(SINA_STOCK_URL % q).text.strip()
     lines = r.split(';')[:-1]
-    data = [[i[0], i[1]] for i in d]
+    data = [[i[0], i[1], i[2]] for i in d]
     for idx, i in enumerate(lines):
         print i,'==='
         i = i.split('"')[1].split(',')[:]
