@@ -493,6 +493,22 @@ def bz_alert():
     
 
 
+def bz_alert0():
+    data = stock.get_bz_cn_stock()
+    result = []
+    for d in data:
+        target = d[1]
+        price = float(d[4])
+        gap = d[2]
+        if price >= target + gap and price > 0:
+            result.append(d)
+    print result
+    if result:
+        result = [r[3]+':'+r[4]+'/'+str(r[1]) for r in result]
+        result.append('每日数据更新测试')
+        result.append(unicode(datetime.datetime.now(tz))[:19])
+        result = '\n'.join(result)
+        post(str(result), appid=1000002, toparty=['22'])
 
 
 
