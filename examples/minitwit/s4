@@ -1,1 +1,1 @@
-curl wtfismyip.com/json -v -x socks://$1 
+time curl wtfismyip.com/json -v -x socks://$1 
