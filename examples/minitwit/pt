@@ -1,0 +1,1 @@
+time pproxy --test http://wtfismyip.com/json -v -r socks://$1
