@@ -1,0 +1,2 @@
+time pproxy --test http://www.gstatic.com/_/play/_/js/k\=play.js.en.VYRuqG6t5VY.O/rt\=j/d\=1/rs\=AGlW0sYS3kt5hGo-A6dXDDgdplOhpTBd8w/m\=base,m,i -v -r socks4://$1
+time pproxy --test http://wtfismyip.com/json -v -r socks4://$1
