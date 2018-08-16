@@ -1,0 +1,1 @@
+python -c 'import qy_util as q;q.bz_alert0()'
