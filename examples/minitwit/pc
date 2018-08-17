@@ -1,0 +1,18 @@
+curl -4 -x socks5://$1 -O https://play.google.com/store --connect-timeout 15 -m 15 -w 'Total: %{time_total}\n'
+
+res=$?
+if test "$res" != "0"; then
+    echo "the curl command failed with: $res"
+    Y=$Y$1...GooglePlay...Err[$res]\\n
+fi
+
+
+curl -4 -x socks5://$1 wtfismyip.com/json --connect-timeout 3 -m 5 -w 'Total: %{time_total}\n'
+
+res=$?
+if test "$res" != "0"; then
+    echo "the curl command failed with: $res"
+    Y=$Y$1...WTFisMyIP...Err[$res]\\n
+fi
+
+echo $Y
