@@ -4,7 +4,7 @@ do
     L=$i'q;d'
     X=$(sed $L pxy_list)
     echo $X
-    time curl -4 -x socks5://$X -O https://play.google.com/store --connect-timeout 15 -m 15 -w 'Total: %{time_total}\n'  
+    time curl -4 -x socks5://$X wtfismyip.com/json --connect-timeout 3 -m 5 -w 'Total: %{time_total}\n'  
     res=$?
     if test "$res" != "0"; then
         echo "the curl command failed with: $res"
