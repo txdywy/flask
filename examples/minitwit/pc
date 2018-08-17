@@ -15,4 +15,4 @@ if test "$res" != "0"; then
     Y=$Y$1...WTFisMyIP...Err[$res]\\n
 fi
 
-echo $Y
+printf $Y
