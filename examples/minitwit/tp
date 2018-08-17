@@ -1,0 +1,14 @@
+N=$(cat pxy_list | wc -l)
+for ((i=1; i<=$N; i++))
+do
+    L=$i'q;d'
+    X=$(sed $L pxy_list)
+    echo $X    time curl -4 -x socks5://$X wtfismyip.com/json --connect-timeout 3 -m 5 -w 'Total: %{time_total}\n'
+    res=$?
+    if test "$res" != "0"; then
+        echo "the curl command failed with: $res"
+        Y=$Y$X...$i\\n
+    fi
+done
+echo '===========broken proxy=============='
+printf  $Y
