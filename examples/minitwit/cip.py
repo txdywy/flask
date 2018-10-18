@@ -4,7 +4,7 @@ import time
 import requests
 from bs4 import BeautifulSoup
 import logging
-import ssl
+import socket
 logging.basicConfig(level=logging.DEBUG)
 
 try:
@@ -94,7 +94,7 @@ def fetch_proxies_all_aio(pages=1):
 
 async def post_pd(session, url, proxy, data):
     headers = PD_HEADERS
-    async with session.post(url, headers=headers, timeout=90, data=data) as response:
+    async with session.post(url, headers=headers, timeout=90, data=data, proxy=proxy) as response:
         return await response.text()
 
 
@@ -104,9 +104,13 @@ async def coro_pd(page, proxy, t0=None):
     ] 
     if not t0:
         t0 = time.time()
-    async with aiohttp.ClientSession() as session:
+    conn = aiohttp.TCPConnector(
+        family=socket.AF_INET,
+        verify_ssl=False,
+    )
+    async with aiohttp.ClientSession(connector=conn) as session:
         try:
-            html = await post_pd(session, 'https://httpbin.org/post', proxy, data)
+            html = await post_pd(session, DP_URL, proxy, data)
             print(html)
         except Exception as e:
             raise e
@@ -122,8 +126,8 @@ async def main_pd(pages=None, pxys=None, t0=None):
     if not pages:
         pages = ['1']
     coros = [coro_pd(page, pxys, t0) for page in pages]
-    await asyncio.gather(*coros)
-    print(coros)
+    x = await asyncio.gather(*coros)
+    print(x)
 
 
 
