@@ -3,6 +3,9 @@ import asyncio
 import time
 import requests
 from bs4 import BeautifulSoup
+import logging
+import ssl
+logging.basicConfig(level=logging.DEBUG)
 
 try:
     import uvloop
@@ -42,6 +45,9 @@ PD_HEADERS = {
 }
 
 
+DP_URL = 'https://www.proxydocker.com/en/proxylist/search?port=All&type=HTTP&anonymity=All&country=United+States&city=All&state=All&need=All'
+IPAPI_URL = 'http://ip-api.com'
+HTTPS_URL = 'https://www.proxydocker.com/'
 
 def fetch_proxies(page='1'):
     data = [
@@ -52,7 +58,7 @@ def fetch_proxies(page='1'):
     #    'https': 'socks5://localhost:1080'
     #}
     print('started dp fetch', time.strftime('%X'))
-    r = requests.post('https://www.proxydocker.com/en/proxylist/search?port=All&type=HTTP&anonymity=All&country=United+States&city=All&state=All&need=All', data=data, headers=PD_HEADERS)
+    r = requests.post(DP_URL, data=data, headers=PD_HEADERS)
     print('done dp fetch', time.strftime('%X'))
     proxies = page_proxy(r)
     proxies = [i for i in proxies if len(i) > 5]
@@ -61,7 +67,64 @@ def fetch_proxies(page='1'):
 
     print(proxies)
     return proxies
+
+
+def fetch_proxies_all(pages=1):
+    proxies = []
+    for i in range(1, pages+1):
+        try:
+            proxy = fetch_proxies(str(i))
+        except:
+            print('dp connection failed, you may need update your cookies to fetch more than 1 pages')
+        proxies += proxy
+    return proxies
+
+
+
+def fetch_proxies_all_aio(pages=1):
+    t0 = time.time()
+    print('started at', time.strftime('%X'))
+    loop = asyncio.get_event_loop()
+    loop.run_until_complete(main_pd(pages=['1','2'], t0=t0))
+    print('finished at', time.strftime('%X'))
+
+
+
     
+
+async def post_pd(session, url, proxy, data):
+    headers = PD_HEADERS
+    async with session.post(url, headers=headers, timeout=90, data=data) as response:
+        return await response.text()
+
+
+async def coro_pd(page, proxy, t0=None):
+    data = [
+      ('page', page),
+    ] 
+    if not t0:
+        t0 = time.time()
+    async with aiohttp.ClientSession() as session:
+        try:
+            html = await post_pd(session, 'https://httpbin.org/post', proxy, data)
+            print(html)
+        except Exception as e:
+            raise e
+            print('timeout!')
+            html = ''
+        print(proxy)
+        print('elapsed time:', time.time()-t0)
+        print('done at', time.strftime('%X'))
+        return html
+
+
+async def main_pd(pages=None, pxys=None, t0=None):
+    if not pages:
+        pages = ['1']
+    coros = [coro_pd(page, pxys, t0) for page in pages]
+    await asyncio.gather(*coros)
+    print(coros)
+
 
 
 async def fetch(session, url, proxy):
@@ -75,7 +138,7 @@ async def coro(proxy, t0=None):
         t0 = time.time()
     async with aiohttp.ClientSession() as session:
         try:
-            html = await fetch(session, 'http://ip-api.com', proxy)
+            html = await fetch(session, IPAPI_URL, proxy)
             print(html)
         except:
             print('timeout!')
@@ -103,13 +166,8 @@ TEST_PROXIES = ['46.63.45.88:37893',
 
 
 def fetch_and_poll(pages=1, test=False):
-    if test:
-        proxies = TEST_PROXIES
-    else:
-        proxies = []
-        for i in range(1, pages+1):
-            proxies += fetch_proxies(str(i))
-        print(proxies)
+    proxies = TEST_PROXIES if test else fetch_proxies_all(pages)
+    print(proxies)
     t0 = time.time()
     print('started at', time.strftime('%X'))
     loop = asyncio.get_event_loop()
