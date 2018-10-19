@@ -17,7 +17,10 @@ except:
 def page_proxy(r):
     #give me a response r and i give you all proxies entry data
     page_proxy_count = 0
-    html = r.content
+    try:
+        html = r.content
+    except:
+        html = r
     soup = BeautifulSoup(html, 'lxml')
     trs = soup.find_all('tr')
     trs = trs[1:]
@@ -40,7 +43,7 @@ PD_HEADERS = {
     'referer': 'https://www.proxydocker.com/en/socks5-list/',
     'accept-encoding': 'gzip, deflate, br',
     'accept-language': 'en-US,en;q=0.9,zh-CN;q=0.8,zh;q=0.7,zh-TW;q=0.6',
-    'cookie': '_ga=GA1.2.587845913.1535014830; __tawkuuid=e::proxydocker.com::JWZ39h6IUYPaAAYuUYbjpiqGWfxMnQ5GPYDOJSuv1bjQTQrUaXpeajfwuZFRBueD::2; _gid=GA1.2.538432557.1539570325; cookieconsent_status=dismiss; REMEMBERME=TWFpbkJ1bmRsZVxFbnRpdHlcVXNlcjpkSGhrZVhkNToxNTM5ODM5OTgyOmQwN2Q3YmNlZDZjNGMxZjgxNmZhMGJhZDZjNDllNTY4OTZkNjg0ZTg4MjIzYWU0N2MxZjAyOGFjMzcxYTY1Mjg%3D; SERVERID31396=234013; PHPSESSID=6908453197842b2ef841260a1a9e5af9; _gat=1; TawkConnectionTime=0',
+    'cookie': '_ga=GA1.2.587845913.1535014830; __tawkuuid=e::proxydocker.com::JWZ39h6IUYPaAAYuUYbjpiqGWfxMnQ5GPYDOJSuv1bjQTQrUaXpeajfwuZFRBueD::2; _gid=GA1.2.538432557.1539570325; cookieconsent_status=dismiss; SERVERID31396=234013; PHPSESSID=28adb0581814808c29812564f518d968; REMEMBERME=TWFpbkJ1bmRsZVxFbnRpdHlcVXNlcjpkSGhrZVhkNToxNTQwMDAwOTAwOjY0ZjIyZTBlZWM5MWIwZmY2ZTg3MDM0Y2VhMjQ5MWE2ZGNhYmUzMWRiYzExNjkxYzYyYThkMDY1YWNiMTFlMjQ%3D; TawkConnectionTime=0',
     'alexatoolbar-alx_ns_ph': 'AlexaToolbar/alx-4.0.3',
 }
 
@@ -85,7 +88,7 @@ def fetch_proxies_all_aio(pages=1):
     t0 = time.time()
     print('started at', time.strftime('%X'))
     loop = asyncio.get_event_loop()
-    loop.run_until_complete(main_pd(pages=['1','2'], t0=t0))
+    loop.run_until_complete(main_pd(pages=[str(i) for i in range(1, pages+1)], t0=t0))
     print('finished at', time.strftime('%X'))
 
 
@@ -111,7 +114,7 @@ async def coro_pd(page, proxy, t0=None):
     async with aiohttp.ClientSession(connector=conn) as session:
         try:
             html = await post_pd(session, DP_URL, proxy, data)
-            print(html)
+            #print(html)
         except Exception as e:
             raise e
             print('timeout!')
@@ -126,8 +129,24 @@ async def main_pd(pages=None, pxys=None, t0=None):
     if not pages:
         pages = ['1']
     coros = [coro_pd(page, pxys, t0) for page in pages]
-    x = await asyncio.gather(*coros)
-    print(x)
+    htmls = await asyncio.gather(*coros)
+    proxies = []
+    for html in htmls:
+        proxies_sub = page_proxy(html)
+        print(proxies_sub)
+        proxies_sub = [i for i in proxies_sub if len(i) > 5]
+        print(proxies_sub)
+        for i in proxies_sub:
+            print(i)
+        print(proxies_sub)
+        proxies.extend(proxies_sub)
+
+    print('started check at', time.strftime('%X'))
+    t0 = time.time()
+    coros = [coro('http://' + i, t0) for i in proxies]
+    await asyncio.gather(*coros)
+    print('done check at', time.strftime('%X'))
+
 
 
 
