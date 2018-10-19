@@ -200,3 +200,8 @@ def fetch_and_poll(pages=1, test=False):
 
 def run(pages=1):
     fetch_and_poll(pages=pages)
+
+
+
+def bang(pages=5):
+    fetch_proxies_all_aio(pages=pages)
