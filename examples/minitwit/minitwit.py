@@ -17,7 +17,7 @@ from datetime import datetime
 from flask import Flask, request, session, url_for, redirect, \
      render_template, abort, g, flash, _app_ctx_stack, make_response
 import flask
-from flask.ext.triangle import Triangle
+from flask_triangle import Triangle
 from werkzeug import check_password_hash, generate_password_hash
 from boto.s3.connection import S3Connection
 from boto.s3.key import Key
@@ -86,7 +86,7 @@ except:
     ALANCER_BAIDU_STATS = ''
     print '----------------no baidu stat js loaded----------------'
 
-from flask.ext.babel import Babel, gettext as _, get_locale
+from flask_babel import Babel, gettext as _, get_locale
 import qiniu_agent
 import proxy
 
