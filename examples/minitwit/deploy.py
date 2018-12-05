@@ -1,4 +1,5 @@
-from fabric.api import *
+#from fabric.operations import *
+import os
 SUDO_PIP_INSTALL = 'sudo pip install %s'
 pkgs = ['boto',
         'beautifulsoup4',
@@ -37,4 +38,4 @@ pkgs = ['boto',
         'Faker',
        ]
 for pkg in pkgs:
-    local(SUDO_PIP_INSTALL % pkg)
+    os.system(SUDO_PIP_INSTALL % pkg)
