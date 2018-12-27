@@ -39,7 +39,7 @@ def ip():
 HOST_DEV = [] # ['miso', 'airbb', 'nn', 'mm', ] retired
 HOST_ALANCER = ['wei'] # ['polo', 'sushi', 'noodle', 'udon', 'natto'] retired
 HOST_VPN = [            
-            'dad',
+            'dad', 'swd',
             ] # ['tempura', 'ramen', 'donut', 'nori', 'mm', 'rib', 'steak', 'buckeye', 'natto', 
               #  'curry', 'ton', 'koala', 'ham', 'wiener', 'crab', 'laksa', 'stew', 'bbq', 'suki', 
               #  'bacon', 'chip', 'fish', 'ice', 'kim', 'mei', 'wei', 'iit', 'tod', 'thu', 'usc', 'cal', 'ucr', 'sta', 'dox', ] retired
@@ -90,6 +90,7 @@ HOST_LAUNCH_DATE = {
     #'sta': datetime.datetime(2017, 9, 14),
     #'dox': datetime.datetime(2017,11, 17),
     'dad': datetime.datetime(2018, 6, 20),
+    'swd': datetime.datetime(2018,12, 14),
 }
 
 
@@ -124,6 +125,7 @@ HOST_INDEX = {#'01': 'rib',      #kr@yahoo
               #'29': 'sta',      #usw1@gmail AE8921  hacked, down; mv to paris, Fr. new pem
               #'30': 'dox',      #kr@gmail JCB6070
               '31': 'dad',      #jp@gmail M8250
+              '33': 'swd',      #in@gmail 
              }
 
 HOST_DATA = {#'rib'    : ('01', 'kr',    'yahoo'),
@@ -157,6 +159,7 @@ HOST_DATA = {#'rib'    : ('01', 'kr',    'yahoo'),
              #'sta'    : ('29', 'usw1',  'gmail'),
              #'dox'    : ('30', 'kr',    'gmail'),
              'dad'    : ('31', 'jp',    'gmail'),
+             'swd'    : ('33', 'in',    'gmail'),
              }
 
 
