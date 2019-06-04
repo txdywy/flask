@@ -91,6 +91,7 @@ HOST_LAUNCH_DATE = {
     #'dox': datetime.datetime(2017,11, 17),
     'dad': datetime.datetime(2018, 6, 20),
     'swd': datetime.datetime(2018,12, 14),
+    'pa0': datetime.datetime(2019, 6,  4), 
 }
 
 
@@ -124,8 +125,9 @@ HOST_INDEX = {#'01': 'rib',      #kr@yahoo
               #'28': 'ucr',      #jp@gmail JCB0774
               #'29': 'sta',      #usw1@gmail AE8921  hacked, down; mv to paris, Fr. new pem
               #'30': 'dox',      #kr@gmail JCB6070
-              '31': 'dad',      #jp@gmail M8250
-              '33': 'swd',      #in@gmail 
+              '31': 'dad',       #jp@gmail M8250
+              '33': 'swd',       #in@gmail 
+              '34': 'pa0',       #jp@outlook  #mpass #q@w@e@r@@@@@
              }
 
 HOST_DATA = {#'rib'    : ('01', 'kr',    'yahoo'),
