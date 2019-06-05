@@ -39,7 +39,7 @@ def ip():
 HOST_DEV = [] # ['miso', 'airbb', 'nn', 'mm', ] retired
 HOST_ALANCER = ['wei'] # ['polo', 'sushi', 'noodle', 'udon', 'natto'] retired
 HOST_VPN = [            
-            'dad', 'swd',
+            'dad', 'swd', 'pa0',
             ] # ['tempura', 'ramen', 'donut', 'nori', 'mm', 'rib', 'steak', 'buckeye', 'natto', 
               #  'curry', 'ton', 'koala', 'ham', 'wiener', 'crab', 'laksa', 'stew', 'bbq', 'suki', 
               #  'bacon', 'chip', 'fish', 'ice', 'kim', 'mei', 'wei', 'iit', 'tod', 'thu', 'usc', 'cal', 'ucr', 'sta', 'dox', ] retired
@@ -162,6 +162,7 @@ HOST_DATA = {#'rib'    : ('01', 'kr',    'yahoo'),
              #'dox'    : ('30', 'kr',    'gmail'),
              'dad'    : ('31', 'jp',    'gmail'),
              'swd'    : ('33', 'in',    'gmail'),
+             'pa0'    : ('34', 'jp',    'outlook'),
              }
 
 
