@@ -378,4 +378,8 @@ def blockchain():
 
 
 
+def cn():
+    print get_cn_stock()
 
+def us():
+    print get_us_stock()
