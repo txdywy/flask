@@ -237,7 +237,8 @@ def _diff_sym(a, b):
     return s
 
 
-#MuM 400k into sp500 2019.08.22
+#MUM 400k into sp500 2019.08.22
+#MUM 100k into sp500 2019.08.27
 def get_cn_stock():
     r = requests.get(SINA_STOCK_URL % ','.join(CN_STOCK.values())).text.strip()
     r = r.split(';')[:-1]
