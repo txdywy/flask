@@ -237,6 +237,7 @@ def _diff_sym(a, b):
     return s
 
 #fund
+#MUM 200k into vfund 2020.09.29
 #MUM 400k into sp500 2019.08.22
 #MUM 100k into sp500 2019.08.27
 #MUM 100k into sp500 2019.09.20
