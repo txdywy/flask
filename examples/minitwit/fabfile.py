@@ -305,3 +305,10 @@ GCE_REPO = {
     "gce-tw": "tw",   #11@gmail JCB0774 2018.01.17 
     "gce-ca": "ca",   #== 
 }
+
+
+# gcp
+## xxxxxx40@gmail hk04, us02
+#  xxxxxx45@gmail 215 jp01, jp02, us04, tw02
+#  xxxxxx56@gmail  51 hk08,hk09
+#  xxxxxx55@gmail  45 hk07,hk10,ja01,us05
